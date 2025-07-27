@@ -1,0 +1,5 @@
+package com.example.kreyno
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity : FlutterActivity()

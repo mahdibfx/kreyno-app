@@ -1,0 +1,92 @@
+import 'package:kreyno/ui/bottom_sheets/notice/notice_sheet.dart';
+import 'package:kreyno/ui/views/home/home_view.dart';
+import 'package:kreyno/ui/views/startup/startup_view.dart';
+import 'package:stacked/stacked_annotations.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'package:kreyno/ui/views/onboarding/onboarding_view.dart';
+import 'package:kreyno/ui/views/signin/signin_view.dart';
+import 'package:kreyno/ui/views/signup/signup_view.dart';
+import 'package:kreyno/ui/views/set_up_vehicule/set_up_vehicule_view.dart';
+import 'package:kreyno/ui/views/set_up_payment_methods/set_up_payment_methods_view.dart';
+import 'package:kreyno/ui/views/set_up_permissions/set_up_permissions_view.dart';
+import 'package:kreyno/ui/views/seller_spot_details/seller_spot_details_view.dart';
+import 'package:kreyno/ui/views/buyer_spot_details/buyer_spot_details_view.dart';
+import 'package:kreyno/ui/views/spot_sold_success/spot_sold_success_view.dart';
+import 'package:kreyno/ui/views/spot_bought_success/spot_bought_success_view.dart';
+import 'package:kreyno/ui/views/edit_profile/edit_profile_view.dart';
+import 'package:kreyno/ui/views/my_vehicules/my_vehicules_view.dart';
+import 'package:kreyno/ui/views/my_payment_methodes/my_payment_methodes_view.dart';
+import 'package:kreyno/ui/views/spots_history/spots_history_view.dart';
+import 'package:kreyno/ui/views/kreyno_wallet/kreyno_wallet_view.dart';
+import 'package:kreyno/ui/views/cashout/cashout_view.dart';
+import 'package:kreyno/ui/views/add_vehicule/add_vehicule_view.dart';
+import 'package:kreyno/ui/views/edit_vehicule/edit_vehicule_view.dart';
+import 'package:kreyno/ui/bottom_sheets/otp/otp_sheet.dart';
+import 'package:kreyno/ui/bottom_sheets/upload_vehicule_image/upload_vehicule_image_sheet.dart';
+import 'package:kreyno/ui/bottom_sheets/buy_spot/buy_spot_sheet.dart';
+import 'package:kreyno/ui/bottom_sheets/pay_for_spot/pay_for_spot_sheet.dart';
+import 'package:kreyno/ui/bottom_sheets/add_payment_method/add_payment_method_sheet.dart';
+import 'package:kreyno/ui/bottom_sheets/cancelation_reasons/cancelation_reasons_sheet.dart';
+import 'package:kreyno/ui/bottom_sheets/home_filter/home_filter_sheet.dart';
+import 'package:kreyno/ui/bottom_sheets/create_spot/create_spot_sheet.dart';
+import 'package:kreyno/ui/bottom_sheets/rejection_reasons/rejection_reasons_sheet.dart';
+import 'package:kreyno/ui/dialogs/delete_spot/delete_spot_dialog.dart';
+import 'package:kreyno/ui/bottom_sheets/profile/profile_sheet.dart';
+import 'package:kreyno/ui/bottom_sheets/danger/danger_sheet.dart';
+import 'package:kreyno/ui/bottom_sheets/date_picker_filter/date_picker_filter_sheet.dart';
+import 'package:kreyno/ui/bottom_sheets/completed_action/completed_action_sheet.dart';
+// @stacked-import
+
+@StackedApp(
+  routes: [
+    MaterialRoute(page: HomeView),
+    MaterialRoute(page: StartupView),
+    MaterialRoute(page: OnboardingView),
+    MaterialRoute(page: SigninView),
+    MaterialRoute(page: SignupView),
+    MaterialRoute(page: SetUpVehiculeView),
+    MaterialRoute(page: SetUpPaymentMethodsView),
+    MaterialRoute(page: SetUpPermissionsView),
+    MaterialRoute(page: SellerSpotDetailsView),
+    MaterialRoute(page: BuyerSpotDetailsView),
+    MaterialRoute(page: SpotSoldSuccessView),
+    MaterialRoute(page: SpotBoughtSuccessView),
+    MaterialRoute(page: EditProfileView),
+    MaterialRoute(page: MyVehiculesView),
+    MaterialRoute(page: MyPaymentMethodesView),
+    MaterialRoute(page: SpotsHistoryView),
+    MaterialRoute(page: KreynoWalletView),
+    MaterialRoute(page: CashoutView),
+    MaterialRoute(page: AddVehiculeView),
+    MaterialRoute(page: EditVehiculeView),
+// @stacked-route
+  ],
+  dependencies: [
+    LazySingleton(classType: BottomSheetService),
+    LazySingleton(classType: DialogService),
+    LazySingleton(classType: NavigationService),
+    // @stacked-service
+  ],
+  bottomsheets: [
+    StackedBottomsheet(classType: NoticeSheet),
+    StackedBottomsheet(classType: OtpSheet),
+    StackedBottomsheet(classType: UploadVehiculeImageSheet),
+    StackedBottomsheet(classType: BuySpotSheet),
+    StackedBottomsheet(classType: PayForSpotSheet),
+    StackedBottomsheet(classType: AddPaymentMethodSheet),
+    StackedBottomsheet(classType: CancelationReasonsSheet),
+    StackedBottomsheet(classType: HomeFilterSheet),
+    StackedBottomsheet(classType: CreateSpotSheet),
+    StackedBottomsheet(classType: RejectionReasonsSheet),
+    StackedBottomsheet(classType: ProfileSheet),
+    StackedBottomsheet(classType: DangerSheet),
+    StackedBottomsheet(classType: DatePickerFilterSheet),
+    StackedBottomsheet(classType: CompletedActionSheet),
+// @stacked-bottom-sheet
+  ],
+  dialogs: [
+    StackedDialog(classType: DeleteSpotDialog),
+// @stacked-dialog
+  ],
+)
+class App {}
