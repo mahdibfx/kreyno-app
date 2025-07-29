@@ -11,4 +11,5 @@ class AppColors {
   static const Color placeholderKre = Color(0xFFCFD1CF);
   static const Color textKre = Color(0xFFADAFAD);
   static const Color disabledKre = Color(0xFFF1F1F1);
+  static const Color wazeBlue = Color(0xFF05C8F7);
 }
