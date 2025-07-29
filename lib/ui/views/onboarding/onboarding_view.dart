@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/ui/common/app_colors.dart';
+import 'package:kreyno/ui/common/app_images.dart';
+import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/common/responsive_sizer.dart';
+import 'package:kreyno/ui/widgets/dumb/app_logo.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:stacked/stacked.dart';
 
 import 'onboarding_viewmodel.dart';
@@ -13,10 +19,92 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      body: Container(
-        padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-        child: const Center(child: Text("OnboardingView")),
+      backgroundColor: AppColors.mainKre,
+      body: SizedBox(
+        height: 100.dh,
+        width: 100.dw,
+        child: Stack(
+          children: [
+            Opacity(
+              opacity: .95,
+              child: Container(
+                width: double.maxFinite,
+                height: double.maxFinite,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(AppImages.background),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+            ),
+            Opacity(
+              opacity: .7,
+              child: Container(
+                width: double.maxFinite,
+                height: double.maxFinite,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: [0, .8],
+                    colors: [
+                      Colors.transparent,
+                      Colors.black,
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: double.maxFinite,
+              height: 50.dh,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: [0, 1],
+                  colors: [
+                    AppColors.mainKre,
+                    Colors.transparent,
+                  ],
+                ),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                spacing: AppSpacing.px8,
+                children: [
+                  const AppLogo(
+                    animated: false,
+                  ),
+                  CustomText.smallParagraphMedium(
+                    'Le futur du stationnement',
+                    color: AppColors.white.withValues(alpha: .7),
+                  )
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: double.maxFinite,
+                height: 27.dh,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: const [0, .5],
+                    colors: [
+                      AppColors.mainKre.withValues(alpha: .0),
+                      AppColors.mainKre,
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

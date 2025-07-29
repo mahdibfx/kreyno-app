@@ -37,4 +37,6 @@ class AppImages {
 
   static const String successIllustration =
       '${_basePath}success_illustration.png';
+
+  static const String background = '${_basePath}background.jpg';
 }
