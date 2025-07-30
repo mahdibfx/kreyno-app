@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
+import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_images.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/common/responsive_sizer.dart';
 import 'package:kreyno/ui/widgets/dumb/app_logo.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:stacked/stacked.dart';
 
@@ -99,6 +102,26 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                       AppColors.mainKre.withValues(alpha: .0),
                       AppColors.mainKre,
                     ],
+                  ),
+                ),
+                child: SafeArea(
+                  child: Padding(
+                    padding: EdgeInsets.all(
+                      AppSpacing.px24,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      spacing: AppSpacing.px16,
+                      children: [
+                        CustomButton.filled(
+                          text: 'Continuer avec numéro',
+                          icon: AppIcons.call,
+                          size: CustomButtonSize.large,
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

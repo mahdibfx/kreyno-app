@@ -39,4 +39,7 @@ class AppImages {
       '${_basePath}success_illustration.png';
 
   static const String background = '${_basePath}background.jpg';
+
+  static const String permissionsIllustration =
+      '${_basePath}permissions_illustration.png';
 }
