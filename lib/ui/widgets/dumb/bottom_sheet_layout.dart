@@ -25,7 +25,7 @@ class BottomSheetLayout extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withValues(alpha: .05),
             blurRadius: AppSpacing.px20,
-            offset: Offset(0, -AppSpacing.px4),
+            offset: Offset(0, -5 * AppSpacing.px1),
           ),
         ],
       ),
