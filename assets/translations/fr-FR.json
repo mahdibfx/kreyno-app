@@ -1,6 +1,23 @@
 {
+    "common": {
+        "continue": "Continuer"
+    },
     "onboarding": {
         "tagLine": "Le futur du stationnement",
         "buttonLabel": "Continuer avec numéro"
+    },
+    "signin": {
+        "title": "Connexion",
+        "description": "Connectez-vous à votre compte pour commencer.",
+        "phoneNumber": "Numéro de téléphone",
+        "phoneNumberPlaceholder": "Entrez votre numéro de téléphone",
+        "buttonLabel": "Connexion"
+    },
+    "otp": {
+        "title": "Vérification OTP",
+        "description": "Un code à 6 chiffres vous a été envoyé.",
+        "codeNotReceived": "Code non reçu ?",
+        "resendCodeIn": "Renvoyer dans",
+        "resendCode": "Renvoyer"
     }
 }

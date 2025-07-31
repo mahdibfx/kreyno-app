@@ -7,9 +7,10 @@ class AppColors {
   static const Color greenKre = Color(0xFF2AD492);
   static const Color white = Color(0xFFFFFFFF);
   static const Color redKre = Color(0xFFF85A51);
-  static const Color strokeKre = Color(0xFFA8A8A8);
+  static const Color strokeKre = Color(0x40A8A8A8);
   static const Color placeholderKre = Color(0xFFCFD1CF);
   static const Color textKre = Color(0xFFADAFAD);
   static const Color disabledKre = Color(0xFFF1F1F1);
+  static const Color disabledFillKre = Color(0xFFF9F9F9);
   static const Color wazeBlue = Color(0xFF05C8F7);
 }

@@ -4,6 +4,8 @@ import 'package:kreyno/ui/common/responsive_sizer.dart';
 class AppSpacing {
   AppSpacing._();
 
+  static final double px1 = px4 / 4;
+
   static final double px4 = .5.h;
 
   static final double px8 = 2 * px4;

@@ -106,8 +106,10 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                 ),
                 child: SafeArea(
                   child: Padding(
-                    padding: EdgeInsets.all(
-                      AppSpacing.px24,
+                    padding: EdgeInsets.only(
+                      left: AppSpacing.px16,
+                      right: AppSpacing.px16,
+                      bottom: AppSpacing.px20,
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -118,7 +120,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                           text: OnboardingStrings.buttonLabel,
                           icon: AppIcons.call,
                           size: CustomButtonSize.large,
-                          onPressed: () {},
+                          onPressed: viewModel.goToSignIn,
                         ),
                       ],
                     ),
