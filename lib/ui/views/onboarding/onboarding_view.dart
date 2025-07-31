@@ -3,10 +3,10 @@ import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_images.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/common/responsive_sizer.dart';
 import 'package:kreyno/ui/widgets/dumb/app_logo.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
-import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:stacked/stacked.dart';
 
@@ -82,7 +82,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                     animated: false,
                   ),
                   CustomText.smallParagraphMedium(
-                    'Le futur du stationnement',
+                    OnboardingStrings.tagLine,
                     color: AppColors.white.withValues(alpha: .7),
                   )
                 ],
@@ -115,7 +115,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                       spacing: AppSpacing.px16,
                       children: [
                         CustomButton.filled(
-                          text: 'Continuer avec numéro',
+                          text: OnboardingStrings.buttonLabel,
                           icon: AppIcons.call,
                           size: CustomButtonSize.large,
                           onPressed: () {},
