@@ -55,7 +55,12 @@ class OtpSheet extends StackedView<OtpSheetModel> {
                     ),
                   ],
                 ),
-                const OtpField(),
+                OtpField(
+                  onComplete: (value) {
+                    completer
+                        ?.call(SheetResponse(confirmed: true, data: value));
+                  },
+                ),
                 SizedBox(
                   width: double.infinity,
                   child: Column(

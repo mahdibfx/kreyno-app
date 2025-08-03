@@ -6,11 +6,11 @@ import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpField extends StatelessWidget {
-  final Function(String)? onSubmit;
+  final Function(String) onComplete;
   final Function(String)? onChanged;
   const OtpField({
     super.key,
-    this.onSubmit,
+    required this.onComplete,
     this.onChanged,
   });
 
@@ -62,8 +62,8 @@ class OtpField extends StatelessWidget {
       pinputAutovalidateMode: PinputAutovalidateMode.disabled,
       pinAnimationType: PinAnimationType.scale,
       showCursor: true,
-      onSubmitted: onSubmit,
       onChanged: onChanged,
+      onCompleted: onComplete,
       separatorBuilder: (index) => HGap(5 * AppSpacing.px1),
     );
   }
