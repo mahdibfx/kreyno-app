@@ -11,6 +11,7 @@ class InputField extends StatelessWidget {
   final String hintText;
   final String? errorText;
   final TextInputType keyboardType;
+  final TextInputAction textInputAction;
   final Widget? suffixWidget;
   final Widget? prefixWidget;
   final Function()? onSuffixWidgetTapped;
@@ -26,6 +27,7 @@ class InputField extends StatelessWidget {
     required this.hintText,
     this.errorText,
     required this.keyboardType,
+    this.textInputAction = TextInputAction.next,
     this.suffixWidget,
     this.prefixWidget,
     this.onSuffixWidgetTapped,
@@ -54,6 +56,7 @@ class InputField extends StatelessWidget {
               child: TextFormField(
                 controller: controller,
                 focusNode: focusNode,
+                textInputAction: textInputAction,
                 keyboardType: keyboardType,
                 maxLength: maxLength,
                 onChanged: onChanged,

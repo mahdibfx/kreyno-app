@@ -19,5 +19,27 @@
         "codeNotReceived": "Code non reçu ?",
         "resendCodeIn": "Renvoyer dans",
         "resendCode": "Renvoyer"
+    },
+    "signup": {
+        "title": "Inscription",
+        "phoneNumber": "Numéro de téléphone",
+        "phoneNumberPlaceholder": "Entrez votre numéro de téléphone",
+        "firstName": "Prénom",
+        "firstNamePlaceholder": "Prénom",
+        "lastName": "Nom",
+        "lastNamePlaceholder": "Nom",
+        "userName": "Nom d'utilisateur",
+        "userNamePlaceholder": "Ex: johndoe22",
+        "email": "Email",
+        "emailPlaceholder": "Ex: johndoe@gmail.com",
+        "address": "Adresse postale",
+        "addressPlaceholder": "Votre adresse",
+        "birthday": "Date de naissance",
+        "day": "Jour",
+        "month": "Mois",
+        "year": "Année",
+        "gender": "Sexe",
+        "male": "Homme",
+        "female": "Femme"
     }
 }

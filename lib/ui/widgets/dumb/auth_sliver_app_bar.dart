@@ -9,13 +9,13 @@ import 'package:kreyno/ui/widgets/dumb/gap.dart';
 
 class AuthSliverAppBar extends StatelessWidget {
   final String title;
-  final String description;
+  final String? description;
   final VoidCallback onBackPressed;
 
   const AuthSliverAppBar({
     super.key,
     required this.title,
-    required this.description,
+    this.description,
     required this.onBackPressed,
   });
 
@@ -34,13 +34,11 @@ class AuthSliverAppBar extends StatelessWidget {
 
 class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
   final String title;
-  final String description;
+  final String? description;
   final VoidCallback onBackPressed;
 
   AuthAppBarDelegate(
-      {required this.title,
-      required this.description,
-      required this.onBackPressed});
+      {required this.title, this.description, required this.onBackPressed});
 
   @override
   Widget build(
@@ -95,11 +93,12 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
                   title,
                   color: AppColors.mainKre,
                 ),
-                CustomText.smallParagraphMedium(
-                  description,
-                  color: AppColors.textKre,
-                  maxLines: 2,
-                ),
+                if (description != null)
+                  CustomText.smallParagraphMedium(
+                    description!,
+                    color: AppColors.textKre,
+                    maxLines: 2,
+                  ),
               ],
             )
           ],
@@ -109,10 +108,10 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  double get maxExtent => 10 * AppSpacing.px20;
+  double get maxExtent => (description != null ? 10 : 9) * AppSpacing.px20;
 
   @override
-  double get minExtent => 10 * AppSpacing.px20;
+  double get minExtent => (description != null ? 10 : 9) * AppSpacing.px20;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {

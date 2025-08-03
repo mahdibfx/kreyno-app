@@ -23,53 +23,56 @@ class SigninView extends StackedView<SigninViewModel> with $SigninView {
     SigninViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      backgroundColor: AppColors.white,
-      body: CustomScrollView(
-        slivers: [
-          AuthSliverAppBar(
-            title: SigninStrings.title,
-            description: SigninStrings.description,
-            onBackPressed: viewModel.goBack,
-          ),
-          SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
-            sliver: SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  PhoneInputField(
-                    controller: phoneNumberController,
-                    focusNode: phoneNumberFocusNode,
-                    labelText: SigninStrings.phoneNumber,
-                    hintText: SigninStrings.phoneNumberPlaceholder,
-                    onChanged: (countryCode, phoneNumber) {},
-                  ),
-                ],
-              ),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        backgroundColor: AppColors.white,
+        body: CustomScrollView(
+          slivers: [
+            AuthSliverAppBar(
+              title: SigninStrings.title,
+              description: SigninStrings.description,
+              onBackPressed: viewModel.goBack,
             ),
-          ),
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: SafeArea(
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: AppSpacing.px16,
-                  right: AppSpacing.px16,
-                  bottom: AppSpacing.px20,
-                ),
+            SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
+              sliver: SliverToBoxAdapter(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    CustomButton.filled(
-                      text: SigninStrings.buttonLabel,
-                      onPressed: viewModel.showOtpSheet,
+                    PhoneInputField(
+                      controller: phoneNumberController,
+                      focusNode: phoneNumberFocusNode,
+                      labelText: SigninStrings.phoneNumber,
+                      hintText: SigninStrings.phoneNumberPlaceholder,
+                      onChanged: (countryCode, phoneNumber) {},
                     ),
                   ],
                 ),
               ),
             ),
-          ),
-        ],
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: SafeArea(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: AppSpacing.px16,
+                    right: AppSpacing.px16,
+                    bottom: AppSpacing.px20,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      CustomButton.filled(
+                        text: SigninStrings.buttonLabel,
+                        onPressed: viewModel.showOtpSheet,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
