@@ -43,6 +43,9 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
+    final shrinkRatio = shrinkOffset / (maxExtent - minExtent);
+    final opacity = (.9 - shrinkRatio).clamp(0.0, 1.0);
+
     return Container(
       color: AppColors.white,
       padding: EdgeInsets.only(
@@ -83,23 +86,27 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
                 HGap(AppSpacing.px32),
               ],
             ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              spacing: AppSpacing.px4,
-              children: [
-                CustomText.largeTitle(
-                  title,
-                  color: AppColors.mainKre,
-                ),
-                if (description != null)
-                  CustomText.smallParagraphMedium(
-                    description!,
-                    color: AppColors.textKre,
-                    maxLines: 2,
+            AnimatedOpacity(
+              opacity: opacity,
+              duration: Duration.zero,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                spacing: AppSpacing.px4,
+                children: [
+                  CustomText.largeTitle(
+                    title,
+                    color: AppColors.mainKre,
                   ),
-              ],
+                  if (description != null)
+                    CustomText.smallParagraphMedium(
+                      description!,
+                      color: AppColors.textKre,
+                      maxLines: 2,
+                    ),
+                ],
+              ),
             )
           ],
         ),
@@ -111,7 +118,7 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => (description != null ? 10 : 9) * AppSpacing.px20;
 
   @override
-  double get minExtent => (description != null ? 10 : 9) * AppSpacing.px20;
+  double get minExtent => 110 * AppSpacing.px1;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {

@@ -1,6 +1,8 @@
 {
     "common": {
-        "continue": "Continuer"
+        "continue": "Continuer",
+        "optional": "Optionnel",
+        "delete": "Supprimer"
     },
     "onboarding": {
         "tagLine": "Le futur du stationnement",
@@ -41,5 +43,26 @@
         "gender": "Sexe",
         "male": "Homme",
         "female": "Femme"
+    },
+    "setUpVehicule": {
+        "title": "Ajoutez votre véhicule",
+        "description": "Remplissez ces informations ci-dessous.",
+        "autoFill": "Les informations ci-dessous seront remplies automatiquement depuis notre base de données.",
+        "frenchLicensePlate": "Immatriculation française",
+        "licensePlate": "Numéro d'immatriculation",
+        "licensePlatePlaceholder": "AA - 000 - AA",
+        "vehicleBrand": "Marque du véhicule",
+        "vehicleBrandPlaceholder": "Marque",
+        "vehicleModel": "Modèle du véhicule",
+        "vehicleModelPlaceholder": "Modèle",
+        "color": "Couleur du véhicule",
+        "colorPlaceholder": "Couleur",
+        "co2Emission": "Émissions de CO₂ (g/km)",
+        "co2EmissionPlaceholder": "Taux d’émissions de CO₂",
+        "vehiculeImage": "Image de votre véhicule",
+        "vehiculeType": "Type de véhicule",
+        "gasVehicle": "Voiture à carburant",
+        "electricVehicle": "Voiture électrique",
+        "scooter": "Moto / scooter"
     }
 }

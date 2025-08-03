@@ -59,3 +59,32 @@ class SignupStrings {
   static String get male => 'signup.male'.tr();
   static String get female => 'signup.female'.tr();
 }
+
+class SetUpVehiculeStrings {
+  const SetUpVehiculeStrings._();
+
+  static String get title => 'setUpVehicule.title'.tr();
+  static String get description => 'setUpVehicule.description'.tr();
+  static String get autoFill => 'setUpVehicule.autoFill'.tr();
+  static String get frenchLicensePlate =>
+      'setUpVehicule.frenchLicensePlate'.tr();
+  static String get licensePlate => 'setUpVehicule.licensePlate'.tr();
+  static String get licensePlatePlaceholder =>
+      'setUpVehicule.licensePlatePlaceholder'.tr();
+  static String get vehicleBrand => 'setUpVehicule.vehicleBrand'.tr();
+  static String get vehicleBrandPlaceholder =>
+      'setUpVehicule.vehicleBrandPlaceholder'.tr();
+  static String get vehicleModel => 'setUpVehicule.vehicleModel'.tr();
+  static String get vehicleModelPlaceholder =>
+      'setUpVehicule.vehicleModelPlaceholder'.tr();
+  static String get color => 'setUpVehicule.color'.tr();
+  static String get colorPlaceholder => 'setUpVehicule.colorPlaceholder'.tr();
+  static String get co2Emission => 'setUpVehicule.co2Emission'.tr();
+  static String get co2EmissionPlaceholder =>
+      'setUpVehicule.co2EmissionPlaceholder'.tr();
+  static String get vehiculeImage => 'setUpVehicule.vehiculeImage'.tr();
+  static String get vehiculeType => 'setUpVehicule.vehiculeType'.tr();
+  static String get gasVehicle => 'setUpVehicule.gasVehicle'.tr();
+  static String get electricVehicle => 'setUpVehicule.electricVehicle'.tr();
+  static String get scooter => 'setUpVehicule.scooter'.tr();
+}
