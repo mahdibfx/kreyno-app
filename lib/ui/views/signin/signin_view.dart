@@ -5,8 +5,7 @@ import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/views/signin/signin_view.form.dart';
 import 'package:kreyno/ui/widgets/dumb/auth_sliver_app_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
-import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
-import 'package:kreyno/ui/widgets/dumb/input_field.dart';
+import 'package:kreyno/ui/widgets/smart/phone_input_field/phone_input_field.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -38,35 +37,12 @@ class SigninView extends StackedView<SigninViewModel> with $SigninView {
             sliver: SliverToBoxAdapter(
               child: Column(
                 children: [
-                  InputField(
+                  PhoneInputField(
                     controller: phoneNumberController,
                     focusNode: phoneNumberFocusNode,
                     labelText: SigninStrings.phoneNumber,
                     hintText: SigninStrings.phoneNumberPlaceholder,
-                    keyboardType: TextInputType.phone,
-                    onChanged: (value) {},
-                    prefixWidget: Container(
-                      height: 46,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(AppSpacing.px12),
-                        border: Border.all(
-                          color: AppColors.strokeKre,
-                          width: 1.0,
-                        ),
-                      ),
-                      child: Center(
-                        child: Transform.translate(
-                          offset: Offset(-AppSpacing.px4 / 2, 0),
-                          child: const CustomText.smallParagraphMedium(
-                            '+33',
-                            color: AppColors.mainKre,
-                          ),
-                        ),
-                      ),
-                    ),
-                    // disabled: true,
+                    onChanged: (countryCode, phoneNumber) {},
                   ),
                 ],
               ),
