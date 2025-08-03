@@ -42,4 +42,6 @@ class AppImages {
 
   static const String permissionsIllustration =
       '${_basePath}permissions_illustration.png';
+
+  static const String franceEuro = '${_basePath}france_euro.png';
 }
