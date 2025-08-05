@@ -11,6 +11,7 @@ import 'package:stacked/stacked.dart';
 
 const bool _autoTextFieldValidation = true;
 
+const String VehicleTypeValueKey = 'vehicleType';
 const String BrandValueKey = 'brand';
 const String ModelValueKey = 'model';
 const String ColorValueKey = 'color';
@@ -23,6 +24,7 @@ final Map<String, FocusNode> _SetUpVehiculeViewFocusNodes = {};
 
 final Map<String, String? Function(String?)?>
     _SetUpVehiculeViewTextValidations = {
+  VehicleTypeValueKey: null,
   BrandValueKey: null,
   ModelValueKey: null,
   ColorValueKey: null,
@@ -30,6 +32,8 @@ final Map<String, String? Function(String?)?>
 };
 
 mixin $SetUpVehiculeView {
+  TextEditingController get vehicleTypeController =>
+      _getFormTextEditingController(VehicleTypeValueKey);
   TextEditingController get brandController =>
       _getFormTextEditingController(BrandValueKey);
   TextEditingController get modelController =>
@@ -39,6 +43,7 @@ mixin $SetUpVehiculeView {
   TextEditingController get co2EmissionController =>
       _getFormTextEditingController(Co2EmissionValueKey);
 
+  FocusNode get vehicleTypeFocusNode => _getFormFocusNode(VehicleTypeValueKey);
   FocusNode get brandFocusNode => _getFormFocusNode(BrandValueKey);
   FocusNode get modelFocusNode => _getFormFocusNode(ModelValueKey);
   FocusNode get colorFocusNode => _getFormFocusNode(ColorValueKey);
@@ -68,6 +73,7 @@ mixin $SetUpVehiculeView {
   /// Registers a listener on every generated controller that calls [model.setData()]
   /// with the latest textController values
   void syncFormWithViewModel(FormStateHelper model) {
+    vehicleTypeController.addListener(() => _updateFormData(model));
     brandController.addListener(() => _updateFormData(model));
     modelController.addListener(() => _updateFormData(model));
     colorController.addListener(() => _updateFormData(model));
@@ -83,6 +89,7 @@ mixin $SetUpVehiculeView {
     'This feature was deprecated after 3.1.0.',
   )
   void listenToFormUpdated(FormViewModel model) {
+    vehicleTypeController.addListener(() => _updateFormData(model));
     brandController.addListener(() => _updateFormData(model));
     modelController.addListener(() => _updateFormData(model));
     colorController.addListener(() => _updateFormData(model));
@@ -96,6 +103,7 @@ mixin $SetUpVehiculeView {
     model.setData(
       model.formValueMap
         ..addAll({
+          VehicleTypeValueKey: vehicleTypeController.text,
           BrandValueKey: brandController.text,
           ModelValueKey: modelController.text,
           ColorValueKey: colorController.text,
@@ -141,11 +149,25 @@ extension ValueProperties on FormStateHelper {
     return !hasAnyValidationMessage;
   }
 
+  String? get vehicleTypeValue =>
+      this.formValueMap[VehicleTypeValueKey] as String?;
   String? get brandValue => this.formValueMap[BrandValueKey] as String?;
   String? get modelValue => this.formValueMap[ModelValueKey] as String?;
   String? get colorValue => this.formValueMap[ColorValueKey] as String?;
   String? get co2EmissionValue =>
       this.formValueMap[Co2EmissionValueKey] as String?;
+
+  set vehicleTypeValue(String? value) {
+    this.setData(
+      this.formValueMap..addAll({VehicleTypeValueKey: value}),
+    );
+
+    if (_SetUpVehiculeViewTextEditingControllers.containsKey(
+        VehicleTypeValueKey)) {
+      _SetUpVehiculeViewTextEditingControllers[VehicleTypeValueKey]?.text =
+          value ?? '';
+    }
+  }
 
   set brandValue(String? value) {
     this.setData(
@@ -192,6 +214,9 @@ extension ValueProperties on FormStateHelper {
     }
   }
 
+  bool get hasVehicleType =>
+      this.formValueMap.containsKey(VehicleTypeValueKey) &&
+      (vehicleTypeValue?.isNotEmpty ?? false);
   bool get hasBrand =>
       this.formValueMap.containsKey(BrandValueKey) &&
       (brandValue?.isNotEmpty ?? false);
@@ -205,6 +230,8 @@ extension ValueProperties on FormStateHelper {
       this.formValueMap.containsKey(Co2EmissionValueKey) &&
       (co2EmissionValue?.isNotEmpty ?? false);
 
+  bool get hasVehicleTypeValidationMessage =>
+      this.fieldsValidationMessages[VehicleTypeValueKey]?.isNotEmpty ?? false;
   bool get hasBrandValidationMessage =>
       this.fieldsValidationMessages[BrandValueKey]?.isNotEmpty ?? false;
   bool get hasModelValidationMessage =>
@@ -214,6 +241,8 @@ extension ValueProperties on FormStateHelper {
   bool get hasCo2EmissionValidationMessage =>
       this.fieldsValidationMessages[Co2EmissionValueKey]?.isNotEmpty ?? false;
 
+  String? get vehicleTypeValidationMessage =>
+      this.fieldsValidationMessages[VehicleTypeValueKey];
   String? get brandValidationMessage =>
       this.fieldsValidationMessages[BrandValueKey];
   String? get modelValidationMessage =>
@@ -225,6 +254,8 @@ extension ValueProperties on FormStateHelper {
 }
 
 extension Methods on FormStateHelper {
+  setVehicleTypeValidationMessage(String? validationMessage) =>
+      this.fieldsValidationMessages[VehicleTypeValueKey] = validationMessage;
   setBrandValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[BrandValueKey] = validationMessage;
   setModelValidationMessage(String? validationMessage) =>
@@ -236,6 +267,7 @@ extension Methods on FormStateHelper {
 
   /// Clears text input fields on the Form
   void clearForm() {
+    vehicleTypeValue = '';
     brandValue = '';
     modelValue = '';
     colorValue = '';
@@ -245,6 +277,7 @@ extension Methods on FormStateHelper {
   /// Validates text input fields on the Form
   void validateForm() {
     this.setValidationMessages({
+      VehicleTypeValueKey: getValidationMessage(VehicleTypeValueKey),
       BrandValueKey: getValidationMessage(BrandValueKey),
       ModelValueKey: getValidationMessage(ModelValueKey),
       ColorValueKey: getValidationMessage(ColorValueKey),
@@ -268,6 +301,7 @@ String? getValidationMessage(String key) {
 /// Updates the fieldsValidationMessages on the FormViewModel
 void updateValidationData(FormStateHelper model) =>
     model.setValidationMessages({
+      VehicleTypeValueKey: getValidationMessage(VehicleTypeValueKey),
       BrandValueKey: getValidationMessage(BrandValueKey),
       ModelValueKey: getValidationMessage(ModelValueKey),
       ColorValueKey: getValidationMessage(ColorValueKey),

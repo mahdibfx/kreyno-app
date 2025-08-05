@@ -5,13 +5,13 @@ class AppImages {
 
   static const String bike = '${_basePath}bike.png';
 
-  static const String car = '${_basePath}car.png';
+  static const String car = '${_basePath}e_car.png';
 
   static const String carSample = '${_basePath}car_sample.jpg';
 
   static const String clientMarker = '${_basePath}client_marker.png';
 
-  static const String eCar = '${_basePath}e_car.png';
+  static const String eCar = '${_basePath}car.png';
 
   static const String evChargerMarker = '${_basePath}ev_charger_marker.png';
 

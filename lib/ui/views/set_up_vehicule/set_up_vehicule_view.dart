@@ -10,12 +10,14 @@ import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:kreyno/ui/widgets/dumb/input_field.dart';
 import 'package:kreyno/ui/widgets/dumb/license_plate_input_field.dart';
+import 'package:kreyno/ui/widgets/smart/vehicule_type_drop_down/vehicule_type_drop_down.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
 import 'set_up_vehicule_viewmodel.dart';
 
 @FormView(fields: [
+  FormTextField(name: 'vehicleType'),
   FormTextField(name: 'brand'),
   FormTextField(name: 'model'),
   FormTextField(name: 'color'),
@@ -82,6 +84,9 @@ class SetUpVehiculeView extends StackedView<SetUpVehiculeViewModel>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       spacing: AppSpacing.px16,
                       children: [
+                        VehiculeTypeDropDown(
+                          onChanged: (selectedVehicleType) {},
+                        ),
                         InputField(
                           controller: brandController,
                           focusNode: brandFocusNode,
