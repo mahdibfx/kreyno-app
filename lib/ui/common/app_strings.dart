@@ -4,6 +4,22 @@ class CommonStrings {
   const CommonStrings._();
 
   static String get continueLabel => 'common.continue'.tr();
+  static String get optional => 'common.optional'.tr();
+  static String get delete => 'common.delete'.tr();
+
+  // Months
+  static String get january => 'common.months.january'.tr();
+  static String get february => 'common.months.february'.tr();
+  static String get march => 'common.months.march'.tr();
+  static String get april => 'common.months.april'.tr();
+  static String get may => 'common.months.may'.tr();
+  static String get june => 'common.months.june'.tr();
+  static String get july => 'common.months.july'.tr();
+  static String get august => 'common.months.august'.tr();
+  static String get september => 'common.months.september'.tr();
+  static String get october => 'common.months.october'.tr();
+  static String get november => 'common.months.november'.tr();
+  static String get december => 'common.months.december'.tr();
 }
 
 class OnboardingStrings {

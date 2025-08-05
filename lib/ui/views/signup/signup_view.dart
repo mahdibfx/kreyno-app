@@ -8,6 +8,7 @@ import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/input_field.dart';
 import 'package:kreyno/ui/widgets/dumb/labeled_checkbox.dart';
+import 'package:kreyno/ui/widgets/smart/date_picker_field/birth_date_picker_field.dart';
 import 'package:kreyno/ui/widgets/smart/phone_input_field/phone_input_field.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -21,7 +22,6 @@ import 'signup_viewmodel.dart';
   FormTextField(name: 'email'),
   FormTextField(name: 'userName'),
   FormTextField(name: 'address'),
-  FormTextField(name: 'birthday'),
 ])
 class SignupView extends StackedView<SignupViewModel> with $SignupView {
   const SignupView({Key? key}) : super(key: key);
@@ -103,12 +103,16 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                       textInputAction: TextInputAction.done,
                     ),
                     // FIXME: This is a temporary input field for birthday until it's designed
-                    InputField(
-                      controller: birthdayController,
-                      focusNode: birthdayFocusNode,
+                    // InputField(
+                    //   controller: birthdayController,
+                    //   focusNode: birthdayFocusNode,
+                    //   labelText: SignupStrings.birthday,
+                    //   hintText: SignupStrings.birthday,
+                    //   keyboardType: TextInputType.name,
+                    // ),
+                    BirthDatePickerField(
                       labelText: SignupStrings.birthday,
-                      hintText: SignupStrings.birthday,
-                      keyboardType: TextInputType.name,
+                      onBirthdayChanged: viewModel.onBirthdayChanged,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

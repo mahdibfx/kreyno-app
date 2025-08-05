@@ -18,6 +18,7 @@ class DropDownField<T> extends StatelessWidget {
   final FocusNode? focusNode;
   final bool isReadOnly;
   final Widget? leadingWidget;
+  final double? menuWidth;
 
   const DropDownField({
     super.key,
@@ -31,6 +32,7 @@ class DropDownField<T> extends StatelessWidget {
     this.focusNode,
     this.isReadOnly = true,
     this.leadingWidget,
+    this.menuWidth,
   });
 
   @override
@@ -146,7 +148,10 @@ class DropDownField<T> extends StatelessWidget {
               ),
             ),
             maximumSize: WidgetStateProperty.all(
-              Size(100.dw - AppSpacing.px32, 200 * AppSpacing.px1),
+              Size(
+                menuWidth ?? 100.dw - AppSpacing.px32,
+                200 * AppSpacing.px1,
+              ),
             ),
           ),
           alignmentOffset: Offset(0, AppSpacing.px4),

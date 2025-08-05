@@ -12,9 +12,17 @@ class SignupViewModel extends FormViewModel {
   bool _isMale = true;
   bool get isMale => _isMale;
 
+  DateTime? _selectedBirthday;
+  DateTime? get selectedBirthday => _selectedBirthday;
+
   void setIsMale(bool value) {
     if (value == _isMale) return;
     _isMale = value;
+    rebuildUi();
+  }
+
+  void onBirthdayChanged(DateTime birthday) {
+    _selectedBirthday = birthday;
     rebuildUi();
   }
 

@@ -17,7 +17,6 @@ const String LastNameValueKey = 'lastName';
 const String EmailValueKey = 'email';
 const String UserNameValueKey = 'userName';
 const String AddressValueKey = 'address';
-const String BirthdayValueKey = 'birthday';
 
 final Map<String, TextEditingController> _SignupViewTextEditingControllers = {};
 
@@ -30,7 +29,6 @@ final Map<String, String? Function(String?)?> _SignupViewTextValidations = {
   EmailValueKey: null,
   UserNameValueKey: null,
   AddressValueKey: null,
-  BirthdayValueKey: null,
 };
 
 mixin $SignupView {
@@ -46,8 +44,6 @@ mixin $SignupView {
       _getFormTextEditingController(UserNameValueKey);
   TextEditingController get addressController =>
       _getFormTextEditingController(AddressValueKey);
-  TextEditingController get birthdayController =>
-      _getFormTextEditingController(BirthdayValueKey);
 
   FocusNode get phoneNumberFocusNode => _getFormFocusNode(PhoneNumberValueKey);
   FocusNode get firstNameFocusNode => _getFormFocusNode(FirstNameValueKey);
@@ -55,7 +51,6 @@ mixin $SignupView {
   FocusNode get emailFocusNode => _getFormFocusNode(EmailValueKey);
   FocusNode get userNameFocusNode => _getFormFocusNode(UserNameValueKey);
   FocusNode get addressFocusNode => _getFormFocusNode(AddressValueKey);
-  FocusNode get birthdayFocusNode => _getFormFocusNode(BirthdayValueKey);
 
   TextEditingController _getFormTextEditingController(
     String key, {
@@ -87,7 +82,6 @@ mixin $SignupView {
     emailController.addListener(() => _updateFormData(model));
     userNameController.addListener(() => _updateFormData(model));
     addressController.addListener(() => _updateFormData(model));
-    birthdayController.addListener(() => _updateFormData(model));
 
     _updateFormData(model, forceValidate: _autoTextFieldValidation);
   }
@@ -105,7 +99,6 @@ mixin $SignupView {
     emailController.addListener(() => _updateFormData(model));
     userNameController.addListener(() => _updateFormData(model));
     addressController.addListener(() => _updateFormData(model));
-    birthdayController.addListener(() => _updateFormData(model));
 
     _updateFormData(model, forceValidate: _autoTextFieldValidation);
   }
@@ -121,7 +114,6 @@ mixin $SignupView {
           EmailValueKey: emailController.text,
           UserNameValueKey: userNameController.text,
           AddressValueKey: addressController.text,
-          BirthdayValueKey: birthdayController.text,
         }),
     );
 
@@ -170,7 +162,6 @@ extension ValueProperties on FormStateHelper {
   String? get emailValue => this.formValueMap[EmailValueKey] as String?;
   String? get userNameValue => this.formValueMap[UserNameValueKey] as String?;
   String? get addressValue => this.formValueMap[AddressValueKey] as String?;
-  String? get birthdayValue => this.formValueMap[BirthdayValueKey] as String?;
 
   set phoneNumberValue(String? value) {
     this.setData(
@@ -233,16 +224,6 @@ extension ValueProperties on FormStateHelper {
     }
   }
 
-  set birthdayValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({BirthdayValueKey: value}),
-    );
-
-    if (_SignupViewTextEditingControllers.containsKey(BirthdayValueKey)) {
-      _SignupViewTextEditingControllers[BirthdayValueKey]?.text = value ?? '';
-    }
-  }
-
   bool get hasPhoneNumber =>
       this.formValueMap.containsKey(PhoneNumberValueKey) &&
       (phoneNumberValue?.isNotEmpty ?? false);
@@ -261,9 +242,6 @@ extension ValueProperties on FormStateHelper {
   bool get hasAddress =>
       this.formValueMap.containsKey(AddressValueKey) &&
       (addressValue?.isNotEmpty ?? false);
-  bool get hasBirthday =>
-      this.formValueMap.containsKey(BirthdayValueKey) &&
-      (birthdayValue?.isNotEmpty ?? false);
 
   bool get hasPhoneNumberValidationMessage =>
       this.fieldsValidationMessages[PhoneNumberValueKey]?.isNotEmpty ?? false;
@@ -277,8 +255,6 @@ extension ValueProperties on FormStateHelper {
       this.fieldsValidationMessages[UserNameValueKey]?.isNotEmpty ?? false;
   bool get hasAddressValidationMessage =>
       this.fieldsValidationMessages[AddressValueKey]?.isNotEmpty ?? false;
-  bool get hasBirthdayValidationMessage =>
-      this.fieldsValidationMessages[BirthdayValueKey]?.isNotEmpty ?? false;
 
   String? get phoneNumberValidationMessage =>
       this.fieldsValidationMessages[PhoneNumberValueKey];
@@ -292,8 +268,6 @@ extension ValueProperties on FormStateHelper {
       this.fieldsValidationMessages[UserNameValueKey];
   String? get addressValidationMessage =>
       this.fieldsValidationMessages[AddressValueKey];
-  String? get birthdayValidationMessage =>
-      this.fieldsValidationMessages[BirthdayValueKey];
 }
 
 extension Methods on FormStateHelper {
@@ -309,8 +283,6 @@ extension Methods on FormStateHelper {
       this.fieldsValidationMessages[UserNameValueKey] = validationMessage;
   setAddressValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[AddressValueKey] = validationMessage;
-  setBirthdayValidationMessage(String? validationMessage) =>
-      this.fieldsValidationMessages[BirthdayValueKey] = validationMessage;
 
   /// Clears text input fields on the Form
   void clearForm() {
@@ -320,7 +292,6 @@ extension Methods on FormStateHelper {
     emailValue = '';
     userNameValue = '';
     addressValue = '';
-    birthdayValue = '';
   }
 
   /// Validates text input fields on the Form
@@ -332,7 +303,6 @@ extension Methods on FormStateHelper {
       EmailValueKey: getValidationMessage(EmailValueKey),
       UserNameValueKey: getValidationMessage(UserNameValueKey),
       AddressValueKey: getValidationMessage(AddressValueKey),
-      BirthdayValueKey: getValidationMessage(BirthdayValueKey),
     });
   }
 }
@@ -358,5 +328,4 @@ void updateValidationData(FormStateHelper model) =>
       EmailValueKey: getValidationMessage(EmailValueKey),
       UserNameValueKey: getValidationMessage(UserNameValueKey),
       AddressValueKey: getValidationMessage(AddressValueKey),
-      BirthdayValueKey: getValidationMessage(BirthdayValueKey),
     });
