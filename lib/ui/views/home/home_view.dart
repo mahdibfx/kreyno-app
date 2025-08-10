@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
-import 'package:kreyno/ui/common/app_spacing.dart';
-import 'package:kreyno/ui/common/responsive_sizer.dart';
-import 'package:kreyno/ui/widgets/dumb/app_logo.dart';
+import 'package:kreyno/ui/views/home/widgets/seller/let_my_place_bottombar.dart';
 import 'package:stacked/stacked.dart';
 
 import 'home_viewmodel.dart';
@@ -13,21 +12,20 @@ class HomeView extends StackedView<HomeViewModel> {
   @override
   Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: AppSpacing.px32,
-                width: AppSpacing.px32,
-                color: AppColors.greenKre,
-              ),
-              AppLogo(animated: false),
-            ],
-          ),
+        top: false,
+        child: Stack(
+          children: [
+            GoogleMap(
+              onTap: (argument) {
+                viewModel.onMapClicked(argument);
+              },
+              initialCameraPosition: const CameraPosition(target: LatLng(4, 8)),
+              markers: viewModel.markers,
+            ),
+            viewModel.chooseBottomBarBasedOnState()
+          ],
         ),
       ),
     );

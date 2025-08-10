@@ -5,7 +5,9 @@ import 'package:kreyno/ui/common/app_spacing.dart';
 class BottomSheetLayout extends StatelessWidget {
   final Widget body;
   // TODO : Add other props based on the design
-  const BottomSheetLayout({super.key, required this.body});
+  final bool? showDragHandler;
+  const BottomSheetLayout(
+      {super.key, required this.body, this.showDragHandler});
 
   @override
   Widget build(BuildContext context) {
@@ -35,14 +37,15 @@ class BottomSheetLayout extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         spacing: AppSpacing.px20,
         children: [
-          Container(
-            width: 2.5 * AppSpacing.px24,
-            height: AppSpacing.px8,
-            decoration: BoxDecoration(
-              color: const Color(0xFFF5F5F5),
-              borderRadius: BorderRadius.circular(AppSpacing.px12),
+          if (showDragHandler == null || showDragHandler == true)
+            Container(
+              width: 2.5 * AppSpacing.px24,
+              height: AppSpacing.px8,
+              decoration: BoxDecoration(
+                color: const Color(0xFFF5F5F5),
+                borderRadius: BorderRadius.circular(AppSpacing.px12),
+              ),
             ),
-          ),
           body,
         ],
       ),
