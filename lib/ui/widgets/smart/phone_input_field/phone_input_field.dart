@@ -42,6 +42,7 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
       hintText: hintText,
       keyboardType: TextInputType.phone,
       disabled: disabled,
+      maxLength: maxLength,
       onChanged: (value) {
         onChanged?.call(viewModel.countryCode, value);
       },
@@ -54,7 +55,7 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
             color: disabled ? AppColors.disabledFillKre : AppColors.white,
             borderRadius: BorderRadius.circular(AppSpacing.px12),
             border: Border.all(
-              color: AppColors.strokeKre,
+              color: errorText != null ? AppColors.redKre : AppColors.strokeKre,
               width: 1.0,
             ),
           ),
@@ -69,7 +70,7 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
           ),
         ),
       ),
-      // disabled: true,
+      errorText: errorText,
     );
   }
 

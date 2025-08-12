@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -105,206 +106,217 @@ class Routes {
 
 class StackedRouter extends _i1.RouterBase {
   final _routes = <_i1.RouteDef>[
-    _i1.RouteDef(
-      Routes.homeView,
-      page: _i2.HomeView,
-    ),
-    _i1.RouteDef(
-      Routes.startupView,
-      page: _i3.StartupView,
-    ),
-    _i1.RouteDef(
-      Routes.onboardingView,
-      page: _i4.OnboardingView,
-    ),
-    _i1.RouteDef(
-      Routes.signinView,
-      page: _i5.SigninView,
-    ),
-    _i1.RouteDef(
-      Routes.signupView,
-      page: _i6.SignupView,
-    ),
-    _i1.RouteDef(
-      Routes.setUpVehiculeView,
-      page: _i7.SetUpVehiculeView,
-    ),
+    _i1.RouteDef(Routes.homeView, page: _i2.HomeView),
+    _i1.RouteDef(Routes.startupView, page: _i3.StartupView),
+    _i1.RouteDef(Routes.onboardingView, page: _i4.OnboardingView),
+    _i1.RouteDef(Routes.signinView, page: _i5.SigninView),
+    _i1.RouteDef(Routes.signupView, page: _i6.SignupView),
+    _i1.RouteDef(Routes.setUpVehiculeView, page: _i7.SetUpVehiculeView),
     _i1.RouteDef(
       Routes.setUpPaymentMethodsView,
       page: _i8.SetUpPaymentMethodsView,
     ),
-    _i1.RouteDef(
-      Routes.setUpPermissionsView,
-      page: _i9.SetUpPermissionsView,
-    ),
+    _i1.RouteDef(Routes.setUpPermissionsView, page: _i9.SetUpPermissionsView),
     _i1.RouteDef(
       Routes.sellerSpotDetailsView,
       page: _i10.SellerSpotDetailsView,
     ),
-    _i1.RouteDef(
-      Routes.buyerSpotDetailsView,
-      page: _i11.BuyerSpotDetailsView,
-    ),
-    _i1.RouteDef(
-      Routes.spotSoldSuccessView,
-      page: _i12.SpotSoldSuccessView,
-    ),
+    _i1.RouteDef(Routes.buyerSpotDetailsView, page: _i11.BuyerSpotDetailsView),
+    _i1.RouteDef(Routes.spotSoldSuccessView, page: _i12.SpotSoldSuccessView),
     _i1.RouteDef(
       Routes.spotBoughtSuccessView,
       page: _i13.SpotBoughtSuccessView,
     ),
-    _i1.RouteDef(
-      Routes.editProfileView,
-      page: _i14.EditProfileView,
-    ),
-    _i1.RouteDef(
-      Routes.myVehiculesView,
-      page: _i15.MyVehiculesView,
-    ),
+    _i1.RouteDef(Routes.editProfileView, page: _i14.EditProfileView),
+    _i1.RouteDef(Routes.myVehiculesView, page: _i15.MyVehiculesView),
     _i1.RouteDef(
       Routes.myPaymentMethodesView,
       page: _i16.MyPaymentMethodesView,
     ),
-    _i1.RouteDef(
-      Routes.spotsHistoryView,
-      page: _i17.SpotsHistoryView,
-    ),
-    _i1.RouteDef(
-      Routes.kreynoWalletView,
-      page: _i18.KreynoWalletView,
-    ),
-    _i1.RouteDef(
-      Routes.cashoutView,
-      page: _i19.CashoutView,
-    ),
-    _i1.RouteDef(
-      Routes.addVehiculeView,
-      page: _i20.AddVehiculeView,
-    ),
-    _i1.RouteDef(
-      Routes.editVehiculeView,
-      page: _i21.EditVehiculeView,
-    ),
+    _i1.RouteDef(Routes.spotsHistoryView, page: _i17.SpotsHistoryView),
+    _i1.RouteDef(Routes.kreynoWalletView, page: _i18.KreynoWalletView),
+    _i1.RouteDef(Routes.cashoutView, page: _i19.CashoutView),
+    _i1.RouteDef(Routes.addVehiculeView, page: _i20.AddVehiculeView),
+    _i1.RouteDef(Routes.editVehiculeView, page: _i21.EditVehiculeView),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
+      final args = data.getArgs<HomeViewArguments>(
+        orElse: () => const HomeViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i2.HomeView(),
+        builder: (context) => _i2.HomeView(key: args.key),
         settings: data,
       );
     },
     _i3.StartupView: (data) {
+      final args = data.getArgs<StartupViewArguments>(
+        orElse: () => const StartupViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i3.StartupView(),
+        builder: (context) => _i3.StartupView(key: args.key),
         settings: data,
       );
     },
     _i4.OnboardingView: (data) {
+      final args = data.getArgs<OnboardingViewArguments>(
+        orElse: () => const OnboardingViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i4.OnboardingView(),
+        builder: (context) => _i4.OnboardingView(key: args.key),
         settings: data,
       );
     },
     _i5.SigninView: (data) {
+      final args = data.getArgs<SigninViewArguments>(
+        orElse: () => const SigninViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i5.SigninView(),
+        builder: (context) => _i5.SigninView(key: args.key),
         settings: data,
       );
     },
     _i6.SignupView: (data) {
+      final args = data.getArgs<SignupViewArguments>(nullOk: false);
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i6.SignupView(),
+        builder: (context) =>
+            _i6.SignupView(key: args.key, phoneNumber: args.phoneNumber),
         settings: data,
       );
     },
     _i7.SetUpVehiculeView: (data) {
+      final args = data.getArgs<SetUpVehiculeViewArguments>(
+        orElse: () => const SetUpVehiculeViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i7.SetUpVehiculeView(),
+        builder: (context) => _i7.SetUpVehiculeView(key: args.key),
         settings: data,
       );
     },
     _i8.SetUpPaymentMethodsView: (data) {
+      final args = data.getArgs<SetUpPaymentMethodsViewArguments>(
+        orElse: () => const SetUpPaymentMethodsViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i8.SetUpPaymentMethodsView(),
+        builder: (context) => _i8.SetUpPaymentMethodsView(key: args.key),
         settings: data,
       );
     },
     _i9.SetUpPermissionsView: (data) {
+      final args = data.getArgs<SetUpPermissionsViewArguments>(
+        orElse: () => const SetUpPermissionsViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i9.SetUpPermissionsView(),
+        builder: (context) => _i9.SetUpPermissionsView(key: args.key),
         settings: data,
       );
     },
     _i10.SellerSpotDetailsView: (data) {
+      final args = data.getArgs<SellerSpotDetailsViewArguments>(
+        orElse: () => const SellerSpotDetailsViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i10.SellerSpotDetailsView(),
+        builder: (context) => _i10.SellerSpotDetailsView(key: args.key),
         settings: data,
       );
     },
     _i11.BuyerSpotDetailsView: (data) {
+      final args = data.getArgs<BuyerSpotDetailsViewArguments>(
+        orElse: () => const BuyerSpotDetailsViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i11.BuyerSpotDetailsView(),
+        builder: (context) => _i11.BuyerSpotDetailsView(key: args.key),
         settings: data,
       );
     },
     _i12.SpotSoldSuccessView: (data) {
+      final args = data.getArgs<SpotSoldSuccessViewArguments>(
+        orElse: () => const SpotSoldSuccessViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i12.SpotSoldSuccessView(),
+        builder: (context) => _i12.SpotSoldSuccessView(key: args.key),
         settings: data,
       );
     },
     _i13.SpotBoughtSuccessView: (data) {
+      final args = data.getArgs<SpotBoughtSuccessViewArguments>(
+        orElse: () => const SpotBoughtSuccessViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i13.SpotBoughtSuccessView(),
+        builder: (context) => _i13.SpotBoughtSuccessView(key: args.key),
         settings: data,
       );
     },
     _i14.EditProfileView: (data) {
+      final args = data.getArgs<EditProfileViewArguments>(
+        orElse: () => const EditProfileViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i14.EditProfileView(),
+        builder: (context) => _i14.EditProfileView(key: args.key),
         settings: data,
       );
     },
     _i15.MyVehiculesView: (data) {
+      final args = data.getArgs<MyVehiculesViewArguments>(
+        orElse: () => const MyVehiculesViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i15.MyVehiculesView(),
+        builder: (context) => _i15.MyVehiculesView(key: args.key),
         settings: data,
       );
     },
     _i16.MyPaymentMethodesView: (data) {
+      final args = data.getArgs<MyPaymentMethodesViewArguments>(
+        orElse: () => const MyPaymentMethodesViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i16.MyPaymentMethodesView(),
+        builder: (context) => _i16.MyPaymentMethodesView(key: args.key),
         settings: data,
       );
     },
     _i17.SpotsHistoryView: (data) {
+      final args = data.getArgs<SpotsHistoryViewArguments>(
+        orElse: () => const SpotsHistoryViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i17.SpotsHistoryView(),
+        builder: (context) => _i17.SpotsHistoryView(key: args.key),
         settings: data,
       );
     },
     _i18.KreynoWalletView: (data) {
+      final args = data.getArgs<KreynoWalletViewArguments>(
+        orElse: () => const KreynoWalletViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i18.KreynoWalletView(),
+        builder: (context) => _i18.KreynoWalletView(key: args.key),
         settings: data,
       );
     },
     _i19.CashoutView: (data) {
+      final args = data.getArgs<CashoutViewArguments>(
+        orElse: () => const CashoutViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i19.CashoutView(),
+        builder: (context) => _i19.CashoutView(key: args.key),
         settings: data,
       );
     },
     _i20.AddVehiculeView: (data) {
+      final args = data.getArgs<AddVehiculeViewArguments>(
+        orElse: () => const AddVehiculeViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i20.AddVehiculeView(),
+        builder: (context) => _i20.AddVehiculeView(key: args.key),
         settings: data,
       );
     },
     _i21.EditVehiculeView: (data) {
+      final args = data.getArgs<EditVehiculeViewArguments>(
+        orElse: () => const EditVehiculeViewArguments(),
+      );
       return _i22.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i21.EditVehiculeView(),
+        builder: (context) => _i21.EditVehiculeView(key: args.key),
         settings: data,
       );
     },
@@ -317,564 +329,1168 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
+class HomeViewArguments {
+  const HomeViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant HomeViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class StartupViewArguments {
+  const StartupViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant StartupViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class OnboardingViewArguments {
+  const OnboardingViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant OnboardingViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class SigninViewArguments {
+  const SigninViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant SigninViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class SignupViewArguments {
+  const SignupViewArguments({this.key, required this.phoneNumber});
+
+  final _i22.Key? key;
+
+  final (String, String) phoneNumber;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "phoneNumber": "$phoneNumber"}';
+  }
+
+  @override
+  bool operator ==(covariant SignupViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key && other.phoneNumber == phoneNumber;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ phoneNumber.hashCode;
+  }
+}
+
+class SetUpVehiculeViewArguments {
+  const SetUpVehiculeViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant SetUpVehiculeViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class SetUpPaymentMethodsViewArguments {
+  const SetUpPaymentMethodsViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant SetUpPaymentMethodsViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class SetUpPermissionsViewArguments {
+  const SetUpPermissionsViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant SetUpPermissionsViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class SellerSpotDetailsViewArguments {
+  const SellerSpotDetailsViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant SellerSpotDetailsViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class BuyerSpotDetailsViewArguments {
+  const BuyerSpotDetailsViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant BuyerSpotDetailsViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class SpotSoldSuccessViewArguments {
+  const SpotSoldSuccessViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant SpotSoldSuccessViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class SpotBoughtSuccessViewArguments {
+  const SpotBoughtSuccessViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant SpotBoughtSuccessViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class EditProfileViewArguments {
+  const EditProfileViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant EditProfileViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class MyVehiculesViewArguments {
+  const MyVehiculesViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant MyVehiculesViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class MyPaymentMethodesViewArguments {
+  const MyPaymentMethodesViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant MyPaymentMethodesViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class SpotsHistoryViewArguments {
+  const SpotsHistoryViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant SpotsHistoryViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class KreynoWalletViewArguments {
+  const KreynoWalletViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant KreynoWalletViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class CashoutViewArguments {
+  const CashoutViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant CashoutViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class AddVehiculeViewArguments {
+  const AddVehiculeViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant AddVehiculeViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class EditVehiculeViewArguments {
+  const EditVehiculeViewArguments({this.key});
+
+  final _i22.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant EditVehiculeViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
 extension NavigatorStateExtension on _i23.NavigationService {
-  Future<dynamic> navigateToHomeView([
+  Future<dynamic> navigateToHomeView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.homeView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.homeView,
+      arguments: HomeViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToStartupView([
+  Future<dynamic> navigateToStartupView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.startupView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.startupView,
+      arguments: StartupViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToOnboardingView([
+  Future<dynamic> navigateToOnboardingView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.onboardingView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.onboardingView,
+      arguments: OnboardingViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToSigninView([
+  Future<dynamic> navigateToSigninView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.signinView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.signinView,
+      arguments: SigninViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToSignupView([
+  Future<dynamic> navigateToSignupView({
+    _i22.Key? key,
+    required (String, String) phoneNumber,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.signupView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.signupView,
+      arguments: SignupViewArguments(key: key, phoneNumber: phoneNumber),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToSetUpVehiculeView([
+  Future<dynamic> navigateToSetUpVehiculeView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.setUpVehiculeView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.setUpVehiculeView,
+      arguments: SetUpVehiculeViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToSetUpPaymentMethodsView([
+  Future<dynamic> navigateToSetUpPaymentMethodsView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.setUpPaymentMethodsView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.setUpPaymentMethodsView,
+      arguments: SetUpPaymentMethodsViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToSetUpPermissionsView([
+  Future<dynamic> navigateToSetUpPermissionsView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.setUpPermissionsView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.setUpPermissionsView,
+      arguments: SetUpPermissionsViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToSellerSpotDetailsView([
+  Future<dynamic> navigateToSellerSpotDetailsView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.sellerSpotDetailsView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.sellerSpotDetailsView,
+      arguments: SellerSpotDetailsViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToBuyerSpotDetailsView([
+  Future<dynamic> navigateToBuyerSpotDetailsView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.buyerSpotDetailsView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.buyerSpotDetailsView,
+      arguments: BuyerSpotDetailsViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToSpotSoldSuccessView([
+  Future<dynamic> navigateToSpotSoldSuccessView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.spotSoldSuccessView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.spotSoldSuccessView,
+      arguments: SpotSoldSuccessViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToSpotBoughtSuccessView([
+  Future<dynamic> navigateToSpotBoughtSuccessView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.spotBoughtSuccessView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.spotBoughtSuccessView,
+      arguments: SpotBoughtSuccessViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToEditProfileView([
+  Future<dynamic> navigateToEditProfileView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.editProfileView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.editProfileView,
+      arguments: EditProfileViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToMyVehiculesView([
+  Future<dynamic> navigateToMyVehiculesView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.myVehiculesView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.myVehiculesView,
+      arguments: MyVehiculesViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToMyPaymentMethodesView([
+  Future<dynamic> navigateToMyPaymentMethodesView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.myPaymentMethodesView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.myPaymentMethodesView,
+      arguments: MyPaymentMethodesViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToSpotsHistoryView([
+  Future<dynamic> navigateToSpotsHistoryView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.spotsHistoryView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.spotsHistoryView,
+      arguments: SpotsHistoryViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToKreynoWalletView([
+  Future<dynamic> navigateToKreynoWalletView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.kreynoWalletView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.kreynoWalletView,
+      arguments: KreynoWalletViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToCashoutView([
+  Future<dynamic> navigateToCashoutView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.cashoutView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.cashoutView,
+      arguments: CashoutViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToAddVehiculeView([
+  Future<dynamic> navigateToAddVehiculeView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.addVehiculeView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.addVehiculeView,
+      arguments: AddVehiculeViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> navigateToEditVehiculeView([
+  Future<dynamic> navigateToEditVehiculeView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.editVehiculeView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.editVehiculeView,
+      arguments: EditVehiculeViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithHomeView([
+  Future<dynamic> replaceWithHomeView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.homeView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.homeView,
+      arguments: HomeViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithStartupView([
+  Future<dynamic> replaceWithStartupView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.startupView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.startupView,
+      arguments: StartupViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithOnboardingView([
+  Future<dynamic> replaceWithOnboardingView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.onboardingView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.onboardingView,
+      arguments: OnboardingViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithSigninView([
+  Future<dynamic> replaceWithSigninView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.signinView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.signinView,
+      arguments: SigninViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithSignupView([
+  Future<dynamic> replaceWithSignupView({
+    _i22.Key? key,
+    required (String, String) phoneNumber,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.signupView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.signupView,
+      arguments: SignupViewArguments(key: key, phoneNumber: phoneNumber),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithSetUpVehiculeView([
+  Future<dynamic> replaceWithSetUpVehiculeView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.setUpVehiculeView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.setUpVehiculeView,
+      arguments: SetUpVehiculeViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithSetUpPaymentMethodsView([
+  Future<dynamic> replaceWithSetUpPaymentMethodsView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.setUpPaymentMethodsView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.setUpPaymentMethodsView,
+      arguments: SetUpPaymentMethodsViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithSetUpPermissionsView([
+  Future<dynamic> replaceWithSetUpPermissionsView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.setUpPermissionsView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.setUpPermissionsView,
+      arguments: SetUpPermissionsViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithSellerSpotDetailsView([
+  Future<dynamic> replaceWithSellerSpotDetailsView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.sellerSpotDetailsView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.sellerSpotDetailsView,
+      arguments: SellerSpotDetailsViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithBuyerSpotDetailsView([
+  Future<dynamic> replaceWithBuyerSpotDetailsView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.buyerSpotDetailsView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.buyerSpotDetailsView,
+      arguments: BuyerSpotDetailsViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithSpotSoldSuccessView([
+  Future<dynamic> replaceWithSpotSoldSuccessView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.spotSoldSuccessView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.spotSoldSuccessView,
+      arguments: SpotSoldSuccessViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithSpotBoughtSuccessView([
+  Future<dynamic> replaceWithSpotBoughtSuccessView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.spotBoughtSuccessView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.spotBoughtSuccessView,
+      arguments: SpotBoughtSuccessViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithEditProfileView([
+  Future<dynamic> replaceWithEditProfileView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.editProfileView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.editProfileView,
+      arguments: EditProfileViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithMyVehiculesView([
+  Future<dynamic> replaceWithMyVehiculesView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.myVehiculesView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.myVehiculesView,
+      arguments: MyVehiculesViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithMyPaymentMethodesView([
+  Future<dynamic> replaceWithMyPaymentMethodesView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.myPaymentMethodesView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.myPaymentMethodesView,
+      arguments: MyPaymentMethodesViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithSpotsHistoryView([
+  Future<dynamic> replaceWithSpotsHistoryView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.spotsHistoryView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.spotsHistoryView,
+      arguments: SpotsHistoryViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithKreynoWalletView([
+  Future<dynamic> replaceWithKreynoWalletView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.kreynoWalletView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.kreynoWalletView,
+      arguments: KreynoWalletViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithCashoutView([
+  Future<dynamic> replaceWithCashoutView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.cashoutView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.cashoutView,
+      arguments: CashoutViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithAddVehiculeView([
+  Future<dynamic> replaceWithAddVehiculeView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.addVehiculeView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.addVehiculeView,
+      arguments: AddVehiculeViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 
-  Future<dynamic> replaceWithEditVehiculeView([
+  Future<dynamic> replaceWithEditVehiculeView({
+    _i22.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.editVehiculeView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.editVehiculeView,
+      arguments: EditVehiculeViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
   }
 }

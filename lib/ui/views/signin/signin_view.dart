@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/services/validation_service.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
@@ -12,7 +13,8 @@ import 'package:stacked/stacked_annotations.dart';
 import 'signin_viewmodel.dart';
 
 @FormView(fields: [
-  FormTextField(name: 'phoneNumber'),
+  FormTextField(
+      name: 'phoneNumber', validator: ValidationService.phoneValidator),
 ])
 class SigninView extends StackedView<SigninViewModel> with $SigninView {
   const SigninView({Key? key}) : super(key: key);
@@ -44,7 +46,11 @@ class SigninView extends StackedView<SigninViewModel> with $SigninView {
                       focusNode: phoneNumberFocusNode,
                       labelText: SigninStrings.phoneNumber,
                       hintText: SigninStrings.phoneNumberPlaceholder,
-                      onChanged: (countryCode, phoneNumber) {},
+                      onChanged: viewModel.onPhoneNumberChanged,
+                      errorText: viewModel.hasPhoneNumber
+                          ? viewModel.phoneNumberValidationMessage
+                          : null,
+                      maxLength: 10,
                     ),
                   ],
                 ),
@@ -65,6 +71,7 @@ class SigninView extends StackedView<SigninViewModel> with $SigninView {
                       CustomButton.filled(
                         text: SigninStrings.buttonLabel,
                         onPressed: viewModel.showOtpSheet,
+                        isDisabled: viewModel.hasPhoneNumberValidationMessage,
                       ),
                     ],
                   ),
@@ -79,6 +86,11 @@ class SigninView extends StackedView<SigninViewModel> with $SigninView {
 
   @override
   void onViewModelReady(SigninViewModel viewModel) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (phoneNumberFocusNode.canRequestFocus) {
+        phoneNumberFocusNode.requestFocus();
+      }
+    });
     syncFormWithViewModel(viewModel);
   }
 

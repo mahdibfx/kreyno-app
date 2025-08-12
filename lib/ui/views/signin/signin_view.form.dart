@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -7,6 +8,7 @@
 // ignore_for_file: public_member_api_docs, constant_identifier_names, non_constant_identifier_names,unnecessary_this
 
 import 'package:flutter/material.dart';
+import 'package:kreyno/services/validation_service.dart';
 import 'package:stacked/stacked.dart';
 
 const bool _autoTextFieldValidation = true;
@@ -18,7 +20,7 @@ final Map<String, TextEditingController> _SigninViewTextEditingControllers = {};
 final Map<String, FocusNode> _SigninViewFocusNodes = {};
 
 final Map<String, String? Function(String?)?> _SigninViewTextValidations = {
-  PhoneNumberValueKey: null,
+  PhoneNumberValueKey: ValidationService.phoneValidator,
 };
 
 mixin $SigninView {
@@ -141,7 +143,7 @@ extension ValueProperties on FormStateHelper {
 }
 
 extension Methods on FormStateHelper {
-  setPhoneNumberValidationMessage(String? validationMessage) =>
+  void setPhoneNumberValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[PhoneNumberValueKey] = validationMessage;
 
   /// Clears text input fields on the Form

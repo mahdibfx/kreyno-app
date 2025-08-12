@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -7,6 +8,7 @@
 // ignore_for_file: public_member_api_docs, constant_identifier_names, non_constant_identifier_names,unnecessary_this
 
 import 'package:flutter/material.dart';
+import 'package:kreyno/services/validation_service.dart';
 import 'package:stacked/stacked.dart';
 
 const bool _autoTextFieldValidation = true;
@@ -23,12 +25,12 @@ final Map<String, TextEditingController> _SignupViewTextEditingControllers = {};
 final Map<String, FocusNode> _SignupViewFocusNodes = {};
 
 final Map<String, String? Function(String?)?> _SignupViewTextValidations = {
-  PhoneNumberValueKey: null,
-  FirstNameValueKey: null,
-  LastNameValueKey: null,
-  EmailValueKey: null,
-  UserNameValueKey: null,
-  AddressValueKey: null,
+  PhoneNumberValueKey: ValidationService.phoneValidator,
+  FirstNameValueKey: ValidationService.firstNameValidator,
+  LastNameValueKey: ValidationService.lastNameValidator,
+  EmailValueKey: ValidationService.emailValidator,
+  UserNameValueKey: ValidationService.emptyValidator,
+  AddressValueKey: ValidationService.emptyValidator,
 };
 
 mixin $SignupView {
@@ -271,17 +273,17 @@ extension ValueProperties on FormStateHelper {
 }
 
 extension Methods on FormStateHelper {
-  setPhoneNumberValidationMessage(String? validationMessage) =>
+  void setPhoneNumberValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[PhoneNumberValueKey] = validationMessage;
-  setFirstNameValidationMessage(String? validationMessage) =>
+  void setFirstNameValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[FirstNameValueKey] = validationMessage;
-  setLastNameValidationMessage(String? validationMessage) =>
+  void setLastNameValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[LastNameValueKey] = validationMessage;
-  setEmailValidationMessage(String? validationMessage) =>
+  void setEmailValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[EmailValueKey] = validationMessage;
-  setUserNameValidationMessage(String? validationMessage) =>
+  void setUserNameValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[UserNameValueKey] = validationMessage;
-  setAddressValidationMessage(String? validationMessage) =>
+  void setAddressValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[AddressValueKey] = validationMessage;
 
   /// Clears text input fields on the Form

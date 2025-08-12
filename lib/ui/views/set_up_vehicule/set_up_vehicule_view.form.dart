@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -254,15 +255,15 @@ extension ValueProperties on FormStateHelper {
 }
 
 extension Methods on FormStateHelper {
-  setVehicleTypeValidationMessage(String? validationMessage) =>
+  void setVehicleTypeValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[VehicleTypeValueKey] = validationMessage;
-  setBrandValidationMessage(String? validationMessage) =>
+  void setBrandValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[BrandValueKey] = validationMessage;
-  setModelValidationMessage(String? validationMessage) =>
+  void setModelValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[ModelValueKey] = validationMessage;
-  setColorValidationMessage(String? validationMessage) =>
+  void setColorValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[ColorValueKey] = validationMessage;
-  setCo2EmissionValidationMessage(String? validationMessage) =>
+  void setCo2EmissionValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[Co2EmissionValueKey] = validationMessage;
 
   /// Clears text input fields on the Form

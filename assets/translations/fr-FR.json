@@ -16,6 +16,13 @@
             "october": "Octobre",
             "november": "Novembre",
             "december": "Décembre"
+        },
+        "validation": {
+            "emptyField": "Le champ est requis",
+            "email": "L'email est invalide",
+            "phone": "Le numéro de téléphone est invalide",
+            "firstName": "Le prénom doit contenir au moins 2 caractères",
+            "lastName": "Le nom doit contenir au moins 2 caractères"
         }
     },
     "onboarding": {
