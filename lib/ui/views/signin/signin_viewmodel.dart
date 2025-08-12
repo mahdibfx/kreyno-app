@@ -43,8 +43,9 @@ class SigninViewModel extends FormViewModel {
 
     if (response != null && response.confirmed) {
       // FIXME: This is a temporary navigation to signup view
-      _navigationService
-          .navigateToSignupView(phoneNumber: (_countryCode, _phoneNumber));
+      _navigationService.navigateToSignupView(
+        phoneNumber: (_countryCode, _phoneNumber),
+      );
     }
   }
 }

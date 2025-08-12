@@ -13,8 +13,9 @@ class LicensePlateFormatter extends TextInputFormatter {
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
-    String text =
-        newValue.text.replaceAll(RegExp(r'[^A-Za-z0-9]'), '').toUpperCase();
+    String text = newValue.text
+        .replaceAll(RegExp(r'[^A-Za-z0-9]'), '')
+        .toUpperCase();
 
     if (text.length > 7) {
       text = text.substring(0, 7);
@@ -75,10 +76,7 @@ class LicensePlateInputField extends StatelessWidget {
             height: 54 * AppSpacing.px1,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppSpacing.px8),
-              border: Border.all(
-                color: const Color(0xFFB5B5B5),
-                width: .5,
-              ),
+              border: Border.all(color: const Color(0xFFB5B5B5), width: .5),
               boxShadow: [
                 BoxShadow(
                   color: const Color(0xFF0C0A1C).withValues(alpha: .1),
@@ -91,10 +89,7 @@ class LicensePlateInputField extends StatelessWidget {
               decoration: BoxDecoration(
                 color: AppColors.white,
                 borderRadius: BorderRadius.circular(6 * AppSpacing.px1),
-                border: Border.all(
-                  color: AppColors.mainKre,
-                  width: 2.0,
-                ),
+                border: Border.all(color: AppColors.mainKre, width: 2.0),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,8 +115,9 @@ class LicensePlateInputField extends StatelessWidget {
                         child: Transform.translate(
                           offset: Offset(0, -AppSpacing.px1),
                           child: Transform.scale(
-                              scale: .93,
-                              child: Image.asset(AppImages.franceEuro)),
+                            scale: .93,
+                            child: Image.asset(AppImages.franceEuro),
+                          ),
                         ),
                       ),
                     ),
@@ -136,9 +132,7 @@ class LicensePlateInputField extends StatelessWidget {
                         final licensePlate = value.replaceAll(' - ', '');
                         onLicensePlateChanged(licensePlate);
                       },
-                      inputFormatters: [
-                        LicensePlateFormatter(),
-                      ],
+                      inputFormatters: [LicensePlateFormatter()],
                       style: AppTypography.largeTitle.copyWith(
                         color: AppColors.mainKre,
                         fontWeight: FontWeight.w500,

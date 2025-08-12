@@ -72,7 +72,7 @@ class DeleteSpotDialog extends StackedView<DeleteSpotDialogModel> {
                   ),
                   alignment: Alignment.center,
                   child: const Text('⭐️', style: TextStyle(fontSize: 30)),
-                )
+                ),
               ],
             ),
             GestureDetector(

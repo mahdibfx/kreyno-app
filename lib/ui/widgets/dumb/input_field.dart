@@ -42,10 +42,7 @@ class InputField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppSpacing.px12 / 2,
       children: [
-        CustomText.smallParagraphMedium(
-          labelText,
-          color: AppColors.textKre,
-        ),
+        CustomText.smallParagraphMedium(labelText, color: AppColors.textKre),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -80,8 +77,9 @@ class InputField extends StatelessWidget {
                         )
                       : null,
                   filled: true,
-                  fillColor:
-                      disabled ? AppColors.disabledFillKre : AppColors.white,
+                  fillColor: disabled
+                      ? AppColors.disabledFillKre
+                      : AppColors.white,
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: AppSpacing.px16,
                     vertical: AppSpacing.px12,

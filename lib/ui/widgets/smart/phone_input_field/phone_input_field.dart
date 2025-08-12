@@ -75,8 +75,6 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
   }
 
   @override
-  PhoneInputFieldModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  PhoneInputFieldModel viewModelBuilder(BuildContext context) =>
       PhoneInputFieldModel();
 }

@@ -22,8 +22,6 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
   }
 
   @override
-  SpotSoldSuccessViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  SpotSoldSuccessViewModel viewModelBuilder(BuildContext context) =>
       SpotSoldSuccessViewModel();
 }

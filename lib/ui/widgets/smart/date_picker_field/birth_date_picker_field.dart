@@ -28,10 +28,7 @@ class BirthDatePickerField extends StackedView<BirthDatePickerFieldModel> {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppSpacing.px12 / 2,
       children: [
-        CustomText.smallParagraphMedium(
-          labelText,
-          color: AppColors.textKre,
-        ),
+        CustomText.smallParagraphMedium(labelText, color: AppColors.textKre),
         Row(
           spacing: AppSpacing.px8,
           children: [
@@ -101,8 +98,6 @@ class BirthDatePickerField extends StackedView<BirthDatePickerFieldModel> {
   }
 
   @override
-  BirthDatePickerFieldModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  BirthDatePickerFieldModel viewModelBuilder(BuildContext context) =>
       BirthDatePickerFieldModel();
 }

@@ -22,8 +22,6 @@ class MyPaymentMethodesView extends StackedView<MyPaymentMethodesViewModel> {
   }
 
   @override
-  MyPaymentMethodesViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  MyPaymentMethodesViewModel viewModelBuilder(BuildContext context) =>
       MyPaymentMethodesViewModel();
 }

@@ -22,8 +22,6 @@ class BuyerSpotDetailsView extends StackedView<BuyerSpotDetailsViewModel> {
   }
 
   @override
-  BuyerSpotDetailsViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  BuyerSpotDetailsViewModel viewModelBuilder(BuildContext context) =>
       BuyerSpotDetailsViewModel();
 }

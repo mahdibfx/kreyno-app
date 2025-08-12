@@ -89,8 +89,11 @@ class BirthDatePickerFieldModel extends BaseViewModel {
   }
 
   initDefaultValues() {
-    DateTime defaultBirthDate =
-        DateTime(today.year - minimumDrivingAge, today.month, today.day);
+    DateTime defaultBirthDate = DateTime(
+      today.year - minimumDrivingAge,
+      today.month,
+      today.day,
+    );
     selectedYear = defaultBirthDate.year;
     selectedMonth = defaultBirthDate.month;
     selectedDay = defaultBirthDate.day;

@@ -16,24 +16,32 @@ import 'package:stacked/stacked_annotations.dart';
 
 import 'signup_viewmodel.dart';
 
-@FormView(fields: [
-  FormTextField(
-      name: 'phoneNumber', validator: ValidationService.phoneValidator),
-  FormTextField(
-      name: 'firstName', validator: ValidationService.firstNameValidator),
-  FormTextField(
-      name: 'lastName', validator: ValidationService.lastNameValidator),
-  FormTextField(name: 'email', validator: ValidationService.emailValidator),
-  FormTextField(name: 'userName', validator: ValidationService.emptyValidator),
-  FormTextField(name: 'address', validator: ValidationService.emptyValidator),
-])
+@FormView(
+  fields: [
+    FormTextField(
+      name: 'phoneNumber',
+      validator: ValidationService.phoneValidator,
+    ),
+    FormTextField(
+      name: 'firstName',
+      validator: ValidationService.firstNameValidator,
+    ),
+    FormTextField(
+      name: 'lastName',
+      validator: ValidationService.lastNameValidator,
+    ),
+    FormTextField(name: 'email', validator: ValidationService.emailValidator),
+    FormTextField(
+      name: 'userName',
+      validator: ValidationService.emptyValidator,
+    ),
+    FormTextField(name: 'address', validator: ValidationService.emptyValidator),
+  ],
+)
 class SignupView extends StackedView<SignupViewModel> with $SignupView {
   final (String countryCode, String phoneNumber) phoneNumber;
 
-  const SignupView({
-    Key? key,
-    required this.phoneNumber,
-  }) : super(key: key);
+  const SignupView({Key? key, required this.phoneNumber}) : super(key: key);
 
   @override
   Widget builder(
@@ -164,7 +172,7 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                           ],
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -216,8 +224,5 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
   }
 
   @override
-  SignupViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
-      SignupViewModel();
+  SignupViewModel viewModelBuilder(BuildContext context) => SignupViewModel();
 }

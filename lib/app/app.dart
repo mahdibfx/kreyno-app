@@ -1,3 +1,4 @@
+import 'package:kreyno/services/shared_prefs_service.dart';
 import 'package:kreyno/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:kreyno/ui/views/home/home_view.dart';
 import 'package:kreyno/ui/views/startup/startup_view.dart';
@@ -38,6 +39,7 @@ import 'package:kreyno/ui/bottom_sheets/completed_action/completed_action_sheet.
 // @stacked-import
 
 @StackedApp(
+  logger: StackedLogger(),
   routes: [
     MaterialRoute(page: HomeView),
     MaterialRoute(page: StartupView),
@@ -59,12 +61,13 @@ import 'package:kreyno/ui/bottom_sheets/completed_action/completed_action_sheet.
     MaterialRoute(page: CashoutView),
     MaterialRoute(page: AddVehiculeView),
     MaterialRoute(page: EditVehiculeView),
-// @stacked-route
+    // @stacked-route
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
+    LazySingleton(classType: SharedPrefsService),
     // @stacked-service
   ],
   bottomsheets: [
@@ -82,11 +85,11 @@ import 'package:kreyno/ui/bottom_sheets/completed_action/completed_action_sheet.
     StackedBottomsheet(classType: DangerSheet),
     StackedBottomsheet(classType: DatePickerFilterSheet),
     StackedBottomsheet(classType: CompletedActionSheet),
-// @stacked-bottom-sheet
+    // @stacked-bottom-sheet
   ],
   dialogs: [
     StackedDialog(classType: DeleteSpotDialog),
-// @stacked-dialog
+    // @stacked-dialog
   ],
 )
 class App {}

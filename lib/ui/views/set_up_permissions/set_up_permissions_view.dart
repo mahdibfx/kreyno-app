@@ -22,8 +22,6 @@ class SetUpPermissionsView extends StackedView<SetUpPermissionsViewModel> {
   }
 
   @override
-  SetUpPermissionsViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  SetUpPermissionsViewModel viewModelBuilder(BuildContext context) =>
       SetUpPermissionsViewModel();
 }

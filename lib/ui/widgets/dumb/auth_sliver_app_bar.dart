@@ -37,12 +37,18 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
   final String? description;
   final VoidCallback onBackPressed;
 
-  AuthAppBarDelegate(
-      {required this.title, this.description, required this.onBackPressed});
+  AuthAppBarDelegate({
+    required this.title,
+    this.description,
+    required this.onBackPressed,
+  });
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     final shrinkRatio = shrinkOffset / (maxExtent - minExtent);
     final opacity = (.9 - shrinkRatio).clamp(0.0, 1.0);
 
@@ -79,9 +85,7 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
                 Transform.scale(
                   scale: .8,
                   alignment: Alignment.center,
-                  child: const AppLogo(
-                    animated: false,
-                  ),
+                  child: const AppLogo(animated: false),
                 ),
                 HGap(AppSpacing.px32),
               ],
@@ -95,10 +99,7 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
                 mainAxisAlignment: MainAxisAlignment.start,
                 spacing: AppSpacing.px4,
                 children: [
-                  CustomText.largeTitle(
-                    title,
-                    color: AppColors.mainKre,
-                  ),
+                  CustomText.largeTitle(title, color: AppColors.mainKre),
                   if (description != null)
                     CustomText.smallParagraphMedium(
                       description!,
@@ -107,7 +108,7 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
                     ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

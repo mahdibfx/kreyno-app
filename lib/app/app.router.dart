@@ -778,7 +778,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.homeView,
@@ -796,7 +796,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.startupView,
@@ -814,7 +814,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.onboardingView,
@@ -832,7 +832,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.signinView,
@@ -851,7 +851,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.signupView,
@@ -869,7 +869,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.setUpVehiculeView,
@@ -887,7 +887,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.setUpPaymentMethodsView,
@@ -905,7 +905,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.setUpPermissionsView,
@@ -923,7 +923,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.sellerSpotDetailsView,
@@ -941,7 +941,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.buyerSpotDetailsView,
@@ -959,7 +959,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.spotSoldSuccessView,
@@ -977,7 +977,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.spotBoughtSuccessView,
@@ -995,7 +995,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.editProfileView,
@@ -1013,7 +1013,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.myVehiculesView,
@@ -1031,7 +1031,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.myPaymentMethodesView,
@@ -1049,7 +1049,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.spotsHistoryView,
@@ -1067,7 +1067,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.kreynoWalletView,
@@ -1085,7 +1085,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.cashoutView,
@@ -1103,7 +1103,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.addVehiculeView,
@@ -1121,7 +1121,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return navigateTo<dynamic>(
       Routes.editVehiculeView,
@@ -1139,7 +1139,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.homeView,
@@ -1157,7 +1157,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.startupView,
@@ -1175,7 +1175,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.onboardingView,
@@ -1193,7 +1193,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.signinView,
@@ -1212,7 +1212,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.signupView,
@@ -1230,7 +1230,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.setUpVehiculeView,
@@ -1248,7 +1248,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.setUpPaymentMethodsView,
@@ -1266,7 +1266,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.setUpPermissionsView,
@@ -1284,7 +1284,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.sellerSpotDetailsView,
@@ -1302,7 +1302,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.buyerSpotDetailsView,
@@ -1320,7 +1320,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.spotSoldSuccessView,
@@ -1338,7 +1338,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.spotBoughtSuccessView,
@@ -1356,7 +1356,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.editProfileView,
@@ -1374,7 +1374,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.myVehiculesView,
@@ -1392,7 +1392,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.myPaymentMethodesView,
@@ -1410,7 +1410,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.spotsHistoryView,
@@ -1428,7 +1428,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.kreynoWalletView,
@@ -1446,7 +1446,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.cashoutView,
@@ -1464,7 +1464,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.addVehiculeView,
@@ -1482,7 +1482,7 @@ extension NavigatorStateExtension on _i23.NavigationService {
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
+    transition,
   }) async {
     return replaceWith<dynamic>(
       Routes.editVehiculeView,

@@ -22,8 +22,6 @@ class SpotsHistoryView extends StackedView<SpotsHistoryViewModel> {
   }
 
   @override
-  SpotsHistoryViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  SpotsHistoryViewModel viewModelBuilder(BuildContext context) =>
       SpotsHistoryViewModel();
 }

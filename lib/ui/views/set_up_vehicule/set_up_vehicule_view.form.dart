@@ -19,12 +19,12 @@ const String ColorValueKey = 'color';
 const String Co2EmissionValueKey = 'co2Emission';
 
 final Map<String, TextEditingController>
-    _SetUpVehiculeViewTextEditingControllers = {};
+_SetUpVehiculeViewTextEditingControllers = {};
 
 final Map<String, FocusNode> _SetUpVehiculeViewFocusNodes = {};
 
 final Map<String, String? Function(String?)?>
-    _SetUpVehiculeViewTextValidations = {
+_SetUpVehiculeViewTextValidations = {
   VehicleTypeValueKey: null,
   BrandValueKey: null,
   ModelValueKey: null,
@@ -58,8 +58,9 @@ mixin $SetUpVehiculeView {
       return _SetUpVehiculeViewTextEditingControllers[key]!;
     }
 
-    _SetUpVehiculeViewTextEditingControllers[key] =
-        TextEditingController(text: initialValue);
+    _SetUpVehiculeViewTextEditingControllers[key] = TextEditingController(
+      text: initialValue,
+    );
     return _SetUpVehiculeViewTextEditingControllers[key]!;
   }
 
@@ -102,14 +103,13 @@ mixin $SetUpVehiculeView {
   /// Updates the formData on the FormViewModel
   void _updateFormData(FormStateHelper model, {bool forceValidate = false}) {
     model.setData(
-      model.formValueMap
-        ..addAll({
-          VehicleTypeValueKey: vehicleTypeController.text,
-          BrandValueKey: brandController.text,
-          ModelValueKey: modelController.text,
-          ColorValueKey: colorController.text,
-          Co2EmissionValueKey: co2EmissionController.text,
-        }),
+      model.formValueMap..addAll({
+        VehicleTypeValueKey: vehicleTypeController.text,
+        BrandValueKey: brandController.text,
+        ModelValueKey: modelController.text,
+        ColorValueKey: colorController.text,
+        Co2EmissionValueKey: co2EmissionController.text,
+      }),
     );
 
     if (_autoTextFieldValidation || forceValidate) {
@@ -139,10 +139,9 @@ mixin $SetUpVehiculeView {
 }
 
 extension ValueProperties on FormStateHelper {
-  bool get hasAnyValidationMessage => this
-      .fieldsValidationMessages
-      .values
-      .any((validation) => validation != null);
+  bool get hasAnyValidationMessage => this.fieldsValidationMessages.values.any(
+    (validation) => validation != null,
+  );
 
   bool get isFormValid {
     if (!_autoTextFieldValidation) this.validateForm();
@@ -159,21 +158,18 @@ extension ValueProperties on FormStateHelper {
       this.formValueMap[Co2EmissionValueKey] as String?;
 
   set vehicleTypeValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({VehicleTypeValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({VehicleTypeValueKey: value}));
 
     if (_SetUpVehiculeViewTextEditingControllers.containsKey(
-        VehicleTypeValueKey)) {
+      VehicleTypeValueKey,
+    )) {
       _SetUpVehiculeViewTextEditingControllers[VehicleTypeValueKey]?.text =
           value ?? '';
     }
   }
 
   set brandValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({BrandValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({BrandValueKey: value}));
 
     if (_SetUpVehiculeViewTextEditingControllers.containsKey(BrandValueKey)) {
       _SetUpVehiculeViewTextEditingControllers[BrandValueKey]?.text =
@@ -182,9 +178,7 @@ extension ValueProperties on FormStateHelper {
   }
 
   set modelValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({ModelValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({ModelValueKey: value}));
 
     if (_SetUpVehiculeViewTextEditingControllers.containsKey(ModelValueKey)) {
       _SetUpVehiculeViewTextEditingControllers[ModelValueKey]?.text =
@@ -193,9 +187,7 @@ extension ValueProperties on FormStateHelper {
   }
 
   set colorValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({ColorValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({ColorValueKey: value}));
 
     if (_SetUpVehiculeViewTextEditingControllers.containsKey(ColorValueKey)) {
       _SetUpVehiculeViewTextEditingControllers[ColorValueKey]?.text =
@@ -204,12 +196,11 @@ extension ValueProperties on FormStateHelper {
   }
 
   set co2EmissionValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({Co2EmissionValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({Co2EmissionValueKey: value}));
 
     if (_SetUpVehiculeViewTextEditingControllers.containsKey(
-        Co2EmissionValueKey)) {
+      Co2EmissionValueKey,
+    )) {
       _SetUpVehiculeViewTextEditingControllers[Co2EmissionValueKey]?.text =
           value ?? '';
     }

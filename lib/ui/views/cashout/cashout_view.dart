@@ -22,8 +22,5 @@ class CashoutView extends StackedView<CashoutViewModel> {
   }
 
   @override
-  CashoutViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
-      CashoutViewModel();
+  CashoutViewModel viewModelBuilder(BuildContext context) => CashoutViewModel();
 }

@@ -149,10 +149,8 @@ extension MediaQueryExt on num {
 class ResponsiveSizerWidget extends StatelessWidget {
   final Widget child;
 
-  const ResponsiveSizerWidget({
-    Key? key,
-    required this.child,
-  }) : super(key: key);
+  const ResponsiveSizerWidget({Key? key, required this.child})
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {

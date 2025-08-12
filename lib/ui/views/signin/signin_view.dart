@@ -12,10 +12,14 @@ import 'package:stacked/stacked_annotations.dart';
 
 import 'signin_viewmodel.dart';
 
-@FormView(fields: [
-  FormTextField(
-      name: 'phoneNumber', validator: ValidationService.phoneValidator),
-])
+@FormView(
+  fields: [
+    FormTextField(
+      name: 'phoneNumber',
+      validator: ValidationService.phoneValidator,
+    ),
+  ],
+)
 class SigninView extends StackedView<SigninViewModel> with $SigninView {
   const SigninView({Key? key}) : super(key: key);
 
@@ -101,8 +105,5 @@ class SigninView extends StackedView<SigninViewModel> with $SigninView {
   }
 
   @override
-  SigninViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
-      SigninViewModel();
+  SigninViewModel viewModelBuilder(BuildContext context) => SigninViewModel();
 }

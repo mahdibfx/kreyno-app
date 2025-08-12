@@ -62,8 +62,9 @@ mixin $SignupView {
       return _SignupViewTextEditingControllers[key]!;
     }
 
-    _SignupViewTextEditingControllers[key] =
-        TextEditingController(text: initialValue);
+    _SignupViewTextEditingControllers[key] = TextEditingController(
+      text: initialValue,
+    );
     return _SignupViewTextEditingControllers[key]!;
   }
 
@@ -108,15 +109,14 @@ mixin $SignupView {
   /// Updates the formData on the FormViewModel
   void _updateFormData(FormStateHelper model, {bool forceValidate = false}) {
     model.setData(
-      model.formValueMap
-        ..addAll({
-          PhoneNumberValueKey: phoneNumberController.text,
-          FirstNameValueKey: firstNameController.text,
-          LastNameValueKey: lastNameController.text,
-          EmailValueKey: emailController.text,
-          UserNameValueKey: userNameController.text,
-          AddressValueKey: addressController.text,
-        }),
+      model.formValueMap..addAll({
+        PhoneNumberValueKey: phoneNumberController.text,
+        FirstNameValueKey: firstNameController.text,
+        LastNameValueKey: lastNameController.text,
+        EmailValueKey: emailController.text,
+        UserNameValueKey: userNameController.text,
+        AddressValueKey: addressController.text,
+      }),
     );
 
     if (_autoTextFieldValidation || forceValidate) {
@@ -146,10 +146,9 @@ mixin $SignupView {
 }
 
 extension ValueProperties on FormStateHelper {
-  bool get hasAnyValidationMessage => this
-      .fieldsValidationMessages
-      .values
-      .any((validation) => validation != null);
+  bool get hasAnyValidationMessage => this.fieldsValidationMessages.values.any(
+    (validation) => validation != null,
+  );
 
   bool get isFormValid {
     if (!_autoTextFieldValidation) this.validateForm();
@@ -166,9 +165,7 @@ extension ValueProperties on FormStateHelper {
   String? get addressValue => this.formValueMap[AddressValueKey] as String?;
 
   set phoneNumberValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({PhoneNumberValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({PhoneNumberValueKey: value}));
 
     if (_SignupViewTextEditingControllers.containsKey(PhoneNumberValueKey)) {
       _SignupViewTextEditingControllers[PhoneNumberValueKey]?.text =
@@ -177,9 +174,7 @@ extension ValueProperties on FormStateHelper {
   }
 
   set firstNameValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({FirstNameValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({FirstNameValueKey: value}));
 
     if (_SignupViewTextEditingControllers.containsKey(FirstNameValueKey)) {
       _SignupViewTextEditingControllers[FirstNameValueKey]?.text = value ?? '';
@@ -187,9 +182,7 @@ extension ValueProperties on FormStateHelper {
   }
 
   set lastNameValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({LastNameValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({LastNameValueKey: value}));
 
     if (_SignupViewTextEditingControllers.containsKey(LastNameValueKey)) {
       _SignupViewTextEditingControllers[LastNameValueKey]?.text = value ?? '';
@@ -197,9 +190,7 @@ extension ValueProperties on FormStateHelper {
   }
 
   set emailValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({EmailValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({EmailValueKey: value}));
 
     if (_SignupViewTextEditingControllers.containsKey(EmailValueKey)) {
       _SignupViewTextEditingControllers[EmailValueKey]?.text = value ?? '';
@@ -207,9 +198,7 @@ extension ValueProperties on FormStateHelper {
   }
 
   set userNameValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({UserNameValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({UserNameValueKey: value}));
 
     if (_SignupViewTextEditingControllers.containsKey(UserNameValueKey)) {
       _SignupViewTextEditingControllers[UserNameValueKey]?.text = value ?? '';
@@ -217,9 +206,7 @@ extension ValueProperties on FormStateHelper {
   }
 
   set addressValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({AddressValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({AddressValueKey: value}));
 
     if (_SignupViewTextEditingControllers.containsKey(AddressValueKey)) {
       _SignupViewTextEditingControllers[AddressValueKey]?.text = value ?? '';

@@ -51,10 +51,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     stops: [0, .8],
-                    colors: [
-                      Colors.transparent,
-                      Colors.black,
-                    ],
+                    colors: [Colors.transparent, Colors.black],
                   ),
                 ),
               ),
@@ -67,10 +64,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   stops: [0, 1],
-                  colors: [
-                    AppColors.mainKre,
-                    Colors.transparent,
-                  ],
+                  colors: [AppColors.mainKre, Colors.transparent],
                 ),
               ),
               child: Column(
@@ -78,13 +72,11 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 spacing: AppSpacing.px8,
                 children: [
-                  const AppLogo(
-                    animated: false,
-                  ),
+                  const AppLogo(animated: false),
                   CustomText.smallParagraphMedium(
                     OnboardingStrings.tagLine,
                     color: AppColors.white.withValues(alpha: .7),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -135,8 +127,6 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
   }
 
   @override
-  OnboardingViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  OnboardingViewModel viewModelBuilder(BuildContext context) =>
       OnboardingViewModel();
 }

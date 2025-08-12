@@ -16,8 +16,6 @@ class VehiculeImageUploader extends StackedView<VehiculeImageUploaderModel> {
   }
 
   @override
-  VehiculeImageUploaderModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  VehiculeImageUploaderModel viewModelBuilder(BuildContext context) =>
       VehiculeImageUploaderModel();
 }

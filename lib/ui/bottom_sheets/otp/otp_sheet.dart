@@ -15,18 +15,11 @@ import 'otp_sheet_model.dart';
 class OtpSheet extends StackedView<OtpSheetModel> {
   final Function(SheetResponse response)? completer;
   final SheetRequest request;
-  const OtpSheet({
-    Key? key,
-    required this.completer,
-    required this.request,
-  }) : super(key: key);
+  const OtpSheet({Key? key, required this.completer, required this.request})
+    : super(key: key);
 
   @override
-  Widget builder(
-    BuildContext context,
-    OtpSheetModel viewModel,
-    Widget? child,
-  ) {
+  Widget builder(BuildContext context, OtpSheetModel viewModel, Widget? child) {
     return BottomSheetLayout(
       body: Column(
         children: [
@@ -57,8 +50,9 @@ class OtpSheet extends StackedView<OtpSheetModel> {
                 ),
                 OtpField(
                   onComplete: (value) {
-                    completer
-                        ?.call(SheetResponse(confirmed: true, data: value));
+                    completer?.call(
+                      SheetResponse(confirmed: true, data: value),
+                    );
                   },
                 ),
                 SizedBox(

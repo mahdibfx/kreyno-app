@@ -17,9 +17,7 @@ class StartupView extends StackedView<StartupViewModel> {
   ) {
     return const Scaffold(
       backgroundColor: AppColors.mainKre,
-      body: Center(
-        child: AppLogo(),
-      ),
+      body: Center(child: AppLogo()),
     );
   }
 

@@ -8,11 +8,8 @@ import 'profile_sheet_model.dart';
 class ProfileSheet extends StackedView<ProfileSheetModel> {
   final Function(SheetResponse response)? completer;
   final SheetRequest request;
-  const ProfileSheet({
-    Key? key,
-    required this.completer,
-    required this.request,
-  }) : super(key: key);
+  const ProfileSheet({Key? key, required this.completer, required this.request})
+    : super(key: key);
 
   @override
   Widget builder(

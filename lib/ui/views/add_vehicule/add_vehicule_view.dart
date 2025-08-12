@@ -22,8 +22,6 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel> {
   }
 
   @override
-  AddVehiculeViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  AddVehiculeViewModel viewModelBuilder(BuildContext context) =>
       AddVehiculeViewModel();
 }

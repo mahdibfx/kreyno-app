@@ -6,11 +6,7 @@ class VehiculeTypeDropDownModel extends BaseViewModel {
   int _selectedVehicleType = 1;
   int get selectedVehicleType => _selectedVehicleType;
 
-  List<int> get vehicleTypeOptions => [
-        1,
-        2,
-        3,
-      ];
+  List<int> get vehicleTypeOptions => [1, 2, 3];
   void setSelectedVehicleType(int? value) {
     _selectedVehicleType = value!;
     rebuildUi();

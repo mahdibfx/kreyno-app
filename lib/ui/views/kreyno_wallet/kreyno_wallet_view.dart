@@ -22,8 +22,6 @@ class KreynoWalletView extends StackedView<KreynoWalletViewModel> {
   }
 
   @override
-  KreynoWalletViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  KreynoWalletViewModel viewModelBuilder(BuildContext context) =>
       KreynoWalletViewModel();
 }

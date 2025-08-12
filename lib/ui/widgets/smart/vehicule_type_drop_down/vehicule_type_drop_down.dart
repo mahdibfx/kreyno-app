@@ -54,8 +54,6 @@ class VehiculeTypeDropDown extends StackedView<VehiculeTypeDropDownModel> {
   }
 
   @override
-  VehiculeTypeDropDownModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  VehiculeTypeDropDownModel viewModelBuilder(BuildContext context) =>
       VehiculeTypeDropDownModel();
 }
