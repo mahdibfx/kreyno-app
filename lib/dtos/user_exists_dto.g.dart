@@ -7,7 +7,19 @@ part of 'user_exists_dto.dart';
 // **************************************************************************
 
 _UserExistsDto _$UserExistsDtoFromJson(Map<String, dynamic> json) =>
-    _UserExistsDto(phone: json['phone'] as String);
+    _UserExistsDto(
+      attribute: $enumDecode(_$UniqueExistenceIdEnumMap, json['attribute']),
+      value: json['value'] as String,
+    );
 
 Map<String, dynamic> _$UserExistsDtoToJson(_UserExistsDto instance) =>
-    <String, dynamic>{'phone': instance.phone};
+    <String, dynamic>{
+      'attribute': _$UniqueExistenceIdEnumMap[instance.attribute]!,
+      'value': instance.value,
+    };
+
+const _$UniqueExistenceIdEnumMap = {
+  UniqueExistenceId.phone: 'phone',
+  UniqueExistenceId.email: 'email',
+  UniqueExistenceId.username: 'username',
+};

@@ -31,8 +31,4 @@ Map<String, dynamic> _$RegisterDtoToJson(_RegisterDto instance) =>
       'device_id': instance.deviceId,
     };
 
-const _$GenderEnumMap = {
-  Gender.defaultValue: 'defaultValue',
-  Gender.male: 1,
-  Gender.female: 2,
-};
+const _$GenderEnumMap = {Gender.male: 1, Gender.female: 2};

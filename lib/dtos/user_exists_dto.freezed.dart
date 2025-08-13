@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserExistsDto {
 
-@JsonKey(name: 'phone') String get phone;
+@JsonKey(name: 'attribute') UniqueExistenceId get attribute;@JsonKey(name: 'value') String get value;
 /// Create a copy of UserExistsDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $UserExistsDtoCopyWith<UserExistsDto> get copyWith => _$UserExistsDtoCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserExistsDto&&(identical(other.phone, phone) || other.phone == phone));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserExistsDto&&(identical(other.attribute, attribute) || other.attribute == attribute)&&(identical(other.value, value) || other.value == value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,phone);
+int get hashCode => Object.hash(runtimeType,attribute,value);
 
 @override
 String toString() {
-  return 'UserExistsDto(phone: $phone)';
+  return 'UserExistsDto(attribute: $attribute, value: $value)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $UserExistsDtoCopyWith<$Res>  {
   factory $UserExistsDtoCopyWith(UserExistsDto value, $Res Function(UserExistsDto) _then) = _$UserExistsDtoCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'phone') String phone
+@JsonKey(name: 'attribute') UniqueExistenceId attribute,@JsonKey(name: 'value') String value
 });
 
 
@@ -65,9 +65,10 @@ class _$UserExistsDtoCopyWithImpl<$Res>
 
 /// Create a copy of UserExistsDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? phone = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? attribute = null,Object? value = null,}) {
   return _then(_self.copyWith(
-phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+attribute: null == attribute ? _self.attribute : attribute // ignore: cast_nullable_to_non_nullable
+as UniqueExistenceId,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -153,10 +154,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'phone')  String phone)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'attribute')  UniqueExistenceId attribute, @JsonKey(name: 'value')  String value)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserExistsDto() when $default != null:
-return $default(_that.phone);case _:
+return $default(_that.attribute,_that.value);case _:
   return orElse();
 
 }
@@ -174,10 +175,10 @@ return $default(_that.phone);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'phone')  String phone)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'attribute')  UniqueExistenceId attribute, @JsonKey(name: 'value')  String value)  $default,) {final _that = this;
 switch (_that) {
 case _UserExistsDto():
-return $default(_that.phone);case _:
+return $default(_that.attribute,_that.value);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -194,10 +195,10 @@ return $default(_that.phone);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'phone')  String phone)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'attribute')  UniqueExistenceId attribute, @JsonKey(name: 'value')  String value)?  $default,) {final _that = this;
 switch (_that) {
 case _UserExistsDto() when $default != null:
-return $default(_that.phone);case _:
+return $default(_that.attribute,_that.value);case _:
   return null;
 
 }
@@ -209,10 +210,11 @@ return $default(_that.phone);case _:
 @JsonSerializable()
 
 class _UserExistsDto implements UserExistsDto {
-  const _UserExistsDto({@JsonKey(name: 'phone') required this.phone});
+  const _UserExistsDto({@JsonKey(name: 'attribute') required this.attribute, @JsonKey(name: 'value') required this.value});
   factory _UserExistsDto.fromJson(Map<String, dynamic> json) => _$UserExistsDtoFromJson(json);
 
-@override@JsonKey(name: 'phone') final  String phone;
+@override@JsonKey(name: 'attribute') final  UniqueExistenceId attribute;
+@override@JsonKey(name: 'value') final  String value;
 
 /// Create a copy of UserExistsDto
 /// with the given fields replaced by the non-null parameter values.
@@ -227,16 +229,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserExistsDto&&(identical(other.phone, phone) || other.phone == phone));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserExistsDto&&(identical(other.attribute, attribute) || other.attribute == attribute)&&(identical(other.value, value) || other.value == value));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,phone);
+int get hashCode => Object.hash(runtimeType,attribute,value);
 
 @override
 String toString() {
-  return 'UserExistsDto(phone: $phone)';
+  return 'UserExistsDto(attribute: $attribute, value: $value)';
 }
 
 
@@ -247,7 +249,7 @@ abstract mixin class _$UserExistsDtoCopyWith<$Res> implements $UserExistsDtoCopy
   factory _$UserExistsDtoCopyWith(_UserExistsDto value, $Res Function(_UserExistsDto) _then) = __$UserExistsDtoCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'phone') String phone
+@JsonKey(name: 'attribute') UniqueExistenceId attribute,@JsonKey(name: 'value') String value
 });
 
 
@@ -264,9 +266,10 @@ class __$UserExistsDtoCopyWithImpl<$Res>
 
 /// Create a copy of UserExistsDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? phone = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? attribute = null,Object? value = null,}) {
   return _then(_UserExistsDto(
-phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+attribute: null == attribute ? _self.attribute : attribute // ignore: cast_nullable_to_non_nullable
+as UniqueExistenceId,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
