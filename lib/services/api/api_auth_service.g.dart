@@ -50,12 +50,12 @@ class _ApiAuthService implements ApiAuthService {
   }
 
   @override
-  Future<ApiResponse<UserExistsResponse>> sendOtp(SendOtpDto request) async {
+  Future<ApiResponse<bool>> sendOtp(SendOtpDto request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
-    final _options = _setStreamType<ApiResponse<UserExistsResponse>>(
+    final _options = _setStreamType<ApiResponse<bool>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -66,11 +66,11 @@ class _ApiAuthService implements ApiAuthService {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ApiResponse<UserExistsResponse> _value;
+    late ApiResponse<bool> _value;
     try {
-      _value = ApiResponse<UserExistsResponse>.fromJson(
+      _value = ApiResponse<bool>.fromJson(
         _result.data!,
-        (json) => UserExistsResponse.fromJson(json as Map<String, dynamic>),
+        (json) => json as bool,
       );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
