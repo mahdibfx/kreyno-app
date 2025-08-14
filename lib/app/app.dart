@@ -1,3 +1,4 @@
+import 'package:kreyno/services/api/dio_service.dart';
 import 'package:kreyno/services/shared_prefs_service.dart';
 import 'package:kreyno/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:kreyno/ui/views/home/home_view.dart';
@@ -68,6 +69,7 @@ import 'package:kreyno/ui/bottom_sheets/completed_action/completed_action_sheet.
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: SharedPrefsService),
+    Singleton(classType: DioService),
     // @stacked-service
   ],
   bottomsheets: [
