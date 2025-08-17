@@ -4,7 +4,7 @@ import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/widgets/dumb/bottom_sheet_layout.dart';
-import 'package:kreyno/ui/widgets/dumb/circular_button.dart';
+import 'package:kreyno/ui/widgets/dumb/rounded_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_divider.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
@@ -44,7 +44,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
                 text: "Céder ma place",
                 style: CustomTextStyle.largeTitle,
               ),
-              CircularButton(
+              RoundedButton(
                 iconPath: AppIcons.multiplicationSign,
                 onPressed: () {
                   locator<NavigationService>().back();
