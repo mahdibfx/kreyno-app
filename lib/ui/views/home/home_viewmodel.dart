@@ -1,10 +1,11 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/app/app.dialogs.dart';
 import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/ui/views/home/widgets/buyer/buyer_selected_mark.dart';
 import 'package:kreyno/ui/views/home/widgets/seller/client_canceled_order.dart';
 import 'package:kreyno/ui/views/home/widgets/seller/my_marker_details.dart';
 import 'package:kreyno/ui/views/home/widgets/seller/my_new_mark_label.dart';
-import 'package:kreyno/ui/views/home/widgets/seller/normal_home_state.dart';
+import 'package:kreyno/ui/views/home/widgets/common/normal_home_state.dart';
 import 'package:kreyno/ui/views/home/widgets/seller/received_order_widget.dart';
 import 'package:kreyno/ui/views/home/widgets/seller/tracking_course_widget.dart';
 import 'package:stacked/stacked.dart';
@@ -14,21 +15,26 @@ class HomeViewModel extends BaseViewModel {
   final Set<Marker> markers = {};
   bool isThisMarkerMine = false;
   bool markSelected = false;
-  bool isReceivedOrder = true;
-  bool isThisAClientMark = false;
+  bool isReceivedOrder = false;
+  bool isThisAClientMark = true;
   bool showRefuseReasonForm = false;
   bool clientCanceledOrder = false;
-  bool isTrackingCourse = true;
-  bool clientArrived = true;
+  bool isTrackingCourse = false;
+  bool clientArrived = false;
+  bool clientMarkClicked = true;
   onMapClicked(LatLng position) {
-    bool isThisPositionAlreadyMarker = false;
+    // bool isThisPositionAlreadyMarker = false; // this is when it is seller part , later it will be logically changed
+    bool isThisPositionAlreadyMarker = true; // this is when it is client part
     markSelected = true;
     var searchResults = markers.where((e) =>
         e.position.longitude == position.longitude &&
         e.position.latitude == position.latitude);
     isThisPositionAlreadyMarker = searchResults.isNotEmpty;
     if (isThisPositionAlreadyMarker) {
-      if (isThisMarkerMine) {}
+      if (isThisMarkerMine) {
+      } else {
+        isThisAClientMark = true;
+      }
     } else {
       markers.add(Marker(
           markerId: MarkerId(DateTime.now().microsecondsSinceEpoch.toString()),
@@ -38,6 +44,9 @@ class HomeViewModel extends BaseViewModel {
   }
 
   chooseBottomBarBasedOnState() {
+    if (markSelected && isThisAClientMark) {
+      return const BuyerSelectedMark();
+    }
     if (isTrackingCourse) {
       return const TrackingCourseWidget();
     }
