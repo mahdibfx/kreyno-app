@@ -1,7 +1,10 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/app/app.dialogs.dart';
 import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/ui/views/home/widgets/buyer/buyer_confirm_arrive.dart';
 import 'package:kreyno/ui/views/home/widgets/buyer/buyer_selected_mark.dart';
+import 'package:kreyno/ui/views/home/widgets/buyer/buyer_waiting_confirmation.dart';
+import 'package:kreyno/ui/views/home/widgets/buyer/seller_confirmed_for_buyer.dart';
 import 'package:kreyno/ui/views/home/widgets/seller/client_canceled_order.dart';
 import 'package:kreyno/ui/views/home/widgets/seller/my_marker_details.dart';
 import 'package:kreyno/ui/views/home/widgets/seller/my_new_mark_label.dart';
@@ -44,6 +47,12 @@ class HomeViewModel extends BaseViewModel {
   }
 
   chooseBottomBarBasedOnState() {
+    if (true) {
+      // return const BuyerWaitingConfirmation();
+      // return const SellerConfirmedForBuyer();
+      // return const BuyerConfirmArrive();
+      const NormalHomeState();
+    }
     if (markSelected && isThisAClientMark) {
       return const BuyerSelectedMark();
     }

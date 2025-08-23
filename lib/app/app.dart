@@ -35,6 +35,7 @@ import 'package:kreyno/ui/bottom_sheets/profile/profile_sheet.dart';
 import 'package:kreyno/ui/bottom_sheets/danger/danger_sheet.dart';
 import 'package:kreyno/ui/bottom_sheets/date_picker_filter/date_picker_filter_sheet.dart';
 import 'package:kreyno/ui/bottom_sheets/completed_action/completed_action_sheet.dart';
+import 'package:kreyno/ui/bottom_sheets/add_payment_cart/add_payment_cart_sheet.dart';
 // @stacked-import
 
 @StackedApp(
@@ -82,6 +83,7 @@ import 'package:kreyno/ui/bottom_sheets/completed_action/completed_action_sheet.
     StackedBottomsheet(classType: DangerSheet),
     StackedBottomsheet(classType: DatePickerFilterSheet),
     StackedBottomsheet(classType: CompletedActionSheet),
+    StackedBottomsheet(classType: AddPaymentCartSheet),
 // @stacked-bottom-sheet
   ],
   dialogs: [

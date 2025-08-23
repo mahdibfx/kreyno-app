@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.dart';
+import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
+import 'package:kreyno/ui/common/app_images.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/views/spot_sold_success/spot_sold_success_view.dart';
 import 'package:kreyno/ui/widgets/dumb/bottom_sheet_layout.dart';
@@ -49,20 +52,125 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
-    return Column(
-      children: [
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CustomIcon(iconPath: AppIcons.arrowLeft),
-            CustomText.paragraph("Paiment"),
-            CustomIcon(iconPath: AppIcons.multiplicationSign)
-          ],
-        ),
-        VGap(AppSpacing.px20),
-        const CustomDivider(),
-        VGap(AppSpacing.px20),
-      ],
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      const Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          CustomIcon(iconPath: AppIcons.arrowLeft),
+          CustomText.paragraph("Paiment"),
+          CustomIcon(iconPath: AppIcons.multiplicationSign)
+        ],
+      ),
+      VGap(AppSpacing.px20),
+      const CustomDivider(),
+      VGap(AppSpacing.px20),
+      const CustomText.labelRegular(
+        "Payer avec",
+        color: AppColors.textKre,
+      ),
+      VGap(AppSpacing.px8),
+      const PaymentMethodListTile(),
+      VGap(AppSpacing.px16),
+      InkWell(
+        onTap: () {
+          locator<BottomSheetService>().showCustomSheet(
+              variant: BottomSheetType.addPaymentCart,
+              isScrollControlled: true);
+        },
+        child: Container(
+            padding: EdgeInsets.all(AppSpacing.px1 * 10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                    color: AppColors.textKre.withValues(alpha: .25))),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const CustomIcon(iconPath: AppIcons.creditCardAdd),
+                HGap(AppSpacing.px8),
+                const CustomText.smallParagraphBold(
+                    "Ajouter une nouvelle carte")
+              ],
+            )),
+      ),
+      VGap(AppSpacing.px16),
+      const CustomDivider(),
+      VGap(AppSpacing.px16),
+      const Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          CustomText.smallParagraphMedium(
+            "Montant",
+            color: AppColors.textKre,
+          ),
+          CustomText.paragraph(
+            "2.4€",
+            color: AppColors.mainKre,
+          )
+        ],
+      ),
+      VGap(AppSpacing.px16),
+      Row(
+        children: [
+          const CustomIcon(
+            iconPath: AppIcons.squareLock,
+            color: AppColors.textKre,
+          ),
+          HGap(AppSpacing.px8),
+          const Expanded(
+            child: CustomText.smallParagraphMedium(
+              "Vos informations de paiement sont entièrement sécurisées et protégées.",
+              maxLines: 2,
+              color: AppColors.textKre,
+            ),
+          )
+        ],
+      ),
+      VGap(AppSpacing.px24),
+      CustomButton.filled(
+        text: "Payer & réserver cette place",
+        onPressed: () {},
+      )
+    ]);
+  }
+}
+
+class PaymentMethodListTile extends StatelessWidget {
+  const PaymentMethodListTile({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(AppSpacing.px1 * 10),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: AppColors.textKre.withValues(alpha: .25))),
+      child: Row(
+        children: [
+          Image.asset(AppImages.visa),
+          HGap(AppSpacing.px12),
+          const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomText.labelRegular(
+                "OLIVER DUPONS",
+                color: AppColors.textKre,
+              ),
+              CustomText.labelRegular(
+                "**** 1234",
+              )
+            ],
+          ),
+          const Expanded(child: SizedBox()),
+          CircleAvatar(
+            radius: AppSpacing.px8 + 1,
+            backgroundColor: AppColors.greenKre,
+            child: const Icon(Icons.done, color: Colors.white, size: 14),
+          )
+        ],
+      ),
     );
   }
 }

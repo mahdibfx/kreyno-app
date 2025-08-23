@@ -5,6 +5,8 @@ class AppImages {
 
   static const String bike = '${_basePath}bike.png';
 
+  static const String visa = '${_basePath}visa.png';
+
   static const String car = '${_basePath}e_car.png';
 
   static const String carSample = '${_basePath}car_sample.jpg';

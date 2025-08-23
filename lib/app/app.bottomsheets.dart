@@ -7,6 +7,7 @@
 import 'package:stacked_services/stacked_services.dart';
 
 import 'app.locator.dart';
+import '../ui/bottom_sheets/add_payment_cart/add_payment_cart_sheet.dart';
 import '../ui/bottom_sheets/add_payment_method/add_payment_method_sheet.dart';
 import '../ui/bottom_sheets/buy_spot/buy_spot_sheet.dart';
 import '../ui/bottom_sheets/cancelation_reasons/cancelation_reasons_sheet.dart';
@@ -37,6 +38,7 @@ enum BottomSheetType {
   danger,
   datePickerFilter,
   completedAction,
+  addPaymentCart,
 }
 
 void setupBottomSheetUi() {
@@ -71,6 +73,8 @@ void setupBottomSheetUi() {
         DatePickerFilterSheet(request: request, completer: completer),
     BottomSheetType.completedAction: (context, request, completer) =>
         CompletedActionSheet(request: request, completer: completer),
+    BottomSheetType.addPaymentCart: (context, request, completer) =>
+        AddPaymentCartSheet(request: request, completer: completer),
   };
 
   bottomsheetService.setCustomSheetBuilders(builders);
