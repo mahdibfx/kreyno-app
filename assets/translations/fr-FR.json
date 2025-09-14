@@ -1,6 +1,8 @@
 {
     "common": {
         "continue": "Continuer",
+        "save": "Enregistrer",
+
         "optional": "Optionnel",
         "delete": "Supprimer",
         "months":{

@@ -19,7 +19,6 @@ import 'package:kreyno/ui/views/my_payment_methodes/my_payment_methodes_view.dar
 import 'package:kreyno/ui/views/spots_history/spots_history_view.dart';
 import 'package:kreyno/ui/views/kreyno_wallet/kreyno_wallet_view.dart';
 import 'package:kreyno/ui/views/cashout/cashout_view.dart';
-import 'package:kreyno/ui/views/add_vehicule/add_vehicule_view.dart';
 import 'package:kreyno/ui/views/edit_vehicule/edit_vehicule_view.dart';
 import 'package:kreyno/ui/bottom_sheets/otp/otp_sheet.dart';
 import 'package:kreyno/ui/bottom_sheets/upload_vehicule_image/upload_vehicule_image_sheet.dart';
@@ -65,7 +64,6 @@ import 'package:kreyno/ui/views/add_vehicule/add_vehicule_view.dart';
     MaterialRoute(page: SpotsHistoryView),
     MaterialRoute(page: KreynoWalletView),
     MaterialRoute(page: CashoutView),
-    MaterialRoute(page: AddVehiculeView),
     MaterialRoute(page: EditVehiculeView),
     MaterialRoute(page: MyStationementsView),
     MaterialRoute(page: KreyonoPortfolioView),

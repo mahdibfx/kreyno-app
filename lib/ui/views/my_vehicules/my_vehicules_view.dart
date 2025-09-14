@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
@@ -8,6 +10,7 @@ import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:kreyno/ui/widgets/dumb/my_app_bar.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import 'my_vehicules_viewmodel.dart';
 
@@ -26,7 +29,10 @@ class MyVehiculesView extends StackedView<MyVehiculesViewModel> {
                   horizontal: AppSpacing.px24, vertical: AppSpacing.px20)
               .copyWith(bottom: AppSpacing.px32),
           child: CustomButton.filled(
-              onPressed: () {}, text: "Ajouter un nouveau véhicule")),
+              onPressed: () {
+                locator<NavigationService>().navigateToAddVehiculeView();
+              },
+              text: "Ajouter un nouveau véhicule")),
       backgroundColor: Colors.white,
       appBar: MyAppBar(
         title: 'Mes véhicules',

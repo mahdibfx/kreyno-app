@@ -7,22 +7,22 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i25;
 import 'package:flutter/material.dart';
-import 'package:kreyno/ui/views/add_vehicule/add_vehicule_view.dart' as _i20;
+import 'package:kreyno/ui/views/add_vehicule/add_vehicule_view.dart' as _i24;
 import 'package:kreyno/ui/views/buyer_spot_details/buyer_spot_details_view.dart'
     as _i11;
 import 'package:kreyno/ui/views/cashout/cashout_view.dart' as _i19;
 import 'package:kreyno/ui/views/checkout_money/checkout_money_view.dart'
-    as _i24;
+    as _i23;
 import 'package:kreyno/ui/views/edit_profile/edit_profile_view.dart' as _i14;
-import 'package:kreyno/ui/views/edit_vehicule/edit_vehicule_view.dart' as _i21;
+import 'package:kreyno/ui/views/edit_vehicule/edit_vehicule_view.dart' as _i20;
 import 'package:kreyno/ui/views/home/home_view.dart' as _i2;
 import 'package:kreyno/ui/views/kreyno_wallet/kreyno_wallet_view.dart' as _i18;
 import 'package:kreyno/ui/views/kreyono_portfolio/kreyono_portfolio_view.dart'
-    as _i23;
+    as _i22;
 import 'package:kreyno/ui/views/my_payment_methodes/my_payment_methodes_view.dart'
     as _i16;
 import 'package:kreyno/ui/views/my_stationements/my_stationements_view.dart'
-    as _i22;
+    as _i21;
 import 'package:kreyno/ui/views/my_vehicules/my_vehicules_view.dart' as _i15;
 import 'package:kreyno/ui/views/onboarding/onboarding_view.dart' as _i4;
 import 'package:kreyno/ui/views/seller_spot_details/seller_spot_details_view.dart'
@@ -81,8 +81,6 @@ class Routes {
 
   static const cashoutView = '/cashout-view';
 
-  static const addVehiculeView = '/add-vehicule-view';
-
   static const editVehiculeView = '/edit-vehicule-view';
 
   static const myStationementsView = '/my-stationements-view';
@@ -112,11 +110,11 @@ class Routes {
     spotsHistoryView,
     kreynoWalletView,
     cashoutView,
-    addVehiculeView,
     editVehiculeView,
     myStationementsView,
     kreyonoPortfolioView,
     checkoutMoneyView,
+    addVehiculeView,
   };
 }
 
@@ -195,28 +193,24 @@ class StackedRouter extends _i1.RouterBase {
       page: _i19.CashoutView,
     ),
     _i1.RouteDef(
-      Routes.addVehiculeView,
-      page: _i20.AddVehiculeView,
-    ),
-    _i1.RouteDef(
       Routes.editVehiculeView,
-      page: _i21.EditVehiculeView,
+      page: _i20.EditVehiculeView,
     ),
     _i1.RouteDef(
       Routes.myStationementsView,
-      page: _i22.MyStationementsView,
+      page: _i21.MyStationementsView,
     ),
     _i1.RouteDef(
       Routes.kreyonoPortfolioView,
-      page: _i23.KreyonoPortfolioView,
+      page: _i22.KreyonoPortfolioView,
     ),
     _i1.RouteDef(
       Routes.checkoutMoneyView,
-      page: _i24.CheckoutMoneyView,
+      page: _i23.CheckoutMoneyView,
     ),
     _i1.RouteDef(
       Routes.addVehiculeView,
-      page: _i20.AddVehiculeView,
+      page: _i24.AddVehiculeView,
     ),
   ];
 
@@ -329,33 +323,33 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i20.AddVehiculeView: (data) {
+    _i20.EditVehiculeView: (data) {
       return _i25.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i20.AddVehiculeView(),
+        builder: (context) => const _i20.EditVehiculeView(),
         settings: data,
       );
     },
-    _i21.EditVehiculeView: (data) {
+    _i21.MyStationementsView: (data) {
       return _i25.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i21.EditVehiculeView(),
+        builder: (context) => const _i21.MyStationementsView(),
         settings: data,
       );
     },
-    _i22.MyStationementsView: (data) {
+    _i22.KreyonoPortfolioView: (data) {
       return _i25.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i22.MyStationementsView(),
+        builder: (context) => const _i22.KreyonoPortfolioView(),
         settings: data,
       );
     },
-    _i23.KreyonoPortfolioView: (data) {
+    _i23.CheckoutMoneyView: (data) {
       return _i25.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i23.KreyonoPortfolioView(),
+        builder: (context) => const _i23.CheckoutMoneyView(),
         settings: data,
       );
     },
-    _i24.CheckoutMoneyView: (data) {
+    _i24.AddVehiculeView: (data) {
       return _i25.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i24.CheckoutMoneyView(),
+        builder: (context) => const _i24.AddVehiculeView(),
         settings: data,
       );
     },
@@ -615,20 +609,6 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.cashoutView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
-  }
-
-  Future<dynamic> navigateToAddVehiculeView([
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
-  ]) async {
-    return navigateTo<dynamic>(Routes.addVehiculeView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -951,20 +931,6 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.cashoutView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
-  }
-
-  Future<dynamic> replaceWithAddVehiculeView([
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
-  ]) async {
-    return replaceWith<dynamic>(Routes.addVehiculeView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

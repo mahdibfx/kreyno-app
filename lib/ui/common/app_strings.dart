@@ -6,6 +6,7 @@ class CommonStrings {
   static String get continueLabel => 'common.continue'.tr();
   static String get optional => 'common.optional'.tr();
   static String get delete => 'common.delete'.tr();
+  static String get save => 'common.save'.tr();
 
   // Months
   static String get january => 'common.months.january'.tr();
