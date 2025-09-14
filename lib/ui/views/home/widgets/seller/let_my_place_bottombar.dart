@@ -36,14 +36,22 @@ class LetMyPlaceBottombar extends StatelessWidget {
                   },
           )),
           SizedBox(width: AppSpacing.px8),
-          Container(
-            width: 11 * AppSpacing.px4,
-            height: 11 * AppSpacing.px4,
-            decoration: BoxDecoration(
-              image: const DecorationImage(
-                  image: NetworkImage("https://picsum.photos/100/100")),
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.red,
+          InkWell(
+            onTap: () {
+              locator<BottomSheetService>().showCustomSheet(
+                  isScrollControlled: true,
+                  enableDrag: true,
+                  variant: BottomSheetType.profile);
+            },
+            child: Container(
+              width: 11 * AppSpacing.px4,
+              height: 11 * AppSpacing.px4,
+              decoration: BoxDecoration(
+                image: const DecorationImage(
+                    image: NetworkImage("https://picsum.photos/100/100")),
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.red,
+              ),
             ),
           )
         ],

@@ -5,18 +5,24 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i22;
+import 'package:flutter/material.dart' as _i25;
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/views/add_vehicule/add_vehicule_view.dart' as _i20;
 import 'package:kreyno/ui/views/buyer_spot_details/buyer_spot_details_view.dart'
     as _i11;
 import 'package:kreyno/ui/views/cashout/cashout_view.dart' as _i19;
+import 'package:kreyno/ui/views/checkout_money/checkout_money_view.dart'
+    as _i24;
 import 'package:kreyno/ui/views/edit_profile/edit_profile_view.dart' as _i14;
 import 'package:kreyno/ui/views/edit_vehicule/edit_vehicule_view.dart' as _i21;
 import 'package:kreyno/ui/views/home/home_view.dart' as _i2;
 import 'package:kreyno/ui/views/kreyno_wallet/kreyno_wallet_view.dart' as _i18;
+import 'package:kreyno/ui/views/kreyono_portfolio/kreyono_portfolio_view.dart'
+    as _i23;
 import 'package:kreyno/ui/views/my_payment_methodes/my_payment_methodes_view.dart'
     as _i16;
+import 'package:kreyno/ui/views/my_stationements/my_stationements_view.dart'
+    as _i22;
 import 'package:kreyno/ui/views/my_vehicules/my_vehicules_view.dart' as _i15;
 import 'package:kreyno/ui/views/onboarding/onboarding_view.dart' as _i4;
 import 'package:kreyno/ui/views/seller_spot_details/seller_spot_details_view.dart'
@@ -36,7 +42,7 @@ import 'package:kreyno/ui/views/spot_sold_success/spot_sold_success_view.dart'
 import 'package:kreyno/ui/views/spots_history/spots_history_view.dart' as _i17;
 import 'package:kreyno/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i23;
+import 'package:stacked_services/stacked_services.dart' as _i26;
 
 class Routes {
   static const homeView = '/home-view';
@@ -79,6 +85,14 @@ class Routes {
 
   static const editVehiculeView = '/edit-vehicule-view';
 
+  static const myStationementsView = '/my-stationements-view';
+
+  static const kreyonoPortfolioView = '/kreyono-portfolio-view';
+
+  static const checkoutMoneyView = '/checkout-money-view';
+
+  static const addVehiculeView = '/add-vehicule-view';
+
   static const all = <String>{
     homeView,
     startupView,
@@ -100,6 +114,9 @@ class Routes {
     cashoutView,
     addVehiculeView,
     editVehiculeView,
+    myStationementsView,
+    kreyonoPortfolioView,
+    checkoutMoneyView,
   };
 }
 
@@ -185,126 +202,160 @@ class StackedRouter extends _i1.RouterBase {
       Routes.editVehiculeView,
       page: _i21.EditVehiculeView,
     ),
+    _i1.RouteDef(
+      Routes.myStationementsView,
+      page: _i22.MyStationementsView,
+    ),
+    _i1.RouteDef(
+      Routes.kreyonoPortfolioView,
+      page: _i23.KreyonoPortfolioView,
+    ),
+    _i1.RouteDef(
+      Routes.checkoutMoneyView,
+      page: _i24.CheckoutMoneyView,
+    ),
+    _i1.RouteDef(
+      Routes.addVehiculeView,
+      page: _i20.AddVehiculeView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
       );
     },
     _i3.StartupView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
         settings: data,
       );
     },
     _i4.OnboardingView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.OnboardingView(),
         settings: data,
       );
     },
     _i5.SigninView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.SigninView(),
         settings: data,
       );
     },
     _i6.SignupView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.SignupView(),
         settings: data,
       );
     },
     _i7.SetUpVehiculeView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.SetUpVehiculeView(),
         settings: data,
       );
     },
     _i8.SetUpPaymentMethodsView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.SetUpPaymentMethodsView(),
         settings: data,
       );
     },
     _i9.SetUpPermissionsView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.SetUpPermissionsView(),
         settings: data,
       );
     },
     _i10.SellerSpotDetailsView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.SellerSpotDetailsView(),
         settings: data,
       );
     },
     _i11.BuyerSpotDetailsView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i11.BuyerSpotDetailsView(),
         settings: data,
       );
     },
     _i12.SpotSoldSuccessView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i12.SpotSoldSuccessView(),
         settings: data,
       );
     },
     _i13.SpotBoughtSuccessView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i13.SpotBoughtSuccessView(),
         settings: data,
       );
     },
     _i14.EditProfileView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i14.EditProfileView(),
         settings: data,
       );
     },
     _i15.MyVehiculesView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i15.MyVehiculesView(),
         settings: data,
       );
     },
     _i16.MyPaymentMethodesView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i16.MyPaymentMethodesView(),
         settings: data,
       );
     },
     _i17.SpotsHistoryView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i17.SpotsHistoryView(),
         settings: data,
       );
     },
     _i18.KreynoWalletView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i18.KreynoWalletView(),
         settings: data,
       );
     },
     _i19.CashoutView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i19.CashoutView(),
         settings: data,
       );
     },
     _i20.AddVehiculeView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i20.AddVehiculeView(),
         settings: data,
       );
     },
     _i21.EditVehiculeView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i25.MaterialPageRoute<dynamic>(
         builder: (context) => const _i21.EditVehiculeView(),
+        settings: data,
+      );
+    },
+    _i22.MyStationementsView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i22.MyStationementsView(),
+        settings: data,
+      );
+    },
+    _i23.KreyonoPortfolioView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i23.KreyonoPortfolioView(),
+        settings: data,
+      );
+    },
+    _i24.CheckoutMoneyView: (data) {
+      return _i25.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i24.CheckoutMoneyView(),
         settings: data,
       );
     },
@@ -317,7 +368,7 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i23.NavigationService {
+extension NavigatorStateExtension on _i26.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -598,6 +649,62 @@ extension NavigatorStateExtension on _i23.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToMyStationementsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.myStationementsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToKreyonoPortfolioView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.kreyonoPortfolioView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToCheckoutMoneyView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.checkoutMoneyView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToAddVehiculeView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.addVehiculeView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -872,6 +979,62 @@ extension NavigatorStateExtension on _i23.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.editVehiculeView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithMyStationementsView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.myStationementsView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithKreyonoPortfolioView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.kreyonoPortfolioView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithCheckoutMoneyView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.checkoutMoneyView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithAddVehiculeView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.addVehiculeView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
