@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/app/app.bottomsheets.dart';
+import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
@@ -7,6 +9,7 @@ import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:kreyno/ui/widgets/dumb/my_app_bar.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import 'my_stationements_viewmodel.dart';
 
@@ -25,7 +28,11 @@ class MyStationementsView extends StackedView<MyStationementsViewModel> {
         title: "Mes stationnements",
         actions: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              final d = locator<BottomSheetService>().showCustomSheet(
+                  isScrollControlled: true,
+                  variant: BottomSheetType.datePickerFilter);
+            },
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
               child: const CustomIcon(iconPath: AppIcons.sort),

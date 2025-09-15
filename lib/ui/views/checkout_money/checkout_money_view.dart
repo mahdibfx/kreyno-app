@@ -34,7 +34,7 @@ class CheckoutMoneyView extends StackedView<CheckoutMoneyViewModel> {
             child: CustomButton.filled(
                 onPressed: () async {
                   final d = await locator<BottomSheetService>().showCustomSheet(
-                      data: "success",
+                      data: "error",
                       variant: BottomSheetType.checkoutMoneyFeedback);
                 },
                 text: "Retirer")),
