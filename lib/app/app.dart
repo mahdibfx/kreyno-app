@@ -21,7 +21,6 @@ import 'package:kreyno/ui/views/my_payment_methodes/my_payment_methodes_view.dar
 import 'package:kreyno/ui/views/spots_history/spots_history_view.dart';
 import 'package:kreyno/ui/views/kreyno_wallet/kreyno_wallet_view.dart';
 import 'package:kreyno/ui/views/cashout/cashout_view.dart';
-import 'package:kreyno/ui/views/add_vehicule/add_vehicule_view.dart';
 import 'package:kreyno/ui/views/edit_vehicule/edit_vehicule_view.dart';
 import 'package:kreyno/ui/bottom_sheets/otp/otp_sheet.dart';
 import 'package:kreyno/ui/bottom_sheets/upload_vehicule_image/upload_vehicule_image_sheet.dart';
@@ -37,6 +36,14 @@ import 'package:kreyno/ui/bottom_sheets/profile/profile_sheet.dart';
 import 'package:kreyno/ui/bottom_sheets/danger/danger_sheet.dart';
 import 'package:kreyno/ui/bottom_sheets/date_picker_filter/date_picker_filter_sheet.dart';
 import 'package:kreyno/ui/bottom_sheets/completed_action/completed_action_sheet.dart';
+import 'package:kreyno/ui/bottom_sheets/add_payment_cart/add_payment_cart_sheet.dart';
+import 'package:kreyno/ui/bottom_sheets/logout_confirmation/logout_confirmation_sheet.dart';
+import 'package:kreyno/ui/bottom_sheets/delete_account_confirmation/delete_account_confirmation_sheet.dart';
+import 'package:kreyno/ui/views/my_stationements/my_stationements_view.dart';
+import 'package:kreyno/ui/views/kreyono_portfolio/kreyono_portfolio_view.dart';
+import 'package:kreyno/ui/views/checkout_money/checkout_money_view.dart';
+import 'package:kreyno/ui/bottom_sheets/checkout_money_feedback/checkout_money_feedback_sheet.dart';
+import 'package:kreyno/ui/views/add_vehicule/add_vehicule_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -60,8 +67,11 @@ import 'package:kreyno/ui/bottom_sheets/completed_action/completed_action_sheet.
     MaterialRoute(page: SpotsHistoryView),
     MaterialRoute(page: KreynoWalletView),
     MaterialRoute(page: CashoutView),
+    MaterialRoute(page: EditVehiculeView), // @stacked-route
+    MaterialRoute(page: MyStationementsView),
+    MaterialRoute(page: KreyonoPortfolioView),
+    MaterialRoute(page: CheckoutMoneyView),
     MaterialRoute(page: AddVehiculeView),
-    MaterialRoute(page: EditVehiculeView),
     // @stacked-route
   ],
   dependencies: [
@@ -87,6 +97,10 @@ import 'package:kreyno/ui/bottom_sheets/completed_action/completed_action_sheet.
     StackedBottomsheet(classType: DangerSheet),
     StackedBottomsheet(classType: DatePickerFilterSheet),
     StackedBottomsheet(classType: CompletedActionSheet),
+    StackedBottomsheet(classType: AddPaymentCartSheet),
+    StackedBottomsheet(classType: LogoutConfirmationSheet),
+    StackedBottomsheet(classType: DeleteAccountConfirmationSheet),
+    StackedBottomsheet(classType: CheckoutMoneyFeedbackSheet),
     // @stacked-bottom-sheet
   ],
   dialogs: [

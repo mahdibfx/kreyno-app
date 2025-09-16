@@ -5,6 +5,9 @@ class AppImages {
 
   static const String bike = '${_basePath}bike.png';
 
+  static const String visa = '${_basePath}visa.png';
+  static const String visaTextLogo = '${_basePath}visa_text.png';
+
   static const String car = '${_basePath}e_car.png';
 
   static const String carSample = '${_basePath}car_sample.jpg';
@@ -44,4 +47,5 @@ class AppImages {
       '${_basePath}permissions_illustration.png';
 
   static const String franceEuro = '${_basePath}france_euro.png';
+  static const bgCard = "assets/images/Bg Card.png";
 }

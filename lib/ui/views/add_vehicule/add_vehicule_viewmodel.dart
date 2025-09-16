@@ -1,3 +1,5 @@
 import 'package:stacked/stacked.dart';
 
-class AddVehiculeViewModel extends BaseViewModel {}
+class AddVehiculeViewModel extends BaseViewModel {
+  bool isFrenchLicensePlate = true;
+}

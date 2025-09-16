@@ -4,6 +4,7 @@ class AppIcons {
   static const String _basePath = 'assets/icons/';
 
   static const String agreement = '${_basePath}agreement.svg';
+  static const String upload = '${_basePath}Upload.svg';
 
   static const String alert = '${_basePath}alert.svg';
 

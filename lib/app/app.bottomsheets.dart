@@ -8,14 +8,18 @@
 import 'package:stacked_services/stacked_services.dart';
 
 import 'app.locator.dart';
+import '../ui/bottom_sheets/add_payment_cart/add_payment_cart_sheet.dart';
 import '../ui/bottom_sheets/add_payment_method/add_payment_method_sheet.dart';
 import '../ui/bottom_sheets/buy_spot/buy_spot_sheet.dart';
 import '../ui/bottom_sheets/cancelation_reasons/cancelation_reasons_sheet.dart';
+import '../ui/bottom_sheets/checkout_money_feedback/checkout_money_feedback_sheet.dart';
 import '../ui/bottom_sheets/completed_action/completed_action_sheet.dart';
 import '../ui/bottom_sheets/create_spot/create_spot_sheet.dart';
 import '../ui/bottom_sheets/danger/danger_sheet.dart';
 import '../ui/bottom_sheets/date_picker_filter/date_picker_filter_sheet.dart';
+import '../ui/bottom_sheets/delete_account_confirmation/delete_account_confirmation_sheet.dart';
 import '../ui/bottom_sheets/home_filter/home_filter_sheet.dart';
+import '../ui/bottom_sheets/logout_confirmation/logout_confirmation_sheet.dart';
 import '../ui/bottom_sheets/notice/notice_sheet.dart';
 import '../ui/bottom_sheets/otp/otp_sheet.dart';
 import '../ui/bottom_sheets/pay_for_spot/pay_for_spot_sheet.dart';
@@ -38,6 +42,10 @@ enum BottomSheetType {
   danger,
   datePickerFilter,
   completedAction,
+  addPaymentCart,
+  logoutConfirmation,
+  deleteAccountConfirmation,
+  checkoutMoneyFeedback,
 }
 
 void setupBottomSheetUi() {
@@ -72,6 +80,14 @@ void setupBottomSheetUi() {
         DatePickerFilterSheet(request: request, completer: completer),
     BottomSheetType.completedAction: (context, request, completer) =>
         CompletedActionSheet(request: request, completer: completer),
+    BottomSheetType.addPaymentCart: (context, request, completer) =>
+        AddPaymentCartSheet(request: request, completer: completer),
+    BottomSheetType.logoutConfirmation: (context, request, completer) =>
+        LogoutConfirmationSheet(request: request, completer: completer),
+    BottomSheetType.deleteAccountConfirmation: (context, request, completer) =>
+        DeleteAccountConfirmationSheet(request: request, completer: completer),
+    BottomSheetType.checkoutMoneyFeedback: (context, request, completer) =>
+        CheckoutMoneyFeedbackSheet(request: request, completer: completer),
   };
 
   bottomsheetService.setCustomSheetBuilders(builders);

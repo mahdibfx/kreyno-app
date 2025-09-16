@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
+import 'package:kreyno/ui/common/app_icons.dart';
+import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
+import 'package:kreyno/ui/widgets/dumb/gap.dart';
 
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -25,75 +32,68 @@ class DeleteSpotDialog extends StackedView<DeleteSpotDialogModel> {
     Widget? child,
   ) {
     return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       backgroundColor: Colors.white,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
+                const Expanded(
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        request.title ?? 'Hello Stacked Dialog!!',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w900,
-                        ),
+                      CustomText(
+                        text: "Supprimer cette place ?",
+                        style: CustomTextStyle.paragraph,
                       ),
-                      if (request.description != null) ...[
-                        Text(
-                          request.description!,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: AppColors.mainKre,
-                          ),
-                          maxLines: 3,
-                          softWrap: true,
-                        ),
-                      ],
+                      CustomText(
+                        text:
+                            "Cette place sera retirée et ne sera plus proposée aux utilisateurs.",
+                        maxLines: 2,
+                        style: CustomTextStyle.smallParagraphMedium,
+                      ),
                     ],
                   ),
                 ),
-                Container(
-                  width: _graphicSize,
-                  height: _graphicSize,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFF6E7B0),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(_graphicSize / 2),
-                    ),
+                InkWell(
+                  onTap: () {
+                    completer(DialogResponse(confirmed: false));
+                  },
+                  child: const CustomIcon(
+                    iconPath: AppIcons.multiplicationSign,
+                    color: AppColors.textKre,
                   ),
-                  alignment: Alignment.center,
-                  child: const Text('⭐️', style: TextStyle(fontSize: 30)),
                 ),
               ],
             ),
-            GestureDetector(
-              onTap: () => completer(DialogResponse(confirmed: true)),
-              child: Container(
-                height: 50,
-                width: double.infinity,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Text(
-                  'Got it',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+            VGap(AppSpacing.px16),
+            Row(
+              children: [
+                Expanded(
+                  child: CustomButton.outlined(
+                    text: "Annuler",
+                    onPressed: () {
+                      completer(DialogResponse(confirmed: false));
+                    },
                   ),
                 ),
-              ),
+                HGap(AppSpacing.px12),
+                Expanded(
+                  child: CustomButton.filled(
+                    backgroundColor: AppColors.redKre,
+                    text: "Supprimer",
+                    foregroundColor: AppColors.white,
+                    onPressed: () {
+                      completer(DialogResponse(confirmed: true));
+                    },
+                  ),
+                ),
+              ],
             ),
           ],
         ),
