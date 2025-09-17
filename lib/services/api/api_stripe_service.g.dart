@@ -2,6 +2,8 @@
 
 part of 'api_stripe_service.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
@@ -264,3 +266,5 @@ class _ApiStripeService implements ApiStripeService {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

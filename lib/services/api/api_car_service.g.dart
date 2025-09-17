@@ -2,6 +2,8 @@
 
 part of 'api_car_service.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
@@ -261,3 +263,5 @@ class _ApiCarService implements ApiCarService {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

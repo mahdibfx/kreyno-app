@@ -2,6 +2,8 @@
 
 part of 'api_auth_service.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
@@ -226,3 +228,5 @@ class _ApiAuthService implements ApiAuthService {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

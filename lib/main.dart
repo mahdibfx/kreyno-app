@@ -43,7 +43,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveSizerWidget(
       child: MaterialApp(
-        initialRoute: Routes.homeView,
+        initialRoute: Routes.startupView,
         onGenerateRoute: StackedRouter().onGenerateRoute,
         navigatorKey: StackedService.navigatorKey,
         navigatorObservers: [StackedService.routeObserver],

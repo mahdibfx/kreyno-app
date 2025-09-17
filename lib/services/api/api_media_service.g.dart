@@ -2,6 +2,8 @@
 
 part of 'api_media_service.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
@@ -148,3 +150,5 @@ class _ApiMediaService implements ApiMediaService {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

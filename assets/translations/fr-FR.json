@@ -27,6 +27,9 @@
             "lastName": "Le nom doit contenir au moins 2 caractères"
         }
     },
+    "setUpLanguage": {
+        "title": "Choisissez votre langue"
+    },
     "onboarding": {
         "tagLine": "Le futur du stationnement",
         "buttonLabel": "Continuer avec numéro"

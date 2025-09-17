@@ -32,6 +32,12 @@ class CommonStrings {
   static String get lastNameValidationText => 'common.validation.lastName'.tr();
 }
 
+class SetUpLanguageStrings {
+  const SetUpLanguageStrings._();
+
+  static String get title => 'setUpLanguage.title'.tr();
+}
+
 class OnboardingStrings {
   const OnboardingStrings._();
 

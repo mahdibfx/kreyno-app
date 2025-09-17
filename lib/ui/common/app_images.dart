@@ -47,5 +47,8 @@ class AppImages {
       '${_basePath}permissions_illustration.png';
 
   static const String franceEuro = '${_basePath}france_euro.png';
-  static const bgCard = "assets/images/Bg Card.png";
+  static const String bgCard = "assets/images/Bg Card.png";
+
+  static const String englishFlag = '${_basePath}english_lang_flag.png';
+  static const String frenchFlag = '${_basePath}french_lang_flag.png';
 }

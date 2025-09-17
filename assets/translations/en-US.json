@@ -1,6 +1,93 @@
 {
+    "common": {
+        "continue": "Continue",
+        "save": "Save",
+        "optional": "Optional",
+        "delete": "Delete",
+        "months": {
+            "january": "January",
+            "february": "February",
+            "march": "March",
+            "april": "April",
+            "may": "May",
+            "june": "June",
+            "july": "July",
+            "august": "August",
+            "september": "September",
+            "october": "October",
+            "november": "November",
+            "december": "December"
+        },
+        "validation": {
+            "emptyField": "This field is required",
+            "email": "Invalid email address",
+            "phone": "Invalid phone number",
+            "firstName": "First name must contain at least 2 characters",
+            "lastName": "Last name must contain at least 2 characters"
+        }
+    },
+    "setUpLanguage": {
+        "title": "Choose your language"
+    },
     "onboarding": {
         "tagLine": "The future of parking",
         "buttonLabel": "Continue with number"
+    },
+    "signin": {
+        "title": "Sign In",
+        "description": "Sign in to your account to get started.",
+        "phoneNumber": "Phone number",
+        "phoneNumberPlaceholder": "Enter your phone number",
+        "buttonLabel": "Sign In"
+    },
+    "otp": {
+        "title": "OTP Verification",
+        "description": "A 6-digit code has been sent to you.",
+        "codeNotReceived": "Didn't receive the code?",
+        "resendCodeIn": "Resend in",
+        "resendCode": "Resend"
+    },
+    "signup": {
+        "title": "Sign Up",
+        "phoneNumber": "Phone number",
+        "phoneNumberPlaceholder": "Enter your phone number",
+        "firstName": "First name",
+        "firstNamePlaceholder": "First name",
+        "lastName": "Last name",
+        "lastNamePlaceholder": "Last name",
+        "userName": "Username",
+        "userNamePlaceholder": "Ex: johndoe22",
+        "email": "Email",
+        "emailPlaceholder": "Ex: johndoe@gmail.com",
+        "address": "Postal address",
+        "addressPlaceholder": "Your address",
+        "birthday": "Date of birth",
+        "day": "Day",
+        "month": "Month",
+        "year": "Year",
+        "gender": "Gender",
+        "male": "Male",
+        "female": "Female"
+    },
+    "setUpVehicule": {
+        "title": "Add your vehicle",
+        "description": "Fill in the information below.",
+        "autoFill": "The information below will be automatically filled from our database.",
+        "frenchLicensePlate": "French license plate",
+        "licensePlate": "License plate number",
+        "licensePlatePlaceholder": "AA - 000 - AA",
+        "vehicleBrand": "Vehicle brand",
+        "vehicleBrandPlaceholder": "Brand",
+        "vehicleModel": "Vehicle model",
+        "vehicleModelPlaceholder": "Model",
+        "color": "Vehicle color",
+        "colorPlaceholder": "Color",
+        "co2Emission": "CO₂ emissions (g/km)",
+        "co2EmissionPlaceholder": "CO₂ emission rate",
+        "vehiculeImage": "Your vehicle image",
+        "vehiculeType": "Vehicle type",
+        "gasVehicle": "Gas vehicle",
+        "electricVehicle": "Electric vehicle",
+        "scooter": "Motorcycle / scooter"
     }
 }
