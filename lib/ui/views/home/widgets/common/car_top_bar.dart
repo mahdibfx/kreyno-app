@@ -54,6 +54,9 @@ class CarTopBar extends ViewModelWidget<HomeViewModel> {
                   InkWell(
                       onTap: () {
                         // TODO: Implement refresh functionality
+                        locator<BottomSheetService>().showCustomSheet(
+                            isScrollControlled: true,
+                            variant: BottomSheetType.cancelationReasons);
                       },
                       child: const CustomIcon(iconPath: AppIcons.refresh))
                 ],
