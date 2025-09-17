@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
@@ -40,7 +41,10 @@ class DatePickerFilterSheet extends StackedView<DatePickerFilterSheetModel> {
               children: [
                 const CustomText.largeTitle("Filtre par date"),
                 RoundedButton(
-                    iconPath: AppIcons.multiplicationSign, onPressed: () {})
+                    iconPath: AppIcons.multiplicationSign,
+                    onPressed: () {
+                      locator<NavigationService>().back();
+                    })
               ],
             ),
             VGap(AppSpacing.px20),
@@ -54,6 +58,10 @@ class DatePickerFilterSheet extends StackedView<DatePickerFilterSheetModel> {
               allowViewNavigation: false,
               showNavigationArrow: true,
               showTodayButton: false,
+              onSelectionChanged: (DateRangePickerSelectionChangedArgs
+                  dateRangePickerSelectionChangedArgs) {
+                viewModel.changedRange(dateRangePickerSelectionChangedArgs);
+              },
               headerHeight: 60,
               headerStyle: const DateRangePickerHeaderStyle(
                   textAlign: TextAlign.center,
@@ -82,7 +90,8 @@ class DatePickerFilterSheet extends StackedView<DatePickerFilterSheetModel> {
                         borderRadius: BorderRadius.circular(12),
                         border: const Border.fromBorderSide(
                             BorderSide(color: AppColors.strokeKre))),
-                    child: const CustomText.smallParagraphBold("13/07/25"),
+                    child: CustomText.smallParagraphBold(
+                        viewModel.formattedStartDate),
                   ),
                 ),
                 HGap(AppSpacing.px8),
@@ -97,7 +106,8 @@ class DatePickerFilterSheet extends StackedView<DatePickerFilterSheetModel> {
                         borderRadius: BorderRadius.circular(12),
                         border: const Border.fromBorderSide(
                             BorderSide(color: AppColors.strokeKre))),
-                    child: const CustomText.smallParagraphBold("13/07/25"),
+                    child: CustomText.smallParagraphBold(
+                        viewModel.formattedEndDate),
                   ),
                 )
               ],

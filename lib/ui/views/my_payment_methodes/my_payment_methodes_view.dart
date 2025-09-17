@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:kreyno/app/app.bottomsheets.dart';
+import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_images.dart';
@@ -9,6 +11,7 @@ import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:kreyno/ui/widgets/dumb/my_app_bar.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import 'my_payment_methodes_viewmodel.dart';
 
@@ -27,7 +30,13 @@ class MyPaymentMethodesView extends StackedView<MyPaymentMethodesViewModel> {
                   horizontal: AppSpacing.px24, vertical: AppSpacing.px20)
               .copyWith(bottom: AppSpacing.px32),
           child: CustomButton.filled(
-              onPressed: () {}, text: "Ajouter une nouvelle carte")),
+              onPressed: () async {
+                final result = await locator<BottomSheetService>()
+                    .showCustomSheet(
+                        variant: BottomSheetType.addPaymentCart,
+                        isScrollControlled: true);
+              },
+              text: "Ajouter une nouvelle carte")),
       backgroundColor: Colors.white,
       appBar: MyAppBar(
         title: 'Moyens de paiement',

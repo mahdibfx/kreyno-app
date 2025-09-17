@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
@@ -78,7 +79,11 @@ class KreyonoPortfolioView extends StackedView<KreyonoPortfolioViewModel> {
               children: [
                 const CustomText(text: "Historique des gains"),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      locator<BottomSheetService>().showCustomSheet(
+                          isScrollControlled: true,
+                          variant: BottomSheetType.datePickerFilter);
+                    },
                     icon: const CustomIcon(iconPath: AppIcons.sort))
               ],
             ),

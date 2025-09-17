@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
@@ -32,12 +33,16 @@ class AddPaymentCartSheet extends StackedView<AddPaymentCartSheetModel> {
     return BottomSheetLayout(
         body: Column(
       children: [
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomIcon(iconPath: AppIcons.arrowLeft),
-            CustomText.paragraph("Ajouter une carte"),
-            Opacity(
+            InkWell(
+                onTap: () {
+                  locator<NavigationService>().back();
+                },
+                child: const CustomIcon(iconPath: AppIcons.arrowLeft)),
+            const CustomText.paragraph("Ajouter une carte"),
+            const Opacity(
                 opacity: 0,
                 child: CustomIcon(iconPath: AppIcons.multiplicationSign))
           ],

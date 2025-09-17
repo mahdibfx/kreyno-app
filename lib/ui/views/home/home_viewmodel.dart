@@ -25,6 +25,30 @@ class HomeViewModel extends BaseViewModel {
   bool isTrackingCourse = false;
   bool clientArrived = false;
   bool clientMarkClicked = true;
+  bool dropdownShown = false;
+  int selectedCarId = 0;
+
+  /// suppose this is car id
+  onCarTopBarClicked() {
+    dropdownShown = true;
+    notifyListeners();
+  }
+
+  selectCar(int value) async {
+    selectedCarId = value;
+    notifyListeners();
+    await Future.delayed(const Duration(milliseconds: 600))
+        .then((value) => markSelected = false);
+    dropdownShown = false;
+
+    notifyListeners();
+  }
+
+  hideDropdown() {
+    dropdownShown = false;
+    notifyListeners();
+  }
+
   onMapClicked(LatLng position) {
     // bool isThisPositionAlreadyMarker = false; // this is when it is seller part , later it will be logically changed
     bool isThisPositionAlreadyMarker = true; // this is when it is client part

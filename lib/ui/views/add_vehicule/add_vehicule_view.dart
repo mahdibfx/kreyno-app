@@ -58,7 +58,9 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel> {
                         ),
                         CustomSwitch(
                           value: viewModel.isFrenchLicensePlate,
-                          onChanged: (v) {},
+                          onChanged: (v) {
+                            viewModel.changePlateType();
+                          },
                         ),
                       ],
                     ),

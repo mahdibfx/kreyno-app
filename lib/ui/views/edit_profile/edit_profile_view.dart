@@ -16,6 +16,8 @@ import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:kreyno/ui/widgets/dumb/input_field.dart';
 import 'package:kreyno/ui/widgets/dumb/labeled_checkbox.dart';
 import 'package:kreyno/ui/widgets/dumb/labeled_radio.dart';
+import 'package:kreyno/ui/widgets/dumb/my_app_bar.dart';
+import 'package:kreyno/ui/widgets/smart/date_picker_field/birth_date_picker_field.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -38,13 +40,7 @@ class EditProfileView extends StackedView<EditProfileViewModel> {
               .copyWith(bottom: AppSpacing.px32),
           child: CustomButton.filled(
               onPressed: () {}, text: "Enregistrer les modifications")),
-      appBar: AppBar(
-          backgroundColor: AppColors.white,
-          surfaceTintColor: AppColors.greenKre.withValues(alpha: .2),
-          leading: IconButton(
-              onPressed: () {},
-              icon: const CustomIcon(iconPath: AppIcons.arrowLeft)),
-          title: const CustomText.paragraph("Modifier mon profil")),
+      appBar: MyAppBar(title: "Modifier mon profil"),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -120,35 +116,12 @@ class EditProfileView extends StackedView<EditProfileViewModel> {
                         controller: TextEditingController(),
                         focusNode: FocusNode(),
                         labelText: "Adresse postale",
-                        hintText: "Ex: +33484883",
+                        hintText: "Votre Address",
                         keyboardType: TextInputType.text),
                     VGap(AppSpacing.px16),
-                    InkWell(
-                      onTap: () {
-                        // print("fff");
-                        // showModalBottomSheet(
-                        //     context: context,
-                        //     builder: (c) => BottomSheetLayout(
-                        //             body: Column(
-                        //           children: [
-                        //             SizedBox(
-                        //               height: 200,
-                        //               child: CupertinoDatePicker(
-                        //                   onDateTimeChanged: (f) {}),
-                        //             )
-                        //           ],
-                        //         )));
-                      },
-                      child: IgnorePointer(
-                        ignoring: true,
-                        child: InputField(
-                            controller: TextEditingController(),
-                            focusNode: FocusNode(),
-                            labelText: "Date de naissance",
-                            hintText: "22/08/2004",
-                            keyboardType: TextInputType.text),
-                      ),
-                    ),
+                    BirthDatePickerField(
+                        labelText: "Date de naissance",
+                        onBirthdayChanged: (f) {}),
                     VGap(AppSpacing.px16),
                     const CustomText.smallParagraphMedium(
                       "Sex",
@@ -159,33 +132,24 @@ class EditProfileView extends StackedView<EditProfileViewModel> {
                       children: [
                         Expanded(
                           child: LabeledCheckbox(
-                              label: "Homme", value: true, onChanged: (f) {}),
+                              label: "Homme",
+                              value: viewModel.sexe == "male",
+                              onChanged: (f) {
+                                viewModel.sexChanged("male");
+                              }),
                         ),
                         Expanded(
                           child: LabeledCheckbox(
-                              label: "Femme", value: false, onChanged: (f) {}),
+                              label: "Femme",
+                              value: viewModel.sexe == "female",
+                              onChanged: (f) {
+                                viewModel.sexChanged("female");
+                              }),
                         )
                       ],
                     ),
-                    VGap(AppSpacing.px32),
-                    CustomButton.filled(
-                      text: "Supprimer mon compte",
-                      backgroundColor: AppColors.redKre,
-                      foregroundColor: AppColors.white,
-                      onPressed: () {
-                        locator<BottomSheetService>().showCustomSheet(
-                            variant: BottomSheetType.deleteAccountConfirmation);
-                      },
-                    ),
-                    VGap(AppSpacing.px16),
-                    const Center(
-                      child: CustomText.labelMedium(
-                        "Vous avez rejoint Kreyno le 01-01-2024.",
-                        textAlign: TextAlign.center,
-                        color: AppColors.textKre,
-                      ),
-                    ),
-                    VGap(AppSpacing.px24),
+                    VGap(AppSpacing.px20),
+
                     // CustomButton.filled(
                     //   text: "Enregistrer les modifications",
                     //   onPressed: () {},

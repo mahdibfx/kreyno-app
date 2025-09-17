@@ -42,6 +42,7 @@ import 'package:kreyno/ui/views/kreyono_portfolio/kreyono_portfolio_view.dart';
 import 'package:kreyno/ui/views/checkout_money/checkout_money_view.dart';
 import 'package:kreyno/ui/bottom_sheets/checkout_money_feedback/checkout_money_feedback_sheet.dart';
 import 'package:kreyno/ui/views/add_vehicule/add_vehicule_view.dart';
+import 'package:kreyno/ui/views/chat/chat_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -69,6 +70,7 @@ import 'package:kreyno/ui/views/add_vehicule/add_vehicule_view.dart';
     MaterialRoute(page: KreyonoPortfolioView),
     MaterialRoute(page: CheckoutMoneyView),
     MaterialRoute(page: AddVehiculeView),
+    MaterialRoute(page: ChatView),
 // @stacked-route
   ],
   dependencies: [
