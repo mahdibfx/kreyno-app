@@ -27,6 +27,18 @@ class HomeViewModel extends BaseViewModel {
   bool clientMarkClicked = true;
   bool dropdownShown = false;
   int selectedCarId = 0;
+  int selectedReasonId = 0;
+  final reasons = {
+    0: "J’ai changé mes plans",
+    1: "J’ai fait une erreur",
+    2: "Le/la client(e) est trop loin",
+    3: "Autre (a spécifier)"
+  };
+
+  changeReason(int id) {
+    selectedReasonId = id;
+    notifyListeners();
+  }
 
   /// suppose this is car id
   onCarTopBarClicked() {

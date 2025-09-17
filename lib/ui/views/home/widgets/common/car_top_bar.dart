@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/app/app.bottomsheets.dart';
+import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
@@ -7,6 +9,7 @@ import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class CarTopBar extends ViewModelWidget<HomeViewModel> {
   const CarTopBar({super.key});
@@ -51,6 +54,9 @@ class CarTopBar extends ViewModelWidget<HomeViewModel> {
                   InkWell(
                       onTap: () {
                         // TODO: Implement refresh functionality
+                        locator<BottomSheetService>().showCustomSheet(
+                            isScrollControlled: true,
+                            variant: BottomSheetType.cancelationReasons);
                       },
                       child: const CustomIcon(iconPath: AppIcons.refresh))
                 ],
@@ -73,12 +79,14 @@ class CarTopBar extends ViewModelWidget<HomeViewModel> {
                 children: [
                   CarChoiceWidget(
                     isSeleced: viewModel.selectedCarId == 0,
+                    id: 0,
                   ),
                   SizedBox(
                     height: AppSpacing.px1 * 14,
                   ),
                   CarChoiceWidget(
                     isSeleced: viewModel.selectedCarId == 1,
+                    id: 1,
                   )
                 ],
               ),
@@ -93,14 +101,17 @@ class CarChoiceWidget extends ViewModelWidget<HomeViewModel> {
   const CarChoiceWidget({
     super.key,
     required this.isSeleced,
+    required this.id,
   });
   final bool isSeleced;
+  final int
+      id; // delete this when integrating backend , it is only to show the interactivity
   // final CarModel car; /// here  the variable of car model and from here you extract id
   @override
   Widget build(BuildContext context, viewModel) {
     return InkWell(
       onTap: () {
-        viewModel.selectCar(1);
+        viewModel.selectCar(id);
       },
       child: Row(
         children: [

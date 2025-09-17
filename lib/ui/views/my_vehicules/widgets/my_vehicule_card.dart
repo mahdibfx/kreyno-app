@@ -107,14 +107,19 @@ class MyVehiculeCard extends StatelessWidget {
                               items: <PopupMenuEntry<String>>[
                                 PopupMenuItem<String>(
                                   value: 'p',
-                                  child: Row(
-                                    children: [
-                                      const CustomIcon(
-                                          iconPath: AppIcons.crownMinimalistic),
-                                      HGap(AppSpacing.px8),
-                                      const CustomText.smallParagraphMedium(
-                                          'Choisir comme principale'),
-                                    ],
+                                  enabled: !isPrincipal,
+                                  child: Opacity(
+                                    opacity: isPrincipal ? 0.5 : 1,
+                                    child: Row(
+                                      children: [
+                                        const CustomIcon(
+                                            iconPath:
+                                                AppIcons.crownMinimalistic),
+                                        HGap(AppSpacing.px8),
+                                        const CustomText.smallParagraphMedium(
+                                            'Choisir comme principale'),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 PopupMenuItem<String>(
