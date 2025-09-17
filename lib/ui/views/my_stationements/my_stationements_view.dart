@@ -27,7 +27,7 @@ class MyStationementsView extends StackedView<MyStationementsViewModel> {
       appBar: MyAppBar(
         title: "Mes stationnements",
         actions: [
-          InkWell(
+          GestureDetector(
             onTap: () {
               final d = locator<BottomSheetService>().showCustomSheet(
                   isScrollControlled: true,
@@ -42,8 +42,13 @@ class MyStationementsView extends StackedView<MyStationementsViewModel> {
       ),
       body: CustomScrollView(
         slivers: [
-          const SliverToBoxAdapter(
-            child: CustomPlacesTabbar(),
+          SliverToBoxAdapter(
+            child: CustomPlacesTabbar(
+              selectedIndex: viewModel.selectedIndex,
+              onTabChanged: (i) {
+                viewModel.changeIndex(i);
+              },
+            ),
           ),
           SliverToBoxAdapter(child: VGap(AppSpacing.px20)),
           SliverList.builder(
@@ -141,8 +146,9 @@ class StationementWidget extends StatelessWidget {
 }
 
 class CustomPlacesTabbar extends StatelessWidget {
-  const CustomPlacesTabbar({super.key});
-
+  CustomPlacesTabbar({super.key, this.selectedIndex = 0, this.onTabChanged});
+  Function(int)? onTabChanged;
+  int? selectedIndex;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -154,27 +160,40 @@ class CustomPlacesTabbar extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Container(
-                decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(8)),
-                padding: EdgeInsets.symmetric(
-                    horizontal: AppSpacing.px20, vertical: AppSpacing.px1 * 10),
-                child: const CustomText.smallParagraphBold(
-                  "Places réservées",
-                  textAlign: TextAlign.center,
-                )),
+            child: InkWell(
+              onTap: () {
+                onTabChanged?.call(0);
+              },
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: selectedIndex == 0 ? AppColors.white : null,
+                      borderRadius: BorderRadius.circular(8)),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: AppSpacing.px20,
+                      vertical: AppSpacing.px1 * 10),
+                  child: const CustomText.smallParagraphBold(
+                    "Places réservées",
+                    textAlign: TextAlign.center,
+                  )),
+            ),
           ),
           Expanded(
-            child: Container(
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(8)),
-                padding: EdgeInsets.symmetric(
-                    horizontal: AppSpacing.px20, vertical: AppSpacing.px1 * 10),
-                child: const CustomText.smallParagraphBold(
-                  "Places cédées",
-                  textAlign: TextAlign.center,
-                )),
+            child: InkWell(
+              onTap: () {
+                onTabChanged?.call(1);
+              },
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: selectedIndex == 1 ? AppColors.white : null,
+                      borderRadius: BorderRadius.circular(8)),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: AppSpacing.px20,
+                      vertical: AppSpacing.px1 * 10),
+                  child: const CustomText.smallParagraphBold(
+                    "Places cédées",
+                    textAlign: TextAlign.center,
+                  )),
+            ),
           )
         ],
       ),
