@@ -43,6 +43,10 @@ import 'package:kreyno/ui/views/checkout_money/checkout_money_view.dart';
 import 'package:kreyno/ui/bottom_sheets/checkout_money_feedback/checkout_money_feedback_sheet.dart';
 import 'package:kreyno/ui/views/add_vehicule/add_vehicule_view.dart';
 import 'package:kreyno/ui/views/chat/chat_view.dart';
+import 'package:kreyno/ui/views/settings/settings_view.dart';
+import 'package:kreyno/ui/views/change_phone_number/change_phone_number_view.dart';
+import 'package:kreyno/ui/views/modify_vehicule/modify_vehicule_view.dart';
+import 'package:kreyno/ui/views/change_language/change_language_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -71,6 +75,10 @@ import 'package:kreyno/ui/views/chat/chat_view.dart';
     MaterialRoute(page: CheckoutMoneyView),
     MaterialRoute(page: AddVehiculeView),
     MaterialRoute(page: ChatView),
+    MaterialRoute(page: SettingsView),
+    MaterialRoute(page: ChangePhoneNumberView),
+    MaterialRoute(page: ModifyVehiculeView),
+    MaterialRoute(page: ChangeLanguageView),
 // @stacked-route
   ],
   dependencies: [

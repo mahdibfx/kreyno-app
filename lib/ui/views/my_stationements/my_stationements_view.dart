@@ -3,6 +3,7 @@ import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
+import 'package:kreyno/ui/common/app_images.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
@@ -15,7 +16,7 @@ import 'my_stationements_viewmodel.dart';
 
 class MyStationementsView extends StackedView<MyStationementsViewModel> {
   const MyStationementsView({Key? key}) : super(key: key);
-
+  final isEmpty = true;
   @override
   Widget builder(
     BuildContext context,
@@ -50,15 +51,40 @@ class MyStationementsView extends StackedView<MyStationementsViewModel> {
               },
             ),
           ),
-          SliverToBoxAdapter(child: VGap(AppSpacing.px20)),
-          SliverList.builder(
-              itemCount: 10,
-              itemBuilder: (c, i) => Column(
-                    children: [
-                      const StationementWidget(),
-                      VGap(AppSpacing.px1 * 10)
-                    ],
-                  ))
+          SliverToBoxAdapter(child: VGap(AppSpacing.px20 * (isEmpty ? 4 : 0))),
+          if (isEmpty)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+                child: Column(
+                  children: [
+                    Image.asset(
+                      AppImages.noStationement,
+                    ),
+                    VGap(AppSpacing.px24),
+                    const CustomText.largeTitle(
+                      "Aucun stationnement trouvé",
+                    ),
+                    VGap(AppSpacing.px4),
+                    const CustomText.smallParagraphMedium(
+                      "Vous n’avez pas encore ajouté de stationnement. Commencez dès maintenant pour retrouver facilement vos places. ",
+                      maxLines: 3,
+                      textAlign: TextAlign.center,
+                      color: AppColors.textKre,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          // if (!isEmpty)
+          //   SliverList.builder(
+          //       itemCount: 10,
+          //       itemBuilder: (c, i) => Column(
+          //             children: [
+          //               const StationementWidget(),
+          //               VGap(AppSpacing.px1 * 10)
+          //             ],
+          //           ))
         ],
       ),
     );

@@ -1,48 +1,36 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
-import 'package:kreyno/ui/widgets/dumb/auth_sliver_app_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_switch.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
-
 import 'package:kreyno/ui/widgets/dumb/input_field.dart';
 import 'package:kreyno/ui/widgets/dumb/license_plate_input_field.dart';
 import 'package:kreyno/ui/widgets/dumb/my_app_bar.dart';
 import 'package:kreyno/ui/widgets/smart/vehicule_type_drop_down/vehicule_type_drop_down.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
-import 'add_vehicule_viewmodel.dart';
+import 'modify_vehicule_viewmodel.dart';
 
-class AddVehiculeView extends StackedView<AddVehiculeViewModel> {
-  const AddVehiculeView({Key? key}) : super(key: key);
+class ModifyVehiculeView extends StackedView<ModifyVehiculeViewModel> {
+  const ModifyVehiculeView({Key? key}) : super(key: key);
 
   @override
   Widget builder(
     BuildContext context,
-    AddVehiculeViewModel viewModel,
+    ModifyVehiculeViewModel viewModel,
     Widget? child,
   ) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        // appBar: MyAppBar(title: "Nouveau véhicule"),
-        backgroundColor: AppColors.white,
+    return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: MyAppBar(title: ""),
         body: CustomScrollView(
           slivers: [
-            AuthSliverAppBar(
-                title: "Ajouter un véhicule",
-                description: "Remplissez ces informations ci-dessous",
-                onBackPressed: () {
-                  locator<NavigationService>().back();
-                }),
             SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
               sliver: SliverToBoxAdapter(
@@ -50,33 +38,33 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    // VGap(AppSpacing.px12),
-                    // const CustomText.largeTitle("Ajoutez un nouveau véhicule"),
-                    // VGap(AppSpacing.px4),
-                    // const CustomText.smallParagraphMedium(
-                    //   "Remplissez ces informations ci-dessous.",
-                    //   color: AppColors.textKre,
-                    // ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CustomText.smallParagraphMedium(
-                          SetUpVehiculeStrings.frenchLicensePlate,
-                        ),
-                        CustomSwitch(
-                          value: viewModel.isFrenchLicensePlate,
-                          onChanged: (v) {
-                            viewModel.changePlateType();
-                          },
-                        ),
-                      ],
+                    VGap(AppSpacing.px12),
+                    const CustomText.largeTitle("Modifier ce véhicule"),
+                    VGap(AppSpacing.px4),
+                    const CustomText.smallParagraphMedium(
+                      "Modifiez le type ou l’image de votre véhicule. ",
+                      color: AppColors.textKre,
                     ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   crossAxisAlignment: CrossAxisAlignment.center,
+                    //   children: [
+                    //     CustomText.smallParagraphMedium(
+                    //       SetUpVehiculeStrings.frenchLicensePlate,
+                    //     ),
+                    //     CustomSwitch(
+                    //       value: viewModel.,
+                    //       onChanged: (v) {
+                    //         viewModel.changePlateType();
+                    //       },
+                    //     ),
+                    //   ],
+                    // ),
                     VGap(AppSpacing.px16),
                     const Divider(color: AppColors.strokeKre, height: .0),
                     VGap(AppSpacing.px24),
                     LicensePlateInputField(
-                      frenchLicensePlate: viewModel.isFrenchLicensePlate,
+                      frenchLicensePlate: true,
                       onLicensePlateChanged: (licensePlate) {},
                     ),
                     VGap(AppSpacing.px24),
@@ -176,7 +164,7 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       CustomButton.filled(
-                        text: CommonStrings.save,
+                        text: CommonStrings.continueLabel,
                         onPressed: () {},
                       ),
                     ],
@@ -185,14 +173,12 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel> {
               ),
             ),
           ],
-        ),
-      ),
-    );
+        ));
   }
 
   @override
-  AddVehiculeViewModel viewModelBuilder(
+  ModifyVehiculeViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      AddVehiculeViewModel();
+      ModifyVehiculeViewModel();
 }

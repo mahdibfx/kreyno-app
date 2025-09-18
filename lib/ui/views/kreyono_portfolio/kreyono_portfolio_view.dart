@@ -19,7 +19,7 @@ import 'kreyono_portfolio_viewmodel.dart';
 
 class KreyonoPortfolioView extends StackedView<KreyonoPortfolioViewModel> {
   const KreyonoPortfolioView({Key? key}) : super(key: key);
-
+  final bool isEmpty = true;
   @override
   Widget builder(
     BuildContext context,
@@ -88,22 +88,46 @@ class KreyonoPortfolioView extends StackedView<KreyonoPortfolioViewModel> {
               ],
             ),
             VGap(AppSpacing.px20),
-            const CustomText.labelMedium(
-              "Juillet 2025",
-              color: AppColors.textKre,
-            ),
-            VGap(AppSpacing.px8),
-            const GainWidget(
-              type: "vente",
-            ),
-            VGap(AppSpacing.px8),
-            const GainWidget(
-              type: "retrait",
-            ),
-            VGap(AppSpacing.px8),
-            const GainWidget(
-              type: "vente",
-            ),
+            if (isEmpty)
+              Column(
+                children: [
+                  Image.asset(
+                    AppImages.noStationement,
+                  ),
+                  VGap(AppSpacing.px24),
+                  const CustomText.largeTitle(
+                    "Aucun gain pour l’instant",
+                  ),
+                  VGap(AppSpacing.px4),
+                  const CustomText.smallParagraphMedium(
+                    "Les revenus de vos stationnements apparaîtront ici dès votre première transaction. ",
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
+                    color: AppColors.textKre,
+                  )
+                ],
+              ),
+            if (!isEmpty)
+              Column(
+                children: [
+                  const CustomText.labelMedium(
+                    "Juillet 2025",
+                    color: AppColors.textKre,
+                  ),
+                  VGap(AppSpacing.px8),
+                  const GainWidget(
+                    type: "vente",
+                  ),
+                  VGap(AppSpacing.px8),
+                  const GainWidget(
+                    type: "retrait",
+                  ),
+                  VGap(AppSpacing.px8),
+                  const GainWidget(
+                    type: "vente",
+                  ),
+                ],
+              ),
           ],
         ),
       ),

@@ -77,10 +77,9 @@ class ProfileSheet extends StackedView<ProfileSheetModel> {
                       ),
                       CustomButton.outlined(
                         expandToFullWidth: false,
-                        text: "Modifier mon profile",
+                        text: "Paramètres du compte",
                         onPressed: () {
-                          locator<NavigationService>()
-                              .navigateToEditProfileView();
+                          locator<NavigationService>().navigateToSettingsView();
                         },
                         foregroundColor: AppColors.mainKre,
                       )
@@ -162,6 +161,17 @@ class ProfileSheet extends StackedView<ProfileSheetModel> {
             icon: AppIcons.documentText,
             title: 'Politique de confidentialité',
           ),
+          VGap(AppSpacing.px8),
+          InkWell(
+            onTap: () {
+              locator<NavigationService>().navigateToChangeLanguageView();
+            },
+            child: const ProfileListTile(
+              icon: AppIcons.languageCirle,
+              title: 'Langue',
+              showTrailingArrow: true,
+            ),
+          ),
           VGap(AppSpacing.px24),
           InkWell(
             onTap: () {
@@ -204,9 +214,11 @@ class ProfileListTile extends StatelessWidget {
     super.key,
     required this.icon,
     required this.title,
+    this.showTrailingArrow = false,
   });
   final String icon;
   final String title;
+  final bool showTrailingArrow;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -221,7 +233,14 @@ class ProfileListTile extends StatelessWidget {
           CustomText(
             text: title,
             style: CustomTextStyle.smallParagraphMedium,
-          )
+          ),
+          if (showTrailingArrow) const Expanded(child: SizedBox()),
+          if (showTrailingArrow)
+            const CustomIcon(
+              iconPath: AppIcons.arrowRight,
+              color: AppColors.textKre,
+            ),
+          if (showTrailingArrow) HGap(AppSpacing.px8)
         ],
       ),
     );

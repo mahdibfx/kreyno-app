@@ -1,7 +1,8 @@
 class AppImages {
   AppImages._();
-
   static const String _basePath = 'assets/images/';
+
+  static const String noStationement = '${_basePath}no_stationements.png';
 
   static const String bike = '${_basePath}bike.png';
 
