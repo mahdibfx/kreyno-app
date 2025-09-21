@@ -96,7 +96,7 @@ class CheckoutMoneyView extends StackedView<CheckoutMoneyViewModel> {
               focusNode: FocusNode(),
               labelText: "Montant de retrait",
               hintText: "",
-              suffixWidget: const Padding(
+              trailingIcon: const Padding(
                 padding: EdgeInsets.all(12),
                 child: CustomIcon(
                   iconPath: AppIcons.euro,

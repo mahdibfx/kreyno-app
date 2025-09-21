@@ -22,7 +22,6 @@ class SetUpLanguageView extends StackedView<SetUpLanguageViewModel> {
     SetUpLanguageViewModel viewModel,
     Widget? child,
   ) {
-    print(context.locale.languageCode);
     return Scaffold(
       backgroundColor: AppColors.mainKre,
       body: Padding(

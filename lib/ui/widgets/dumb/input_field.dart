@@ -7,14 +7,15 @@ import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 class InputField extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
-  final String labelText;
+  final String? labelText;
   final String hintText;
   final String? errorText;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
-  final Widget? suffixWidget;
+  final Widget? trailingIcon;
   final Widget? prefixWidget;
-  final Function()? onSuffixWidgetTapped;
+  final Widget? leadingIcon;
+  final Function()? onTrailingIconTapped;
   final int? maxLength;
   final bool disabled;
   final Function(String)? onChanged;
@@ -23,14 +24,15 @@ class InputField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.focusNode,
-    required this.labelText,
+    this.labelText,
     required this.hintText,
     this.errorText,
     required this.keyboardType,
     this.textInputAction = TextInputAction.next,
-    this.suffixWidget,
+    this.trailingIcon,
     this.prefixWidget,
-    this.onSuffixWidgetTapped,
+    this.leadingIcon,
+    this.onTrailingIconTapped,
     this.maxLength,
     this.disabled = false,
     this.onChanged,
@@ -42,7 +44,8 @@ class InputField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppSpacing.px12 / 2,
       children: [
-        CustomText.smallParagraphMedium(labelText, color: AppColors.textKre),
+        if (labelText != null)
+          CustomText.smallParagraphMedium(labelText!, color: AppColors.textKre),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -64,22 +67,27 @@ class InputField extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: hintText,
                   hintStyle: AppTypography.smallParagraphMedium.copyWith(
-                    color: AppColors.placeholderKre,
+                    color: disabled
+                        ? AppColors.textKre
+                        : AppColors.placeholderKre,
                   ),
                   errorText: errorText,
+                  errorMaxLines: 3,
                   errorStyle: AppTypography.labelRegular.copyWith(
                     color: AppColors.redKre,
                   ),
-                  suffixIcon: suffixWidget != null
+                  prefixIcon: leadingIcon,
+                  prefixIconConstraints: BoxConstraints(
+                    maxHeight: AppSpacing.px20,
+                  ),
+                  suffixIcon: trailingIcon != null
                       ? GestureDetector(
-                          onTap: onSuffixWidgetTapped,
-                          child: suffixWidget,
+                          onTap: onTrailingIconTapped,
+                          child: trailingIcon,
                         )
                       : null,
                   filled: true,
-                  fillColor: disabled
-                      ? AppColors.disabledFillKre
-                      : AppColors.white,
+                  fillColor: disabled ? AppColors.disabledKre : AppColors.white,
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: AppSpacing.px16,
                     vertical: AppSpacing.px12,

@@ -14,6 +14,7 @@ import '../ui/bottom_sheets/buy_spot/buy_spot_sheet.dart';
 import '../ui/bottom_sheets/cancelation_reasons/cancelation_reasons_sheet.dart';
 import '../ui/bottom_sheets/checkout_money_feedback/checkout_money_feedback_sheet.dart';
 import '../ui/bottom_sheets/completed_action/completed_action_sheet.dart';
+import '../ui/bottom_sheets/country_code_picker/country_code_picker_sheet.dart';
 import '../ui/bottom_sheets/create_spot/create_spot_sheet.dart';
 import '../ui/bottom_sheets/danger/danger_sheet.dart';
 import '../ui/bottom_sheets/date_picker_filter/date_picker_filter_sheet.dart';
@@ -46,6 +47,7 @@ enum BottomSheetType {
   logoutConfirmation,
   deleteAccountConfirmation,
   checkoutMoneyFeedback,
+  countryCodePicker,
 }
 
 void setupBottomSheetUi() {
@@ -88,6 +90,8 @@ void setupBottomSheetUi() {
         DeleteAccountConfirmationSheet(request: request, completer: completer),
     BottomSheetType.checkoutMoneyFeedback: (context, request, completer) =>
         CheckoutMoneyFeedbackSheet(request: request, completer: completer),
+    BottomSheetType.countryCodePicker: (context, request, completer) =>
+        CountryCodePickerSheet(request: request, completer: completer),
   };
 
   bottomsheetService.setCustomSheetBuilders(builders);

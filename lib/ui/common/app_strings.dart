@@ -45,6 +45,17 @@ class OnboardingStrings {
   static String get buttonLabel => 'onboarding.buttonLabel'.tr();
 }
 
+class CountryCodePickerStrings {
+  const CountryCodePickerStrings._();
+
+  static String get title => 'countryCodePicker.title'.tr();
+  static String get search => 'countryCodePicker.search'.tr();
+  static String get noCountriesFound =>
+      'countryCodePicker.noCountriesFound'.tr();
+  static String get trySearchingWithDifferentTerm =>
+      'countryCodePicker.trySearchingWithDifferentTerm'.tr();
+}
+
 class SigninStrings {
   const SigninStrings._();
 

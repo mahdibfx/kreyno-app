@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
+import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/input_field.dart';
 import 'package:stacked/stacked.dart';
@@ -44,15 +46,15 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
       disabled: disabled,
       maxLength: maxLength,
       onChanged: (value) {
-        onChanged?.call(viewModel.countryCode, value);
+        onChanged?.call(viewModel.countryDialCode, value);
       },
       prefixWidget: GestureDetector(
-        onTap: viewModel.onCountryCodeTapped,
+        onTap: disabled ? null : viewModel.onCountryCodeTapped,
         child: Container(
           height: 46 * AppSpacing.px1,
-          width: 60 * AppSpacing.px1,
+          padding: EdgeInsets.symmetric(horizontal: AppSpacing.px12),
           decoration: BoxDecoration(
-            color: disabled ? AppColors.disabledFillKre : AppColors.white,
+            color: disabled ? AppColors.disabledKre : AppColors.white,
             borderRadius: BorderRadius.circular(AppSpacing.px12),
             border: Border.all(
               color: errorText != null ? AppColors.redKre : AppColors.strokeKre,
@@ -60,12 +62,22 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
             ),
           ),
           child: Center(
-            child: Transform.translate(
-              offset: Offset(-AppSpacing.px4 / 2, 0),
-              child: CustomText.smallParagraphMedium(
-                viewModel.countryCode,
-                color: AppColors.mainKre,
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              spacing: AppSpacing.px8,
+              children: [
+                CustomText.smallParagraphMedium(
+                  '${viewModel.countryCode} ${viewModel.countryDialCode}',
+                  color: disabled ? AppColors.textKre : AppColors.mainKre,
+                ),
+                CustomIcon(
+                  iconPath: AppIcons.altArrowDown,
+                  size: AppSpacing.px20,
+                  color: disabled ? AppColors.textKre : AppColors.mainKre,
+                ),
+              ],
             ),
           ),
         ),

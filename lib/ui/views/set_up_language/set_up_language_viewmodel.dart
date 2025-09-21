@@ -19,6 +19,9 @@ class SetUpLanguageViewModel extends BaseViewModel {
   }
 
   void onContinuePressed() async {
+    if (context.savedLocale == null) {
+      await context.setLocale(const Locale('fr', 'FR'));
+    }
     await _navigationService.navigateToOnboardingView();
   }
 }

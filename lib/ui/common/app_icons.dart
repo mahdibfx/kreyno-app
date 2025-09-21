@@ -108,4 +108,6 @@ class AppIcons {
   static const String wallet = '${_basePath}wallet.svg';
 
   static const String waze = '${_basePath}waze.svg';
+
+  static const String search = '${_basePath}search.svg';
 }

@@ -190,7 +190,7 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                         focusNode: FocusNode(),
                         labelText: "Votre portefeuille Kreyno",
                         hintText: "Olivier Dupons",
-                        suffixWidget: const Column(
+                        trailingIcon: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CustomText.smallParagraphBold(

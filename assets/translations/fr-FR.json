@@ -41,6 +41,12 @@
         "phoneNumberPlaceholder": "Entrez votre numéro de téléphone",
         "buttonLabel": "Connexion"
     },
+    "countryCodePicker": {
+        "title": "Choisissez votre pays",
+        "search": "Rechercher par nom de pays ou code",
+        "noCountriesFound": "Aucun pays trouvé",
+        "trySearchingWithDifferentTerm": "Essayez de rechercher avec un autre terme"
+    },
     "otp": {
         "title": "Vérification OTP",
         "description": "Un code à 6 chiffres vous a été envoyé.",

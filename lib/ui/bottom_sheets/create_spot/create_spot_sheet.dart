@@ -85,7 +85,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
             focusNode: FocusNode(),
             labelText: "Choisissez un prix",
             hintText: "Recommmendé: 2€ ∼ 7€",
-            suffixWidget: Container(
+            trailingIcon: Container(
               padding: const EdgeInsets.all(10),
               child: const CustomIcon(
                 iconPath: AppIcons.euro,

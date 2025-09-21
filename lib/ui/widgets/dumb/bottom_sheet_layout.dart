@@ -53,7 +53,7 @@ class BottomSheetLayout extends StatelessWidget {
                 borderRadius: BorderRadius.circular(AppSpacing.px12),
               ),
             ),
-          body,
+          Flexible(child: body),
         ],
       ),
     );
