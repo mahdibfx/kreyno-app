@@ -19,6 +19,7 @@ dependencies:
   pinput: ^5.0.1
   dotted_border: ^2.1.0
   syncfusion_flutter_datepicker: ^29.1.38
+  toastification: ^3.0.3
   # localization
   easy_localization: ^3.0.8
   # logger

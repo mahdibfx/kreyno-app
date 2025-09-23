@@ -13,4 +13,28 @@ class AppColors {
   static const Color disabledKre = Color(0xFFF1F1F1);
   static const Color disabledFillKre = Color(0xFFF9F9F9);
   static const Color wazeBlue = Color(0xFF05C8F7);
+
+  // Toast colors - Success
+  static const Color backgroundSuccess = Color(0xFFF0FDF4);
+  static const Color borderSuccess = Color(0xFF22C55E);
+  static const Color textSuccess = Color(0xFF15803D);
+  static const Color textSuccessSecondary = textSuccess;
+
+  // Toast colors - Error
+  static const Color backgroundError = Color(0xFFFEE4E2);
+  static const Color borderError = Color(0xFFFF5942);
+  static const Color textError = Color(0xFFFF5942);
+  static const Color textErrorSecondary = textError;
+
+  // Toast colors - Warning
+  static const Color backgroundWarning = Color(0xFFFFE5E5);
+  static const Color borderWarning = Color(0xFFF59E0B);
+  static const Color textWarning = Color(0xFFD97706);
+  static const Color textWarningSecondary = textWarning;
+
+  // Toast colors - Info
+  static const Color backgroundInfo = Color(0xFFEFF6FF);
+  static const Color borderInfo = Color(0xFF3B82F6);
+  static const Color textInfo = Color(0xFF1D4ED8);
+  static const Color textInfoSecondary = textInfo;
 }

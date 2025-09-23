@@ -23,7 +23,7 @@ abstract class ApiAuthService {
   );
 
   @POST(ApiEndpoints.sendOtp)
-  Future<ApiResponse<bool>> sendOtp(@Body() SendOtpDto request);
+  Future<ApiResponse<List<Object>>> sendOtp(@Body() SendOtpDto request);
 
   @POST(ApiEndpoints.signIn)
   Future<ApiResponse<AuthResponse>> signIn(@Body() LoginDto request);

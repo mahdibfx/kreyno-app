@@ -52,12 +52,12 @@ class _ApiAuthService implements ApiAuthService {
   }
 
   @override
-  Future<ApiResponse<bool>> sendOtp(SendOtpDto request) async {
+  Future<ApiResponse<List<Object>>> sendOtp(SendOtpDto request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = request;
-    final _options = _setStreamType<ApiResponse<bool>>(
+    final _options = _setStreamType<ApiResponse<List<Object>>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -68,11 +68,13 @@ class _ApiAuthService implements ApiAuthService {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ApiResponse<bool> _value;
+    late ApiResponse<List<Object>> _value;
     try {
-      _value = ApiResponse<bool>.fromJson(
+      _value = ApiResponse<List<Object>>.fromJson(
         _result.data!,
-        (json) => json as bool,
+        (json) => json is List<dynamic>
+            ? json.map<Object>((i) => i as Object).toList()
+            : List.empty(),
       );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);

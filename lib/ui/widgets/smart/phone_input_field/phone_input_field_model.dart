@@ -15,10 +15,22 @@ class PhoneInputFieldModel extends BaseViewModel {
   String _countryCode = 'FR';
   String get countryCode => _countryCode;
 
+  String _phoneNumber = '';
+  Function(String countryCode, String phoneNumber)? _onChanged;
+
+  void initialize(Function(String countryCode, String phoneNumber)? onChanged) {
+    _onChanged = onChanged;
+  }
+
+  void setPhoneNumber(String phoneNumber) {
+    _phoneNumber = phoneNumber;
+  }
+
   void setCodes(String countryDialCode, String countryCode) {
     _countryDialCode = countryDialCode;
     _countryCode = countryCode;
     rebuildUi();
+    _onChanged?.call(_countryDialCode, _phoneNumber);
   }
 
   void onCountryCodeTapped() async {

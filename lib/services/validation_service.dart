@@ -53,7 +53,7 @@ class ValidationService {
   }
 
   static bool _isPhoneNumber(String phone) {
-    String pattern = r'^[0-9]{9,10}$';
+    String pattern = r'^[0-9]{9}$';
     return matches(phone, pattern);
   }
 }

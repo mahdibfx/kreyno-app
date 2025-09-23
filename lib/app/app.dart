@@ -2,6 +2,7 @@ import 'package:kreyno/services/api/api_auth_service.dart';
 import 'package:kreyno/services/api/dio_service.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/shared_prefs_service.dart';
+import 'package:kreyno/services/toast_service.dart';
 import 'package:kreyno/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:kreyno/ui/views/home/home_view.dart';
 import 'package:kreyno/ui/views/startup/startup_view.dart';
@@ -87,6 +88,7 @@ import 'package:kreyno/ui/bottom_sheets/country_code_picker/country_code_picker_
     LazySingleton(classType: SharedPrefsService),
     Singleton(classType: DioService),
     LazySingleton(classType: AuthService),
+    LazySingleton(classType: ToastService),
     // @stacked-service
   ],
   bottomsheets: [

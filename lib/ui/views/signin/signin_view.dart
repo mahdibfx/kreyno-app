@@ -57,7 +57,7 @@ class SigninView extends StackedView<SigninViewModel> with $SigninView {
                         errorText: viewModel.hasPhoneNumber
                             ? viewModel.phoneNumberValidationMessage
                             : null,
-                        maxLength: 10,
+                        maxLength: 9,
                       ),
                     ],
                   ),
@@ -77,7 +77,7 @@ class SigninView extends StackedView<SigninViewModel> with $SigninView {
                       children: [
                         CustomButton.filled(
                           text: SigninStrings.buttonLabel,
-                          onPressed: viewModel.showOtpSheet,
+                          onPressed: viewModel.onCtaTapped,
                           isDisabled: viewModel.hasPhoneNumberValidationMessage,
                         ),
                       ],

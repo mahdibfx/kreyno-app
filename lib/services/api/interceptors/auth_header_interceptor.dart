@@ -11,7 +11,7 @@ class AuthHeaderInterceptor extends Interceptor {
     const excludedEndpoints = [
       ApiEndpoints.signIn,
       ApiEndpoints.register,
-      // ApiEndpoints.exists,
+      ApiEndpoints.exists,
       ApiEndpoints.sendOtp,
     ];
 

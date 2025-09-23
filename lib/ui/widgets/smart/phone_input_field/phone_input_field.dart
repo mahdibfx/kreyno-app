@@ -46,6 +46,7 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
       disabled: disabled,
       maxLength: maxLength,
       onChanged: (value) {
+        viewModel.setPhoneNumber(value);
         onChanged?.call(viewModel.countryDialCode, value);
       },
       prefixWidget: GestureDetector(
@@ -89,4 +90,10 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
   @override
   PhoneInputFieldModel viewModelBuilder(BuildContext context) =>
       PhoneInputFieldModel();
+
+  @override
+  void onViewModelReady(PhoneInputFieldModel viewModel) {
+    viewModel.initialize(onChanged);
+    super.onViewModelReady(viewModel);
+  }
 }

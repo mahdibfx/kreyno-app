@@ -110,4 +110,7 @@ class AppIcons {
   static const String waze = '${_basePath}waze.svg';
 
   static const String search = '${_basePath}search.svg';
+
+  static const String closeCircle =
+      '${_basePath}multiplication-sign-circle.svg';
 }
