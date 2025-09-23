@@ -38,6 +38,7 @@ dependencies:
   string_validator: ^1.2.0
   phonecodes: ^0.0.4
   fpdart: ^1.1.1
+  uuid: ^4.5.1
   # ENV
   flutter_dotenv: ^5.2.1
 

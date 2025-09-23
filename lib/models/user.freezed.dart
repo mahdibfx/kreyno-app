@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$User {
 
-@JsonKey(name: "username") String get username;@JsonKey(name: "first_name") String get firstName;@JsonKey(name: "last_name") String get lastName;@JsonKey(name: "phone") String get phone;@JsonKey(name: "email") String get email;@JsonKey(name: "address") String get address;@JsonKey(name: "birth_date") DateTime get birthDate;@JsonKey(name: "gender") Gender get gender;@JsonKey(name: "avatar") Avatar get avatar;
+@JsonKey(name: "username") String get username;@JsonKey(name: "first_name") String get firstName;@JsonKey(name: "last_name") String get lastName;@JsonKey(name: "phone") String get phone;@JsonKey(name: "email") String get email;@JsonKey(name: "address") String get address;@JsonKey(name: "birth_date") DateTime get birthDate;@JsonKey(name: "gender") Gender get gender;@JsonKey(name: "avatar", fromJson: _avatarFromJson, toJson: _avatarToJson) Avatar? get avatar;
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,11 +48,11 @@ abstract mixin class $UserCopyWith<$Res>  {
   factory $UserCopyWith(User value, $Res Function(User) _then) = _$UserCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "username") String username,@JsonKey(name: "first_name") String firstName,@JsonKey(name: "last_name") String lastName,@JsonKey(name: "phone") String phone,@JsonKey(name: "email") String email,@JsonKey(name: "address") String address,@JsonKey(name: "birth_date") DateTime birthDate,@JsonKey(name: "gender") Gender gender,@JsonKey(name: "avatar") Avatar avatar
+@JsonKey(name: "username") String username,@JsonKey(name: "first_name") String firstName,@JsonKey(name: "last_name") String lastName,@JsonKey(name: "phone") String phone,@JsonKey(name: "email") String email,@JsonKey(name: "address") String address,@JsonKey(name: "birth_date") DateTime birthDate,@JsonKey(name: "gender") Gender gender,@JsonKey(name: "avatar", fromJson: _avatarFromJson, toJson: _avatarToJson) Avatar? avatar
 });
 
 
-$AvatarCopyWith<$Res> get avatar;
+$AvatarCopyWith<$Res>? get avatar;
 
 }
 /// @nodoc
@@ -65,7 +65,7 @@ class _$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? phone = null,Object? email = null,Object? address = null,Object? birthDate = null,Object? gender = null,Object? avatar = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? phone = null,Object? email = null,Object? address = null,Object? birthDate = null,Object? gender = null,Object? avatar = freezed,}) {
   return _then(_self.copyWith(
 username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
@@ -75,17 +75,20 @@ as String,email: null == email ? _self.email : email // ignore: cast_nullable_to
 as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String,birthDate: null == birthDate ? _self.birthDate : birthDate // ignore: cast_nullable_to_non_nullable
 as DateTime,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
-as Gender,avatar: null == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
-as Avatar,
+as Gender,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as Avatar?,
   ));
 }
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$AvatarCopyWith<$Res> get avatar {
-  
-  return $AvatarCopyWith<$Res>(_self.avatar, (value) {
+$AvatarCopyWith<$Res>? get avatar {
+    if (_self.avatar == null) {
+    return null;
+  }
+
+  return $AvatarCopyWith<$Res>(_self.avatar!, (value) {
     return _then(_self.copyWith(avatar: value));
   });
 }
@@ -170,7 +173,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: "email")  String email, @JsonKey(name: "address")  String address, @JsonKey(name: "birth_date")  DateTime birthDate, @JsonKey(name: "gender")  Gender gender, @JsonKey(name: "avatar")  Avatar avatar)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: "email")  String email, @JsonKey(name: "address")  String address, @JsonKey(name: "birth_date")  DateTime birthDate, @JsonKey(name: "gender")  Gender gender, @JsonKey(name: "avatar", fromJson: _avatarFromJson, toJson: _avatarToJson)  Avatar? avatar)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
 return $default(_that.username,_that.firstName,_that.lastName,_that.phone,_that.email,_that.address,_that.birthDate,_that.gender,_that.avatar);case _:
@@ -191,7 +194,7 @@ return $default(_that.username,_that.firstName,_that.lastName,_that.phone,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: "email")  String email, @JsonKey(name: "address")  String address, @JsonKey(name: "birth_date")  DateTime birthDate, @JsonKey(name: "gender")  Gender gender, @JsonKey(name: "avatar")  Avatar avatar)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: "email")  String email, @JsonKey(name: "address")  String address, @JsonKey(name: "birth_date")  DateTime birthDate, @JsonKey(name: "gender")  Gender gender, @JsonKey(name: "avatar", fromJson: _avatarFromJson, toJson: _avatarToJson)  Avatar? avatar)  $default,) {final _that = this;
 switch (_that) {
 case _User():
 return $default(_that.username,_that.firstName,_that.lastName,_that.phone,_that.email,_that.address,_that.birthDate,_that.gender,_that.avatar);case _:
@@ -211,7 +214,7 @@ return $default(_that.username,_that.firstName,_that.lastName,_that.phone,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: "email")  String email, @JsonKey(name: "address")  String address, @JsonKey(name: "birth_date")  DateTime birthDate, @JsonKey(name: "gender")  Gender gender, @JsonKey(name: "avatar")  Avatar avatar)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: "email")  String email, @JsonKey(name: "address")  String address, @JsonKey(name: "birth_date")  DateTime birthDate, @JsonKey(name: "gender")  Gender gender, @JsonKey(name: "avatar", fromJson: _avatarFromJson, toJson: _avatarToJson)  Avatar? avatar)?  $default,) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
 return $default(_that.username,_that.firstName,_that.lastName,_that.phone,_that.email,_that.address,_that.birthDate,_that.gender,_that.avatar);case _:
@@ -226,7 +229,7 @@ return $default(_that.username,_that.firstName,_that.lastName,_that.phone,_that.
 @JsonSerializable()
 
 class _User implements User {
-  const _User({@JsonKey(name: "username") required this.username, @JsonKey(name: "first_name") required this.firstName, @JsonKey(name: "last_name") required this.lastName, @JsonKey(name: "phone") required this.phone, @JsonKey(name: "email") required this.email, @JsonKey(name: "address") required this.address, @JsonKey(name: "birth_date") required this.birthDate, @JsonKey(name: "gender") required this.gender, @JsonKey(name: "avatar") required this.avatar});
+  const _User({@JsonKey(name: "username") required this.username, @JsonKey(name: "first_name") required this.firstName, @JsonKey(name: "last_name") required this.lastName, @JsonKey(name: "phone") required this.phone, @JsonKey(name: "email") required this.email, @JsonKey(name: "address") required this.address, @JsonKey(name: "birth_date") required this.birthDate, @JsonKey(name: "gender") required this.gender, @JsonKey(name: "avatar", fromJson: _avatarFromJson, toJson: _avatarToJson) this.avatar});
   factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
 @override@JsonKey(name: "username") final  String username;
@@ -237,7 +240,7 @@ class _User implements User {
 @override@JsonKey(name: "address") final  String address;
 @override@JsonKey(name: "birth_date") final  DateTime birthDate;
 @override@JsonKey(name: "gender") final  Gender gender;
-@override@JsonKey(name: "avatar") final  Avatar avatar;
+@override@JsonKey(name: "avatar", fromJson: _avatarFromJson, toJson: _avatarToJson) final  Avatar? avatar;
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
@@ -272,11 +275,11 @@ abstract mixin class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) _then) = __$UserCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "username") String username,@JsonKey(name: "first_name") String firstName,@JsonKey(name: "last_name") String lastName,@JsonKey(name: "phone") String phone,@JsonKey(name: "email") String email,@JsonKey(name: "address") String address,@JsonKey(name: "birth_date") DateTime birthDate,@JsonKey(name: "gender") Gender gender,@JsonKey(name: "avatar") Avatar avatar
+@JsonKey(name: "username") String username,@JsonKey(name: "first_name") String firstName,@JsonKey(name: "last_name") String lastName,@JsonKey(name: "phone") String phone,@JsonKey(name: "email") String email,@JsonKey(name: "address") String address,@JsonKey(name: "birth_date") DateTime birthDate,@JsonKey(name: "gender") Gender gender,@JsonKey(name: "avatar", fromJson: _avatarFromJson, toJson: _avatarToJson) Avatar? avatar
 });
 
 
-@override $AvatarCopyWith<$Res> get avatar;
+@override $AvatarCopyWith<$Res>? get avatar;
 
 }
 /// @nodoc
@@ -289,7 +292,7 @@ class __$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? phone = null,Object? email = null,Object? address = null,Object? birthDate = null,Object? gender = null,Object? avatar = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? phone = null,Object? email = null,Object? address = null,Object? birthDate = null,Object? gender = null,Object? avatar = freezed,}) {
   return _then(_User(
 username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
@@ -299,8 +302,8 @@ as String,email: null == email ? _self.email : email // ignore: cast_nullable_to
 as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String,birthDate: null == birthDate ? _self.birthDate : birthDate // ignore: cast_nullable_to_non_nullable
 as DateTime,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
-as Gender,avatar: null == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
-as Avatar,
+as Gender,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as Avatar?,
   ));
 }
 
@@ -308,9 +311,12 @@ as Avatar,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$AvatarCopyWith<$Res> get avatar {
-  
-  return $AvatarCopyWith<$Res>(_self.avatar, (value) {
+$AvatarCopyWith<$Res>? get avatar {
+    if (_self.avatar == null) {
+    return null;
+  }
+
+  return $AvatarCopyWith<$Res>(_self.avatar!, (value) {
     return _then(_self.copyWith(avatar: value));
   });
 }

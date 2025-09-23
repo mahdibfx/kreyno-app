@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 
+import '../../../app/app.locator.dart';
+import '../../auth_service.dart';
 import '../api_endpoints.dart';
 
 class AuthHeaderInterceptor extends Interceptor {
@@ -20,11 +22,10 @@ class AuthHeaderInterceptor extends Interceptor {
     );
 
     if (!shouldExclude) {
-      // FIXME: remove this after implementing auth service
-      // final authService = locator<AuthService>();
-      // final accessToken = await authService.getAccessToken();
-      final accessToken = 'access_token';
-      options.headers['Authorization'] = 'Bearer $accessToken';
+      final accessToken = await locator<AuthService>().getAccessToken();
+      if (accessToken != null) {
+        options.headers['Authorization'] = 'Bearer $accessToken';
+      }
     }
     super.onRequest(options, handler);
   }

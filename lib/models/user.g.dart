@@ -15,7 +15,7 @@ _User _$UserFromJson(Map<String, dynamic> json) => _User(
   address: json['address'] as String,
   birthDate: DateTime.parse(json['birth_date'] as String),
   gender: $enumDecode(_$GenderEnumMap, json['gender']),
-  avatar: Avatar.fromJson(json['avatar'] as Map<String, dynamic>),
+  avatar: _avatarFromJson(json['avatar']),
 );
 
 Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
@@ -27,7 +27,7 @@ Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
   'address': instance.address,
   'birth_date': instance.birthDate.toIso8601String(),
   'gender': _$GenderEnumMap[instance.gender]!,
-  'avatar': instance.avatar.toJson(),
+  'avatar': ?_avatarToJson(instance.avatar),
 };
 
 const _$GenderEnumMap = {Gender.male: 1, Gender.female: 2};

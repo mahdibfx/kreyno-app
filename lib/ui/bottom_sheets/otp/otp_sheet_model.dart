@@ -1,10 +1,24 @@
 import 'dart:async';
 import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/app/app.logger.dart';
+import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/services/auth_service.dart';
+import 'package:kreyno/services/toast_service.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+import '../../../enums/otp_sheet_type.dart';
 
 class OtpSheetModel extends BaseViewModel {
+  final _logger = getLogger('OtpSheetModel');
+  final _navigationService = locator<NavigationService>();
   final _authService = locator<AuthService>();
+  final _toastService = locator<ToastService>();
+
+  final OtpSheetType type;
+  final String phoneNumber;
+
+  OtpSheetModel({required this.type, required this.phoneNumber});
 
   Timer? _timer;
   int _remainingTime = 60;
@@ -42,8 +56,50 @@ class OtpSheetModel extends BaseViewModel {
   }
 
   void onOtpCompleted(String otp) {
+    setBusy(true);
     // TODO: Implement the logic to validate the OTP
+    switch (type) {
+      case OtpSheetType.signin:
+        _handleLogin(otp);
+        break;
+      case OtpSheetType.signup:
+        _handleRegister(otp);
+        break;
+      case OtpSheetType.updatePhoneNumber:
+        _handleUpdatePhoneNumber(otp);
+        break;
+    }
+    setBusy(false);
   }
+
+  void _handleLogin(String otp) async {
+    final response = await _authService.login(phone: phoneNumber, otp: otp);
+    response.match(
+      (error) {
+        _logger.e('Error logging in', error: error);
+        setErrorMessage(error);
+      },
+      (authResponse) async {
+        final setUserResult = await _authService.setAuthenticatedUser(
+          authResponse,
+        );
+        setUserResult.match(
+          (error) {
+            _logger.e('Error setting authenticated user', error: error);
+          },
+          (_) async {
+            await _navigationService.clearStackAndShow(Routes.homeView);
+          },
+        );
+      },
+    );
+  }
+
+  //TODO: when i get to the register section
+  void _handleRegister(String otp) {}
+
+  //TODO: when i get to the profile section
+  void _handleUpdatePhoneNumber(String otp) {}
 
   @override
   void dispose() {

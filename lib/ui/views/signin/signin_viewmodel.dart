@@ -3,6 +3,7 @@ import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/app/app.router.dart';
+import 'package:kreyno/enums/otp_sheet_type.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/toast_service.dart';
 import 'package:stacked/stacked.dart';
@@ -80,18 +81,12 @@ class SigninViewModel extends FormViewModel {
   }
 
   void showOtpSheet() async {
-    final response = await _bottomSheetService.showCustomSheet(
+    await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.otp,
       barrierColor: Colors.black.withValues(alpha: .1),
-      data: (fullPhoneNumber,),
+      data: (type: OtpSheetType.signin, phoneNumber: fullPhoneNumber),
+      barrierDismissible: false,
       isScrollControlled: true,
     );
-
-    if (response != null && response.confirmed) {
-      // FIXME: This is a temporary navigation to signup view
-      _navigationService.navigateToSignupView(
-        phoneNumber: (_countryCode, _phoneNumber),
-      );
-    }
   }
 }

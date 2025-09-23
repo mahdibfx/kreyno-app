@@ -15,10 +15,23 @@ abstract class User with _$User {
     @JsonKey(name: "address") required String address,
     @JsonKey(name: "birth_date") required DateTime birthDate,
     @JsonKey(name: "gender") required Gender gender,
-    @JsonKey(name: "avatar") required Avatar avatar,
+    @JsonKey(name: "avatar", fromJson: _avatarFromJson, toJson: _avatarToJson)
+    Avatar? avatar,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+}
+
+// Helper functions for nullable Avatar handling
+Avatar? _avatarFromJson(dynamic json) {
+  if (json == null) {
+    return null;
+  }
+  return Avatar.fromJson(json as Map<String, dynamic>);
+}
+
+Map<String, dynamic>? _avatarToJson(Avatar? avatar) {
+  return avatar?.toJson();
 }
 
 @freezed
@@ -29,4 +42,6 @@ abstract class Avatar with _$Avatar {
   }) = _Avatar;
 
   factory Avatar.fromJson(Map<String, dynamic> json) => _$AvatarFromJson(json);
+
+  Map<String, dynamic> toJson();
 }
