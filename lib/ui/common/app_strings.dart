@@ -131,3 +131,30 @@ class SetUpVehiculeStrings {
   static String get electricVehicle => 'setUpVehicule.electricVehicle'.tr();
   static String get scooter => 'setUpVehicule.scooter'.tr();
 }
+
+class ApiErrorStrings {
+  const ApiErrorStrings._();
+
+  static String get requestFailed => 'apiErrors.requestFailed'.tr();
+  static String get unexpectedError => 'apiErrors.unexpectedError'.tr();
+  static String get connectionTimeout => 'apiErrors.connectionTimeout'.tr();
+  static String get requestTimeout => 'apiErrors.requestTimeout'.tr();
+  static String get serverResponseTimeout =>
+      'apiErrors.serverResponseTimeout'.tr();
+  static String get requestCancelled => 'apiErrors.requestCancelled'.tr();
+  static String get connectionError => 'apiErrors.connectionError'.tr();
+  static String get certificateError => 'apiErrors.certificateError'.tr();
+  static String get badRequest => 'apiErrors.badRequest'.tr();
+  static String get authenticationFailed =>
+      'apiErrors.authenticationFailed'.tr();
+  static String get accessDenied => 'apiErrors.accessDenied'.tr();
+  static String get resourceNotFound => 'apiErrors.resourceNotFound'.tr();
+  static String get conflictError => 'apiErrors.conflictError'.tr();
+  static String get invalidData => 'apiErrors.invalidData'.tr();
+  static String get tooManyRequests => 'apiErrors.tooManyRequests'.tr();
+  static String get internalServerError => 'apiErrors.internalServerError'.tr();
+  static String get badGateway => 'apiErrors.badGateway'.tr();
+  static String get serviceUnavailable => 'apiErrors.serviceUnavailable'.tr();
+  static String get gatewayTimeout => 'apiErrors.gatewayTimeout'.tr();
+  static String get serverError => 'apiErrors.serverError'.tr();
+}

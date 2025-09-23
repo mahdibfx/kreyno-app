@@ -8,11 +8,18 @@ import 'package:pinput/pinput.dart';
 class OtpField extends StatelessWidget {
   final Function(String) onComplete;
   final Function(String)? onChanged;
-  const OtpField({super.key, required this.onComplete, this.onChanged});
+  final String? errorText;
+  const OtpField({
+    super.key,
+    required this.onComplete,
+    this.onChanged,
+    required this.errorText,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Pinput(
+      errorText: errorText,
       defaultPinTheme: PinTheme(
         width: 50 * AppSpacing.px1,
         height: 70 * AppSpacing.px1,
@@ -39,6 +46,23 @@ class OtpField extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.white,
           border: Border.all(color: AppColors.strokeKre, width: 1),
+          borderRadius: BorderRadius.circular(6 * AppSpacing.px1),
+        ),
+      ),
+      forceErrorState: errorText != null,
+      errorTextStyle: AppTypography.labelMedium.copyWith(
+        color: AppColors.redKre,
+      ),
+      errorPinTheme: PinTheme(
+        width: 50 * AppSpacing.px1,
+        height: 70 * AppSpacing.px1,
+        textStyle: AppTypography.paragraph.copyWith(color: AppColors.redKre),
+        decoration: BoxDecoration(
+          color: AppColors.redKre.withValues(alpha: .1),
+          border: Border.all(
+            color: AppColors.redKre.withValues(alpha: .25),
+            width: 1,
+          ),
           borderRadius: BorderRadius.circular(6 * AppSpacing.px1),
         ),
       ),

@@ -36,6 +36,7 @@ dependencies:
   permission_handler: ^12.0.1
   string_validator: ^1.2.0
   phonecodes: ^0.0.4
+  fpdart: ^1.1.1
   # ENV
   flutter_dotenv: ^5.2.1
 

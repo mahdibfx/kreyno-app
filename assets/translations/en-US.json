@@ -89,5 +89,27 @@
         "gasVehicle": "Gas vehicle",
         "electricVehicle": "Electric vehicle",
         "scooter": "Motorcycle / scooter"
+    },
+    "apiErrors": {
+        "requestFailed": "Request failed",
+        "unexpectedError": "An unexpected error occurred. Please try again.",
+        "connectionTimeout": "Connection timeout. Please check your internet connection and try again.",
+        "requestTimeout": "Request timeout. Please try again.",
+        "serverResponseTimeout": "Server response timeout. Please try again.",
+        "requestCancelled": "Request was cancelled.",
+        "connectionError": "Unable to connect to the server. Please check your internet connection.",
+        "certificateError": "Security certificate error. Please try again later.",
+        "badRequest": "Invalid request. Please check your input and try again.",
+        "authenticationFailed": "Authentication failed. Please sign in again.",
+        "accessDenied": "Access denied. You don't have permission to perform this action.",
+        "resourceNotFound": "The requested resource was not found.",
+        "conflictError": "Conflict occurred. The resource already exists.",
+        "invalidData": "Invalid data provided. Please check your input.",
+        "tooManyRequests": "Too many requests. Please wait a moment and try again.",
+        "internalServerError": "Internal server error. Please try again later.",
+        "badGateway": "Bad gateway. The server is temporarily unavailable.",
+        "serviceUnavailable": "Service unavailable. Please try again later.",
+        "gatewayTimeout": "Gateway timeout. The server took too long to respond.",
+        "serverError": "Server error occurred. Please try again later."
     }
 }

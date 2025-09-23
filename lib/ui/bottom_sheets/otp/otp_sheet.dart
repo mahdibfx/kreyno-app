@@ -22,6 +22,7 @@ class OtpSheet extends StackedView<OtpSheetModel> {
   Widget builder(BuildContext context, OtpSheetModel viewModel, Widget? child) {
     return BottomSheetLayout(
       body: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
             width: double.infinity,
@@ -49,6 +50,7 @@ class OtpSheet extends StackedView<OtpSheetModel> {
                   ],
                 ),
                 OtpField(
+                  errorText: viewModel.errorMessage,
                   onComplete: (value) {
                     completer?.call(
                       SheetResponse(confirmed: true, data: value),
