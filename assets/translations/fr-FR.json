@@ -25,6 +25,10 @@
             "phone": "Le numéro de téléphone est invalide",
             "firstName": "Le prénom doit contenir au moins 2 caractères",
             "lastName": "Le nom doit contenir au moins 2 caractères"
+        },
+        "otpSuccess": {
+            "codeSentTitle": "Code envoyé",
+            "codeSentDescription": "Un code à 6 chiffres vous a été envoyé."
         }
     },
     "setUpLanguage": {
@@ -40,6 +44,7 @@
         "phoneNumber": "Numéro de téléphone",
         "phoneNumberPlaceholder": "Entrez votre numéro de téléphone",
         "buttonLabel": "Connexion"
+       
     },
     "countryCodePicker": {
         "title": "Choisissez votre pays",

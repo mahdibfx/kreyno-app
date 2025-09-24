@@ -6,6 +6,7 @@ import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/enums/otp_sheet_type.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/toast_service.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -64,7 +65,7 @@ class SigninViewModel extends FormViewModel {
       _sendOtp();
     } else {
       setBusy(false);
-      _navigationService.navigateToSignupView(
+      await _navigationService.navigateToSignupView(
         phoneNumber: (countryCode, phoneNumber),
       );
     }
@@ -75,17 +76,21 @@ class SigninViewModel extends FormViewModel {
     setBusy(false);
     response.match((errorMessage) {
       _logger.e('Error sending otp', error: errorMessage);
-      setBusy(false);
       _toastService.showError(title: errorMessage);
     }, (success) => showOtpSheet());
   }
 
   void showOtpSheet() async {
+    _toastService.showSuccess(
+      title: CommonStrings.codeSentTitle,
+      description: CommonStrings.codeSentDescription,
+      showIcon: true,
+    );
     await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.otp,
       barrierColor: Colors.black.withValues(alpha: .1),
       data: (type: OtpSheetType.signin, phoneNumber: fullPhoneNumber),
-      barrierDismissible: false,
+      // TODO: barrierDismissible: false,
       isScrollControlled: true,
     );
   }

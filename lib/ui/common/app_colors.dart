@@ -15,9 +15,9 @@ class AppColors {
   static const Color wazeBlue = Color(0xFF05C8F7);
 
   // Toast colors - Success
-  static const Color backgroundSuccess = Color(0xFFF0FDF4);
-  static const Color borderSuccess = Color(0xFF22C55E);
-  static const Color textSuccess = Color(0xFF15803D);
+  static const Color backgroundSuccess = Color(0xFFD1FADF);
+  static const Color borderSuccess = greenKre;
+  static const Color textSuccess = Color(0xFF12B76A);
   static const Color textSuccessSecondary = textSuccess;
 
   // Toast colors - Error

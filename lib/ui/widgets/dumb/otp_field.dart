@@ -9,6 +9,7 @@ class OtpField extends StatelessWidget {
   final Function(String) onComplete;
   final Function(String)? onChanged;
   final String? errorText;
+
   const OtpField({
     super.key,
     required this.onComplete,
@@ -19,6 +20,7 @@ class OtpField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Pinput(
+      autofocus: true,
       errorText: errorText,
       defaultPinTheme: PinTheme(
         width: 50 * AppSpacing.px1,

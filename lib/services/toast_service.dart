@@ -66,6 +66,7 @@ class ToastService {
     Duration? duration,
     Alignment? alignment,
     bool showIcon = false,
+    Function(ToastificationItem)? onDismissed,
   }) {
     _showCustomToast(
       title: title,
@@ -74,6 +75,7 @@ class ToastService {
       duration: duration ?? _defaultDuration,
       alignment: alignment ?? Alignment.topCenter,
       showIcon: showIcon,
+      onDismissed: onDismissed,
     );
   }
 
@@ -84,6 +86,7 @@ class ToastService {
     required Duration duration,
     required Alignment alignment,
     bool showIcon = false,
+    Function(ToastificationItem)? onDismissed,
   }) {
     final config = _getToastConfig(type, showIcon: showIcon);
 
@@ -91,8 +94,11 @@ class ToastService {
       autoCloseDuration: duration,
       alignment: alignment,
       callbacks: ToastificationCallbacks(
-        onDismissed: (item) {
+        onTap: (item) {
           toastification.dismiss(item);
+        },
+        onDismissed: (item) {
+          onDismissed?.call(item);
         },
       ),
       dismissDirection: DismissDirection.up,

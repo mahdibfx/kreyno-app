@@ -30,6 +30,11 @@ class CommonStrings {
   static String get firstNameValidationText =>
       'common.validation.firstName'.tr();
   static String get lastNameValidationText => 'common.validation.lastName'.tr();
+
+  // otp success
+  static String get codeSentTitle => 'common.otpSuccess.codeSentTitle'.tr();
+  static String get codeSentDescription =>
+      'common.otpSuccess.codeSentDescription'.tr();
 }
 
 class SetUpLanguageStrings {
