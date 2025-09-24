@@ -6,8 +6,8 @@ part of 'create_car_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_CreateCarDto _$CreateCarDtoFromJson(Map<String, dynamic> json) =>
-    _CreateCarDto(
+_$CreateCarDtoImpl _$$CreateCarDtoImplFromJson(Map<String, dynamic> json) =>
+    _$CreateCarDtoImpl(
       vehicleType: $enumDecode(_$VehicleTypeEnumMap, json['car_type']),
       brand: json['brand'] as String,
       model: json['model'] as String,
@@ -17,7 +17,7 @@ _CreateCarDto _$CreateCarDtoFromJson(Map<String, dynamic> json) =>
       isSelected: json['is_selected'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$CreateCarDtoToJson(_CreateCarDto instance) =>
+Map<String, dynamic> _$$CreateCarDtoImplToJson(_$CreateCarDtoImpl instance) =>
     <String, dynamic>{
       'car_type': _$VehicleTypeEnumMap[instance.vehicleType]!,
       'brand': instance.brand,

@@ -6,8 +6,9 @@ part of 'update_profile_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_UpdateProfileDto _$UpdateProfileDtoFromJson(Map<String, dynamic> json) =>
-    _UpdateProfileDto(
+_$UpdateProfileDtoImpl _$$UpdateProfileDtoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$UpdateProfileDtoImpl(
       firstName: json['first_name'] as String?,
       lastName: json['last_name'] as String?,
       email: json['email'] as String?,
@@ -18,14 +19,19 @@ _UpdateProfileDto _$UpdateProfileDtoFromJson(Map<String, dynamic> json) =>
       address: json['address'] as String?,
     );
 
-Map<String, dynamic> _$UpdateProfileDtoToJson(_UpdateProfileDto instance) =>
+Map<String, dynamic> _$$UpdateProfileDtoImplToJson(
+        _$UpdateProfileDtoImpl instance) =>
     <String, dynamic>{
-      'first_name': ?instance.firstName,
-      'last_name': ?instance.lastName,
-      'email': ?instance.email,
-      'gender': ?_$GenderEnumMap[instance.gender],
-      'birth_date': ?instance.birthDate?.toIso8601String(),
-      'address': ?instance.address,
+      if (instance.firstName case final value?) 'first_name': value,
+      if (instance.lastName case final value?) 'last_name': value,
+      if (instance.email case final value?) 'email': value,
+      if (_$GenderEnumMap[instance.gender] case final value?) 'gender': value,
+      if (instance.birthDate?.toIso8601String() case final value?)
+        'birth_date': value,
+      if (instance.address case final value?) 'address': value,
     };
 
-const _$GenderEnumMap = {Gender.male: 1, Gender.female: 2};
+const _$GenderEnumMap = {
+  Gender.male: 1,
+  Gender.female: 2,
+};

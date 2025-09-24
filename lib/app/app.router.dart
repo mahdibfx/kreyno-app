@@ -283,8 +283,10 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i6.SignupView: (data) {
+      final args = data.getArgs<SignupViewArguments>(nullOk: false);
       return _i30.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i6.SignupView(),
+        builder: (context) =>
+            _i6.SignupView(key: args.key, phoneNumber: args.phoneNumber),
         settings: data,
       );
     },
@@ -435,6 +437,33 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
+class SignupViewArguments {
+  const SignupViewArguments({
+    this.key,
+    required this.phoneNumber,
+  });
+
+  final _i30.Key? key;
+
+  final (String, String) phoneNumber;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "phoneNumber": "$phoneNumber"}';
+  }
+
+  @override
+  bool operator ==(covariant SignupViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key && other.phoneNumber == phoneNumber;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ phoneNumber.hashCode;
+  }
+}
+
 extension NavigatorStateExtension on _i31.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
@@ -492,14 +521,17 @@ extension NavigatorStateExtension on _i31.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToSignupView([
+  Future<dynamic> navigateToSignupView({
+    _i30.Key? key,
+    required (String, String) phoneNumber,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.signupView,
+        arguments: SignupViewArguments(key: key, phoneNumber: phoneNumber),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -884,14 +916,17 @@ extension NavigatorStateExtension on _i31.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithSignupView([
+  Future<dynamic> replaceWithSignupView({
+    _i30.Key? key,
+    required (String, String) phoneNumber,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.signupView,
+        arguments: SignupViewArguments(key: key, phoneNumber: phoneNumber),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

@@ -1,4 +1,3 @@
-// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -13,7 +12,11 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/api/dio_service.dart';
+import '../services/cars_service.dart';
+import '../services/parking_places_service.dart';
+import '../services/reservations_service.dart';
 import '../services/shared_prefs_service.dart';
+import '../services/stripe_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -21,16 +24,18 @@ Future<void> setupLocator({
   String? environment,
   EnvironmentFilter? environmentFilter,
 }) async {
-  // Register environments
+// Register environments
   locator.registerEnvironment(
-    environment: environment,
-    environmentFilter: environmentFilter,
-  );
+      environment: environment, environmentFilter: environmentFilter);
 
-  // Register dependencies
+// Register dependencies
   locator.registerLazySingleton(() => BottomSheetService());
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => SharedPrefsService());
   locator.registerSingleton(DioService());
+  locator.registerLazySingleton(() => CarsService());
+  locator.registerLazySingleton(() => StripeService());
+  locator.registerLazySingleton(() => ReservationsService());
+  locator.registerLazySingleton(() => ParkingPlacesService());
 }

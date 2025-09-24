@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
@@ -7,12 +6,13 @@ import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_images.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:kreyno/ui/widgets/dumb/my_app_bar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
+import '../../../models/card.dart' as api;
 import 'my_payment_methodes_viewmodel.dart';
 
 class MyPaymentMethodesView extends StackedView<MyPaymentMethodesViewModel> {
@@ -44,9 +44,16 @@ class MyPaymentMethodesView extends StackedView<MyPaymentMethodesViewModel> {
           SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
             sliver: SliverList.builder(
-              itemCount: 20,
+              itemCount: viewModel.myCards.length,
               itemBuilder: (context, index) => Column(
-                children: [const MyPaymentMethod(), VGap(AppSpacing.px12)],
+                children: [
+                  MyPaymentMethod(
+                    card: viewModel.myCards[index],
+                    onTapOnMenu: (d) =>
+                        viewModel.onMenuPressed(d, viewModel.myCards[index]),
+                  ),
+                  VGap(AppSpacing.px12)
+                ],
               ),
             ),
           ),
@@ -56,12 +63,21 @@ class MyPaymentMethodesView extends StackedView<MyPaymentMethodesViewModel> {
   }
 
   @override
+  void onViewModelReady(MyPaymentMethodesViewModel viewModel) {
+    // TODO: implement onViewModelReady
+    super.onViewModelReady(viewModel);
+    viewModel.getMyCards();
+  }
+
+  @override
   MyPaymentMethodesViewModel viewModelBuilder(BuildContext context) =>
       MyPaymentMethodesViewModel();
 }
 
 class MyPaymentMethod extends StatelessWidget {
-  const MyPaymentMethod({super.key});
+  MyPaymentMethod({super.key, required this.card, this.onTapOnMenu});
+  final api.Card card;
+  Function(String result)? onTapOnMenu;
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +108,8 @@ class MyPaymentMethod extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Image.asset(AppImages.visaTextLogo),
-                const CustomText.largeTitle("**** 4355", color: Colors.white),
+                CustomText.largeTitle("**** ${card.last4}",
+                    color: Colors.white),
               ],
             ),
           ),
@@ -102,11 +119,73 @@ class MyPaymentMethod extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomText.smallParagraphBold("Olivier Dupons"),
-                    CustomText.labelMedium(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const CustomText.smallParagraphBold(
+                            "Olivier Dupons"), //TODO:there is nothing from backend like this
+                        GestureDetector(
+                            onTapDown: (details) {
+                              showMenu<String>(
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12)),
+                                context: context,
+                                position: RelativeRect.fromRect(
+                                  details.globalPosition &
+                                      const Size(
+                                          40.0, 40.0), // Position of the menu
+                                  Offset.zero &
+                                      MediaQuery.of(context)
+                                          .size, // Bounding box
+                                ),
+                                items: <PopupMenuEntry<String>>[
+                                  PopupMenuItem<String>(
+                                    value: 'p',
+                                    // enabled: card.isSelected, //TODO this should be edited from backend ( now there is no flag )
+                                    child: Opacity(
+                                      opacity: 1,
+                                      // opacity: card.isSelected ? 0.5 : 1, TODO:// Update it when backend updated
+                                      child: Row(
+                                        children: [
+                                          const CustomIcon(
+                                              iconPath:
+                                                  AppIcons.crownMinimalistic),
+                                          HGap(AppSpacing.px8),
+                                          const CustomText.smallParagraphMedium(
+                                              'Choisir comme principale'),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  PopupMenuItem<String>(
+                                    value: 's',
+                                    child: Row(
+                                      children: [
+                                        const CustomIcon(
+                                            iconPath: AppIcons.delete),
+                                        HGap(AppSpacing.px8),
+                                        const CustomText.smallParagraphMedium(
+                                            'Supprimer'),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ).then((String? result) {
+                                if (result != null) {
+                                  if (onTapOnMenu != null) {
+                                    onTapOnMenu!(result);
+                                  }
+                                }
+                              });
+                            },
+                            child: const Icon(Icons.more_horiz_outlined))
+                      ],
+                    ),
+                    const CustomText.labelMedium(
                       "Nom sur la carte",
                       color: AppColors.textKre,
                     ),

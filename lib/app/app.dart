@@ -49,6 +49,10 @@ import 'package:kreyno/ui/views/settings/settings_view.dart';
 import 'package:kreyno/ui/views/change_phone_number/change_phone_number_view.dart';
 import 'package:kreyno/ui/views/modify_vehicule/modify_vehicule_view.dart';
 import 'package:kreyno/ui/views/change_language/change_language_view.dart';
+import 'package:kreyno/services/cars_service.dart';
+import 'package:kreyno/services/stripe_service.dart';
+import 'package:kreyno/services/reservations_service.dart';
+import 'package:kreyno/services/parking_places_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -90,7 +94,11 @@ import 'package:kreyno/ui/views/change_language/change_language_view.dart';
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: SharedPrefsService),
     Singleton(classType: DioService),
-    // @stacked-service
+    LazySingleton(classType: CarsService),
+    LazySingleton(classType: StripeService),
+    LazySingleton(classType: ReservationsService),
+    LazySingleton(classType: ParkingPlacesService),
+// @stacked-service
   ],
   bottomsheets: [
     StackedBottomsheet(classType: NoticeSheet),

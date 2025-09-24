@@ -1,5 +1,5 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,269 +9,164 @@ part of 'setup_intent_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+SetupIntentResponse _$SetupIntentResponseFromJson(Map<String, dynamic> json) {
+  return _SetupIntentResponse.fromJson(json);
+}
 
 /// @nodoc
 mixin _$SetupIntentResponse {
-
-@JsonKey(name: "client_secret") String get clientSecret;
-/// Create a copy of SetupIntentResponse
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$SetupIntentResponseCopyWith<SetupIntentResponse> get copyWith => _$SetupIntentResponseCopyWithImpl<SetupIntentResponse>(this as SetupIntentResponse, _$identity);
+  @JsonKey(name: "client_secret")
+  String get clientSecret => throw _privateConstructorUsedError;
 
   /// Serializes this SetupIntentResponse to a JSON map.
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SetupIntentResponse&&(identical(other.clientSecret, clientSecret) || other.clientSecret == clientSecret));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,clientSecret);
-
-@override
-String toString() {
-  return 'SetupIntentResponse(clientSecret: $clientSecret)';
-}
-
-
+  /// Create a copy of SetupIntentResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $SetupIntentResponseCopyWith<SetupIntentResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $SetupIntentResponseCopyWith<$Res>  {
-  factory $SetupIntentResponseCopyWith(SetupIntentResponse value, $Res Function(SetupIntentResponse) _then) = _$SetupIntentResponseCopyWithImpl;
-@useResult
-$Res call({
-@JsonKey(name: "client_secret") String clientSecret
-});
-
-
-
-
+abstract class $SetupIntentResponseCopyWith<$Res> {
+  factory $SetupIntentResponseCopyWith(
+          SetupIntentResponse value, $Res Function(SetupIntentResponse) then) =
+      _$SetupIntentResponseCopyWithImpl<$Res, SetupIntentResponse>;
+  @useResult
+  $Res call({@JsonKey(name: "client_secret") String clientSecret});
 }
+
 /// @nodoc
-class _$SetupIntentResponseCopyWithImpl<$Res>
+class _$SetupIntentResponseCopyWithImpl<$Res, $Val extends SetupIntentResponse>
     implements $SetupIntentResponseCopyWith<$Res> {
-  _$SetupIntentResponseCopyWithImpl(this._self, this._then);
+  _$SetupIntentResponseCopyWithImpl(this._value, this._then);
 
-  final SetupIntentResponse _self;
-  final $Res Function(SetupIntentResponse) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
-/// Create a copy of SetupIntentResponse
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? clientSecret = null,}) {
-  return _then(_self.copyWith(
-clientSecret: null == clientSecret ? _self.clientSecret : clientSecret // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
+  /// Create a copy of SetupIntentResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? clientSecret = null,
+  }) {
+    return _then(_value.copyWith(
+      clientSecret: null == clientSecret
+          ? _value.clientSecret
+          : clientSecret // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
+/// @nodoc
+abstract class _$$SetupIntentResponseImplCopyWith<$Res>
+    implements $SetupIntentResponseCopyWith<$Res> {
+  factory _$$SetupIntentResponseImplCopyWith(_$SetupIntentResponseImpl value,
+          $Res Function(_$SetupIntentResponseImpl) then) =
+      __$$SetupIntentResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: "client_secret") String clientSecret});
 }
 
+/// @nodoc
+class __$$SetupIntentResponseImplCopyWithImpl<$Res>
+    extends _$SetupIntentResponseCopyWithImpl<$Res, _$SetupIntentResponseImpl>
+    implements _$$SetupIntentResponseImplCopyWith<$Res> {
+  __$$SetupIntentResponseImplCopyWithImpl(_$SetupIntentResponseImpl _value,
+      $Res Function(_$SetupIntentResponseImpl) _then)
+      : super(_value, _then);
 
-/// Adds pattern-matching-related methods to [SetupIntentResponse].
-extension SetupIntentResponsePatterns on SetupIntentResponse {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SetupIntentResponse value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _SetupIntentResponse() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SetupIntentResponse value)  $default,){
-final _that = this;
-switch (_that) {
-case _SetupIntentResponse():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SetupIntentResponse value)?  $default,){
-final _that = this;
-switch (_that) {
-case _SetupIntentResponse() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "client_secret")  String clientSecret)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _SetupIntentResponse() when $default != null:
-return $default(_that.clientSecret);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "client_secret")  String clientSecret)  $default,) {final _that = this;
-switch (_that) {
-case _SetupIntentResponse():
-return $default(_that.clientSecret);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "client_secret")  String clientSecret)?  $default,) {final _that = this;
-switch (_that) {
-case _SetupIntentResponse() when $default != null:
-return $default(_that.clientSecret);case _:
-  return null;
-
-}
-}
-
+  /// Create a copy of SetupIntentResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? clientSecret = null,
+  }) {
+    return _then(_$SetupIntentResponseImpl(
+      clientSecret: null == clientSecret
+          ? _value.clientSecret
+          : clientSecret // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
+class _$SetupIntentResponseImpl implements _SetupIntentResponse {
+  const _$SetupIntentResponseImpl(
+      {@JsonKey(name: "client_secret") required this.clientSecret});
 
-class _SetupIntentResponse implements SetupIntentResponse {
-  const _SetupIntentResponse({@JsonKey(name: "client_secret") required this.clientSecret});
-  factory _SetupIntentResponse.fromJson(Map<String, dynamic> json) => _$SetupIntentResponseFromJson(json);
+  factory _$SetupIntentResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SetupIntentResponseImplFromJson(json);
 
-@override@JsonKey(name: "client_secret") final  String clientSecret;
+  @override
+  @JsonKey(name: "client_secret")
+  final String clientSecret;
 
-/// Create a copy of SetupIntentResponse
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$SetupIntentResponseCopyWith<_SetupIntentResponse> get copyWith => __$SetupIntentResponseCopyWithImpl<_SetupIntentResponse>(this, _$identity);
+  @override
+  String toString() {
+    return 'SetupIntentResponse(clientSecret: $clientSecret)';
+  }
 
-@override
-Map<String, dynamic> toJson() {
-  return _$SetupIntentResponseToJson(this, );
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetupIntentResponseImpl &&
+            (identical(other.clientSecret, clientSecret) ||
+                other.clientSecret == clientSecret));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, clientSecret);
+
+  /// Create a copy of SetupIntentResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetupIntentResponseImplCopyWith<_$SetupIntentResponseImpl> get copyWith =>
+      __$$SetupIntentResponseImplCopyWithImpl<_$SetupIntentResponseImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SetupIntentResponseImplToJson(
+      this,
+    );
+  }
 }
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SetupIntentResponse&&(identical(other.clientSecret, clientSecret) || other.clientSecret == clientSecret));
+abstract class _SetupIntentResponse implements SetupIntentResponse {
+  const factory _SetupIntentResponse(
+      {@JsonKey(name: "client_secret")
+      required final String clientSecret}) = _$SetupIntentResponseImpl;
+
+  factory _SetupIntentResponse.fromJson(Map<String, dynamic> json) =
+      _$SetupIntentResponseImpl.fromJson;
+
+  @override
+  @JsonKey(name: "client_secret")
+  String get clientSecret;
+
+  /// Create a copy of SetupIntentResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SetupIntentResponseImplCopyWith<_$SetupIntentResponseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,clientSecret);
-
-@override
-String toString() {
-  return 'SetupIntentResponse(clientSecret: $clientSecret)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$SetupIntentResponseCopyWith<$Res> implements $SetupIntentResponseCopyWith<$Res> {
-  factory _$SetupIntentResponseCopyWith(_SetupIntentResponse value, $Res Function(_SetupIntentResponse) _then) = __$SetupIntentResponseCopyWithImpl;
-@override @useResult
-$Res call({
-@JsonKey(name: "client_secret") String clientSecret
-});
-
-
-
-
-}
-/// @nodoc
-class __$SetupIntentResponseCopyWithImpl<$Res>
-    implements _$SetupIntentResponseCopyWith<$Res> {
-  __$SetupIntentResponseCopyWithImpl(this._self, this._then);
-
-  final _SetupIntentResponse _self;
-  final $Res Function(_SetupIntentResponse) _then;
-
-/// Create a copy of SetupIntentResponse
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? clientSecret = null,}) {
-  return _then(_SetupIntentResponse(
-clientSecret: null == clientSecret ? _self.clientSecret : clientSecret // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-
-}
-
-// dart format on

@@ -7,6 +7,7 @@ part 'car.g.dart';
 @freezed
 abstract class Car with _$Car {
   const factory Car({
+    // @JsonKey(name: "id") required int id,
     @JsonKey(name: "car_type") required VehicleType vehicleType,
     @JsonKey(name: "brand") required String brand,
     @JsonKey(name: "model") required String model,

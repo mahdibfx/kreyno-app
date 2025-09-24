@@ -6,13 +6,13 @@ part of 'auth_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) =>
-    _AuthResponse(
+_$AuthResponseImpl _$$AuthResponseImplFromJson(Map<String, dynamic> json) =>
+    _$AuthResponseImpl(
       user: User.fromJson(json['user'] as Map<String, dynamic>),
       accessToken: json['token'] as String,
     );
 
-Map<String, dynamic> _$AuthResponseToJson(_AuthResponse instance) =>
+Map<String, dynamic> _$$AuthResponseImplToJson(_$AuthResponseImpl instance) =>
     <String, dynamic>{
       'user': instance.user.toJson(),
       'token': instance.accessToken,

@@ -9,17 +9,19 @@ part of 'api_response.dart';
 ApiResponse<T> _$ApiResponseFromJson<T>(
   Map<String, dynamic> json,
   T Function(Object? json) fromJsonT,
-) => ApiResponse<T>._(
-  success: json['success'] as bool,
-  message: json['message'] as String?,
-  data: fromJsonT(json['data']),
-);
+) =>
+    ApiResponse<T>._(
+      success: json['success'] as bool,
+      message: json['message'] as String?,
+      data: fromJsonT(json['data']),
+    );
 
 Map<String, dynamic> _$ApiResponseToJson<T>(
   ApiResponse<T> instance,
   Object? Function(T value) toJsonT,
-) => <String, dynamic>{
-  'message': ?instance.message,
-  'success': instance.success,
-  'data': toJsonT(instance.data),
-};
+) =>
+    <String, dynamic>{
+      if (instance.message case final value?) 'message': value,
+      'success': instance.success,
+      'data': toJsonT(instance.data),
+    };

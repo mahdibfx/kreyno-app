@@ -32,84 +32,80 @@ class DatePickerFilterSheet extends StackedView<DatePickerFilterSheetModel> {
     Widget? child,
   ) {
     return BottomSheetLayout(
-        showDragHandler: false,
-        padding: EdgeInsets.all(AppSpacing.px24),
-        body: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const CustomText.largeTitle("Filtre par date"),
-                RoundedButton(
-                    iconPath: AppIcons.multiplicationSign,
-                    onPressed: () {
-                      locator<NavigationService>().back();
-                    })
-              ],
+      showDragHandler: false,
+      padding: EdgeInsets.all(AppSpacing.px24),
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const CustomText.largeTitle("Filtre par date"),
+              RoundedButton(
+                  iconPath: AppIcons.multiplicationSign,
+                  onPressed: () {
+                    locator<NavigationService>().back();
+                  })
+            ],
+          ),
+          VGap(AppSpacing.px20),
+          SfDateRangePicker(
+            monthCellStyle: const DateRangePickerMonthCellStyle(
+              textStyle:
+                  TextStyle(fontFamily: "Satoshi", fontWeight: FontWeight.bold),
             ),
-            VGap(AppSpacing.px20),
-            SfDateRangePicker(
-              monthCellStyle: const DateRangePickerMonthCellStyle(
+            selectionTextStyle: const TextStyle(
+                fontFamily: "Satoshi", fontWeight: FontWeight.bold),
+            allowViewNavigation: false,
+            showNavigationArrow: true,
+            showTodayButton: false,
+            onSelectionChanged: (DateRangePickerSelectionChangedArgs
+                dateRangePickerSelectionChangedArgs) {
+              viewModel.changedRange(dateRangePickerSelectionChangedArgs);
+            },
+            headerHeight: 60,
+            headerStyle: const DateRangePickerHeaderStyle(
+                textAlign: TextAlign.center,
                 textStyle: TextStyle(
                     fontFamily: "Satoshi", fontWeight: FontWeight.bold),
-              ),
-              selectionTextStyle: const TextStyle(
-                  fontFamily: "Satoshi", fontWeight: FontWeight.bold),
-              allowViewNavigation: false,
-              showNavigationArrow: true,
-              showTodayButton: false,
-              onSelectionChanged: (DateRangePickerSelectionChangedArgs
-                  dateRangePickerSelectionChangedArgs) {
-                viewModel.changedRange(dateRangePickerSelectionChangedArgs);
-              },
-              headerHeight: 60,
-              headerStyle: const DateRangePickerHeaderStyle(
-                  textAlign: TextAlign.center,
-                  textStyle: TextStyle(
-                      fontFamily: "Satoshi", fontWeight: FontWeight.bold),
-                  backgroundColor: Colors.white),
-              rangeSelectionColor: AppColors.greenKre,
-              selectionColor: AppColors.greenKre,
-              startRangeSelectionColor: AppColors.greenKre,
-              endRangeSelectionColor: AppColors.greenKre,
-              selectionMode: DateRangePickerSelectionMode.range,
-              backgroundColor: AppColors.white,
-              rangeTextStyle: const TextStyle(
-                  fontFamily: "Satoshi", fontWeight: FontWeight.bold),
-            ),
-            const CustomDivider(),
-            VGap(AppSpacing.px16),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    padding:
-                        EdgeInsets.symmetric(vertical: AppSpacing.px1 * 10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: const Border.fromBorderSide(
-                            BorderSide(color: AppColors.strokeKre))),
-                    child: CustomText.smallParagraphBold(
-                        viewModel.formattedStartDate),
-                  ),
+                backgroundColor: Colors.white),
+            rangeSelectionColor: AppColors.greenKre,
+            selectionColor: AppColors.greenKre,
+            startRangeSelectionColor: AppColors.greenKre,
+            endRangeSelectionColor: AppColors.greenKre,
+            selectionMode: DateRangePickerSelectionMode.range,
+            backgroundColor: AppColors.white,
+            rangeTextStyle: const TextStyle(
+                fontFamily: "Satoshi", fontWeight: FontWeight.bold),
+          ),
+          const CustomDivider(),
+          VGap(AppSpacing.px16),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(vertical: AppSpacing.px1 * 10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border: const Border.fromBorderSide(
+                          BorderSide(color: AppColors.strokeKre))),
+                  child: CustomText.smallParagraphBold(
+                      viewModel.formattedStartDate),
                 ),
-                HGap(AppSpacing.px8),
-                const CustomText.smallParagraphBold("-"),
-                HGap(AppSpacing.px8),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    padding:
-                        EdgeInsets.symmetric(vertical: AppSpacing.px1 * 10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: const Border.fromBorderSide(
-                            BorderSide(color: AppColors.strokeKre))),
-                    child: CustomText.smallParagraphBold(
-                        viewModel.formattedEndDate),
-                  ),
-                  child: const CustomText.smallParagraphBold("13/07/25"),
+              ),
+              HGap(AppSpacing.px8),
+              const CustomText.smallParagraphBold("-"),
+              HGap(AppSpacing.px8),
+              Expanded(
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(vertical: AppSpacing.px1 * 10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border: const Border.fromBorderSide(
+                          BorderSide(color: AppColors.strokeKre))),
+                  child:
+                      CustomText.smallParagraphBold(viewModel.formattedEndDate),
                 ),
               ),
             ],

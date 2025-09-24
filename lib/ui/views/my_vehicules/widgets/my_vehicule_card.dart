@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/models/car.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
@@ -7,8 +8,8 @@ import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 
 class MyVehiculeCard extends StatelessWidget {
-  MyVehiculeCard({super.key, this.isPrincipal = false, this.onTapOnMenu});
-  bool isPrincipal;
+  MyVehiculeCard({super.key, this.onTapOnMenu, required this.car});
+  final Car car;
   Function(String result)? onTapOnMenu;
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class MyVehiculeCard extends StatelessWidget {
                 image: const DecorationImage(
                     image: NetworkImage("https://picsum.photos/600/600"),
                     fit: BoxFit.cover)),
-            child: isPrincipal
+            child: car.isSelected
                 ? Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -87,8 +88,8 @@ class MyVehiculeCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const CustomText.paragraph(
-                        "Mercedes Class G63",
+                      CustomText.paragraph(
+                        "${car.brand} ${car.model}",
                       ),
                       GestureDetector(
                           onTapDown: (details) {
@@ -107,9 +108,9 @@ class MyVehiculeCard extends StatelessWidget {
                               items: <PopupMenuEntry<String>>[
                                 PopupMenuItem<String>(
                                   value: 'p',
-                                  enabled: !isPrincipal,
+                                  enabled: !car.isSelected,
                                   child: Opacity(
-                                    opacity: isPrincipal ? 0.5 : 1,
+                                    opacity: car.isSelected ? 0.5 : 1,
                                     child: Row(
                                       children: [
                                         const CustomIcon(

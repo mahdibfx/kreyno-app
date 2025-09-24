@@ -37,11 +37,11 @@ class MyVehiculesView extends StackedView<MyVehiculesViewModel> {
       body: CustomScrollView(
         slivers: [
           SliverList.builder(
-            itemCount: 20,
+            itemCount: viewModel.myCarsList.length,
             itemBuilder: (context, index) => MyVehiculeCard(
-              isPrincipal: index == viewModel.principlaCarId,
+              car: viewModel.myCarsList[index],
               onTapOnMenu: (result) {
-                viewModel.onMenuTap(result, index);
+                // viewModel.onMenuTap(result, viewModel.myCarsList[index].id);
               },
             ),
           )

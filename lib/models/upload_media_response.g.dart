@@ -6,9 +6,14 @@ part of 'upload_media_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_UploadMediaResponse _$UploadMediaResponseFromJson(Map<String, dynamic> json) =>
-    _UploadMediaResponse(uuid: json['uuid'] as String);
+_$UploadMediaResponseImpl _$$UploadMediaResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$UploadMediaResponseImpl(
+      uuid: json['uuid'] as String,
+    );
 
-Map<String, dynamic> _$UploadMediaResponseToJson(
-  _UploadMediaResponse instance,
-) => <String, dynamic>{'uuid': instance.uuid};
+Map<String, dynamic> _$$UploadMediaResponseImplToJson(
+        _$UploadMediaResponseImpl instance) =>
+    <String, dynamic>{
+      'uuid': instance.uuid,
+    };
