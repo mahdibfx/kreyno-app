@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -7,6 +8,7 @@
 // ignore_for_file: public_member_api_docs, constant_identifier_names, non_constant_identifier_names,unnecessary_this
 
 import 'package:flutter/material.dart';
+import 'package:kreyno/services/validation_service.dart';
 import 'package:stacked/stacked.dart';
 
 const bool _autoTextFieldValidation = true;
@@ -18,7 +20,7 @@ final Map<String, TextEditingController> _SigninViewTextEditingControllers = {};
 final Map<String, FocusNode> _SigninViewFocusNodes = {};
 
 final Map<String, String? Function(String?)?> _SigninViewTextValidations = {
-  PhoneNumberValueKey: null,
+  PhoneNumberValueKey: ValidationService.phoneValidator,
 };
 
 mixin $SigninView {
@@ -35,8 +37,9 @@ mixin $SigninView {
       return _SigninViewTextEditingControllers[key]!;
     }
 
-    _SigninViewTextEditingControllers[key] =
-        TextEditingController(text: initialValue);
+    _SigninViewTextEditingControllers[key] = TextEditingController(
+      text: initialValue,
+    );
     return _SigninViewTextEditingControllers[key]!;
   }
 
@@ -72,9 +75,7 @@ mixin $SigninView {
   void _updateFormData(FormStateHelper model, {bool forceValidate = false}) {
     model.setData(
       model.formValueMap
-        ..addAll({
-          PhoneNumberValueKey: phoneNumberController.text,
-        }),
+        ..addAll({PhoneNumberValueKey: phoneNumberController.text}),
     );
 
     if (_autoTextFieldValidation || forceValidate) {
@@ -104,10 +105,9 @@ mixin $SigninView {
 }
 
 extension ValueProperties on FormStateHelper {
-  bool get hasAnyValidationMessage => this
-      .fieldsValidationMessages
-      .values
-      .any((validation) => validation != null);
+  bool get hasAnyValidationMessage => this.fieldsValidationMessages.values.any(
+    (validation) => validation != null,
+  );
 
   bool get isFormValid {
     if (!_autoTextFieldValidation) this.validateForm();
@@ -119,9 +119,7 @@ extension ValueProperties on FormStateHelper {
       this.formValueMap[PhoneNumberValueKey] as String?;
 
   set phoneNumberValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({PhoneNumberValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({PhoneNumberValueKey: value}));
 
     if (_SigninViewTextEditingControllers.containsKey(PhoneNumberValueKey)) {
       _SigninViewTextEditingControllers[PhoneNumberValueKey]?.text =
@@ -141,7 +139,7 @@ extension ValueProperties on FormStateHelper {
 }
 
 extension Methods on FormStateHelper {
-  setPhoneNumberValidationMessage(String? validationMessage) =>
+  void setPhoneNumberValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[PhoneNumberValueKey] = validationMessage;
 
   /// Clears text input fields on the Form
@@ -170,7 +168,6 @@ String? getValidationMessage(String key) {
 }
 
 /// Updates the fieldsValidationMessages on the FormViewModel
-void updateValidationData(FormStateHelper model) =>
-    model.setValidationMessages({
-      PhoneNumberValueKey: getValidationMessage(PhoneNumberValueKey),
-    });
+void updateValidationData(FormStateHelper model) => model.setValidationMessages(
+  {PhoneNumberValueKey: getValidationMessage(PhoneNumberValueKey)},
+);

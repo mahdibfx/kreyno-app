@@ -110,17 +110,19 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel> {
                               height: 200,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12)),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
                               child: DottedBorder(
-                                  padding: const EdgeInsets.all(18),
-                                  dashPattern: const [9, 10],
+                                padding: const EdgeInsets.all(18),
+                                dashPattern: const [9, 10],
+                                color: AppColors.placeholderKre,
+                                borderType: BorderType.Circle,
+                                child: const CustomIcon(
+                                  iconPath: AppIcons.upload,
+                                  size: 20,
                                   color: AppColors.placeholderKre,
-                                  borderType: BorderType.Circle,
-                                  child: const CustomIcon(
-                                    iconPath: AppIcons.upload,
-                                    size: 20,
-                                    color: AppColors.placeholderKre,
-                                  )),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -191,8 +193,6 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel> {
   }
 
   @override
-  AddVehiculeViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  AddVehiculeViewModel viewModelBuilder(BuildContext context) =>
       AddVehiculeViewModel();
 }

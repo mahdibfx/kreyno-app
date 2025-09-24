@@ -42,10 +42,7 @@ class DropDownField<T> extends StatelessWidget {
       spacing: AppSpacing.px12 / 2,
       children: [
         if (labelText != null)
-          CustomText.smallParagraphMedium(
-            labelText!,
-            color: AppColors.textKre,
-          ),
+          CustomText.smallParagraphMedium(labelText!, color: AppColors.textKre),
         DropdownMenu<T>(
           initialSelection: value,
           dropdownMenuEntries: items,
@@ -111,17 +108,11 @@ class DropDownField<T> extends StatelessWidget {
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppSpacing.px12),
-              borderSide: const BorderSide(
-                color: AppColors.redKre,
-                width: 1.0,
-              ),
+              borderSide: const BorderSide(color: AppColors.redKre, width: 1.0),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppSpacing.px12),
-              borderSide: const BorderSide(
-                color: AppColors.redKre,
-                width: 1.2,
-              ),
+              borderSide: const BorderSide(color: AppColors.redKre, width: 1.2),
             ),
             disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppSpacing.px12),
@@ -134,13 +125,11 @@ class DropDownField<T> extends StatelessWidget {
           menuStyle: MenuStyle(
             backgroundColor: WidgetStateProperty.all(AppColors.white),
             elevation: WidgetStateProperty.all(5),
-            shadowColor:
-                WidgetStateProperty.all(Colors.black.withValues(alpha: 0.3)),
+            shadowColor: WidgetStateProperty.all(
+              Colors.black.withValues(alpha: 0.3),
+            ),
             side: WidgetStateProperty.all(
-              const BorderSide(
-                color: AppColors.strokeKre,
-                width: 1.0,
-              ),
+              const BorderSide(color: AppColors.strokeKre, width: 1.0),
             ),
             shape: WidgetStateProperty.all(
               RoundedRectangleBorder(
@@ -148,10 +137,7 @@ class DropDownField<T> extends StatelessWidget {
               ),
             ),
             maximumSize: WidgetStateProperty.all(
-              Size(
-                menuWidth ?? 100.dw - AppSpacing.px32,
-                200 * AppSpacing.px1,
-              ),
+              Size(menuWidth ?? 100.dw - AppSpacing.px32, 200 * AppSpacing.px1),
             ),
           ),
           alignmentOffset: Offset(0, AppSpacing.px4),

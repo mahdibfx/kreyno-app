@@ -25,30 +25,31 @@ class ReceivedOrderWidget extends ViewModelWidget<HomeViewModel> {
         const CounterBar(),
         Container(
           decoration: const BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+            color: AppColors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
           padding: EdgeInsets.symmetric(
             horizontal: AppSpacing.px24,
             vertical: AppSpacing.px20,
           ),
           child: AnimatedSwitcher(
-              transitionBuilder: (child, animation) {
-                return SlideTransition(
-                  position: animation.drive(Tween<Offset>(
-                      begin: const Offset(-2.5, 0), end: Offset.zero)),
-                  child: child,
-                );
-              },
-              duration: const Duration(milliseconds: 800),
-              child: viewModel.showRefuseReasonForm
-                  ? const RefuseReasonForm(
-                      key: ValueKey("refuse-form"),
-                    )
-                  : const DemandOrderBody(
-                      key: ValueKey("demand-order"),
-                    )),
-        )
+            transitionBuilder: (child, animation) {
+              return SlideTransition(
+                position: animation.drive(
+                  Tween<Offset>(begin: const Offset(-2.5, 0), end: Offset.zero),
+                ),
+                child: child,
+              );
+            },
+            duration: const Duration(milliseconds: 800),
+            child: viewModel.showRefuseReasonForm
+                ? const RefuseReasonForm(key: ValueKey("refuse-form"))
+                : const DemandOrderBody(key: ValueKey("demand-order")),
+          ),
+        ),
       ],
     );
   }
@@ -172,9 +173,7 @@ class RefuseReasonForm extends ViewModelWidget<HomeViewModel> {
 }
 
 class DemandOrderBody extends ViewModelWidget<HomeViewModel> {
-  const DemandOrderBody({
-    super.key,
-  });
+  const DemandOrderBody({super.key});
 
   @override
   Widget build(BuildContext context, viewModel) {
@@ -199,11 +198,12 @@ class DemandOrderBody extends ViewModelWidget<HomeViewModel> {
           width: double.infinity,
           height: AppSpacing.px1 * 196,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              image: const DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage("https://picsum.photos/400/400"),
-              )),
+            borderRadius: BorderRadius.circular(12),
+            image: const DecorationImage(
+              fit: BoxFit.cover,
+              image: NetworkImage("https://picsum.photos/400/400"),
+            ),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -219,33 +219,34 @@ class DemandOrderBody extends ViewModelWidget<HomeViewModel> {
               Container(
                 padding: EdgeInsets.all(AppSpacing.px1 * 10),
                 decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                        bottomRight: Radius.circular(12),
-                        bottomLeft: Radius.circular(12)),
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.black.withValues(alpha: .2),
-                          Colors.black
-                        ])),
+                  borderRadius: const BorderRadius.only(
+                    bottomRight: Radius.circular(12),
+                    bottomLeft: Radius.circular(12),
+                  ),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.black.withValues(alpha: .2), Colors.black],
+                  ),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
                         ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.network(
-                              'https://picsum.photos/40/40',
-                              width: AppSpacing.px1 * 32,
-                              height: AppSpacing.px1 * 32,
-                            )),
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.network(
+                            'https://picsum.photos/40/40',
+                            width: AppSpacing.px1 * 32,
+                            height: AppSpacing.px1 * 32,
+                          ),
+                        ),
                         HGap(AppSpacing.px8),
                         const CustomText.paragraph(
                           "sarah.dupons92",
                           color: AppColors.white,
-                        )
+                        ),
                       ],
                     ),
                     VGap(AppSpacing.px4),
@@ -256,10 +257,10 @@ class DemandOrderBody extends ViewModelWidget<HomeViewModel> {
                     CustomText.labelMedium(
                       "DE-123-JW · Blanche",
                       color: AppColors.white.withValues(alpha: .7),
-                    )
+                    ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -280,7 +281,7 @@ class DemandOrderBody extends ViewModelWidget<HomeViewModel> {
                   const CustomText(
                     text: "∼2.5 km",
                     style: CustomTextStyle.smallParagraphMedium,
-                  )
+                  ),
                 ],
               ),
             ),
@@ -292,10 +293,10 @@ class DemandOrderBody extends ViewModelWidget<HomeViewModel> {
                   const CustomText(
                     text: "∼3 minutes",
                     style: CustomTextStyle.smallParagraphMedium,
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
         VGap(AppSpacing.px16),
@@ -328,9 +329,9 @@ class DemandOrderBody extends ViewModelWidget<HomeViewModel> {
                   iconPath: AppIcons.euro,
                   size: 20,
                   color: AppColors.greenKre,
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
         VGap(AppSpacing.px8),
@@ -345,27 +346,29 @@ class DemandOrderBody extends ViewModelWidget<HomeViewModel> {
               text: "Borne disponible",
               style: CustomTextStyle.smallParagraphMedium,
               color: AppColors.greenKre,
-            )
+            ),
           ],
         ),
         VGap(AppSpacing.px24),
         Row(
           children: [
             Expanded(
-                child: CustomButton.filled(
-              text: "Refuser",
-              backgroundColor: AppColors.redKre,
-              foregroundColor: AppColors.white,
-              onPressed: () {
-                viewModel.sellerClickedRefuseOrder();
-              },
-            )),
+              child: CustomButton.filled(
+                text: "Refuser",
+                backgroundColor: AppColors.redKre,
+                foregroundColor: AppColors.white,
+                onPressed: () {
+                  viewModel.sellerClickedRefuseOrder();
+                },
+              ),
+            ),
             SizedBox(width: AppSpacing.px8),
             Expanded(
-                child: CustomButton.filled(
-              text: "Accepter",
-              onPressed: () async {},
-            )),
+              child: CustomButton.filled(
+                text: "Accepter",
+                onPressed: () async {},
+              ),
+            ),
           ],
         ),
       ],
@@ -374,46 +377,49 @@ class DemandOrderBody extends ViewModelWidget<HomeViewModel> {
 }
 
 class CounterBar extends StatelessWidget {
-  const CounterBar({
-    super.key,
-  });
+  const CounterBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Container(
-      decoration: BoxDecoration(
-          color: AppColors.mainKre, borderRadius: BorderRadius.circular(12)),
-      margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
-      child: Row(
-        children: [
-          HGap(AppSpacing.px16),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: AppSpacing.px12),
-            child: const CustomIcon(
-              iconPath: AppIcons.lapTimer,
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.mainKre,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+        child: Row(
+          children: [
+            HGap(AppSpacing.px16),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: AppSpacing.px12),
+              child: const CustomIcon(
+                iconPath: AppIcons.lapTimer,
+                color: AppColors.white,
+              ),
+            ),
+            HGap(AppSpacing.px8),
+            const CustomText(
+              text: "Temps de réponse restant",
+              style: CustomTextStyle.smallParagraphMedium,
               color: AppColors.white,
             ),
-          ),
-          HGap(AppSpacing.px8),
-          const CustomText(
-            text: "Temps de réponse restant",
-            style: CustomTextStyle.smallParagraphMedium,
-            color: AppColors.white,
-          ),
-          const Expanded(child: SizedBox()),
-          Container(
-            margin: EdgeInsets.all(AppSpacing.px4),
-            decoration: BoxDecoration(
-                color: AppColors.white, borderRadius: BorderRadius.circular(8)),
-            padding: EdgeInsets.symmetric(
-                horizontal: 16, vertical: AppSpacing.px1 * 6),
-            child: const CustomText(
-              text: "59s",
+            const Expanded(child: SizedBox()),
+            Container(
+              margin: EdgeInsets.all(AppSpacing.px4),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: AppSpacing.px1 * 6,
+              ),
+              child: const CustomText(text: "59s"),
             ),
-          )
-        ],
+          ],
+        ),
       ),
-    ));
+    );
   }
 }

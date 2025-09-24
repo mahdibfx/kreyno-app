@@ -16,13 +16,15 @@ import 'package:stacked/stacked_annotations.dart';
 
 import 'set_up_vehicule_viewmodel.dart';
 
-@FormView(fields: [
-  FormTextField(name: 'vehicleType'),
-  FormTextField(name: 'brand'),
-  FormTextField(name: 'model'),
-  FormTextField(name: 'color'),
-  FormTextField(name: 'co2Emission'),
-])
+@FormView(
+  fields: [
+    FormTextField(name: 'vehicleType'),
+    FormTextField(name: 'brand'),
+    FormTextField(name: 'model'),
+    FormTextField(name: 'color'),
+    FormTextField(name: 'co2Emission'),
+  ],
+)
 class SetUpVehiculeView extends StackedView<SetUpVehiculeViewModel>
     with $SetUpVehiculeView {
   const SetUpVehiculeView({Key? key}) : super(key: key);
@@ -166,8 +168,6 @@ class SetUpVehiculeView extends StackedView<SetUpVehiculeViewModel>
   }
 
   @override
-  SetUpVehiculeViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  SetUpVehiculeViewModel viewModelBuilder(BuildContext context) =>
       SetUpVehiculeViewModel();
 }

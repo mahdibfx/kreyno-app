@@ -49,16 +49,17 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
                 onPressed: () {
                   locator<NavigationService>().back();
                 },
-              )
+              ),
             ],
           ),
           VGap(AppSpacing.px20),
           InputField(
-              controller: TextEditingController(),
-              focusNode: FocusNode(),
-              labelText: "Emplacement",
-              hintText: "Au Gustave",
-              keyboardType: TextInputType.text),
+            controller: TextEditingController(),
+            focusNode: FocusNode(),
+            labelText: "Emplacement",
+            hintText: "Au Gustave",
+            keyboardType: TextInputType.text,
+          ),
           VGap(AppSpacing.px8),
           Row(
             children: [
@@ -73,26 +74,27 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
                 text: "Activer",
                 style: CustomTextStyle.smallParagraphBold,
                 textDecoration: TextDecoration.underline,
-              )
+              ),
             ],
           ),
           VGap(AppSpacing.px1 * 26.5),
           const CustomDivider(),
           VGap(AppSpacing.px16),
           InputField(
-              controller: TextEditingController(),
-              focusNode: FocusNode(),
-              labelText: "Choisissez un prix",
-              hintText: "Recommmendé: 2€ ∼ 7€",
-              suffixWidget: Container(
-                padding: const EdgeInsets.all(10),
-                child: const CustomIcon(
-                  iconPath: AppIcons.euro,
-                  size: 10,
-                  color: AppColors.textKre,
-                ),
+            controller: TextEditingController(),
+            focusNode: FocusNode(),
+            labelText: "Choisissez un prix",
+            hintText: "Recommmendé: 2€ ∼ 7€",
+            suffixWidget: Container(
+              padding: const EdgeInsets.all(10),
+              child: const CustomIcon(
+                iconPath: AppIcons.euro,
+                size: 10,
+                color: AppColors.textKre,
               ),
-              keyboardType: TextInputType.text),
+            ),
+            keyboardType: TextInputType.text,
+          ),
           VGap(AppSpacing.px16),
           Row(
             children: [
@@ -105,7 +107,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
                 text: "Borne de recharge électrique",
                 style: CustomTextStyle.smallParagraphMedium,
                 color: AppColors.textKre,
-              )
+              ),
             ],
           ),
           VGap(AppSpacing.px8),
@@ -113,20 +115,23 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
             children: [
               Expanded(
                 child: LabeledCheckbox(
-                    label: "Disponible", value: true, onChanged: (d) {}),
+                  label: "Disponible",
+                  value: true,
+                  onChanged: (d) {},
+                ),
               ),
               Expanded(
                 child: LabeledCheckbox(
-                    label: "Non Disponible", value: false, onChanged: (d) {}),
+                  label: "Non Disponible",
+                  value: false,
+                  onChanged: (d) {},
+                ),
               ),
             ],
           ),
           VGap(AppSpacing.px24),
-          CustomButton.filled(
-            text: "Céder ma place",
-            onPressed: () {},
-          ),
-          VGap(AppSpacing.px8)
+          CustomButton.filled(text: "Céder ma place", onPressed: () {}),
+          VGap(AppSpacing.px8),
         ],
       ),
       showDragHandler: false,

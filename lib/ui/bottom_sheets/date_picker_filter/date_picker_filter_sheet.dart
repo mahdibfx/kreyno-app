@@ -109,24 +109,27 @@ class DatePickerFilterSheet extends StackedView<DatePickerFilterSheetModel> {
                     child: CustomText.smallParagraphBold(
                         viewModel.formattedEndDate),
                   ),
-                )
-              ],
-            ),
-            VGap(AppSpacing.px24),
-            Row(
-              children: [
-                CustomButton.plain(
-                  text: "Réinitialiser",
-                  onPressed: () {},
-                  foregroundColor: AppColors.redKre,
+                  child: const CustomText.smallParagraphBold("13/07/25"),
                 ),
-                Expanded(
-                    child: CustomButton.filled(
-                        onPressed: () {}, text: "Appliquer"))
-              ],
-            )
-          ],
-        ));
+              ),
+            ],
+          ),
+          VGap(AppSpacing.px24),
+          Row(
+            children: [
+              CustomButton.plain(
+                text: "Réinitialiser",
+                onPressed: () {},
+                foregroundColor: AppColors.redKre,
+              ),
+              Expanded(
+                child: CustomButton.filled(onPressed: () {}, text: "Appliquer"),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 
   @override

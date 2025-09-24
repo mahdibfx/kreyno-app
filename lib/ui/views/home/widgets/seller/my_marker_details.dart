@@ -22,8 +22,9 @@ class MyMarkerDetails extends ViewModelWidget<HomeViewModel> {
           child: Container(
             padding: EdgeInsets.all(AppSpacing.px16),
             decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.circular(12)),
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(12),
+            ),
             margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
             child: Column(
               children: [
@@ -34,8 +35,8 @@ class MyMarkerDetails extends ViewModelWidget<HomeViewModel> {
                       height: 11 * AppSpacing.px4,
                       decoration: BoxDecoration(
                         image: const DecorationImage(
-                            image:
-                                NetworkImage("https://picsum.photos/100/100")),
+                          image: NetworkImage("https://picsum.photos/100/100"),
+                        ),
                         borderRadius: BorderRadius.circular(12),
                         color: Colors.red,
                       ),
@@ -52,7 +53,7 @@ class MyMarkerDetails extends ViewModelWidget<HomeViewModel> {
                           text: "proposez une place à",
                           style: CustomTextStyle.labelMedium,
                           color: AppColors.textKre,
-                        )
+                        ),
                       ],
                     ),
                     const Expanded(child: SizedBox()),
@@ -68,9 +69,9 @@ class MyMarkerDetails extends ViewModelWidget<HomeViewModel> {
                           iconPath: AppIcons.euro,
                           size: 20,
                           color: AppColors.greenKre,
-                        )
+                        ),
                       ],
-                    )
+                    ),
                   ],
                 ),
                 VGap(AppSpacing.px8),
@@ -94,19 +95,18 @@ class MyMarkerDetails extends ViewModelWidget<HomeViewModel> {
                     ),
                     const Expanded(child: SizedBox()),
                     InkWell(
-                        onTap: () {
-                          viewModel.onMyMarkerDeleteClicked();
-                        },
-                        child: const CustomIcon(iconPath: AppIcons.delete))
+                      onTap: () {
+                        viewModel.onMyMarkerDeleteClicked();
+                      },
+                      child: const CustomIcon(iconPath: AppIcons.delete),
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ),
         ),
-        const LetMyPlaceBottombar(
-          isButtonDisabled: true,
-        )
+        const LetMyPlaceBottombar(isButtonDisabled: true),
       ],
     );
   }

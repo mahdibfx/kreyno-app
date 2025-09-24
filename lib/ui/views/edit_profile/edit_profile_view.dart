@@ -45,9 +45,7 @@ class EditProfileView extends StackedView<EditProfileViewModel> {
         child: Center(
           child: Column(
             children: [
-              VGap(
-                AppSpacing.px20,
-              ),
+              VGap(AppSpacing.px20),
               const CircleAvatar(
                 radius: 40,
                 backgroundImage: NetworkImage("https://picsum.photos/300/300"),
@@ -73,44 +71,49 @@ class EditProfileView extends StackedView<EditProfileViewModel> {
                       children: [
                         Expanded(
                           child: InputField(
-                              controller: TextEditingController(),
-                              focusNode: FocusNode(),
-                              labelText: "Nom",
-                              hintText: "Nom",
-                              keyboardType: TextInputType.text),
+                            controller: TextEditingController(),
+                            focusNode: FocusNode(),
+                            labelText: "Nom",
+                            hintText: "Nom",
+                            keyboardType: TextInputType.text,
+                          ),
                         ),
                         HGap(AppSpacing.px12),
                         Expanded(
                           child: InputField(
-                              controller: TextEditingController(),
-                              focusNode: FocusNode(),
-                              labelText: "Prenom",
-                              hintText: "Prenom",
-                              keyboardType: TextInputType.text),
-                        )
+                            controller: TextEditingController(),
+                            focusNode: FocusNode(),
+                            labelText: "Prenom",
+                            hintText: "Prenom",
+                            keyboardType: TextInputType.text,
+                          ),
+                        ),
                       ],
                     ),
                     VGap(AppSpacing.px16),
                     InputField(
-                        controller: TextEditingController(),
-                        focusNode: FocusNode(),
-                        labelText: "Nom d’utilisateur",
-                        hintText: "Ex: johndoe22",
-                        keyboardType: TextInputType.text),
+                      controller: TextEditingController(),
+                      focusNode: FocusNode(),
+                      labelText: "Nom d’utilisateur",
+                      hintText: "Ex: johndoe22",
+                      keyboardType: TextInputType.text,
+                    ),
                     VGap(AppSpacing.px16),
                     InputField(
-                        controller: TextEditingController(),
-                        focusNode: FocusNode(),
-                        labelText: "Email",
-                        hintText: "Ex: JohnDoe@gmail.com",
-                        keyboardType: TextInputType.text),
+                      controller: TextEditingController(),
+                      focusNode: FocusNode(),
+                      labelText: "Email",
+                      hintText: "Ex: JohnDoe@gmail.com",
+                      keyboardType: TextInputType.text,
+                    ),
                     VGap(AppSpacing.px16),
                     InputField(
-                        controller: TextEditingController(),
-                        focusNode: FocusNode(),
-                        labelText: "Numéro de téléphone",
-                        hintText: "Ex: +33484883",
-                        keyboardType: TextInputType.text),
+                      controller: TextEditingController(),
+                      focusNode: FocusNode(),
+                      labelText: "Numéro de téléphone",
+                      hintText: "Ex: +33484883",
+                      keyboardType: TextInputType.text,
+                    ),
                     VGap(AppSpacing.px16),
                     InputField(
                         controller: TextEditingController(),
@@ -156,7 +159,7 @@ class EditProfileView extends StackedView<EditProfileViewModel> {
                     // )
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -165,8 +168,6 @@ class EditProfileView extends StackedView<EditProfileViewModel> {
   }
 
   @override
-  EditProfileViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  EditProfileViewModel viewModelBuilder(BuildContext context) =>
       EditProfileViewModel();
 }

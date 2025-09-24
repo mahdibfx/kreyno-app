@@ -25,12 +25,14 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
   ) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: AppColors.white,
-          surfaceTintColor: AppColors.greenKre.withValues(alpha: .2),
-          leading: IconButton(
-              onPressed: () {},
-              icon: const CustomIcon(iconPath: AppIcons.multiplicationSign)),
-          title: const CustomText.paragraph("Cession confirmée !")),
+        backgroundColor: AppColors.white,
+        surfaceTintColor: AppColors.greenKre.withValues(alpha: .2),
+        leading: IconButton(
+          onPressed: () {},
+          icon: const CustomIcon(iconPath: AppIcons.multiplicationSign),
+        ),
+        title: const CustomText.paragraph("Cession confirmée !"),
+      ),
       backgroundColor: AppColors.white,
       body: SafeArea(
         child: Center(
@@ -62,15 +64,12 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                         value: "#12981972",
                       ),
                       VGap(AppSpacing.px8),
-                      const InfoListTile(
-                        title: 'Prix',
-                        value: "2€",
-                      ),
+                      const InfoListTile(title: 'Prix', value: "2€"),
                       VGap(AppSpacing.px8),
                       const InfoListTile(
                         title: 'Date et heure',
                         value: "12-07-2025, 11:49",
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -82,11 +81,12 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                   width: double.infinity,
                   height: AppSpacing.px1 * 196,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      image: const DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage("https://picsum.photos/400/400"),
-                      )),
+                    borderRadius: BorderRadius.circular(12),
+                    image: const DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage("https://picsum.photos/400/400"),
+                    ),
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -102,33 +102,37 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                       Container(
                         padding: EdgeInsets.all(AppSpacing.px1 * 10),
                         decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(
-                                bottomRight: Radius.circular(12),
-                                bottomLeft: Radius.circular(12)),
-                            gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Colors.black.withValues(alpha: .2),
-                                  Colors.black
-                                ])),
+                          borderRadius: const BorderRadius.only(
+                            bottomRight: Radius.circular(12),
+                            bottomLeft: Radius.circular(12),
+                          ),
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.black.withValues(alpha: .2),
+                              Colors.black,
+                            ],
+                          ),
+                        ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               children: [
                                 ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
-                                    child: Image.network(
-                                      'https://picsum.photos/40/40',
-                                      width: AppSpacing.px1 * 32,
-                                      height: AppSpacing.px1 * 32,
-                                    )),
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.network(
+                                    'https://picsum.photos/40/40',
+                                    width: AppSpacing.px1 * 32,
+                                    height: AppSpacing.px1 * 32,
+                                  ),
+                                ),
                                 HGap(AppSpacing.px8),
                                 const CustomText.paragraph(
                                   "sarah.dupons92",
                                   color: AppColors.white,
-                                )
+                                ),
                               ],
                             ),
                             VGap(AppSpacing.px4),
@@ -139,10 +143,10 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                             CustomText.labelMedium(
                               "DE-123-JW · Blanche",
                               color: AppColors.white.withValues(alpha: .7),
-                            )
+                            ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -158,7 +162,8 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                       ),
                       VGap(AppSpacing.px1 * 6),
                       const CustomText.smallParagraphBold(
-                          "58-64 Rue de l'Université, 75007 Paris, France"),
+                        "58-64 Rue de l'Université, 75007 Paris, France",
+                      ),
                       VGap(AppSpacing.px16),
                       const CustomText.smallParagraphMedium(
                         "Autre",
@@ -181,29 +186,30 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                       ),
                       VGap(AppSpacing.px16),
                       InputField(
-                          controller: TextEditingController(),
-                          focusNode: FocusNode(),
-                          labelText: "Votre portefeuille Kreyno",
-                          hintText: "Olivier Dupons",
-                          suffixWidget: const Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CustomText.smallParagraphBold(
-                                "+2€",
-                                color: AppColors.greenKre,
-                              ),
-                            ],
-                          ),
-                          keyboardType: TextInputType.text),
+                        controller: TextEditingController(),
+                        focusNode: FocusNode(),
+                        labelText: "Votre portefeuille Kreyno",
+                        hintText: "Olivier Dupons",
+                        suffixWidget: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CustomText.smallParagraphBold(
+                              "+2€",
+                              color: AppColors.greenKre,
+                            ),
+                          ],
+                        ),
+                        keyboardType: TextInputType.text,
+                      ),
                       VGap(AppSpacing.px1 * 34),
                       CustomButton.filled(
                         text: "Retourner vers l’accueil",
                         onPressed: () {},
                       ),
-                      VGap(AppSpacing.px20)
+                      VGap(AppSpacing.px20),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -213,18 +219,12 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
   }
 
   @override
-  SpotSoldSuccessViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  SpotSoldSuccessViewModel viewModelBuilder(BuildContext context) =>
       SpotSoldSuccessViewModel();
 }
 
 class InfoListTile extends StatelessWidget {
-  const InfoListTile({
-    super.key,
-    required this.title,
-    required this.value,
-  });
+  const InfoListTile({super.key, required this.title, required this.value});
   final String title;
   final String value;
   @override
@@ -232,13 +232,8 @@ class InfoListTile extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CustomText.smallParagraphMedium(
-          title,
-          color: AppColors.textKre,
-        ),
-        CustomText.smallParagraphBold(
-          value,
-        ),
+        CustomText.smallParagraphMedium(title, color: AppColors.textKre),
+        CustomText.smallParagraphBold(value),
       ],
     );
   }
@@ -250,11 +245,10 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24)
-          .copyWith(top: MediaQuery.of(context).viewPadding.top),
-      child: const Row(
-        children: [],
-      ),
+      padding: EdgeInsets.symmetric(
+        horizontal: AppSpacing.px24,
+      ).copyWith(top: MediaQuery.of(context).viewPadding.top),
+      child: const Row(children: []),
     );
   }
 }

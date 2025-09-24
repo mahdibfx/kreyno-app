@@ -21,6 +21,15 @@ class CommonStrings {
   static String get october => 'common.months.october'.tr();
   static String get november => 'common.months.november'.tr();
   static String get december => 'common.months.december'.tr();
+
+  // Validation
+  static String get emptyFieldValidationText =>
+      'common.validation.emptyField'.tr();
+  static String get emailValidationText => 'common.validation.email'.tr();
+  static String get phoneValidationText => 'common.validation.phone'.tr();
+  static String get firstNameValidationText =>
+      'common.validation.firstName'.tr();
+  static String get lastNameValidationText => 'common.validation.lastName'.tr();
 }
 
 class OnboardingStrings {

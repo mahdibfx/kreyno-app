@@ -24,7 +24,7 @@ class HomeView extends StackedView<HomeViewModel> {
               initialCameraPosition: const CameraPosition(target: LatLng(4, 8)),
               markers: viewModel.markers,
             ),
-            viewModel.chooseBottomBarBasedOnState()
+            viewModel.chooseBottomBarBasedOnState(),
           ],
         ),
       ),

@@ -65,9 +65,11 @@ class HomeViewModel extends BaseViewModel {
     // bool isThisPositionAlreadyMarker = false; // this is when it is seller part , later it will be logically changed
     bool isThisPositionAlreadyMarker = true; // this is when it is client part
     markSelected = true;
-    var searchResults = markers.where((e) =>
-        e.position.longitude == position.longitude &&
-        e.position.latitude == position.latitude);
+    var searchResults = markers.where(
+      (e) =>
+          e.position.longitude == position.longitude &&
+          e.position.latitude == position.latitude,
+    );
     isThisPositionAlreadyMarker = searchResults.isNotEmpty;
     if (isThisPositionAlreadyMarker) {
       if (isThisMarkerMine) {
@@ -75,9 +77,12 @@ class HomeViewModel extends BaseViewModel {
         isThisAClientMark = true;
       }
     } else {
-      markers.add(Marker(
+      markers.add(
+        Marker(
           markerId: MarkerId(DateTime.now().microsecondsSinceEpoch.toString()),
-          position: position));
+          position: position,
+        ),
+      );
     }
     notifyListeners();
   }
@@ -111,8 +116,9 @@ class HomeViewModel extends BaseViewModel {
   }
 
   onMyMarkerDeleteClicked() {
-    final showDialog = locator<DialogService>()
-        .showCustomDialog(variant: DialogType.deleteSpot);
+    final showDialog = locator<DialogService>().showCustomDialog(
+      variant: DialogType.deleteSpot,
+    );
   }
 
   sellerClickedRefuseOrder() {

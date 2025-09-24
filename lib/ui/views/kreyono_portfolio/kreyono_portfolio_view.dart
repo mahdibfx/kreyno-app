@@ -35,34 +35,36 @@ class KreyonoPortfolioView extends StackedView<KreyonoPortfolioViewModel> {
           children: [
             VGap(AppSpacing.px12),
             Container(
-                padding: EdgeInsets.all(AppSpacing.px12),
+              padding: EdgeInsets.all(AppSpacing.px12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.fromBorderSide(
+                  BorderSide(color: AppColors.textKre.withValues(alpha: 0.25)),
+                ),
+              ),
+              child: Container(
+                width: double.infinity,
+                height: AppSpacing.px1 * 99,
+                padding: EdgeInsets.all(AppSpacing.px16),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.fromBorderSide(BorderSide(
-                        color: AppColors.textKre.withValues(alpha: 0.25)))),
-                child: Container(
-                  width: double.infinity,
-                  height: AppSpacing.px1 * 99,
-                  padding: EdgeInsets.all(AppSpacing.px16),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      image: const DecorationImage(
-                          image: AssetImage(AppImages.bgCard),
-                          fit: BoxFit.cover)),
-                  child: const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CustomText.smallParagraphMedium(
-                        "Votre balance",
-                        color: AppColors.placeholderKre,
-                      ),
-                      CustomText.largeTitle(
-                        "33.25€",
-                        color: Colors.white,
-                      )
-                    ],
+                  borderRadius: BorderRadius.circular(8),
+                  image: const DecorationImage(
+                    image: AssetImage(AppImages.bgCard),
+                    fit: BoxFit.cover,
                   ),
-                )),
+                ),
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomText.smallParagraphMedium(
+                      "Votre balance",
+                      color: AppColors.placeholderKre,
+                    ),
+                    CustomText.largeTitle("33.25€", color: Colors.white),
+                  ],
+                ),
+              ),
+            ),
             VGap(AppSpacing.px12),
             CustomButton.outlined(
               text: "Retirer mon argent",
@@ -135,9 +137,7 @@ class KreyonoPortfolioView extends StackedView<KreyonoPortfolioViewModel> {
   }
 
   @override
-  KreyonoPortfolioViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  KreyonoPortfolioViewModel viewModelBuilder(BuildContext context) =>
       KreyonoPortfolioViewModel();
 }
 
@@ -150,17 +150,20 @@ class GainWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(AppSpacing.px12),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.fromBorderSide(
-              BorderSide(color: AppColors.textKre.withValues(alpha: 0.25)))),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.fromBorderSide(
+          BorderSide(color: AppColors.textKre.withValues(alpha: 0.25)),
+        ),
+      ),
       child: Row(
         children: [
           Container(
             padding: EdgeInsets.all(AppSpacing.px12),
             decoration: BoxDecoration(
-                color: (type == "vente" ? AppColors.greenKre : AppColors.redKre)
-                    .withValues(alpha: .07),
-                borderRadius: BorderRadius.circular(6)),
+              color: (type == "vente" ? AppColors.greenKre : AppColors.redKre)
+                  .withValues(alpha: .07),
+              borderRadius: BorderRadius.circular(6),
+            ),
             child: CustomIcon(
               iconPath:
                   type == "vente" ? AppIcons.parking : AppIcons.cardReceive,
@@ -176,12 +179,14 @@ class GainWidget extends StatelessWidget {
                 const CustomText.smallParagraphMedium(
                   "02-01-2025 · 19:10",
                   color: AppColors.textKre,
-                )
+                ),
               ],
             ),
           ),
-          CustomText.paragraph("2€",
-              color: (type == "vente" ? AppColors.greenKre : AppColors.redKre))
+          CustomText.paragraph(
+            "2€",
+            color: (type == "vente" ? AppColors.greenKre : AppColors.redKre),
+          ),
         ],
       ),
     );

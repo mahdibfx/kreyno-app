@@ -9,6 +9,27 @@ class SigninViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
 
+  String _countryCode = '+237';
+  String _phoneNumber = '';
+
+  String get countryCode => _countryCode;
+  String get phoneNumber => _phoneNumber;
+
+  void setCountryCode(String countryCode) {
+    _countryCode = countryCode;
+    rebuildUi();
+  }
+
+  void setPhoneNumber(String phoneNumber) {
+    _phoneNumber = phoneNumber;
+    rebuildUi();
+  }
+
+  void onPhoneNumberChanged(String countryCode, String phoneNumber) {
+    setCountryCode(countryCode);
+    setPhoneNumber(phoneNumber);
+  }
+
   void goBack() {
     _navigationService.back();
   }
@@ -22,7 +43,9 @@ class SigninViewModel extends FormViewModel {
 
     if (response != null && response.confirmed) {
       // FIXME: This is a temporary navigation to signup view
-      _navigationService.navigateToSignupView();
+      _navigationService.navigateToSignupView(
+        phoneNumber: (_countryCode, _phoneNumber),
+      );
     }
   }
 }

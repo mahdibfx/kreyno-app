@@ -23,8 +23,6 @@ class SetUpPaymentMethodsView
   }
 
   @override
-  SetUpPaymentMethodsViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  SetUpPaymentMethodsViewModel viewModelBuilder(BuildContext context) =>
       SetUpPaymentMethodsViewModel();
 }

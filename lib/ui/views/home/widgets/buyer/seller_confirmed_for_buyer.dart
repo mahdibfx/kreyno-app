@@ -16,88 +16,102 @@ class SellerConfirmedForBuyer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      SafeArea(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SafeArea(
           child: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(vertical: AppSpacing.px12),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: AppColors.white),
-                    child: const CustomText.smallParagraphMedium(
-                        "Votre itinéraire est prêt !"),
-                  ),
-                ),
-                HGap(AppSpacing.px8),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: AppColors.white),
-                  padding: EdgeInsets.all(AppSpacing.px8),
-                  child: SvgPicture.asset(AppIcons.chatRoundDots),
-                )
-              ],
-            ),
-          ),
-          VGap(AppSpacing.px12),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
-            padding: EdgeInsets.symmetric(
-                horizontal: AppSpacing.px12, vertical: AppSpacing.px12),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: AppColors.white),
-            child: Column(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+                child: Row(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.symmetric(
+                          vertical: AppSpacing.px12,
+                        ),
+                        decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          color: const Color(0xFF339DFF).withValues(alpha: .3)),
-                      padding: EdgeInsets.all(AppSpacing.px8),
-                      child: SvgPicture.asset(
-                        AppIcons.chatRoundDots,
-                        color: const Color(0xFF339DFF),
+                          color: AppColors.white,
+                        ),
+                        child: const CustomText.smallParagraphMedium(
+                          "Votre itinéraire est prêt !",
+                        ),
                       ),
                     ),
                     HGap(AppSpacing.px8),
-                    const Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomText.smallParagraphBold("Important"),
-                          SizedBox(
-                            child: CustomText.smallParagraphMedium(
-                              "Après 5 min, l’hôte peut annuler et vous serez remboursé.",
-                              maxLines: 2,
-                              color: AppColors.textKre,
-                            ),
-                          ),
-                        ],
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: AppColors.white,
                       ),
+                      padding: EdgeInsets.all(AppSpacing.px8),
+                      child: SvgPicture.asset(AppIcons.chatRoundDots),
                     ),
-                    const Column(
-                      children: [
-                        CustomIcon(iconPath: AppIcons.multiplicationSign),
-                      ],
-                    )
                   ],
-                )
-              ],
-            ),
-          )
-        ],
-      )),
-      BottomSheetLayout(
+                ),
+              ),
+              VGap(AppSpacing.px12),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppSpacing.px12,
+                  vertical: AppSpacing.px12,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: AppColors.white,
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: const Color(
+                              0xFF339DFF,
+                            ).withValues(alpha: .3),
+                          ),
+                          padding: EdgeInsets.all(AppSpacing.px8),
+                          child: SvgPicture.asset(
+                            AppIcons.chatRoundDots,
+                            color: const Color(0xFF339DFF),
+                          ),
+                        ),
+                        HGap(AppSpacing.px8),
+                        const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomText.smallParagraphBold("Important"),
+                              SizedBox(
+                                child: CustomText.smallParagraphMedium(
+                                  "Après 5 min, l’hôte peut annuler et vous serez remboursé.",
+                                  maxLines: 2,
+                                  color: AppColors.textKre,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Column(
+                          children: [
+                            CustomIcon(iconPath: AppIcons.multiplicationSign),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        BottomSheetLayout(
           showDragHandler: false,
           body: Column(
             children: [
@@ -113,11 +127,13 @@ class SellerConfirmedForBuyer extends StatelessWidget {
                     ),
                   ),
                   HGap(AppSpacing.px8),
-                  const CustomText.smallParagraphBold("00:03")
+                  const CustomText.smallParagraphBold("00:03"),
                 ],
-              )
+              ),
             ],
-          ))
-    ]);
+          ),
+        ),
+      ],
+    );
   }
 }

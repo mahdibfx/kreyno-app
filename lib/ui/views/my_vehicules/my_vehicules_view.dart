@@ -21,18 +21,19 @@ class MyVehiculesView extends StackedView<MyVehiculesViewModel> {
   ) {
     return Scaffold(
       bottomNavigationBar: Container(
-          padding: EdgeInsets.symmetric(
-                  horizontal: AppSpacing.px24, vertical: AppSpacing.px20)
-              .copyWith(bottom: AppSpacing.px32),
-          child: CustomButton.filled(
-              onPressed: () {
-                locator<NavigationService>().navigateToAddVehiculeView();
-              },
-              text: "Ajouter un nouveau véhicule")),
-      backgroundColor: Colors.white,
-      appBar: MyAppBar(
-        title: 'Mes véhicules',
+        padding: EdgeInsets.symmetric(
+          horizontal: AppSpacing.px24,
+          vertical: AppSpacing.px20,
+        ).copyWith(bottom: AppSpacing.px32),
+        child: CustomButton.filled(
+          onPressed: () {
+            locator<NavigationService>().navigateToAddVehiculeView();
+          },
+          text: "Ajouter un nouveau véhicule",
+        ),
       ),
+      backgroundColor: Colors.white,
+      appBar: MyAppBar(title: 'Mes véhicules'),
       body: CustomScrollView(
         slivers: [
           SliverList.builder(
@@ -50,8 +51,6 @@ class MyVehiculesView extends StackedView<MyVehiculesViewModel> {
   }
 
   @override
-  MyVehiculesViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  MyVehiculesViewModel viewModelBuilder(BuildContext context) =>
       MyVehiculesViewModel();
 }

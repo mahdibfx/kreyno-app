@@ -27,81 +27,91 @@ class CheckoutMoneyView extends StackedView<CheckoutMoneyViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-        bottomNavigationBar: Container(
-            padding: EdgeInsets.symmetric(
-                    horizontal: AppSpacing.px24, vertical: AppSpacing.px20)
-                .copyWith(bottom: AppSpacing.px32),
-            child: CustomButton.filled(
-                onPressed: () async {
-                  final d = await locator<BottomSheetService>().showCustomSheet(
-                      data: "error",
-                      variant: BottomSheetType.checkoutMoneyFeedback);
-                },
-                text: "Retirer")),
-        backgroundColor: AppColors.white,
-        appBar: MyAppBar(title: "Retirer mon argent"),
-        body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
-            child: Column(children: [
-              VGap(AppSpacing.px12),
-              Container(
-                  padding: EdgeInsets.all(AppSpacing.px12),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.fromBorderSide(BorderSide(
-                          color: AppColors.textKre.withValues(alpha: 0.25)))),
-                  child: Container(
-                    width: double.infinity,
-                    height: AppSpacing.px1 * 99,
-                    padding: EdgeInsets.all(AppSpacing.px16),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        image: const DecorationImage(
-                            image: AssetImage(AppImages.bgCard),
-                            fit: BoxFit.cover)),
-                    child: const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomText.smallParagraphMedium(
-                          "Votre balance",
-                          color: AppColors.placeholderKre,
-                        ),
-                        CustomText.largeTitle(
-                          "33.25€",
-                          color: Colors.white,
-                        )
-                      ],
-                    ),
-                  )),
-              VGap(AppSpacing.px24),
-              InputField(
-                  controller: TextEditingController(),
-                  focusNode: FocusNode(),
-                  labelText: "IBAN",
-                  hintText: "",
-                  keyboardType: TextInputType.text),
-              VGap(AppSpacing.px16),
-              const CustomDivider(),
-              VGap(AppSpacing.px16),
-              InputField(
-                  controller: TextEditingController(),
-                  focusNode: FocusNode(),
-                  labelText: "Montant de retrait",
-                  hintText: "",
-                  suffixWidget: const Padding(
-                    padding: EdgeInsets.all(12),
-                    child: CustomIcon(
-                      iconPath: AppIcons.euro,
-                      color: AppColors.textKre,
-                    ),
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: AppSpacing.px24,
+          vertical: AppSpacing.px20,
+        ).copyWith(bottom: AppSpacing.px32),
+        child: CustomButton.filled(
+          onPressed: () async {
+            final d = await locator<BottomSheetService>().showCustomSheet(
+              data: "error",
+              variant: BottomSheetType.checkoutMoneyFeedback,
+            );
+          },
+          text: "Retirer",
+        ),
+      ),
+      backgroundColor: AppColors.white,
+      appBar: MyAppBar(title: "Retirer mon argent"),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+        child: Column(
+          children: [
+            VGap(AppSpacing.px12),
+            Container(
+              padding: EdgeInsets.all(AppSpacing.px12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.fromBorderSide(
+                  BorderSide(color: AppColors.textKre.withValues(alpha: 0.25)),
+                ),
+              ),
+              child: Container(
+                width: double.infinity,
+                height: AppSpacing.px1 * 99,
+                padding: EdgeInsets.all(AppSpacing.px16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  image: const DecorationImage(
+                    image: AssetImage(AppImages.bgCard),
+                    fit: BoxFit.cover,
                   ),
-                  keyboardType: TextInputType.text),
-            ])));
+                ),
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomText.smallParagraphMedium(
+                      "Votre balance",
+                      color: AppColors.placeholderKre,
+                    ),
+                    CustomText.largeTitle("33.25€", color: Colors.white),
+                  ],
+                ),
+              ),
+            ),
+            VGap(AppSpacing.px24),
+            InputField(
+              controller: TextEditingController(),
+              focusNode: FocusNode(),
+              labelText: "IBAN",
+              hintText: "",
+              keyboardType: TextInputType.text,
+            ),
+            VGap(AppSpacing.px16),
+            const CustomDivider(),
+            VGap(AppSpacing.px16),
+            InputField(
+              controller: TextEditingController(),
+              focusNode: FocusNode(),
+              labelText: "Montant de retrait",
+              hintText: "",
+              suffixWidget: const Padding(
+                padding: EdgeInsets.all(12),
+                child: CustomIcon(
+                  iconPath: AppIcons.euro,
+                  color: AppColors.textKre,
+                ),
+              ),
+              keyboardType: TextInputType.text,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
-  CheckoutMoneyViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  CheckoutMoneyViewModel viewModelBuilder(BuildContext context) =>
       CheckoutMoneyViewModel();
 }

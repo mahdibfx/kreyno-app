@@ -52,101 +52,102 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      const Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          CustomIcon(iconPath: AppIcons.arrowLeft),
-          CustomText.paragraph("Paiment"),
-          CustomIcon(iconPath: AppIcons.multiplicationSign)
-        ],
-      ),
-      VGap(AppSpacing.px20),
-      const CustomDivider(),
-      VGap(AppSpacing.px20),
-      const CustomText.labelRegular(
-        "Payer avec",
-        color: AppColors.textKre,
-      ),
-      VGap(AppSpacing.px8),
-      const PaymentMethodListTile(),
-      VGap(AppSpacing.px16),
-      InkWell(
-        onTap: () {
-          locator<BottomSheetService>().showCustomSheet(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomIcon(iconPath: AppIcons.arrowLeft),
+            CustomText.paragraph("Paiment"),
+            CustomIcon(iconPath: AppIcons.multiplicationSign),
+          ],
+        ),
+        VGap(AppSpacing.px20),
+        const CustomDivider(),
+        VGap(AppSpacing.px20),
+        const CustomText.labelRegular("Payer avec", color: AppColors.textKre),
+        VGap(AppSpacing.px8),
+        const PaymentMethodListTile(),
+        VGap(AppSpacing.px16),
+        InkWell(
+          onTap: () {
+            locator<BottomSheetService>().showCustomSheet(
               variant: BottomSheetType.addPaymentCart,
-              isScrollControlled: true);
-        },
-        child: Container(
+              isScrollControlled: true,
+            );
+          },
+          child: Container(
             padding: EdgeInsets.all(AppSpacing.px1 * 10),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                    color: AppColors.textKre.withValues(alpha: .25))),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: AppColors.textKre.withValues(alpha: .25),
+              ),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const CustomIcon(iconPath: AppIcons.creditCardAdd),
                 HGap(AppSpacing.px8),
                 const CustomText.smallParagraphBold(
-                    "Ajouter une nouvelle carte")
+                  "Ajouter une nouvelle carte",
+                ),
               ],
-            )),
-      ),
-      VGap(AppSpacing.px16),
-      const CustomDivider(),
-      VGap(AppSpacing.px16),
-      const Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          CustomText.smallParagraphMedium(
-            "Montant",
-            color: AppColors.textKre,
+            ),
           ),
-          CustomText.paragraph(
-            "2.4€",
-            color: AppColors.mainKre,
-          )
-        ],
-      ),
-      VGap(AppSpacing.px16),
-      Row(
-        children: [
-          const CustomIcon(
-            iconPath: AppIcons.squareLock,
-            color: AppColors.textKre,
-          ),
-          HGap(AppSpacing.px8),
-          const Expanded(
-            child: CustomText.smallParagraphMedium(
-              "Vos informations de paiement sont entièrement sécurisées et protégées.",
-              maxLines: 2,
+        ),
+        VGap(AppSpacing.px16),
+        const CustomDivider(),
+        VGap(AppSpacing.px16),
+        const Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomText.smallParagraphMedium(
+              "Montant",
               color: AppColors.textKre,
             ),
-          )
-        ],
-      ),
-      VGap(AppSpacing.px24),
-      CustomButton.filled(
-        text: "Payer & réserver cette place",
-        onPressed: () {},
-      )
-    ]);
+            CustomText.paragraph("2.4€", color: AppColors.mainKre),
+          ],
+        ),
+        VGap(AppSpacing.px16),
+        Row(
+          children: [
+            const CustomIcon(
+              iconPath: AppIcons.squareLock,
+              color: AppColors.textKre,
+            ),
+            HGap(AppSpacing.px8),
+            const Expanded(
+              child: CustomText.smallParagraphMedium(
+                "Vos informations de paiement sont entièrement sécurisées et protégées.",
+                maxLines: 2,
+                color: AppColors.textKre,
+              ),
+            ),
+          ],
+        ),
+        VGap(AppSpacing.px24),
+        CustomButton.filled(
+          text: "Payer & réserver cette place",
+          onPressed: () {},
+        ),
+      ],
+    );
   }
 }
 
 class PaymentMethodListTile extends StatelessWidget {
-  const PaymentMethodListTile({
-    super.key,
-  });
+  const PaymentMethodListTile({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(AppSpacing.px1 * 10),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors.textKre.withValues(alpha: .25))),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: AppColors.textKre.withValues(alpha: .25)),
+      ),
       child: Row(
         children: [
           Image.asset(AppImages.visa),
@@ -158,9 +159,7 @@ class PaymentMethodListTile extends StatelessWidget {
                 "OLIVER DUPONS",
                 color: AppColors.textKre,
               ),
-              CustomText.labelRegular(
-                "**** 1234",
-              )
+              CustomText.labelRegular("**** 1234"),
             ],
           ),
           const Expanded(child: SizedBox()),
@@ -168,7 +167,7 @@ class PaymentMethodListTile extends StatelessWidget {
             radius: AppSpacing.px8 + 1,
             backgroundColor: AppColors.greenKre,
             child: const Icon(Icons.done, color: Colors.white, size: 14),
-          )
+          ),
         ],
       ),
     );
@@ -176,9 +175,7 @@ class PaymentMethodListTile extends StatelessWidget {
 }
 
 class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
-  const InitialPaymentState({
-    super.key,
-  });
+  const InitialPaymentState({super.key});
 
   @override
   Widget build(BuildContext context, viewModel) {
@@ -205,9 +202,9 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
                   iconPath: AppIcons.euro,
                   size: 20,
                   color: AppColors.greenKre,
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
         VGap(AppSpacing.px8),
@@ -235,7 +232,7 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
                   text: "2.5 km",
                   style: CustomTextStyle.smallParagraphMedium,
                   color: AppColors.textKre,
-                )
+                ),
               ],
             ),
           ],
@@ -245,11 +242,12 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
           width: double.infinity,
           height: AppSpacing.px1 * 196,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              image: const DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage("https://picsum.photos/400/400"),
-              )),
+            borderRadius: BorderRadius.circular(12),
+            image: const DecorationImage(
+              fit: BoxFit.cover,
+              image: NetworkImage("https://picsum.photos/400/400"),
+            ),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -265,33 +263,34 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
               Container(
                 padding: EdgeInsets.all(AppSpacing.px1 * 10),
                 decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                        bottomRight: Radius.circular(12),
-                        bottomLeft: Radius.circular(12)),
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.black.withValues(alpha: .2),
-                          Colors.black
-                        ])),
+                  borderRadius: const BorderRadius.only(
+                    bottomRight: Radius.circular(12),
+                    bottomLeft: Radius.circular(12),
+                  ),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.black.withValues(alpha: .2), Colors.black],
+                  ),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
                         ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.network(
-                              'https://picsum.photos/40/40',
-                              width: AppSpacing.px1 * 32,
-                              height: AppSpacing.px1 * 32,
-                            )),
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.network(
+                            'https://picsum.photos/40/40',
+                            width: AppSpacing.px1 * 32,
+                            height: AppSpacing.px1 * 32,
+                          ),
+                        ),
                         HGap(AppSpacing.px8),
                         const CustomText.paragraph(
                           "sarah.dupons92",
                           color: AppColors.white,
-                        )
+                        ),
                       ],
                     ),
                     VGap(AppSpacing.px4),
@@ -302,10 +301,10 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
                     CustomText.labelMedium(
                       "DE-123-JW · Blanche",
                       color: AppColors.white.withValues(alpha: .7),
-                    )
+                    ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -327,9 +326,7 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
 }
 
 class SlideableButton extends StatefulWidget {
-  const SlideableButton({
-    super.key,
-  });
+  const SlideableButton({super.key});
 
   @override
   State<SlideableButton> createState() => _SlideableButtonState();
@@ -343,13 +340,16 @@ class _SlideableButtonState extends State<SlideableButton> {
       padding: EdgeInsets.all(AppSpacing.px4),
       width: double.infinity,
       decoration: BoxDecoration(
-          color: AppColors.greenKre, borderRadius: BorderRadius.circular(8)),
-      child: LayoutBuilder(builder: (context, constraints) {
-        return SizedBox(
-          width: constraints.maxWidth,
-          child: Row(
-            children: [
-              Draggable(
+        color: AppColors.greenKre,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return SizedBox(
+            width: constraints.maxWidth,
+            child: Row(
+              children: [
+                Draggable(
                   onDraggableCanceled: (velocity, offset) {
                     width = 0;
                     setState(() {});
@@ -363,54 +363,66 @@ class _SlideableButtonState extends State<SlideableButton> {
                     });
                   },
                   childWhenDragging: Container(
-                      clipBehavior: Clip.hardEdge,
-                      width: width,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(6)),
-                      padding: EdgeInsets.all(AppSpacing.px1 * 10),
-                      child: Row(
-                          children: List.generate(
-                              (width / 20).toInt(),
-                              (index) => const AnimatedSwitcher(
-                                    duration: Duration(milliseconds: 300),
-                                    child: CustomIcon(
-                                      iconPath: AppIcons.doubleAltArrowRight,
-                                      color: AppColors.textKre,
-                                    ),
-                                  )))),
+                    clipBehavior: Clip.hardEdge,
+                    width: width,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    padding: EdgeInsets.all(AppSpacing.px1 * 10),
+                    child: Row(
+                      children: List.generate(
+                        (width / 20).toInt(),
+                        (index) => const AnimatedSwitcher(
+                          duration: Duration(milliseconds: 300),
+                          child: CustomIcon(
+                            iconPath: AppIcons.doubleAltArrowRight,
+                            color: AppColors.textKre,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   axis: Axis.horizontal,
                   feedback: Opacity(
                     opacity: 0,
                     child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(6)),
-                        padding: EdgeInsets.all(AppSpacing.px1 * 10),
-                        child: const CustomIcon(
-                            iconPath: AppIcons.doubleAltArrowRight)),
-                  ),
-                  child: Container(
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(6)),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(6),
+                      ),
                       padding: EdgeInsets.all(AppSpacing.px1 * 10),
                       child: const CustomIcon(
-                          iconPath: AppIcons.doubleAltArrowRight))),
-              const Expanded(child: SizedBox()),
-              AnimatedOpacity(
-                opacity: opacity,
-                duration: const Duration(milliseconds: 100),
-                child: const CustomText(
-                  text: "Passer au paiement",
-                  textAlign: TextAlign.start,
+                        iconPath: AppIcons.doubleAltArrowRight,
+                      ),
+                    ),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    padding: EdgeInsets.all(AppSpacing.px1 * 10),
+                    child: const CustomIcon(
+                      iconPath: AppIcons.doubleAltArrowRight,
+                    ),
+                  ),
                 ),
-              ),
-              const Expanded(child: SizedBox()),
-            ],
-          ),
-        );
-      }),
+                const Expanded(child: SizedBox()),
+                AnimatedOpacity(
+                  opacity: opacity,
+                  duration: const Duration(milliseconds: 100),
+                  child: const CustomText(
+                    text: "Passer au paiement",
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+                const Expanded(child: SizedBox()),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 

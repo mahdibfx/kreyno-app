@@ -21,7 +21,9 @@ class ClientCanceledOrder extends StatelessWidget {
             clipBehavior: Clip.hardEdge,
             margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
             decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(8)),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -33,8 +35,9 @@ class ClientCanceledOrder extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.all(AppSpacing.px1 * 6),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: AppColors.redKre.withValues(alpha: .15)),
+                          borderRadius: BorderRadius.circular(8),
+                          color: AppColors.redKre.withValues(alpha: .15),
+                        ),
                         child: const CustomIcon(
                           iconPath: AppIcons.alert,
                           color: AppColors.redKre,
@@ -52,14 +55,14 @@ class ClientCanceledOrder extends StatelessWidget {
                             text: "Votre place est de nouveau disponible.",
                             style: CustomTextStyle.labelMedium,
                             color: AppColors.textKre,
-                          )
+                          ),
                         ],
                       ),
                       const Expanded(child: SizedBox()),
                       const CustomIcon(
                         iconPath: AppIcons.multiplicationSign,
                         color: AppColors.textKre,
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -71,12 +74,12 @@ class ClientCanceledOrder extends StatelessWidget {
                       color: Colors.red,
                     );
                   },
-                )
+                ),
               ],
             ),
           ),
         ),
-        const LetMyPlaceBottombar()
+        const LetMyPlaceBottombar(),
       ],
     );
   }

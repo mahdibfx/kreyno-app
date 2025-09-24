@@ -29,23 +29,25 @@ class NormalHomeState extends StatelessWidget {
                   RoundedButton(
                     iconPath: AppIcons.sort,
                     onPressed: () {
-                      locator<BottomSheetService>()
-                          .showCustomSheet(variant: BottomSheetType.homeFilter);
+                      locator<BottomSheetService>().showCustomSheet(
+                        variant: BottomSheetType.homeFilter,
+                      );
                     },
                     shape: BoxShape.rectangle,
                   ),
                   VGap(AppSpacing.px12),
                   RoundedButton(
-                      iconPath: AppIcons.gpsOn,
-                      onPressed: () {},
-                      shape: BoxShape.rectangle),
+                    iconPath: AppIcons.gpsOn,
+                    onPressed: () {},
+                    shape: BoxShape.rectangle,
+                  ),
                 ],
               ),
             ),
             VGap(AppSpacing.px24),
             const LetMyPlaceBottombar(),
           ],
-        )
+        ),
       ],
     );
   }

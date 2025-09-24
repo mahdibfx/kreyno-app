@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/services/validation_service.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
@@ -15,16 +16,32 @@ import 'package:stacked/stacked_annotations.dart';
 
 import 'signup_viewmodel.dart';
 
-@FormView(fields: [
-  FormTextField(name: 'phoneNumber'),
-  FormTextField(name: 'firstName'),
-  FormTextField(name: 'lastName'),
-  FormTextField(name: 'email'),
-  FormTextField(name: 'userName'),
-  FormTextField(name: 'address'),
-])
+@FormView(
+  fields: [
+    FormTextField(
+      name: 'phoneNumber',
+      validator: ValidationService.phoneValidator,
+    ),
+    FormTextField(
+      name: 'firstName',
+      validator: ValidationService.firstNameValidator,
+    ),
+    FormTextField(
+      name: 'lastName',
+      validator: ValidationService.lastNameValidator,
+    ),
+    FormTextField(name: 'email', validator: ValidationService.emailValidator),
+    FormTextField(
+      name: 'userName',
+      validator: ValidationService.emptyValidator,
+    ),
+    FormTextField(name: 'address', validator: ValidationService.emptyValidator),
+  ],
+)
 class SignupView extends StackedView<SignupViewModel> with $SignupView {
-  const SignupView({Key? key}) : super(key: key);
+  final (String countryCode, String phoneNumber) phoneNumber;
+
+  const SignupView({Key? key, required this.phoneNumber}) : super(key: key);
 
   @override
   Widget builder(
@@ -55,10 +72,15 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                       focusNode: phoneNumberFocusNode,
                       labelText: SignupStrings.phoneNumber,
                       hintText: SignupStrings.phoneNumberPlaceholder,
-                      disabled: true,
+                      disabled: viewModel.hasPhoneNumber,
+                      errorText: viewModel.hasPhoneNumber
+                          ? viewModel.phoneNumberValidationMessage
+                          : null,
+                      maxLength: 10,
                     ),
                     Row(
                       spacing: AppSpacing.px12,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
                           child: InputField(
@@ -67,6 +89,9 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                             labelText: SignupStrings.firstName,
                             hintText: SignupStrings.firstNamePlaceholder,
                             keyboardType: TextInputType.name,
+                            errorText: viewModel.hasFirstName
+                                ? viewModel.firstNameValidationMessage
+                                : null,
                           ),
                         ),
                         Expanded(
@@ -76,6 +101,9 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                             labelText: SignupStrings.lastName,
                             hintText: SignupStrings.lastNamePlaceholder,
                             keyboardType: TextInputType.name,
+                            errorText: viewModel.hasLastName
+                                ? viewModel.lastNameValidationMessage
+                                : null,
                           ),
                         ),
                       ],
@@ -86,6 +114,9 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                       labelText: SignupStrings.userName,
                       hintText: SignupStrings.userNamePlaceholder,
                       keyboardType: TextInputType.name,
+                      errorText: viewModel.hasUserName
+                          ? viewModel.userNameValidationMessage
+                          : null,
                     ),
                     InputField(
                       controller: emailController,
@@ -93,6 +124,9 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                       labelText: SignupStrings.email,
                       hintText: SignupStrings.emailPlaceholder,
                       keyboardType: TextInputType.name,
+                      errorText: viewModel.hasEmail
+                          ? viewModel.emailValidationMessage
+                          : null,
                     ),
                     InputField(
                       controller: addressController,
@@ -101,15 +135,10 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                       hintText: SignupStrings.addressPlaceholder,
                       keyboardType: TextInputType.name,
                       textInputAction: TextInputAction.done,
+                      errorText: viewModel.hasAddress
+                          ? viewModel.addressValidationMessage
+                          : null,
                     ),
-                    // FIXME: This is a temporary input field for birthday until it's designed
-                    // InputField(
-                    //   controller: birthdayController,
-                    //   focusNode: birthdayFocusNode,
-                    //   labelText: SignupStrings.birthday,
-                    //   hintText: SignupStrings.birthday,
-                    //   keyboardType: TextInputType.name,
-                    // ),
                     BirthDatePickerField(
                       labelText: SignupStrings.birthday,
                       onBirthdayChanged: viewModel.onBirthdayChanged,
@@ -143,7 +172,7 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                           ],
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -163,6 +192,7 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                       CustomButton.filled(
                         text: CommonStrings.continueLabel,
                         onPressed: viewModel.showOtpSheet,
+                        isDisabled: !viewModel.isFormValid,
                       ),
                     ],
                   ),
@@ -177,6 +207,12 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
 
   @override
   void onViewModelReady(SignupViewModel viewModel) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      phoneNumberController.text = phoneNumber.$2;
+      if (firstNameFocusNode.canRequestFocus) {
+        firstNameFocusNode.requestFocus();
+      }
+    });
     syncFormWithViewModel(viewModel);
     super.onViewModelReady(viewModel);
   }
@@ -188,8 +224,5 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
   }
 
   @override
-  SignupViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
-      SignupViewModel();
+  SignupViewModel viewModelBuilder(BuildContext context) => SignupViewModel();
 }

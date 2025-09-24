@@ -14,9 +14,12 @@ class LetMyPlaceBottombar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+        color: AppColors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
       padding: EdgeInsets.symmetric(
         horizontal: AppSpacing.px20,
         vertical: AppSpacing.px20,
@@ -24,36 +27,40 @@ class LetMyPlaceBottombar extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-              child: CustomButton.filled(
-            text: "Céder ma place",
-            onPressed: isButtonDisabled == true && isButtonDisabled != null
-                ? null
-                : () async {
-                    await locator<BottomSheetService>().showCustomSheet(
+            child: CustomButton.filled(
+              text: "Céder ma place",
+              onPressed: isButtonDisabled == true && isButtonDisabled != null
+                  ? null
+                  : () async {
+                      await locator<BottomSheetService>().showCustomSheet(
                         variant: BottomSheetType.createSpot,
                         enableDrag: false,
-                        barrierDismissible: false);
-                  },
-          )),
+                        barrierDismissible: false,
+                      );
+                    },
+            ),
+          ),
           SizedBox(width: AppSpacing.px8),
           InkWell(
             onTap: () {
               locator<BottomSheetService>().showCustomSheet(
-                  isScrollControlled: true,
-                  enableDrag: true,
-                  variant: BottomSheetType.profile);
+                isScrollControlled: true,
+                enableDrag: true,
+                variant: BottomSheetType.profile,
+              );
             },
             child: Container(
               width: 11 * AppSpacing.px4,
               height: 11 * AppSpacing.px4,
               decoration: BoxDecoration(
                 image: const DecorationImage(
-                    image: NetworkImage("https://picsum.photos/100/100")),
+                  image: NetworkImage("https://picsum.photos/100/100"),
+                ),
                 borderRadius: BorderRadius.circular(12),
                 color: Colors.red,
               ),
             ),
-          )
+          ),
         ],
       ),
     );

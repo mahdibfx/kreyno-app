@@ -28,25 +28,29 @@ class MyNewMarkLabel extends StatelessWidget {
                 ),
                 HGap(AppSpacing.px8),
                 Expanded(
-                    child: TextFormField(
-                  style: TextStyle(
+                  child: TextFormField(
+                    style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: AppSpacing.px1 * 14,
-                      fontFamily: "Satoshi"),
-                  decoration: InputDecoration(
+                      fontFamily: "Satoshi",
+                    ),
+                    decoration: InputDecoration(
                       hintText: 'Search ..',
                       border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(12)),
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                       isDense: true,
                       filled: true,
-                      fillColor: AppColors.white),
-                ))
+                      fillColor: AppColors.white,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
         ),
-        const ChoosePlaceBottomBar()
+        const ChoosePlaceBottomBar(),
       ],
     );
   }
@@ -64,17 +68,21 @@ class ChoosePlaceBottomBar extends StatelessWidget {
           child: Align(
             alignment: Alignment.centerRight,
             child: RoundedButton(
-                shape: BoxShape.rectangle,
-                iconPath: AppIcons.gpsOn,
-                onPressed: () {}),
+              shape: BoxShape.rectangle,
+              iconPath: AppIcons.gpsOn,
+              onPressed: () {},
+            ),
           ),
         ),
         VGap(AppSpacing.px24),
         Container(
           decoration: const BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+            color: AppColors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
           padding: EdgeInsets.symmetric(
             horizontal: AppSpacing.px20,
             vertical: AppSpacing.px20,
@@ -92,10 +100,7 @@ class ChoosePlaceBottomBar extends StatelessWidget {
                 color: AppColors.textKre,
               ),
               VGap(AppSpacing.px24),
-              CustomButton.filled(
-                text: "Choisir",
-                onPressed: () async {},
-              ),
+              CustomButton.filled(text: "Choisir", onPressed: () async {}),
             ],
           ),
         ),

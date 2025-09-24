@@ -1,3 +1,5 @@
+import 'package:kreyno/services/api/dio_service.dart';
+import 'package:kreyno/services/shared_prefs_service.dart';
 import 'package:kreyno/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:kreyno/ui/views/home/home_view.dart';
 import 'package:kreyno/ui/views/startup/startup_view.dart';
@@ -50,6 +52,7 @@ import 'package:kreyno/ui/views/change_language/change_language_view.dart';
 // @stacked-import
 
 @StackedApp(
+  logger: StackedLogger(),
   routes: [
     MaterialRoute(page: HomeView),
     MaterialRoute(page: StartupView),
@@ -69,7 +72,7 @@ import 'package:kreyno/ui/views/change_language/change_language_view.dart';
     MaterialRoute(page: SpotsHistoryView),
     MaterialRoute(page: KreynoWalletView),
     MaterialRoute(page: CashoutView),
-    MaterialRoute(page: EditVehiculeView),
+    MaterialRoute(page: EditVehiculeView), // @stacked-route
     MaterialRoute(page: MyStationementsView),
     MaterialRoute(page: KreyonoPortfolioView),
     MaterialRoute(page: CheckoutMoneyView),
@@ -85,6 +88,8 @@ import 'package:kreyno/ui/views/change_language/change_language_view.dart';
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
+    LazySingleton(classType: SharedPrefsService),
+    Singleton(classType: DioService),
     // @stacked-service
   ],
   bottomsheets: [
@@ -106,11 +111,11 @@ import 'package:kreyno/ui/views/change_language/change_language_view.dart';
     StackedBottomsheet(classType: LogoutConfirmationSheet),
     StackedBottomsheet(classType: DeleteAccountConfirmationSheet),
     StackedBottomsheet(classType: CheckoutMoneyFeedbackSheet),
-// @stacked-bottom-sheet
+    // @stacked-bottom-sheet
   ],
   dialogs: [
     StackedDialog(classType: DeleteSpotDialog),
-// @stacked-dialog
+    // @stacked-dialog
   ],
 )
 class App {}

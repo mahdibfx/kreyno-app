@@ -38,9 +38,7 @@ class MyPaymentMethodesView extends StackedView<MyPaymentMethodesViewModel> {
               },
               text: "Ajouter une nouvelle carte")),
       backgroundColor: Colors.white,
-      appBar: MyAppBar(
-        title: 'Moyens de paiement',
-      ),
+      appBar: MyAppBar(title: 'Moyens de paiement'),
       body: CustomScrollView(
         slivers: [
           SliverPadding(
@@ -51,16 +49,14 @@ class MyPaymentMethodesView extends StackedView<MyPaymentMethodesViewModel> {
                 children: [const MyPaymentMethod(), VGap(AppSpacing.px12)],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
   }
 
   @override
-  MyPaymentMethodesViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  MyPaymentMethodesViewModel viewModelBuilder(BuildContext context) =>
       MyPaymentMethodesViewModel();
 }
 
@@ -72,9 +68,11 @@ class MyPaymentMethod extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(AppSpacing.px8),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: const Border.fromBorderSide(
-              BorderSide(color: AppColors.strokeKre))),
+        borderRadius: BorderRadius.circular(12),
+        border: const Border.fromBorderSide(
+          BorderSide(color: AppColors.strokeKre),
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -83,18 +81,18 @@ class MyPaymentMethod extends StatelessWidget {
             height: AppSpacing.px1 * 164,
             padding: EdgeInsets.all(AppSpacing.px16),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                image: const DecorationImage(
-                    image: AssetImage(AppImages.bgCard), fit: BoxFit.cover)),
+              borderRadius: BorderRadius.circular(8),
+              image: const DecorationImage(
+                image: AssetImage(AppImages.bgCard),
+                fit: BoxFit.cover,
+              ),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Image.asset(AppImages.visaTextLogo),
-                const CustomText.largeTitle(
-                  "**** 4355",
-                  color: Colors.white,
-                )
+                const CustomText.largeTitle("**** 4355", color: Colors.white),
               ],
             ),
           ),
@@ -111,7 +109,7 @@ class MyPaymentMethod extends StatelessWidget {
                     CustomText.labelMedium(
                       "Nom sur la carte",
                       color: AppColors.textKre,
-                    )
+                    ),
                   ],
                 ),
                 VGap(AppSpacing.px16),
@@ -125,7 +123,7 @@ class MyPaymentMethod extends StatelessWidget {
                           CustomText.labelMedium(
                             "Valide jusqu’au",
                             color: AppColors.textKre,
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -137,10 +135,10 @@ class MyPaymentMethod extends StatelessWidget {
                           CustomText.labelMedium(
                             "CVV",
                             color: AppColors.textKre,
-                          )
+                          ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ],

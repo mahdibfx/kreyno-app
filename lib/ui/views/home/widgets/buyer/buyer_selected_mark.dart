@@ -22,8 +22,9 @@ class BuyerSelectedMark extends StatelessWidget {
         const CarTopBar(),
         InkWell(
           onTap: () {
-            final result = locator<BottomSheetService>()
-                .showCustomSheet(variant: BottomSheetType.payForSpot);
+            final result = locator<BottomSheetService>().showCustomSheet(
+              variant: BottomSheetType.payForSpot,
+            );
           },
           child: Column(
             children: [
@@ -40,10 +41,12 @@ class BuyerSelectedMark extends StatelessWidget {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          child: Image.network("https://picsum.photos/200/300",
-                              width: AppSpacing.px1 * 40,
-                              height: AppSpacing.px1 * 40,
-                              fit: BoxFit.cover),
+                          child: Image.network(
+                            "https://picsum.photos/200/300",
+                            width: AppSpacing.px1 * 40,
+                            height: AppSpacing.px1 * 40,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                         HGap(AppSpacing.px8),
                         const Column(
@@ -53,7 +56,7 @@ class BuyerSelectedMark extends StatelessWidget {
                             CustomText.labelMedium(
                               "propose une place à",
                               color: AppColors.textKre,
-                            )
+                            ),
                           ],
                         ),
                         const Expanded(
@@ -70,10 +73,10 @@ class BuyerSelectedMark extends StatelessWidget {
                                 iconPath: AppIcons.euro,
                                 size: 20,
                                 color: AppColors.greenKre,
-                              )
+                              ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                     VGap(AppSpacing.px8),
@@ -106,7 +109,7 @@ class BuyerSelectedMark extends StatelessWidget {
                               text: "2.5 km",
                               style: CustomTextStyle.smallParagraphMedium,
                               color: AppColors.textKre,
-                            )
+                            ),
                           ],
                         ),
                       ],
@@ -118,7 +121,7 @@ class BuyerSelectedMark extends StatelessWidget {
               const LetMyPlaceBottombar(),
             ],
           ),
-        )
+        ),
       ],
     );
   }

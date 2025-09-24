@@ -26,10 +26,10 @@ class TrackingCourseWidget extends ViewModelWidget<HomeViewModel> {
           mainAxisSize: MainAxisSize.min,
           children: [
             const CounterAppBar(),
-            if (viewModel.clientArrived) const YourClientArrived()
+            if (viewModel.clientArrived) const YourClientArrived(),
           ],
         ),
-        const BottomActionBar()
+        const BottomActionBar(),
       ],
     );
   }
@@ -42,34 +42,34 @@ class CounterAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24).copyWith(
-          top: MediaQuery.of(context).viewPadding.top,
-          bottom: AppSpacing.px1 * 14),
+        top: MediaQuery.of(context).viewPadding.top,
+        bottom: AppSpacing.px1 * 14,
+      ),
       color: Colors.white,
       width: double.infinity,
       child: Row(
         children: [
           ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                "https://picsum.photos/50/50",
-                width: AppSpacing.px1 * 40,
-                height: AppSpacing.px1 * 40,
-              )),
+            borderRadius: BorderRadius.circular(12),
+            child: Image.network(
+              "https://picsum.photos/50/50",
+              width: AppSpacing.px1 * 40,
+              height: AppSpacing.px1 * 40,
+            ),
+          ),
           HGap(AppSpacing.px8),
           const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomText.smallParagraphBold(
-                "sarah.dupons92",
-              ),
+              CustomText.smallParagraphBold("sarah.dupons92"),
               CustomText.smallParagraphMedium(
                 "Renault Clio 5 · DE-123-JW",
                 color: AppColors.textKre,
-              )
+              ),
             ],
           ),
           const Expanded(child: SizedBox()),
-          const CustomText.smallParagraphBold("04:58")
+          const CustomText.smallParagraphBold("04:58"),
         ],
       ),
     );
@@ -83,9 +83,12 @@ class BottomActionBar extends ViewModelWidget<HomeViewModel> {
   Widget build(BuildContext context, viewModel) {
     return Container(
       decoration: const BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+        color: AppColors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
       padding: EdgeInsets.symmetric(
         horizontal: AppSpacing.px20,
         vertical: AppSpacing.px20,
@@ -98,15 +101,17 @@ class BottomActionBar extends ViewModelWidget<HomeViewModel> {
                 Row(
                   children: [
                     const CustomIcon(
-                        iconPath: AppIcons.info, color: AppColors.textKre),
+                      iconPath: AppIcons.info,
+                      color: AppColors.textKre,
+                    ),
                     HGap(AppSpacing.px4),
                     const CustomText.labelMedium(
                       "Vous pouvez annuler la réservation après 5 minutes.",
                       color: AppColors.textKre,
-                    )
+                    ),
                   ],
                 ),
-                VGap(AppSpacing.px12)
+                VGap(AppSpacing.px12),
               ],
             ),
           if (viewModel.clientArrived)
@@ -141,7 +146,7 @@ class BottomActionBar extends ViewModelWidget<HomeViewModel> {
                           text: "2.5 km",
                           style: CustomTextStyle.smallParagraphMedium,
                           color: AppColors.textKre,
-                        )
+                        ),
                       ],
                     ),
                   ],
@@ -154,24 +159,24 @@ class BottomActionBar extends ViewModelWidget<HomeViewModel> {
           Row(
             children: [
               Expanded(
-                  child: CustomButton.filled(
-                text: "Annuler",
-                backgroundColor: AppColors.redKre,
-                foregroundColor: AppColors.white,
-                onPressed: viewModel.clientArrived
-                    ? null
-                    : () {
-                        locator<BottomSheetService>().showCustomSheet(
+                child: CustomButton.filled(
+                  text: "Annuler",
+                  backgroundColor: AppColors.redKre,
+                  foregroundColor: AppColors.white,
+                  onPressed: viewModel.clientArrived
+                      ? null
+                      : () {
+                          locator<BottomSheetService>().showCustomSheet(
                             variant: BottomSheetType.cancelationReasons,
-                            isScrollControlled: true);
-                      },
-              )),
+                            isScrollControlled: true,
+                          );
+                        },
+                ),
+              ),
               SizedBox(width: AppSpacing.px8),
               Expanded(
-                  child: CustomButton.filled(
-                text: "Message",
-                onPressed: () {},
-              ))
+                child: CustomButton.filled(text: "Message", onPressed: () {}),
+              ),
             ],
           ),
         ],
@@ -187,10 +192,14 @@ class YourClientArrived extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(
-          horizontal: AppSpacing.px24, vertical: AppSpacing.px12),
+        horizontal: AppSpacing.px24,
+        vertical: AppSpacing.px12,
+      ),
       padding: EdgeInsets.all(AppSpacing.px16),
       decoration: BoxDecoration(
-          color: AppColors.white, borderRadius: BorderRadius.circular(20)),
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -202,10 +211,7 @@ class YourClientArrived extends StatelessWidget {
             color: AppColors.textKre,
           ),
           VGap(AppSpacing.px1 * 18),
-          CustomButton.filled(
-            text: "J’ai cédé ma place",
-            onPressed: () {},
-          )
+          CustomButton.filled(text: "J’ai cédé ma place", onPressed: () {}),
         ],
       ),
     );

@@ -20,11 +20,8 @@ import 'profile_sheet_model.dart';
 class ProfileSheet extends StackedView<ProfileSheetModel> {
   final Function(SheetResponse response)? completer;
   final SheetRequest request;
-  const ProfileSheet({
-    Key? key,
-    required this.completer,
-    required this.request,
-  }) : super(key: key);
+  const ProfileSheet({Key? key, required this.completer, required this.request})
+      : super(key: key);
 
   @override
   Widget builder(
@@ -39,42 +36,38 @@ class ProfileSheet extends StackedView<ProfileSheetModel> {
             width: double.infinity,
             padding: const EdgeInsets.all(2),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                border: const Border.fromBorderSide(
-                    BorderSide(color: AppColors.strokeKre))),
+              borderRadius: BorderRadius.circular(12),
+              border: const Border.fromBorderSide(
+                BorderSide(color: AppColors.strokeKre),
+              ),
+            ),
             child: Column(
               children: [
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      gradient: const LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Color(0xFFF5F5F5),
-                            Color.fromARGB(0, 250, 250, 250),
-                          ])),
+                    borderRadius: BorderRadius.circular(12),
+                    gradient: const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color(0xFFF5F5F5),
+                        Color.fromARGB(0, 250, 250, 250),
+                      ],
+                    ),
+                  ),
                   child: Column(
                     children: [
                       VGap(AppSpacing.px20),
-                      const CircleAvatar(
-                        radius: 25,
-                      ),
-                      VGap(
-                        AppSpacing.px8,
-                      ),
+                      const CircleAvatar(radius: 25),
+                      VGap(AppSpacing.px8),
                       const CustomText.title("Olivier Dupons"),
-                      VGap(
-                        AppSpacing.px4,
-                      ),
+                      VGap(AppSpacing.px4),
                       const CustomText.smallParagraphMedium(
                         "+33 612345678",
                         color: AppColors.textKre,
                       ),
-                      VGap(
-                        AppSpacing.px12,
-                      ),
+                      VGap(AppSpacing.px12),
                       CustomButton.outlined(
                         expandToFullWidth: false,
                         text: "Paramètres du compte",
@@ -82,7 +75,7 @@ class ProfileSheet extends StackedView<ProfileSheetModel> {
                           locator<NavigationService>().navigateToSettingsView();
                         },
                         foregroundColor: AppColors.mainKre,
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -175,14 +168,16 @@ class ProfileSheet extends StackedView<ProfileSheetModel> {
           VGap(AppSpacing.px24),
           InkWell(
             onTap: () {
-              locator<BottomSheetService>()
-                  .showCustomSheet(variant: BottomSheetType.logoutConfirmation);
+              locator<BottomSheetService>().showCustomSheet(
+                variant: BottomSheetType.logoutConfirmation,
+              );
             },
             child: Container(
               padding: EdgeInsets.all(AppSpacing.px1 * 10),
               decoration: BoxDecoration(
-                  color: AppColors.redKre.withValues(alpha: 0.05),
-                  borderRadius: BorderRadius.circular(12)),
+                color: AppColors.redKre.withValues(alpha: 0.05),
+                borderRadius: BorderRadius.circular(12),
+              ),
               child: Row(
                 children: [
                   const CustomIcon(
@@ -193,7 +188,7 @@ class ProfileSheet extends StackedView<ProfileSheetModel> {
                   const CustomText.smallParagraphBold(
                     "Déconnexion",
                     color: AppColors.redKre,
-                  )
+                  ),
                 ],
               ),
             ),
@@ -225,10 +220,7 @@ class ProfileListTile extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: AppSpacing.px1 * 10),
       child: Row(
         children: [
-          CustomIcon(
-            iconPath: icon,
-            size: 20,
-          ),
+          CustomIcon(iconPath: icon, size: 20),
           HGap(AppSpacing.px1 * 10),
           CustomText(
             text: title,
@@ -262,15 +254,17 @@ class ProfileSettingsListTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(5),
       decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-          border:
-              Border.fromBorderSide(BorderSide(color: AppColors.strokeKre))),
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        border: Border.fromBorderSide(BorderSide(color: AppColors.strokeKre)),
+      ),
       child: Row(
         children: [
           Container(
             padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
-                color: iconBgColor, borderRadius: BorderRadius.circular(7)),
+              color: iconBgColor,
+              borderRadius: BorderRadius.circular(7),
+            ),
             child: icon,
           ),
           HGap(AppSpacing.px1 * 10),
@@ -280,7 +274,7 @@ class ProfileSettingsListTile extends StatelessWidget {
             iconPath: AppIcons.arrowRight,
             color: AppColors.textKre,
           ),
-          HGap(AppSpacing.px8)
+          HGap(AppSpacing.px8),
         ],
       ),
     );

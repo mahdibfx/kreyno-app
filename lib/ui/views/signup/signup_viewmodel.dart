@@ -2,12 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
+import 'package:kreyno/ui/views/signup/signup_view.form.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class SignupViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
+
+  bool get isFormValid =>
+      (hasPhoneNumber &&
+          hasFirstName &&
+          hasLastName &&
+          hasEmail &&
+          hasUserName &&
+          hasAddress) &&
+      (hasPhoneNumberValidationMessage == false &&
+          hasFirstNameValidationMessage == false &&
+          hasLastNameValidationMessage == false &&
+          hasEmailValidationMessage == false &&
+          hasUserNameValidationMessage == false &&
+          hasAddressValidationMessage == false);
 
   bool _isMale = true;
   bool get isMale => _isMale;

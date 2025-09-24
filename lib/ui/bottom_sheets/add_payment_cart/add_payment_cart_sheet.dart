@@ -31,78 +31,89 @@ class AddPaymentCartSheet extends StackedView<AddPaymentCartSheetModel> {
     Widget? child,
   ) {
     return BottomSheetLayout(
-        body: Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            InkWell(
-                onTap: () {
-                  locator<NavigationService>().back();
-                },
-                child: const CustomIcon(iconPath: AppIcons.arrowLeft)),
-            const CustomText.paragraph("Ajouter une carte"),
-            const Opacity(
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                  onTap: () {
+                    locator<NavigationService>().back();
+                  },
+                  child: const CustomIcon(iconPath: AppIcons.arrowLeft)),
+              const CustomText.paragraph("Ajouter une carte"),
+              const Opacity(
                 opacity: 0,
-                child: CustomIcon(iconPath: AppIcons.multiplicationSign))
-          ],
-        ),
-        VGap(AppSpacing.px24),
-        InputField(
+                child: CustomIcon(iconPath: AppIcons.multiplicationSign),
+              ),
+            ],
+          ),
+          VGap(AppSpacing.px24),
+          InputField(
             controller: TextEditingController(),
             focusNode: FocusNode(),
             labelText: "Nom sur la carte",
             hintText: "Entrez le nom",
-            keyboardType: TextInputType.text),
-        VGap(AppSpacing.px16),
-        InputField(
+            keyboardType: TextInputType.text,
+          ),
+          VGap(AppSpacing.px16),
+          InputField(
             controller: TextEditingController(),
             focusNode: FocusNode(),
             labelText: "Numero de la carte",
             hintText: "XXXX XXXX XXXX XXXX",
-            keyboardType: TextInputType.text),
-        VGap(AppSpacing.px16),
-        Row(
-          children: [
-            Expanded(
-              child: InputField(
+            keyboardType: TextInputType.text,
+          ),
+          VGap(AppSpacing.px16),
+          Row(
+            children: [
+              Expanded(
+                child: InputField(
                   controller: TextEditingController(),
                   focusNode: FocusNode(),
                   labelText: "Expiration",
                   hintText: "mm/aaaa",
-                  keyboardType: TextInputType.text),
-            ),
-            HGap(AppSpacing.px12),
-            Expanded(
-              child: InputField(
+                  keyboardType: TextInputType.text,
+                ),
+              ),
+              HGap(AppSpacing.px12),
+              Expanded(
+                child: InputField(
                   controller: TextEditingController(),
                   focusNode: FocusNode(),
                   labelText: "CVV",
                   hintText: "CVV",
-                  keyboardType: TextInputType.text),
-            ),
-          ],
-        ),
-        VGap(AppSpacing.px16),
-        Column(
-          children: [
-            LabeledCheckbox(
+                  keyboardType: TextInputType.text,
+                ),
+              ),
+            ],
+          ),
+          VGap(AppSpacing.px16),
+          Column(
+            children: [
+              LabeledCheckbox(
                 label: "Définir en tant que carte principale",
                 value: true,
-                onChanged: (d) {}),
-            VGap(AppSpacing.px8),
-            LabeledCheckbox(
+                onChanged: (d) {},
+              ),
+              VGap(AppSpacing.px8),
+              LabeledCheckbox(
                 label:
                     "J’ai lu et approuvé les termes et les conditions d’utilisations.",
                 value: true,
-                onChanged: (d) {})
-          ],
-        ),
-        VGap(AppSpacing.px16),
-        CustomButton.filled(text: "Enregistrer cette carte", onPressed: () {}),
-        VGap(AppSpacing.px16),
-      ],
-    ));
+                onChanged: (d) {},
+              ),
+            ],
+          ),
+          VGap(AppSpacing.px16),
+          CustomButton.filled(
+            text: "Enregistrer cette carte",
+            onPressed: () {},
+          ),
+          VGap(AppSpacing.px16),
+        ],
+      ),
+    );
   }
 
   @override

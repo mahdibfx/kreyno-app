@@ -30,50 +30,51 @@ class CheckoutMoneyFeedbackSheet
     Widget? child,
   ) {
     return BottomSheetLayout(
-        showDragHandler: false,
-        body: Column(
-          children: [
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                CircleAvatar(
-                  radius: 11,
-                  backgroundColor: Color(0xFFF1F1F1),
-                  child: CustomIcon(
-                    iconPath: AppIcons.multiplicationSign,
-                    size: 18,
-                  ),
-                )
-              ],
-            ),
-            Image.asset(
-              request.data == "success"
-                  ? AppImages.successIllustration
-                  : AppImages.failIllustration,
-              width: 128,
-              height: 128,
-            ),
-            VGap(AppSpacing.px20),
-            CustomText.largeTitle(request.data == "success"
-                ? "Retrait confirmé"
-                : "Échec du retrait"),
-            VGap(AppSpacing.px4),
-            CustomText.smallParagraphMedium(
-              request.data == "success"
-                  ? "Votre demande a été enregistrée. Vous recevrez votre virement sous peu."
-                  : "Une erreur est survenue. Veuillez réessayer ultérieurement.",
-              color: AppColors.textKre,
-              maxLines: 2,
-              textAlign: TextAlign.center,
-            ),
-            VGap(AppSpacing.px1 * 26),
-            CustomButton.filled(
-              text: request.data == "success" ? "Terminer" : "Ressayer",
-              onPressed: () {},
-            ),
-            VGap(AppSpacing.px12),
-          ],
-        ));
+      showDragHandler: false,
+      body: Column(
+        children: [
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              CircleAvatar(
+                radius: 11,
+                backgroundColor: Color(0xFFF1F1F1),
+                child: CustomIcon(
+                  iconPath: AppIcons.multiplicationSign,
+                  size: 18,
+                ),
+              ),
+            ],
+          ),
+          Image.asset(
+            request.data == "success"
+                ? AppImages.successIllustration
+                : AppImages.failIllustration,
+            width: 128,
+            height: 128,
+          ),
+          VGap(AppSpacing.px20),
+          CustomText.largeTitle(
+            request.data == "success" ? "Retrait confirmé" : "Échec du retrait",
+          ),
+          VGap(AppSpacing.px4),
+          CustomText.smallParagraphMedium(
+            request.data == "success"
+                ? "Votre demande a été enregistrée. Vous recevrez votre virement sous peu."
+                : "Une erreur est survenue. Veuillez réessayer ultérieurement.",
+            color: AppColors.textKre,
+            maxLines: 2,
+            textAlign: TextAlign.center,
+          ),
+          VGap(AppSpacing.px1 * 26),
+          CustomButton.filled(
+            text: request.data == "success" ? "Terminer" : "Ressayer",
+            onPressed: () {},
+          ),
+          VGap(AppSpacing.px12),
+        ],
+      ),
+    );
   }
 
   @override

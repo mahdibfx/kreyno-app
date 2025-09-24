@@ -8,11 +8,8 @@ import 'buy_spot_sheet_model.dart';
 class BuySpotSheet extends StackedView<BuySpotSheetModel> {
   final Function(SheetResponse response)? completer;
   final SheetRequest request;
-  const BuySpotSheet({
-    Key? key,
-    required this.completer,
-    required this.request,
-  }) : super(key: key);
+  const BuySpotSheet({Key? key, required this.completer, required this.request})
+    : super(key: key);
 
   @override
   Widget builder(

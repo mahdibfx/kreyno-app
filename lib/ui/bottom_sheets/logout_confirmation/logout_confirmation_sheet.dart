@@ -30,42 +30,45 @@ class LogoutConfirmationSheet
     Widget? child,
   ) {
     return BottomSheetLayout(
-        showDragHandler: false,
-        body: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CircleAvatar(
-                  radius: 25,
-                  backgroundColor: AppColors.redKre.withValues(alpha: .05),
-                  child: const CustomIcon(
-                    iconPath: AppIcons.logout,
-                    color: AppColors.redKre,
-                  ),
+      showDragHandler: false,
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CircleAvatar(
+                radius: 25,
+                backgroundColor: AppColors.redKre.withValues(alpha: .05),
+                child: const CustomIcon(
+                  iconPath: AppIcons.logout,
+                  color: AppColors.redKre,
                 ),
-                RoundedButton(
-                    iconPath: AppIcons.multiplicationSign, onPressed: () {})
-              ],
-            ),
-            VGap(AppSpacing.px20),
-            const CustomText.largeTitle("Se déconnecter de Kreyno ?"),
-            VGap(AppSpacing.px20),
-            const CustomText.smallParagraphMedium(
-              "Êtes-vous sûr de vouloir vous déconnecter ? Vous pourrez toujours vous reconnecter à tout moment.",
-              maxLines: 2,
-              color: AppColors.textKre,
-            ),
-            VGap(AppSpacing.px20 * 1.5),
-            CustomButton.filled(
-              text: "Oui, se déconnecter",
-              onPressed: () {},
-              backgroundColor: AppColors.redKre,
-              foregroundColor: AppColors.white,
-            ),
-            VGap(AppSpacing.px12),
-          ],
-        ));
+              ),
+              RoundedButton(
+                iconPath: AppIcons.multiplicationSign,
+                onPressed: () {},
+              ),
+            ],
+          ),
+          VGap(AppSpacing.px20),
+          const CustomText.largeTitle("Se déconnecter de Kreyno ?"),
+          VGap(AppSpacing.px20),
+          const CustomText.smallParagraphMedium(
+            "Êtes-vous sûr de vouloir vous déconnecter ? Vous pourrez toujours vous reconnecter à tout moment.",
+            maxLines: 2,
+            color: AppColors.textKre,
+          ),
+          VGap(AppSpacing.px20 * 1.5),
+          CustomButton.filled(
+            text: "Oui, se déconnecter",
+            onPressed: () {},
+            backgroundColor: AppColors.redKre,
+            foregroundColor: AppColors.white,
+          ),
+          VGap(AppSpacing.px12),
+        ],
+      ),
+    );
   }
 
   @override

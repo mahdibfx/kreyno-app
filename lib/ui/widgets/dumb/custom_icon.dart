@@ -22,14 +22,12 @@ class CustomIcon extends StatelessWidget {
       iconPath,
       width: size,
       height: size,
-      colorFilter:
-          color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,
+      colorFilter: color != null
+          ? ColorFilter.mode(color!, BlendMode.srcIn)
+          : null,
       fit: fit,
-      placeholderBuilder: (context) => Icon(
-        Icons.error_outline,
-        size: size,
-        color: AppColors.redKre,
-      ),
+      placeholderBuilder: (context) =>
+          Icon(Icons.error_outline, size: size, color: AppColors.redKre),
     );
   }
 }

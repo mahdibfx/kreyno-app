@@ -44,11 +44,13 @@ class LabeledRadio extends StatelessWidget {
                 opacity: value ? 1 : 0,
                 duration: const Duration(milliseconds: 200),
                 child: Center(
-                    child: CircleAvatar(
-                  radius: 3,
-                  backgroundColor:
-                      value ? AppColors.redKre : Colors.transparent,
-                )),
+                  child: CircleAvatar(
+                    radius: 3,
+                    backgroundColor: value
+                        ? AppColors.redKre
+                        : Colors.transparent,
+                  ),
+                ),
               ),
             ),
             Expanded(

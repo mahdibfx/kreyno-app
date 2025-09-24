@@ -30,43 +30,46 @@ class DeleteAccountConfirmationSheet
     Widget? child,
   ) {
     return BottomSheetLayout(
-        showDragHandler: false,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CircleAvatar(
-                  radius: 25,
-                  backgroundColor: AppColors.redKre.withValues(alpha: .05),
-                  child: const CustomIcon(
-                    iconPath: AppIcons.dangerTriangle,
-                    color: AppColors.redKre,
-                  ),
+      showDragHandler: false,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CircleAvatar(
+                radius: 25,
+                backgroundColor: AppColors.redKre.withValues(alpha: .05),
+                child: const CustomIcon(
+                  iconPath: AppIcons.dangerTriangle,
+                  color: AppColors.redKre,
                 ),
-                RoundedButton(
-                    iconPath: AppIcons.multiplicationSign, onPressed: () {})
-              ],
-            ),
-            VGap(AppSpacing.px20),
-            const CustomText.largeTitle("Êtes-vous sûr ?"),
-            VGap(AppSpacing.px20),
-            const CustomText.smallParagraphMedium(
-              "En supprimant votre compte, toutes vos informations, y compris vos parkings, paiements et véhicules ajoutés, seront définitivement effacées de Kreyno.",
-              maxLines: 4,
-              color: AppColors.textKre,
-            ),
-            VGap(AppSpacing.px20 * 1.5),
-            CustomButton.filled(
-              text: "Supprimer le compte",
-              onPressed: () {},
-              backgroundColor: AppColors.redKre,
-              foregroundColor: AppColors.white,
-            ),
-            VGap(AppSpacing.px12),
-          ],
-        ));
+              ),
+              RoundedButton(
+                iconPath: AppIcons.multiplicationSign,
+                onPressed: () {},
+              ),
+            ],
+          ),
+          VGap(AppSpacing.px20),
+          const CustomText.largeTitle("Êtes-vous sûr ?"),
+          VGap(AppSpacing.px20),
+          const CustomText.smallParagraphMedium(
+            "En supprimant votre compte, toutes vos informations, y compris vos parkings, paiements et véhicules ajoutés, seront définitivement effacées de Kreyno.",
+            maxLines: 4,
+            color: AppColors.textKre,
+          ),
+          VGap(AppSpacing.px20 * 1.5),
+          CustomButton.filled(
+            text: "Supprimer le compte",
+            onPressed: () {},
+            backgroundColor: AppColors.redKre,
+            foregroundColor: AppColors.white,
+          ),
+          VGap(AppSpacing.px12),
+        ],
+      ),
+    );
   }
 
   @override

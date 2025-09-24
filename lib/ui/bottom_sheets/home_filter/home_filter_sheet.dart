@@ -86,10 +86,7 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText.paragraph("Rayon de recherche"),
-              CustomText.smallParagraphBold(
-                "3 min",
-                color: AppColors.greenKre,
-              )
+              CustomText.smallParagraphBold("3 min", color: AppColors.greenKre),
             ],
           ),
           VGap(AppSpacing.px12),
@@ -114,12 +111,10 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
               ),
               HGap(AppSpacing.px8),
               Expanded(
-                  child: CustomButton.filled(
-                text: "Appliquer",
-                onPressed: () {},
-              ))
+                child: CustomButton.filled(text: "Appliquer", onPressed: () {}),
+              ),
             ],
-          )
+          ),
         ],
       ),
     );

@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -7,6 +8,7 @@
 // ignore_for_file: public_member_api_docs, constant_identifier_names, non_constant_identifier_names,unnecessary_this
 
 import 'package:flutter/material.dart';
+import 'package:kreyno/services/validation_service.dart';
 import 'package:stacked/stacked.dart';
 
 const bool _autoTextFieldValidation = true;
@@ -23,12 +25,12 @@ final Map<String, TextEditingController> _SignupViewTextEditingControllers = {};
 final Map<String, FocusNode> _SignupViewFocusNodes = {};
 
 final Map<String, String? Function(String?)?> _SignupViewTextValidations = {
-  PhoneNumberValueKey: null,
-  FirstNameValueKey: null,
-  LastNameValueKey: null,
-  EmailValueKey: null,
-  UserNameValueKey: null,
-  AddressValueKey: null,
+  PhoneNumberValueKey: ValidationService.phoneValidator,
+  FirstNameValueKey: ValidationService.firstNameValidator,
+  LastNameValueKey: ValidationService.lastNameValidator,
+  EmailValueKey: ValidationService.emailValidator,
+  UserNameValueKey: ValidationService.emptyValidator,
+  AddressValueKey: ValidationService.emptyValidator,
 };
 
 mixin $SignupView {
@@ -60,8 +62,9 @@ mixin $SignupView {
       return _SignupViewTextEditingControllers[key]!;
     }
 
-    _SignupViewTextEditingControllers[key] =
-        TextEditingController(text: initialValue);
+    _SignupViewTextEditingControllers[key] = TextEditingController(
+      text: initialValue,
+    );
     return _SignupViewTextEditingControllers[key]!;
   }
 
@@ -106,15 +109,14 @@ mixin $SignupView {
   /// Updates the formData on the FormViewModel
   void _updateFormData(FormStateHelper model, {bool forceValidate = false}) {
     model.setData(
-      model.formValueMap
-        ..addAll({
-          PhoneNumberValueKey: phoneNumberController.text,
-          FirstNameValueKey: firstNameController.text,
-          LastNameValueKey: lastNameController.text,
-          EmailValueKey: emailController.text,
-          UserNameValueKey: userNameController.text,
-          AddressValueKey: addressController.text,
-        }),
+      model.formValueMap..addAll({
+        PhoneNumberValueKey: phoneNumberController.text,
+        FirstNameValueKey: firstNameController.text,
+        LastNameValueKey: lastNameController.text,
+        EmailValueKey: emailController.text,
+        UserNameValueKey: userNameController.text,
+        AddressValueKey: addressController.text,
+      }),
     );
 
     if (_autoTextFieldValidation || forceValidate) {
@@ -144,10 +146,9 @@ mixin $SignupView {
 }
 
 extension ValueProperties on FormStateHelper {
-  bool get hasAnyValidationMessage => this
-      .fieldsValidationMessages
-      .values
-      .any((validation) => validation != null);
+  bool get hasAnyValidationMessage => this.fieldsValidationMessages.values.any(
+    (validation) => validation != null,
+  );
 
   bool get isFormValid {
     if (!_autoTextFieldValidation) this.validateForm();
@@ -164,9 +165,7 @@ extension ValueProperties on FormStateHelper {
   String? get addressValue => this.formValueMap[AddressValueKey] as String?;
 
   set phoneNumberValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({PhoneNumberValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({PhoneNumberValueKey: value}));
 
     if (_SignupViewTextEditingControllers.containsKey(PhoneNumberValueKey)) {
       _SignupViewTextEditingControllers[PhoneNumberValueKey]?.text =
@@ -175,9 +174,7 @@ extension ValueProperties on FormStateHelper {
   }
 
   set firstNameValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({FirstNameValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({FirstNameValueKey: value}));
 
     if (_SignupViewTextEditingControllers.containsKey(FirstNameValueKey)) {
       _SignupViewTextEditingControllers[FirstNameValueKey]?.text = value ?? '';
@@ -185,9 +182,7 @@ extension ValueProperties on FormStateHelper {
   }
 
   set lastNameValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({LastNameValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({LastNameValueKey: value}));
 
     if (_SignupViewTextEditingControllers.containsKey(LastNameValueKey)) {
       _SignupViewTextEditingControllers[LastNameValueKey]?.text = value ?? '';
@@ -195,9 +190,7 @@ extension ValueProperties on FormStateHelper {
   }
 
   set emailValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({EmailValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({EmailValueKey: value}));
 
     if (_SignupViewTextEditingControllers.containsKey(EmailValueKey)) {
       _SignupViewTextEditingControllers[EmailValueKey]?.text = value ?? '';
@@ -205,9 +198,7 @@ extension ValueProperties on FormStateHelper {
   }
 
   set userNameValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({UserNameValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({UserNameValueKey: value}));
 
     if (_SignupViewTextEditingControllers.containsKey(UserNameValueKey)) {
       _SignupViewTextEditingControllers[UserNameValueKey]?.text = value ?? '';
@@ -215,9 +206,7 @@ extension ValueProperties on FormStateHelper {
   }
 
   set addressValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({AddressValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({AddressValueKey: value}));
 
     if (_SignupViewTextEditingControllers.containsKey(AddressValueKey)) {
       _SignupViewTextEditingControllers[AddressValueKey]?.text = value ?? '';
@@ -271,17 +260,17 @@ extension ValueProperties on FormStateHelper {
 }
 
 extension Methods on FormStateHelper {
-  setPhoneNumberValidationMessage(String? validationMessage) =>
+  void setPhoneNumberValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[PhoneNumberValueKey] = validationMessage;
-  setFirstNameValidationMessage(String? validationMessage) =>
+  void setFirstNameValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[FirstNameValueKey] = validationMessage;
-  setLastNameValidationMessage(String? validationMessage) =>
+  void setLastNameValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[LastNameValueKey] = validationMessage;
-  setEmailValidationMessage(String? validationMessage) =>
+  void setEmailValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[EmailValueKey] = validationMessage;
-  setUserNameValidationMessage(String? validationMessage) =>
+  void setUserNameValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[UserNameValueKey] = validationMessage;
-  setAddressValidationMessage(String? validationMessage) =>
+  void setAddressValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[AddressValueKey] = validationMessage;
 
   /// Clears text input fields on the Form

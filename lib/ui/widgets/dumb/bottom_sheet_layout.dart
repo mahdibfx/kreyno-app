@@ -7,14 +7,19 @@ class BottomSheetLayout extends StatelessWidget {
   // TODO : Add other props based on the
   final EdgeInsets? padding;
   final bool? showDragHandler;
-  const BottomSheetLayout(
-      {super.key, required this.body, this.showDragHandler, this.padding});
+  const BottomSheetLayout({
+    super.key,
+    required this.body,
+    this.showDragHandler,
+    this.padding,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: padding ??
+      padding:
+          padding ??
           EdgeInsets.symmetric(
             horizontal: AppSpacing.px16,
             vertical: AppSpacing.px16,

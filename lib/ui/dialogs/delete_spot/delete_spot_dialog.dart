@@ -68,7 +68,7 @@ class DeleteSpotDialog extends StackedView<DeleteSpotDialogModel> {
                     iconPath: AppIcons.multiplicationSign,
                     color: AppColors.textKre,
                   ),
-                )
+                ),
               ],
             ),
             VGap(AppSpacing.px16),
@@ -94,7 +94,7 @@ class DeleteSpotDialog extends StackedView<DeleteSpotDialogModel> {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

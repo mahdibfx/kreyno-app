@@ -25,13 +25,13 @@ class _AppLogoState extends State<AppLogo> with TickerProviderStateMixin {
       vsync: this,
     );
 
-    _labelRevealAnimation = Tween<double>(
-      begin: widget.animated ? 0.0 : 1.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _labelRevealController,
-      curve: Curves.easeOutQuart,
-    ));
+    _labelRevealAnimation =
+        Tween<double>(begin: widget.animated ? 0.0 : 1.0, end: 1.0).animate(
+          CurvedAnimation(
+            parent: _labelRevealController,
+            curve: Curves.easeOutQuart,
+          ),
+        );
 
     if (widget.animated) {
       Future.delayed(const Duration(milliseconds: 800), () {
@@ -57,10 +57,7 @@ class _AppLogoState extends State<AppLogo> with TickerProviderStateMixin {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Image.asset(
-          AppImages.kreynoLogoIcon,
-          height: 11 * AppSpacing.px4,
-        ),
+        Image.asset(AppImages.kreynoLogoIcon, height: 11 * AppSpacing.px4),
         HGap(AppSpacing.px8),
         Transform.translate(
           offset: const Offset(0, 1),

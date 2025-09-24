@@ -4,11 +4,7 @@ import 'package:kreyno/ui/common/app_typography.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 
-enum CustomButtonVariant {
-  filled,
-  outlined,
-  plain,
-}
+enum CustomButtonVariant { filled, outlined, plain }
 
 enum CustomButtonSize {
   large, // 48px
@@ -38,8 +34,8 @@ class CustomButton extends StatelessWidget {
     this.isDisabled = false,
     this.expandToFullWidth = true,
     this.size = CustomButtonSize.medium,
-  })  : outlineColor = null,
-        variant = CustomButtonVariant.filled;
+  }) : outlineColor = null,
+       variant = CustomButtonVariant.filled;
 
   const CustomButton.outlined({
     super.key,
@@ -51,8 +47,8 @@ class CustomButton extends StatelessWidget {
     this.isDisabled = false,
     this.expandToFullWidth = true,
     this.size = CustomButtonSize.medium,
-  })  : backgroundColor = null,
-        variant = CustomButtonVariant.outlined;
+  }) : backgroundColor = null,
+       variant = CustomButtonVariant.outlined;
 
   const CustomButton.plain({
     super.key,
@@ -63,9 +59,9 @@ class CustomButton extends StatelessWidget {
     this.isDisabled = false,
     this.expandToFullWidth = false,
     this.size = CustomButtonSize.medium,
-  })  : backgroundColor = null,
-        outlineColor = null,
-        variant = CustomButtonVariant.plain;
+  }) : backgroundColor = null,
+       outlineColor = null,
+       variant = CustomButtonVariant.plain;
 
   @override
   Widget build(BuildContext context) {
@@ -102,17 +98,16 @@ class CustomButton extends StatelessWidget {
     return FilledButton(
       onPressed: disabled ? null : onPressed,
       style: FilledButton.styleFrom(
-        backgroundColor:
-            disabled ? AppColors.disabledKre : buttonBackgroundColor,
+        backgroundColor: disabled
+            ? AppColors.disabledKre
+            : buttonBackgroundColor,
         foregroundColor: disabled ? AppColors.textKre : buttonForegroundColor,
         disabledBackgroundColor: AppColors.disabledKre,
         disabledForegroundColor: AppColors.textKre,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppSpacing.px12),
         ),
-        padding: EdgeInsets.symmetric(
-          horizontal: AppSpacing.px24,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         fixedSize: expandToFullWidth
             ? Size(double.maxFinite, _getButtonHeight())
@@ -140,9 +135,7 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppSpacing.px12),
         ),
-        padding: EdgeInsets.symmetric(
-          horizontal: AppSpacing.px24,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
         fixedSize: expandToFullWidth
             ? Size(double.maxFinite, _getButtonHeight())
             : Size.fromHeight(_getButtonHeight()),
@@ -165,9 +158,7 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppSpacing.px12),
         ),
-        padding: EdgeInsets.symmetric(
-          horizontal: AppSpacing.px24,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
         fixedSize: expandToFullWidth
             ? Size(double.maxFinite, _getButtonHeight())
             : Size.fromHeight(_getButtonHeight()),
@@ -202,9 +193,7 @@ class CustomButton extends StatelessWidget {
 
     return Text(
       text,
-      style: AppTypography.smallParagraphBold.copyWith(
-        color: forGroundColor,
-      ),
+      style: AppTypography.smallParagraphBold.copyWith(color: forGroundColor),
     );
   }
 }

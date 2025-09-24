@@ -31,14 +31,15 @@ class MyStationementsView extends StackedView<MyStationementsViewModel> {
           GestureDetector(
             onTap: () {
               final d = locator<BottomSheetService>().showCustomSheet(
-                  isScrollControlled: true,
-                  variant: BottomSheetType.datePickerFilter);
+                isScrollControlled: true,
+                variant: BottomSheetType.datePickerFilter,
+              );
             },
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
               child: const CustomIcon(iconPath: AppIcons.sort),
             ),
-          )
+          ),
         ],
       ),
       body: CustomScrollView(
@@ -91,16 +92,12 @@ class MyStationementsView extends StackedView<MyStationementsViewModel> {
   }
 
   @override
-  MyStationementsViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  MyStationementsViewModel viewModelBuilder(BuildContext context) =>
       MyStationementsViewModel();
 }
 
 class StationementWidget extends StatelessWidget {
-  const StationementWidget({
-    super.key,
-  });
+  const StationementWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -108,9 +105,11 @@ class StationementWidget extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
       padding: EdgeInsets.all(AppSpacing.px12),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.fromBorderSide(
-              BorderSide(color: AppColors.textKre.withValues(alpha: 0.25)))),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.fromBorderSide(
+          BorderSide(color: AppColors.textKre.withValues(alpha: 0.25)),
+        ),
+      ),
       child: Column(
         children: [
           Row(
@@ -127,7 +126,7 @@ class StationementWidget extends StatelessWidget {
                     const CustomText.paragraph(
                       "Rue de la paix 8ème arrondissement, Paris, France",
                       maxLines: 2,
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -137,7 +136,7 @@ class StationementWidget extends StatelessWidget {
                   "https://picsum.photos/60/60",
                   fit: BoxFit.cover,
                 ),
-              )
+              ),
             ],
           ),
           VGap(AppSpacing.px12),
@@ -155,14 +154,11 @@ class StationementWidget extends StatelessWidget {
                       text: "Borne disponible",
                       style: CustomTextStyle.smallParagraphMedium,
                       color: AppColors.greenKre,
-                    )
+                    ),
                   ],
                 ),
               ),
-              const CustomText.paragraph(
-                "2€",
-                color: AppColors.greenKre,
-              )
+              const CustomText.paragraph("2€", color: AppColors.greenKre),
             ],
           ),
         ],
@@ -181,8 +177,9 @@ class CustomPlacesTabbar extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
       padding: EdgeInsets.all(AppSpacing.px4),
       decoration: BoxDecoration(
-          color: const Color(0xFFF5F5F5),
-          borderRadius: BorderRadius.circular(8)),
+        color: const Color(0xFFF5F5F5),
+        borderRadius: BorderRadius.circular(8),
+      ),
       child: Row(
         children: [
           Expanded(
