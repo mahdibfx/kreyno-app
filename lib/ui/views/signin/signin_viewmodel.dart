@@ -9,6 +9,7 @@ import 'package:kreyno/services/toast_service.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:kreyno/ui/views/signin/signin_view.form.dart';
 
 class SigninViewModel extends FormViewModel {
   final _logger = getLogger('SigninViewModel');
@@ -18,11 +19,10 @@ class SigninViewModel extends FormViewModel {
   final _toastService = locator<ToastService>();
 
   String _countryCode = '+33';
-  String _phoneNumber = '';
 
   String get countryCode => _countryCode;
-  String get phoneNumber => _phoneNumber;
-  String get fullPhoneNumber => '${_countryCode.trim()}${_phoneNumber.trim()}';
+  String get fullPhoneNumber =>
+      '${_countryCode.trim()}${phoneNumberValue?.trim()}';
 
   void setCountryCode(String countryCode) {
     _countryCode = countryCode;
@@ -30,7 +30,7 @@ class SigninViewModel extends FormViewModel {
   }
 
   void setPhoneNumber(String phoneNumber) {
-    _phoneNumber = phoneNumber;
+    phoneNumberValue = phoneNumber;
     rebuildUi();
   }
 
@@ -66,7 +66,7 @@ class SigninViewModel extends FormViewModel {
     } else {
       setBusy(false);
       await _navigationService.navigateToSignupView(
-        phoneNumber: (countryCode, phoneNumber),
+        phoneNumber: (countryCode, phoneNumberValue!),
       );
     }
   }
