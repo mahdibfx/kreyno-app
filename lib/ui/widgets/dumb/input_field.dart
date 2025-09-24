@@ -62,7 +62,7 @@ class InputField extends StatelessWidget {
                 onChanged: onChanged,
                 enabled: !disabled,
                 style: AppTypography.smallParagraphMedium.copyWith(
-                  color: AppColors.mainKre,
+                  color: disabled ? AppColors.textKre : AppColors.mainKre,
                 ),
                 decoration: InputDecoration(
                   hintText: hintText,
