@@ -77,7 +77,10 @@ class SigninView extends StackedView<SigninViewModel> with $SigninView {
                       children: [
                         CustomButton.filled(
                           text: SigninStrings.buttonLabel,
-                          onPressed: viewModel.onCtaTapped,
+                          onPressed: () {
+                            FocusScope.of(context).unfocus();
+                            viewModel.onCtaTapped();
+                          },
                           isDisabled: viewModel.hasPhoneNumberValidationMessage,
                         ),
                       ],

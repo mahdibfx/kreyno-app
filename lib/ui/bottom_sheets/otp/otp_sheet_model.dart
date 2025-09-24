@@ -57,7 +57,6 @@ class OtpSheetModel extends BaseViewModel {
 
   void onOtpCompleted(String otp) {
     setBusy(true);
-    // TODO: Implement the logic to validate the OTP
     switch (type) {
       case OtpSheetType.signin:
         _handleLogin(otp);
