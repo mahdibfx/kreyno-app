@@ -482,7 +482,8 @@ class SignupViewArguments {
 
   final _i26.Key? key;
 
-  final (String, String) phoneNumber;
+  final ({String countryCode, String countryDialCode, String phoneNumber})
+  phoneNumber;
 
   @override
   String toString() {
@@ -994,7 +995,8 @@ extension NavigatorStateExtension on _i27.NavigationService {
 
   Future<dynamic> navigateToSignupView({
     _i26.Key? key,
-    required (String, String) phoneNumber,
+    required ({String countryCode, String countryDialCode, String phoneNumber})
+    phoneNumber,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1427,7 +1429,8 @@ extension NavigatorStateExtension on _i27.NavigationService {
 
   Future<dynamic> replaceWithSignupView({
     _i26.Key? key,
-    required (String, String) phoneNumber,
+    required ({String countryCode, String countryDialCode, String phoneNumber})
+    phoneNumber,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,

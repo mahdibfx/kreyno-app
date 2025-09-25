@@ -39,7 +39,8 @@ import 'signup_viewmodel.dart';
   ],
 )
 class SignupView extends StackedView<SignupViewModel> with $SignupView {
-  final (String countryCode, String phoneNumber) phoneNumber;
+  final ({String countryCode, String countryDialCode, String phoneNumber})
+  phoneNumber;
 
   const SignupView({Key? key, required this.phoneNumber}) : super(key: key);
 
@@ -77,6 +78,8 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                           ? viewModel.phoneNumberValidationMessage
                           : null,
                       maxLength: 10,
+                      initialCountryCode: phoneNumber.countryCode,
+                      initialCountryDialCode: phoneNumber.countryDialCode,
                     ),
                     Row(
                       spacing: AppSpacing.px12,
@@ -208,7 +211,8 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
   @override
   void onViewModelReady(SignupViewModel viewModel) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      phoneNumberController.text = phoneNumber.$2;
+      phoneNumberController.text = phoneNumber.phoneNumber;
+      viewModel.setCountryDialCode(phoneNumber.countryDialCode);
       if (firstNameFocusNode.canRequestFocus) {
         firstNameFocusNode.requestFocus();
       }

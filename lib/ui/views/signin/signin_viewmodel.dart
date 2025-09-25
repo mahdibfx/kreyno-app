@@ -4,6 +4,7 @@ import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/enums/otp_sheet_type.dart';
+import 'package:kreyno/enums/unique_existence_id.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/toast_service.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
@@ -18,14 +19,20 @@ class SigninViewModel extends FormViewModel {
   final _authService = locator<AuthService>();
   final _toastService = locator<ToastService>();
 
-  String _countryCode = '+33';
-
+  String _countryCode = 'FR';
+  String _countryDialCode = '+33';
   String get countryCode => _countryCode;
+  String get countryDialCode => _countryDialCode;
   String get fullPhoneNumber =>
-      '${_countryCode.trim()}${phoneNumberValue?.trim()}';
+      '${_countryDialCode.trim()}${phoneNumberValue?.trim()}';
 
   void setCountryCode(String countryCode) {
     _countryCode = countryCode;
+    rebuildUi();
+  }
+
+  void setCountryDialCode(String countryDialCode) {
+    _countryDialCode = countryDialCode;
     rebuildUi();
   }
 
@@ -34,9 +41,16 @@ class SigninViewModel extends FormViewModel {
     rebuildUi();
   }
 
-  void onPhoneNumberChanged(String countryCode, String phoneNumber) {
-    _logger.d('onPhoneNumberChanged: $countryCode, $phoneNumber');
+  void onPhoneNumberChanged({
+    required String countryCode,
+    required String countryDialCode,
+    required String phoneNumber,
+  }) {
+    _logger.d(
+      'onPhoneNumberChanged: $countryCode, $countryDialCode, $phoneNumber',
+    );
     setCountryCode(countryCode);
+    setCountryDialCode(countryDialCode);
     setPhoneNumber(phoneNumber);
   }
 
@@ -46,7 +60,10 @@ class SigninViewModel extends FormViewModel {
 
   void onCtaTapped() async {
     setBusy(true);
-    final response = await _authService.checkIfUserExists(fullPhoneNumber);
+    final response = await _authService.checkIfUserExists(
+      attribute: UniqueExistenceId.phone,
+      value: fullPhoneNumber,
+    );
 
     response.match(
       (errorMessage) {
@@ -66,7 +83,11 @@ class SigninViewModel extends FormViewModel {
     } else {
       setBusy(false);
       await _navigationService.navigateToSignupView(
-        phoneNumber: (countryCode, phoneNumberValue!),
+        phoneNumber: (
+          countryCode: countryCode,
+          countryDialCode: countryDialCode,
+          phoneNumber: phoneNumberValue!,
+        ),
       );
     }
   }

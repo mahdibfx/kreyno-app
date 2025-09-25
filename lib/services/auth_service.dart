@@ -23,11 +23,12 @@ class AuthService {
   final _userService = locator<UserService>();
   final _sharedPrefsService = locator<SharedPrefsService>();
 
-  Future<Either<String, bool>> checkIfUserExists(String phoneNumber) {
+  Future<Either<String, bool>> checkIfUserExists({
+    required UniqueExistenceId attribute,
+    required String value,
+  }) {
     return _apiAuthService
-        .checkIfUserExists(
-          UserExistsDto(attribute: UniqueExistenceId.phone, value: phoneNumber),
-        )
+        .checkIfUserExists(UserExistsDto(attribute: attribute, value: value))
         .toEither()
         .then((result) => result.map((response) => response.exists));
   }

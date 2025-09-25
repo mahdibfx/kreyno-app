@@ -17,7 +17,14 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
   final String? errorText;
   final int? maxLength;
   final bool disabled;
-  final Function(String countryCode, String phoneNumber)? onChanged;
+  final String? initialCountryCode;
+  final String? initialCountryDialCode;
+  final Function({
+    required String countryCode,
+    required String countryDialCode,
+    required String phoneNumber,
+  })?
+  onChanged;
 
   const PhoneInputField({
     super.key,
@@ -28,6 +35,8 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
     this.errorText,
     this.maxLength,
     this.disabled = false,
+    this.initialCountryCode,
+    this.initialCountryDialCode,
     this.onChanged,
   });
 
@@ -47,7 +56,11 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
       maxLength: maxLength,
       onChanged: (value) {
         viewModel.setPhoneNumber(value);
-        onChanged?.call(viewModel.countryDialCode, value);
+        onChanged?.call(
+          countryDialCode: viewModel.countryDialCode,
+          countryCode: viewModel.countryCode,
+          phoneNumber: value,
+        );
       },
       prefixWidget: GestureDetector(
         onTap: disabled ? null : viewModel.onCountryCodeTapped,
@@ -93,7 +106,11 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
 
   @override
   void onViewModelReady(PhoneInputFieldModel viewModel) {
-    viewModel.initialize(onChanged);
+    viewModel.initialize(
+      onChanged,
+      initialCountryCode: initialCountryCode,
+      initialCountryDialCode: initialCountryDialCode,
+    );
     super.onViewModelReady(viewModel);
   }
 }

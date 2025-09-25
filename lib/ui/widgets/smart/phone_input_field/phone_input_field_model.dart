@@ -16,10 +16,33 @@ class PhoneInputFieldModel extends BaseViewModel {
   String get countryCode => _countryCode;
 
   String _phoneNumber = '';
-  Function(String countryCode, String phoneNumber)? _onChanged;
+  Function({
+    required String countryCode,
+    required String countryDialCode,
+    required String phoneNumber,
+  })?
+  _onChanged;
 
-  void initialize(Function(String countryCode, String phoneNumber)? onChanged) {
+  void initialize(
+    Function({
+      required String countryCode,
+      required String countryDialCode,
+      required String phoneNumber,
+    })?
+    onChanged, {
+    String? initialCountryCode,
+    String? initialCountryDialCode,
+  }) {
     _onChanged = onChanged;
+    if (initialCountryCode != null) {
+      _countryCode = initialCountryCode;
+    }
+    if (initialCountryDialCode != null) {
+      _countryDialCode = initialCountryDialCode;
+    }
+    if (initialCountryCode != null || initialCountryDialCode != null) {
+      rebuildUi();
+    }
   }
 
   void setPhoneNumber(String phoneNumber) {
@@ -30,7 +53,11 @@ class PhoneInputFieldModel extends BaseViewModel {
     _countryDialCode = countryDialCode;
     _countryCode = countryCode;
     rebuildUi();
-    _onChanged?.call(_countryDialCode, _phoneNumber);
+    _onChanged?.call(
+      countryDialCode: _countryDialCode,
+      countryCode: _countryCode,
+      phoneNumber: _phoneNumber,
+    );
   }
 
   void onCountryCodeTapped() async {
