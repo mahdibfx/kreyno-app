@@ -68,7 +68,9 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
           height: 46 * AppSpacing.px1,
           padding: EdgeInsets.symmetric(horizontal: AppSpacing.px12),
           decoration: BoxDecoration(
-            color: disabled ? AppColors.disabledKre : AppColors.white,
+            color: errorText != null
+                ? AppColors.borderError.withValues(alpha: .1)
+                : (disabled ? AppColors.disabledKre : AppColors.white),
             borderRadius: BorderRadius.circular(AppSpacing.px12),
             border: Border.all(
               color: errorText != null ? AppColors.redKre : AppColors.strokeKre,

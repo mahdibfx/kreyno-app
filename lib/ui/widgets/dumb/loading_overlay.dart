@@ -3,6 +3,7 @@ import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_images.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/common/responsive_sizer.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_loading_indicator.dart';
 
 class LoadingOverlay extends StatefulWidget {
   final bool isShown;
@@ -59,10 +60,7 @@ class _LoadingOverlayState extends State<LoadingOverlay> {
               height: 100.dh,
               color: AppColors.white.withValues(alpha: .8),
               child: Center(
-                child: Image.asset(
-                  AppImages.loaderGif,
-                  width: 64 * AppSpacing.px1,
-                ),
+                child: CustomLoadingIndicator(size: 64 * AppSpacing.px1),
               ),
             ),
           ),

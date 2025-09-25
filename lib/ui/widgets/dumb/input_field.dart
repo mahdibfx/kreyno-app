@@ -62,7 +62,9 @@ class InputField extends StatelessWidget {
                 onChanged: onChanged,
                 enabled: !disabled,
                 style: AppTypography.smallParagraphMedium.copyWith(
-                  color: disabled ? AppColors.textKre : AppColors.mainKre,
+                  color: errorText != null
+                      ? AppColors.textError
+                      : (disabled ? AppColors.textKre : AppColors.mainKre),
                 ),
                 decoration: InputDecoration(
                   hintText: hintText,
@@ -87,7 +89,9 @@ class InputField extends StatelessWidget {
                         )
                       : null,
                   filled: true,
-                  fillColor: disabled ? AppColors.disabledKre : AppColors.white,
+                  fillColor: errorText != null
+                      ? AppColors.borderError.withValues(alpha: .1)
+                      : (disabled ? AppColors.disabledKre : AppColors.white),
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: AppSpacing.px16,
                     vertical: AppSpacing.px12,

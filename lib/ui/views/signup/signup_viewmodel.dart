@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
@@ -6,6 +8,7 @@ import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/enums/unique_existence_id.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/toast_service.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/views/signup/signup_view.form.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -43,6 +46,16 @@ class SignupViewModel extends FormViewModel {
   String get fullPhoneNumber =>
       '${countryDialCode.trim()}${phoneNumberValue?.trim()}';
 
+  bool _checkingUserNameTaken = false;
+  bool get checkingUserNameTaken => _checkingUserNameTaken;
+
+  Timer? _userNameDebounceTimer;
+
+  void setCheckingUserNameTaken(bool value) {
+    _checkingUserNameTaken = value;
+    rebuildUi();
+  }
+
   void setCountryDialCode(String countryDialCode) {
     _logger.d('setCountryDialCode: $countryDialCode');
     _countryDialCode = countryDialCode;
@@ -64,14 +77,49 @@ class SignupViewModel extends FormViewModel {
     _navigationService.back();
   }
 
-  void onCtaTapped() async {
-    // final response = await _authService.checkIfUserExists(
-    //   attribute: UniqueExistenceId.phone,
-    //   value: fullPhoneNumber,
-    // );
+  void onUserNameChanged(String value) {
+    _userNameDebounceTimer?.cancel();
+    if (value.isNotEmpty) {
+      _userNameDebounceTimer = Timer(const Duration(milliseconds: 500), () {
+        _handleUserNameIsTaken();
+      });
+    }
   }
 
-  void showOtpSheet() async {
+  void _handleUserNameIsTaken() async {
+    setCheckingUserNameTaken(true);
+    var response = await _authService.checkIfUserExists(
+      attribute: UniqueExistenceId.username,
+      value: userNameValue!,
+    );
+    setCheckingUserNameTaken(false);
+    response.match(
+      (errorMessage) {
+        _logger.e(
+          'Error checking if user with username exists',
+          error: errorMessage,
+        );
+        _toastService.showError(title: errorMessage, showIcon: true);
+      },
+      (exists) {
+        if (exists) {
+          setUserNameValidationMessage(SignupStrings.userNameTaken);
+        }
+      },
+    );
+  }
+
+  void sendOtp() async {
+    setBusy(true);
+    final response = await _authService.sendOtp(fullPhoneNumber);
+    setBusy(false);
+    response.match((errorMessage) {
+      _logger.e('Error sending otp', error: errorMessage);
+      _toastService.showError(title: errorMessage);
+    }, (success) => _showOtpSheet());
+  }
+
+  void _showOtpSheet() async {
     final response = await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.otp,
       barrierColor: Colors.black.withValues(alpha: .1),
@@ -81,5 +129,11 @@ class SignupViewModel extends FormViewModel {
     if (response != null && response.confirmed) {
       _navigationService.navigateToSetUpVehiculeView();
     }
+  }
+
+  @override
+  void dispose() {
+    _userNameDebounceTimer?.cancel();
+    super.dispose();
   }
 }

@@ -24,6 +24,10 @@
             "phone": "Invalid phone number",
             "firstName": "First name must contain at least 2 characters",
             "lastName": "Last name must contain at least 2 characters"
+        },
+        "otpSuccess": {
+            "codeSentTitle": "Code sent",
+            "codeSentDescription": "A 6-digit code has been sent to you."
         }
     },
     "setUpLanguage": {
@@ -39,6 +43,13 @@
         "phoneNumber": "Phone number",
         "phoneNumberPlaceholder": "Enter your phone number",
         "buttonLabel": "Sign In"
+       
+    },
+    "countryCodePicker": {
+        "title": "Choose your country",
+        "search": "Search by country name or code",
+        "noCountriesFound": "No countries found",
+        "trySearchingWithDifferentTerm": "Try searching with a different term"
     },
     "otp": {
         "title": "OTP Verification",
@@ -67,7 +78,8 @@
         "year": "Year",
         "gender": "Gender",
         "male": "Male",
-        "female": "Female"
+        "female": "Female",
+        "userNameTaken": "This username is already taken"
     },
     "setUpVehicule": {
         "title": "Add your vehicle",

@@ -6,9 +6,11 @@ import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/views/signup/signup_view.form.dart';
 import 'package:kreyno/ui/widgets/dumb/auth_sliver_app_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_loading_indicator.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/input_field.dart';
 import 'package:kreyno/ui/widgets/dumb/labeled_checkbox.dart';
+import 'package:kreyno/ui/widgets/dumb/loading_overlay.dart';
 import 'package:kreyno/ui/widgets/smart/date_picker_field/birth_date_picker_field.dart';
 import 'package:kreyno/ui/widgets/smart/phone_input_field/phone_input_field.dart';
 import 'package:stacked/stacked.dart';
@@ -50,159 +52,171 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
     SignupViewModel viewModel,
     Widget? child,
   ) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        backgroundColor: AppColors.white,
-        body: CustomScrollView(
-          slivers: [
-            AuthSliverAppBar(
-              title: SignupStrings.title,
-              onBackPressed: viewModel.goBack,
-            ),
-            SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
-              sliver: SliverToBoxAdapter(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  spacing: AppSpacing.px16,
-                  children: [
-                    PhoneInputField(
-                      controller: phoneNumberController,
-                      focusNode: phoneNumberFocusNode,
-                      labelText: SignupStrings.phoneNumber,
-                      hintText: SignupStrings.phoneNumberPlaceholder,
-                      disabled: viewModel.hasPhoneNumber,
-                      errorText: viewModel.hasPhoneNumber
-                          ? viewModel.phoneNumberValidationMessage
-                          : null,
-                      maxLength: 10,
-                      initialCountryCode: phoneNumber.countryCode,
-                      initialCountryDialCode: phoneNumber.countryDialCode,
-                    ),
-                    Row(
-                      spacing: AppSpacing.px12,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: InputField(
-                            controller: firstNameController,
-                            focusNode: firstNameFocusNode,
-                            labelText: SignupStrings.firstName,
-                            hintText: SignupStrings.firstNamePlaceholder,
-                            keyboardType: TextInputType.name,
-                            errorText: viewModel.hasFirstName
-                                ? viewModel.firstNameValidationMessage
-                                : null,
-                          ),
-                        ),
-                        Expanded(
-                          child: InputField(
-                            controller: lastNameController,
-                            focusNode: lastNameFocusNode,
-                            labelText: SignupStrings.lastName,
-                            hintText: SignupStrings.lastNamePlaceholder,
-                            keyboardType: TextInputType.name,
-                            errorText: viewModel.hasLastName
-                                ? viewModel.lastNameValidationMessage
-                                : null,
-                          ),
-                        ),
-                      ],
-                    ),
-                    InputField(
-                      controller: userNameController,
-                      focusNode: userNameFocusNode,
-                      labelText: SignupStrings.userName,
-                      hintText: SignupStrings.userNamePlaceholder,
-                      keyboardType: TextInputType.name,
-                      errorText: viewModel.hasUserName
-                          ? viewModel.userNameValidationMessage
-                          : null,
-                    ),
-                    InputField(
-                      controller: emailController,
-                      focusNode: emailFocusNode,
-                      labelText: SignupStrings.email,
-                      hintText: SignupStrings.emailPlaceholder,
-                      keyboardType: TextInputType.name,
-                      errorText: viewModel.hasEmail
-                          ? viewModel.emailValidationMessage
-                          : null,
-                    ),
-                    InputField(
-                      controller: addressController,
-                      focusNode: addressFocusNode,
-                      labelText: SignupStrings.address,
-                      hintText: SignupStrings.addressPlaceholder,
-                      keyboardType: TextInputType.name,
-                      textInputAction: TextInputAction.done,
-                      errorText: viewModel.hasAddress
-                          ? viewModel.addressValidationMessage
-                          : null,
-                    ),
-                    BirthDatePickerField(
-                      labelText: SignupStrings.birthday,
-                      onBirthdayChanged: viewModel.onBirthdayChanged,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      spacing: AppSpacing.px12 / 2,
-                      children: [
-                        CustomText.smallParagraphMedium(
-                          SignupStrings.gender,
-                          color: AppColors.textKre,
-                        ),
-                        Row(
-                          children: [
-                            Flexible(
-                              child: LabeledCheckbox(
-                                label: SignupStrings.male,
-                                value: viewModel.isMale,
-                                onChanged: (_) => viewModel.setIsMale(true),
-                              ),
-                            ),
-                            Flexible(
-                              child: LabeledCheckbox(
-                                label: SignupStrings.female,
-                                value: !viewModel.isMale,
-                                onChanged: (_) => viewModel.setIsMale(false),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+    return LoadingOverlay(
+      isShown: viewModel.isBusy,
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Scaffold(
+          backgroundColor: AppColors.white,
+          body: CustomScrollView(
+            slivers: [
+              AuthSliverAppBar(
+                title: SignupStrings.title,
+                onBackPressed: viewModel.goBack,
               ),
-            ),
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: AppSpacing.px16,
-                    right: AppSpacing.px16,
-                    bottom: AppSpacing.px20,
-                  ),
+              SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
+                sliver: SliverToBoxAdapter(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    spacing: AppSpacing.px16,
                     children: [
-                      CustomButton.filled(
-                        text: CommonStrings.continueLabel,
-                        onPressed: viewModel.showOtpSheet,
-                        isDisabled: !viewModel.isFormValid,
+                      PhoneInputField(
+                        controller: phoneNumberController,
+                        focusNode: phoneNumberFocusNode,
+                        labelText: SignupStrings.phoneNumber,
+                        hintText: SignupStrings.phoneNumberPlaceholder,
+                        disabled: viewModel.hasPhoneNumber,
+                        errorText: viewModel.hasPhoneNumber
+                            ? viewModel.phoneNumberValidationMessage
+                            : null,
+                        maxLength: 10,
+                        initialCountryCode: phoneNumber.countryCode,
+                        initialCountryDialCode: phoneNumber.countryDialCode,
+                      ),
+                      Row(
+                        spacing: AppSpacing.px12,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: InputField(
+                              controller: firstNameController,
+                              focusNode: firstNameFocusNode,
+                              labelText: SignupStrings.firstName,
+                              hintText: SignupStrings.firstNamePlaceholder,
+                              keyboardType: TextInputType.name,
+                              errorText: viewModel.hasFirstName
+                                  ? viewModel.firstNameValidationMessage
+                                  : null,
+                            ),
+                          ),
+                          Expanded(
+                            child: InputField(
+                              controller: lastNameController,
+                              focusNode: lastNameFocusNode,
+                              labelText: SignupStrings.lastName,
+                              hintText: SignupStrings.lastNamePlaceholder,
+                              keyboardType: TextInputType.name,
+                              errorText: viewModel.hasLastName
+                                  ? viewModel.lastNameValidationMessage
+                                  : null,
+                            ),
+                          ),
+                        ],
+                      ),
+                      InputField(
+                        controller: userNameController,
+                        focusNode: userNameFocusNode,
+                        labelText: SignupStrings.userName,
+                        hintText: SignupStrings.userNamePlaceholder,
+                        keyboardType: TextInputType.name,
+                        onChanged: viewModel.onUserNameChanged,
+                        trailingIcon: viewModel.checkingUserNameTaken
+                            ? Transform.scale(
+                                scale: .8,
+                                child: CustomLoadingIndicator(
+                                  size: AppSpacing.px1,
+                                ),
+                              )
+                            : null,
+                        errorText: viewModel.hasUserName
+                            ? viewModel.userNameValidationMessage
+                            : null,
+                      ),
+                      InputField(
+                        controller: emailController,
+                        focusNode: emailFocusNode,
+                        labelText: SignupStrings.email,
+                        hintText: SignupStrings.emailPlaceholder,
+                        keyboardType: TextInputType.name,
+                        errorText: viewModel.hasEmail
+                            ? viewModel.emailValidationMessage
+                            : null,
+                      ),
+                      InputField(
+                        controller: addressController,
+                        focusNode: addressFocusNode,
+                        labelText: SignupStrings.address,
+                        hintText: SignupStrings.addressPlaceholder,
+                        keyboardType: TextInputType.name,
+                        textInputAction: TextInputAction.done,
+                        errorText: viewModel.hasAddress
+                            ? viewModel.addressValidationMessage
+                            : null,
+                      ),
+                      BirthDatePickerField(
+                        labelText: SignupStrings.birthday,
+                        onBirthdayChanged: viewModel.onBirthdayChanged,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        spacing: AppSpacing.px12 / 2,
+                        children: [
+                          CustomText.smallParagraphMedium(
+                            SignupStrings.gender,
+                            color: AppColors.textKre,
+                          ),
+                          Row(
+                            children: [
+                              Flexible(
+                                child: LabeledCheckbox(
+                                  label: SignupStrings.male,
+                                  value: viewModel.isMale,
+                                  onChanged: (_) => viewModel.setIsMale(true),
+                                ),
+                              ),
+                              Flexible(
+                                child: LabeledCheckbox(
+                                  label: SignupStrings.female,
+                                  value: !viewModel.isMale,
+                                  onChanged: (_) => viewModel.setIsMale(false),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
               ),
-            ),
-          ],
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: SafeArea(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: AppSpacing.px16,
+                      right: AppSpacing.px16,
+                      bottom: AppSpacing.px20,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        CustomButton.filled(
+                          text: CommonStrings.continueLabel,
+                          onPressed: viewModel.sendOtp,
+                          isDisabled: !viewModel.isFormValid,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

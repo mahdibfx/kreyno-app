@@ -79,7 +79,8 @@
         "year": "Année",
         "gender": "Sexe",
         "male": "Homme",
-        "female": "Femme"
+        "female": "Femme",
+        "userNameTaken": "Ce nom d'utilisateur est déjà utilisé"
     },
     "setUpVehicule": {
         "title": "Ajoutez votre véhicule",

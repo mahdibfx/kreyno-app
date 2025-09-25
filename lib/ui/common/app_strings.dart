@@ -106,6 +106,7 @@ class SignupStrings {
   static String get gender => 'signup.gender'.tr();
   static String get male => 'signup.male'.tr();
   static String get female => 'signup.female'.tr();
+  static String get userNameTaken => 'signup.userNameTaken'.tr();
 }
 
 class SetUpVehiculeStrings {
