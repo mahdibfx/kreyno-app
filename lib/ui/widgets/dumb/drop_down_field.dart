@@ -16,7 +16,7 @@ class DropDownField<T> extends StatelessWidget {
   final Function(T?)? onChanged;
   final bool disabled;
   final FocusNode? focusNode;
-  final bool isReadOnly;
+
   final Widget? leadingWidget;
   final double? menuWidth;
 
@@ -30,7 +30,6 @@ class DropDownField<T> extends StatelessWidget {
     this.onChanged,
     this.disabled = false,
     this.focusNode,
-    this.isReadOnly = true,
     this.leadingWidget,
     this.menuWidth,
   });
@@ -45,9 +44,11 @@ class DropDownField<T> extends StatelessWidget {
           CustomText.smallParagraphMedium(labelText!, color: AppColors.textKre),
         DropdownMenu<T>(
           initialSelection: value,
+          keyboardType: TextInputType.none,
+          textInputAction: TextInputAction.none,
+          focusNode: focusNode,
           dropdownMenuEntries: items,
           onSelected: disabled ? null : onChanged,
-          requestFocusOnTap: !isReadOnly,
           enableFilter: false,
           enableSearch: false,
           enabled: !disabled,

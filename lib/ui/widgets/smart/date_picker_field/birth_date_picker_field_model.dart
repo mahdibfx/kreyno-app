@@ -1,16 +1,17 @@
 import 'package:stacked/stacked.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
+import 'package:kreyno/ui/widgets/smart/date_picker_field/birth_date_picker_field.form.dart';
 
-class BirthDatePickerFieldModel extends BaseViewModel {
+class BirthDatePickerFieldModel extends FormViewModel {
   DateTime today = DateTime.now();
-
-  int selectedYear = 1990;
-  int selectedMonth = 1;
-  int selectedDay = 1;
 
   Function(DateTime)? onDateChanged;
 
   static const int minimumDrivingAge = 18;
+
+  int get selectedYear => int.tryParse(selectedYearValue ?? '') ?? 1990;
+  int get selectedMonth => int.tryParse(selectedMonthValue ?? '') ?? 1;
+  int get selectedDay => int.tryParse(selectedDayValue ?? '') ?? 1;
 
   List<int> get years {
     int currentYear = today.year;
@@ -94,22 +95,22 @@ class BirthDatePickerFieldModel extends BaseViewModel {
       today.month,
       today.day,
     );
-    selectedYear = defaultBirthDate.year;
-    selectedMonth = defaultBirthDate.month;
-    selectedDay = defaultBirthDate.day;
+    selectedYearValue = defaultBirthDate.year.toString();
+    selectedMonthValue = defaultBirthDate.month.toString();
+    selectedDayValue = defaultBirthDate.day.toString();
     rebuildUi();
     _notifyDateChanged(); // Notify parent of initial date
   }
 
   void setSelectedYear(int year) {
-    selectedYear = year;
+    selectedYearValue = year.toString();
 
     if (!months.contains(selectedMonth)) {
-      selectedMonth = months.last;
+      selectedMonthValue = months.last.toString();
     }
 
     if (!days.contains(selectedDay)) {
-      selectedDay = days.last;
+      selectedDayValue = days.last.toString();
     }
 
     rebuildUi();
@@ -117,10 +118,10 @@ class BirthDatePickerFieldModel extends BaseViewModel {
   }
 
   void setSelectedMonth(int month) {
-    selectedMonth = month;
+    selectedMonthValue = month.toString();
 
     if (!days.contains(selectedDay)) {
-      selectedDay = days.last;
+      selectedDayValue = days.last.toString();
     }
 
     rebuildUi();
@@ -128,7 +129,7 @@ class BirthDatePickerFieldModel extends BaseViewModel {
   }
 
   void setSelectedDay(int day) {
-    selectedDay = day;
+    selectedDayValue = day.toString();
     rebuildUi();
     _notifyDateChanged();
   }

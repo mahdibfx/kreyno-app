@@ -4,11 +4,21 @@ import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/common/responsive_sizer.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/drop_down_field.dart';
+import 'package:kreyno/ui/widgets/smart/date_picker_field/birth_date_picker_field.form.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 
 import 'birth_date_picker_field_model.dart';
 
-class BirthDatePickerField extends StackedView<BirthDatePickerFieldModel> {
+@FormView(
+  fields: [
+    FormTextField(name: 'selectedDay'),
+    FormTextField(name: 'selectedMonth'),
+    FormTextField(name: 'selectedYear'),
+  ],
+)
+class BirthDatePickerField extends StackedView<BirthDatePickerFieldModel>
+    with $BirthDatePickerField {
   final String labelText;
   final Function(DateTime) onBirthdayChanged;
 
@@ -35,6 +45,7 @@ class BirthDatePickerField extends StackedView<BirthDatePickerFieldModel> {
             Expanded(
               child: DropDownField<int>(
                 value: viewModel.selectedDay,
+
                 menuWidth: 30.dw,
                 items: viewModel.days.map((int day) {
                   return DropdownMenuEntry<int>(
@@ -52,6 +63,7 @@ class BirthDatePickerField extends StackedView<BirthDatePickerFieldModel> {
             Expanded(
               child: DropDownField<int>(
                 value: viewModel.selectedMonth,
+
                 menuWidth: 50.dw,
                 items: viewModel.months.map((int month) {
                   return DropdownMenuEntry<int>(
@@ -91,10 +103,17 @@ class BirthDatePickerField extends StackedView<BirthDatePickerFieldModel> {
 
   @override
   void onViewModelReady(BirthDatePickerFieldModel viewModel) {
+    syncFormWithViewModel(viewModel);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       viewModel.setOnDateChanged(onBirthdayChanged);
       viewModel.initDefaultValues();
     });
+  }
+
+  @override
+  void onDispose(BirthDatePickerFieldModel viewModel) {
+    disposeForm();
+    super.onDispose(viewModel);
   }
 
   @override
