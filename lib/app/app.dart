@@ -53,6 +53,8 @@ import 'package:kreyno/services/cars_service.dart';
 import 'package:kreyno/services/stripe_service.dart';
 import 'package:kreyno/services/reservations_service.dart';
 import 'package:kreyno/services/parking_places_service.dart';
+import 'package:kreyno/services/auth_service.dart';
+import 'package:kreyno/ui/bottom_sheets/choose_picture_source/choose_picture_source_sheet.dart';
 // @stacked-import
 
 @StackedApp(
@@ -98,6 +100,7 @@ import 'package:kreyno/services/parking_places_service.dart';
     LazySingleton(classType: StripeService),
     LazySingleton(classType: ReservationsService),
     LazySingleton(classType: ParkingPlacesService),
+    LazySingleton(classType: AuthService),
 // @stacked-service
   ],
   bottomsheets: [
@@ -119,7 +122,8 @@ import 'package:kreyno/services/parking_places_service.dart';
     StackedBottomsheet(classType: LogoutConfirmationSheet),
     StackedBottomsheet(classType: DeleteAccountConfirmationSheet),
     StackedBottomsheet(classType: CheckoutMoneyFeedbackSheet),
-    // @stacked-bottom-sheet
+    StackedBottomsheet(classType: ChoosePictureSourceSheet),
+// @stacked-bottom-sheet
   ],
   dialogs: [
     StackedDialog(classType: DeleteSpotDialog),

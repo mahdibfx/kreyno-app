@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/models/parking_place.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_images.dart';
@@ -16,13 +17,15 @@ import 'my_stationements_viewmodel.dart';
 
 class MyStationementsView extends StackedView<MyStationementsViewModel> {
   const MyStationementsView({Key? key}) : super(key: key);
-  final isEmpty = true;
   @override
   Widget builder(
     BuildContext context,
     MyStationementsViewModel viewModel,
     Widget? child,
   ) {
+    bool isEmpty = viewModel.selectedIndex == 0
+        ? viewModel.myPlaces.isEmpty
+        : viewModel.myGivenUpPlaces.isEmpty;
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: MyAppBar(
@@ -77,15 +80,21 @@ class MyStationementsView extends StackedView<MyStationementsViewModel> {
                 ),
               ),
             ),
-          // if (!isEmpty)
-          //   SliverList.builder(
-          //       itemCount: 10,
-          //       itemBuilder: (c, i) => Column(
-          //             children: [
-          //               const StationementWidget(),
-          //               VGap(AppSpacing.px1 * 10)
-          //             ],
-          //           ))
+          if (!isEmpty)
+            SliverList.builder(
+                itemCount: viewModel.selectedIndex == 0
+                    ? viewModel.myPlaces.length
+                    : viewModel.myGivenUpPlaces.length,
+                itemBuilder: (c, i) => Column(
+                      children: [
+                        StationementWidget(
+                          place: viewModel.selectedIndex == 0
+                              ? viewModel.myPlaces[i]
+                              : viewModel.myGivenUpPlaces[i],
+                        ),
+                        VGap(AppSpacing.px1 * 10)
+                      ],
+                    ))
         ],
       ),
     );
@@ -97,8 +106,8 @@ class MyStationementsView extends StackedView<MyStationementsViewModel> {
 }
 
 class StationementWidget extends StatelessWidget {
-  const StationementWidget({super.key});
-
+  const StationementWidget({super.key, required this.place});
+  final ParkingPlace place;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -118,13 +127,14 @@ class StationementWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    /// TODO no date in parking place model
                     const CustomText.smallParagraphMedium(
                       "02-01-2025 · 19h00",
                       color: AppColors.textKre,
                     ),
                     VGap(AppSpacing.px1 * 5),
-                    const CustomText.paragraph(
-                      "Rue de la paix 8ème arrondissement, Paris, France",
+                    CustomText.paragraph(
+                      place.address,
                       maxLines: 2,
                     ),
                   ],
@@ -133,7 +143,8 @@ class StationementWidget extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(AppSpacing.px1 * 10),
                 child: Image.network(
-                  "https://picsum.photos/60/60",
+                  place.seller.avatar
+                      .url, // TODO man this supposed to be car image
                   fit: BoxFit.cover,
                 ),
               ),
@@ -151,14 +162,16 @@ class StationementWidget extends StatelessWidget {
                     ),
                     HGap(AppSpacing.px4),
                     const CustomText(
-                      text: "Borne disponible",
+                      text:
+                          "Borne disponible", // no attribute  for this born disponible in parking place model
                       style: CustomTextStyle.smallParagraphMedium,
                       color: AppColors.greenKre,
                     ),
                   ],
                 ),
               ),
-              const CustomText.paragraph("2€", color: AppColors.greenKre),
+              CustomText.paragraph("${place.totalPaidPrice}\$",
+                  color: AppColors.greenKre),
             ],
           ),
         ],

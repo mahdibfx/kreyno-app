@@ -29,7 +29,6 @@ class MyPaymentMethodesViewModel extends BaseViewModel {
         notifyListeners();
       } else {
         // TODO: handle backend errors (result.message or similar)
-        
       }
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionError) {

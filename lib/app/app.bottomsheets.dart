@@ -12,6 +12,7 @@ import '../ui/bottom_sheets/add_payment_method/add_payment_method_sheet.dart';
 import '../ui/bottom_sheets/buy_spot/buy_spot_sheet.dart';
 import '../ui/bottom_sheets/cancelation_reasons/cancelation_reasons_sheet.dart';
 import '../ui/bottom_sheets/checkout_money_feedback/checkout_money_feedback_sheet.dart';
+import '../ui/bottom_sheets/choose_picture_source/choose_picture_source_sheet.dart';
 import '../ui/bottom_sheets/completed_action/completed_action_sheet.dart';
 import '../ui/bottom_sheets/create_spot/create_spot_sheet.dart';
 import '../ui/bottom_sheets/danger/danger_sheet.dart';
@@ -45,6 +46,7 @@ enum BottomSheetType {
   logoutConfirmation,
   deleteAccountConfirmation,
   checkoutMoneyFeedback,
+  choosePictureSource,
 }
 
 void setupBottomSheetUi() {
@@ -87,6 +89,8 @@ void setupBottomSheetUi() {
         DeleteAccountConfirmationSheet(request: request, completer: completer),
     BottomSheetType.checkoutMoneyFeedback: (context, request, completer) =>
         CheckoutMoneyFeedbackSheet(request: request, completer: completer),
+    BottomSheetType.choosePictureSource: (context, request, completer) =>
+        ChoosePictureSourceSheet(request: request, completer: completer),
   };
 
   bottomsheetService.setCustomSheetBuilders(builders);

@@ -12,6 +12,7 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/api/dio_service.dart';
+import '../services/auth_service.dart';
 import '../services/cars_service.dart';
 import '../services/parking_places_service.dart';
 import '../services/reservations_service.dart';
@@ -38,4 +39,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => StripeService());
   locator.registerLazySingleton(() => ReservationsService());
   locator.registerLazySingleton(() => ParkingPlacesService());
+  locator.registerLazySingleton(() => AuthService());
 }

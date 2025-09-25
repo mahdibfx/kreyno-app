@@ -8,18 +8,14 @@ import 'package:kreyno/services/api/dio_service.dart';
 class ParkingPlacesService {
   final _apiService = ApiParkingPlacesService(locator<DioService>().dio);
   Future<ApiResponse<List<ParkingPlace>>> getUserParkingPlaces() async {
-    try {
-      final result = await _apiService.getUserParkingPlaces();
-      return result;
-    } on DioException catch (e) {
-      // Handle network errors specifically
-      if (e.type == DioExceptionType.connectionError) {
-        // TODO: map to a custom error model or show "no internet" message
-      }
-      rethrow;
-    } catch (e) {
-      // Handle any other kind of error
-      rethrow;
-    }
+    final result = await _apiService.getUserParkingPlaces();
+    return result;
+  }
+
+  Future<ApiResponse<List<ParkingPlace>>> getUserGivenUpParkingPlaces() async {
+    throw UnimplementedError();
+    // TODO There is no route for this in api's
+    // final result = await _apiService.getUserParkingPlaces();
+    // return result;
   }
 }
