@@ -44,6 +44,17 @@ import 'package:kreyno/ui/views/kreyono_portfolio/kreyono_portfolio_view.dart';
 import 'package:kreyno/ui/views/checkout_money/checkout_money_view.dart';
 import 'package:kreyno/ui/bottom_sheets/checkout_money_feedback/checkout_money_feedback_sheet.dart';
 import 'package:kreyno/ui/views/add_vehicule/add_vehicule_view.dart';
+import 'package:kreyno/ui/views/chat/chat_view.dart';
+import 'package:kreyno/ui/views/settings/settings_view.dart';
+import 'package:kreyno/ui/views/change_phone_number/change_phone_number_view.dart';
+import 'package:kreyno/ui/views/modify_vehicule/modify_vehicule_view.dart';
+import 'package:kreyno/ui/views/change_language/change_language_view.dart';
+import 'package:kreyno/services/cars_service.dart';
+import 'package:kreyno/services/stripe_service.dart';
+import 'package:kreyno/services/reservations_service.dart';
+import 'package:kreyno/services/parking_places_service.dart';
+import 'package:kreyno/services/auth_service.dart';
+import 'package:kreyno/ui/bottom_sheets/choose_picture_source/choose_picture_source_sheet.dart';
 // @stacked-import
 
 @StackedApp(
@@ -72,7 +83,12 @@ import 'package:kreyno/ui/views/add_vehicule/add_vehicule_view.dart';
     MaterialRoute(page: KreyonoPortfolioView),
     MaterialRoute(page: CheckoutMoneyView),
     MaterialRoute(page: AddVehiculeView),
-    // @stacked-route
+    MaterialRoute(page: ChatView),
+    MaterialRoute(page: SettingsView),
+    MaterialRoute(page: ChangePhoneNumberView),
+    MaterialRoute(page: ModifyVehiculeView),
+    MaterialRoute(page: ChangeLanguageView),
+// @stacked-route
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),
@@ -80,7 +96,12 @@ import 'package:kreyno/ui/views/add_vehicule/add_vehicule_view.dart';
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: SharedPrefsService),
     Singleton(classType: DioService),
-    // @stacked-service
+    LazySingleton(classType: CarsService),
+    LazySingleton(classType: StripeService),
+    LazySingleton(classType: ReservationsService),
+    LazySingleton(classType: ParkingPlacesService),
+    LazySingleton(classType: AuthService),
+// @stacked-service
   ],
   bottomsheets: [
     StackedBottomsheet(classType: NoticeSheet),
@@ -101,7 +122,8 @@ import 'package:kreyno/ui/views/add_vehicule/add_vehicule_view.dart';
     StackedBottomsheet(classType: LogoutConfirmationSheet),
     StackedBottomsheet(classType: DeleteAccountConfirmationSheet),
     StackedBottomsheet(classType: CheckoutMoneyFeedbackSheet),
-    // @stacked-bottom-sheet
+    StackedBottomsheet(classType: ChoosePictureSourceSheet),
+// @stacked-bottom-sheet
   ],
   dialogs: [
     StackedDialog(classType: DeleteSpotDialog),

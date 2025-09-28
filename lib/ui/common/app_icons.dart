@@ -5,7 +5,8 @@ class AppIcons {
 
   static const String agreement = '${_basePath}agreement.svg';
   static const String upload = '${_basePath}Upload.svg';
-
+  static const String personalCard = '${_basePath}personalcard.svg';
+  static const languageCirle = "${_basePath}language-circle.svg";
   static const String alert = '${_basePath}alert.svg';
 
   static const String alertCircle = '${_basePath}alert-circle.svg';

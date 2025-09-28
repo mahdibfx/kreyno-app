@@ -6,8 +6,14 @@ part of 'user_exists_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_UserExistsResponse _$UserExistsResponseFromJson(Map<String, dynamic> json) =>
-    _UserExistsResponse(exists: json['exists'] as bool);
+_$UserExistsResponseImpl _$$UserExistsResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$UserExistsResponseImpl(
+      exists: json['exists'] as bool,
+    );
 
-Map<String, dynamic> _$UserExistsResponseToJson(_UserExistsResponse instance) =>
-    <String, dynamic>{'exists': instance.exists};
+Map<String, dynamic> _$$UserExistsResponseImplToJson(
+        _$UserExistsResponseImpl instance) =>
+    <String, dynamic>{
+      'exists': instance.exists,
+    };

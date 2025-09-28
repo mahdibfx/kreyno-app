@@ -6,19 +6,20 @@ part of 'register_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_RegisterDto _$RegisterDtoFromJson(Map<String, dynamic> json) => _RegisterDto(
-  firstName: json['first_name'] as String,
-  lastName: json['last_name'] as String,
-  phone: json['phone'] as String,
-  email: json['email'] as String,
-  gender: $enumDecode(_$GenderEnumMap, json['gender']),
-  birthDate: DateTime.parse(json['birth_date'] as String),
-  address: json['address'] as String,
-  otp: json['otp'] as String,
-  deviceId: json['device_id'] as String,
-);
+_$RegisterDtoImpl _$$RegisterDtoImplFromJson(Map<String, dynamic> json) =>
+    _$RegisterDtoImpl(
+      firstName: json['first_name'] as String,
+      lastName: json['last_name'] as String,
+      phone: json['phone'] as String,
+      email: json['email'] as String,
+      gender: $enumDecode(_$GenderEnumMap, json['gender']),
+      birthDate: DateTime.parse(json['birth_date'] as String),
+      address: json['address'] as String,
+      otp: json['otp'] as String,
+      deviceId: json['device_id'] as String,
+    );
 
-Map<String, dynamic> _$RegisterDtoToJson(_RegisterDto instance) =>
+Map<String, dynamic> _$$RegisterDtoImplToJson(_$RegisterDtoImpl instance) =>
     <String, dynamic>{
       'first_name': instance.firstName,
       'last_name': instance.lastName,
@@ -31,4 +32,7 @@ Map<String, dynamic> _$RegisterDtoToJson(_RegisterDto instance) =>
       'device_id': instance.deviceId,
     };
 
-const _$GenderEnumMap = {Gender.male: 1, Gender.female: 2};
+const _$GenderEnumMap = {
+  Gender.male: 1,
+  Gender.female: 2,
+};

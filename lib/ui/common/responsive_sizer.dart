@@ -150,7 +150,7 @@ class ResponsiveSizerWidget extends StatelessWidget {
   final Widget child;
 
   const ResponsiveSizerWidget({Key? key, required this.child})
-    : super(key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

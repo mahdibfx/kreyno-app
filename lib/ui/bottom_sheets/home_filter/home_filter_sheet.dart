@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
@@ -40,9 +41,10 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
             children: [
               const CustomText.largeTitle("Filtres"),
               RoundedButton(
-                iconPath: AppIcons.multiplicationSign,
-                onPressed: () {},
-              ),
+                  iconPath: AppIcons.multiplicationSign,
+                  onPressed: () {
+                    locator<NavigationService>().back();
+                  })
             ],
           ),
           VGap(AppSpacing.px20),
@@ -56,22 +58,25 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
           Column(
             children: [
               LabeledCheckbox(
-                label: "Toutes les places",
-                value: true,
-                onChanged: (d) {},
-              ),
+                  label: "Toutes les places",
+                  value: viewModel.placeType == 0,
+                  onChanged: (d) {
+                    viewModel.changePlaceType(0);
+                  }),
               VGap(AppSpacing.px4),
               LabeledCheckbox(
-                label: "Uniquement avec borne de recharge",
-                value: false,
-                onChanged: (d) {},
-              ),
+                  label: "Uniquement avec borne de recharge",
+                  value: viewModel.placeType == 1,
+                  onChanged: (d) {
+                    viewModel.changePlaceType(1);
+                  }),
               VGap(AppSpacing.px4),
               LabeledCheckbox(
-                label: "Sans borne de recharge",
-                value: false,
-                onChanged: (d) {},
-              ),
+                  label: "Sans borne de recharge",
+                  value: viewModel.placeType == 2,
+                  onChanged: (d) {
+                    viewModel.changePlaceType(2);
+                  }),
             ],
           ),
           VGap(AppSpacing.px12),
@@ -88,8 +93,10 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
           SizedBox(
             width: double.infinity,
             child: Slider(
-              value: 0.5,
-              onChanged: (d) {},
+              value: viewModel.sliderValue,
+              onChanged: (d) {
+                viewModel.onSliderChange(d);
+              },
               activeColor: AppColors.greenKre,
               thumbColor: AppColors.white,
             ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/models/parking_place.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
+import 'package:kreyno/ui/common/app_images.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
@@ -15,19 +17,21 @@ import 'my_stationements_viewmodel.dart';
 
 class MyStationementsView extends StackedView<MyStationementsViewModel> {
   const MyStationementsView({Key? key}) : super(key: key);
-
   @override
   Widget builder(
     BuildContext context,
     MyStationementsViewModel viewModel,
     Widget? child,
   ) {
+    bool isEmpty = viewModel.selectedIndex == 0
+        ? viewModel.myPlaces.isEmpty
+        : viewModel.myGivenUpPlaces.isEmpty;
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: MyAppBar(
         title: "Mes stationnements",
         actions: [
-          InkWell(
+          GestureDetector(
             onTap: () {
               final d = locator<BottomSheetService>().showCustomSheet(
                 isScrollControlled: true,
@@ -43,14 +47,54 @@ class MyStationementsView extends StackedView<MyStationementsViewModel> {
       ),
       body: CustomScrollView(
         slivers: [
-          const SliverToBoxAdapter(child: CustomPlacesTabbar()),
-          SliverToBoxAdapter(child: VGap(AppSpacing.px20)),
-          SliverList.builder(
-            itemCount: 10,
-            itemBuilder: (c, i) => Column(
-              children: [const StationementWidget(), VGap(AppSpacing.px1 * 10)],
+          SliverToBoxAdapter(
+            child: CustomPlacesTabbar(
+              selectedIndex: viewModel.selectedIndex,
+              onTabChanged: (i) {
+                viewModel.changeIndex(i);
+              },
             ),
           ),
+          SliverToBoxAdapter(child: VGap(AppSpacing.px20 * (isEmpty ? 4 : 0))),
+          if (isEmpty)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+                child: Column(
+                  children: [
+                    Image.asset(
+                      AppImages.noStationement,
+                    ),
+                    VGap(AppSpacing.px24),
+                    const CustomText.largeTitle(
+                      "Aucun stationnement trouvé",
+                    ),
+                    VGap(AppSpacing.px4),
+                    const CustomText.smallParagraphMedium(
+                      "Vous n’avez pas encore ajouté de stationnement. Commencez dès maintenant pour retrouver facilement vos places. ",
+                      maxLines: 3,
+                      textAlign: TextAlign.center,
+                      color: AppColors.textKre,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          if (!isEmpty)
+            SliverList.builder(
+                itemCount: viewModel.selectedIndex == 0
+                    ? viewModel.myPlaces.length
+                    : viewModel.myGivenUpPlaces.length,
+                itemBuilder: (c, i) => Column(
+                      children: [
+                        StationementWidget(
+                          place: viewModel.selectedIndex == 0
+                              ? viewModel.myPlaces[i]
+                              : viewModel.myGivenUpPlaces[i],
+                        ),
+                        VGap(AppSpacing.px1 * 10)
+                      ],
+                    ))
         ],
       ),
     );
@@ -62,8 +106,8 @@ class MyStationementsView extends StackedView<MyStationementsViewModel> {
 }
 
 class StationementWidget extends StatelessWidget {
-  const StationementWidget({super.key});
-
+  const StationementWidget({super.key, required this.place});
+  final ParkingPlace place;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -83,13 +127,14 @@ class StationementWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    /// TODO no date in parking place model
                     const CustomText.smallParagraphMedium(
                       "02-01-2025 · 19h00",
                       color: AppColors.textKre,
                     ),
                     VGap(AppSpacing.px1 * 5),
-                    const CustomText.paragraph(
-                      "Rue de la paix 8ème arrondissement, Paris, France",
+                    CustomText.paragraph(
+                      place.address,
                       maxLines: 2,
                     ),
                   ],
@@ -98,7 +143,8 @@ class StationementWidget extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(AppSpacing.px1 * 10),
                 child: Image.network(
-                  "https://picsum.photos/60/60",
+                  place.seller.avatar
+                      .url, // TODO man this supposed to be car image
                   fit: BoxFit.cover,
                 ),
               ),
@@ -116,14 +162,16 @@ class StationementWidget extends StatelessWidget {
                     ),
                     HGap(AppSpacing.px4),
                     const CustomText(
-                      text: "Borne disponible",
+                      text:
+                          "Borne disponible", // no attribute  for this born disponible in parking place model
                       style: CustomTextStyle.smallParagraphMedium,
                       color: AppColors.greenKre,
                     ),
                   ],
                 ),
               ),
-              const CustomText.paragraph("2€", color: AppColors.greenKre),
+              CustomText.paragraph("${place.totalPaidPrice}\$",
+                  color: AppColors.greenKre),
             ],
           ),
         ],
@@ -133,8 +181,9 @@ class StationementWidget extends StatelessWidget {
 }
 
 class CustomPlacesTabbar extends StatelessWidget {
-  const CustomPlacesTabbar({super.key});
-
+  CustomPlacesTabbar({super.key, this.selectedIndex = 0, this.onTabChanged});
+  Function(int)? onTabChanged;
+  int? selectedIndex;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -147,34 +196,41 @@ class CustomPlacesTabbar extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              padding: EdgeInsets.symmetric(
-                horizontal: AppSpacing.px20,
-                vertical: AppSpacing.px1 * 10,
-              ),
-              child: const CustomText.smallParagraphBold(
-                "Places réservées",
-                textAlign: TextAlign.center,
-              ),
+            child: InkWell(
+              onTap: () {
+                onTabChanged?.call(0);
+              },
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: selectedIndex == 0 ? AppColors.white : null,
+                      borderRadius: BorderRadius.circular(8)),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: AppSpacing.px20,
+                      vertical: AppSpacing.px1 * 10),
+                  child: const CustomText.smallParagraphBold(
+                    "Places réservées",
+                    textAlign: TextAlign.center,
+                  )),
             ),
           ),
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-              padding: EdgeInsets.symmetric(
-                horizontal: AppSpacing.px20,
-                vertical: AppSpacing.px1 * 10,
-              ),
-              child: const CustomText.smallParagraphBold(
-                "Places cédées",
-                textAlign: TextAlign.center,
-              ),
+            child: InkWell(
+              onTap: () {
+                onTabChanged?.call(1);
+              },
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: selectedIndex == 1 ? AppColors.white : null,
+                      borderRadius: BorderRadius.circular(8)),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: AppSpacing.px20,
+                      vertical: AppSpacing.px1 * 10),
+                  child: const CustomText.smallParagraphBold(
+                    "Places cédées",
+                    textAlign: TextAlign.center,
+                  )),
             ),
-          ),
+          )
         ],
       ),
     );

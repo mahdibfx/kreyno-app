@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
@@ -40,35 +41,33 @@ class DatePickerFilterSheet extends StackedView<DatePickerFilterSheetModel> {
             children: [
               const CustomText.largeTitle("Filtre par date"),
               RoundedButton(
-                iconPath: AppIcons.multiplicationSign,
-                onPressed: () {},
-              ),
+                  iconPath: AppIcons.multiplicationSign,
+                  onPressed: () {
+                    locator<NavigationService>().back();
+                  })
             ],
           ),
           VGap(AppSpacing.px20),
           SfDateRangePicker(
             monthCellStyle: const DateRangePickerMonthCellStyle(
-              textStyle: TextStyle(
-                fontFamily: "Satoshi",
-                fontWeight: FontWeight.bold,
-              ),
+              textStyle:
+                  TextStyle(fontFamily: "Satoshi", fontWeight: FontWeight.bold),
             ),
             selectionTextStyle: const TextStyle(
-              fontFamily: "Satoshi",
-              fontWeight: FontWeight.bold,
-            ),
+                fontFamily: "Satoshi", fontWeight: FontWeight.bold),
             allowViewNavigation: false,
             showNavigationArrow: true,
             showTodayButton: false,
+            onSelectionChanged: (DateRangePickerSelectionChangedArgs
+                dateRangePickerSelectionChangedArgs) {
+              viewModel.changedRange(dateRangePickerSelectionChangedArgs);
+            },
             headerHeight: 60,
             headerStyle: const DateRangePickerHeaderStyle(
-              textAlign: TextAlign.center,
-              textStyle: TextStyle(
-                fontFamily: "Satoshi",
-                fontWeight: FontWeight.bold,
-              ),
-              backgroundColor: Colors.white,
-            ),
+                textAlign: TextAlign.center,
+                textStyle: TextStyle(
+                    fontFamily: "Satoshi", fontWeight: FontWeight.bold),
+                backgroundColor: Colors.white),
             rangeSelectionColor: AppColors.greenKre,
             selectionColor: AppColors.greenKre,
             startRangeSelectionColor: AppColors.greenKre,
@@ -76,9 +75,7 @@ class DatePickerFilterSheet extends StackedView<DatePickerFilterSheetModel> {
             selectionMode: DateRangePickerSelectionMode.range,
             backgroundColor: AppColors.white,
             rangeTextStyle: const TextStyle(
-              fontFamily: "Satoshi",
-              fontWeight: FontWeight.bold,
-            ),
+                fontFamily: "Satoshi", fontWeight: FontWeight.bold),
           ),
           const CustomDivider(),
           VGap(AppSpacing.px16),
@@ -89,12 +86,11 @@ class DatePickerFilterSheet extends StackedView<DatePickerFilterSheetModel> {
                   alignment: Alignment.center,
                   padding: EdgeInsets.symmetric(vertical: AppSpacing.px1 * 10),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    border: const Border.fromBorderSide(
-                      BorderSide(color: AppColors.strokeKre),
-                    ),
-                  ),
-                  child: const CustomText.smallParagraphBold("13/07/25"),
+                      borderRadius: BorderRadius.circular(12),
+                      border: const Border.fromBorderSide(
+                          BorderSide(color: AppColors.strokeKre))),
+                  child: CustomText.smallParagraphBold(
+                      viewModel.formattedStartDate),
                 ),
               ),
               HGap(AppSpacing.px8),
@@ -105,12 +101,11 @@ class DatePickerFilterSheet extends StackedView<DatePickerFilterSheetModel> {
                   alignment: Alignment.center,
                   padding: EdgeInsets.symmetric(vertical: AppSpacing.px1 * 10),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    border: const Border.fromBorderSide(
-                      BorderSide(color: AppColors.strokeKre),
-                    ),
-                  ),
-                  child: const CustomText.smallParagraphBold("13/07/25"),
+                      borderRadius: BorderRadius.circular(12),
+                      border: const Border.fromBorderSide(
+                          BorderSide(color: AppColors.strokeKre))),
+                  child:
+                      CustomText.smallParagraphBold(viewModel.formattedEndDate),
                 ),
               ),
             ],

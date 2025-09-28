@@ -77,9 +77,8 @@ class InputField extends StatelessWidget {
                         )
                       : null,
                   filled: true,
-                  fillColor: disabled
-                      ? AppColors.disabledFillKre
-                      : AppColors.white,
+                  fillColor:
+                      disabled ? AppColors.disabledFillKre : AppColors.white,
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: AppSpacing.px16,
                     vertical: AppSpacing.px12,

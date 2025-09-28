@@ -1,5 +1,5 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,284 +9,284 @@ part of 'update_profile_dto.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+UpdateProfileDto _$UpdateProfileDtoFromJson(Map<String, dynamic> json) {
+  return _UpdateProfileDto.fromJson(json);
+}
 
 /// @nodoc
 mixin _$UpdateProfileDto {
-
-@JsonKey(name: 'first_name') String? get firstName;@JsonKey(name: 'last_name') String? get lastName;@JsonKey(name: 'email') String? get email;@JsonKey(name: 'gender') Gender? get gender;@JsonKey(name: 'birth_date') DateTime? get birthDate;@JsonKey(name: 'address') String? get address;
-/// Create a copy of UpdateProfileDto
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$UpdateProfileDtoCopyWith<UpdateProfileDto> get copyWith => _$UpdateProfileDtoCopyWithImpl<UpdateProfileDto>(this as UpdateProfileDto, _$identity);
+  @JsonKey(name: 'first_name')
+  String? get firstName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'last_name')
+  String? get lastName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'email')
+  String? get email => throw _privateConstructorUsedError;
+  @JsonKey(name: 'gender')
+  Gender? get gender => throw _privateConstructorUsedError;
+  @JsonKey(name: 'birth_date')
+  DateTime? get birthDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'address')
+  String? get address => throw _privateConstructorUsedError;
 
   /// Serializes this UpdateProfileDto to a JSON map.
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateProfileDto&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.email, email) || other.email == email)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.birthDate, birthDate) || other.birthDate == birthDate)&&(identical(other.address, address) || other.address == address));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,firstName,lastName,email,gender,birthDate,address);
-
-@override
-String toString() {
-  return 'UpdateProfileDto(firstName: $firstName, lastName: $lastName, email: $email, gender: $gender, birthDate: $birthDate, address: $address)';
-}
-
-
+  /// Create a copy of UpdateProfileDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $UpdateProfileDtoCopyWith<UpdateProfileDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $UpdateProfileDtoCopyWith<$Res>  {
-  factory $UpdateProfileDtoCopyWith(UpdateProfileDto value, $Res Function(UpdateProfileDto) _then) = _$UpdateProfileDtoCopyWithImpl;
-@useResult
-$Res call({
-@JsonKey(name: 'first_name') String? firstName,@JsonKey(name: 'last_name') String? lastName,@JsonKey(name: 'email') String? email,@JsonKey(name: 'gender') Gender? gender,@JsonKey(name: 'birth_date') DateTime? birthDate,@JsonKey(name: 'address') String? address
-});
-
-
-
-
+abstract class $UpdateProfileDtoCopyWith<$Res> {
+  factory $UpdateProfileDtoCopyWith(
+          UpdateProfileDto value, $Res Function(UpdateProfileDto) then) =
+      _$UpdateProfileDtoCopyWithImpl<$Res, UpdateProfileDto>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'gender') Gender? gender,
+      @JsonKey(name: 'birth_date') DateTime? birthDate,
+      @JsonKey(name: 'address') String? address});
 }
+
 /// @nodoc
-class _$UpdateProfileDtoCopyWithImpl<$Res>
+class _$UpdateProfileDtoCopyWithImpl<$Res, $Val extends UpdateProfileDto>
     implements $UpdateProfileDtoCopyWith<$Res> {
-  _$UpdateProfileDtoCopyWithImpl(this._self, this._then);
+  _$UpdateProfileDtoCopyWithImpl(this._value, this._then);
 
-  final UpdateProfileDto _self;
-  final $Res Function(UpdateProfileDto) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
-/// Create a copy of UpdateProfileDto
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? firstName = freezed,Object? lastName = freezed,Object? email = freezed,Object? gender = freezed,Object? birthDate = freezed,Object? address = freezed,}) {
-  return _then(_self.copyWith(
-firstName: freezed == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
-as String?,lastName: freezed == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
-as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String?,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
-as Gender?,birthDate: freezed == birthDate ? _self.birthDate : birthDate // ignore: cast_nullable_to_non_nullable
-as DateTime?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
+  /// Create a copy of UpdateProfileDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? email = freezed,
+    Object? gender = freezed,
+    Object? birthDate = freezed,
+    Object? address = freezed,
+  }) {
+    return _then(_value.copyWith(
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as Gender?,
+      birthDate: freezed == birthDate
+          ? _value.birthDate
+          : birthDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
 }
 
+/// @nodoc
+abstract class _$$UpdateProfileDtoImplCopyWith<$Res>
+    implements $UpdateProfileDtoCopyWith<$Res> {
+  factory _$$UpdateProfileDtoImplCopyWith(_$UpdateProfileDtoImpl value,
+          $Res Function(_$UpdateProfileDtoImpl) then) =
+      __$$UpdateProfileDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'gender') Gender? gender,
+      @JsonKey(name: 'birth_date') DateTime? birthDate,
+      @JsonKey(name: 'address') String? address});
 }
 
+/// @nodoc
+class __$$UpdateProfileDtoImplCopyWithImpl<$Res>
+    extends _$UpdateProfileDtoCopyWithImpl<$Res, _$UpdateProfileDtoImpl>
+    implements _$$UpdateProfileDtoImplCopyWith<$Res> {
+  __$$UpdateProfileDtoImplCopyWithImpl(_$UpdateProfileDtoImpl _value,
+      $Res Function(_$UpdateProfileDtoImpl) _then)
+      : super(_value, _then);
 
-/// Adds pattern-matching-related methods to [UpdateProfileDto].
-extension UpdateProfileDtoPatterns on UpdateProfileDto {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UpdateProfileDto value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _UpdateProfileDto() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UpdateProfileDto value)  $default,){
-final _that = this;
-switch (_that) {
-case _UpdateProfileDto():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UpdateProfileDto value)?  $default,){
-final _that = this;
-switch (_that) {
-case _UpdateProfileDto() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'first_name')  String? firstName, @JsonKey(name: 'last_name')  String? lastName, @JsonKey(name: 'email')  String? email, @JsonKey(name: 'gender')  Gender? gender, @JsonKey(name: 'birth_date')  DateTime? birthDate, @JsonKey(name: 'address')  String? address)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _UpdateProfileDto() when $default != null:
-return $default(_that.firstName,_that.lastName,_that.email,_that.gender,_that.birthDate,_that.address);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'first_name')  String? firstName, @JsonKey(name: 'last_name')  String? lastName, @JsonKey(name: 'email')  String? email, @JsonKey(name: 'gender')  Gender? gender, @JsonKey(name: 'birth_date')  DateTime? birthDate, @JsonKey(name: 'address')  String? address)  $default,) {final _that = this;
-switch (_that) {
-case _UpdateProfileDto():
-return $default(_that.firstName,_that.lastName,_that.email,_that.gender,_that.birthDate,_that.address);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'first_name')  String? firstName, @JsonKey(name: 'last_name')  String? lastName, @JsonKey(name: 'email')  String? email, @JsonKey(name: 'gender')  Gender? gender, @JsonKey(name: 'birth_date')  DateTime? birthDate, @JsonKey(name: 'address')  String? address)?  $default,) {final _that = this;
-switch (_that) {
-case _UpdateProfileDto() when $default != null:
-return $default(_that.firstName,_that.lastName,_that.email,_that.gender,_that.birthDate,_that.address);case _:
-  return null;
-
-}
-}
-
+  /// Create a copy of UpdateProfileDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? firstName = freezed,
+    Object? lastName = freezed,
+    Object? email = freezed,
+    Object? gender = freezed,
+    Object? birthDate = freezed,
+    Object? address = freezed,
+  }) {
+    return _then(_$UpdateProfileDtoImpl(
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as Gender?,
+      birthDate: freezed == birthDate
+          ? _value.birthDate
+          : birthDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
+class _$UpdateProfileDtoImpl implements _UpdateProfileDto {
+  const _$UpdateProfileDtoImpl(
+      {@JsonKey(name: 'first_name') this.firstName,
+      @JsonKey(name: 'last_name') this.lastName,
+      @JsonKey(name: 'email') this.email,
+      @JsonKey(name: 'gender') this.gender,
+      @JsonKey(name: 'birth_date') this.birthDate,
+      @JsonKey(name: 'address') this.address});
 
-class _UpdateProfileDto implements UpdateProfileDto {
-  const _UpdateProfileDto({@JsonKey(name: 'first_name') this.firstName, @JsonKey(name: 'last_name') this.lastName, @JsonKey(name: 'email') this.email, @JsonKey(name: 'gender') this.gender, @JsonKey(name: 'birth_date') this.birthDate, @JsonKey(name: 'address') this.address});
-  factory _UpdateProfileDto.fromJson(Map<String, dynamic> json) => _$UpdateProfileDtoFromJson(json);
+  factory _$UpdateProfileDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UpdateProfileDtoImplFromJson(json);
 
-@override@JsonKey(name: 'first_name') final  String? firstName;
-@override@JsonKey(name: 'last_name') final  String? lastName;
-@override@JsonKey(name: 'email') final  String? email;
-@override@JsonKey(name: 'gender') final  Gender? gender;
-@override@JsonKey(name: 'birth_date') final  DateTime? birthDate;
-@override@JsonKey(name: 'address') final  String? address;
+  @override
+  @JsonKey(name: 'first_name')
+  final String? firstName;
+  @override
+  @JsonKey(name: 'last_name')
+  final String? lastName;
+  @override
+  @JsonKey(name: 'email')
+  final String? email;
+  @override
+  @JsonKey(name: 'gender')
+  final Gender? gender;
+  @override
+  @JsonKey(name: 'birth_date')
+  final DateTime? birthDate;
+  @override
+  @JsonKey(name: 'address')
+  final String? address;
 
-/// Create a copy of UpdateProfileDto
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$UpdateProfileDtoCopyWith<_UpdateProfileDto> get copyWith => __$UpdateProfileDtoCopyWithImpl<_UpdateProfileDto>(this, _$identity);
+  @override
+  String toString() {
+    return 'UpdateProfileDto(firstName: $firstName, lastName: $lastName, email: $email, gender: $gender, birthDate: $birthDate, address: $address)';
+  }
 
-@override
-Map<String, dynamic> toJson() {
-  return _$UpdateProfileDtoToJson(this, );
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateProfileDtoImpl &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.birthDate, birthDate) ||
+                other.birthDate == birthDate) &&
+            (identical(other.address, address) || other.address == address));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, firstName, lastName, email, gender, birthDate, address);
+
+  /// Create a copy of UpdateProfileDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateProfileDtoImplCopyWith<_$UpdateProfileDtoImpl> get copyWith =>
+      __$$UpdateProfileDtoImplCopyWithImpl<_$UpdateProfileDtoImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UpdateProfileDtoImplToJson(
+      this,
+    );
+  }
 }
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateProfileDto&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.email, email) || other.email == email)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.birthDate, birthDate) || other.birthDate == birthDate)&&(identical(other.address, address) || other.address == address));
+abstract class _UpdateProfileDto implements UpdateProfileDto {
+  const factory _UpdateProfileDto(
+          {@JsonKey(name: 'first_name') final String? firstName,
+          @JsonKey(name: 'last_name') final String? lastName,
+          @JsonKey(name: 'email') final String? email,
+          @JsonKey(name: 'gender') final Gender? gender,
+          @JsonKey(name: 'birth_date') final DateTime? birthDate,
+          @JsonKey(name: 'address') final String? address}) =
+      _$UpdateProfileDtoImpl;
+
+  factory _UpdateProfileDto.fromJson(Map<String, dynamic> json) =
+      _$UpdateProfileDtoImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'first_name')
+  String? get firstName;
+  @override
+  @JsonKey(name: 'last_name')
+  String? get lastName;
+  @override
+  @JsonKey(name: 'email')
+  String? get email;
+  @override
+  @JsonKey(name: 'gender')
+  Gender? get gender;
+  @override
+  @JsonKey(name: 'birth_date')
+  DateTime? get birthDate;
+  @override
+  @JsonKey(name: 'address')
+  String? get address;
+
+  /// Create a copy of UpdateProfileDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateProfileDtoImplCopyWith<_$UpdateProfileDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,firstName,lastName,email,gender,birthDate,address);
-
-@override
-String toString() {
-  return 'UpdateProfileDto(firstName: $firstName, lastName: $lastName, email: $email, gender: $gender, birthDate: $birthDate, address: $address)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$UpdateProfileDtoCopyWith<$Res> implements $UpdateProfileDtoCopyWith<$Res> {
-  factory _$UpdateProfileDtoCopyWith(_UpdateProfileDto value, $Res Function(_UpdateProfileDto) _then) = __$UpdateProfileDtoCopyWithImpl;
-@override @useResult
-$Res call({
-@JsonKey(name: 'first_name') String? firstName,@JsonKey(name: 'last_name') String? lastName,@JsonKey(name: 'email') String? email,@JsonKey(name: 'gender') Gender? gender,@JsonKey(name: 'birth_date') DateTime? birthDate,@JsonKey(name: 'address') String? address
-});
-
-
-
-
-}
-/// @nodoc
-class __$UpdateProfileDtoCopyWithImpl<$Res>
-    implements _$UpdateProfileDtoCopyWith<$Res> {
-  __$UpdateProfileDtoCopyWithImpl(this._self, this._then);
-
-  final _UpdateProfileDto _self;
-  final $Res Function(_UpdateProfileDto) _then;
-
-/// Create a copy of UpdateProfileDto
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? firstName = freezed,Object? lastName = freezed,Object? email = freezed,Object? gender = freezed,Object? birthDate = freezed,Object? address = freezed,}) {
-  return _then(_UpdateProfileDto(
-firstName: freezed == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
-as String?,lastName: freezed == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
-as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String?,gender: freezed == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
-as Gender?,birthDate: freezed == birthDate ? _self.birthDate : birthDate // ignore: cast_nullable_to_non_nullable
-as DateTime?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
-}
-
-
-}
-
-// dart format on

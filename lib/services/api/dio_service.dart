@@ -10,15 +10,15 @@ class DioService {
   final Dio dio;
 
   DioService()
-    : dio = Dio(
-        BaseOptions(
-          baseUrl: ApiEndpoints.baseUrl,
-          connectTimeout: const Duration(seconds: 30),
-          sendTimeout: const Duration(seconds: 30),
-          receiveTimeout: const Duration(seconds: 30),
-          headers: {'content-Type': 'application/json'},
-        ),
-      ) {
+      : dio = Dio(
+          BaseOptions(
+            baseUrl: ApiEndpoints.baseUrl,
+            connectTimeout: const Duration(seconds: 30),
+            sendTimeout: const Duration(seconds: 30),
+            receiveTimeout: const Duration(seconds: 30),
+            headers: {'content-Type': 'application/json'},
+          ),
+        ) {
     dio.interceptors.add(
       PrettyDioLogger(
         request: true,
@@ -26,7 +26,7 @@ class DioService {
         requestHeader: true,
         responseBody: true,
         maxWidth: 1000,
-        logPrint: (object) => _logger.f(object.toString()),
+        logPrint: (object) => _logger.v(object.toString()),
       ),
     );
     dio.interceptors.add(LanguageHeaderInterceptor());

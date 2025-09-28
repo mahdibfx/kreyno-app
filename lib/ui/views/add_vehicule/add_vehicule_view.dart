@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
@@ -16,6 +17,7 @@ import 'package:kreyno/ui/widgets/dumb/license_plate_input_field.dart';
 import 'package:kreyno/ui/widgets/dumb/my_app_bar.dart';
 import 'package:kreyno/ui/widgets/smart/vehicule_type_drop_down/vehicule_type_drop_down.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import 'add_vehicule_viewmodel.dart';
 
@@ -31,10 +33,16 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: MyAppBar(title: "Nouveau véhicule"),
+        // appBar: MyAppBar(title: "Nouveau véhicule"),
         backgroundColor: AppColors.white,
         body: CustomScrollView(
           slivers: [
+            AuthSliverAppBar(
+                title: "Ajouter un véhicule",
+                description: "Remplissez ces informations ci-dessous",
+                onBackPressed: () {
+                  locator<NavigationService>().back();
+                }),
             SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
               sliver: SliverToBoxAdapter(
@@ -42,13 +50,13 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    VGap(AppSpacing.px12),
-                    const CustomText.largeTitle("Ajoutez un nouveau véhicule"),
-                    VGap(AppSpacing.px4),
-                    const CustomText.smallParagraphMedium(
-                      "Remplissez ces informations ci-dessous.",
-                      color: AppColors.textKre,
-                    ),
+                    // VGap(AppSpacing.px12),
+                    // const CustomText.largeTitle("Ajoutez un nouveau véhicule"),
+                    // VGap(AppSpacing.px4),
+                    // const CustomText.smallParagraphMedium(
+                    //   "Remplissez ces informations ci-dessous.",
+                    //   color: AppColors.textKre,
+                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -58,7 +66,9 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel> {
                         ),
                         CustomSwitch(
                           value: viewModel.isFrenchLicensePlate,
-                          onChanged: (v) {},
+                          onChanged: (v) {
+                            viewModel.changePlateType();
+                          },
                         ),
                       ],
                     ),

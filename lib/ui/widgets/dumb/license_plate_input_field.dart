@@ -13,9 +13,8 @@ class LicensePlateFormatter extends TextInputFormatter {
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
-    String text = newValue.text
-        .replaceAll(RegExp(r'[^A-Za-z0-9]'), '')
-        .toUpperCase();
+    String text =
+        newValue.text.replaceAll(RegExp(r'[^A-Za-z0-9]'), '').toUpperCase();
 
     if (text.length > 7) {
       text = text.substring(0, 7);

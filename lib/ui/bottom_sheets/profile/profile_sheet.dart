@@ -21,7 +21,7 @@ class ProfileSheet extends StackedView<ProfileSheetModel> {
   final Function(SheetResponse response)? completer;
   final SheetRequest request;
   const ProfileSheet({Key? key, required this.completer, required this.request})
-    : super(key: key);
+      : super(key: key);
 
   @override
   Widget builder(
@@ -70,10 +70,9 @@ class ProfileSheet extends StackedView<ProfileSheetModel> {
                       VGap(AppSpacing.px12),
                       CustomButton.outlined(
                         expandToFullWidth: false,
-                        text: "Modifier mon profile",
+                        text: "Paramètres du compte",
                         onPressed: () {
-                          locator<NavigationService>()
-                              .navigateToEditProfileView();
+                          locator<NavigationService>().navigateToSettingsView();
                         },
                         foregroundColor: AppColors.mainKre,
                       ),
@@ -155,6 +154,17 @@ class ProfileSheet extends StackedView<ProfileSheetModel> {
             icon: AppIcons.documentText,
             title: 'Politique de confidentialité',
           ),
+          VGap(AppSpacing.px8),
+          InkWell(
+            onTap: () {
+              locator<NavigationService>().navigateToChangeLanguageView();
+            },
+            child: const ProfileListTile(
+              icon: AppIcons.languageCirle,
+              title: 'Langue',
+              showTrailingArrow: true,
+            ),
+          ),
           VGap(AppSpacing.px24),
           InkWell(
             onTap: () {
@@ -195,9 +205,15 @@ class ProfileSheet extends StackedView<ProfileSheetModel> {
 }
 
 class ProfileListTile extends StatelessWidget {
-  const ProfileListTile({super.key, required this.icon, required this.title});
+  const ProfileListTile({
+    super.key,
+    required this.icon,
+    required this.title,
+    this.showTrailingArrow = false,
+  });
   final String icon;
   final String title;
+  final bool showTrailingArrow;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -206,7 +222,17 @@ class ProfileListTile extends StatelessWidget {
         children: [
           CustomIcon(iconPath: icon, size: 20),
           HGap(AppSpacing.px1 * 10),
-          CustomText(text: title, style: CustomTextStyle.smallParagraphMedium),
+          CustomText(
+            text: title,
+            style: CustomTextStyle.smallParagraphMedium,
+          ),
+          if (showTrailingArrow) const Expanded(child: SizedBox()),
+          if (showTrailingArrow)
+            const CustomIcon(
+              iconPath: AppIcons.arrowRight,
+              color: AppColors.textKre,
+            ),
+          if (showTrailingArrow) HGap(AppSpacing.px8)
         ],
       ),
     );
