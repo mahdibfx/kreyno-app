@@ -86,12 +86,16 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
               children: [
                 CustomText.smallParagraphMedium(
                   '${viewModel.countryCode} ${viewModel.countryDialCode}',
-                  color: disabled ? AppColors.textKre : AppColors.mainKre,
+                  color: errorText != null
+                      ? AppColors.redKre
+                      : (disabled ? AppColors.textKre : AppColors.mainKre),
                 ),
                 CustomIcon(
                   iconPath: AppIcons.altArrowDown,
                   size: AppSpacing.px20,
-                  color: disabled ? AppColors.textKre : AppColors.mainKre,
+                  color: errorText != null
+                      ? AppColors.redKre
+                      : (disabled ? AppColors.textKre : AppColors.mainKre),
                 ),
               ],
             ),
