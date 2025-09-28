@@ -79,7 +79,8 @@
         "gender": "Gender",
         "male": "Male",
         "female": "Female",
-        "userNameTaken": "This username is already taken"
+        "userNameTaken": "This username is already taken",
+        "emailTaken": "This email is already taken"
     },
     "setUpVehicule": {
         "title": "Add your vehicle",

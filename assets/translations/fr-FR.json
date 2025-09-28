@@ -80,7 +80,8 @@
         "gender": "Sexe",
         "male": "Homme",
         "female": "Femme",
-        "userNameTaken": "Ce nom d'utilisateur est déjà utilisé"
+        "userNameTaken": "Ce nom d'utilisateur est déjà utilisé",
+        "emailTaken": "Cet email est déjà utilisé"
     },
     "setUpVehicule": {
         "title": "Ajoutez votre véhicule",

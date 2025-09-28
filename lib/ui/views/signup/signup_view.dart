@@ -139,7 +139,16 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                         focusNode: emailFocusNode,
                         labelText: SignupStrings.email,
                         hintText: SignupStrings.emailPlaceholder,
-                        keyboardType: TextInputType.name,
+                        keyboardType: TextInputType.emailAddress,
+                        onChanged: viewModel.onEmailChanged,
+                        trailingIcon: viewModel.checkingEmailTaken
+                            ? Transform.scale(
+                                scale: .8,
+                                child: CustomLoadingIndicator(
+                                  size: AppSpacing.px1,
+                                ),
+                              )
+                            : null,
                         errorText: viewModel.hasEmail
                             ? viewModel.emailValidationMessage
                             : null,

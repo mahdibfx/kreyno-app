@@ -49,10 +49,19 @@ class SignupViewModel extends FormViewModel {
   bool _checkingUserNameTaken = false;
   bool get checkingUserNameTaken => _checkingUserNameTaken;
 
+  bool _checkingEmailTaken = false;
+  bool get checkingEmailTaken => _checkingEmailTaken;
+
   Timer? _userNameDebounceTimer;
+  Timer? _emailDebounceTimer;
 
   void setCheckingUserNameTaken(bool value) {
     _checkingUserNameTaken = value;
+    rebuildUi();
+  }
+
+  void setCheckingEmailTaken(bool value) {
+    _checkingEmailTaken = value;
     rebuildUi();
   }
 
@@ -79,9 +88,20 @@ class SignupViewModel extends FormViewModel {
 
   void onUserNameChanged(String value) {
     _userNameDebounceTimer?.cancel();
-    if (value.isNotEmpty) {
+    // Only start timer if username has value and no validation errors
+    if (value.isNotEmpty && hasUserName && !hasUserNameValidationMessage) {
       _userNameDebounceTimer = Timer(const Duration(milliseconds: 500), () {
         _handleUserNameIsTaken();
+      });
+    }
+  }
+
+  void onEmailChanged(String value) {
+    _emailDebounceTimer?.cancel();
+    // Only start timer if email has value and no validation errors
+    if (value.isNotEmpty && hasEmail && !hasEmailValidationMessage) {
+      _emailDebounceTimer = Timer(const Duration(milliseconds: 500), () {
+        _handleEmailIsTaken();
       });
     }
   }
@@ -104,6 +124,29 @@ class SignupViewModel extends FormViewModel {
       (exists) {
         if (exists) {
           setUserNameValidationMessage(SignupStrings.userNameTaken);
+        }
+      },
+    );
+  }
+
+  void _handleEmailIsTaken() async {
+    setCheckingEmailTaken(true);
+    var response = await _authService.checkIfUserExists(
+      attribute: UniqueExistenceId.email,
+      value: emailValue!,
+    );
+    setCheckingEmailTaken(false);
+    response.match(
+      (errorMessage) {
+        _logger.e(
+          'Error checking if user with email exists',
+          error: errorMessage,
+        );
+        _toastService.showError(title: errorMessage, showIcon: true);
+      },
+      (exists) {
+        if (exists) {
+          setEmailValidationMessage(SignupStrings.emailTaken);
         }
       },
     );
@@ -134,6 +177,7 @@ class SignupViewModel extends FormViewModel {
   @override
   void dispose() {
     _userNameDebounceTimer?.cancel();
+    _emailDebounceTimer?.cancel();
     super.dispose();
   }
 }
