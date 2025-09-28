@@ -37,7 +37,7 @@ import 'signup_viewmodel.dart';
       name: 'userName',
       validator: ValidationService.emptyValidator,
     ),
-    FormTextField(name: 'address', validator: ValidationService.emptyValidator),
+    FormTextField(name: 'address'),
   ],
 )
 class SignupView extends StackedView<SignupViewModel> with $SignupView {

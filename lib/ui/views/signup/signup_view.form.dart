@@ -30,7 +30,7 @@ final Map<String, String? Function(String?)?> _SignupViewTextValidations = {
   LastNameValueKey: ValidationService.lastNameValidator,
   EmailValueKey: ValidationService.emailValidator,
   UserNameValueKey: ValidationService.emptyValidator,
-  AddressValueKey: ValidationService.emptyValidator,
+  AddressValueKey: null,
 };
 
 mixin $SignupView {

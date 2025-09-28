@@ -110,7 +110,7 @@ class SigninViewModel extends FormViewModel {
     await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.otp,
       barrierColor: Colors.black.withValues(alpha: .1),
-      data: (type: OtpSheetType.signin, phoneNumber: fullPhoneNumber),
+      data: [OtpSheetType.signin, (phoneNumber: fullPhoneNumber)],
       // TODO: barrierDismissible: false,
       isScrollControlled: true,
     );

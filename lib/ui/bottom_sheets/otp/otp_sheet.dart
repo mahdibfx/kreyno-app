@@ -116,7 +116,19 @@ class OtpSheet extends StackedView<OtpSheetModel> {
 
   @override
   OtpSheetModel viewModelBuilder(BuildContext context) {
-    final data = request.data as ({OtpSheetType type, String phoneNumber});
-    return OtpSheetModel(type: data.type, phoneNumber: data.phoneNumber);
+    final type = request.data[0] as OtpSheetType;
+
+    switch (type) {
+      case OtpSheetType.signin:
+        final sheetData = request.data[1] as ({String phoneNumber});
+        return OtpSheetModel(type: type, phoneNumber: sheetData.phoneNumber);
+      case OtpSheetType.signup:
+        final sheetData = request.data[1] as ({String phoneNumber});
+        return OtpSheetModel(type: type, phoneNumber: sheetData.phoneNumber);
+
+      case OtpSheetType.updatePhoneNumber:
+        final sheetData = request.data[1] as ({String phoneNumber});
+        return OtpSheetModel(type: type, phoneNumber: sheetData.phoneNumber);
+    }
   }
 }
