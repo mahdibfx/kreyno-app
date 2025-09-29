@@ -1,13 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/services/picked_language_service.dart';
 
 class LanguageHeaderInterceptor extends Interceptor {
+  final _logger = getLogger('LanguageHeaderInterceptor');
   @override
   void onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
+    _logger.i('Intercepting request to ${options.path}');
     final languageResult = await locator<PickedLanguageService>()
         .getPickedLanguage();
 
