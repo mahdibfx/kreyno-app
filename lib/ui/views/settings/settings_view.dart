@@ -28,9 +28,7 @@ class SettingsView extends StackedView<SettingsViewModel> {
         padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
         child: Column(
           children: [
-            SizedBox(
-              height: AppSpacing.px20,
-            ),
+            SizedBox(height: AppSpacing.px20),
             GestureDetector(
               onTap: () {
                 locator<NavigationService>().navigateToEditProfileView();
@@ -42,9 +40,10 @@ class SettingsView extends StackedView<SettingsViewModel> {
                     const CustomIcon(iconPath: AppIcons.personalCard),
                     HGap(AppSpacing.px1 * 10),
                     const CustomText.smallParagraphMedium(
-                        "Informations personnelles"),
+                      "Informations personnelles",
+                    ),
                     const Expanded(child: SizedBox()),
-                    const CustomIcon(iconPath: AppIcons.arrowRight)
+                    const CustomIcon(iconPath: AppIcons.arrowRight),
                   ],
                 ),
               ),
@@ -61,11 +60,11 @@ class SettingsView extends StackedView<SettingsViewModel> {
                     HGap(AppSpacing.px1 * 10),
                     const CustomText.smallParagraphMedium("Changer mon numéro"),
                     const Expanded(child: SizedBox()),
-                    const CustomIcon(iconPath: AppIcons.arrowRight)
+                    const CustomIcon(iconPath: AppIcons.arrowRight),
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -73,8 +72,6 @@ class SettingsView extends StackedView<SettingsViewModel> {
   }
 
   @override
-  SettingsViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  SettingsViewModel viewModelBuilder(BuildContext context) =>
       SettingsViewModel();
 }

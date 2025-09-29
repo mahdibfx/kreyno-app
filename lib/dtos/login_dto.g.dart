@@ -6,16 +6,14 @@ part of 'login_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LoginDtoImpl _$$LoginDtoImplFromJson(Map<String, dynamic> json) =>
-    _$LoginDtoImpl(
-      phone: json['phone'] as String,
-      otp: json['otp'] as String,
-      deviceId: json['device_id'] as String,
-    );
+_LoginDto _$LoginDtoFromJson(Map<String, dynamic> json) => _LoginDto(
+  phone: json['phone'] as String,
+  otp: json['otp'] as String,
+  deviceId: json['device_id'] as String,
+);
 
-Map<String, dynamic> _$$LoginDtoImplToJson(_$LoginDtoImpl instance) =>
-    <String, dynamic>{
-      'phone': instance.phone,
-      'otp': instance.otp,
-      'device_id': instance.deviceId,
-    };
+Map<String, dynamic> _$LoginDtoToJson(_LoginDto instance) => <String, dynamic>{
+  'phone': instance.phone,
+  'otp': instance.otp,
+  'device_id': instance.deviceId,
+};

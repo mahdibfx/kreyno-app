@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,188 +9,272 @@ part of 'user_exists_dto.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-UserExistsDto _$UserExistsDtoFromJson(Map<String, dynamic> json) {
-  return _UserExistsDto.fromJson(json);
-}
 
 /// @nodoc
 mixin _$UserExistsDto {
-  @JsonKey(name: 'attribute')
-  UniqueExistenceId get attribute => throw _privateConstructorUsedError;
-  @JsonKey(name: 'value')
-  String get value => throw _privateConstructorUsedError;
+
+@JsonKey(name: 'attribute') UniqueExistenceId get attribute;@JsonKey(name: 'value') String get value;
+/// Create a copy of UserExistsDto
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$UserExistsDtoCopyWith<UserExistsDto> get copyWith => _$UserExistsDtoCopyWithImpl<UserExistsDto>(this as UserExistsDto, _$identity);
 
   /// Serializes this UserExistsDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of UserExistsDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $UserExistsDtoCopyWith<UserExistsDto> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserExistsDto&&(identical(other.attribute, attribute) || other.attribute == attribute)&&(identical(other.value, value) || other.value == value));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,attribute,value);
+
+@override
+String toString() {
+  return 'UserExistsDto(attribute: $attribute, value: $value)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $UserExistsDtoCopyWith<$Res> {
-  factory $UserExistsDtoCopyWith(
-          UserExistsDto value, $Res Function(UserExistsDto) then) =
-      _$UserExistsDtoCopyWithImpl<$Res, UserExistsDto>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'attribute') UniqueExistenceId attribute,
-      @JsonKey(name: 'value') String value});
-}
+abstract mixin class $UserExistsDtoCopyWith<$Res>  {
+  factory $UserExistsDtoCopyWith(UserExistsDto value, $Res Function(UserExistsDto) _then) = _$UserExistsDtoCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'attribute') UniqueExistenceId attribute,@JsonKey(name: 'value') String value
+});
 
+
+
+
+}
 /// @nodoc
-class _$UserExistsDtoCopyWithImpl<$Res, $Val extends UserExistsDto>
+class _$UserExistsDtoCopyWithImpl<$Res>
     implements $UserExistsDtoCopyWith<$Res> {
-  _$UserExistsDtoCopyWithImpl(this._value, this._then);
+  _$UserExistsDtoCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final UserExistsDto _self;
+  final $Res Function(UserExistsDto) _then;
 
-  /// Create a copy of UserExistsDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? attribute = null,
-    Object? value = null,
-  }) {
-    return _then(_value.copyWith(
-      attribute: null == attribute
-          ? _value.attribute
-          : attribute // ignore: cast_nullable_to_non_nullable
-              as UniqueExistenceId,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of UserExistsDto
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? attribute = null,Object? value = null,}) {
+  return _then(_self.copyWith(
+attribute: null == attribute ? _self.attribute : attribute // ignore: cast_nullable_to_non_nullable
+as UniqueExistenceId,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$UserExistsDtoImplCopyWith<$Res>
-    implements $UserExistsDtoCopyWith<$Res> {
-  factory _$$UserExistsDtoImplCopyWith(
-          _$UserExistsDtoImpl value, $Res Function(_$UserExistsDtoImpl) then) =
-      __$$UserExistsDtoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'attribute') UniqueExistenceId attribute,
-      @JsonKey(name: 'value') String value});
 }
 
-/// @nodoc
-class __$$UserExistsDtoImplCopyWithImpl<$Res>
-    extends _$UserExistsDtoCopyWithImpl<$Res, _$UserExistsDtoImpl>
-    implements _$$UserExistsDtoImplCopyWith<$Res> {
-  __$$UserExistsDtoImplCopyWithImpl(
-      _$UserExistsDtoImpl _value, $Res Function(_$UserExistsDtoImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of UserExistsDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? attribute = null,
-    Object? value = null,
-  }) {
-    return _then(_$UserExistsDtoImpl(
-      attribute: null == attribute
-          ? _value.attribute
-          : attribute // ignore: cast_nullable_to_non_nullable
-              as UniqueExistenceId,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [UserExistsDto].
+extension UserExistsDtoPatterns on UserExistsDto {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UserExistsDto value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _UserExistsDto() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UserExistsDto value)  $default,){
+final _that = this;
+switch (_that) {
+case _UserExistsDto():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UserExistsDto value)?  $default,){
+final _that = this;
+switch (_that) {
+case _UserExistsDto() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'attribute')  UniqueExistenceId attribute, @JsonKey(name: 'value')  String value)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _UserExistsDto() when $default != null:
+return $default(_that.attribute,_that.value);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'attribute')  UniqueExistenceId attribute, @JsonKey(name: 'value')  String value)  $default,) {final _that = this;
+switch (_that) {
+case _UserExistsDto():
+return $default(_that.attribute,_that.value);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'attribute')  UniqueExistenceId attribute, @JsonKey(name: 'value')  String value)?  $default,) {final _that = this;
+switch (_that) {
+case _UserExistsDto() when $default != null:
+return $default(_that.attribute,_that.value);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$UserExistsDtoImpl implements _UserExistsDto {
-  const _$UserExistsDtoImpl(
-      {@JsonKey(name: 'attribute') required this.attribute,
-      @JsonKey(name: 'value') required this.value});
 
-  factory _$UserExistsDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserExistsDtoImplFromJson(json);
+class _UserExistsDto implements UserExistsDto {
+  const _UserExistsDto({@JsonKey(name: 'attribute') required this.attribute, @JsonKey(name: 'value') required this.value});
+  factory _UserExistsDto.fromJson(Map<String, dynamic> json) => _$UserExistsDtoFromJson(json);
 
-  @override
-  @JsonKey(name: 'attribute')
-  final UniqueExistenceId attribute;
-  @override
-  @JsonKey(name: 'value')
-  final String value;
+@override@JsonKey(name: 'attribute') final  UniqueExistenceId attribute;
+@override@JsonKey(name: 'value') final  String value;
 
-  @override
-  String toString() {
-    return 'UserExistsDto(attribute: $attribute, value: $value)';
-  }
+/// Create a copy of UserExistsDto
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UserExistsDtoCopyWith<_UserExistsDto> get copyWith => __$UserExistsDtoCopyWithImpl<_UserExistsDto>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserExistsDtoImpl &&
-            (identical(other.attribute, attribute) ||
-                other.attribute == attribute) &&
-            (identical(other.value, value) || other.value == value));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, attribute, value);
-
-  /// Create a copy of UserExistsDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserExistsDtoImplCopyWith<_$UserExistsDtoImpl> get copyWith =>
-      __$$UserExistsDtoImplCopyWithImpl<_$UserExistsDtoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserExistsDtoImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$UserExistsDtoToJson(this, );
 }
 
-abstract class _UserExistsDto implements UserExistsDto {
-  const factory _UserExistsDto(
-      {@JsonKey(name: 'attribute') required final UniqueExistenceId attribute,
-      @JsonKey(name: 'value')
-      required final String value}) = _$UserExistsDtoImpl;
-
-  factory _UserExistsDto.fromJson(Map<String, dynamic> json) =
-      _$UserExistsDtoImpl.fromJson;
-
-  @override
-  @JsonKey(name: 'attribute')
-  UniqueExistenceId get attribute;
-  @override
-  @JsonKey(name: 'value')
-  String get value;
-
-  /// Create a copy of UserExistsDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserExistsDtoImplCopyWith<_$UserExistsDtoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserExistsDto&&(identical(other.attribute, attribute) || other.attribute == attribute)&&(identical(other.value, value) || other.value == value));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,attribute,value);
+
+@override
+String toString() {
+  return 'UserExistsDto(attribute: $attribute, value: $value)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$UserExistsDtoCopyWith<$Res> implements $UserExistsDtoCopyWith<$Res> {
+  factory _$UserExistsDtoCopyWith(_UserExistsDto value, $Res Function(_UserExistsDto) _then) = __$UserExistsDtoCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'attribute') UniqueExistenceId attribute,@JsonKey(name: 'value') String value
+});
+
+
+
+
+}
+/// @nodoc
+class __$UserExistsDtoCopyWithImpl<$Res>
+    implements _$UserExistsDtoCopyWith<$Res> {
+  __$UserExistsDtoCopyWithImpl(this._self, this._then);
+
+  final _UserExistsDto _self;
+  final $Res Function(_UserExistsDto) _then;
+
+/// Create a copy of UserExistsDto
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? attribute = null,Object? value = null,}) {
+  return _then(_UserExistsDto(
+attribute: null == attribute ? _self.attribute : attribute // ignore: cast_nullable_to_non_nullable
+as UniqueExistenceId,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

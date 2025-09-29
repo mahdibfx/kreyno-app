@@ -22,12 +22,17 @@ class MyVehiculeCard extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
             height: AppSpacing.px1 * 150,
             decoration: BoxDecoration(
-                border: Border.fromBorderSide(BorderSide(
-                    color: const Color(0xFFA8A8A8).withValues(alpha: .25))),
-                borderRadius: BorderRadius.circular(12),
-                image: const DecorationImage(
-                    image: NetworkImage("https://picsum.photos/600/600"),
-                    fit: BoxFit.cover)),
+              border: Border.fromBorderSide(
+                BorderSide(
+                  color: const Color(0xFFA8A8A8).withValues(alpha: .25),
+                ),
+              ),
+              borderRadius: BorderRadius.circular(12),
+              image: const DecorationImage(
+                image: NetworkImage("https://picsum.photos/600/600"),
+                fit: BoxFit.cover,
+              ),
+            ),
             child: car.isSelected
                 ? Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,8 +42,9 @@ class MyVehiculeCard extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.all(5),
                           decoration: BoxDecoration(
-                              color: const Color(0xFFFF5D17),
-                              borderRadius: BorderRadius.circular(6)),
+                            color: const Color(0xFFFF5D17),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
                           child: Row(
                             children: [
                               const CustomIcon(
@@ -46,13 +52,11 @@ class MyVehiculeCard extends StatelessWidget {
                                 iconPath: AppIcons.crownMinimalisticAlt,
                                 color: Colors.white,
                               ),
-                              SizedBox(
-                                width: AppSpacing.px4,
-                              ),
+                              SizedBox(width: AppSpacing.px4),
                               const CustomText.smallParagraphMedium(
                                 "Principale",
                                 color: AppColors.white,
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -71,91 +75,100 @@ class MyVehiculeCard extends StatelessWidget {
               height: AppSpacing.px1 * 130,
               width: double.infinity,
               decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        offset: const Offset(0, 1),
-                        blurRadius: 4,
-                        spreadRadius: 0,
-                        color: Colors.black.withValues(alpha: .05))
-                  ],
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.fromBorderSide(BorderSide(
-                      color: const Color(0xFFA8A8A8).withValues(alpha: .25)))),
+                boxShadow: [
+                  BoxShadow(
+                    offset: const Offset(0, 1),
+                    blurRadius: 4,
+                    spreadRadius: 0,
+                    color: Colors.black.withValues(alpha: .05),
+                  ),
+                ],
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.fromBorderSide(
+                  BorderSide(
+                    color: const Color(0xFFA8A8A8).withValues(alpha: .25),
+                  ),
+                ),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CustomText.paragraph(
-                        "${car.brand} ${car.model}",
-                      ),
+                      CustomText.paragraph("${car.brand} ${car.model}"),
                       GestureDetector(
-                          onTapDown: (details) {
-                            showMenu<String>(
-                              color: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12)),
-                              context: context,
-                              position: RelativeRect.fromRect(
-                                details.globalPosition &
-                                    const Size(
-                                        40.0, 40.0), // Position of the menu
-                                Offset.zero &
-                                    MediaQuery.of(context).size, // Bounding box
-                              ),
-                              items: <PopupMenuEntry<String>>[
-                                PopupMenuItem<String>(
-                                  value: 'p',
-                                  enabled: !car.isSelected,
-                                  child: Opacity(
-                                    opacity: car.isSelected ? 0.5 : 1,
-                                    child: Row(
-                                      children: [
-                                        const CustomIcon(
-                                            iconPath:
-                                                AppIcons.crownMinimalistic),
-                                        HGap(AppSpacing.px8),
-                                        const CustomText.smallParagraphMedium(
-                                            'Choisir comme principale'),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                PopupMenuItem<String>(
-                                  value: 'm',
-                                  child: Row(
-                                    children: [
-                                      const CustomIcon(iconPath: AppIcons.edit),
-                                      HGap(AppSpacing.px8),
-                                      const CustomText.smallParagraphMedium(
-                                          'Modifier'),
-                                    ],
-                                  ),
-                                ),
-                                PopupMenuItem<String>(
-                                  value: 's',
+                        onTapDown: (details) {
+                          showMenu<String>(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            context: context,
+                            position: RelativeRect.fromRect(
+                              details.globalPosition &
+                                  const Size(
+                                    40.0,
+                                    40.0,
+                                  ), // Position of the menu
+                              Offset.zero &
+                                  MediaQuery.of(context).size, // Bounding box
+                            ),
+                            items: <PopupMenuEntry<String>>[
+                              PopupMenuItem<String>(
+                                value: 'p',
+                                enabled: !car.isSelected,
+                                child: Opacity(
+                                  opacity: car.isSelected ? 0.5 : 1,
                                   child: Row(
                                     children: [
                                       const CustomIcon(
-                                          iconPath: AppIcons.delete),
+                                        iconPath: AppIcons.crownMinimalistic,
+                                      ),
                                       HGap(AppSpacing.px8),
                                       const CustomText.smallParagraphMedium(
-                                          'Supprimer'),
+                                        'Choisir comme principale',
+                                      ),
                                     ],
                                   ),
                                 ),
-                              ],
-                            ).then((String? result) {
-                              if (result != null) {
-                                if (onTapOnMenu != null) {
-                                  onTapOnMenu!(result);
-                                }
+                              ),
+                              PopupMenuItem<String>(
+                                value: 'm',
+                                child: Row(
+                                  children: [
+                                    const CustomIcon(iconPath: AppIcons.edit),
+                                    HGap(AppSpacing.px8),
+                                    const CustomText.smallParagraphMedium(
+                                      'Modifier',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              PopupMenuItem<String>(
+                                value: 's',
+                                child: Row(
+                                  children: [
+                                    const CustomIcon(iconPath: AppIcons.delete),
+                                    HGap(AppSpacing.px8),
+                                    const CustomText.smallParagraphMedium(
+                                      'Supprimer',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ).then((String? result) {
+                            if (result != null) {
+                              if (onTapOnMenu != null) {
+                                onTapOnMenu!(result);
                               }
-                            });
-                          },
-                          child: const Icon(Icons.more_horiz_outlined))
+                            }
+                          });
+                        },
+                        child: const Icon(Icons.more_horiz_outlined),
+                      ),
                     ],
                   ),
                   VGap(AppSpacing.px4),
@@ -182,10 +195,8 @@ class MyVehiculeCard extends StatelessWidget {
                                 size: AppSpacing.px16,
                                 color: AppColors.greenKre,
                               ),
-                              SizedBox(
-                                width: AppSpacing.px4,
-                              ),
-                              const CustomText.smallParagraphMedium("Noire")
+                              SizedBox(width: AppSpacing.px4),
+                              const CustomText.smallParagraphMedium("Noire"),
                             ],
                           ),
                         ],
@@ -205,20 +216,18 @@ class MyVehiculeCard extends StatelessWidget {
                                 size: AppSpacing.px16,
                                 color: AppColors.greenKre,
                               ),
-                              SizedBox(
-                                width: AppSpacing.px4,
-                              ),
-                              const CustomText.smallParagraphMedium("60 ∼ 80")
+                              SizedBox(width: AppSpacing.px4),
+                              const CustomText.smallParagraphMedium("60 ∼ 80"),
                             ],
-                          )
+                          ),
                         ],
-                      )
+                      ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

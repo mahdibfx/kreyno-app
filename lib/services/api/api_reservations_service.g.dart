@@ -2,6 +2,8 @@
 
 part of 'api_reservations_service.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
@@ -9,11 +11,7 @@ part of 'api_reservations_service.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
 
 class _ApiReservationsService implements ApiReservationsService {
-  _ApiReservationsService(
-    this._dio, {
-    this.baseUrl,
-    this.errorLogger,
-  });
+  _ApiReservationsService(this._dio, {this.baseUrl, this.errorLogger});
 
   final Dio _dio;
 
@@ -27,22 +25,16 @@ class _ApiReservationsService implements ApiReservationsService {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ApiResponse<List<Reservation>>>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          'reservations',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
+    final _options = _setStreamType<ApiResponse<List<Reservation>>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'reservations',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late ApiResponse<List<Reservation>> _value;
     try {
@@ -50,9 +42,10 @@ class _ApiReservationsService implements ApiReservationsService {
         _result.data!,
         (json) => json is List<dynamic>
             ? json
-                .map<Reservation>(
-                    (i) => Reservation.fromJson(i as Map<String, dynamic>))
-                .toList()
+                  .map<Reservation>(
+                    (i) => Reservation.fromJson(i as Map<String, dynamic>),
+                  )
+                  .toList()
             : List.empty(),
       );
     } on Object catch (e, s) {
@@ -75,10 +68,7 @@ class _ApiReservationsService implements ApiReservationsService {
     return requestOptions;
   }
 
-  String _combineBaseUrls(
-    String dioBaseUrl,
-    String? baseUrl,
-  ) {
+  String _combineBaseUrls(String dioBaseUrl, String? baseUrl) {
     if (baseUrl == null || baseUrl.trim().isEmpty) {
       return dioBaseUrl;
     }
@@ -92,3 +82,5 @@ class _ApiReservationsService implements ApiReservationsService {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

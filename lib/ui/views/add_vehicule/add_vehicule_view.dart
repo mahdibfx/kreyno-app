@@ -38,11 +38,12 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel> {
         body: CustomScrollView(
           slivers: [
             AuthSliverAppBar(
-                title: "Ajouter un véhicule",
-                description: "Remplissez ces informations ci-dessous",
-                onBackPressed: () {
-                  locator<NavigationService>().back();
-                }),
+              title: "Ajouter un véhicule",
+              description: "Remplissez ces informations ci-dessous",
+              onBackPressed: () {
+                locator<NavigationService>().back();
+              },
+            ),
             SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
               sliver: SliverToBoxAdapter(
@@ -99,33 +100,33 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel> {
                           "Image de votre vehicule",
                           color: AppColors.textKre,
                         ),
-                        ClipRRect(
-                          child: DottedBorder(
-                            radius: const Radius.circular(24),
-                            strokeWidth: 1,
-                            borderType: BorderType.RRect,
-                            dashPattern: const [9, 10],
-                            color: AppColors.placeholderKre,
-                            child: Container(
-                              height: 200,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: DottedBorder(
-                                padding: const EdgeInsets.all(18),
-                                dashPattern: const [9, 10],
-                                color: AppColors.placeholderKre,
-                                borderType: BorderType.Circle,
-                                child: const CustomIcon(
-                                  iconPath: AppIcons.upload,
-                                  size: 20,
-                                  color: AppColors.placeholderKre,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        // ClipRRect(
+                        //   child: DottedBorder(
+                        //     radius: const Radius.circular(24),
+                        //     strokeWidth: 1,
+                        //     borderType: BorderType.RRect,
+                        //     dashPattern: const [9, 10],
+                        //     color: AppColors.placeholderKre,
+                        //     child: Container(
+                        //       height: 200,
+                        //       alignment: Alignment.center,
+                        //       decoration: BoxDecoration(
+                        //         borderRadius: BorderRadius.circular(12),
+                        //       ),
+                        //       child: DottedBorder(
+                        //         padding: const EdgeInsets.all(18),
+                        //         dashPattern: const [9, 10],
+                        //         color: AppColors.placeholderKre,
+                        //         borderType: BorderType.Circle,
+                        //         child: const CustomIcon(
+                        //           iconPath: AppIcons.upload,
+                        //           size: 20,
+                        //           color: AppColors.placeholderKre,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         InputField(
                           controller: TextEditingController(),
                           focusNode: FocusNode(),

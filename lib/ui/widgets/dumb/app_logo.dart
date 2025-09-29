@@ -27,11 +27,11 @@ class _AppLogoState extends State<AppLogo> with TickerProviderStateMixin {
 
     _labelRevealAnimation =
         Tween<double>(begin: widget.animated ? 0.0 : 1.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _labelRevealController,
-        curve: Curves.easeOutQuart,
-      ),
-    );
+          CurvedAnimation(
+            parent: _labelRevealController,
+            curve: Curves.easeOutQuart,
+          ),
+        );
 
     if (widget.animated) {
       Future.delayed(const Duration(milliseconds: 800), () {

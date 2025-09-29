@@ -21,52 +21,52 @@ class ChangeLanguageView extends StackedView<ChangeLanguageViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-        appBar: MyAppBar(title: "Changer la langue"),
-        backgroundColor: Colors.white,
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
-          child: Column(
-            children: [
-              VGap(AppSpacing.px20),
-              GestureDetector(
-                onTap: () {
-                  viewModel.changeLanguage('US');
-                },
-                child: LanguageWidget(
-                  countryCode: 'US',
-                  title: 'English',
-                  value: viewModel.selectedLanguage == 'US',
-                ),
+      appBar: MyAppBar(title: "Changer la langue"),
+      backgroundColor: Colors.white,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+        child: Column(
+          children: [
+            VGap(AppSpacing.px20),
+            GestureDetector(
+              onTap: () {
+                viewModel.changeLanguage('US');
+              },
+              child: LanguageWidget(
+                countryCode: 'US',
+                title: 'English',
+                value: viewModel.selectedLanguage == 'US',
               ),
-              VGap(AppSpacing.px1 * 10),
-              GestureDetector(
-                onTap: () {
-                  viewModel.changeLanguage('FR');
-                },
-                child: LanguageWidget(
-                  countryCode: 'FR',
-                  title: 'Français',
-                  value: viewModel.selectedLanguage == 'FR',
-                ),
+            ),
+            VGap(AppSpacing.px1 * 10),
+            GestureDetector(
+              onTap: () {
+                viewModel.changeLanguage('FR');
+              },
+              child: LanguageWidget(
+                countryCode: 'FR',
+                title: 'Français',
+                value: viewModel.selectedLanguage == 'FR',
               ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
-  ChangeLanguageViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  ChangeLanguageViewModel viewModelBuilder(BuildContext context) =>
       ChangeLanguageViewModel();
 }
 
 class LanguageWidget extends StatelessWidget {
-  const LanguageWidget(
-      {super.key,
-      required this.countryCode,
-      required this.title,
-      this.value = false});
+  const LanguageWidget({
+    super.key,
+    required this.countryCode,
+    required this.title,
+    this.value = false,
+  });
   final bool value;
   final String countryCode;
   final String title;
@@ -75,8 +75,9 @@ class LanguageWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(AppSpacing.px1 * 14),
       decoration: BoxDecoration(
-          border: Border.all(color: AppColors.strokeKre),
-          borderRadius: BorderRadius.circular(12)),
+        border: Border.all(color: AppColors.strokeKre),
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: Row(
         children: [
           Flag.fromString(
@@ -86,10 +87,7 @@ class LanguageWidget extends StatelessWidget {
             fit: BoxFit.fill,
           ),
           HGap(AppSpacing.px8),
-          CustomText(
-            text: title,
-            style: CustomTextStyle.smallParagraphBold,
-          ),
+          CustomText(text: title, style: CustomTextStyle.smallParagraphBold),
           const Expanded(child: SizedBox()),
           Container(
             width: 17 * AppSpacing.px1,

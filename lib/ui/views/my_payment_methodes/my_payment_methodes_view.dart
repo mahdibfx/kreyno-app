@@ -26,17 +26,20 @@ class MyPaymentMethodesView extends StackedView<MyPaymentMethodesViewModel> {
   ) {
     return Scaffold(
       bottomNavigationBar: Container(
-          padding: EdgeInsets.symmetric(
-                  horizontal: AppSpacing.px24, vertical: AppSpacing.px20)
-              .copyWith(bottom: AppSpacing.px32),
-          child: CustomButton.filled(
-              onPressed: () async {
-                final result = await locator<BottomSheetService>()
-                    .showCustomSheet(
-                        variant: BottomSheetType.addPaymentCart,
-                        isScrollControlled: true);
-              },
-              text: "Ajouter une nouvelle carte")),
+        padding: EdgeInsets.symmetric(
+          horizontal: AppSpacing.px24,
+          vertical: AppSpacing.px20,
+        ).copyWith(bottom: AppSpacing.px32),
+        child: CustomButton.filled(
+          onPressed: () async {
+            final result = await locator<BottomSheetService>().showCustomSheet(
+              variant: BottomSheetType.addPaymentCart,
+              isScrollControlled: true,
+            );
+          },
+          text: "Ajouter une nouvelle carte",
+        ),
+      ),
       backgroundColor: Colors.white,
       appBar: MyAppBar(title: 'Moyens de paiement'),
       body: CustomScrollView(
@@ -52,7 +55,7 @@ class MyPaymentMethodesView extends StackedView<MyPaymentMethodesViewModel> {
                     onTapOnMenu: (d) =>
                         viewModel.onMenuPressed(d, viewModel.myCards[index]),
                   ),
-                  VGap(AppSpacing.px12)
+                  VGap(AppSpacing.px12),
                 ],
               ),
             ),
@@ -108,8 +111,10 @@ class MyPaymentMethod extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Image.asset(AppImages.visaTextLogo),
-                CustomText.largeTitle("**** ${card.last4}",
-                    color: Colors.white),
+                CustomText.largeTitle(
+                  "**** ${card.last4}",
+                  color: Colors.white,
+                ),
               ],
             ),
           ),
@@ -126,63 +131,70 @@ class MyPaymentMethod extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const CustomText.smallParagraphBold(
-                            "Olivier Dupons"), //TODO:there is nothing from backend like this
+                          "Olivier Dupons",
+                        ), //TODO:there is nothing from backend like this
                         GestureDetector(
-                            onTapDown: (details) {
-                              showMenu<String>(
-                                color: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12)),
-                                context: context,
-                                position: RelativeRect.fromRect(
-                                  details.globalPosition &
-                                      const Size(
-                                          40.0, 40.0), // Position of the menu
-                                  Offset.zero &
-                                      MediaQuery.of(context)
-                                          .size, // Bounding box
-                                ),
-                                items: <PopupMenuEntry<String>>[
-                                  PopupMenuItem<String>(
-                                    value: 'p',
-                                    // enabled: card.isSelected, //TODO this should be edited from backend ( now there is no flag )
-                                    child: Opacity(
-                                      opacity: 1,
-                                      // opacity: card.isSelected ? 0.5 : 1, TODO:// Update it when backend updated
-                                      child: Row(
-                                        children: [
-                                          const CustomIcon(
-                                              iconPath:
-                                                  AppIcons.crownMinimalistic),
-                                          HGap(AppSpacing.px8),
-                                          const CustomText.smallParagraphMedium(
-                                              'Choisir comme principale'),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  PopupMenuItem<String>(
-                                    value: 's',
+                          onTapDown: (details) {
+                            showMenu<String>(
+                              color: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              context: context,
+                              position: RelativeRect.fromRect(
+                                details.globalPosition &
+                                    const Size(
+                                      40.0,
+                                      40.0,
+                                    ), // Position of the menu
+                                Offset.zero &
+                                    MediaQuery.of(context).size, // Bounding box
+                              ),
+                              items: <PopupMenuEntry<String>>[
+                                PopupMenuItem<String>(
+                                  value: 'p',
+                                  // enabled: card.isSelected, //TODO this should be edited from backend ( now there is no flag )
+                                  child: Opacity(
+                                    opacity: 1,
+                                    // opacity: card.isSelected ? 0.5 : 1, TODO:// Update it when backend updated
                                     child: Row(
                                       children: [
                                         const CustomIcon(
-                                            iconPath: AppIcons.delete),
+                                          iconPath: AppIcons.crownMinimalistic,
+                                        ),
                                         HGap(AppSpacing.px8),
                                         const CustomText.smallParagraphMedium(
-                                            'Supprimer'),
+                                          'Choisir comme principale',
+                                        ),
                                       ],
                                     ),
                                   ),
-                                ],
-                              ).then((String? result) {
-                                if (result != null) {
-                                  if (onTapOnMenu != null) {
-                                    onTapOnMenu!(result);
-                                  }
+                                ),
+                                PopupMenuItem<String>(
+                                  value: 's',
+                                  child: Row(
+                                    children: [
+                                      const CustomIcon(
+                                        iconPath: AppIcons.delete,
+                                      ),
+                                      HGap(AppSpacing.px8),
+                                      const CustomText.smallParagraphMedium(
+                                        'Supprimer',
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ).then((String? result) {
+                              if (result != null) {
+                                if (onTapOnMenu != null) {
+                                  onTapOnMenu!(result);
                                 }
-                              });
-                            },
-                            child: const Icon(Icons.more_horiz_outlined))
+                              }
+                            });
+                          },
+                          child: const Icon(Icons.more_horiz_outlined),
+                        ),
                       ],
                     ),
                     const CustomText.labelMedium(

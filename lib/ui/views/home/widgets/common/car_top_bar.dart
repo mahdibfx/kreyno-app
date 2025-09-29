@@ -21,11 +21,13 @@ class CarTopBar extends ViewModelWidget<HomeViewModel> {
         children: [
           Container(
             decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.circular(12)),
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(12),
+            ),
             margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
-            padding: EdgeInsets.all(AppSpacing.px4)
-                .copyWith(right: AppSpacing.px1 * 14),
+            padding: EdgeInsets.all(
+              AppSpacing.px4,
+            ).copyWith(right: AppSpacing.px1 * 14),
             child: GestureDetector(
               onTap: () {
                 viewModel.onCarTopBarClicked();
@@ -34,38 +36,41 @@ class CarTopBar extends ViewModelWidget<HomeViewModel> {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.network("https://picsum.photos/200/300",
-                        width: AppSpacing.px1 * 38,
-                        height: AppSpacing.px1 * 38,
-                        fit: BoxFit.cover),
+                    child: Image.network(
+                      "https://picsum.photos/200/300",
+                      width: AppSpacing.px1 * 38,
+                      height: AppSpacing.px1 * 38,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   HGap(AppSpacing.px8),
                   const Expanded(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CustomText.labelRegular(
-                        "Véhicule choisi",
-                        color: AppColors.textKre,
-                      ),
-                      CustomText.smallParagraphMedium("Peugeot 308")
-                    ],
-                  )),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomText.labelRegular(
+                          "Véhicule choisi",
+                          color: AppColors.textKre,
+                        ),
+                        CustomText.smallParagraphMedium("Peugeot 308"),
+                      ],
+                    ),
+                  ),
                   InkWell(
-                      onTap: () {
-                        // TODO: Implement refresh functionality
-                        locator<BottomSheetService>().showCustomSheet(
-                            isScrollControlled: true,
-                            variant: BottomSheetType.cancelationReasons);
-                      },
-                      child: const CustomIcon(iconPath: AppIcons.refresh))
+                    onTap: () {
+                      // TODO: Implement refresh functionality
+                      locator<BottomSheetService>().showCustomSheet(
+                        isScrollControlled: true,
+                        variant: BottomSheetType.cancelationReasons,
+                      );
+                    },
+                    child: const CustomIcon(iconPath: AppIcons.refresh),
+                  ),
                 ],
               ),
             ),
           ),
-          SizedBox(
-            height: AppSpacing.px4,
-          ),
+          SizedBox(height: AppSpacing.px4),
           if (viewModel.dropdownShown)
             Container(
               padding: EdgeInsets.symmetric(
@@ -74,23 +79,23 @@ class CarTopBar extends ViewModelWidget<HomeViewModel> {
               ),
               margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(12)),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
               child: Column(
                 children: [
                   CarChoiceWidget(
                     isSeleced: viewModel.selectedCarId == 0,
                     id: 0,
                   ),
-                  SizedBox(
-                    height: AppSpacing.px1 * 14,
-                  ),
+                  SizedBox(height: AppSpacing.px1 * 14),
                   CarChoiceWidget(
                     isSeleced: viewModel.selectedCarId == 1,
                     id: 1,
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
         ],
       ),
     );
@@ -98,14 +103,10 @@ class CarTopBar extends ViewModelWidget<HomeViewModel> {
 }
 
 class CarChoiceWidget extends ViewModelWidget<HomeViewModel> {
-  const CarChoiceWidget({
-    super.key,
-    required this.isSeleced,
-    required this.id,
-  });
+  const CarChoiceWidget({super.key, required this.isSeleced, required this.id});
   final bool isSeleced;
   final int
-      id; // delete this when integrating backend , it is only to show the interactivity
+  id; // delete this when integrating backend , it is only to show the interactivity
   // final CarModel car; /// here  the variable of car model and from here you extract id
   @override
   Widget build(BuildContext context, viewModel) {
@@ -117,24 +118,20 @@ class CarChoiceWidget extends ViewModelWidget<HomeViewModel> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: Image.network("https://picsum.photos/200/300",
-                width: AppSpacing.px1 * 38,
-                height: AppSpacing.px1 * 38,
-                fit: BoxFit.cover),
+            child: Image.network(
+              "https://picsum.photos/200/300",
+              width: AppSpacing.px1 * 38,
+              height: AppSpacing.px1 * 38,
+              fit: BoxFit.cover,
+            ),
           ),
-          SizedBox(
-            width: AppSpacing.px8,
-          ),
+          SizedBox(width: AppSpacing.px8),
           const CustomText(
             text: "Mercedes Class G63",
             style: CustomTextStyle.smallParagraphMedium,
           ),
           const Expanded(child: SizedBox()),
-          if (isSeleced)
-            const Icon(
-              Icons.done,
-              color: AppColors.greenKre,
-            )
+          if (isSeleced) const Icon(Icons.done, color: AppColors.greenKre),
         ],
       ),
     );

@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -14,14 +15,12 @@ const bool _autoTextFieldValidation = true;
 const String PhoneNumberValueKey = 'phoneNumber';
 
 final Map<String, TextEditingController>
-    _ChangePhoneNumberViewTextEditingControllers = {};
+_ChangePhoneNumberViewTextEditingControllers = {};
 
 final Map<String, FocusNode> _ChangePhoneNumberViewFocusNodes = {};
 
 final Map<String, String? Function(String?)?>
-    _ChangePhoneNumberViewTextValidations = {
-  PhoneNumberValueKey: null,
-};
+_ChangePhoneNumberViewTextValidations = {PhoneNumberValueKey: null};
 
 mixin $ChangePhoneNumberView {
   TextEditingController get phoneNumberController =>
@@ -37,8 +36,9 @@ mixin $ChangePhoneNumberView {
       return _ChangePhoneNumberViewTextEditingControllers[key]!;
     }
 
-    _ChangePhoneNumberViewTextEditingControllers[key] =
-        TextEditingController(text: initialValue);
+    _ChangePhoneNumberViewTextEditingControllers[key] = TextEditingController(
+      text: initialValue,
+    );
     return _ChangePhoneNumberViewTextEditingControllers[key]!;
   }
 
@@ -74,9 +74,7 @@ mixin $ChangePhoneNumberView {
   void _updateFormData(FormStateHelper model, {bool forceValidate = false}) {
     model.setData(
       model.formValueMap
-        ..addAll({
-          PhoneNumberValueKey: phoneNumberController.text,
-        }),
+        ..addAll({PhoneNumberValueKey: phoneNumberController.text}),
     );
 
     if (_autoTextFieldValidation || forceValidate) {
@@ -107,10 +105,9 @@ mixin $ChangePhoneNumberView {
 }
 
 extension ValueProperties on FormStateHelper {
-  bool get hasAnyValidationMessage => this
-      .fieldsValidationMessages
-      .values
-      .any((validation) => validation != null);
+  bool get hasAnyValidationMessage => this.fieldsValidationMessages.values.any(
+    (validation) => validation != null,
+  );
 
   bool get isFormValid {
     if (!_autoTextFieldValidation) this.validateForm();
@@ -122,12 +119,11 @@ extension ValueProperties on FormStateHelper {
       this.formValueMap[PhoneNumberValueKey] as String?;
 
   set phoneNumberValue(String? value) {
-    this.setData(
-      this.formValueMap..addAll({PhoneNumberValueKey: value}),
-    );
+    this.setData(this.formValueMap..addAll({PhoneNumberValueKey: value}));
 
     if (_ChangePhoneNumberViewTextEditingControllers.containsKey(
-        PhoneNumberValueKey)) {
+      PhoneNumberValueKey,
+    )) {
       _ChangePhoneNumberViewTextEditingControllers[PhoneNumberValueKey]?.text =
           value ?? '';
     }
@@ -145,7 +141,7 @@ extension ValueProperties on FormStateHelper {
 }
 
 extension Methods on FormStateHelper {
-  setPhoneNumberValidationMessage(String? validationMessage) =>
+  void setPhoneNumberValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[PhoneNumberValueKey] = validationMessage;
 
   /// Clears text input fields on the Form
@@ -174,7 +170,6 @@ String? getValidationMessage(String key) {
 }
 
 /// Updates the fieldsValidationMessages on the FormViewModel
-void updateValidationData(FormStateHelper model) =>
-    model.setValidationMessages({
-      PhoneNumberValueKey: getValidationMessage(PhoneNumberValueKey),
-    });
+void updateValidationData(FormStateHelper model) => model.setValidationMessages(
+  {PhoneNumberValueKey: getValidationMessage(PhoneNumberValueKey)},
+);

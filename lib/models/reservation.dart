@@ -5,7 +5,7 @@ part 'reservation.freezed.dart';
 part 'reservation.g.dart';
 
 @freezed
-class Reservation with _$Reservation {
+abstract class Reservation with _$Reservation {
   const factory Reservation({
     required String id,
     required Buyer buyer,
@@ -20,7 +20,7 @@ class Reservation with _$Reservation {
 }
 
 @freezed
-class Buyer with _$Buyer {
+abstract class Buyer with _$Buyer {
   const factory Buyer({
     required String username,
     @JsonKey(name: 'first_name') required String firstName,
@@ -33,11 +33,8 @@ class Buyer with _$Buyer {
 }
 
 @freezed
-class Avatar with _$Avatar {
-  const factory Avatar({
-    required String id,
-    required String url,
-  }) = _Avatar;
+abstract class Avatar with _$Avatar {
+  const factory Avatar({required String id, required String url}) = _Avatar;
 
   factory Avatar.fromJson(Map<String, dynamic> json) => _$AvatarFromJson(json);
 }

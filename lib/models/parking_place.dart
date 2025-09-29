@@ -38,10 +38,7 @@ abstract class Seller with _$Seller {
 
 @freezed
 abstract class Avatar with _$Avatar {
-  const factory Avatar({
-    required String id,
-    required String url,
-  }) = _Avatar;
+  const factory Avatar({required String id, required String url}) = _Avatar;
 
   factory Avatar.fromJson(Map<String, dynamic> json) => _$AvatarFromJson(json);
 }

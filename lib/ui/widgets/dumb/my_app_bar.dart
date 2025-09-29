@@ -11,18 +11,21 @@ class MyAppBar extends PreferredSize {
   final String title;
   final List<Widget>? actions;
   MyAppBar({super.key, required this.title, this.actions})
-      : super(
-            preferredSize: Size(5, AppSpacing.px1 * 62),
-            child: AppBar(
-                actions: actions,
-                backgroundColor: AppColors.white,
-                surfaceTintColor: AppColors.greenKre.withValues(alpha: .2),
-                leading: IconButton(
-                    onPressed: () {
-                      locator<NavigationService>().back();
-                    },
-                    icon: const CustomIcon(iconPath: AppIcons.arrowLeft)),
-                title: CustomText.paragraph(title)));
+    : super(
+        preferredSize: Size(5, AppSpacing.px1 * 62),
+        child: AppBar(
+          actions: actions,
+          backgroundColor: AppColors.white,
+          surfaceTintColor: AppColors.greenKre.withValues(alpha: .2),
+          leading: IconButton(
+            onPressed: () {
+              locator<NavigationService>().back();
+            },
+            icon: const CustomIcon(iconPath: AppIcons.arrowLeft),
+          ),
+          title: CustomText.paragraph(title),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {

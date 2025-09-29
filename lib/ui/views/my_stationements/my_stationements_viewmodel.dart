@@ -18,7 +18,7 @@ class MyStationementsViewModel extends BaseViewModel {
       if (result.success) {
         myPlaces.addAll(result.data);
       } else {
-// handle backend errors
+        // handle backend errors
       }
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionError) {
@@ -38,7 +38,7 @@ class MyStationementsViewModel extends BaseViewModel {
       if (result.success) {
         myGivenUpPlaces.addAll(result.data);
       } else {
-// handle backend errors
+        // handle backend errors
       }
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionError) {

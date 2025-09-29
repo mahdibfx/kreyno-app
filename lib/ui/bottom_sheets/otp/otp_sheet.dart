@@ -16,7 +16,7 @@ class OtpSheet extends StackedView<OtpSheetModel> {
   final Function(SheetResponse response)? completer;
   final SheetRequest request;
   const OtpSheet({Key? key, required this.completer, required this.request})
-      : super(key: key);
+    : super(key: key);
 
   @override
   Widget builder(BuildContext context, OtpSheetModel viewModel, Widget? child) {

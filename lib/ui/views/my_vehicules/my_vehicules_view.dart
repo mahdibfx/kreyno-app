@@ -44,7 +44,7 @@ class MyVehiculesView extends StackedView<MyVehiculesViewModel> {
                 // viewModel.onMenuTap(result, viewModel.myCarsList[index].id);
               },
             ),
-          )
+          ),
         ],
       ),
     );

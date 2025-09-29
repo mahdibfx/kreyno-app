@@ -21,7 +21,7 @@ class ProfileSheet extends StackedView<ProfileSheetModel> {
   final Function(SheetResponse response)? completer;
   final SheetRequest request;
   const ProfileSheet({Key? key, required this.completer, required this.request})
-      : super(key: key);
+    : super(key: key);
 
   @override
   Widget builder(
@@ -222,17 +222,14 @@ class ProfileListTile extends StatelessWidget {
         children: [
           CustomIcon(iconPath: icon, size: 20),
           HGap(AppSpacing.px1 * 10),
-          CustomText(
-            text: title,
-            style: CustomTextStyle.smallParagraphMedium,
-          ),
+          CustomText(text: title, style: CustomTextStyle.smallParagraphMedium),
           if (showTrailingArrow) const Expanded(child: SizedBox()),
           if (showTrailingArrow)
             const CustomIcon(
               iconPath: AppIcons.arrowRight,
               color: AppColors.textKre,
             ),
-          if (showTrailingArrow) HGap(AppSpacing.px8)
+          if (showTrailingArrow) HGap(AppSpacing.px8),
         ],
       ),
     );

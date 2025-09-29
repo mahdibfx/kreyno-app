@@ -6,7 +6,7 @@ class CancelationReasonsSheetModel extends BaseViewModel {
     0: "J’ai changé mes plans",
     1: "Le/la client(e) prends trop de temps pour arriver",
     2: "Le/la client(e) est trop loin",
-    3: "Autre (a spécifier)"
+    3: "Autre (a spécifier)",
   };
 
   changeReason(int id) {

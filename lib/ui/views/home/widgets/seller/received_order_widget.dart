@@ -60,115 +60,119 @@ class RefuseReasonForm extends ViewModelWidget<HomeViewModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      VGap(AppSpacing.px20),
-      InkWell(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        VGap(AppSpacing.px20),
+        InkWell(
           onTap: () {
             viewModel.cancelRefuseOrder();
           },
-          child: const CustomIcon(iconPath: AppIcons.arrowLeft)),
-      VGap(AppSpacing.px20),
-      const CustomText(
-        text: "Pourquoi voulez-vous refuser cette demande?",
-        style: CustomTextStyle.largeTitle,
-        maxLines: 2,
-      ),
-      VGap(AppSpacing.px4),
-      const CustomText(
-        text: "Sélectionnez une raison ci-dessous.",
-        style: CustomTextStyle.smallParagraphMedium,
-        color: AppColors.textKre,
-      ),
-      VGap(AppSpacing.px24),
-      ListView.separated(
-        padding: EdgeInsets.zero,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: viewModel.reasons.length,
-        separatorBuilder: (context, index) => VGap(AppSpacing.px8),
-        itemBuilder: (context, index) {
-          return LabeledRadio(
-            label: viewModel.reasons[index]!,
-            value: viewModel.selectedReasonId == index,
-            onChanged: (d) {
-              viewModel.changeReason(index);
-            },
-          );
-        },
-      ),
-      VGap(AppSpacing.px8),
-      // InputField( controller: , focusNode: focusNode, labelText: labelText, hintText: hintText, keyboardType: keyboardType)
-
-      if (viewModel.selectedReasonId == 3)
-        TextFormField(
-          maxLines: 4,
-          decoration: InputDecoration(
-            hintText: "Saisissez votre raison d’annulation",
-            hintStyle: AppTypography.smallParagraphMedium.copyWith(
-              color: AppColors.placeholderKre,
-            ),
-            errorStyle: AppTypography.labelRegular.copyWith(
-              color: AppColors.redKre,
-            ),
-            filled: true,
-            fillColor: AppColors.white,
-            contentPadding: EdgeInsets.symmetric(
-              horizontal: AppSpacing.px16,
-              vertical: AppSpacing.px12,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppSpacing.px12),
-              borderSide: const BorderSide(
-                color: AppColors.strokeKre,
-                width: 1.0,
-              ),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppSpacing.px12),
-              borderSide: const BorderSide(
-                color: AppColors.strokeKre,
-                width: 1.0,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppSpacing.px12),
-              borderSide: const BorderSide(
-                color: AppColors.greenKre,
-                width: 1.2,
-              ),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppSpacing.px12),
-              borderSide: const BorderSide(
-                color: AppColors.redKre,
-                width: 1.0,
-              ),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppSpacing.px12),
-              borderSide: const BorderSide(
-                color: AppColors.redKre,
-                width: 1.2,
-              ),
-            ),
-            disabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppSpacing.px12),
-              borderSide: const BorderSide(
-                color: AppColors.strokeKre,
-                width: 1.0,
-              ),
-            ),
-            counterText: '',
-          ),
+          child: const CustomIcon(iconPath: AppIcons.arrowLeft),
         ),
-      VGap(AppSpacing.px24),
-      CustomButton.filled(
-        text: "Valider",
-        backgroundColor: AppColors.redKre,
-        foregroundColor: AppColors.white,
-        onPressed: () {},
-      )
-    ]);
+        VGap(AppSpacing.px20),
+        const CustomText(
+          text: "Pourquoi voulez-vous refuser cette demande?",
+          style: CustomTextStyle.largeTitle,
+          maxLines: 2,
+        ),
+        VGap(AppSpacing.px4),
+        const CustomText(
+          text: "Sélectionnez une raison ci-dessous.",
+          style: CustomTextStyle.smallParagraphMedium,
+          color: AppColors.textKre,
+        ),
+        VGap(AppSpacing.px24),
+        ListView.separated(
+          padding: EdgeInsets.zero,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: viewModel.reasons.length,
+          separatorBuilder: (context, index) => VGap(AppSpacing.px8),
+          itemBuilder: (context, index) {
+            return LabeledRadio(
+              label: viewModel.reasons[index]!,
+              value: viewModel.selectedReasonId == index,
+              onChanged: (d) {
+                viewModel.changeReason(index);
+              },
+            );
+          },
+        ),
+        VGap(AppSpacing.px8),
+
+        // InputField( controller: , focusNode: focusNode, labelText: labelText, hintText: hintText, keyboardType: keyboardType)
+        if (viewModel.selectedReasonId == 3)
+          TextFormField(
+            maxLines: 4,
+            decoration: InputDecoration(
+              hintText: "Saisissez votre raison d’annulation",
+              hintStyle: AppTypography.smallParagraphMedium.copyWith(
+                color: AppColors.placeholderKre,
+              ),
+              errorStyle: AppTypography.labelRegular.copyWith(
+                color: AppColors.redKre,
+              ),
+              filled: true,
+              fillColor: AppColors.white,
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: AppSpacing.px16,
+                vertical: AppSpacing.px12,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppSpacing.px12),
+                borderSide: const BorderSide(
+                  color: AppColors.strokeKre,
+                  width: 1.0,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppSpacing.px12),
+                borderSide: const BorderSide(
+                  color: AppColors.strokeKre,
+                  width: 1.0,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppSpacing.px12),
+                borderSide: const BorderSide(
+                  color: AppColors.greenKre,
+                  width: 1.2,
+                ),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppSpacing.px12),
+                borderSide: const BorderSide(
+                  color: AppColors.redKre,
+                  width: 1.0,
+                ),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppSpacing.px12),
+                borderSide: const BorderSide(
+                  color: AppColors.redKre,
+                  width: 1.2,
+                ),
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppSpacing.px12),
+                borderSide: const BorderSide(
+                  color: AppColors.strokeKre,
+                  width: 1.0,
+                ),
+              ),
+              counterText: '',
+            ),
+          ),
+        VGap(AppSpacing.px24),
+        CustomButton.filled(
+          text: "Valider",
+          backgroundColor: AppColors.redKre,
+          foregroundColor: AppColors.white,
+          onPressed: () {},
+        ),
+      ],
+    );
   }
 }
 

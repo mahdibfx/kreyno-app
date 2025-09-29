@@ -62,39 +62,36 @@ class MyStationementsView extends StackedView<MyStationementsViewModel> {
                 padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
                 child: Column(
                   children: [
-                    Image.asset(
-                      AppImages.noStationement,
-                    ),
+                    Image.asset(AppImages.noStationement),
                     VGap(AppSpacing.px24),
-                    const CustomText.largeTitle(
-                      "Aucun stationnement trouvé",
-                    ),
+                    const CustomText.largeTitle("Aucun stationnement trouvé"),
                     VGap(AppSpacing.px4),
                     const CustomText.smallParagraphMedium(
                       "Vous n’avez pas encore ajouté de stationnement. Commencez dès maintenant pour retrouver facilement vos places. ",
                       maxLines: 3,
                       textAlign: TextAlign.center,
                       color: AppColors.textKre,
-                    )
+                    ),
                   ],
                 ),
               ),
             ),
           if (!isEmpty)
             SliverList.builder(
-                itemCount: viewModel.selectedIndex == 0
-                    ? viewModel.myPlaces.length
-                    : viewModel.myGivenUpPlaces.length,
-                itemBuilder: (c, i) => Column(
-                      children: [
-                        StationementWidget(
-                          place: viewModel.selectedIndex == 0
-                              ? viewModel.myPlaces[i]
-                              : viewModel.myGivenUpPlaces[i],
-                        ),
-                        VGap(AppSpacing.px1 * 10)
-                      ],
-                    ))
+              itemCount: viewModel.selectedIndex == 0
+                  ? viewModel.myPlaces.length
+                  : viewModel.myGivenUpPlaces.length,
+              itemBuilder: (c, i) => Column(
+                children: [
+                  StationementWidget(
+                    place: viewModel.selectedIndex == 0
+                        ? viewModel.myPlaces[i]
+                        : viewModel.myGivenUpPlaces[i],
+                  ),
+                  VGap(AppSpacing.px1 * 10),
+                ],
+              ),
+            ),
         ],
       ),
     );
@@ -133,17 +130,16 @@ class StationementWidget extends StatelessWidget {
                       color: AppColors.textKre,
                     ),
                     VGap(AppSpacing.px1 * 5),
-                    CustomText.paragraph(
-                      place.address,
-                      maxLines: 2,
-                    ),
+                    CustomText.paragraph(place.address, maxLines: 2),
                   ],
                 ),
               ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(AppSpacing.px1 * 10),
                 child: Image.network(
-                  place.seller.avatar
+                  place
+                      .seller
+                      .avatar
                       .url, // TODO man this supposed to be car image
                   fit: BoxFit.cover,
                 ),
@@ -170,8 +166,10 @@ class StationementWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              CustomText.paragraph("${place.totalPaidPrice}\$",
-                  color: AppColors.greenKre),
+              CustomText.paragraph(
+                "${place.totalPaidPrice}\$",
+                color: AppColors.greenKre,
+              ),
             ],
           ),
         ],
@@ -201,16 +199,19 @@ class CustomPlacesTabbar extends StatelessWidget {
                 onTabChanged?.call(0);
               },
               child: Container(
-                  decoration: BoxDecoration(
-                      color: selectedIndex == 0 ? AppColors.white : null,
-                      borderRadius: BorderRadius.circular(8)),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: AppSpacing.px20,
-                      vertical: AppSpacing.px1 * 10),
-                  child: const CustomText.smallParagraphBold(
-                    "Places réservées",
-                    textAlign: TextAlign.center,
-                  )),
+                decoration: BoxDecoration(
+                  color: selectedIndex == 0 ? AppColors.white : null,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppSpacing.px20,
+                  vertical: AppSpacing.px1 * 10,
+                ),
+                child: const CustomText.smallParagraphBold(
+                  "Places réservées",
+                  textAlign: TextAlign.center,
+                ),
+              ),
             ),
           ),
           Expanded(
@@ -219,18 +220,21 @@ class CustomPlacesTabbar extends StatelessWidget {
                 onTabChanged?.call(1);
               },
               child: Container(
-                  decoration: BoxDecoration(
-                      color: selectedIndex == 1 ? AppColors.white : null,
-                      borderRadius: BorderRadius.circular(8)),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: AppSpacing.px20,
-                      vertical: AppSpacing.px1 * 10),
-                  child: const CustomText.smallParagraphBold(
-                    "Places cédées",
-                    textAlign: TextAlign.center,
-                  )),
+                decoration: BoxDecoration(
+                  color: selectedIndex == 1 ? AppColors.white : null,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppSpacing.px20,
+                  vertical: AppSpacing.px1 * 10,
+                ),
+                child: const CustomText.smallParagraphBold(
+                  "Places cédées",
+                  textAlign: TextAlign.center,
+                ),
+              ),
             ),
-          )
+          ),
         ],
       ),
     );

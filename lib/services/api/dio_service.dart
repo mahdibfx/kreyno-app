@@ -10,15 +10,15 @@ class DioService {
   final Dio dio;
 
   DioService()
-      : dio = Dio(
-          BaseOptions(
-            baseUrl: ApiEndpoints.baseUrl,
-            connectTimeout: const Duration(seconds: 30),
-            sendTimeout: const Duration(seconds: 30),
-            receiveTimeout: const Duration(seconds: 30),
-            headers: {'content-Type': 'application/json'},
-          ),
-        ) {
+    : dio = Dio(
+        BaseOptions(
+          baseUrl: ApiEndpoints.baseUrl,
+          connectTimeout: const Duration(seconds: 30),
+          sendTimeout: const Duration(seconds: 30),
+          receiveTimeout: const Duration(seconds: 30),
+          headers: {'content-Type': 'application/json'},
+        ),
+      ) {
     dio.interceptors.add(
       PrettyDioLogger(
         request: true,

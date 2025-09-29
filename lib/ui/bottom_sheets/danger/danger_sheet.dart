@@ -9,7 +9,7 @@ class DangerSheet extends StackedView<DangerSheetModel> {
   final Function(SheetResponse response)? completer;
   final SheetRequest request;
   const DangerSheet({Key? key, required this.completer, required this.request})
-      : super(key: key);
+    : super(key: key);
 
   @override
   Widget builder(

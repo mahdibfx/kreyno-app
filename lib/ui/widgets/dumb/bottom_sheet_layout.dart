@@ -18,7 +18,8 @@ class BottomSheetLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: padding ??
+      padding:
+          padding ??
           EdgeInsets.symmetric(
             horizontal: AppSpacing.px16,
             vertical: AppSpacing.px16,

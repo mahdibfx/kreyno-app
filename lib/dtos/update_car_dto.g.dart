@@ -6,8 +6,8 @@ part of 'update_car_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UpdateCarDtoImpl _$$UpdateCarDtoImplFromJson(Map<String, dynamic> json) =>
-    _$UpdateCarDtoImpl(
+_UpdateCarDto _$UpdateCarDtoFromJson(Map<String, dynamic> json) =>
+    _UpdateCarDto(
       vehicleType: $enumDecodeNullable(_$VehicleTypeEnumMap, json['car_type']),
       brand: json['brand'] as String?,
       model: json['model'] as String?,
@@ -17,17 +17,15 @@ _$UpdateCarDtoImpl _$$UpdateCarDtoImplFromJson(Map<String, dynamic> json) =>
       isSelected: json['is_selected'] as bool?,
     );
 
-Map<String, dynamic> _$$UpdateCarDtoImplToJson(_$UpdateCarDtoImpl instance) =>
+Map<String, dynamic> _$UpdateCarDtoToJson(_UpdateCarDto instance) =>
     <String, dynamic>{
-      if (_$VehicleTypeEnumMap[instance.vehicleType] case final value?)
-        'car_type': value,
-      if (instance.brand case final value?) 'brand': value,
-      if (instance.model case final value?) 'model': value,
-      if (instance.color case final value?) 'color': value,
-      if (instance.registrationNumber case final value?)
-        'registration_number': value,
-      if (instance.co2Emission case final value?) 'co2_emission': value,
-      if (instance.isSelected case final value?) 'is_selected': value,
+      'car_type': ?_$VehicleTypeEnumMap[instance.vehicleType],
+      'brand': ?instance.brand,
+      'model': ?instance.model,
+      'color': ?instance.color,
+      'registration_number': ?instance.registrationNumber,
+      'co2_emission': ?instance.co2Emission,
+      'is_selected': ?instance.isSelected,
     };
 
 const _$VehicleTypeEnumMap = {

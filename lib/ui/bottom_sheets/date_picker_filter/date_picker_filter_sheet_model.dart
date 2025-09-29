@@ -7,10 +7,12 @@ class DatePickerFilterSheetModel extends BaseViewModel {
   String formattedEndDate = '';
 
   changedRange(DateRangePickerSelectionChangedArgs dateRangeArgs) {
-    formattedStartDate =
-        DateFormat("dd/MM/yy").format(dateRangeArgs.value.startDate);
-    formattedEndDate =
-        DateFormat("dd/MM/yy").format(dateRangeArgs.value.endDate);
+    formattedStartDate = DateFormat(
+      "dd/MM/yy",
+    ).format(dateRangeArgs.value.startDate);
+    formattedEndDate = DateFormat(
+      "dd/MM/yy",
+    ).format(dateRangeArgs.value.endDate);
     notifyListeners();
   }
 }

@@ -5,15 +5,15 @@ import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 
 class EnterMessageSection extends StatelessWidget {
-  const EnterMessageSection({
-    super.key,
-  });
+  const EnterMessageSection({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-          horizontal: AppSpacing.px24, vertical: AppSpacing.px20),
+        horizontal: AppSpacing.px24,
+        vertical: AppSpacing.px20,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -31,8 +31,9 @@ class EnterMessageSection extends StatelessWidget {
             Expanded(
               child: TextField(
                 decoration: InputDecoration(
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: AppSpacing.px12),
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: AppSpacing.px12,
+                  ),
                   hintText: "Écrire un message...",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -55,7 +56,7 @@ class EnterMessageSection extends StatelessWidget {
             const CustomIcon(
               iconPath: AppIcons.send,
               color: AppColors.greenKre,
-            )
+            ),
           ],
         ),
       ),

@@ -6,19 +6,18 @@ part of 'card.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CardImpl _$$CardImplFromJson(Map<String, dynamic> json) => _$CardImpl(
-      id: json['id'] as String,
-      brand: json['brand'] as String,
-      last4: json['last_four'] as String,
-      expMonth: json['exp_month'] as String,
-      expYear: json['exp_year'] as String,
-    );
+_Card _$CardFromJson(Map<String, dynamic> json) => _Card(
+  id: json['id'] as String,
+  brand: json['brand'] as String,
+  last4: json['last_four'] as String,
+  expMonth: json['exp_month'] as String,
+  expYear: json['exp_year'] as String,
+);
 
-Map<String, dynamic> _$$CardImplToJson(_$CardImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'brand': instance.brand,
-      'last_four': instance.last4,
-      'exp_month': instance.expMonth,
-      'exp_year': instance.expYear,
-    };
+Map<String, dynamic> _$CardToJson(_Card instance) => <String, dynamic>{
+  'id': instance.id,
+  'brand': instance.brand,
+  'last_four': instance.last4,
+  'exp_month': instance.expMonth,
+  'exp_year': instance.expYear,
+};

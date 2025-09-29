@@ -34,8 +34,8 @@ class CustomButton extends StatelessWidget {
     this.isDisabled = false,
     this.expandToFullWidth = true,
     this.size = CustomButtonSize.medium,
-  })  : outlineColor = null,
-        variant = CustomButtonVariant.filled;
+  }) : outlineColor = null,
+       variant = CustomButtonVariant.filled;
 
   const CustomButton.outlined({
     super.key,
@@ -47,8 +47,8 @@ class CustomButton extends StatelessWidget {
     this.isDisabled = false,
     this.expandToFullWidth = true,
     this.size = CustomButtonSize.medium,
-  })  : backgroundColor = null,
-        variant = CustomButtonVariant.outlined;
+  }) : backgroundColor = null,
+       variant = CustomButtonVariant.outlined;
 
   const CustomButton.plain({
     super.key,
@@ -59,9 +59,9 @@ class CustomButton extends StatelessWidget {
     this.isDisabled = false,
     this.expandToFullWidth = false,
     this.size = CustomButtonSize.medium,
-  })  : backgroundColor = null,
-        outlineColor = null,
-        variant = CustomButtonVariant.plain;
+  }) : backgroundColor = null,
+       outlineColor = null,
+       variant = CustomButtonVariant.plain;
 
   @override
   Widget build(BuildContext context) {
@@ -98,8 +98,9 @@ class CustomButton extends StatelessWidget {
     return FilledButton(
       onPressed: disabled ? null : onPressed,
       style: FilledButton.styleFrom(
-        backgroundColor:
-            disabled ? AppColors.disabledKre : buttonBackgroundColor,
+        backgroundColor: disabled
+            ? AppColors.disabledKre
+            : buttonBackgroundColor,
         foregroundColor: disabled ? AppColors.textKre : buttonForegroundColor,
         disabledBackgroundColor: AppColors.disabledKre,
         disabledForegroundColor: AppColors.textKre,

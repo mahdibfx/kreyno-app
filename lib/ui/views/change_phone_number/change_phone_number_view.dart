@@ -13,9 +13,7 @@ import 'package:stacked/stacked_annotations.dart';
 
 import 'change_phone_number_viewmodel.dart';
 
-@FormView(fields: [
-  FormTextField(name: 'phoneNumber'),
-])
+@FormView(fields: [FormTextField(name: 'phoneNumber')])
 class ChangePhoneNumberView extends StackedView<ChangePhoneNumberViewModel>
     with $ChangePhoneNumberView {
   const ChangePhoneNumberView({Key? key}) : super(key: key);
@@ -46,9 +44,7 @@ class ChangePhoneNumberView extends StackedView<ChangePhoneNumberViewModel>
                       maxLines: 2,
                       color: AppColors.textKre,
                     ),
-                    SizedBox(
-                      height: AppSpacing.px20,
-                    )
+                    SizedBox(height: AppSpacing.px20),
                   ],
                 ),
               ),
@@ -97,8 +93,6 @@ class ChangePhoneNumberView extends StackedView<ChangePhoneNumberViewModel>
   }
 
   @override
-  ChangePhoneNumberViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  ChangePhoneNumberViewModel viewModelBuilder(BuildContext context) =>
       ChangePhoneNumberViewModel();
 }

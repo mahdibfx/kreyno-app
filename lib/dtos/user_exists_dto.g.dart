@@ -6,13 +6,13 @@ part of 'user_exists_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserExistsDtoImpl _$$UserExistsDtoImplFromJson(Map<String, dynamic> json) =>
-    _$UserExistsDtoImpl(
+_UserExistsDto _$UserExistsDtoFromJson(Map<String, dynamic> json) =>
+    _UserExistsDto(
       attribute: $enumDecode(_$UniqueExistenceIdEnumMap, json['attribute']),
       value: json['value'] as String,
     );
 
-Map<String, dynamic> _$$UserExistsDtoImplToJson(_$UserExistsDtoImpl instance) =>
+Map<String, dynamic> _$UserExistsDtoToJson(_UserExistsDto instance) =>
     <String, dynamic>{
       'attribute': _$UniqueExistenceIdEnumMap[instance.attribute]!,
       'value': instance.value,

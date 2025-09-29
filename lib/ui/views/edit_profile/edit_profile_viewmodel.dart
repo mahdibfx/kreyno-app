@@ -51,8 +51,9 @@ class EditProfileViewModel extends BaseViewModel {
   }
 
   uploadPicture() async {
-    final result = await locator<BottomSheetService>()
-        .showCustomSheet(variant: BottomSheetType.choosePictureSource);
+    final result = await locator<BottomSheetService>().showCustomSheet(
+      variant: BottomSheetType.choosePictureSource,
+    );
     if (result != null) {
       print(result.data);
       if (result.data == "camera") {
@@ -61,8 +62,9 @@ class EditProfileViewModel extends BaseViewModel {
           loadedImage = File(image.path);
         }
       } else if (result.data == "gallery") {
-        final image =
-            await ImagePicker().pickImage(source: ImageSource.gallery);
+        final image = await ImagePicker().pickImage(
+          source: ImageSource.gallery,
+        );
         if (image != null) {
           loadedImage = File(image.path);
         }
@@ -73,12 +75,13 @@ class EditProfileViewModel extends BaseViewModel {
 
   updateProfileData() async {
     final dtoData = UpdateProfileDto(
-        firstName: firstNameController.text,
-        lastName: lastNameController.text,
-        email: emailController.text,
-        birthDate: birthdayValue,
-        address: postalCodeController.text,
-        gender: sexe);
+      firstName: firstNameController.text,
+      lastName: lastNameController.text,
+      email: emailController.text,
+      birthDate: birthdayValue,
+      address: postalCodeController.text,
+      gender: sexe,
+    );
     final result = await authService.updateProfile(dtoData);
     if (result.success) {}
   }
@@ -89,8 +92,9 @@ class EditProfileViewModel extends BaseViewModel {
   }
 
   checkUserExistence() async {
-    final result =
-        await authService.checkUserExistence(usernameController.text);
+    final result = await authService.checkUserExistence(
+      usernameController.text,
+    );
 
     userValid = result.data.exists;
     notifyListeners();

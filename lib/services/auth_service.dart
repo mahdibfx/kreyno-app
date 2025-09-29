@@ -11,7 +11,8 @@ import 'package:kreyno/services/api/dio_service.dart';
 class AuthService {
   final _apiService = ApiAuthService(locator<DioService>().dio);
   Future<ApiResponse<User>> updateProfile(
-      UpdateProfileDto updateProfileDto) async {
+    UpdateProfileDto updateProfileDto,
+  ) async {
     final result = await _apiService.updateProfile(updateProfileDto);
     return result;
   }
@@ -23,9 +24,11 @@ class AuthService {
   }
 
   Future<ApiResponse<UserExistsResponse>> checkUserExistence(
-      String username) async {
+    String username,
+  ) async {
     final result = await _apiService.checkIfUserExists(
-        UserExistsDto(attribute: UniqueExistenceId.username, value: username));
+      UserExistsDto(attribute: UniqueExistenceId.username, value: username),
+    );
 
     return result;
   }

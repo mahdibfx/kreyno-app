@@ -41,10 +41,11 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
             children: [
               const CustomText.largeTitle("Filtres"),
               RoundedButton(
-                  iconPath: AppIcons.multiplicationSign,
-                  onPressed: () {
-                    locator<NavigationService>().back();
-                  })
+                iconPath: AppIcons.multiplicationSign,
+                onPressed: () {
+                  locator<NavigationService>().back();
+                },
+              ),
             ],
           ),
           VGap(AppSpacing.px20),
@@ -58,25 +59,28 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
           Column(
             children: [
               LabeledCheckbox(
-                  label: "Toutes les places",
-                  value: viewModel.placeType == 0,
-                  onChanged: (d) {
-                    viewModel.changePlaceType(0);
-                  }),
+                label: "Toutes les places",
+                value: viewModel.placeType == 0,
+                onChanged: (d) {
+                  viewModel.changePlaceType(0);
+                },
+              ),
               VGap(AppSpacing.px4),
               LabeledCheckbox(
-                  label: "Uniquement avec borne de recharge",
-                  value: viewModel.placeType == 1,
-                  onChanged: (d) {
-                    viewModel.changePlaceType(1);
-                  }),
+                label: "Uniquement avec borne de recharge",
+                value: viewModel.placeType == 1,
+                onChanged: (d) {
+                  viewModel.changePlaceType(1);
+                },
+              ),
               VGap(AppSpacing.px4),
               LabeledCheckbox(
-                  label: "Sans borne de recharge",
-                  value: viewModel.placeType == 2,
-                  onChanged: (d) {
-                    viewModel.changePlaceType(2);
-                  }),
+                label: "Sans borne de recharge",
+                value: viewModel.placeType == 2,
+                onChanged: (d) {
+                  viewModel.changePlaceType(2);
+                },
+              ),
             ],
           ),
           VGap(AppSpacing.px12),

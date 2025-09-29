@@ -32,7 +32,7 @@ class HomeViewModel extends BaseViewModel {
     0: "J’ai changé mes plans",
     1: "J’ai fait une erreur",
     2: "Le/la client(e) est trop loin",
-    3: "Autre (a spécifier)"
+    3: "Autre (a spécifier)",
   };
 
   changeReason(int id) {
@@ -49,8 +49,9 @@ class HomeViewModel extends BaseViewModel {
   selectCar(int value) async {
     selectedCarId = value;
     notifyListeners();
-    await Future.delayed(const Duration(milliseconds: 600))
-        .then((value) => markSelected = false);
+    await Future.delayed(
+      const Duration(milliseconds: 600),
+    ).then((value) => markSelected = false);
     dropdownShown = false;
 
     notifyListeners();

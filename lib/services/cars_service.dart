@@ -78,7 +78,8 @@ class CarsService {
   }
 
   Future<GetCarByRegistrationResponse?> getCarByRegistrationNumber(
-      String number) async {
+    String number,
+  ) async {
     try {
       final result = await _carApiService.getCarByRegistrationNumber(number);
       if (result.success) {

@@ -9,7 +9,7 @@ class BuySpotSheet extends StackedView<BuySpotSheetModel> {
   final Function(SheetResponse response)? completer;
   final SheetRequest request;
   const BuySpotSheet({Key? key, required this.completer, required this.request})
-      : super(key: key);
+    : super(key: key);
 
   @override
   Widget builder(

@@ -17,11 +17,7 @@ class ChatView extends StackedView<ChatViewModel> {
   const ChatView({Key? key}) : super(key: key);
 
   @override
-  Widget builder(
-    BuildContext context,
-    ChatViewModel viewModel,
-    Widget? child,
-  ) {
+  Widget builder(BuildContext context, ChatViewModel viewModel, Widget? child) {
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: const EnterMessageSection(),
@@ -30,7 +26,9 @@ class ChatView extends StackedView<ChatViewModel> {
         surfaceTintColor: Colors.white,
         // elevation: 20,
         bottom: const PreferredSize(
-            preferredSize: Size(0, 1), child: CustomDivider()),
+          preferredSize: Size(0, 1),
+          child: CustomDivider(),
+        ),
         leading: IconButton(
           onPressed: () {
             locator<NavigationService>().back();
@@ -41,9 +39,10 @@ class ChatView extends StackedView<ChatViewModel> {
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: IconButton(
-                onPressed: () {},
-                icon: const CustomIcon(iconPath: AppIcons.phone)),
-          )
+              onPressed: () {},
+              icon: const CustomIcon(iconPath: AppIcons.phone),
+            ),
+          ),
         ],
         title: Row(
           children: [
@@ -55,19 +54,14 @@ class ChatView extends StackedView<ChatViewModel> {
                 height: 40,
               ),
             ),
-            SizedBox(
-              width: AppSpacing.px8,
-            ),
+            SizedBox(width: AppSpacing.px8),
             const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText.smallParagraphBold("sarah.dupons92"),
-                CustomText.labelMedium(
-                  "en ligne",
-                  color: AppColors.greenKre,
-                ),
+                CustomText.labelMedium("en ligne", color: AppColors.greenKre),
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -75,16 +69,14 @@ class ChatView extends StackedView<ChatViewModel> {
         padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
         child: Column(
           children: [
-            SizedBox(
-              height: AppSpacing.px24,
-            ),
+            SizedBox(height: AppSpacing.px24),
             const CustomText(
               text: "Aujourd’hui",
               style: CustomTextStyle.labelMedium,
               color: AppColors.textKre,
             ),
             const ChatBubble(isMine: true),
-            const ChatBubble(isMine: false)
+            const ChatBubble(isMine: false),
           ],
         ),
       ),
@@ -92,8 +84,5 @@ class ChatView extends StackedView<ChatViewModel> {
   }
 
   @override
-  ChatViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
-      ChatViewModel();
+  ChatViewModel viewModelBuilder(BuildContext context) => ChatViewModel();
 }

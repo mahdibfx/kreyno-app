@@ -81,32 +81,30 @@ class KreyonoPortfolioView extends StackedView<KreyonoPortfolioViewModel> {
               children: [
                 const CustomText(text: "Historique des gains"),
                 IconButton(
-                    onPressed: () {
-                      locator<BottomSheetService>().showCustomSheet(
-                          isScrollControlled: true,
-                          variant: BottomSheetType.datePickerFilter);
-                    },
-                    icon: const CustomIcon(iconPath: AppIcons.sort))
+                  onPressed: () {
+                    locator<BottomSheetService>().showCustomSheet(
+                      isScrollControlled: true,
+                      variant: BottomSheetType.datePickerFilter,
+                    );
+                  },
+                  icon: const CustomIcon(iconPath: AppIcons.sort),
+                ),
               ],
             ),
             VGap(AppSpacing.px20),
             if (isEmpty)
               Column(
                 children: [
-                  Image.asset(
-                    AppImages.noStationement,
-                  ),
+                  Image.asset(AppImages.noStationement),
                   VGap(AppSpacing.px24),
-                  const CustomText.largeTitle(
-                    "Aucun gain pour l’instant",
-                  ),
+                  const CustomText.largeTitle("Aucun gain pour l’instant"),
                   VGap(AppSpacing.px4),
                   const CustomText.smallParagraphMedium(
                     "Les revenus de vos stationnements apparaîtront ici dès votre première transaction. ",
                     maxLines: 2,
                     textAlign: TextAlign.center,
                     color: AppColors.textKre,
-                  )
+                  ),
                 ],
               ),
             if (!isEmpty)
@@ -117,17 +115,11 @@ class KreyonoPortfolioView extends StackedView<KreyonoPortfolioViewModel> {
                     color: AppColors.textKre,
                   ),
                   VGap(AppSpacing.px8),
-                  const GainWidget(
-                    type: "vente",
-                  ),
+                  const GainWidget(type: "vente"),
                   VGap(AppSpacing.px8),
-                  const GainWidget(
-                    type: "retrait",
-                  ),
+                  const GainWidget(type: "retrait"),
                   VGap(AppSpacing.px8),
-                  const GainWidget(
-                    type: "vente",
-                  ),
+                  const GainWidget(type: "vente"),
                 ],
               ),
           ],
@@ -165,8 +157,9 @@ class GainWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(6),
             ),
             child: CustomIcon(
-              iconPath:
-                  type == "vente" ? AppIcons.parking : AppIcons.cardReceive,
+              iconPath: type == "vente"
+                  ? AppIcons.parking
+                  : AppIcons.cardReceive,
               color: (type == "vente" ? AppColors.greenKre : AppColors.redKre),
             ),
           ),

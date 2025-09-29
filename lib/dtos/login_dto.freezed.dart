@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,210 +9,275 @@ part of 'login_dto.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-LoginDto _$LoginDtoFromJson(Map<String, dynamic> json) {
-  return _LoginDto.fromJson(json);
-}
 
 /// @nodoc
 mixin _$LoginDto {
-  @JsonKey(name: 'phone')
-  String get phone => throw _privateConstructorUsedError;
-  @JsonKey(name: 'otp')
-  String get otp => throw _privateConstructorUsedError;
-  @JsonKey(name: 'device_id')
-  String get deviceId => throw _privateConstructorUsedError;
+
+@JsonKey(name: 'phone') String get phone;@JsonKey(name: 'otp') String get otp;@JsonKey(name: 'device_id') String get deviceId;
+/// Create a copy of LoginDto
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoginDtoCopyWith<LoginDto> get copyWith => _$LoginDtoCopyWithImpl<LoginDto>(this as LoginDto, _$identity);
 
   /// Serializes this LoginDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of LoginDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $LoginDtoCopyWith<LoginDto> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginDto&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.otp, otp) || other.otp == otp)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,phone,otp,deviceId);
+
+@override
+String toString() {
+  return 'LoginDto(phone: $phone, otp: $otp, deviceId: $deviceId)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $LoginDtoCopyWith<$Res> {
-  factory $LoginDtoCopyWith(LoginDto value, $Res Function(LoginDto) then) =
-      _$LoginDtoCopyWithImpl<$Res, LoginDto>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'phone') String phone,
-      @JsonKey(name: 'otp') String otp,
-      @JsonKey(name: 'device_id') String deviceId});
-}
+abstract mixin class $LoginDtoCopyWith<$Res>  {
+  factory $LoginDtoCopyWith(LoginDto value, $Res Function(LoginDto) _then) = _$LoginDtoCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'phone') String phone,@JsonKey(name: 'otp') String otp,@JsonKey(name: 'device_id') String deviceId
+});
 
+
+
+
+}
 /// @nodoc
-class _$LoginDtoCopyWithImpl<$Res, $Val extends LoginDto>
+class _$LoginDtoCopyWithImpl<$Res>
     implements $LoginDtoCopyWith<$Res> {
-  _$LoginDtoCopyWithImpl(this._value, this._then);
+  _$LoginDtoCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final LoginDto _self;
+  final $Res Function(LoginDto) _then;
 
-  /// Create a copy of LoginDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? phone = null,
-    Object? otp = null,
-    Object? deviceId = null,
-  }) {
-    return _then(_value.copyWith(
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      otp: null == otp
-          ? _value.otp
-          : otp // ignore: cast_nullable_to_non_nullable
-              as String,
-      deviceId: null == deviceId
-          ? _value.deviceId
-          : deviceId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of LoginDto
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? phone = null,Object? otp = null,Object? deviceId = null,}) {
+  return _then(_self.copyWith(
+phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,otp: null == otp ? _self.otp : otp // ignore: cast_nullable_to_non_nullable
+as String,deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-/// @nodoc
-abstract class _$$LoginDtoImplCopyWith<$Res>
-    implements $LoginDtoCopyWith<$Res> {
-  factory _$$LoginDtoImplCopyWith(
-          _$LoginDtoImpl value, $Res Function(_$LoginDtoImpl) then) =
-      __$$LoginDtoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'phone') String phone,
-      @JsonKey(name: 'otp') String otp,
-      @JsonKey(name: 'device_id') String deviceId});
 }
 
-/// @nodoc
-class __$$LoginDtoImplCopyWithImpl<$Res>
-    extends _$LoginDtoCopyWithImpl<$Res, _$LoginDtoImpl>
-    implements _$$LoginDtoImplCopyWith<$Res> {
-  __$$LoginDtoImplCopyWithImpl(
-      _$LoginDtoImpl _value, $Res Function(_$LoginDtoImpl) _then)
-      : super(_value, _then);
 
-  /// Create a copy of LoginDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? phone = null,
-    Object? otp = null,
-    Object? deviceId = null,
-  }) {
-    return _then(_$LoginDtoImpl(
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      otp: null == otp
-          ? _value.otp
-          : otp // ignore: cast_nullable_to_non_nullable
-              as String,
-      deviceId: null == deviceId
-          ? _value.deviceId
-          : deviceId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Adds pattern-matching-related methods to [LoginDto].
+extension LoginDtoPatterns on LoginDto {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LoginDto value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _LoginDto() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LoginDto value)  $default,){
+final _that = this;
+switch (_that) {
+case _LoginDto():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LoginDto value)?  $default,){
+final _that = this;
+switch (_that) {
+case _LoginDto() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'phone')  String phone, @JsonKey(name: 'otp')  String otp, @JsonKey(name: 'device_id')  String deviceId)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _LoginDto() when $default != null:
+return $default(_that.phone,_that.otp,_that.deviceId);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'phone')  String phone, @JsonKey(name: 'otp')  String otp, @JsonKey(name: 'device_id')  String deviceId)  $default,) {final _that = this;
+switch (_that) {
+case _LoginDto():
+return $default(_that.phone,_that.otp,_that.deviceId);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'phone')  String phone, @JsonKey(name: 'otp')  String otp, @JsonKey(name: 'device_id')  String deviceId)?  $default,) {final _that = this;
+switch (_that) {
+case _LoginDto() when $default != null:
+return $default(_that.phone,_that.otp,_that.deviceId);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$LoginDtoImpl implements _LoginDto {
-  const _$LoginDtoImpl(
-      {@JsonKey(name: 'phone') required this.phone,
-      @JsonKey(name: 'otp') required this.otp,
-      @JsonKey(name: 'device_id') required this.deviceId});
 
-  factory _$LoginDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LoginDtoImplFromJson(json);
+class _LoginDto implements LoginDto {
+  const _LoginDto({@JsonKey(name: 'phone') required this.phone, @JsonKey(name: 'otp') required this.otp, @JsonKey(name: 'device_id') required this.deviceId});
+  factory _LoginDto.fromJson(Map<String, dynamic> json) => _$LoginDtoFromJson(json);
 
-  @override
-  @JsonKey(name: 'phone')
-  final String phone;
-  @override
-  @JsonKey(name: 'otp')
-  final String otp;
-  @override
-  @JsonKey(name: 'device_id')
-  final String deviceId;
+@override@JsonKey(name: 'phone') final  String phone;
+@override@JsonKey(name: 'otp') final  String otp;
+@override@JsonKey(name: 'device_id') final  String deviceId;
 
-  @override
-  String toString() {
-    return 'LoginDto(phone: $phone, otp: $otp, deviceId: $deviceId)';
-  }
+/// Create a copy of LoginDto
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoginDtoCopyWith<_LoginDto> get copyWith => __$LoginDtoCopyWithImpl<_LoginDto>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoginDtoImpl &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.otp, otp) || other.otp == otp) &&
-            (identical(other.deviceId, deviceId) ||
-                other.deviceId == deviceId));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, phone, otp, deviceId);
-
-  /// Create a copy of LoginDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoginDtoImplCopyWith<_$LoginDtoImpl> get copyWith =>
-      __$$LoginDtoImplCopyWithImpl<_$LoginDtoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LoginDtoImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$LoginDtoToJson(this, );
 }
 
-abstract class _LoginDto implements LoginDto {
-  const factory _LoginDto(
-          {@JsonKey(name: 'phone') required final String phone,
-          @JsonKey(name: 'otp') required final String otp,
-          @JsonKey(name: 'device_id') required final String deviceId}) =
-      _$LoginDtoImpl;
-
-  factory _LoginDto.fromJson(Map<String, dynamic> json) =
-      _$LoginDtoImpl.fromJson;
-
-  @override
-  @JsonKey(name: 'phone')
-  String get phone;
-  @override
-  @JsonKey(name: 'otp')
-  String get otp;
-  @override
-  @JsonKey(name: 'device_id')
-  String get deviceId;
-
-  /// Create a copy of LoginDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoginDtoImplCopyWith<_$LoginDtoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginDto&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.otp, otp) || other.otp == otp)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,phone,otp,deviceId);
+
+@override
+String toString() {
+  return 'LoginDto(phone: $phone, otp: $otp, deviceId: $deviceId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$LoginDtoCopyWith<$Res> implements $LoginDtoCopyWith<$Res> {
+  factory _$LoginDtoCopyWith(_LoginDto value, $Res Function(_LoginDto) _then) = __$LoginDtoCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'phone') String phone,@JsonKey(name: 'otp') String otp,@JsonKey(name: 'device_id') String deviceId
+});
+
+
+
+
+}
+/// @nodoc
+class __$LoginDtoCopyWithImpl<$Res>
+    implements _$LoginDtoCopyWith<$Res> {
+  __$LoginDtoCopyWithImpl(this._self, this._then);
+
+  final _LoginDto _self;
+  final $Res Function(_LoginDto) _then;
+
+/// Create a copy of LoginDto
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? phone = null,Object? otp = null,Object? deviceId = null,}) {
+  return _then(_LoginDto(
+phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,otp: null == otp ? _self.otp : otp // ignore: cast_nullable_to_non_nullable
+as String,deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

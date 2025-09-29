@@ -37,10 +37,11 @@ class AddPaymentCartSheet extends StackedView<AddPaymentCartSheetModel> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
-                  onTap: () {
-                    locator<NavigationService>().back();
-                  },
-                  child: const CustomIcon(iconPath: AppIcons.arrowLeft)),
+                onTap: () {
+                  locator<NavigationService>().back();
+                },
+                child: const CustomIcon(iconPath: AppIcons.arrowLeft),
+              ),
               const CustomText.paragraph("Ajouter une carte"),
               const Opacity(
                 opacity: 0,

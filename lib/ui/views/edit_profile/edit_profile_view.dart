@@ -28,13 +28,16 @@ class EditProfileView extends StackedView<EditProfileViewModel> {
     return Scaffold(
       backgroundColor: AppColors.white,
       bottomNavigationBar: Container(
-          padding: EdgeInsets.symmetric(
-                  horizontal: AppSpacing.px24, vertical: AppSpacing.px20)
-              .copyWith(bottom: AppSpacing.px32),
-          child: CustomButton.filled(
-              isDisabled: viewModel.isButtonDisabled(),
-              onPressed: () {},
-              text: "Enregistrer les modifications")),
+        padding: EdgeInsets.symmetric(
+          horizontal: AppSpacing.px24,
+          vertical: AppSpacing.px20,
+        ).copyWith(bottom: AppSpacing.px32),
+        child: CustomButton.filled(
+          isDisabled: viewModel.isButtonDisabled(),
+          onPressed: () {},
+          text: "Enregistrer les modifications",
+        ),
+      ),
       appBar: MyAppBar(title: "Modifier mon profil"),
       body: SingleChildScrollView(
         child: Center(
@@ -108,8 +111,8 @@ class EditProfileView extends StackedView<EditProfileViewModel> {
                       errorText: viewModel.userValid == null
                           ? null
                           : viewModel.userValid!
-                              ? "Username available"
-                              : "Username is not available",
+                          ? "Username available"
+                          : "Username is not available",
                       keyboardType: TextInputType.text,
                     ),
                     VGap(AppSpacing.px16),
@@ -130,17 +133,19 @@ class EditProfileView extends StackedView<EditProfileViewModel> {
                     ),
                     VGap(AppSpacing.px16),
                     InputField(
-                        controller: viewModel.postalCodeController,
-                        focusNode: FocusNode(),
-                        labelText: "Adresse postale",
-                        hintText: "Votre Address",
-                        keyboardType: TextInputType.text),
+                      controller: viewModel.postalCodeController,
+                      focusNode: FocusNode(),
+                      labelText: "Adresse postale",
+                      hintText: "Votre Address",
+                      keyboardType: TextInputType.text,
+                    ),
                     VGap(AppSpacing.px16),
                     BirthDatePickerField(
-                        labelText: "Date de naissance",
-                        onBirthdayChanged: (f) {
-                          viewModel.changeBirthday(f);
-                        }),
+                      labelText: "Date de naissance",
+                      onBirthdayChanged: (f) {
+                        viewModel.changeBirthday(f);
+                      },
+                    ),
                     VGap(AppSpacing.px16),
                     const CustomText.smallParagraphMedium(
                       "Sex",
@@ -151,20 +156,22 @@ class EditProfileView extends StackedView<EditProfileViewModel> {
                       children: [
                         Expanded(
                           child: LabeledCheckbox(
-                              label: "Homme",
-                              value: viewModel.sexe == Gender.male,
-                              onChanged: (f) {
-                                viewModel.sexChanged(Gender.male);
-                              }),
+                            label: "Homme",
+                            value: viewModel.sexe == Gender.male,
+                            onChanged: (f) {
+                              viewModel.sexChanged(Gender.male);
+                            },
+                          ),
                         ),
                         Expanded(
                           child: LabeledCheckbox(
-                              label: "Femme",
-                              value: viewModel.sexe == Gender.female,
-                              onChanged: (f) {
-                                viewModel.sexChanged(Gender.female);
-                              }),
-                        )
+                            label: "Femme",
+                            value: viewModel.sexe == Gender.female,
+                            onChanged: (f) {
+                              viewModel.sexChanged(Gender.female);
+                            },
+                          ),
+                        ),
                       ],
                     ),
                     VGap(AppSpacing.px20),

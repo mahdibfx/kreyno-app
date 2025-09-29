@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -9,9 +10,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'app.locator.dart';
 import '../ui/dialogs/delete_spot/delete_spot_dialog.dart';
 
-enum DialogType {
-  deleteSpot,
-}
+enum DialogType { deleteSpot }
 
 void setupDialogUi() {
   final dialogService = locator<DialogService>();

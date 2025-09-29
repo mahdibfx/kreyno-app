@@ -46,8 +46,9 @@ class LabeledRadio extends StatelessWidget {
                 child: Center(
                   child: CircleAvatar(
                     radius: 3,
-                    backgroundColor:
-                        value ? AppColors.redKre : Colors.transparent,
+                    backgroundColor: value
+                        ? AppColors.redKre
+                        : Colors.transparent,
                   ),
                 ),
               ),

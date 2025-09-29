@@ -14,7 +14,7 @@ class MyPaymentMethodesViewModel extends BaseViewModel {
       last4: "8473",
       expMonth: "05",
       expYear: "2025",
-    )
+    ),
   ];
 
   Future<void> getMyCards() async {

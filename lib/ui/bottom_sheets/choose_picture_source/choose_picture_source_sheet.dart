@@ -27,25 +27,26 @@ class ChoosePictureSourceSheet
     Widget? child,
   ) {
     return BottomSheetLayout(
-        body: Column(
-      children: [
-        CustomButton.outlined(
-          icon: AppIcons.camera,
-          text: "Prendre une photo",
-          onPressed: () {
-            completer!(SheetResponse(confirmed: true, data: "camera"));
-          },
-        ),
-        VGap(AppSpacing.px8),
-        CustomButton.outlined(
-          icon: AppIcons.image,
-          text: "Choisir depuis la gallerie",
-          onPressed: () {
-            completer!(SheetResponse(confirmed: true, data: "gallery"));
-          },
-        ),
-      ],
-    ));
+      body: Column(
+        children: [
+          CustomButton.outlined(
+            icon: AppIcons.camera,
+            text: "Prendre une photo",
+            onPressed: () {
+              completer!(SheetResponse(confirmed: true, data: "camera"));
+            },
+          ),
+          VGap(AppSpacing.px8),
+          CustomButton.outlined(
+            icon: AppIcons.image,
+            text: "Choisir depuis la gallerie",
+            onPressed: () {
+              completer!(SheetResponse(confirmed: true, data: "gallery"));
+            },
+          ),
+        ],
+      ),
+    );
   }
 
   @override

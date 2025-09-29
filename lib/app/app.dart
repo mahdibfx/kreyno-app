@@ -88,7 +88,7 @@ import 'package:kreyno/ui/bottom_sheets/choose_picture_source/choose_picture_sou
     MaterialRoute(page: ChangePhoneNumberView),
     MaterialRoute(page: ModifyVehiculeView),
     MaterialRoute(page: ChangeLanguageView),
-// @stacked-route
+    // @stacked-route
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),
@@ -101,7 +101,7 @@ import 'package:kreyno/ui/bottom_sheets/choose_picture_source/choose_picture_sou
     LazySingleton(classType: ReservationsService),
     LazySingleton(classType: ParkingPlacesService),
     LazySingleton(classType: AuthService),
-// @stacked-service
+    // @stacked-service
   ],
   bottomsheets: [
     StackedBottomsheet(classType: NoticeSheet),
@@ -123,7 +123,7 @@ import 'package:kreyno/ui/bottom_sheets/choose_picture_source/choose_picture_sou
     StackedBottomsheet(classType: DeleteAccountConfirmationSheet),
     StackedBottomsheet(classType: CheckoutMoneyFeedbackSheet),
     StackedBottomsheet(classType: ChoosePictureSourceSheet),
-// @stacked-bottom-sheet
+    // @stacked-bottom-sheet
   ],
   dialogs: [
     StackedDialog(classType: DeleteSpotDialog),

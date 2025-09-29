@@ -16,7 +16,7 @@ class MyVehiculesViewModel extends BaseViewModel {
       if (result.success) {
         myCarsList.addAll(result.data);
       } else {
-// handle backend errors
+        // handle backend errors
       }
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionError) {

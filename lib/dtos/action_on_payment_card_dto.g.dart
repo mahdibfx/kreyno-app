@@ -6,14 +6,10 @@ part of 'action_on_payment_card_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ActionOnPaymentCardDtoImpl _$$ActionOnPaymentCardDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ActionOnPaymentCardDtoImpl(
-      paymentMethodId: json['payment_method'] as String,
-    );
+_ActionOnPaymentCardDto _$ActionOnPaymentCardDtoFromJson(
+  Map<String, dynamic> json,
+) => _ActionOnPaymentCardDto(paymentMethodId: json['payment_method'] as String);
 
-Map<String, dynamic> _$$ActionOnPaymentCardDtoImplToJson(
-        _$ActionOnPaymentCardDtoImpl instance) =>
-    <String, dynamic>{
-      'payment_method': instance.paymentMethodId,
-    };
+Map<String, dynamic> _$ActionOnPaymentCardDtoToJson(
+  _ActionOnPaymentCardDto instance,
+) => <String, dynamic>{'payment_method': instance.paymentMethodId};
