@@ -9,11 +9,12 @@ abstract class RegisterDto with _$RegisterDto {
   const factory RegisterDto({
     @JsonKey(name: 'first_name') required String firstName,
     @JsonKey(name: 'last_name') required String lastName,
+    @JsonKey(name: 'username') required String userName,
     @JsonKey(name: 'phone') required String phone,
     @JsonKey(name: 'email') required String email,
     @JsonKey(name: 'gender') required Gender gender,
     @JsonKey(name: 'birth_date') required DateTime birthDate,
-    @JsonKey(name: 'address') required String address,
+    @JsonKey(name: 'address', includeIfNull: false) String? address,
     @JsonKey(name: 'otp') required String otp,
     @JsonKey(name: 'device_id') required String deviceId,
   }) = _RegisterDto;

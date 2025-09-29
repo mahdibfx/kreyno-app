@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/app/app.router.dart';
+import 'package:kreyno/enums/gender.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/toast_service.dart';
 import 'package:stacked/stacked.dart';
@@ -18,7 +19,44 @@ class OtpSheetModel extends BaseViewModel {
   final OtpSheetType type;
   final String phoneNumber;
 
-  OtpSheetModel({required this.type, required this.phoneNumber});
+  final String? firstName;
+  final String? lastName;
+  final String? email;
+  final String? address;
+  final String? userName;
+  final Gender? gender;
+  final DateTime? birthDate;
+
+  OtpSheetModel.signin({required this.phoneNumber})
+    : type = OtpSheetType.signin,
+      firstName = null,
+      lastName = null,
+      email = null,
+      address = null,
+      userName = null,
+      gender = null,
+      birthDate = null;
+
+  OtpSheetModel.signup({
+    required this.phoneNumber,
+    required this.firstName,
+    required this.lastName,
+    required this.userName,
+    required this.email,
+    this.address,
+    required this.birthDate,
+    required this.gender,
+  }) : type = OtpSheetType.signup;
+
+  OtpSheetModel.updatePhoneNumber({required this.phoneNumber})
+    : type = OtpSheetType.updatePhoneNumber,
+      firstName = null,
+      lastName = null,
+      email = null,
+      address = null,
+      userName = null,
+      gender = null,
+      birthDate = null;
 
   Timer? _timer;
   int _remainingTime = 60;
@@ -94,8 +132,38 @@ class OtpSheetModel extends BaseViewModel {
     );
   }
 
-  //TODO: when i get to the register section
-  void _handleRegister(String otp) {}
+  void _handleRegister(String otp) async {
+    final response = await _authService.register(
+      phone: phoneNumber,
+      otp: otp,
+      firstName: firstName!,
+      lastName: lastName!,
+      userName: userName!,
+      email: email!,
+      gender: gender!,
+      birthDate: birthDate!,
+      address: address,
+    );
+    response.match(
+      (error) {
+        _logger.e('Error registering', error: error);
+        setErrorMessage(error);
+      },
+      (authResponse) async {
+        final setUserResult = await _authService.setAuthenticatedUser(
+          authResponse,
+        );
+        setUserResult.match(
+          (error) {
+            _logger.e('Error setting authenticated user', error: error);
+          },
+          (_) async {
+            await _navigationService.navigateToSetUpVehiculeView();
+          },
+        );
+      },
+    );
+  }
 
   //TODO: when i get to the profile section
   void _handleUpdatePhoneNumber(String otp) {}

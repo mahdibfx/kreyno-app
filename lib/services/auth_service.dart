@@ -57,11 +57,12 @@ class AuthService {
   Future<Either<String, AuthResponse>> register({
     required String firstName,
     required String lastName,
+    required String userName,
     required String phone,
     required String email,
     required Gender gender,
     required DateTime birthDate,
-    required String address,
+    required String? address,
     required String otp,
   }) async {
     final deviceIdResult = await _deviceService.getDeviceId();
@@ -73,6 +74,7 @@ class AuthService {
             RegisterDto(
               firstName: firstName,
               lastName: lastName,
+              userName: userName,
               phone: phone,
               email: email,
               gender: gender,

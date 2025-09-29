@@ -5,6 +5,8 @@ import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/app/app.router.dart';
+import 'package:kreyno/enums/gender.dart';
+import 'package:kreyno/enums/otp_sheet_type.dart';
 import 'package:kreyno/enums/unique_existence_id.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/toast_service.dart';
@@ -21,18 +23,16 @@ class SignupViewModel extends FormViewModel {
   final _toastService = locator<ToastService>();
 
   bool get isFormValid =>
-      (hasPhoneNumber &&
-          hasFirstName &&
-          hasLastName &&
-          hasEmail &&
-          hasUserName &&
-          hasAddress) &&
+      (hasPhoneNumber && hasFirstName && hasLastName && hasEmail && hasUserName
+      //  && hasAddress
+      ) &&
       (hasPhoneNumberValidationMessage == false &&
           hasFirstNameValidationMessage == false &&
           hasLastNameValidationMessage == false &&
           hasEmailValidationMessage == false &&
-          hasUserNameValidationMessage == false &&
-          hasAddressValidationMessage == false);
+          hasUserNameValidationMessage == false
+      // && hasAddressValidationMessage == false
+      );
 
   bool _isMale = true;
   bool get isMale => _isMale;
@@ -163,15 +163,24 @@ class SignupViewModel extends FormViewModel {
   }
 
   void _showOtpSheet() async {
-    final response = await _bottomSheetService.showCustomSheet(
+    await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.otp,
       barrierColor: Colors.black.withValues(alpha: .1),
       isScrollControlled: true,
+      data: [
+        OtpSheetType.signup,
+        (
+          phoneNumber: fullPhoneNumber,
+          firstName: firstNameValue!.trim(),
+          lastName: lastNameValue!.trim(),
+          email: emailValue!.trim(),
+          address: addressValue?.trim(),
+          userName: userNameValue!.trim(),
+          gender: isMale ? Gender.male : Gender.female,
+          birthDate: selectedBirthday!,
+        ),
+      ],
     );
-
-    if (response != null && response.confirmed) {
-      _navigationService.navigateToSetUpVehiculeView();
-    }
   }
 
   @override

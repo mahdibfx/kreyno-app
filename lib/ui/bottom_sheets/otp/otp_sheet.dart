@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/enums/gender.dart';
 import 'package:kreyno/enums/otp_sheet_type.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
@@ -121,14 +122,36 @@ class OtpSheet extends StackedView<OtpSheetModel> {
     switch (type) {
       case OtpSheetType.signin:
         final sheetData = request.data[1] as ({String phoneNumber});
-        return OtpSheetModel(type: type, phoneNumber: sheetData.phoneNumber);
+        return OtpSheetModel.signin(phoneNumber: sheetData.phoneNumber);
       case OtpSheetType.signup:
-        final sheetData = request.data[1] as ({String phoneNumber});
-        return OtpSheetModel(type: type, phoneNumber: sheetData.phoneNumber);
+        final sheetData =
+            request.data[1]
+                as ({
+                  String phoneNumber,
+                  String firstName,
+                  String lastName,
+                  String email,
+                  String? address,
+                  String userName,
+                  Gender gender,
+                  DateTime birthDate,
+                });
+        return OtpSheetModel.signup(
+          phoneNumber: sheetData.phoneNumber,
+          firstName: sheetData.firstName,
+          lastName: sheetData.lastName,
+          email: sheetData.email,
+          address: sheetData.address,
+          userName: sheetData.userName,
+          gender: sheetData.gender,
+          birthDate: sheetData.birthDate,
+        );
 
       case OtpSheetType.updatePhoneNumber:
         final sheetData = request.data[1] as ({String phoneNumber});
-        return OtpSheetModel(type: type, phoneNumber: sheetData.phoneNumber);
+        return OtpSheetModel.updatePhoneNumber(
+          phoneNumber: sheetData.phoneNumber,
+        );
     }
   }
 }

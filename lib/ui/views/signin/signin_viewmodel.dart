@@ -102,11 +102,12 @@ class SigninViewModel extends FormViewModel {
   }
 
   void showOtpSheet() async {
-    _toastService.showSuccess(
-      title: CommonStrings.codeSentTitle,
-      description: CommonStrings.codeSentDescription,
-      showIcon: true,
-    );
+    // TODO : uncomment this in case it was wanted
+    // _toastService.showSuccess(
+    //   title: CommonStrings.codeSentTitle,
+    //   description: CommonStrings.codeSentDescription,
+    //   showIcon: true,
+    // );
     await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.otp,
       barrierColor: Colors.black.withValues(alpha: .1),
