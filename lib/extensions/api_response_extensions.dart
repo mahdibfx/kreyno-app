@@ -84,25 +84,25 @@ extension ApiResponseExtensions<T> on Future<ApiResponse<T>> {
       case 400:
         return serverMessage ?? ApiErrorStrings.badRequest;
       case 401:
-        return ApiErrorStrings.authenticationFailed;
+        return serverMessage ?? ApiErrorStrings.authenticationFailed;
       case 403:
-        return ApiErrorStrings.accessDenied;
+        return serverMessage ?? ApiErrorStrings.accessDenied;
       case 404:
-        return ApiErrorStrings.resourceNotFound;
+        return serverMessage ?? ApiErrorStrings.resourceNotFound;
       case 409:
         return serverMessage ?? ApiErrorStrings.conflictError;
       case 422:
         return serverMessage ?? ApiErrorStrings.invalidData;
       case 429:
-        return ApiErrorStrings.tooManyRequests;
+        return serverMessage ?? ApiErrorStrings.tooManyRequests;
       case 500:
-        return ApiErrorStrings.internalServerError;
+        return serverMessage ?? ApiErrorStrings.internalServerError;
       case 502:
-        return ApiErrorStrings.badGateway;
+        return serverMessage ?? ApiErrorStrings.badGateway;
       case 503:
-        return ApiErrorStrings.serviceUnavailable;
+        return serverMessage ?? ApiErrorStrings.serviceUnavailable;
       case 504:
-        return ApiErrorStrings.gatewayTimeout;
+        return serverMessage ?? ApiErrorStrings.gatewayTimeout;
       default:
         return serverMessage ?? ApiErrorStrings.serverError;
     }

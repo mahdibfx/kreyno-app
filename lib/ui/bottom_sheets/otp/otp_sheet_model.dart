@@ -3,9 +3,10 @@ import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/enums/gender.dart';
+import 'package:kreyno/enums/onboarding_step.dart';
 import 'package:kreyno/services/auth_service.dart';
+import 'package:kreyno/services/onboarding_service.dart';
 import 'package:kreyno/services/toast_service.dart';
-import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -16,6 +17,7 @@ class OtpSheetModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _authService = locator<AuthService>();
   final _toastService = locator<ToastService>();
+  final _onboardingService = locator<OnboardingService>();
 
   final OtpSheetType type;
   final String phoneNumber;
@@ -94,7 +96,7 @@ class OtpSheetModel extends BaseViewModel {
       response.match(
         (errorMessage) {
           _logger.e('Error sending otp', error: errorMessage);
-          _toastService.showError(title: errorMessage);
+          setErrorMessage(errorMessage);
         },
         (success) {
           // TODO : uncomment this in case it was wanted
@@ -172,6 +174,8 @@ class OtpSheetModel extends BaseViewModel {
             _logger.e('Error setting authenticated user', error: error);
           },
           (_) async {
+            // Initialize onboarding flow
+            await _onboardingService.setCurrentStep(OnboardingStep.vehicle);
             await _navigationService.navigateToSetUpVehiculeView();
           },
         );
