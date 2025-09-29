@@ -84,6 +84,7 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                         maxLength: 10,
                         initialCountryCode: phoneNumber.countryCode,
                         initialCountryDialCode: phoneNumber.countryDialCode,
+                        isRequired: null,
                       ),
                       Row(
                         spacing: AppSpacing.px12,
@@ -160,6 +161,7 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                         hintText: SignupStrings.addressPlaceholder,
                         keyboardType: TextInputType.name,
                         textInputAction: TextInputAction.done,
+                        isRequired: false,
                         errorText: viewModel.hasAddress
                             ? viewModel.addressValidationMessage
                             : null,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/common/app_typography.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
@@ -19,6 +20,7 @@ class InputField extends StatelessWidget {
   final int? maxLength;
   final bool disabled;
   final Function(String)? onChanged;
+  final bool? isRequired;
 
   const InputField({
     super.key,
@@ -36,6 +38,7 @@ class InputField extends StatelessWidget {
     this.maxLength,
     this.disabled = false,
     this.onChanged,
+    this.isRequired = true,
   });
 
   @override
@@ -45,7 +48,32 @@ class InputField extends StatelessWidget {
       spacing: AppSpacing.px12 / 2,
       children: [
         if (labelText != null)
-          CustomText.smallParagraphMedium(labelText!, color: AppColors.textKre),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                spacing: 2 * AppSpacing.px1,
+                children: [
+                  CustomText.smallParagraphMedium(
+                    labelText!,
+                    color: AppColors.textKre,
+                  ),
+                  if (isRequired != null && isRequired!)
+                    const CustomText.smallParagraphMedium(
+                      '*',
+                      color: AppColors.redKre,
+                    ),
+                ],
+              ),
+              if (isRequired != null && !isRequired!)
+                CustomText.smallParagraphMedium(
+                  CommonStrings.optional,
+                  color: AppColors.mainKre,
+                ),
+            ],
+          ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
