@@ -5,6 +5,7 @@ import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/enums/gender.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/toast_service.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -86,10 +87,23 @@ class OtpSheetModel extends BaseViewModel {
     });
   }
 
-  void resendCode() {
+  void resendCode() async {
     if (canResendCode) {
-      // TODO: Implement the logic to resend the code OTP
-      startTimer();
+      final response = await _authService.sendOtp(phoneNumber);
+
+      response.match(
+        (errorMessage) {
+          _logger.e('Error sending otp', error: errorMessage);
+          _toastService.showError(title: errorMessage);
+        },
+        (success) {
+          // TODO : uncomment this in case it was wanted
+          // _toastService.showSuccess(
+          //   title: CommonStrings.codeSentTitle,
+          // );
+          startTimer();
+        },
+      );
     }
   }
 
