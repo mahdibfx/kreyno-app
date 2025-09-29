@@ -10,7 +10,7 @@ import 'package:kreyno/ui/common/responsive_sizer.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:toastification/toastification.dart';
 
-void _initApp() async {
+Future<void> _initApp() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await dotenv.load(fileName: ".env");
@@ -24,7 +24,7 @@ void _initApp() async {
 }
 
 Future<void> main() async {
-  _initApp();
+  await _initApp();
   runApp(
     EasyLocalization(
       startLocale: const Locale('fr', 'FR'),

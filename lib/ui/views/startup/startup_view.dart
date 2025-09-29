@@ -22,8 +22,7 @@ class StartupView extends StackedView<StartupViewModel> {
   }
 
   @override
-  StartupViewModel viewModelBuilder(BuildContext context) =>
-      StartupViewModel(context: context);
+  StartupViewModel viewModelBuilder(BuildContext context) => StartupViewModel();
 
   @override
   void onViewModelReady(StartupViewModel viewModel) => SchedulerBinding.instance
