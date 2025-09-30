@@ -2,6 +2,7 @@ import 'package:kreyno/services/api/dio_service.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/cars_service.dart';
 import 'package:kreyno/services/device_service.dart';
+import 'package:kreyno/services/media_service.dart';
 import 'package:kreyno/services/onboarding_service.dart';
 import 'package:kreyno/services/picked_language_service.dart';
 import 'package:kreyno/services/shared_prefs_service.dart';
@@ -98,6 +99,7 @@ import 'package:kreyno/ui/bottom_sheets/country_code_picker/country_code_picker_
     LazySingleton(classType: PickedLanguageService),
     LazySingleton(classType: UserService),
     LazySingleton(classType: CarsService),
+    LazySingleton(classType: MediaService),
     // @stacked-service
   ],
   bottomsheets: [

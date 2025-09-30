@@ -2,6 +2,9 @@
     "common": {
         "continue": "Continue",
         "save": "Save",
+        "takePicture": "Take a picture",
+        "pickFromGallery": "Pick from gallery",
+        
         "optional": "Optional",
         "delete": "Delete",
         "months": {
@@ -23,7 +26,11 @@
             "email": "Invalid email address",
             "phone": "Invalid phone number",
             "firstName": "First name must contain at least 2 characters",
-            "lastName": "Last name must contain at least 2 characters"
+            "lastName": "Last name must contain at least 2 characters",
+            "brand": "Brand must contain at least 3 characters",
+            "model": "Model must contain at least 1 character",
+            "color": "Color must contain at least 3 characters",
+            "co2Emission": "CO₂ emission rate must be a number"
         },
         "otpSuccess": {
             "codeSentTitle": "Code sent",
@@ -101,7 +108,16 @@
         "vehiculeType": "Vehicle type",
         "gasVehicle": "Gas vehicle",
         "electricVehicle": "Electric vehicle",
-        "scooter": "Motorcycle / scooter"
+        "scooter": "Motorcycle / scooter",
+        "uploading": "Uploading...",
+        "deleting": "Deleting..."
+    },
+    "pickVehiculeImage": {
+        "title": "Vehicle image",
+        "description": "Choose a method below",
+        "recommendedImage": "Recommended photo style",
+        "hintTitle": "Hint: ",
+        "hintDescription": "Take a photo of your vehicle from the side, in landscape mode, for better visibility in the app."
     },
     "apiErrors": {
         "requestFailed": "Request failed",

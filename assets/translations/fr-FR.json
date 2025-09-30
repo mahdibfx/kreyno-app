@@ -2,7 +2,9 @@
     "common": {
         "continue": "Continuer",
         "save": "Enregistrer",
-
+        "takePicture": "Prendre une photo",
+        "pickFromGallery": "Choisir depuis la gallerie",
+        
         "optional": "Optionnel",
         "delete": "Supprimer",
         "months":{
@@ -106,7 +108,16 @@
         "vehiculeType": "Type de véhicule",
         "gasVehicle": "Voiture à carburant",
         "electricVehicle": "Voiture électrique",
-        "scooter": "Moto / scooter"
+        "scooter": "Moto / scooter",
+        "uploading": "Téléchargement en cours...",
+        "deleting": "Suppression en cours..."
+    },
+    "pickVehiculeImage": {
+        "title": "Image du véhicule",
+        "description": "Choisissez une méthode ci-dessous",
+        "recommendedImage": "Style de photo recommendé",
+        "hintTitle": "Astuce: ",
+        "hintDescription": "Prenez une photo de votre véhicule de côté, en mode paysage, pour une meilleure visibilité dans l’application."
     },
     "apiErrors": {
         "requestFailed": "Échec de la requête",

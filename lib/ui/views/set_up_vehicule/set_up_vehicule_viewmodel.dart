@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
-import 'package:kreyno/dtos/create_car_dto.dart';
 import 'package:kreyno/enums/vehicle_type.dart';
 import 'package:kreyno/services/cars_service.dart';
 import 'package:kreyno/services/toast_service.dart';
@@ -20,7 +19,6 @@ class SetUpVehiculeViewModel extends FormViewModel {
   final TextEditingController licensePlateController = TextEditingController();
 
   bool _isFrenchLicensePlate = true;
-
   bool get isFrenchLicensePlate => _isFrenchLicensePlate;
 
   String? _licensePlate;
@@ -33,6 +31,12 @@ class SetUpVehiculeViewModel extends FormViewModel {
   String? _licensePlateError;
   String? get licensePlateError => _licensePlateError;
 
+  String? _vehicleImageUuid;
+  String? get vehicleImageUuid => _vehicleImageUuid;
+
+  bool _isUploadingImage = false;
+  bool get isUploadingImage => _isUploadingImage;
+
   bool get isFormValid =>
       (hasBrand &&
           hasModel &&
@@ -42,7 +46,8 @@ class SetUpVehiculeViewModel extends FormViewModel {
       (hasBrandValidationMessage == false &&
           hasModelValidationMessage == false &&
           hasColorValidationMessage == false &&
-          hasCo2EmissionValidationMessage == false);
+          hasCo2EmissionValidationMessage == false) &&
+      !_isUploadingImage;
 
   void setIsFrenchLicensePlate(bool value) {
     _isFrenchLicensePlate = value;
@@ -90,9 +95,39 @@ class SetUpVehiculeViewModel extends FormViewModel {
     _navigationService.back();
   }
 
+  void onImageUploadSuccess(String uuid) {
+    _vehicleImageUuid = uuid;
+    _logger.i('Image uploaded successfully: $uuid');
+    rebuildUi();
+  }
+
+  void onImageUploadFailure(String error) {
+    _logger.e('Image upload failed: $error');
+    _toastService.showError(title: error, showIcon: true);
+    rebuildUi();
+  }
+
+  void onImageUploading(bool isUploading) {
+    _isUploadingImage = isUploading;
+    _logger.i('Image uploading: $isUploading');
+    rebuildUi();
+  }
+
+  void onImageDeleteSuccess() {
+    _vehicleImageUuid = null;
+    _logger.i('Image deleted successfully');
+    rebuildUi();
+  }
+
+  void onImageDeleteFailure(String error) {
+    _logger.e('Image delete failed: $error');
+    _toastService.showError(title: error, showIcon: true);
+    rebuildUi();
+  }
+
   Future<void> onContinueTapped() async {
-    // TODO: implement the logic to setup the vehicle after backend is ready
     _logger.i('Setting up vehicle');
+    // TODO: Uncomment when backend is ready
     // setBusy(true);
     // final response = await _carsService.createCar(
     //   CreateCarDto(
@@ -102,6 +137,7 @@ class SetUpVehiculeViewModel extends FormViewModel {
     //     color: colorValue ?? '',
     //     co2Emission: co2EmissionValue ?? '',
     //     registrationNumber: licensePlate!,
+    //     imageUuid: _vehicleImageUuid!, // Add the image UUID here
     //     isSelected: true,
     //   ),
     // );

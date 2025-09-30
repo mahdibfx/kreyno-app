@@ -7,6 +7,8 @@ class CommonStrings {
   static String get optional => 'common.optional'.tr();
   static String get delete => 'common.delete'.tr();
   static String get save => 'common.save'.tr();
+  static String get takePicture => 'common.takePicture'.tr();
+  static String get pickFromGallery => 'common.pickFromGallery'.tr();
 
   // Months
   static String get january => 'common.months.january'.tr();
@@ -142,6 +144,19 @@ class SetUpVehiculeStrings {
   static String get gasVehicle => 'setUpVehicule.gasVehicle'.tr();
   static String get electricVehicle => 'setUpVehicule.electricVehicle'.tr();
   static String get scooter => 'setUpVehicule.scooter'.tr();
+  static String get uploading => 'setUpVehicule.uploading'.tr();
+  static String get deleting => 'setUpVehicule.deleting'.tr();
+}
+
+class PickVehiculeImageStrings {
+  const PickVehiculeImageStrings._();
+
+  static String get title => 'pickVehiculeImage.title'.tr();
+  static String get description => 'pickVehiculeImage.description'.tr();
+  static String get recommendedImage =>
+      'pickVehiculeImage.recommendedImage'.tr();
+  static String get hintTitle => 'pickVehiculeImage.hintTitle'.tr();
+  static String get hintDescription => 'pickVehiculeImage.hintDescription'.tr();
 }
 
 class ApiErrorStrings {
