@@ -7,7 +7,6 @@ import 'package:kreyno/enums/otp_sheet_type.dart';
 import 'package:kreyno/enums/unique_existence_id.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/toast_service.dart';
-import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:kreyno/ui/views/signin/signin_view.form.dart';

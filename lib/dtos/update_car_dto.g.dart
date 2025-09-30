@@ -29,7 +29,7 @@ Map<String, dynamic> _$UpdateCarDtoToJson(_UpdateCarDto instance) =>
     };
 
 const _$VehicleTypeEnumMap = {
-  VehicleType.gasoline: 1,
+  VehicleType.fuel: 1,
   VehicleType.electric: 2,
-  VehicleType.scooter: 3,
+  VehicleType.motorcycle: 3,
 };

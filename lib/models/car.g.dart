@@ -27,7 +27,7 @@ Map<String, dynamic> _$CarToJson(_Car instance) => <String, dynamic>{
 };
 
 const _$VehicleTypeEnumMap = {
-  VehicleType.gasoline: 1,
+  VehicleType.fuel: 1,
   VehicleType.electric: 2,
-  VehicleType.scooter: 3,
+  VehicleType.motorcycle: 3,
 };

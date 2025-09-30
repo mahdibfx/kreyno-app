@@ -65,10 +65,10 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel> {
                     VGap(AppSpacing.px16),
                     const Divider(color: AppColors.strokeKre, height: .0),
                     VGap(AppSpacing.px24),
-                    LicensePlateInputField(
-                      frenchLicensePlate: viewModel.isFrenchLicensePlate,
-                      onLicensePlateChanged: (licensePlate) {},
-                    ),
+                    // LicensePlateInputField(
+                    //   frenchLicensePlate: viewModel.isFrenchLicensePlate,
+                    //   onLicensePlateCompleted: (licensePlate) {},
+                    // ),
                     VGap(AppSpacing.px24),
                     CustomText.smallParagraphMedium(
                       SetUpVehiculeStrings.autoFill,

@@ -24,7 +24,11 @@
             "email": "L'email est invalide",
             "phone": "Le numéro de téléphone est invalide",
             "firstName": "Le prénom doit contenir au moins 2 caractères",
-            "lastName": "Le nom doit contenir au moins 2 caractères"
+            "lastName": "Le nom doit contenir au moins 2 caractères",
+            "brand": "La marque doit contenir au moins 3 caractères",
+            "model": "Le modèle doit contenir au moins 1 caractères",
+            "color": "La couleur doit contenir au moins 3 caractères",
+            "co2Emission": "Le taux d'émissions de CO₂ doit être un nombre"
         },
         "otpSuccess": {
             "codeSentTitle": "Code envoyé",

@@ -14,6 +14,7 @@ import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/api/dio_service.dart';
 import '../services/auth_service.dart';
+import '../services/cars_service.dart';
 import '../services/device_service.dart';
 import '../services/onboarding_service.dart';
 import '../services/picked_language_service.dart';
@@ -45,4 +46,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => OnboardingService());
   locator.registerLazySingleton(() => PickedLanguageService());
   locator.registerLazySingleton(() => UserService());
+  locator.registerLazySingleton(() => CarsService());
 }

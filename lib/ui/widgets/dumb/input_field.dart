@@ -21,6 +21,7 @@ class InputField extends StatelessWidget {
   final bool disabled;
   final Function(String)? onChanged;
   final bool? isRequired;
+  final String? restorationId;
 
   const InputField({
     super.key,
@@ -39,6 +40,7 @@ class InputField extends StatelessWidget {
     this.disabled = false,
     this.onChanged,
     this.isRequired = true,
+    this.restorationId,
   });
 
   @override
@@ -82,6 +84,7 @@ class InputField extends StatelessWidget {
             if (prefixWidget != null) prefixWidget!,
             Expanded(
               child: TextFormField(
+                restorationId: restorationId,
                 controller: controller,
                 focusNode: focusNode,
                 textInputAction: textInputAction,

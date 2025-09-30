@@ -4,7 +4,16 @@ import 'package:stacked/stacked.dart';
 import 'vehicule_image_uploader_model.dart';
 
 class VehiculeImageUploader extends StackedView<VehiculeImageUploaderModel> {
-  const VehiculeImageUploader({super.key});
+  final Function(String uuid) onImageUploadSuccess;
+  final Function(String errorMessage) onImageUploadFailure;
+  final Function(bool isUploading) onImageUploading;
+
+  const VehiculeImageUploader({
+    super.key,
+    required this.onImageUploadSuccess,
+    required this.onImageUploadFailure,
+    required this.onImageUploading,
+  });
 
   @override
   Widget builder(

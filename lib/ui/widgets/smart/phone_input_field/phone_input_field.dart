@@ -20,6 +20,7 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
   final String? initialCountryCode;
   final String? initialCountryDialCode;
   final bool? isRequired;
+  final String? restorationId;
   final Function({
     required String countryCode,
     required String countryDialCode,
@@ -40,6 +41,7 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
     this.initialCountryDialCode,
     this.isRequired = true,
     this.onChanged,
+    this.restorationId,
   });
 
   @override
@@ -57,6 +59,7 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
       disabled: disabled,
       maxLength: maxLength,
       isRequired: isRequired,
+      restorationId: restorationId,
       onChanged: (value) {
         viewModel.setPhoneNumber(value);
         onChanged?.call(

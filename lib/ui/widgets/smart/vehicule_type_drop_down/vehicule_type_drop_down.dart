@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/enums/vehicle_type.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
@@ -9,7 +10,7 @@ import 'package:stacked/stacked.dart';
 import 'vehicule_type_drop_down_model.dart';
 
 class VehiculeTypeDropDown extends StackedView<VehiculeTypeDropDownModel> {
-  final Function(int) onChanged;
+  final Function(VehicleType) onChanged;
   const VehiculeTypeDropDown({super.key, required this.onChanged});
 
   @override
@@ -18,11 +19,11 @@ class VehiculeTypeDropDown extends StackedView<VehiculeTypeDropDownModel> {
     VehiculeTypeDropDownModel viewModel,
     Widget? child,
   ) {
-    return DropDownField<int>(
+    return DropDownField<VehicleType>(
       value: viewModel.selectedVehicleType,
       labelText: SetUpVehiculeStrings.vehiculeType,
-      items: viewModel.vehicleTypeOptions.map((int vehicleType) {
-        return DropdownMenuEntry<int>(
+      items: viewModel.vehicleTypeOptions.map((VehicleType vehicleType) {
+        return DropdownMenuEntry<VehicleType>(
           value: vehicleType,
           label: viewModel.getVehicleTypeText(vehicleType),
           labelWidget: CustomText.smallParagraphMedium(
