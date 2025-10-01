@@ -112,10 +112,13 @@
         "uploading": "Téléchargement en cours...",
         "deleting": "Suppression en cours...",
         "errorRetry": "Échec, réessayez",
+        "saveVehicleToCompleteSetup": "Vous devez enregistrer le véhicule pour terminer la configuration. Appuyez à nouveau pour annuler.",
+        "saveVehicleToMoveToNextStep": "Vous devez enregistrer le véhicule pour passer à l'étape suivante.",
         "deleteImageDialogTitle": "Supprimer cette image ?",
         "deleteImageDialogDescription": "Elle sera retirée et vous pourrez en ajouter une nouvelle.",
         "deleteImageDialogSecondaryButtonTitle": "Annuler",
-        "deleteImageDialogMainButtonTitle": "Supprimer"
+        "deleteImageDialogMainButtonTitle": "Supprimer",
+        "vehiculeSavedSuccessfully": "Véhicule sauvegardé avec succès"
     },
     "pickVehiculeImage": {
         "title": "Image du véhicule",

@@ -110,7 +110,15 @@
         "electricVehicle": "Electric vehicle",
         "scooter": "Motorcycle / scooter",
         "uploading": "Uploading...",
-        "deleting": "Deleting..."
+        "deleting": "Deleting...",
+        "errorRetry": "Failed, try again",
+        "saveVehicleToCompleteSetup": "You need to save the vehicle to complete setup. Tap back again to cancel.",
+        "saveVehicleToMoveToNextStep": "You need to save the vehicle to move to the next step.",
+        "deleteImageDialogTitle": "Delete this image?",
+        "deleteImageDialogDescription": "It will be removed and you can add a new one.",
+        "deleteImageDialogSecondaryButtonTitle": "Cancel",
+        "deleteImageDialogMainButtonTitle": "Delete",
+        "vehiculeSavedSuccessfully": "Vehicle saved successfully"
     },
     "pickVehiculeImage": {
         "title": "Vehicle image",

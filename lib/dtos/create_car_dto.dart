@@ -13,6 +13,7 @@ abstract class CreateCarDto with _$CreateCarDto {
     @JsonKey(name: "color") required String color,
     @JsonKey(name: "registration_number") required String registrationNumber,
     @JsonKey(name: "co2_emission") required String co2Emission,
+    @Default(null) @JsonKey(name: "image") String? imageUuid,
     @Default(false) @JsonKey(name: "is_selected") bool isSelected,
   }) = _CreateCarDto;
 

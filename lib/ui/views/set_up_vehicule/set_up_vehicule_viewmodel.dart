@@ -1,9 +1,14 @@
-import 'package:flutter/widgets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
+import 'package:kreyno/app/app.router.dart';
+import 'package:kreyno/dtos/create_car_dto.dart';
+import 'package:kreyno/enums/onboarding_step.dart';
 import 'package:kreyno/enums/vehicle_type.dart';
+import 'package:kreyno/models/get_car_by_registration_response.dart';
 import 'package:kreyno/services/cars_service.dart';
+import 'package:kreyno/services/onboarding_service.dart';
 import 'package:kreyno/services/toast_service.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/views/set_up_vehicule/set_up_vehicule_view.form.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -15,11 +20,7 @@ class SetUpVehiculeViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _carsService = locator<CarsService>();
   final _toastService = locator<ToastService>();
-
-  final TextEditingController licensePlateController = TextEditingController();
-
-  bool _isFrenchLicensePlate = true;
-  bool get isFrenchLicensePlate => _isFrenchLicensePlate;
+  final _onboardingService = locator<OnboardingService>();
 
   String? _licensePlate;
   String? get licensePlate => _licensePlate;
@@ -28,14 +29,16 @@ class SetUpVehiculeViewModel extends FormViewModel {
   VehicleType? _vehicleType;
   VehicleType? get vehicleType => _vehicleType;
 
-  String? _licensePlateError;
-  String? get licensePlateError => _licensePlateError;
-
   String? _vehicleImageUuid;
   String? get vehicleImageUuid => _vehicleImageUuid;
 
   bool _isUploadingImage = false;
   bool get isUploadingImage => _isUploadingImage;
+
+  bool _isLoadingLicensePlate = false;
+  bool get isLoadingLicensePlate => _isLoadingLicensePlate;
+
+  bool _backWarningShown = false;
 
   bool get isFormValid =>
       (hasBrand &&
@@ -47,43 +50,30 @@ class SetUpVehiculeViewModel extends FormViewModel {
           hasModelValidationMessage == false &&
           hasColorValidationMessage == false &&
           hasCo2EmissionValidationMessage == false) &&
-      !_isUploadingImage;
+      !_isUploadingImage &&
+      !_isLoadingLicensePlate;
 
-  void setIsFrenchLicensePlate(bool value) {
-    _isFrenchLicensePlate = value;
-    licensePlateController.clear();
-    clearForm();
-    setLicensePlateError(null);
-  }
-
-  void setLicensePlateError(String? value) {
-    _licensePlateError = value;
+  void onLicensePlateValidated(String licensePlate) {
+    _licensePlate = licensePlate;
     rebuildUi();
   }
 
-  void onLicensePlateCompleted(String value) async {
-    _licensePlate = value;
-    setLicensePlateError(null);
-    if (isFrenchLicensePlate) {
-      setBusy(true);
-      final response = await _carsService.getCarByRegistrationNumber(
-        _licensePlate!,
-      );
-      response.match(
-        (error) {
-          _logger.e(error);
-          setLicensePlateError(error);
-          clearForm();
-        },
-        (carInfo) {
-          brandValue = carInfo.brand;
-          modelValue = carInfo.model;
-          colorValue = carInfo.color;
-          co2EmissionValue = carInfo.co2Emission;
-        },
-      );
-      setBusy(false);
+  void onCarDataChanged(GetCarByRegistrationResponse? carData) {
+    if (carData != null) {
+      brandValue = carData.brand;
+      modelValue = carData.model;
+      colorValue = carData.color;
+      co2EmissionValue = carData.co2Emission;
+    } else {
+      clearForm();
     }
+    rebuildUi();
+  }
+
+  void onLicensePlateLoadingChanged(bool isLoading) {
+    setBusy(isLoading);
+    _isLoadingLicensePlate = isLoading;
+    rebuildUi();
   }
 
   void setVehicleType(VehicleType value) {
@@ -92,7 +82,24 @@ class SetUpVehiculeViewModel extends FormViewModel {
   }
 
   void goBack() {
-    _navigationService.back();
+    final isPreviousRouteSignUp =
+        _navigationService.previousRoute == Routes.signupView;
+    if (isPreviousRouteSignUp) {
+      if (!_backWarningShown) {
+        _toastService.showWarning(
+          title: SetUpVehiculeStrings.saveVehicleToCompleteSetup,
+          showIcon: true,
+        );
+        _backWarningShown = true;
+      } else {
+        _navigationService.back();
+      }
+    } else {
+      _toastService.showInfo(
+        title: SetUpVehiculeStrings.saveVehicleToMoveToNextStep,
+        showIcon: true,
+      );
+    }
   }
 
   void onImageUploadSuccess(String uuid) {
@@ -126,30 +133,54 @@ class SetUpVehiculeViewModel extends FormViewModel {
   }
 
   Future<void> onContinueTapped() async {
+    _logger.i(
+      'Car info: '
+      'vehicleType=$vehicleType, '
+      'brand=$brandValue, '
+      'model=$modelValue, '
+      'color=$colorValue, '
+      'co2Emission=$co2EmissionValue, '
+      'registrationNumber=$licensePlate, '
+      'imageUuid=$_vehicleImageUuid',
+    );
     _logger.i('Setting up vehicle');
-    // TODO: Uncomment when backend is ready
     // setBusy(true);
     // final response = await _carsService.createCar(
     //   CreateCarDto(
     //     vehicleType: vehicleType!,
     //     brand: brandValue!,
     //     model: modelValue!,
-    //     color: colorValue ?? '',
-    //     co2Emission: co2EmissionValue ?? '',
+    //     color: colorValue!,
+    //     co2Emission: co2EmissionValue!,
     //     registrationNumber: licensePlate!,
-    //     imageUuid: _vehicleImageUuid!, // Add the image UUID here
+    //     imageUuid: _vehicleImageUuid,
     //     isSelected: true,
     //   ),
     // );
+    // setBusy(false);
     // response.match(
     //   (error) {
     //     _logger.e(error);
     //     _toastService.showError(title: error, showIcon: true);
     //   },
-    //   (car) {
+    //   (car) async {
     //     _logger.i('Vehicle created: ${car.registrationNumber}');
+    //     _toastService.showSuccess(
+    //       title: SetUpVehiculeStrings.vehiculeSavedSuccessfully,
+    //     );
+    //     final onboardingResult = await _onboardingService.setCurrentStep(
+    //       OnboardingStep.paymentMethods,
+    //     );
+    //     onboardingResult.match(
+    //       (error) {
+    //         _logger.e('Error initializing onboarding flow', error: error);
+    //         _toastService.showError(title: error, showIcon: true);
+    //       },
+    //       (_) async {
+    //         await _navigationService.replaceWithSetUpPaymentMethodsView();
+    //       },
+    //     );
     //   },
     // );
-    // setBusy(false);
   }
 }

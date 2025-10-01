@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CreateCarDto {
 
-@JsonKey(name: "car_type") VehicleType get vehicleType;@JsonKey(name: "brand") String get brand;@JsonKey(name: "model") String get model;@JsonKey(name: "color") String get color;@JsonKey(name: "registration_number") String get registrationNumber;@JsonKey(name: "co2_emission") String get co2Emission;@JsonKey(name: "is_selected") bool get isSelected;
+@JsonKey(name: "car_type") VehicleType get vehicleType;@JsonKey(name: "brand") String get brand;@JsonKey(name: "model") String get model;@JsonKey(name: "color") String get color;@JsonKey(name: "registration_number") String get registrationNumber;@JsonKey(name: "co2_emission") String get co2Emission;@JsonKey(name: "image") String? get imageUuid;@JsonKey(name: "is_selected") bool get isSelected;
 /// Create a copy of CreateCarDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $CreateCarDtoCopyWith<CreateCarDto> get copyWith => _$CreateCarDtoCopyWithImpl<C
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateCarDto&&(identical(other.vehicleType, vehicleType) || other.vehicleType == vehicleType)&&(identical(other.brand, brand) || other.brand == brand)&&(identical(other.model, model) || other.model == model)&&(identical(other.color, color) || other.color == color)&&(identical(other.registrationNumber, registrationNumber) || other.registrationNumber == registrationNumber)&&(identical(other.co2Emission, co2Emission) || other.co2Emission == co2Emission)&&(identical(other.isSelected, isSelected) || other.isSelected == isSelected));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateCarDto&&(identical(other.vehicleType, vehicleType) || other.vehicleType == vehicleType)&&(identical(other.brand, brand) || other.brand == brand)&&(identical(other.model, model) || other.model == model)&&(identical(other.color, color) || other.color == color)&&(identical(other.registrationNumber, registrationNumber) || other.registrationNumber == registrationNumber)&&(identical(other.co2Emission, co2Emission) || other.co2Emission == co2Emission)&&(identical(other.imageUuid, imageUuid) || other.imageUuid == imageUuid)&&(identical(other.isSelected, isSelected) || other.isSelected == isSelected));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,vehicleType,brand,model,color,registrationNumber,co2Emission,isSelected);
+int get hashCode => Object.hash(runtimeType,vehicleType,brand,model,color,registrationNumber,co2Emission,imageUuid,isSelected);
 
 @override
 String toString() {
-  return 'CreateCarDto(vehicleType: $vehicleType, brand: $brand, model: $model, color: $color, registrationNumber: $registrationNumber, co2Emission: $co2Emission, isSelected: $isSelected)';
+  return 'CreateCarDto(vehicleType: $vehicleType, brand: $brand, model: $model, color: $color, registrationNumber: $registrationNumber, co2Emission: $co2Emission, imageUuid: $imageUuid, isSelected: $isSelected)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $CreateCarDtoCopyWith<$Res>  {
   factory $CreateCarDtoCopyWith(CreateCarDto value, $Res Function(CreateCarDto) _then) = _$CreateCarDtoCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "car_type") VehicleType vehicleType,@JsonKey(name: "brand") String brand,@JsonKey(name: "model") String model,@JsonKey(name: "color") String color,@JsonKey(name: "registration_number") String registrationNumber,@JsonKey(name: "co2_emission") String co2Emission,@JsonKey(name: "is_selected") bool isSelected
+@JsonKey(name: "car_type") VehicleType vehicleType,@JsonKey(name: "brand") String brand,@JsonKey(name: "model") String model,@JsonKey(name: "color") String color,@JsonKey(name: "registration_number") String registrationNumber,@JsonKey(name: "co2_emission") String co2Emission,@JsonKey(name: "image") String? imageUuid,@JsonKey(name: "is_selected") bool isSelected
 });
 
 
@@ -65,7 +65,7 @@ class _$CreateCarDtoCopyWithImpl<$Res>
 
 /// Create a copy of CreateCarDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? vehicleType = null,Object? brand = null,Object? model = null,Object? color = null,Object? registrationNumber = null,Object? co2Emission = null,Object? isSelected = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? vehicleType = null,Object? brand = null,Object? model = null,Object? color = null,Object? registrationNumber = null,Object? co2Emission = null,Object? imageUuid = freezed,Object? isSelected = null,}) {
   return _then(_self.copyWith(
 vehicleType: null == vehicleType ? _self.vehicleType : vehicleType // ignore: cast_nullable_to_non_nullable
 as VehicleType,brand: null == brand ? _self.brand : brand // ignore: cast_nullable_to_non_nullable
@@ -73,7 +73,8 @@ as String,model: null == model ? _self.model : model // ignore: cast_nullable_to
 as String,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
 as String,registrationNumber: null == registrationNumber ? _self.registrationNumber : registrationNumber // ignore: cast_nullable_to_non_nullable
 as String,co2Emission: null == co2Emission ? _self.co2Emission : co2Emission // ignore: cast_nullable_to_non_nullable
-as String,isSelected: null == isSelected ? _self.isSelected : isSelected // ignore: cast_nullable_to_non_nullable
+as String,imageUuid: freezed == imageUuid ? _self.imageUuid : imageUuid // ignore: cast_nullable_to_non_nullable
+as String?,isSelected: null == isSelected ? _self.isSelected : isSelected // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -159,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "car_type")  VehicleType vehicleType, @JsonKey(name: "brand")  String brand, @JsonKey(name: "model")  String model, @JsonKey(name: "color")  String color, @JsonKey(name: "registration_number")  String registrationNumber, @JsonKey(name: "co2_emission")  String co2Emission, @JsonKey(name: "is_selected")  bool isSelected)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "car_type")  VehicleType vehicleType, @JsonKey(name: "brand")  String brand, @JsonKey(name: "model")  String model, @JsonKey(name: "color")  String color, @JsonKey(name: "registration_number")  String registrationNumber, @JsonKey(name: "co2_emission")  String co2Emission, @JsonKey(name: "image")  String? imageUuid, @JsonKey(name: "is_selected")  bool isSelected)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CreateCarDto() when $default != null:
-return $default(_that.vehicleType,_that.brand,_that.model,_that.color,_that.registrationNumber,_that.co2Emission,_that.isSelected);case _:
+return $default(_that.vehicleType,_that.brand,_that.model,_that.color,_that.registrationNumber,_that.co2Emission,_that.imageUuid,_that.isSelected);case _:
   return orElse();
 
 }
@@ -180,10 +181,10 @@ return $default(_that.vehicleType,_that.brand,_that.model,_that.color,_that.regi
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "car_type")  VehicleType vehicleType, @JsonKey(name: "brand")  String brand, @JsonKey(name: "model")  String model, @JsonKey(name: "color")  String color, @JsonKey(name: "registration_number")  String registrationNumber, @JsonKey(name: "co2_emission")  String co2Emission, @JsonKey(name: "is_selected")  bool isSelected)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "car_type")  VehicleType vehicleType, @JsonKey(name: "brand")  String brand, @JsonKey(name: "model")  String model, @JsonKey(name: "color")  String color, @JsonKey(name: "registration_number")  String registrationNumber, @JsonKey(name: "co2_emission")  String co2Emission, @JsonKey(name: "image")  String? imageUuid, @JsonKey(name: "is_selected")  bool isSelected)  $default,) {final _that = this;
 switch (_that) {
 case _CreateCarDto():
-return $default(_that.vehicleType,_that.brand,_that.model,_that.color,_that.registrationNumber,_that.co2Emission,_that.isSelected);case _:
+return $default(_that.vehicleType,_that.brand,_that.model,_that.color,_that.registrationNumber,_that.co2Emission,_that.imageUuid,_that.isSelected);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -200,10 +201,10 @@ return $default(_that.vehicleType,_that.brand,_that.model,_that.color,_that.regi
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "car_type")  VehicleType vehicleType, @JsonKey(name: "brand")  String brand, @JsonKey(name: "model")  String model, @JsonKey(name: "color")  String color, @JsonKey(name: "registration_number")  String registrationNumber, @JsonKey(name: "co2_emission")  String co2Emission, @JsonKey(name: "is_selected")  bool isSelected)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "car_type")  VehicleType vehicleType, @JsonKey(name: "brand")  String brand, @JsonKey(name: "model")  String model, @JsonKey(name: "color")  String color, @JsonKey(name: "registration_number")  String registrationNumber, @JsonKey(name: "co2_emission")  String co2Emission, @JsonKey(name: "image")  String? imageUuid, @JsonKey(name: "is_selected")  bool isSelected)?  $default,) {final _that = this;
 switch (_that) {
 case _CreateCarDto() when $default != null:
-return $default(_that.vehicleType,_that.brand,_that.model,_that.color,_that.registrationNumber,_that.co2Emission,_that.isSelected);case _:
+return $default(_that.vehicleType,_that.brand,_that.model,_that.color,_that.registrationNumber,_that.co2Emission,_that.imageUuid,_that.isSelected);case _:
   return null;
 
 }
@@ -215,7 +216,7 @@ return $default(_that.vehicleType,_that.brand,_that.model,_that.color,_that.regi
 @JsonSerializable()
 
 class _CreateCarDto implements CreateCarDto {
-  const _CreateCarDto({@JsonKey(name: "car_type") required this.vehicleType, @JsonKey(name: "brand") required this.brand, @JsonKey(name: "model") required this.model, @JsonKey(name: "color") required this.color, @JsonKey(name: "registration_number") required this.registrationNumber, @JsonKey(name: "co2_emission") required this.co2Emission, @JsonKey(name: "is_selected") this.isSelected = false});
+  const _CreateCarDto({@JsonKey(name: "car_type") required this.vehicleType, @JsonKey(name: "brand") required this.brand, @JsonKey(name: "model") required this.model, @JsonKey(name: "color") required this.color, @JsonKey(name: "registration_number") required this.registrationNumber, @JsonKey(name: "co2_emission") required this.co2Emission, @JsonKey(name: "image") this.imageUuid = null, @JsonKey(name: "is_selected") this.isSelected = false});
   factory _CreateCarDto.fromJson(Map<String, dynamic> json) => _$CreateCarDtoFromJson(json);
 
 @override@JsonKey(name: "car_type") final  VehicleType vehicleType;
@@ -224,6 +225,7 @@ class _CreateCarDto implements CreateCarDto {
 @override@JsonKey(name: "color") final  String color;
 @override@JsonKey(name: "registration_number") final  String registrationNumber;
 @override@JsonKey(name: "co2_emission") final  String co2Emission;
+@override@JsonKey(name: "image") final  String? imageUuid;
 @override@JsonKey(name: "is_selected") final  bool isSelected;
 
 /// Create a copy of CreateCarDto
@@ -239,16 +241,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateCarDto&&(identical(other.vehicleType, vehicleType) || other.vehicleType == vehicleType)&&(identical(other.brand, brand) || other.brand == brand)&&(identical(other.model, model) || other.model == model)&&(identical(other.color, color) || other.color == color)&&(identical(other.registrationNumber, registrationNumber) || other.registrationNumber == registrationNumber)&&(identical(other.co2Emission, co2Emission) || other.co2Emission == co2Emission)&&(identical(other.isSelected, isSelected) || other.isSelected == isSelected));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateCarDto&&(identical(other.vehicleType, vehicleType) || other.vehicleType == vehicleType)&&(identical(other.brand, brand) || other.brand == brand)&&(identical(other.model, model) || other.model == model)&&(identical(other.color, color) || other.color == color)&&(identical(other.registrationNumber, registrationNumber) || other.registrationNumber == registrationNumber)&&(identical(other.co2Emission, co2Emission) || other.co2Emission == co2Emission)&&(identical(other.imageUuid, imageUuid) || other.imageUuid == imageUuid)&&(identical(other.isSelected, isSelected) || other.isSelected == isSelected));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,vehicleType,brand,model,color,registrationNumber,co2Emission,isSelected);
+int get hashCode => Object.hash(runtimeType,vehicleType,brand,model,color,registrationNumber,co2Emission,imageUuid,isSelected);
 
 @override
 String toString() {
-  return 'CreateCarDto(vehicleType: $vehicleType, brand: $brand, model: $model, color: $color, registrationNumber: $registrationNumber, co2Emission: $co2Emission, isSelected: $isSelected)';
+  return 'CreateCarDto(vehicleType: $vehicleType, brand: $brand, model: $model, color: $color, registrationNumber: $registrationNumber, co2Emission: $co2Emission, imageUuid: $imageUuid, isSelected: $isSelected)';
 }
 
 
@@ -259,7 +261,7 @@ abstract mixin class _$CreateCarDtoCopyWith<$Res> implements $CreateCarDtoCopyWi
   factory _$CreateCarDtoCopyWith(_CreateCarDto value, $Res Function(_CreateCarDto) _then) = __$CreateCarDtoCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "car_type") VehicleType vehicleType,@JsonKey(name: "brand") String brand,@JsonKey(name: "model") String model,@JsonKey(name: "color") String color,@JsonKey(name: "registration_number") String registrationNumber,@JsonKey(name: "co2_emission") String co2Emission,@JsonKey(name: "is_selected") bool isSelected
+@JsonKey(name: "car_type") VehicleType vehicleType,@JsonKey(name: "brand") String brand,@JsonKey(name: "model") String model,@JsonKey(name: "color") String color,@JsonKey(name: "registration_number") String registrationNumber,@JsonKey(name: "co2_emission") String co2Emission,@JsonKey(name: "image") String? imageUuid,@JsonKey(name: "is_selected") bool isSelected
 });
 
 
@@ -276,7 +278,7 @@ class __$CreateCarDtoCopyWithImpl<$Res>
 
 /// Create a copy of CreateCarDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? vehicleType = null,Object? brand = null,Object? model = null,Object? color = null,Object? registrationNumber = null,Object? co2Emission = null,Object? isSelected = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? vehicleType = null,Object? brand = null,Object? model = null,Object? color = null,Object? registrationNumber = null,Object? co2Emission = null,Object? imageUuid = freezed,Object? isSelected = null,}) {
   return _then(_CreateCarDto(
 vehicleType: null == vehicleType ? _self.vehicleType : vehicleType // ignore: cast_nullable_to_non_nullable
 as VehicleType,brand: null == brand ? _self.brand : brand // ignore: cast_nullable_to_non_nullable
@@ -284,7 +286,8 @@ as String,model: null == model ? _self.model : model // ignore: cast_nullable_to
 as String,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
 as String,registrationNumber: null == registrationNumber ? _self.registrationNumber : registrationNumber // ignore: cast_nullable_to_non_nullable
 as String,co2Emission: null == co2Emission ? _self.co2Emission : co2Emission // ignore: cast_nullable_to_non_nullable
-as String,isSelected: null == isSelected ? _self.isSelected : isSelected // ignore: cast_nullable_to_non_nullable
+as String,imageUuid: freezed == imageUuid ? _self.imageUuid : imageUuid // ignore: cast_nullable_to_non_nullable
+as String?,isSelected: null == isSelected ? _self.isSelected : isSelected // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

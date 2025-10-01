@@ -6,11 +6,9 @@ import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/views/set_up_vehicule/set_up_vehicule_view.form.dart';
 import 'package:kreyno/ui/widgets/dumb/auth_sliver_app_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
-import 'package:kreyno/ui/widgets/dumb/custom_switch.dart';
-import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:kreyno/ui/widgets/dumb/input_field.dart';
-import 'package:kreyno/ui/widgets/dumb/license_plate_input_field.dart';
+import 'package:kreyno/ui/widgets/smart/license_plate_input/license_plate_input.dart';
 import 'package:kreyno/ui/widgets/dumb/loading_overlay.dart';
 import 'package:kreyno/ui/widgets/smart/vehicule_image_uploader/vehicule_image_uploader.dart';
 import 'package:kreyno/ui/widgets/smart/vehicule_type_drop_down/vehicule_type_drop_down.dart';
@@ -69,37 +67,13 @@ class SetUpVehiculeView extends StackedView<SetUpVehiculeViewModel>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          CustomText.smallParagraphMedium(
-                            SetUpVehiculeStrings.frenchLicensePlate,
-                          ),
-                          CustomSwitch(
-                            value: viewModel.isFrenchLicensePlate,
-                            onChanged: viewModel.setIsFrenchLicensePlate,
-                          ),
-                        ],
+                      LicensePlateInput(
+                        onLicensePlateValidated:
+                            viewModel.onLicensePlateValidated,
+                        onCarDataChanged: viewModel.onCarDataChanged,
+                        onLoadingStateChanged:
+                            viewModel.onLicensePlateLoadingChanged,
                       ),
-                      VGap(AppSpacing.px16),
-                      const Divider(color: AppColors.strokeKre, height: .0),
-                      VGap(AppSpacing.px24),
-                      LicensePlateInputField(
-                        controller: viewModel.licensePlateController,
-                        frenchLicensePlate: viewModel.isFrenchLicensePlate,
-                        errorText: viewModel.licensePlateError,
-                        onLicensePlateCompleted:
-                            viewModel.onLicensePlateCompleted,
-                      ),
-                      if (viewModel.isFrenchLicensePlate) ...[
-                        VGap(AppSpacing.px24),
-                        CustomText.smallParagraphMedium(
-                          SetUpVehiculeStrings.autoFill,
-                          color: AppColors.textKre,
-                          maxLines: 5,
-                        ),
-                      ],
                       VGap(AppSpacing.px24),
                       Column(
                         mainAxisSize: MainAxisSize.min,
@@ -211,7 +185,6 @@ class SetUpVehiculeView extends StackedView<SetUpVehiculeViewModel>
   @override
   void onDispose(SetUpVehiculeViewModel viewModel) {
     disposeForm();
-    viewModel.licensePlateController.dispose();
     super.onDispose(viewModel);
   }
 

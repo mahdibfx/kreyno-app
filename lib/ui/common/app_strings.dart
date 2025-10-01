@@ -147,6 +147,10 @@ class SetUpVehiculeStrings {
   static String get uploading => 'setUpVehicule.uploading'.tr();
   static String get deleting => 'setUpVehicule.deleting'.tr();
   static String get errorRetry => 'setUpVehicule.errorRetry'.tr();
+  static String get saveVehicleToCompleteSetup =>
+      'setUpVehicule.saveVehicleToCompleteSetup'.tr();
+  static String get saveVehicleToMoveToNextStep =>
+      'setUpVehicule.saveVehicleToMoveToNextStep'.tr();
   static String get deleteImageDialogTitle =>
       'setUpVehicule.deleteImageDialogTitle'.tr();
   static String get deleteImageDialogDescription =>
@@ -155,6 +159,8 @@ class SetUpVehiculeStrings {
       'setUpVehicule.deleteImageDialogSecondaryButtonTitle'.tr();
   static String get deleteImageDialogMainButtonTitle =>
       'setUpVehicule.deleteImageDialogMainButtonTitle'.tr();
+  static String get vehiculeSavedSuccessfully =>
+      'setUpVehicule.vehiculeSavedSuccessfully'.tr();
 }
 
 class PickVehiculeImageStrings {

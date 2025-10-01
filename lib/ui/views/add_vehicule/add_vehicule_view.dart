@@ -12,7 +12,6 @@ import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 
 import 'package:kreyno/ui/widgets/dumb/input_field.dart';
-import 'package:kreyno/ui/widgets/dumb/license_plate_input_field.dart';
 import 'package:kreyno/ui/widgets/dumb/my_app_bar.dart';
 import 'package:kreyno/ui/widgets/smart/vehicule_type_drop_down/vehicule_type_drop_down.dart';
 import 'package:stacked/stacked.dart';

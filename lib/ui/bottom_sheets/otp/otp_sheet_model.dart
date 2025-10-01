@@ -174,9 +174,18 @@ class OtpSheetModel extends BaseViewModel {
             _logger.e('Error setting authenticated user', error: error);
           },
           (_) async {
-            // Initialize onboarding flow
-            await _onboardingService.setCurrentStep(OnboardingStep.vehicle);
-            await _navigationService.navigateToSetUpVehiculeView();
+            final onboardingResult = await _onboardingService.setCurrentStep(
+              OnboardingStep.vehicle,
+            );
+            onboardingResult.match(
+              (error) {
+                _logger.e('Error initializing onboarding flow', error: error);
+                _toastService.showError(title: error, showIcon: true);
+              },
+              (_) async {
+                await _navigationService.navigateToSetUpVehiculeView();
+              },
+            );
           },
         );
       },

@@ -27,14 +27,14 @@ class AppColors {
   static const Color textErrorSecondary = textError;
 
   // Toast colors - Warning
-  static const Color backgroundWarning = Color(0xFFFFE5E5);
-  static const Color borderWarning = Color(0xFFF59E0B);
-  static const Color textWarning = Color(0xFFD97706);
+  static const Color backgroundWarning = Color(0xFFFEF0C7);
+  static const Color borderWarning = Color(0xFFF79009);
+  static const Color textWarning = Color(0xFFF79009);
   static const Color textWarningSecondary = textWarning;
 
   // Toast colors - Info
-  static const Color backgroundInfo = Color(0xFFEFF6FF);
-  static const Color borderInfo = Color(0xFF3B82F6);
-  static const Color textInfo = Color(0xFF1D4ED8);
+  static const Color backgroundInfo = Color(0xFFD7ECFF);
+  static const Color borderInfo = Color(0xFF0F83EF);
+  static const Color textInfo = Color(0xFF0F83EF);
   static const Color textInfoSecondary = textInfo;
 }
