@@ -37,7 +37,7 @@ class StartupViewModel extends BaseViewModel {
       // User is logged in, check onboarding state
       final currentStepResult = await _onboardingService.getCurrentStep();
 
-      currentStepResult.match(
+      await currentStepResult.match(
         (error) async {
           // Error reading onboarding state, assume complete and go to home
           await _navigationService.replaceWithHomeView();

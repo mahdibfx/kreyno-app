@@ -141,6 +141,8 @@ class SetUpVehiculeStrings {
       'setUpVehicule.co2EmissionPlaceholder'.tr();
   static String get vehiculeImage => 'setUpVehicule.vehiculeImage'.tr();
   static String get vehiculeType => 'setUpVehicule.vehiculeType'.tr();
+  static String get vehiculeTypePlaceholder =>
+      'setUpVehicule.vehiculeTypePlaceholder'.tr();
   static String get gasVehicle => 'setUpVehicule.gasVehicle'.tr();
   static String get electricVehicle => 'setUpVehicule.electricVehicle'.tr();
   static String get scooter => 'setUpVehicule.scooter'.tr();

@@ -106,6 +106,7 @@
         "co2EmissionPlaceholder": "CO₂ emission rate",
         "vehiculeImage": "Your vehicle image",
         "vehiculeType": "Vehicle type",
+        "vehiculeTypePlaceholder": "Select a type",
         "gasVehicle": "Gas vehicle",
         "electricVehicle": "Electric vehicle",
         "scooter": "Motorcycle / scooter",

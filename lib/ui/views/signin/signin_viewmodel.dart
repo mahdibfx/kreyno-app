@@ -59,28 +59,30 @@ class SigninViewModel extends FormViewModel {
 
   void onCtaTapped() async {
     setBusy(true);
-    final response = await _authService.checkIfUserExists(
-      attribute: UniqueExistenceId.phone,
-      value: fullPhoneNumber,
-    );
+    try {
+      final response = await _authService.checkIfUserExists(
+        attribute: UniqueExistenceId.phone,
+        value: fullPhoneNumber,
+      );
 
-    response.match(
-      (errorMessage) {
-        _logger.e('Error checking if user exists', error: errorMessage);
-        setBusy(false);
-        _toastService.showError(title: errorMessage, showIcon: true);
-      },
-      (exists) {
-        _checkIfUserExists(exists);
-      },
-    );
+      await response.match(
+        (errorMessage) async {
+          _logger.e('Error checking if user exists', error: errorMessage);
+          _toastService.showError(title: errorMessage, showIcon: true);
+        },
+        (exists) async {
+          await _checkIfUserExists(exists);
+        },
+      );
+    } finally {
+      setBusy(false);
+    }
   }
 
-  void _checkIfUserExists(bool exists) async {
+  Future<void> _checkIfUserExists(bool exists) async {
     if (exists) {
-      _sendOtp();
+      await _sendOtp();
     } else {
-      setBusy(false);
       await _navigationService.navigateToSignupView(
         phoneNumber: (
           countryCode: countryCode,
@@ -91,16 +93,15 @@ class SigninViewModel extends FormViewModel {
     }
   }
 
-  void _sendOtp() async {
+  Future<void> _sendOtp() async {
     final response = await _authService.sendOtp(fullPhoneNumber);
-    setBusy(false);
-    response.match((errorMessage) {
+    await response.match((errorMessage) async {
       _logger.e('Error sending otp', error: errorMessage);
       _toastService.showError(title: errorMessage);
-    }, (success) => showOtpSheet());
+    }, (success) async => showOtpSheet());
   }
 
-  void showOtpSheet() async {
+  Future<void> showOtpSheet() async {
     // TODO : uncomment this in case it was wanted
     // _toastService.showSuccess(
     //   title: CommonStrings.codeSentTitle,

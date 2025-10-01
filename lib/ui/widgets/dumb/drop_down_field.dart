@@ -19,6 +19,7 @@ class DropDownField<T> extends StatelessWidget {
 
   final Widget? leadingWidget;
   final double? menuWidth;
+  final bool? isRequired;
 
   const DropDownField({
     super.key,
@@ -32,6 +33,7 @@ class DropDownField<T> extends StatelessWidget {
     this.focusNode,
     this.leadingWidget,
     this.menuWidth,
+    this.isRequired = true,
   });
 
   @override
@@ -41,7 +43,22 @@ class DropDownField<T> extends StatelessWidget {
       spacing: AppSpacing.px12 / 2,
       children: [
         if (labelText != null)
-          CustomText.smallParagraphMedium(labelText!, color: AppColors.textKre),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            spacing: 2 * AppSpacing.px1,
+            children: [
+              CustomText.smallParagraphMedium(
+                labelText!,
+                color: AppColors.textKre,
+              ),
+              if (isRequired != null && isRequired!)
+                const CustomText.smallParagraphMedium(
+                  '*',
+                  color: AppColors.redKre,
+                ),
+            ],
+          ),
         DropdownMenu<T>(
           initialSelection: value,
           keyboardType: TextInputType.none,

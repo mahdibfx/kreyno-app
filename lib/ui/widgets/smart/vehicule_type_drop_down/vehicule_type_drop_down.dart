@@ -11,7 +11,12 @@ import 'vehicule_type_drop_down_model.dart';
 
 class VehiculeTypeDropDown extends StackedView<VehiculeTypeDropDownModel> {
   final Function(VehicleType) onChanged;
-  const VehiculeTypeDropDown({super.key, required this.onChanged});
+  final bool? isRequired;
+  const VehiculeTypeDropDown({
+    super.key,
+    required this.onChanged,
+    this.isRequired = true,
+  });
 
   @override
   Widget builder(
@@ -22,7 +27,10 @@ class VehiculeTypeDropDown extends StackedView<VehiculeTypeDropDownModel> {
     return DropDownField<VehicleType>(
       value: viewModel.selectedVehicleType,
       labelText: SetUpVehiculeStrings.vehiculeType,
+      hintText: SetUpVehiculeStrings.vehiculeTypePlaceholder,
+      isRequired: isRequired,
       items: viewModel.vehicleTypeOptions.map((VehicleType vehicleType) {
+        final isSelected = viewModel.selectedVehicleType == vehicleType;
         return DropdownMenuEntry<VehicleType>(
           value: vehicleType,
           label: viewModel.getVehicleTypeText(vehicleType),
@@ -34,23 +42,37 @@ class VehiculeTypeDropDown extends StackedView<VehiculeTypeDropDownModel> {
             viewModel.getVehicleTypeIcon(vehicleType),
             width: 40 * AppSpacing.px1,
           ),
+          trailingIcon: isSelected
+              ? Padding(
+                  padding: EdgeInsets.only(right: AppSpacing.px4),
+                  child: Icon(
+                    Icons.check,
+                    size: AppSpacing.px20,
+                    color: AppColors.greenKre,
+                  ),
+                )
+              : null,
         );
       }).toList(),
       onChanged: (value) {
-        viewModel.setSelectedVehicleType(value!);
-        onChanged(value);
+        viewModel.setSelectedVehicleType(value);
+        if (value != null) {
+          onChanged(value);
+        }
       },
-      leadingWidget: Transform.translate(
-        offset: Offset(-3 * AppSpacing.px1, 0),
-        child: Transform.scale(
-          scale: .8,
-          alignment: Alignment.centerRight,
-          child: Image.asset(
-            viewModel.getVehicleTypeIcon(viewModel.selectedVehicleType),
-            width: 40 * AppSpacing.px1,
-          ),
-        ),
-      ),
+      leadingWidget: viewModel.selectedVehicleType != null
+          ? Transform.translate(
+              offset: Offset(-3 * AppSpacing.px1, 0),
+              child: Transform.scale(
+                scale: .8,
+                alignment: Alignment.centerRight,
+                child: Image.asset(
+                  viewModel.getVehicleTypeIcon(viewModel.selectedVehicleType!),
+                  width: 40 * AppSpacing.px1,
+                ),
+              ),
+            )
+          : null,
     );
   }
 

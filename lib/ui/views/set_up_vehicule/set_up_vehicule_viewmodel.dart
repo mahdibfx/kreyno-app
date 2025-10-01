@@ -45,7 +45,8 @@ class SetUpVehiculeViewModel extends FormViewModel {
           hasModel &&
           hasColor &&
           hasCo2Emission &&
-          _hasLicensePlate) &&
+          _hasLicensePlate &&
+          _vehicleType != null) &&
       (hasBrandValidationMessage == false &&
           hasModelValidationMessage == false &&
           hasColorValidationMessage == false &&
@@ -133,54 +134,50 @@ class SetUpVehiculeViewModel extends FormViewModel {
   }
 
   Future<void> onContinueTapped() async {
-    _logger.i(
-      'Car info: '
-      'vehicleType=$vehicleType, '
-      'brand=$brandValue, '
-      'model=$modelValue, '
-      'color=$colorValue, '
-      'co2Emission=$co2EmissionValue, '
-      'registrationNumber=$licensePlate, '
-      'imageUuid=$_vehicleImageUuid',
-    );
-    _logger.i('Setting up vehicle');
-    // setBusy(true);
-    // final response = await _carsService.createCar(
-    //   CreateCarDto(
-    //     vehicleType: vehicleType!,
-    //     brand: brandValue!,
-    //     model: modelValue!,
-    //     color: colorValue!,
-    //     co2Emission: co2EmissionValue!,
-    //     registrationNumber: licensePlate!,
-    //     imageUuid: _vehicleImageUuid,
-    //     isSelected: true,
-    //   ),
-    // );
-    // setBusy(false);
-    // response.match(
-    //   (error) {
-    //     _logger.e(error);
-    //     _toastService.showError(title: error, showIcon: true);
-    //   },
-    //   (car) async {
-    //     _logger.i('Vehicle created: ${car.registrationNumber}');
-    //     _toastService.showSuccess(
-    //       title: SetUpVehiculeStrings.vehiculeSavedSuccessfully,
-    //     );
-    //     final onboardingResult = await _onboardingService.setCurrentStep(
-    //       OnboardingStep.paymentMethods,
-    //     );
-    //     onboardingResult.match(
-    //       (error) {
-    //         _logger.e('Error initializing onboarding flow', error: error);
-    //         _toastService.showError(title: error, showIcon: true);
-    //       },
-    //       (_) async {
-    //         await _navigationService.replaceWithSetUpPaymentMethodsView();
-    //       },
-    //     );
-    //   },
-    // );
+    if (!isFormValid) {
+      return;
+    }
+    setBusy(true);
+    try {
+      final response = await _carsService.createCar(
+        CreateCarDto(
+          vehicleType: vehicleType!,
+          brand: brandValue!,
+          model: modelValue!,
+          color: colorValue!,
+          co2Emission: co2EmissionValue!,
+          registrationNumber: licensePlate!,
+          imageUuid: _vehicleImageUuid,
+          isSelected: true,
+        ),
+      );
+
+      await response.match(
+        (error) async {
+          _logger.e(error);
+          _toastService.showError(title: error, showIcon: true);
+        },
+        (car) async {
+          _logger.i('Vehicle created: ${car.registrationNumber}');
+          _toastService.showSuccess(
+            title: SetUpVehiculeStrings.vehiculeSavedSuccessfully,
+          );
+          final onboardingResult = await _onboardingService.setCurrentStep(
+            OnboardingStep.paymentMethods,
+          );
+          await onboardingResult.match(
+            (error) async {
+              _logger.e('Error initializing onboarding flow', error: error);
+              _toastService.showError(title: error, showIcon: true);
+            },
+            (_) async {
+              await _navigationService.replaceWithSetUpPaymentMethodsView();
+            },
+          );
+        },
+      );
+    } finally {
+      setBusy(false);
+    }
   }
 }

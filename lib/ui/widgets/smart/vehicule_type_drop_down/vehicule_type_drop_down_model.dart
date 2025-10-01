@@ -4,12 +4,12 @@ import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:stacked/stacked.dart';
 
 class VehiculeTypeDropDownModel extends BaseViewModel {
-  VehicleType _selectedVehicleType = VehicleType.fuel;
-  VehicleType get selectedVehicleType => _selectedVehicleType;
+  VehicleType? _selectedVehicleType;
+  VehicleType? get selectedVehicleType => _selectedVehicleType;
 
   List<VehicleType> get vehicleTypeOptions => VehicleType.values;
   void setSelectedVehicleType(VehicleType? value) {
-    _selectedVehicleType = value!;
+    _selectedVehicleType = value;
     rebuildUi();
   }
 

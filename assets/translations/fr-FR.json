@@ -106,6 +106,7 @@
         "co2EmissionPlaceholder": "Taux d'émissions de CO₂",
         "vehiculeImage": "Image de votre véhicule",
         "vehiculeType": "Type de véhicule",
+        "vehiculeTypePlaceholder": "Sélectionnez un type",
         "gasVehicle": "Voiture à carburant",
         "electricVehicle": "Voiture électrique",
         "scooter": "Moto / scooter",

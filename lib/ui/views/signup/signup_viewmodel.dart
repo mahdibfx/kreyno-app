@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
-import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/enums/gender.dart';
 import 'package:kreyno/enums/otp_sheet_type.dart';
 import 'package:kreyno/enums/unique_existence_id.dart';
@@ -108,61 +107,75 @@ class SignupViewModel extends FormViewModel {
 
   void _handleUserNameIsTaken() async {
     setCheckingUserNameTaken(true);
-    var response = await _authService.checkIfUserExists(
-      attribute: UniqueExistenceId.username,
-      value: userNameValue!,
-    );
-    setCheckingUserNameTaken(false);
-    response.match(
-      (errorMessage) {
-        _logger.e(
-          'Error checking if user with username exists',
-          error: errorMessage,
-        );
-        _toastService.showError(title: errorMessage, showIcon: true);
-      },
-      (exists) {
-        if (exists) {
-          setUserNameValidationMessage(SignupStrings.userNameTaken);
-        }
-      },
-    );
+    try {
+      var response = await _authService.checkIfUserExists(
+        attribute: UniqueExistenceId.username,
+        value: userNameValue!,
+      );
+      response.match(
+        (errorMessage) {
+          _logger.e(
+            'Error checking if user with username exists',
+            error: errorMessage,
+          );
+          _toastService.showError(title: errorMessage, showIcon: true);
+        },
+        (exists) {
+          if (exists) {
+            setUserNameValidationMessage(SignupStrings.userNameTaken);
+          }
+        },
+      );
+    } finally {
+      setCheckingUserNameTaken(false);
+    }
   }
 
   void _handleEmailIsTaken() async {
     setCheckingEmailTaken(true);
-    var response = await _authService.checkIfUserExists(
-      attribute: UniqueExistenceId.email,
-      value: emailValue!,
-    );
-    setCheckingEmailTaken(false);
-    response.match(
-      (errorMessage) {
-        _logger.e(
-          'Error checking if user with email exists',
-          error: errorMessage,
-        );
-        _toastService.showError(title: errorMessage, showIcon: true);
-      },
-      (exists) {
-        if (exists) {
-          setEmailValidationMessage(SignupStrings.emailTaken);
-        }
-      },
-    );
+    try {
+      var response = await _authService.checkIfUserExists(
+        attribute: UniqueExistenceId.email,
+        value: emailValue!,
+      );
+      response.match(
+        (errorMessage) {
+          _logger.e(
+            'Error checking if user with email exists',
+            error: errorMessage,
+          );
+          _toastService.showError(title: errorMessage, showIcon: true);
+        },
+        (exists) {
+          if (exists) {
+            setEmailValidationMessage(SignupStrings.emailTaken);
+          }
+        },
+      );
+    } finally {
+      setCheckingEmailTaken(false);
+    }
   }
 
   void sendOtp() async {
     setBusy(true);
-    final response = await _authService.sendOtp(fullPhoneNumber);
-    setBusy(false);
-    response.match((errorMessage) {
-      _logger.e('Error sending otp', error: errorMessage);
-      _toastService.showError(title: errorMessage);
-    }, (success) => _showOtpSheet());
+    try {
+      final response = await _authService.sendOtp(fullPhoneNumber);
+      await response.match(
+        (errorMessage) async {
+          _logger.e('Error sending otp', error: errorMessage);
+          _toastService.showError(title: errorMessage);
+        },
+        (success) async {
+          await _showOtpSheet();
+        },
+      );
+    } finally {
+      setBusy(false);
+    }
   }
 
-  void _showOtpSheet() async {
+  Future<void> _showOtpSheet() async {
     await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.otp,
       barrierColor: Colors.black.withValues(alpha: .1),

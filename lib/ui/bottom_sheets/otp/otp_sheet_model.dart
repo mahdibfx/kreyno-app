@@ -109,26 +109,29 @@ class OtpSheetModel extends BaseViewModel {
     }
   }
 
-  void onOtpCompleted(String otp) {
+  void onOtpCompleted(String otp) async {
     setBusy(true);
-    switch (type) {
-      case OtpSheetType.signin:
-        _handleLogin(otp);
-        break;
-      case OtpSheetType.signup:
-        _handleRegister(otp);
-        break;
-      case OtpSheetType.updatePhoneNumber:
-        _handleUpdatePhoneNumber(otp);
-        break;
+    try {
+      switch (type) {
+        case OtpSheetType.signin:
+          await _handleLogin(otp);
+          break;
+        case OtpSheetType.signup:
+          await _handleRegister(otp);
+          break;
+        case OtpSheetType.updatePhoneNumber:
+          await _handleUpdatePhoneNumber(otp);
+          break;
+      }
+    } finally {
+      setBusy(false);
     }
-    setBusy(false);
   }
 
-  void _handleLogin(String otp) async {
+  Future<void> _handleLogin(String otp) async {
     final response = await _authService.login(phone: phoneNumber, otp: otp);
-    response.match(
-      (error) {
+    await response.match(
+      (error) async {
         _logger.e('Error logging in', error: error);
         setErrorMessage(error);
       },
@@ -136,8 +139,8 @@ class OtpSheetModel extends BaseViewModel {
         final setUserResult = await _authService.setAuthenticatedUser(
           authResponse,
         );
-        setUserResult.match(
-          (error) {
+        await setUserResult.match(
+          (error) async {
             _logger.e('Error setting authenticated user', error: error);
           },
           (_) async {
@@ -148,7 +151,7 @@ class OtpSheetModel extends BaseViewModel {
     );
   }
 
-  void _handleRegister(String otp) async {
+  Future<void> _handleRegister(String otp) async {
     final response = await _authService.register(
       phone: phoneNumber,
       otp: otp,
@@ -160,8 +163,8 @@ class OtpSheetModel extends BaseViewModel {
       birthDate: birthDate!,
       address: address,
     );
-    response.match(
-      (error) {
+    await response.match(
+      (error) async {
         _logger.e('Error registering', error: error);
         setErrorMessage(error);
       },
@@ -169,16 +172,16 @@ class OtpSheetModel extends BaseViewModel {
         final setUserResult = await _authService.setAuthenticatedUser(
           authResponse,
         );
-        setUserResult.match(
-          (error) {
+        await setUserResult.match(
+          (error) async {
             _logger.e('Error setting authenticated user', error: error);
           },
           (_) async {
             final onboardingResult = await _onboardingService.setCurrentStep(
               OnboardingStep.vehicle,
             );
-            onboardingResult.match(
-              (error) {
+            await onboardingResult.match(
+              (error) async {
                 _logger.e('Error initializing onboarding flow', error: error);
                 _toastService.showError(title: error, showIcon: true);
               },
@@ -193,7 +196,7 @@ class OtpSheetModel extends BaseViewModel {
   }
 
   //TODO: when i get to the profile section
-  void _handleUpdatePhoneNumber(String otp) {}
+  Future<void> _handleUpdatePhoneNumber(String otp) async {}
 
   @override
   void dispose() {
