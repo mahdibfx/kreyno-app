@@ -80,9 +80,9 @@ class HomeViewModel extends BaseViewModel {
   }
 
   onMyMarkerDeleteClicked() {
-    final showDialog = locator<DialogService>().showCustomDialog(
-      variant: DialogType.deleteSpot,
-    );
+    // final showDialog = locator<DialogService>().showCustomDialog(
+    //   variant: DialogType.deleteSpot,
+    // );
   }
 
   sellerClickedRefuseOrder() {

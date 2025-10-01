@@ -8,16 +8,16 @@
 import 'package:stacked_services/stacked_services.dart';
 
 import 'app.locator.dart';
-import '../ui/dialogs/delete_spot/delete_spot_dialog.dart';
+import '../ui/dialogs/destructive/destructive_dialog.dart';
 
-enum DialogType { deleteSpot }
+enum DialogType { destructive }
 
 void setupDialogUi() {
   final dialogService = locator<DialogService>();
 
   final Map<DialogType, DialogBuilder> builders = {
-    DialogType.deleteSpot: (context, request, completer) =>
-        DeleteSpotDialog(request: request, completer: completer),
+    DialogType.destructive: (context, request, completer) =>
+        DestructiveDialog(request: request, completer: completer),
   };
 
   dialogService.registerCustomDialogBuilders(builders);

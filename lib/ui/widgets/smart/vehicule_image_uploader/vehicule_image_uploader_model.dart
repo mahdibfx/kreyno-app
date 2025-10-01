@@ -2,15 +2,18 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
+import 'package:kreyno/app/app.dialogs.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/services/media_service.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class VehiculeImageUploaderModel extends BaseViewModel {
   final _logger = getLogger('VehiculeImageUploaderModel');
   final _bottomSheetService = locator<BottomSheetService>();
+  final _dialogService = locator<DialogService>();
   final _mediaService = locator<MediaService>();
 
   final Function(String uuid) onImageUploadSuccess;
@@ -98,22 +101,33 @@ class VehiculeImageUploaderModel extends BaseViewModel {
   }
 
   void onDeleteImageTapped() async {
-    setIsDeleting(true);
-    final result = await _mediaService.removeImage(uploadedImageUuid!);
-    setIsDeleting(false);
-    result.match(
-      (error) {
-        setErrorMessage(error);
-        onImageDeleteFailure(error);
-      },
-      (removed) {
-        if (removed) {
-          setUploadedImageUuid(null);
-          setPickedImage(null);
-          onImageDeleteSuccess();
-        }
-      },
+    final response = await _dialogService.showCustomDialog(
+      variant: DialogType.destructive,
+      barrierColor: Colors.black.withValues(alpha: .1),
+      title: SetUpVehiculeStrings.deleteImageDialogTitle,
+      description: SetUpVehiculeStrings.deleteImageDialogDescription,
+      mainButtonTitle: SetUpVehiculeStrings.deleteImageDialogMainButtonTitle,
+      secondaryButtonTitle:
+          SetUpVehiculeStrings.deleteImageDialogSecondaryButtonTitle,
     );
+    if (response != null && response.confirmed) {
+      setIsDeleting(true);
+      final result = await _mediaService.removeImage(uploadedImageUuid!);
+      setIsDeleting(false);
+      result.match(
+        (error) {
+          setErrorMessage(error);
+          onImageDeleteFailure(error);
+        },
+        (removed) {
+          if (removed) {
+            setUploadedImageUuid(null);
+            setPickedImage(null);
+            onImageDeleteSuccess();
+          }
+        },
+      );
+    }
   }
 
   void onRetryUploadTapped() async {

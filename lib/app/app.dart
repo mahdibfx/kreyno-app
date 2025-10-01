@@ -39,7 +39,6 @@ import 'package:kreyno/ui/bottom_sheets/cancelation_reasons/cancelation_reasons_
 import 'package:kreyno/ui/bottom_sheets/home_filter/home_filter_sheet.dart';
 import 'package:kreyno/ui/bottom_sheets/create_spot/create_spot_sheet.dart';
 import 'package:kreyno/ui/bottom_sheets/rejection_reasons/rejection_reasons_sheet.dart';
-import 'package:kreyno/ui/dialogs/delete_spot/delete_spot_dialog.dart';
 import 'package:kreyno/ui/bottom_sheets/profile/profile_sheet.dart';
 import 'package:kreyno/ui/bottom_sheets/danger/danger_sheet.dart';
 import 'package:kreyno/ui/bottom_sheets/date_picker_filter/date_picker_filter_sheet.dart';
@@ -54,6 +53,7 @@ import 'package:kreyno/ui/bottom_sheets/checkout_money_feedback/checkout_money_f
 import 'package:kreyno/ui/views/add_vehicule/add_vehicule_view.dart';
 import 'package:kreyno/ui/views/set_up_language/set_up_language_view.dart';
 import 'package:kreyno/ui/bottom_sheets/country_code_picker/country_code_picker_sheet.dart';
+import 'package:kreyno/ui/dialogs/destructive/destructive_dialog.dart';
 // @stacked-import
 
 @StackedApp(
@@ -125,7 +125,7 @@ import 'package:kreyno/ui/bottom_sheets/country_code_picker/country_code_picker_
     // @stacked-bottom-sheet
   ],
   dialogs: [
-    StackedDialog(classType: DeleteSpotDialog),
+    StackedDialog(classType: DestructiveDialog),
     // @stacked-dialog
   ],
 )

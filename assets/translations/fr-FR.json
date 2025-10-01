@@ -110,7 +110,11 @@
         "electricVehicle": "Voiture électrique",
         "scooter": "Moto / scooter",
         "uploading": "Téléchargement en cours...",
-        "deleting": "Suppression en cours..."
+        "deleting": "Suppression en cours...",
+        "deleteImageDialogTitle": "Supprimer cette image ?",
+        "deleteImageDialogDescription": "Elle sera retirée et vous pourrez en ajouter une nouvelle.",
+        "deleteImageDialogSecondaryButtonTitle": "Annuler",
+        "deleteImageDialogMainButtonTitle": "Supprimer"
     },
     "pickVehiculeImage": {
         "title": "Image du véhicule",
