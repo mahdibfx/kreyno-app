@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/smart/vehicule_image_uploader/vehicule_image_uploader_model.dart';
@@ -43,10 +44,20 @@ class ImagePreviewer extends ViewModelWidget<VehiculeImageUploaderModel> {
                 ),
               ),
               Expanded(
-                child: CustomText.smallParagraphMedium(
-                  viewModel.pickedImage!.path,
-                  color: AppColors.mainKre,
-                  maxLines: 2,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomText.smallParagraphMedium(
+                      viewModel.pickedImage!.path,
+                      color: AppColors.mainKre,
+                    ),
+                    if (onRetryTapped != null)
+                      CustomText.smallParagraphMedium(
+                        SetUpVehiculeStrings.errorRetry,
+                        color: AppColors.redKre,
+                      ),
+                  ],
                 ),
               ),
               if (onDeleteTapped != null || onRetryTapped != null)

@@ -111,6 +111,7 @@
         "scooter": "Moto / scooter",
         "uploading": "Téléchargement en cours...",
         "deleting": "Suppression en cours...",
+        "errorRetry": "Échec, réessayez",
         "deleteImageDialogTitle": "Supprimer cette image ?",
         "deleteImageDialogDescription": "Elle sera retirée et vous pourrez en ajouter une nouvelle.",
         "deleteImageDialogSecondaryButtonTitle": "Annuler",

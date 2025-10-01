@@ -146,6 +146,7 @@ class SetUpVehiculeStrings {
   static String get scooter => 'setUpVehicule.scooter'.tr();
   static String get uploading => 'setUpVehicule.uploading'.tr();
   static String get deleting => 'setUpVehicule.deleting'.tr();
+  static String get errorRetry => 'setUpVehicule.errorRetry'.tr();
   static String get deleteImageDialogTitle =>
       'setUpVehicule.deleteImageDialogTitle'.tr();
   static String get deleteImageDialogDescription =>
