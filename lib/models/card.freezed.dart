@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Card {
 
-@JsonKey(name: "id") String get id;@JsonKey(name: "brand") String get brand;@JsonKey(name: "last_four") String get last4;@JsonKey(name: "exp_month") String get expMonth;@JsonKey(name: "exp_year") String get expYear;
+@JsonKey(name: "id") String get id;@JsonKey(name: "brand") String get brand;@JsonKey(name: "last_four") String get last4;@JsonKey(name: "exp_month") int get expMonth;@JsonKey(name: "exp_year") int get expYear;
 /// Create a copy of Card
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $CardCopyWith<$Res>  {
   factory $CardCopyWith(Card value, $Res Function(Card) _then) = _$CardCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "id") String id,@JsonKey(name: "brand") String brand,@JsonKey(name: "last_four") String last4,@JsonKey(name: "exp_month") String expMonth,@JsonKey(name: "exp_year") String expYear
+@JsonKey(name: "id") String id,@JsonKey(name: "brand") String brand,@JsonKey(name: "last_four") String last4,@JsonKey(name: "exp_month") int expMonth,@JsonKey(name: "exp_year") int expYear
 });
 
 
@@ -71,8 +71,8 @@ id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,brand: null == brand ? _self.brand : brand // ignore: cast_nullable_to_non_nullable
 as String,last4: null == last4 ? _self.last4 : last4 // ignore: cast_nullable_to_non_nullable
 as String,expMonth: null == expMonth ? _self.expMonth : expMonth // ignore: cast_nullable_to_non_nullable
-as String,expYear: null == expYear ? _self.expYear : expYear // ignore: cast_nullable_to_non_nullable
-as String,
+as int,expYear: null == expYear ? _self.expYear : expYear // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
@@ -157,7 +157,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String id, @JsonKey(name: "brand")  String brand, @JsonKey(name: "last_four")  String last4, @JsonKey(name: "exp_month")  String expMonth, @JsonKey(name: "exp_year")  String expYear)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String id, @JsonKey(name: "brand")  String brand, @JsonKey(name: "last_four")  String last4, @JsonKey(name: "exp_month")  int expMonth, @JsonKey(name: "exp_year")  int expYear)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Card() when $default != null:
 return $default(_that.id,_that.brand,_that.last4,_that.expMonth,_that.expYear);case _:
@@ -178,7 +178,7 @@ return $default(_that.id,_that.brand,_that.last4,_that.expMonth,_that.expYear);c
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String id, @JsonKey(name: "brand")  String brand, @JsonKey(name: "last_four")  String last4, @JsonKey(name: "exp_month")  String expMonth, @JsonKey(name: "exp_year")  String expYear)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String id, @JsonKey(name: "brand")  String brand, @JsonKey(name: "last_four")  String last4, @JsonKey(name: "exp_month")  int expMonth, @JsonKey(name: "exp_year")  int expYear)  $default,) {final _that = this;
 switch (_that) {
 case _Card():
 return $default(_that.id,_that.brand,_that.last4,_that.expMonth,_that.expYear);case _:
@@ -198,7 +198,7 @@ return $default(_that.id,_that.brand,_that.last4,_that.expMonth,_that.expYear);c
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id")  String id, @JsonKey(name: "brand")  String brand, @JsonKey(name: "last_four")  String last4, @JsonKey(name: "exp_month")  String expMonth, @JsonKey(name: "exp_year")  String expYear)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id")  String id, @JsonKey(name: "brand")  String brand, @JsonKey(name: "last_four")  String last4, @JsonKey(name: "exp_month")  int expMonth, @JsonKey(name: "exp_year")  int expYear)?  $default,) {final _that = this;
 switch (_that) {
 case _Card() when $default != null:
 return $default(_that.id,_that.brand,_that.last4,_that.expMonth,_that.expYear);case _:
@@ -219,8 +219,8 @@ class _Card implements Card {
 @override@JsonKey(name: "id") final  String id;
 @override@JsonKey(name: "brand") final  String brand;
 @override@JsonKey(name: "last_four") final  String last4;
-@override@JsonKey(name: "exp_month") final  String expMonth;
-@override@JsonKey(name: "exp_year") final  String expYear;
+@override@JsonKey(name: "exp_month") final  int expMonth;
+@override@JsonKey(name: "exp_year") final  int expYear;
 
 /// Create a copy of Card
 /// with the given fields replaced by the non-null parameter values.
@@ -255,7 +255,7 @@ abstract mixin class _$CardCopyWith<$Res> implements $CardCopyWith<$Res> {
   factory _$CardCopyWith(_Card value, $Res Function(_Card) _then) = __$CardCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "id") String id,@JsonKey(name: "brand") String brand,@JsonKey(name: "last_four") String last4,@JsonKey(name: "exp_month") String expMonth,@JsonKey(name: "exp_year") String expYear
+@JsonKey(name: "id") String id,@JsonKey(name: "brand") String brand,@JsonKey(name: "last_four") String last4,@JsonKey(name: "exp_month") int expMonth,@JsonKey(name: "exp_year") int expYear
 });
 
 
@@ -278,8 +278,8 @@ id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,brand: null == brand ? _self.brand : brand // ignore: cast_nullable_to_non_nullable
 as String,last4: null == last4 ? _self.last4 : last4 // ignore: cast_nullable_to_non_nullable
 as String,expMonth: null == expMonth ? _self.expMonth : expMonth // ignore: cast_nullable_to_non_nullable
-as String,expYear: null == expYear ? _self.expYear : expYear // ignore: cast_nullable_to_non_nullable
-as String,
+as int,expYear: null == expYear ? _self.expYear : expYear // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 

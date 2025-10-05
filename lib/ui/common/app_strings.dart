@@ -176,6 +176,20 @@ class PickVehiculeImageStrings {
   static String get hintDescription => 'pickVehiculeImage.hintDescription'.tr();
 }
 
+class SetUpPaymentMethodsStrings {
+  const SetUpPaymentMethodsStrings._();
+
+  static String get title => 'setUpPaymentMethods.title'.tr();
+  static String get description => 'setUpPaymentMethods.description'.tr();
+  static String get buttonLabel => 'setUpPaymentMethods.buttonLabel'.tr();
+  static String get paymentMethodsDescription =>
+      'setUpPaymentMethods.paymentMethodsDescription'.tr();
+  static String get savePaymentMethodsToMoveToNextStep =>
+      'setUpPaymentMethods.savePaymentMethodsToMoveToNextStep'.tr();
+  static String get cardAddedSuccessfully =>
+      'setUpPaymentMethods.cardAddedSuccessfully'.tr();
+}
+
 class ApiErrorStrings {
   const ApiErrorStrings._();
 

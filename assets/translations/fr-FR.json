@@ -126,7 +126,15 @@
         "description": "Choisissez une méthode ci-dessous",
         "recommendedImage": "Style de photo recommendé",
         "hintTitle": "Astuce: ",
-        "hintDescription": "Prenez une photo de votre véhicule de côté, en mode paysage, pour une meilleure visibilité dans l’application."
+        "hintDescription": "Prenez une photo de votre véhicule de côté, en mode paysage, pour une meilleure visibilité dans l'application."
+    },
+    "setUpPaymentMethods": {
+        "title": "Moyens de paiement",
+        "description": "Ajoutez les informations de votre carte de crédit.",
+        "buttonLabel": "Ajouter une carte",
+        "paymentMethodsDescription": "Vos informations de paiement sont entièrement sécurisées et protégées.",
+        "savePaymentMethodsToMoveToNextStep": "Vous devez enregistrer les moyens de paiement pour passer à l'étape suivante.",
+        "cardAddedSuccessfully": "Carte ajoutée avec succès"
     },
     "apiErrors": {
         "requestFailed": "Échec de la requête",

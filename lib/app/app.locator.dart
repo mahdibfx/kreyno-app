@@ -20,6 +20,7 @@ import '../services/media_service.dart';
 import '../services/onboarding_service.dart';
 import '../services/picked_language_service.dart';
 import '../services/shared_prefs_service.dart';
+import '../services/stripe_service.dart';
 import '../services/toast_service.dart';
 import '../services/user_service.dart';
 
@@ -49,4 +50,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => UserService());
   locator.registerLazySingleton(() => CarsService());
   locator.registerLazySingleton(() => MediaService());
+  locator.registerLazySingleton(() => StripeService());
 }

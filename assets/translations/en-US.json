@@ -128,6 +128,14 @@
         "hintTitle": "Hint: ",
         "hintDescription": "Take a photo of your vehicle from the side, in landscape mode, for better visibility in the app."
     },
+    "setUpPaymentMethods": {
+        "title": "Payment methods",
+        "description": "Add your credit card information.",
+        "buttonLabel": "Add a card",
+        "paymentMethodsDescription": "Your payment information is completely secure and protected.",
+        "savePaymentMethodsToMoveToNextStep": "You need to save the payment methods to move to the next step.",
+        "cardAddedSuccessfully": "Card added successfully"
+    },
     "apiErrors": {
         "requestFailed": "Request failed",
         "unexpectedError": "An unexpected error occurred. Please try again.",

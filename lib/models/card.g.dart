@@ -10,8 +10,8 @@ _Card _$CardFromJson(Map<String, dynamic> json) => _Card(
   id: json['id'] as String,
   brand: json['brand'] as String,
   last4: json['last_four'] as String,
-  expMonth: json['exp_month'] as String,
-  expYear: json['exp_year'] as String,
+  expMonth: (json['exp_month'] as num).toInt(),
+  expYear: (json['exp_year'] as num).toInt(),
 );
 
 Map<String, dynamic> _$CardToJson(_Card instance) => <String, dynamic>{

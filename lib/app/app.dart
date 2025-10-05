@@ -6,6 +6,7 @@ import 'package:kreyno/services/media_service.dart';
 import 'package:kreyno/services/onboarding_service.dart';
 import 'package:kreyno/services/picked_language_service.dart';
 import 'package:kreyno/services/shared_prefs_service.dart';
+import 'package:kreyno/services/stripe_service.dart';
 import 'package:kreyno/services/toast_service.dart';
 import 'package:kreyno/services/user_service.dart';
 import 'package:kreyno/ui/bottom_sheets/notice/notice_sheet.dart';
@@ -100,6 +101,7 @@ import 'package:kreyno/ui/dialogs/destructive/destructive_dialog.dart';
     LazySingleton(classType: UserService),
     LazySingleton(classType: CarsService),
     LazySingleton(classType: MediaService),
+    LazySingleton(classType: StripeService),
     // @stacked-service
   ],
   bottomsheets: [
