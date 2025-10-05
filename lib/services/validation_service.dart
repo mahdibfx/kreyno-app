@@ -5,7 +5,8 @@ class ValidationService {
   ValidationService._();
 
   static String? emptyValidator(String? value) {
-    if (value == null || value.trim().isEmpty) {
+    final trimmedValue = value?.trim();
+    if (value == null || trimmedValue!.isEmpty) {
       return CommonStrings.emptyFieldValidationText;
     } else {
       return null;
@@ -13,9 +14,10 @@ class ValidationService {
   }
 
   static String? emailValidator(String? value) {
-    if (value == null || value.trim().isEmpty) {
+    final trimmedValue = value?.trim();
+    if (value == null || trimmedValue!.isEmpty) {
       return CommonStrings.emptyFieldValidationText;
-    } else if (!isEmail(value)) {
+    } else if (!isEmail(trimmedValue)) {
       return CommonStrings.emailValidationText;
     } else {
       return null;
@@ -23,9 +25,10 @@ class ValidationService {
   }
 
   static String? phoneValidator(String? value) {
-    if (value == null || value.trim().isEmpty) {
+    final trimmedValue = value?.trim();
+    if (value == null || trimmedValue!.isEmpty) {
       return CommonStrings.emptyFieldValidationText;
-    } else if (!_isPhoneNumber(value)) {
+    } else if (!_isPhoneNumber(trimmedValue)) {
       return CommonStrings.phoneValidationText;
     } else {
       return null;
@@ -33,29 +36,36 @@ class ValidationService {
   }
 
   static String? firstNameValidator(String? value) {
-    if (value == null || value.trim().isEmpty) {
+    final trimmedValue = value?.trim();
+    if (value == null || trimmedValue!.isEmpty) {
       return CommonStrings.emptyFieldValidationText;
-    } else if (value.trim().length < 2) {
-      return CommonStrings.firstNameValidationText;
+    } else if (!isAlpha(trimmedValue)) {
+      return CommonStrings.firstNameInvalidCharactersValidationText;
+    } else if (trimmedValue.length < 2) {
+      return CommonStrings.firstNameTooShortValidationText;
     } else {
       return null;
     }
   }
 
   static String? lastNameValidator(String? value) {
-    if (value == null || value.trim().isEmpty) {
+    final trimmedValue = value?.trim();
+    if (value == null || trimmedValue!.isEmpty) {
       return CommonStrings.emptyFieldValidationText;
-    } else if (value.trim().length < 2) {
-      return CommonStrings.lastNameValidationText;
+    } else if (!isAlpha(trimmedValue)) {
+      return CommonStrings.lastNameInvalidCharactersValidationText;
+    } else if (trimmedValue.length < 2) {
+      return CommonStrings.lastNameTooShortValidationText;
     } else {
       return null;
     }
   }
 
   static String? vehiculeBrandValidator(String? value) {
-    if (value == null || value.trim().isEmpty) {
+    final trimmedValue = value?.trim();
+    if (value == null || trimmedValue!.isEmpty) {
       return CommonStrings.emptyFieldValidationText;
-    } else if (value.trim().length < 3) {
+    } else if (trimmedValue.length < 3) {
       return CommonStrings.brandValidationText;
     } else {
       return null;
@@ -63,7 +73,8 @@ class ValidationService {
   }
 
   static String? vehiculeModelValidator(String? value) {
-    if (value == null || value.trim().isEmpty) {
+    final trimmedValue = value?.trim();
+    if (value == null || trimmedValue!.isEmpty) {
       return CommonStrings.emptyFieldValidationText;
     } else {
       return null;
@@ -71,9 +82,10 @@ class ValidationService {
   }
 
   static String? vehiculeColorValidator(String? value) {
-    if (value == null || value.trim().isEmpty) {
+    final trimmedValue = value?.trim();
+    if (value == null || trimmedValue!.isEmpty) {
       return CommonStrings.emptyFieldValidationText;
-    } else if (value.trim().length < 3) {
+    } else if (trimmedValue.length < 3) {
       return CommonStrings.colorValidationText;
     } else {
       return null;
@@ -81,9 +93,10 @@ class ValidationService {
   }
 
   static String? vehiculeCo2EmissionValidator(String? value) {
-    if (value == null || value.trim().isEmpty) {
+    final trimmedValue = value?.trim();
+    if (value == null || trimmedValue!.isEmpty) {
       return CommonStrings.emptyFieldValidationText;
-    } else if (!isNumeric(value)) {
+    } else if (!isNumeric(trimmedValue)) {
       return CommonStrings.co2EmissionValidationText;
     } else {
       return null;

@@ -30,7 +30,11 @@
             "brand": "Brand must contain at least 3 characters",
             "model": "Model must contain at least 1 character",
             "color": "Color must contain at least 3 characters",
-            "co2Emission": "CO₂ emission rate must be a number"
+            "co2Emission": "CO₂ emission rate must be a number",
+            "firstNameInvalidCharacters": "First name can only contain letters",
+            "firstNameTooShort": "First name must contain at least 2 characters",
+            "lastNameInvalidCharacters": "Last name can only contain letters",
+            "lastNameTooShort": "Last name must contain at least 2 characters"
         },
         "otpSuccess": {
             "codeSentTitle": "Code sent",

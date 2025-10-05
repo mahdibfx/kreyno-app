@@ -37,6 +37,14 @@ class CommonStrings {
   static String get colorValidationText => 'common.validation.color'.tr();
   static String get co2EmissionValidationText =>
       'common.validation.co2Emission'.tr();
+  static String get firstNameInvalidCharactersValidationText =>
+      'common.validation.firstNameInvalidCharacters'.tr();
+  static String get firstNameTooShortValidationText =>
+      'common.validation.firstNameTooShort'.tr();
+  static String get lastNameInvalidCharactersValidationText =>
+      'common.validation.lastNameInvalidCharacters'.tr();
+  static String get lastNameTooShortValidationText =>
+      'common.validation.lastNameTooShort'.tr();
 
   // otp success
   static String get codeSentTitle => 'common.otpSuccess.codeSentTitle'.tr();
