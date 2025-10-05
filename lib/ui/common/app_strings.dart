@@ -171,6 +171,7 @@ class SetUpVehiculeStrings {
       'setUpVehicule.deleteImageDialogMainButtonTitle'.tr();
   static String get vehiculeSavedSuccessfully =>
       'setUpVehicule.vehiculeSavedSuccessfully'.tr();
+  static String get acceptedFormats => 'setUpVehicule.acceptedFormats'.tr();
 }
 
 class PickVehiculeImageStrings {
@@ -182,6 +183,12 @@ class PickVehiculeImageStrings {
       'pickVehiculeImage.recommendedImage'.tr();
   static String get hintTitle => 'pickVehiculeImage.hintTitle'.tr();
   static String get hintDescription => 'pickVehiculeImage.hintDescription'.tr();
+  static String get fileDoesNotExist =>
+      'pickVehiculeImage.fileDoesNotExist'.tr();
+  static String get fileSizeExceedsMaximumAllowedSize =>
+      'pickVehiculeImage.fileSizeExceedsMaximumAllowedSize'.tr();
+  static String get fileFormatNotSupported =>
+      'pickVehiculeImage.fileFormatNotSupported'.tr();
 }
 
 class SetUpPaymentMethodsStrings {

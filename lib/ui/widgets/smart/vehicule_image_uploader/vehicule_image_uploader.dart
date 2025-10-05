@@ -59,6 +59,7 @@ class VehiculeImageUploader extends StackedView<VehiculeImageUploaderModel> {
         ] else if (viewModel.uploadedImageUuid != null) ...[
           const SuccessState(),
         ] else if (viewModel.errorMessage != null) ...[
+          const IdleState(),
           const FailedState(),
         ] else ...[
           const IdleState(),

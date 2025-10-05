@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/smart/vehicule_image_uploader/vehicule_image_uploader_model.dart';
 import 'package:stacked/stacked.dart';
 
@@ -24,9 +26,13 @@ class IdleState extends ViewModelWidget<VehiculeImageUploaderModel> {
           color: Colors.transparent,
           width: double.maxFinite,
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 2 * AppSpacing.px20),
+            padding: EdgeInsets.symmetric(
+              vertical: AppSpacing.px20,
+              horizontal: 14 * AppSpacing.px1,
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
+              spacing: AppSpacing.px20,
               children: [
                 DottedBorder(
                   radius: const Radius.circular(1000000),
@@ -35,7 +41,7 @@ class IdleState extends ViewModelWidget<VehiculeImageUploaderModel> {
                   dashPattern: const [5, 5],
                   color: AppColors.placeholderKre,
                   child: Padding(
-                    padding: EdgeInsets.all(AppSpacing.px16),
+                    padding: EdgeInsets.all(14 * AppSpacing.px1),
                     child: CustomIcon(
                       iconPath: AppIcons.upload,
                       size: 21 * AppSpacing.px1,
@@ -43,7 +49,12 @@ class IdleState extends ViewModelWidget<VehiculeImageUploaderModel> {
                     ),
                   ),
                 ),
-                // TODO: add helper text for max size and allowed extensions when we have the design ready
+                CustomText.labelRegular(
+                  SetUpVehiculeStrings.acceptedFormats,
+                  color: AppColors.textKre,
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                ),
               ],
             ),
           ),

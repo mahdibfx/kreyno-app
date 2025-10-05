@@ -123,14 +123,18 @@
         "deleteImageDialogDescription": "It will be removed and you can add a new one.",
         "deleteImageDialogSecondaryButtonTitle": "Cancel",
         "deleteImageDialogMainButtonTitle": "Delete",
-        "vehiculeSavedSuccessfully": "Vehicle saved successfully"
+        "vehiculeSavedSuccessfully": "Vehicle saved successfully",
+        "acceptedFormats": "Accepted formats: PNG, JPG, JPEG and HEIC (Max. 5 MB)"
     },
     "pickVehiculeImage": {
         "title": "Vehicle image",
         "description": "Choose a method below",
         "recommendedImage": "Recommended photo style",
         "hintTitle": "Hint: ",
-        "hintDescription": "Take a photo of your vehicle from the side, in landscape mode, for better visibility in the app."
+        "hintDescription": "Take a photo of your vehicle from the side, in landscape mode, for better visibility in the app.",
+        "fileDoesNotExist": "File does not exist",
+        "fileSizeExceedsMaximumAllowedSize": "File size exceeds maximum allowed size (Max. 5 MB)",
+        "fileFormatNotSupported": "File format is not supported. Accepted formats: PNG, JPG, JPEG and HEIC"
     },
     "setUpPaymentMethods": {
         "title": "Payment methods",
