@@ -1,1 +1,1 @@
-enum OnboardingStep { vehicle, paymentMethods, permissions, completed }
+enum OnboardingStep { authentication, vehicle, completed }

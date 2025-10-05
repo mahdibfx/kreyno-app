@@ -163,12 +163,11 @@ class SetUpVehiculeViewModel extends FormViewModel {
             title: SetUpVehiculeStrings.vehiculeSavedSuccessfully,
           );
           final onboardingResult = await _onboardingService.setCurrentStep(
-            OnboardingStep.paymentMethods,
+            OnboardingStep.completed,
           );
           await onboardingResult.match(
             (error) async {
               _logger.e('Error initializing onboarding flow', error: error);
-              _toastService.showError(title: error, showIcon: true);
             },
             (_) async {
               await _navigationService.replaceWithSetUpPaymentMethodsView();

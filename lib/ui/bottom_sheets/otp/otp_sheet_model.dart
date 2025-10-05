@@ -144,7 +144,17 @@ class OtpSheetModel extends BaseViewModel {
             _logger.e('Error setting authenticated user', error: error);
           },
           (_) async {
-            await _navigationService.clearStackAndShow(Routes.homeView);
+            final onboardingResult = await _onboardingService.setCurrentStep(
+              OnboardingStep.completed,
+            );
+            await onboardingResult.match(
+              (error) async {
+                _logger.e('Error initializing onboarding flow', error: error);
+              },
+              (_) async {
+                await _navigationService.clearStackAndShow(Routes.homeView);
+              },
+            );
           },
         );
       },
@@ -183,7 +193,6 @@ class OtpSheetModel extends BaseViewModel {
             await onboardingResult.match(
               (error) async {
                 _logger.e('Error initializing onboarding flow', error: error);
-                _toastService.showError(title: error, showIcon: true);
               },
               (_) async {
                 await _navigationService.navigateToSetUpVehiculeView();

@@ -7,24 +7,26 @@ part of 'user.dart';
 // **************************************************************************
 
 _User _$UserFromJson(Map<String, dynamic> json) => _User(
+  id: (json['id'] as num).toInt(),
   username: json['username'] as String,
   firstName: json['first_name'] as String,
   lastName: json['last_name'] as String,
   phone: json['phone'] as String,
   email: json['email'] as String,
-  address: json['address'] as String,
+  address: json['address'] as String?,
   birthDate: DateTime.parse(json['birth_date'] as String),
   gender: $enumDecode(_$GenderEnumMap, json['gender']),
   avatar: _avatarFromJson(json['avatar']),
 );
 
 Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
+  'id': instance.id,
   'username': instance.username,
   'first_name': instance.firstName,
   'last_name': instance.lastName,
   'phone': instance.phone,
   'email': instance.email,
-  'address': instance.address,
+  'address': ?instance.address,
   'birth_date': instance.birthDate.toIso8601String(),
   'gender': _$GenderEnumMap[instance.gender]!,
   'avatar': ?_avatarToJson(instance.avatar),
