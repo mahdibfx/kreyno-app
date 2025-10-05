@@ -62,7 +62,7 @@ class AuthService {
     required String email,
     required Gender gender,
     required DateTime birthDate,
-    required String? address,
+    // required String? address,
     required String otp,
   }) async {
     final deviceIdResult = await _deviceService.getDeviceId();
@@ -79,7 +79,7 @@ class AuthService {
               email: email,
               gender: gender,
               birthDate: birthDate,
-              address: address,
+              // address: address,
               otp: otp,
               deviceId: deviceId,
             ),
@@ -117,7 +117,10 @@ class AuthService {
     final result = await _sharedPrefsService.readData(
       AppConstants.accessTokenKey,
     );
-    return result.fold((_) => null, (token) => token);
+    return result.fold((_) => null, (token) {
+      _logger.i('access token => $token');
+      return token;
+    });
   }
 
   Future<Either<String, Unit>> clearAccessToken() async {

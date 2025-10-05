@@ -14,7 +14,7 @@ abstract class RegisterDto with _$RegisterDto {
     @JsonKey(name: 'email') required String email,
     @JsonKey(name: 'gender') required Gender gender,
     @JsonKey(name: 'birth_date') required DateTime birthDate,
-    @JsonKey(name: 'address', includeIfNull: false) String? address,
+    // @JsonKey(name: 'address', includeIfNull: false) String? address,
     @JsonKey(name: 'otp') required String otp,
     @JsonKey(name: 'device_id') required String deviceId,
   }) = _RegisterDto;

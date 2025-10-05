@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/services/validation_service.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
+import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/views/signup/signup_view.form.dart';
 import 'package:kreyno/ui/widgets/dumb/auth_sliver_app_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_loading_indicator.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/input_field.dart';
@@ -37,7 +39,7 @@ import 'signup_viewmodel.dart';
       name: 'userName',
       validator: ValidationService.emptyValidator,
     ),
-    FormTextField(name: 'address'),
+    // FormTextField(name: 'address'),
   ],
 )
 class SignupView extends StackedView<SignupViewModel> with $SignupView {
@@ -130,6 +132,12 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                                   size: AppSpacing.px1,
                                 ),
                               )
+                            : viewModel.userNameAllowed
+                            ? Icon(
+                                Icons.check_circle,
+                                color: AppColors.greenKre,
+                                size: AppSpacing.px20,
+                              )
                             : null,
                         errorText: viewModel.hasUserName
                             ? viewModel.userNameValidationMessage
@@ -149,23 +157,29 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                                   size: AppSpacing.px1,
                                 ),
                               )
+                            : viewModel.emailAllowed
+                            ? Icon(
+                                Icons.check_circle,
+                                color: AppColors.greenKre,
+                                size: AppSpacing.px20,
+                              )
                             : null,
                         errorText: viewModel.hasEmail
                             ? viewModel.emailValidationMessage
                             : null,
                       ),
-                      InputField(
-                        controller: addressController,
-                        focusNode: addressFocusNode,
-                        labelText: SignupStrings.address,
-                        hintText: SignupStrings.addressPlaceholder,
-                        keyboardType: TextInputType.name,
-                        textInputAction: TextInputAction.done,
-                        isRequired: false,
-                        errorText: viewModel.hasAddress
-                            ? viewModel.addressValidationMessage
-                            : null,
-                      ),
+                      // InputField(
+                      //   controller: addressController,
+                      //   focusNode: addressFocusNode,
+                      //   labelText: SignupStrings.address,
+                      //   hintText: SignupStrings.addressPlaceholder,
+                      //   keyboardType: TextInputType.name,
+                      //   textInputAction: TextInputAction.done,
+                      //   isRequired: false,
+                      //   errorText: viewModel.hasAddress
+                      //       ? viewModel.addressValidationMessage
+                      //       : null,
+                      // ),
                       BirthDatePickerField(
                         labelText: SignupStrings.birthday,
                         onBirthdayChanged: viewModel.onBirthdayChanged,

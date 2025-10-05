@@ -27,7 +27,7 @@ class UserService with ListenableServiceMixin {
     _logger.i('User data set in memory');
   }
 
-  Future<Either<String, Unit>> getProfile() {
+  Future<Either<String, Unit>> getProfile() async {
     return _apiAuthService.getProfile().toEither().then((result) {
       return result.map((user) {
         setUserData(user);

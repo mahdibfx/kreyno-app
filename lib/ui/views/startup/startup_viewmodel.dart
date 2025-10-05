@@ -1,4 +1,5 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:kreyno/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
@@ -15,6 +16,7 @@ class StartupViewModel extends BaseViewModel {
   final _authService = locator<AuthService>();
   final _pickedLanguageService = locator<PickedLanguageService>();
   final _onboardingService = locator<OnboardingService>();
+  final _userService = locator<UserService>();
 
   Future runStartupLogic() async {
     // Show splash screen for minimum duration
@@ -33,8 +35,11 @@ class StartupViewModel extends BaseViewModel {
 
     final accessToken = results[0] as String?;
     final currentStepResult = results[1] as Either<String, OnboardingStep?>;
-
     final isAuthenticated = accessToken != null && accessToken.isNotEmpty;
+
+    if (isAuthenticated) {
+      _prefetchUserProfile();
+    }
 
     await _navigateBasedOnState(isAuthenticated, currentStepResult);
   }
@@ -61,24 +66,33 @@ class StartupViewModel extends BaseViewModel {
     await currentStepResult.match(
       (error) async {
         _logger.w('Error reading onboarding state: $error');
-        if (isAuthenticated) {
-          await _navigationService.replaceWithHomeView();
-        } else {
-          await _navigationService.replaceWithOnboardingView();
-        }
+        await _navigateToDefaultScreen(isAuthenticated);
       },
       (currentStep) async {
         if (currentStep == null) {
-          if (isAuthenticated) {
-            await _navigationService.replaceWithHomeView();
-          } else {
-            await _navigationService.replaceWithOnboardingView();
-          }
+          await _navigateToDefaultScreen(isAuthenticated);
         } else {
           await _resumeOnboarding(currentStep);
         }
       },
     );
+  }
+
+  Future<void> _navigateToDefaultScreen(bool isAuthenticated) async {
+    if (isAuthenticated) {
+      await _navigationService.replaceWithHomeView();
+    } else {
+      await _navigationService.replaceWithOnboardingView();
+    }
+  }
+
+  void _prefetchUserProfile() {
+    _userService.getProfile().then((profileResult) {
+      profileResult.match(
+        (error) => _logger.e('Error prefetching profile: $error'),
+        (_) => _logger.i('Profile prefetched successfully'),
+      );
+    });
   }
 
   Future<void> _resumeOnboarding(OnboardingStep step) async {

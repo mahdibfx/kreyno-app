@@ -18,7 +18,6 @@ const String FirstNameValueKey = 'firstName';
 const String LastNameValueKey = 'lastName';
 const String EmailValueKey = 'email';
 const String UserNameValueKey = 'userName';
-const String AddressValueKey = 'address';
 
 final Map<String, TextEditingController> _SignupViewTextEditingControllers = {};
 
@@ -30,7 +29,6 @@ final Map<String, String? Function(String?)?> _SignupViewTextValidations = {
   LastNameValueKey: ValidationService.lastNameValidator,
   EmailValueKey: ValidationService.emailValidator,
   UserNameValueKey: ValidationService.emptyValidator,
-  AddressValueKey: null,
 };
 
 mixin $SignupView {
@@ -44,15 +42,12 @@ mixin $SignupView {
       _getFormTextEditingController(EmailValueKey);
   TextEditingController get userNameController =>
       _getFormTextEditingController(UserNameValueKey);
-  TextEditingController get addressController =>
-      _getFormTextEditingController(AddressValueKey);
 
   FocusNode get phoneNumberFocusNode => _getFormFocusNode(PhoneNumberValueKey);
   FocusNode get firstNameFocusNode => _getFormFocusNode(FirstNameValueKey);
   FocusNode get lastNameFocusNode => _getFormFocusNode(LastNameValueKey);
   FocusNode get emailFocusNode => _getFormFocusNode(EmailValueKey);
   FocusNode get userNameFocusNode => _getFormFocusNode(UserNameValueKey);
-  FocusNode get addressFocusNode => _getFormFocusNode(AddressValueKey);
 
   TextEditingController _getFormTextEditingController(
     String key, {
@@ -84,7 +79,6 @@ mixin $SignupView {
     lastNameController.addListener(() => _updateFormData(model));
     emailController.addListener(() => _updateFormData(model));
     userNameController.addListener(() => _updateFormData(model));
-    addressController.addListener(() => _updateFormData(model));
 
     _updateFormData(model, forceValidate: _autoTextFieldValidation);
   }
@@ -101,7 +95,6 @@ mixin $SignupView {
     lastNameController.addListener(() => _updateFormData(model));
     emailController.addListener(() => _updateFormData(model));
     userNameController.addListener(() => _updateFormData(model));
-    addressController.addListener(() => _updateFormData(model));
 
     _updateFormData(model, forceValidate: _autoTextFieldValidation);
   }
@@ -115,7 +108,6 @@ mixin $SignupView {
         LastNameValueKey: lastNameController.text,
         EmailValueKey: emailController.text,
         UserNameValueKey: userNameController.text,
-        AddressValueKey: addressController.text,
       }),
     );
 
@@ -162,7 +154,6 @@ extension ValueProperties on FormStateHelper {
   String? get lastNameValue => this.formValueMap[LastNameValueKey] as String?;
   String? get emailValue => this.formValueMap[EmailValueKey] as String?;
   String? get userNameValue => this.formValueMap[UserNameValueKey] as String?;
-  String? get addressValue => this.formValueMap[AddressValueKey] as String?;
 
   set phoneNumberValue(String? value) {
     this.setData(this.formValueMap..addAll({PhoneNumberValueKey: value}));
@@ -205,14 +196,6 @@ extension ValueProperties on FormStateHelper {
     }
   }
 
-  set addressValue(String? value) {
-    this.setData(this.formValueMap..addAll({AddressValueKey: value}));
-
-    if (_SignupViewTextEditingControllers.containsKey(AddressValueKey)) {
-      _SignupViewTextEditingControllers[AddressValueKey]?.text = value ?? '';
-    }
-  }
-
   bool get hasPhoneNumber =>
       this.formValueMap.containsKey(PhoneNumberValueKey) &&
       (phoneNumberValue?.isNotEmpty ?? false);
@@ -228,9 +211,6 @@ extension ValueProperties on FormStateHelper {
   bool get hasUserName =>
       this.formValueMap.containsKey(UserNameValueKey) &&
       (userNameValue?.isNotEmpty ?? false);
-  bool get hasAddress =>
-      this.formValueMap.containsKey(AddressValueKey) &&
-      (addressValue?.isNotEmpty ?? false);
 
   bool get hasPhoneNumberValidationMessage =>
       this.fieldsValidationMessages[PhoneNumberValueKey]?.isNotEmpty ?? false;
@@ -242,8 +222,6 @@ extension ValueProperties on FormStateHelper {
       this.fieldsValidationMessages[EmailValueKey]?.isNotEmpty ?? false;
   bool get hasUserNameValidationMessage =>
       this.fieldsValidationMessages[UserNameValueKey]?.isNotEmpty ?? false;
-  bool get hasAddressValidationMessage =>
-      this.fieldsValidationMessages[AddressValueKey]?.isNotEmpty ?? false;
 
   String? get phoneNumberValidationMessage =>
       this.fieldsValidationMessages[PhoneNumberValueKey];
@@ -255,8 +233,6 @@ extension ValueProperties on FormStateHelper {
       this.fieldsValidationMessages[EmailValueKey];
   String? get userNameValidationMessage =>
       this.fieldsValidationMessages[UserNameValueKey];
-  String? get addressValidationMessage =>
-      this.fieldsValidationMessages[AddressValueKey];
 }
 
 extension Methods on FormStateHelper {
@@ -270,8 +246,6 @@ extension Methods on FormStateHelper {
       this.fieldsValidationMessages[EmailValueKey] = validationMessage;
   void setUserNameValidationMessage(String? validationMessage) =>
       this.fieldsValidationMessages[UserNameValueKey] = validationMessage;
-  void setAddressValidationMessage(String? validationMessage) =>
-      this.fieldsValidationMessages[AddressValueKey] = validationMessage;
 
   /// Clears text input fields on the Form
   void clearForm() {
@@ -280,7 +254,6 @@ extension Methods on FormStateHelper {
     lastNameValue = '';
     emailValue = '';
     userNameValue = '';
-    addressValue = '';
   }
 
   /// Validates text input fields on the Form
@@ -291,7 +264,6 @@ extension Methods on FormStateHelper {
       LastNameValueKey: getValidationMessage(LastNameValueKey),
       EmailValueKey: getValidationMessage(EmailValueKey),
       UserNameValueKey: getValidationMessage(UserNameValueKey),
-      AddressValueKey: getValidationMessage(AddressValueKey),
     });
   }
 }
@@ -316,5 +288,4 @@ void updateValidationData(FormStateHelper model) =>
       LastNameValueKey: getValidationMessage(LastNameValueKey),
       EmailValueKey: getValidationMessage(EmailValueKey),
       UserNameValueKey: getValidationMessage(UserNameValueKey),
-      AddressValueKey: getValidationMessage(AddressValueKey),
     });

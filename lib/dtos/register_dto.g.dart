@@ -14,7 +14,6 @@ _RegisterDto _$RegisterDtoFromJson(Map<String, dynamic> json) => _RegisterDto(
   email: json['email'] as String,
   gender: $enumDecode(_$GenderEnumMap, json['gender']),
   birthDate: DateTime.parse(json['birth_date'] as String),
-  address: json['address'] as String?,
   otp: json['otp'] as String,
   deviceId: json['device_id'] as String,
 );
@@ -28,7 +27,6 @@ Map<String, dynamic> _$RegisterDtoToJson(_RegisterDto instance) =>
       'email': instance.email,
       'gender': _$GenderEnumMap[instance.gender]!,
       'birth_date': instance.birthDate.toIso8601String(),
-      'address': ?instance.address,
       'otp': instance.otp,
       'device_id': instance.deviceId,
     };

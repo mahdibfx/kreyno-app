@@ -25,7 +25,7 @@ class OtpSheetModel extends BaseViewModel {
   final String? firstName;
   final String? lastName;
   final String? email;
-  final String? address;
+  // final String? address;
   final String? userName;
   final Gender? gender;
   final DateTime? birthDate;
@@ -35,7 +35,7 @@ class OtpSheetModel extends BaseViewModel {
       firstName = null,
       lastName = null,
       email = null,
-      address = null,
+      // address = null,
       userName = null,
       gender = null,
       birthDate = null;
@@ -46,7 +46,7 @@ class OtpSheetModel extends BaseViewModel {
     required this.lastName,
     required this.userName,
     required this.email,
-    this.address,
+    // this.address,
     required this.birthDate,
     required this.gender,
   }) : type = OtpSheetType.signup;
@@ -56,7 +56,7 @@ class OtpSheetModel extends BaseViewModel {
       firstName = null,
       lastName = null,
       email = null,
-      address = null,
+      // address = null,
       userName = null,
       gender = null,
       birthDate = null;
@@ -144,17 +144,7 @@ class OtpSheetModel extends BaseViewModel {
             _logger.e('Error setting authenticated user', error: error);
           },
           (_) async {
-            final onboardingResult = await _onboardingService.setCurrentStep(
-              OnboardingStep.completed,
-            );
-            await onboardingResult.match(
-              (error) async {
-                _logger.e('Error initializing onboarding flow', error: error);
-              },
-              (_) async {
-                await _navigationService.clearStackAndShow(Routes.homeView);
-              },
-            );
+            await _navigationService.clearStackAndShow(Routes.homeView);
           },
         );
       },
@@ -171,7 +161,7 @@ class OtpSheetModel extends BaseViewModel {
       email: email!,
       gender: gender!,
       birthDate: birthDate!,
-      address: address,
+      // address: address,
     );
     await response.match(
       (error) async {

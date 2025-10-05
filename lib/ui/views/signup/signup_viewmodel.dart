@@ -51,15 +51,35 @@ class SignupViewModel extends FormViewModel {
   bool _checkingEmailTaken = false;
   bool get checkingEmailTaken => _checkingEmailTaken;
 
+  bool _userNameAllowed = false;
+  bool get userNameAllowed => _userNameAllowed;
+
+  bool _emailAllowed = false;
+  bool get emailAllowed => _emailAllowed;
+
   Timer? _userNameDebounceTimer;
   Timer? _emailDebounceTimer;
 
   void setCheckingUserNameTaken(bool value) {
+    if (value == _checkingUserNameTaken) return;
     _checkingUserNameTaken = value;
     rebuildUi();
   }
 
+  void setUserNameAllowed(bool value) {
+    if (value == _userNameAllowed) return;
+    _userNameAllowed = value;
+    rebuildUi();
+  }
+
+  void setEmailAllowed(bool value) {
+    if (value == _emailAllowed) return;
+    _emailAllowed = value;
+    rebuildUi();
+  }
+
   void setCheckingEmailTaken(bool value) {
+    if (value == _checkingEmailTaken) return;
     _checkingEmailTaken = value;
     rebuildUi();
   }
@@ -78,7 +98,6 @@ class SignupViewModel extends FormViewModel {
   void onBirthdayChanged(DateTime birthday) {
     _logger.d('onBirthdayChanged: $birthday');
     _selectedBirthday = birthday;
-    rebuildUi();
   }
 
   void goBack() {
@@ -86,6 +105,7 @@ class SignupViewModel extends FormViewModel {
   }
 
   void onUserNameChanged(String value) {
+    setUserNameAllowed(false);
     _userNameDebounceTimer?.cancel();
     // Only start timer if username has value and no validation errors
     if (value.isNotEmpty && hasUserName && !hasUserNameValidationMessage) {
@@ -96,6 +116,7 @@ class SignupViewModel extends FormViewModel {
   }
 
   void onEmailChanged(String value) {
+    setEmailAllowed(false);
     _emailDebounceTimer?.cancel();
     // Only start timer if email has value and no validation errors
     if (value.isNotEmpty && hasEmail && !hasEmailValidationMessage) {
@@ -123,6 +144,8 @@ class SignupViewModel extends FormViewModel {
         (exists) {
           if (exists) {
             setUserNameValidationMessage(SignupStrings.userNameTaken);
+          } else {
+            setUserNameAllowed(true);
           }
         },
       );
@@ -149,6 +172,8 @@ class SignupViewModel extends FormViewModel {
         (exists) {
           if (exists) {
             setEmailValidationMessage(SignupStrings.emailTaken);
+          } else {
+            setEmailAllowed(true);
           }
         },
       );
@@ -187,7 +212,7 @@ class SignupViewModel extends FormViewModel {
           firstName: firstNameValue!.trim(),
           lastName: lastNameValue!.trim(),
           email: emailValue!.trim(),
-          address: addressValue?.trim(),
+          // address: addressValue?.trim(),
           userName: userNameValue!.trim(),
           gender: isMale ? Gender.male : Gender.female,
           birthDate: selectedBirthday!,
