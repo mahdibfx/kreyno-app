@@ -20,7 +20,7 @@ class LanguageHeaderInterceptor extends Interceptor {
         if (language == null) {
           return 'fr'; // Default to French if no language selected
         }
-        return '$language.code';
+        return language.code;
       },
     );
 
