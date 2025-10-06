@@ -13,8 +13,6 @@ import 'package:kreyno/ui/views/set_up_vehicule/set_up_vehicule_view.form.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-// TODO: implement the logic to setup the vehicule
-// TODO: implement the logic to resume the setup vehicule
 class SetUpVehiculeViewModel extends FormViewModel {
   final _logger = getLogger('SetUpVehiculeViewModel');
   final _navigationService = locator<NavigationService>();
@@ -37,8 +35,6 @@ class SetUpVehiculeViewModel extends FormViewModel {
 
   bool _isLoadingLicensePlate = false;
   bool get isLoadingLicensePlate => _isLoadingLicensePlate;
-
-  bool _backWarningShown = false;
 
   bool get isFormValid =>
       (hasBrand &&
@@ -83,24 +79,10 @@ class SetUpVehiculeViewModel extends FormViewModel {
   }
 
   void goBack() {
-    final isPreviousRouteSignUp =
-        _navigationService.previousRoute == Routes.signupView;
-    if (isPreviousRouteSignUp) {
-      if (!_backWarningShown) {
-        _toastService.showWarning(
-          title: SetUpVehiculeStrings.saveVehicleToCompleteSetup,
-          showIcon: true,
-        );
-        _backWarningShown = true;
-      } else {
-        _navigationService.back();
-      }
-    } else {
-      _toastService.showInfo(
-        title: SetUpVehiculeStrings.saveVehicleToMoveToNextStep,
-        showIcon: true,
-      );
-    }
+    _toastService.showInfo(
+      title: SetUpVehiculeStrings.saveVehicleToMoveToNextStep,
+      showIcon: true,
+    );
   }
 
   void onImageUploadSuccess(String uuid) {

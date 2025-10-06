@@ -160,8 +160,6 @@ class SetUpVehiculeStrings {
   static String get uploading => 'setUpVehicule.uploading'.tr();
   static String get deleting => 'setUpVehicule.deleting'.tr();
   static String get errorRetry => 'setUpVehicule.errorRetry'.tr();
-  static String get saveVehicleToCompleteSetup =>
-      'setUpVehicule.saveVehicleToCompleteSetup'.tr();
   static String get saveVehicleToMoveToNextStep =>
       'setUpVehicule.saveVehicleToMoveToNextStep'.tr();
   static String get deleteImageDialogTitle =>

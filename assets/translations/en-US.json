@@ -1,10 +1,11 @@
 {
     "common": {
+        "validTill": "Valid until",
         "continue": "Continue",
         "save": "Save",
         "takePicture": "Take a picture",
         "pickFromGallery": "Pick from gallery",
-        
+        "skip": "Skip",
         "optional": "Optional",
         "delete": "Delete",
         "months": {
@@ -117,7 +118,6 @@
         "uploading": "Uploading...",
         "deleting": "Deleting...",
         "errorRetry": "Failed, try again",
-        "saveVehicleToCompleteSetup": "You need to save the vehicle to complete setup. Tap back again to cancel.",
         "saveVehicleToMoveToNextStep": "You need to save the vehicle to move to the next step.",
         "deleteImageDialogTitle": "Delete this image?",
         "deleteImageDialogDescription": "It will be removed and you can add a new one.",
@@ -142,7 +142,8 @@
         "buttonLabel": "Add a card",
         "paymentMethodsDescription": "Your payment information is completely secure and protected.",
         "savePaymentMethodsToMoveToNextStep": "You need to save the payment methods to move to the next step.",
-        "cardAddedSuccessfully": "Card added successfully"
+        "cardAddedSuccessfully": "Card added successfully",
+        "saveCard": "Save this card"
     },
     "apiErrors": {
         "requestFailed": "Request failed",

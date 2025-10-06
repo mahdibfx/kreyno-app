@@ -108,7 +108,7 @@ class StartupViewModel extends BaseViewModel {
       case OnboardingStep.completed:
         // TODO: Uncomment this when the onboarding is completed
         // await _navigationService.replaceWithHomeView();
-        await _navigationService.replaceWithSetUpPaymentMethodsView();
+        await _navigationService.replaceWithSetUpPermissionsView();
         break;
     }
   }
