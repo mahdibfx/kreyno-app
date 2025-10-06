@@ -61,7 +61,6 @@ class PhoneInputFieldModel extends BaseViewModel {
   }
 
   void onCountryCodeTapped() async {
-    // TODO: Implement country code picker once it is designed
     final response = await _bottomSheetService.showCustomSheet(
       variant: BottomSheetType.countryCodePicker,
       barrierColor: Colors.black.withValues(alpha: .1),

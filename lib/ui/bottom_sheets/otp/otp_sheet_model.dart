@@ -6,7 +6,6 @@ import 'package:kreyno/enums/gender.dart';
 import 'package:kreyno/enums/onboarding_step.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/onboarding_service.dart';
-import 'package:kreyno/services/toast_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -16,7 +15,6 @@ class OtpSheetModel extends BaseViewModel {
   final _logger = getLogger('OtpSheetModel');
   final _navigationService = locator<NavigationService>();
   final _authService = locator<AuthService>();
-  final _toastService = locator<ToastService>();
   final _onboardingService = locator<OnboardingService>();
 
   final OtpSheetType type;
@@ -99,10 +97,6 @@ class OtpSheetModel extends BaseViewModel {
           setErrorMessage(errorMessage);
         },
         (success) {
-          // TODO : uncomment this in case it was wanted
-          // _toastService.showSuccess(
-          //   title: CommonStrings.codeSentTitle,
-          // );
           startTimer();
         },
       );
