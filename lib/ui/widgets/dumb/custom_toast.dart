@@ -84,14 +84,14 @@ class _CustomToastState extends State<CustomToast>
                     children: [
                       CustomText.smallParagraphBold(
                         widget.title,
-                        maxLines: 3,
+                        maxLines: 6,
                         color: widget.config.titleColor,
                       ),
                       if (widget.description != null) ...[
                         VGap(AppSpacing.px4),
                         CustomText.labelRegular(
                           widget.description!,
-                          maxLines: 5,
+                          maxLines: 6,
                           color: widget.config.descriptionColor,
                         ),
                       ],

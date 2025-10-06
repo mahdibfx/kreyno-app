@@ -23,6 +23,7 @@ class CustomButton extends StatelessWidget {
   final bool isDisabled;
   final bool expandToFullWidth;
   final CustomButtonSize size;
+  final double? borderRadius;
 
   const CustomButton.filled({
     super.key,
@@ -34,6 +35,7 @@ class CustomButton extends StatelessWidget {
     this.isDisabled = false,
     this.expandToFullWidth = true,
     this.size = CustomButtonSize.medium,
+    this.borderRadius,
   }) : outlineColor = null,
        variant = CustomButtonVariant.filled;
 
@@ -47,6 +49,7 @@ class CustomButton extends StatelessWidget {
     this.isDisabled = false,
     this.expandToFullWidth = true,
     this.size = CustomButtonSize.medium,
+    this.borderRadius,
   }) : backgroundColor = null,
        variant = CustomButtonVariant.outlined;
 
@@ -59,6 +62,7 @@ class CustomButton extends StatelessWidget {
     this.isDisabled = false,
     this.expandToFullWidth = false,
     this.size = CustomButtonSize.medium,
+    this.borderRadius,
   }) : backgroundColor = null,
        outlineColor = null,
        variant = CustomButtonVariant.plain;
@@ -78,6 +82,10 @@ class CustomButton extends StatelessWidget {
       case CustomButtonSize.small:
         return 10 * AppSpacing.px4; // 40px
     }
+  }
+
+  double _getBorderRadius() {
+    return borderRadius ?? AppSpacing.px12;
   }
 
   Widget _buildButton(bool disabled) {
@@ -105,7 +113,7 @@ class CustomButton extends StatelessWidget {
         disabledBackgroundColor: AppColors.disabledKre,
         disabledForegroundColor: AppColors.textKre,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppSpacing.px12),
+          borderRadius: BorderRadius.circular(_getBorderRadius()),
         ),
         padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -133,7 +141,7 @@ class CustomButton extends StatelessWidget {
           width: 1,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppSpacing.px12),
+          borderRadius: BorderRadius.circular(_getBorderRadius()),
         ),
         padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
         fixedSize: expandToFullWidth
@@ -156,7 +164,7 @@ class CustomButton extends StatelessWidget {
         foregroundColor: disabled ? AppColors.textKre : buttonForegroundColor,
         disabledForegroundColor: AppColors.textKre,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppSpacing.px12),
+          borderRadius: BorderRadius.circular(_getBorderRadius()),
         ),
         padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
         fixedSize: expandToFullWidth

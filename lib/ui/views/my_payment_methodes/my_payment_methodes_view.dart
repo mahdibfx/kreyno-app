@@ -86,7 +86,7 @@ class MyPaymentMethod extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset(AppImages.visaTextLogo),
+                // Image.asset(AppImages.visaTextLogo),
                 const CustomText.largeTitle("**** 4355", color: Colors.white),
               ],
             ),

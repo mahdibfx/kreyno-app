@@ -3,12 +3,15 @@ import 'package:easy_localization/easy_localization.dart';
 class CommonStrings {
   const CommonStrings._();
 
+  static const String appName = 'KREYNO';
   static String get continueLabel => 'common.continue'.tr();
   static String get optional => 'common.optional'.tr();
   static String get delete => 'common.delete'.tr();
   static String get save => 'common.save'.tr();
   static String get takePicture => 'common.takePicture'.tr();
   static String get pickFromGallery => 'common.pickFromGallery'.tr();
+  static String get skip => 'common.skip'.tr();
+  static String get validTill => 'common.validTill'.tr();
 
   // Months
   static String get january => 'common.months.january'.tr();
@@ -203,6 +206,7 @@ class SetUpPaymentMethodsStrings {
       'setUpPaymentMethods.savePaymentMethodsToMoveToNextStep'.tr();
   static String get cardAddedSuccessfully =>
       'setUpPaymentMethods.cardAddedSuccessfully'.tr();
+  static String get saveCard => 'setUpPaymentMethods.saveCard'.tr();
 }
 
 class ApiErrorStrings {

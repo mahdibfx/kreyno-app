@@ -5,8 +5,9 @@ class AppImages {
 
   static const String bike = '${_basePath}bike.png';
 
-  static const String visa = '${_basePath}visa.png';
-  static const String visaTextLogo = '${_basePath}visa_text.png';
+  static const String visaLogo = '${_basePath}visa_logo.svg';
+
+  static const String mastercardLogo = '${_basePath}mastercard_logo.svg';
 
   static const String car = '${_basePath}e_car.png';
 

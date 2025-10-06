@@ -10,6 +10,9 @@ import 'package:kreyno/models/card.dart';
 import 'package:kreyno/models/setup_intent_response.dart';
 import 'package:kreyno/services/api/api_stripe_service.dart';
 import 'package:kreyno/services/api/dio_service.dart';
+import 'package:kreyno/ui/common/app_colors.dart';
+import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 
 class StripeService {
   final _logger = getLogger('StripeService');
@@ -28,7 +31,38 @@ class StripeService {
         paymentSheetParameters: SetupPaymentSheetParameters(
           setupIntentClientSecret: clientSecret,
           merchantDisplayName: merchantDisplayName ?? 'Kreyno',
-          style: ThemeMode.system,
+          style: ThemeMode.light,
+          cardBrandAcceptance: const CardBrandAcceptance.allowed(
+            brands: [CardBrandCategory.mastercard, CardBrandCategory.visa],
+          ),
+          primaryButtonLabel: SetUpPaymentMethodsStrings.saveCard,
+          appearance: PaymentSheetAppearance(
+            primaryButton: const PaymentSheetPrimaryButtonAppearance(
+              colors: PaymentSheetPrimaryButtonTheme(
+                light: PaymentSheetPrimaryButtonThemeColors(
+                  background: AppColors.greenKre,
+                  text: AppColors.mainKre,
+                ),
+              ),
+            ),
+            shapes: PaymentSheetShape(borderRadius: AppSpacing.px12),
+            formInsetValues: EdgeInsetsConfig(
+              left: AppSpacing.px16,
+              right: AppSpacing.px16,
+              top: AppSpacing.px16,
+              bottom: AppSpacing.px20,
+            ),
+            colors: const PaymentSheetAppearanceColors(
+              primary: AppColors.greenKre,
+              primaryText: AppColors.mainKre,
+              secondaryText: AppColors.textKre,
+              background: AppColors.white,
+              componentBorder: AppColors.strokeKre,
+              placeholderText: AppColors.textKre,
+              componentText: AppColors.mainKre,
+              error: AppColors.redKre,
+            ),
+          ),
         ),
       );
       return right(unit);

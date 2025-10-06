@@ -1,20 +1,40 @@
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
+import 'package:kreyno/app/app.router.dart';
+import 'package:kreyno/models/card.dart';
 import 'package:kreyno/services/stripe_service.dart';
 import 'package:kreyno/services/toast_service.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class SetUpPaymentMethodsViewModel extends BaseViewModel {
   final _logger = getLogger('SetUpPaymentMethodsViewModel');
   final _toastService = locator<ToastService>();
   final _stripeService = locator<StripeService>();
+  final _navigationService = locator<NavigationService>();
+
+  Card? _savedCard;
+  Card? get savedCard => _savedCard;
+  bool get hasSavedCard => _savedCard != null;
 
   void goBack() {
     _toastService.showInfo(
       title: SetUpPaymentMethodsStrings.savePaymentMethodsToMoveToNextStep,
       showIcon: true,
     );
+  }
+
+  void onSkipTapped() async {
+    _navigateToPermissionsView();
+  }
+
+  void onContinueTapped() async {
+    _navigateToPermissionsView();
+  }
+
+  void _navigateToPermissionsView() async {
+    _navigationService.navigateToSetUpPermissionsView();
   }
 
   void onAddCardTapped() async {
@@ -71,6 +91,8 @@ class SetUpPaymentMethodsViewModel extends BaseViewModel {
         _toastService.showSuccess(
           title: SetUpPaymentMethodsStrings.cardAddedSuccessfully,
         );
+        _savedCard = card;
+        rebuildUi();
         _logger.i('Card added successfully: ${card.id}');
       },
     );

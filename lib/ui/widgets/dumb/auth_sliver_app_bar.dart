@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/widgets/dumb/app_logo.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
@@ -11,12 +12,14 @@ class AuthSliverAppBar extends StatelessWidget {
   final String title;
   final String? description;
   final VoidCallback onBackPressed;
+  final VoidCallback? onSkipPressed;
 
   const AuthSliverAppBar({
     super.key,
     required this.title,
     this.description,
     required this.onBackPressed,
+    this.onSkipPressed,
   });
 
   @override
@@ -26,6 +29,7 @@ class AuthSliverAppBar extends StatelessWidget {
         title: title,
         description: description,
         onBackPressed: onBackPressed,
+        onSkipPressed: onSkipPressed,
       ),
       pinned: true,
     );
@@ -36,11 +40,13 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
   final String title;
   final String? description;
   final VoidCallback onBackPressed;
+  final VoidCallback? onSkipPressed;
 
   AuthAppBarDelegate({
     required this.title,
     this.description,
     required this.onBackPressed,
+    this.onSkipPressed,
   });
 
   @override
@@ -87,7 +93,20 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
                   alignment: Alignment.center,
                   child: const AppLogo(animated: false),
                 ),
-                HGap(AppSpacing.px32),
+                if (onSkipPressed != null)
+                  GestureDetector(
+                    onTap: onSkipPressed,
+                    child: Container(
+                      color: Colors.transparent,
+                      padding: EdgeInsets.symmetric(vertical: AppSpacing.px8),
+                      child: CustomText.smallParagraphBold(
+                        CommonStrings.skip,
+                        color: AppColors.greenKre,
+                      ),
+                    ),
+                  )
+                else
+                  HGap(AppSpacing.px32),
               ],
             ),
             AnimatedOpacity(

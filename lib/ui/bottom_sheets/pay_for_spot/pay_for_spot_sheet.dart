@@ -150,7 +150,7 @@ class PaymentMethodListTile extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(AppImages.visa),
+          // Image.asset(AppImages.visa),
           HGap(AppSpacing.px12),
           const Column(
             crossAxisAlignment: CrossAxisAlignment.start,

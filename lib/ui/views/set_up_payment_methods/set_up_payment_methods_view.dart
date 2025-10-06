@@ -3,7 +3,9 @@ import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
+import 'package:kreyno/ui/views/set_up_payment_methods/widgets/empty_state.dart';
 import 'package:kreyno/ui/widgets/dumb/auth_sliver_app_bar.dart';
+import 'package:kreyno/ui/widgets/dumb/credit_card.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
@@ -34,15 +36,16 @@ class SetUpPaymentMethodsView
                 title: SetUpPaymentMethodsStrings.title,
                 description: SetUpPaymentMethodsStrings.description,
                 onBackPressed: viewModel.goBack,
+                onSkipPressed: viewModel.hasSavedCard
+                    ? null
+                    : viewModel.onSkipTapped,
               ),
               SliverPadding(
                 padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
                 sliver: SliverToBoxAdapter(
-                  child: CustomButton.outlined(
-                    text: SetUpPaymentMethodsStrings.buttonLabel,
-                    icon: AppIcons.creditCardAdd,
-                    onPressed: viewModel.onAddCardTapped,
-                  ),
+                  child: viewModel.hasSavedCard
+                      ? CreditCard(card: viewModel.savedCard!)
+                      : const SetUpPaymentMethodsEmptyState(),
                 ),
               ),
               SliverFillRemaining(
@@ -78,7 +81,8 @@ class SetUpPaymentMethodsView
                         ),
                         CustomButton.filled(
                           text: CommonStrings.continueLabel,
-                          onPressed: () {},
+                          onPressed: viewModel.onContinueTapped,
+                          isDisabled: !viewModel.hasSavedCard,
                         ),
                       ],
                     ),

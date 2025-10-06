@@ -1,10 +1,11 @@
 {
     "common": {
+        "validTill": "Valide jusqu'au",
         "continue": "Continuer",
         "save": "Enregistrer",
         "takePicture": "Prendre une photo",
         "pickFromGallery": "Choisir depuis la gallerie",
-        
+        "skip": "Passer",
         "optional": "Optionnel",
         "delete": "Supprimer",
         "months":{
@@ -96,7 +97,7 @@
     "setUpVehicule": {
         "title": "Ajoutez votre véhicule",
         "description": "Remplissez ces informations ci-dessous.",
-        "autoFill": "Les informations ci-dessous seront remplies automatiquement depuis notre base de données.",
+        "autoFill": "Les informations s’ajouteront automatiquement si disponibles, sinon vous devrez les saisir.",
         "frenchLicensePlate": "Immatriculation française",
         "licensePlate": "Numéro d'immatriculation",
         "licensePlatePlaceholder": "AA - 000 - AA",
@@ -141,8 +142,9 @@
         "description": "Ajoutez les informations de votre carte de crédit.",
         "buttonLabel": "Ajouter une carte",
         "paymentMethodsDescription": "Vos informations de paiement sont entièrement sécurisées et protégées.",
-        "savePaymentMethodsToMoveToNextStep": "Vous devez enregistrer les moyens de paiement pour passer à l'étape suivante.",
-        "cardAddedSuccessfully": "Carte ajoutée avec succès"
+        "savePaymentMethodsToMoveToNextStep": "Vous devez enregistrer un moyen de paiement pour passer à l'étape suivante ou appuyer sur Passer pour continuer.",
+        "cardAddedSuccessfully": "Carte ajoutée avec succès",
+        "saveCard": "Enregistrer cette carte"
     },
     "apiErrors": {
         "requestFailed": "Échec de la requête",
