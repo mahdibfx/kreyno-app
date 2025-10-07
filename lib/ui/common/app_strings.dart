@@ -221,6 +221,7 @@ class SetUpPermissionsStrings {
       'setUpPermissions.notificationPermissionTitle'.tr();
   static String get notificationPermissionDescription =>
       'setUpPermissions.notificationPermissionDescription'.tr();
+  static String get authorize => 'setUpPermissions.authorize'.tr();
 }
 
 class ApiErrorStrings {

@@ -152,7 +152,8 @@
         "locationPermissionTitle": "Localisation",
         "locationPermissionDescription": "Pour trouver et céder des places autour de vous.",
         "notificationPermissionTitle": "Notifications",
-        "notificationPermissionDescription": "Pour recevoir des notifications de Kreyno."
+        "notificationPermissionDescription": "Pour recevoir des notifications de Kreyno.",
+        "authorize": "Autoriser"
     },
     "apiErrors": {
         "requestFailed": "Échec de la requête",

@@ -113,4 +113,8 @@ class AppIcons {
 
   static const String closeCircle =
       '${_basePath}multiplication-sign-circle.svg';
+
+  static const String bell = '${_basePath}bell.svg';
+
+  static const String locationPin = '${_basePath}location-pin.svg';
 }
