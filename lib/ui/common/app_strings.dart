@@ -12,6 +12,7 @@ class CommonStrings {
   static String get pickFromGallery => 'common.pickFromGallery'.tr();
   static String get skip => 'common.skip'.tr();
   static String get validTill => 'common.validTill'.tr();
+  static String get complete => 'common.complete'.tr();
 
   // Months
   static String get january => 'common.months.january'.tr();
@@ -205,6 +206,21 @@ class SetUpPaymentMethodsStrings {
   static String get cardAddedSuccessfully =>
       'setUpPaymentMethods.cardAddedSuccessfully'.tr();
   static String get saveCard => 'setUpPaymentMethods.saveCard'.tr();
+}
+
+class SetUpPermissionsStrings {
+  const SetUpPermissionsStrings._();
+
+  static String get title => 'setUpPermissions.title'.tr();
+  static String get description => 'setUpPermissions.description'.tr();
+  static String get locationPermissionTitle =>
+      'setUpPermissions.locationPermissionTitle'.tr();
+  static String get locationPermissionDescription =>
+      'setUpPermissions.locationPermissionDescription'.tr();
+  static String get notificationPermissionTitle =>
+      'setUpPermissions.notificationPermissionTitle'.tr();
+  static String get notificationPermissionDescription =>
+      'setUpPermissions.notificationPermissionDescription'.tr();
 }
 
 class ApiErrorStrings {

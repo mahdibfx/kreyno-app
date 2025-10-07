@@ -8,6 +8,7 @@
         "skip": "Passer",
         "optional": "Optionnel",
         "delete": "Supprimer",
+        "complete": "Terminer",
         "months":{
             "january": "Janvier",
             "february": "Février",
@@ -144,6 +145,14 @@
         "savePaymentMethodsToMoveToNextStep": "Vous devez enregistrer un moyen de paiement pour passer à l'étape suivante ou appuyer sur Passer pour continuer.",
         "cardAddedSuccessfully": "Carte ajoutée avec succès",
         "saveCard": "Enregistrer cette carte"
+    },
+    "setUpPermissions": {
+        "title": "Autorisez Kreyno à fonctionner pleinement",
+        "description": "Ces accès sont nécessaires pour faire fonctionner l’app et améliorer votre expérience.",
+        "locationPermissionTitle": "Localisation",
+        "locationPermissionDescription": "Pour trouver et céder des places autour de vous.",
+        "notificationPermissionTitle": "Notifications",
+        "notificationPermissionDescription": "Pour recevoir des notifications de Kreyno."
     },
     "apiErrors": {
         "requestFailed": "Échec de la requête",

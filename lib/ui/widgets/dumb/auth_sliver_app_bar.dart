@@ -9,7 +9,7 @@ import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 
 class AuthSliverAppBar extends StatelessWidget {
-  final String title;
+  final String? title;
   final String? description;
   final VoidCallback onBackPressed;
   final VoidCallback? onSkipPressed;
@@ -22,22 +22,34 @@ class AuthSliverAppBar extends StatelessWidget {
     this.onSkipPressed,
   });
 
+  const AuthSliverAppBar.noText({
+    super.key,
+    required this.onBackPressed,
+    this.onSkipPressed,
+  }) : title = null,
+       description = null;
+
   @override
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
-      delegate: AuthAppBarDelegate(
-        title: title,
-        description: description,
-        onBackPressed: onBackPressed,
-        onSkipPressed: onSkipPressed,
-      ),
+      delegate: title != null
+          ? AuthAppBarDelegate(
+              title: title,
+              description: description,
+              onBackPressed: onBackPressed,
+              onSkipPressed: onSkipPressed,
+            )
+          : AuthAppBarDelegate.noText(
+              onBackPressed: onBackPressed,
+              onSkipPressed: onSkipPressed,
+            ),
       pinned: true,
     );
   }
 }
 
 class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
-  final String title;
+  final String? title;
   final String? description;
   final VoidCallback onBackPressed;
   final VoidCallback? onSkipPressed;
@@ -48,6 +60,10 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
     required this.onBackPressed,
     this.onSkipPressed,
   });
+
+  AuthAppBarDelegate.noText({required this.onBackPressed, this.onSkipPressed})
+    : title = null,
+      description = null;
 
   @override
   Widget build(
@@ -109,25 +125,26 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
                   HGap(AppSpacing.px32),
               ],
             ),
-            AnimatedOpacity(
-              opacity: opacity,
-              duration: Duration.zero,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                spacing: AppSpacing.px4,
-                children: [
-                  CustomText.largeTitle(title, color: AppColors.mainKre),
-                  if (description != null)
-                    CustomText.smallParagraphMedium(
-                      description!,
-                      color: AppColors.textKre,
-                      maxLines: 2,
-                    ),
-                ],
+            if (title != null)
+              AnimatedOpacity(
+                opacity: opacity,
+                duration: Duration.zero,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  spacing: AppSpacing.px4,
+                  children: [
+                    CustomText.largeTitle(title!, color: AppColors.mainKre),
+                    if (description != null)
+                      CustomText.smallParagraphMedium(
+                        description!,
+                        color: AppColors.textKre,
+                        maxLines: 2,
+                      ),
+                  ],
+                ),
               ),
-            ),
           ],
         ),
       ),
@@ -135,7 +152,9 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  double get maxExtent => (description != null ? 10 : 9) * AppSpacing.px20;
+  double get maxExtent => title != null
+      ? ((description != null ? 10 : 9) * AppSpacing.px20)
+      : 110 * AppSpacing.px1;
 
   @override
   double get minExtent => 110 * AppSpacing.px1;

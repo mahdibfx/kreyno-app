@@ -8,6 +8,7 @@
         "skip": "Skip",
         "optional": "Optional",
         "delete": "Delete",
+        "complete": "Complete",
         "months": {
             "january": "January",
             "february": "February",
@@ -55,7 +56,6 @@
         "phoneNumber": "Phone number",
         "phoneNumberPlaceholder": "Enter your phone number",
         "buttonLabel": "Sign In"
-       
     },
     "countryCodePicker": {
         "title": "Choose your country",
@@ -144,6 +144,14 @@
         "savePaymentMethodsToMoveToNextStep": "You need to save the payment methods to move to the next step.",
         "cardAddedSuccessfully": "Card added successfully",
         "saveCard": "Save this card"
+    },
+    "setUpPermissions": {
+        "title": "Allow Kreyno to function fully",
+        "description": "These accesses are necessary to make the app work and improve your experience.",
+        "locationPermissionTitle": "Location",
+        "locationPermissionDescription": "To find and give up spots around you.",
+        "notificationPermissionTitle": "Notifications",
+        "notificationPermissionDescription": "To receive notifications from Kreyno."
     },
     "apiErrors": {
         "requestFailed": "Request failed",
