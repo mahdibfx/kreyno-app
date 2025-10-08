@@ -73,6 +73,7 @@ class PermissionItem extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
+                spacing: AppSpacing.px4,
                 children: [
                   Flexible(
                     child: CustomText.smallParagraphMedium(
@@ -81,18 +82,32 @@ class PermissionItem extends StatelessWidget {
                       maxLines: 4,
                     ),
                   ),
-                  Flexible(
-                    child: CustomText.labelMedium(
-                      SetUpPermissionsStrings.authorize,
+                  if (isGranted)
+                    Icon(
+                      Icons.check_circle,
+                      size: AppSpacing.px20,
                       color: AppColors.greenKre,
-                      textDecoration: TextDecoration.underline,
-                      textDecorationColor: AppColors.greenKre,
-                      maxLines: 4,
+                    )
+                  else
+                    Flexible(
+                      child: GestureDetector(
+                        onTap: onAuthorizeTapped,
+                        child: CustomText.labelMedium(
+                          SetUpPermissionsStrings.authorize,
+                          color: AppColors.greenKre,
+                          textDecoration: TextDecoration.underline,
+                          textDecorationColor: AppColors.greenKre,
+                          maxLines: 4,
+                        ),
+                      ),
                     ),
-                  ),
                 ],
               ),
-              CustomText.labelMedium(description, color: AppColors.textKre),
+              CustomText.labelMedium(
+                description,
+                color: AppColors.textKre,
+                maxLines: 4,
+              ),
             ],
           ),
         ),

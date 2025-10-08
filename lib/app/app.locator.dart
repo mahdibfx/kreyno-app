@@ -18,6 +18,7 @@ import '../services/cars_service.dart';
 import '../services/device_service.dart';
 import '../services/media_service.dart';
 import '../services/onboarding_service.dart';
+import '../services/permissions_service.dart';
 import '../services/picked_language_service.dart';
 import '../services/shared_prefs_service.dart';
 import '../services/stripe_service.dart';
@@ -51,4 +52,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => CarsService());
   locator.registerLazySingleton(() => MediaService());
   locator.registerLazySingleton(() => StripeService());
+  locator.registerLazySingleton(() => PermissionsService());
 }

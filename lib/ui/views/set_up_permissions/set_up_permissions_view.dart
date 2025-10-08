@@ -13,6 +13,7 @@ import 'package:stacked/stacked.dart';
 
 import 'set_up_permissions_viewmodel.dart';
 
+// TODO: Add a lifecycle manager to handle the app lifecycle state change
 class SetUpPermissionsView extends StackedView<SetUpPermissionsViewModel> {
   const SetUpPermissionsView({Key? key}) : super(key: key);
 
@@ -108,6 +109,13 @@ class SetUpPermissionsView extends StackedView<SetUpPermissionsViewModel> {
         ),
       ),
     );
+  }
+
+  @override
+  void onViewModelReady(SetUpPermissionsViewModel viewModel) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await viewModel.initializePermissions();
+    });
   }
 
   @override

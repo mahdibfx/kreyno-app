@@ -50,5 +50,17 @@
 			<string>en</string>
 			<string>fr</string>
 		</array>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>Need location when in use</string>
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+		<string>Always and when in use!</string>
+		<key>NSLocationUsageDescription</key>
+		<string>Older devices need location.</string>
+		<key>NSLocationAlwaysUsageDescription</key>
+		<string>Can I have location always?</string>
+		<key>NSCameraUsageDescription</key>
+		<string>camera</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>photos</string>
 	</dict>
 </plist>

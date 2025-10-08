@@ -4,6 +4,7 @@ import 'package:kreyno/services/cars_service.dart';
 import 'package:kreyno/services/device_service.dart';
 import 'package:kreyno/services/media_service.dart';
 import 'package:kreyno/services/onboarding_service.dart';
+import 'package:kreyno/services/permissions_service.dart';
 import 'package:kreyno/services/picked_language_service.dart';
 import 'package:kreyno/services/shared_prefs_service.dart';
 import 'package:kreyno/services/stripe_service.dart';
@@ -80,7 +81,6 @@ import 'package:kreyno/ui/dialogs/destructive/destructive_dialog.dart';
     MaterialRoute(page: CashoutView),
     MaterialRoute(page: EditVehiculeView),
     MaterialRoute(page: SetUpLanguageView),
-    // @stacked-route
     MaterialRoute(page: MyStationementsView),
     MaterialRoute(page: KreyonoPortfolioView),
     MaterialRoute(page: CheckoutMoneyView),
@@ -102,6 +102,7 @@ import 'package:kreyno/ui/dialogs/destructive/destructive_dialog.dart';
     LazySingleton(classType: CarsService),
     LazySingleton(classType: MediaService),
     LazySingleton(classType: StripeService),
+    LazySingleton(classType: PermissionsService),
     // @stacked-service
   ],
   bottomsheets: [
