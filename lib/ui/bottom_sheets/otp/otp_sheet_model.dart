@@ -138,7 +138,13 @@ class OtpSheetModel extends BaseViewModel {
             _logger.e('Error setting authenticated user', error: error);
           },
           (_) async {
-            await _navigationService.clearStackAndShow(Routes.homeView);
+            if (authResponse.user.hasVehicle) {
+              await _navigationService.clearStackAndShow(Routes.homeView);
+            } else {
+              await _navigationService.clearStackAndShow(
+                Routes.setUpVehiculeView,
+              );
+            }
           },
         );
       },

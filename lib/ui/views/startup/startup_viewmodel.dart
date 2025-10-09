@@ -19,15 +19,27 @@ class StartupViewModel extends BaseViewModel {
   final _userService = locator<UserService>();
 
   Future runStartupLogic() async {
-    // Show splash screen for minimum duration
-    await Future.delayed(const Duration(seconds: 3));
+    await _showSplashScreen();
 
-    final isLanguageSelected = await _checkLanguageSelection();
-    if (!isLanguageSelected) {
+    if (!await _checkLanguageSelection()) {
       await _navigationService.replaceWithSetUpLanguageView();
       return;
     }
 
+    final (isAuthenticated, currentStepResult) = await _getAppState();
+
+    if (isAuthenticated) {
+      _prefetchUserProfile();
+    }
+
+    await _navigateBasedOnState(isAuthenticated, currentStepResult);
+  }
+
+  Future<void> _showSplashScreen() async {
+    await Future.delayed(const Duration(seconds: 3));
+  }
+
+  Future<(bool, Either<String, OnboardingStep?>)> _getAppState() async {
     final results = await Future.wait([
       _authService.getAccessToken(),
       _onboardingService.getCurrentStep(),
@@ -37,11 +49,7 @@ class StartupViewModel extends BaseViewModel {
     final currentStepResult = results[1] as Either<String, OnboardingStep?>;
     final isAuthenticated = accessToken != null && accessToken.isNotEmpty;
 
-    if (isAuthenticated) {
-      _prefetchUserProfile();
-    }
-
-    await _navigateBasedOnState(isAuthenticated, currentStepResult);
+    return (isAuthenticated, currentStepResult);
   }
 
   Future<bool> _checkLanguageSelection() async {
@@ -66,23 +74,35 @@ class StartupViewModel extends BaseViewModel {
     await currentStepResult.match(
       (error) async {
         _logger.w('Error reading onboarding state: $error');
-        await _navigateToDefaultScreen(isAuthenticated);
+        await _navigationService.replaceWithOnboardingView();
       },
       (currentStep) async {
         if (currentStep == null) {
-          await _navigateToDefaultScreen(isAuthenticated);
+          await _navigationService.replaceWithOnboardingView();
         } else {
-          await _resumeOnboarding(currentStep);
+          await _resumeOnboarding(currentStep, isAuthenticated);
         }
       },
     );
   }
 
-  Future<void> _navigateToDefaultScreen(bool isAuthenticated) async {
+  Future<void> _handleAuthenticationStep(bool isAuthenticated) async {
     if (isAuthenticated) {
+      _logger.i('User authenticated, navigating to home');
       await _navigationService.replaceWithHomeView();
     } else {
-      await _navigationService.replaceWithOnboardingView();
+      _logger.i('User not authenticated, navigating to sign in');
+      await _navigationService.replaceWithSigninView();
+    }
+  }
+
+  Future<void> _handleVehicleStep(bool isAuthenticated) async {
+    if (isAuthenticated) {
+      _logger.i('User authenticated, navigating to set up vehicle');
+      await _navigationService.replaceWithSetUpVehiculeView();
+    } else {
+      _logger.i('User not authenticated, navigating to sign in');
+      await _navigationService.replaceWithSigninView();
     }
   }
 
@@ -95,15 +115,18 @@ class StartupViewModel extends BaseViewModel {
     });
   }
 
-  Future<void> _resumeOnboarding(OnboardingStep step) async {
+  Future<void> _resumeOnboarding(
+    OnboardingStep step,
+    bool isAuthenticated,
+  ) async {
     _logger.i('Resuming onboarding from step: $step');
 
     switch (step) {
       case OnboardingStep.authentication:
-        await _navigationService.replaceWithSigninView();
+        await _handleAuthenticationStep(isAuthenticated);
         break;
       case OnboardingStep.vehicle:
-        await _navigationService.replaceWithSetUpVehiculeView();
+        await _handleVehicleStep(isAuthenticated);
         break;
       case OnboardingStep.completed:
         await _navigationService.replaceWithHomeView();

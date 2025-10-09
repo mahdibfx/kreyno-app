@@ -16,6 +16,9 @@ abstract class User with _$User {
     @JsonKey(name: "address") String? address,
     @JsonKey(name: "birth_date") required DateTime birthDate,
     @JsonKey(name: "gender") required Gender gender,
+    @JsonKey(name: "has_car") required bool hasVehicle,
+    @JsonKey(name: "has_open_parking_place") required bool isSelling,
+    @JsonKey(name: "has_open_reservation") required bool isBuying,
     @JsonKey(name: "avatar", fromJson: _avatarFromJson, toJson: _avatarToJson)
     Avatar? avatar,
   }) = _User;

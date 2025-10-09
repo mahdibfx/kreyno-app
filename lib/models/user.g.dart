@@ -16,6 +16,9 @@ _User _$UserFromJson(Map<String, dynamic> json) => _User(
   address: json['address'] as String?,
   birthDate: DateTime.parse(json['birth_date'] as String),
   gender: $enumDecode(_$GenderEnumMap, json['gender']),
+  hasVehicle: json['has_car'] as bool,
+  isSelling: json['has_open_parking_place'] as bool,
+  isBuying: json['has_open_reservation'] as bool,
   avatar: _avatarFromJson(json['avatar']),
 );
 
@@ -29,6 +32,9 @@ Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
   'address': ?instance.address,
   'birth_date': instance.birthDate.toIso8601String(),
   'gender': _$GenderEnumMap[instance.gender]!,
+  'has_car': instance.hasVehicle,
+  'has_open_parking_place': instance.isSelling,
+  'has_open_reservation': instance.isBuying,
   'avatar': ?_avatarToJson(instance.avatar),
 };
 
