@@ -141,8 +141,18 @@ class OtpSheetModel extends BaseViewModel {
             if (authResponse.user.hasVehicle) {
               await _navigationService.clearStackAndShow(Routes.homeView);
             } else {
-              await _navigationService.clearStackAndShow(
-                Routes.setUpVehiculeView,
+              final onboardingResult = await _onboardingService.setCurrentStep(
+                OnboardingStep.vehicle,
+              );
+              await onboardingResult.match(
+                (error) async {
+                  _logger.e('Error initializing onboarding flow', error: error);
+                },
+                (_) async {
+                  await _navigationService.clearStackAndShow(
+                    Routes.setUpVehiculeView,
+                  );
+                },
               );
             }
           },
