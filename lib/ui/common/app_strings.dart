@@ -250,3 +250,17 @@ class ApiErrorStrings {
   static String get gatewayTimeout => 'apiErrors.gatewayTimeout'.tr();
   static String get serverError => 'apiErrors.serverError'.tr();
 }
+
+class ProfileSheetStrings {
+  const ProfileSheetStrings._();
+
+  static String get accountSettings => 'profileSheet.accountSettings'.tr();
+  static String get myVehicles => 'profileSheet.myVehicles'.tr();
+  static String get myParkingSpots => 'profileSheet.myParkingSpots'.tr();
+  static String get walletKreyno => 'profileSheet.walletKreyno'.tr();
+  static String get paymentMethods => 'profileSheet.paymentMethods'.tr();
+  static String get conditionsOfUse => 'profileSheet.conditionsOfUse'.tr();
+  static String get privacyPolicy => 'profileSheet.privacyPolicy'.tr();
+  static String get logout => 'profileSheet.logout'.tr();
+  static String get changeLanguage => 'profileSheet.changeLanguage'.tr();
+}

@@ -117,4 +117,6 @@ class AppIcons {
   static const String bell = '${_basePath}bell.svg';
 
   static const String locationPin = '${_basePath}location-pin.svg';
+
+  static const String languageCircle = '${_basePath}language-circle.svg';
 }

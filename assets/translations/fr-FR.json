@@ -176,5 +176,16 @@
         "serviceUnavailable": "Service indisponible. Veuillez réessayer plus tard.",
         "gatewayTimeout": "Délai de passerelle dépassé. Le serveur a pris trop de temps à répondre.",
         "serverError": "Erreur serveur détectée. Veuillez réessayer plus tard."
+    },
+    "profileSheet": {
+        "accountSettings": "Paramètres du compte",
+        "myVehicles": "Mes véhicules",
+        "myParkingSpots": "Mes stationnements",
+        "walletKreyno": "Portefeuille Kreyno",
+        "paymentMethods": "Moyens de paiement",
+        "conditionsOfUse": "Conditions d'utilisation",
+        "privacyPolicy": "Politique de confidentialité",
+        "changeLanguage": "Changer de langue",
+        "logout": "Déconnexion"
     }
 }
