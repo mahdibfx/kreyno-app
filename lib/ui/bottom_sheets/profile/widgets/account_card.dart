@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/ui/bottom_sheets/profile/profile_sheet_model.dart';
 import 'package:kreyno/ui/bottom_sheets/profile/widgets/profile_settings_list_tile.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
@@ -57,7 +59,13 @@ class AccountCard extends ViewModelWidget<ProfileSheetModel> {
               ),
               child: Column(
                 children: [
-                  CircleAvatar(radius: 25 * AppSpacing.px1),
+                  CircleAvatar(
+                    radius: 25 * AppSpacing.px1,
+                    backgroundImage: CachedNetworkImageProvider(
+                      viewModel.currentUser.avatar?.url ??
+                          AppConstants.defaultAvatarUrl,
+                    ),
+                  ),
                   VGap(AppSpacing.px8),
                   CustomText.title(
                     '${viewModel.currentUser.firstName} ${viewModel.currentUser.lastName}',

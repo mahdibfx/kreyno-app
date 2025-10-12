@@ -29,7 +29,7 @@ class StartupViewModel extends BaseViewModel {
     final (isAuthenticated, currentStepResult) = await _getAppState();
 
     if (isAuthenticated) {
-      _prefetchUserProfile();
+      await _prefetchUserProfile();
     }
 
     await _navigateBasedOnState(isAuthenticated, currentStepResult);
@@ -106,13 +106,12 @@ class StartupViewModel extends BaseViewModel {
     }
   }
 
-  void _prefetchUserProfile() {
-    _userService.getProfile().then((profileResult) {
-      profileResult.match(
-        (error) => _logger.e('Error prefetching profile: $error'),
-        (_) => _logger.i('Profile prefetched successfully'),
-      );
-    });
+  Future<void> _prefetchUserProfile() async {
+    final profileResult = await _userService.getProfile();
+    profileResult.match(
+      (error) => _logger.e('Error prefetching profile: $error'),
+      (_) => _logger.i('Profile prefetched successfully'),
+    );
   }
 
   Future<void> _resumeOnboarding(
