@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
-import 'package:kreyno/ui/views/home/widgets/seller/let_my_place_bottombar.dart';
+import 'package:kreyno/ui/views/home/widgets/home_bottom_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_divider.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
@@ -79,7 +79,7 @@ class ClientCanceledOrder extends StatelessWidget {
             ),
           ),
         ),
-        const LetMyPlaceBottombar(),
+        const HomeBottomBar(),
       ],
     );
   }

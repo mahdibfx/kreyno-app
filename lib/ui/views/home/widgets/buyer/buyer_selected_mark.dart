@@ -5,7 +5,7 @@ import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/views/home/widgets/common/car_top_bar.dart';
-import 'package:kreyno/ui/views/home/widgets/seller/let_my_place_bottombar.dart';
+import 'package:kreyno/ui/views/home/widgets/home_bottom_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
@@ -118,7 +118,7 @@ class BuyerSelectedMark extends StatelessWidget {
                 ),
               ),
               VGap(AppSpacing.px8 * 2),
-              const LetMyPlaceBottombar(),
+              const HomeBottomBar(),
             ],
           ),
         ),

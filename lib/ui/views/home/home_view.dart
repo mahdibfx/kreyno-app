@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
-import 'package:kreyno/ui/views/home/widgets/seller/let_my_place_bottombar.dart';
+import 'package:kreyno/ui/views/home/widgets/home_bottom_bar.dart';
 import 'package:stacked/stacked.dart';
 
 import 'home_viewmodel.dart';

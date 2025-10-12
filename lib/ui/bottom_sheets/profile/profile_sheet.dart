@@ -30,10 +30,19 @@ class ProfileSheet extends StackedView<ProfileSheetModel> {
     Widget? child,
   ) {
     return BottomSheetLayout(
+      padding: EdgeInsets.only(
+        top: 10 * AppSpacing.px1,
+        bottom: AppSpacing.px12,
+        left: AppSpacing.px16,
+        right: AppSpacing.px16,
+      ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: double.infinity,
+            width: double.maxFinite,
             padding: const EdgeInsets.all(2),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),

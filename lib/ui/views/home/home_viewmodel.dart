@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.dialogs.dart';
 import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/ui/views/home/widgets/buyer/buyer_confirm_arrive.dart';
 import 'package:kreyno/ui/views/home/widgets/buyer/buyer_selected_mark.dart';
 import 'package:kreyno/ui/views/home/widgets/buyer/buyer_waiting_confirmation.dart';
@@ -15,6 +18,9 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends BaseViewModel {
+  final _logger = getLogger('HomeViewModel');
+  final _bottomSheetService = locator<BottomSheetService>();
+
   final Set<Marker> markers = {};
   bool isThisMarkerMine = false;
   bool markSelected = false;
@@ -93,5 +99,15 @@ class HomeViewModel extends BaseViewModel {
   cancelRefuseOrder() {
     showRefuseReasonForm = false;
     notifyListeners();
+  }
+
+  // My Code Start Here @ayoub_CH
+
+  void showProfileSheet() async {
+    await _bottomSheetService.showCustomSheet(
+      variant: BottomSheetType.profile,
+      barrierColor: Colors.black.withValues(alpha: .1),
+      isScrollControlled: true,
+    );
   }
 }

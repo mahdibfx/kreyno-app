@@ -4,7 +4,7 @@ import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/views/home/home_view.dart';
 import 'package:kreyno/ui/views/home/home_viewmodel.dart';
-import 'package:kreyno/ui/views/home/widgets/seller/let_my_place_bottombar.dart';
+import 'package:kreyno/ui/views/home/widgets/home_bottom_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
@@ -106,7 +106,7 @@ class MyMarkerDetails extends ViewModelWidget<HomeViewModel> {
             ),
           ),
         ),
-        const LetMyPlaceBottombar(isButtonDisabled: true),
+        const HomeBottomBar(isButtonDisabled: true),
       ],
     );
   }
