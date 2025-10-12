@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/bottom_sheets/profile/widgets/account_card.dart';
 import 'package:kreyno/ui/bottom_sheets/profile/widgets/logout_button.dart';
-import 'package:kreyno/ui/bottom_sheets/profile/widgets/profile_list_tile.dart';
 import 'package:kreyno/ui/bottom_sheets/profile/widgets/profile_list_tile_list.dart';
-import 'package:kreyno/ui/common/app_colors.dart';
-import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
-import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/widgets/dumb/bottom_sheet_layout.dart';
-import 'package:kreyno/ui/widgets/dumb/custom_divider.dart';
-import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
-import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 
 import 'package:stacked/stacked.dart';

@@ -174,5 +174,16 @@
         "serviceUnavailable": "Service unavailable. Please try again later.",
         "gatewayTimeout": "Gateway timeout. The server took too long to respond.",
         "serverError": "Server error occurred. Please try again later."
+    },
+    "profileSheet": {
+        "accountSettings": "Account settings",
+        "myVehicles": "My vehicles",
+        "myParkingSpots": "My parking spots",
+        "walletKreyno": "Kreyno wallet",
+        "paymentMethods": "Payment methods",
+        "conditionsOfUse": "Terms of use",
+        "privacyPolicy": "Privacy policy",
+        "changeLanguage": "Change language",
+        "logout": "Logout"
     }
 }
