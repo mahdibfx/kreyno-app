@@ -57,6 +57,7 @@ import 'package:kreyno/ui/views/set_up_language/set_up_language_view.dart';
 import 'package:kreyno/ui/bottom_sheets/country_code_picker/country_code_picker_sheet.dart';
 import 'package:kreyno/ui/dialogs/destructive/destructive_dialog.dart';
 import 'package:kreyno/ui/views/account_settings/account_settings_view.dart';
+import 'package:kreyno/ui/views/change_language/change_language_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -87,6 +88,7 @@ import 'package:kreyno/ui/views/account_settings/account_settings_view.dart';
     MaterialRoute(page: CheckoutMoneyView),
     MaterialRoute(page: AddVehiculeView),
     MaterialRoute(page: AccountSettingsView),
+    MaterialRoute(page: ChangeLanguageView),
     // @stacked-route
   ],
   dependencies: [
