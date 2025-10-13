@@ -84,9 +84,7 @@ class AccountCard extends ViewModelWidget<ProfileSheetModel> {
                     size: CustomButtonSize.small,
                     expandToFullWidth: false,
                     text: ProfileSheetStrings.accountSettings,
-                    onPressed: () {
-                      // TODO: Implement account settings
-                    },
+                    onPressed: viewModel.onAccountSettingsTapped,
                   ),
                 ],
               ),
@@ -112,9 +110,7 @@ class AccountCard extends ViewModelWidget<ProfileSheetModel> {
                       size: AppSpacing.px20,
                     ),
                     iconBgColor: AppColors.greenKre,
-                    onTap: () {
-                      // TODO: Implement my vehicles
-                    },
+                    onTap: viewModel.onMyVehiclesTapped,
                   ),
                   ProfileSettingsListTile(
                     title: ProfileSheetStrings.myParkingSpots,
@@ -124,9 +120,7 @@ class AccountCard extends ViewModelWidget<ProfileSheetModel> {
                       size: AppSpacing.px20,
                     ),
                     iconBgColor: const Color(0xFF0075E2),
-                    onTap: () {
-                      // TODO: Implement my parking spots
-                    },
+                    onTap: viewModel.onMyParkingSpotsTapped,
                   ),
                 ],
               ),

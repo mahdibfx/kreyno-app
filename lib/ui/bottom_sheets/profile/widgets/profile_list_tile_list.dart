@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/bottom_sheets/profile/profile_sheet_model.dart';
-import 'package:kreyno/ui/bottom_sheets/profile/widgets/profile_list_tile.dart';
+import 'package:kreyno/ui/widgets/dumb/profile_list_tile.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
@@ -23,7 +23,7 @@ class ProfileListTileList extends ViewModelWidget<ProfileSheetModel> {
           child: ProfileListTile(
             leadingIconPath: AppIcons.wallet,
             title: ProfileSheetStrings.walletKreyno,
-            onTap: () {},
+            onTap: viewModel.onWalletKreynoTapped,
           ),
         ),
         VGap(AppSpacing.px4),
@@ -32,7 +32,7 @@ class ProfileListTileList extends ViewModelWidget<ProfileSheetModel> {
           child: ProfileListTile(
             leadingIconPath: AppIcons.creditCard,
             title: ProfileSheetStrings.paymentMethods,
-            onTap: () {},
+            onTap: viewModel.onPaymentMethodsTapped,
           ),
         ),
         VGap(AppSpacing.px8),
@@ -43,7 +43,7 @@ class ProfileListTileList extends ViewModelWidget<ProfileSheetModel> {
           child: ProfileListTile(
             leadingIconPath: AppIcons.agreement,
             title: ProfileSheetStrings.conditionsOfUse,
-            onTap: () {},
+            onTap: viewModel.onConditionsOfUseTapped,
           ),
         ),
         VGap(AppSpacing.px4),
@@ -52,7 +52,7 @@ class ProfileListTileList extends ViewModelWidget<ProfileSheetModel> {
           child: ProfileListTile(
             leadingIconPath: AppIcons.documentText,
             title: ProfileSheetStrings.privacyPolicy,
-            onTap: () {},
+            onTap: viewModel.onPrivacyPolicyTapped,
           ),
         ),
         VGap(AppSpacing.px4),
@@ -61,7 +61,7 @@ class ProfileListTileList extends ViewModelWidget<ProfileSheetModel> {
           child: ProfileListTile.withTrailingIcon(
             leadingIconPath: AppIcons.languageCircle,
             title: ProfileSheetStrings.changeLanguage,
-            onTap: () {},
+            onTap: viewModel.onChangeLanguageTapped,
           ),
         ),
       ],

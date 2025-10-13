@@ -41,7 +41,7 @@ class LogoutButton extends ViewModelWidget<ProfileSheetModel> {
           ),
         ],
       ),
-      onPressed: () {},
+      onPressed: viewModel.onLogoutTapped,
     );
   }
 }

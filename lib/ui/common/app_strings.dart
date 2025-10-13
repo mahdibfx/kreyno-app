@@ -264,3 +264,32 @@ class ProfileSheetStrings {
   static String get logout => 'profileSheet.logout'.tr();
   static String get changeLanguage => 'profileSheet.changeLanguage'.tr();
 }
+
+class LogoutConfirmationStrings {
+  const LogoutConfirmationStrings._();
+
+  static String get title => 'logoutConfirmation.title'.tr();
+  static String get description => 'logoutConfirmation.description'.tr();
+  static String get buttonLabel => 'logoutConfirmation.buttonLabel'.tr();
+}
+
+class DeleteAccountConfirmationStrings {
+  const DeleteAccountConfirmationStrings._();
+
+  static String get title => 'deleteAccountConfirmation.title'.tr();
+  static String get description => 'deleteAccountConfirmation.description'.tr();
+  static String get buttonLabel => 'deleteAccountConfirmation.buttonLabel'.tr();
+}
+
+class AccountSettingsStrings {
+  const AccountSettingsStrings._();
+
+  static String get title => 'accountSettings.title'.tr();
+  static String get personalInformation =>
+      'accountSettings.personalInformation'.tr();
+  static String get changePhoneNumber =>
+      'accountSettings.changePhoneNumber'.tr();
+  static String get deleteAccount => 'accountSettings.deleteAccount'.tr();
+  static String get youJoinedKreynoOn =>
+      'accountSettings.youJoinedKreynoOn'.tr();
+}

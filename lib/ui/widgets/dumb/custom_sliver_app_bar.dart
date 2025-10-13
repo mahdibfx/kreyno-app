@@ -2,68 +2,73 @@ import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
-import 'package:kreyno/ui/common/app_strings.dart';
-import 'package:kreyno/ui/widgets/dumb/app_logo.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 
-class AuthSliverAppBar extends StatelessWidget {
-  final String? title;
+class CustomSliverAppBar extends StatelessWidget {
+  final String title;
   final String? description;
+  final Widget? trailingWidget;
   final VoidCallback onBackPressed;
-  final VoidCallback? onSkipPressed;
+  final bool isShrunk;
 
-  const AuthSliverAppBar({
+  const CustomSliverAppBar({
     super.key,
     required this.title,
     this.description,
+    this.trailingWidget,
     required this.onBackPressed,
-    this.onSkipPressed,
-  });
+  }) : isShrunk = false;
 
-  const AuthSliverAppBar.noText({
+  const CustomSliverAppBar.shrunk({
     super.key,
+    required this.title,
+    this.trailingWidget,
     required this.onBackPressed,
-    this.onSkipPressed,
-  }) : title = null,
+  }) : isShrunk = true,
        description = null;
 
   @override
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
-      delegate: title != null
-          ? AuthAppBarDelegate(
+      delegate: isShrunk
+          ? CustomSliverAppBarDelegate.shrunk(
+              title: title,
+              trailingWidget: trailingWidget,
+              onBackPressed: onBackPressed,
+            )
+          : CustomSliverAppBarDelegate(
               title: title,
               description: description,
+              trailingWidget: trailingWidget,
               onBackPressed: onBackPressed,
-              onSkipPressed: onSkipPressed,
-            )
-          : AuthAppBarDelegate.noText(
-              onBackPressed: onBackPressed,
-              onSkipPressed: onSkipPressed,
             ),
       pinned: true,
     );
   }
 }
 
-class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
-  final String? title;
+class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  final String title;
   final String? description;
+  final Widget? trailingWidget;
   final VoidCallback onBackPressed;
-  final VoidCallback? onSkipPressed;
+  final bool isShrunk;
 
-  AuthAppBarDelegate({
+  CustomSliverAppBarDelegate({
     required this.title,
     this.description,
+    required this.trailingWidget,
     required this.onBackPressed,
-    this.onSkipPressed,
-  });
+  }) : isShrunk = false;
 
-  AuthAppBarDelegate.noText({required this.onBackPressed, this.onSkipPressed})
-    : title = null,
-      description = null;
+  CustomSliverAppBarDelegate.shrunk({
+    required this.title,
+    required this.trailingWidget,
+    required this.onBackPressed,
+  }) : isShrunk = true,
+       description = null;
 
   @override
   Widget build(
@@ -72,7 +77,8 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
     bool overlapsContent,
   ) {
     final shrinkRatio = shrinkOffset / (maxExtent - minExtent);
-    final opacity = (.9 - shrinkRatio).clamp(0.0, 1.0);
+    final largeTitleOpacity = (.9 - shrinkRatio).clamp(0.0, 1.0);
+    final smallTitleOpacity = (shrinkRatio - 0.1).clamp(0.0, 1.0);
 
     return Container(
       color: AppColors.white,
@@ -104,30 +110,18 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
                     ),
                   ),
                 ),
-                Transform.scale(
-                  scale: .8,
-                  alignment: Alignment.center,
-                  child: const AppLogo(animated: false),
+                AnimatedOpacity(
+                  opacity: smallTitleOpacity,
+                  duration: Duration.zero,
+                  child: CustomText.paragraph(title, color: AppColors.mainKre),
                 ),
-                if (onSkipPressed != null)
-                  GestureDetector(
-                    onTap: onSkipPressed,
-                    child: Container(
-                      color: Colors.transparent,
-                      padding: EdgeInsets.symmetric(vertical: AppSpacing.px8),
-                      child: CustomText.smallParagraphBold(
-                        CommonStrings.skip,
-                        color: AppColors.greenKre,
-                      ),
-                    ),
-                  )
-                else
-                  HGap(AppSpacing.px32),
+
+                trailingWidget ?? HGap(AppSpacing.px32),
               ],
             ),
-            if (title != null)
+            if (!isShrunk)
               AnimatedOpacity(
-                opacity: opacity,
+                opacity: largeTitleOpacity,
                 duration: Duration.zero,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -135,7 +129,7 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
                   mainAxisAlignment: MainAxisAlignment.start,
                   spacing: AppSpacing.px4,
                   children: [
-                    CustomText.largeTitle(title!, color: AppColors.mainKre),
+                    CustomText.largeTitle(title, color: AppColors.mainKre),
                     if (description != null)
                       CustomText.smallParagraphMedium(
                         description!,
@@ -152,7 +146,7 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  double get maxExtent => title != null
+  double get maxExtent => !isShrunk
       ? ((description != null ? 10 : 9) * AppSpacing.px20)
       : 112 * AppSpacing.px1;
 
@@ -161,6 +155,6 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return true;
+    return !isShrunk;
   }
 }

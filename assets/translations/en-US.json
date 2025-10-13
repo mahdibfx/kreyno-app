@@ -185,5 +185,22 @@
         "privacyPolicy": "Privacy policy",
         "changeLanguage": "Change language",
         "logout": "Logout"
+    },
+    "logoutConfirmation": {
+        "title": "Log out of Kreyno?",
+        "description": "Are you sure you want to log out? You can always log back in at any time.",
+        "buttonLabel": "Yes, log out"
+    },
+    "accountSettings": {
+        "title": "Account settings",
+        "personalInformation": "Personal information",
+        "changePhoneNumber": "Change my number",
+        "deleteAccount": "Delete my account",
+        "youJoinedKreynoOn": "You joined Kreyno on"
+    },
+    "deleteAccountConfirmation": {
+        "title": "Are you sure?",
+        "description": "By deleting your account, all your information, including your parking spots, payments and added vehicles, will be permanently erased from Kreyno. This action is irreversible.",
+        "buttonLabel": "Yes, delete account"
     }
 }

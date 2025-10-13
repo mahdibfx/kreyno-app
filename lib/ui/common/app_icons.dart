@@ -119,4 +119,6 @@ class AppIcons {
   static const String locationPin = '${_basePath}location-pin.svg';
 
   static const String languageCircle = '${_basePath}language-circle.svg';
+
+  static const String personalCard = '${_basePath}personal-card.svg';
 }

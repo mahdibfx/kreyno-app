@@ -187,5 +187,22 @@
         "privacyPolicy": "Politique de confidentialité",
         "changeLanguage": "Changer de langue",
         "logout": "Déconnexion"
+    },
+    "logoutConfirmation": {
+        "title": "Se déconnecter de Kreyno ?",
+        "description": "Êtes-vous sûr de vouloir vous déconnecter ? Vous pourrez toujours vous reconnecter à tout moment.",
+        "buttonLabel": "Oui, se déconnecter"
+    },
+    "accountSettings": {
+        "title": "Paramètres du compte",
+        "personalInformation": "Informations personnelles",
+        "changePhoneNumber": "Changer mon numéro",
+        "deleteAccount": "Supprimer mon compte",
+        "youJoinedKreynoOn": "Vous avez rejoint Kreyno le"
+    },
+    "deleteAccountConfirmation": {
+        "title": "Êtes-vous sûr ?",
+        "description": "En supprimant votre compte, toutes vos informations, y compris vos parkings, paiements et véhicules ajoutés, seront définitivement effacées de Kreyno.\n\nCette action est irréversible.",
+        "buttonLabel": "Oui, supprimer le compte"
     }
 }
