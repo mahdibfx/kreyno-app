@@ -80,7 +80,7 @@ class ChangeLanguageView extends StackedView<ChangeLanguageViewModel> {
                     children: [
                       CustomButton.filled(
                         text: CommonStrings.save,
-                        size: CustomButtonSize.large,
+                        size: CustomButtonSize.small,
                         onPressed: viewModel.hasLanguageChanged
                             ? viewModel.onSavePressed
                             : null,

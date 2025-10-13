@@ -23,7 +23,9 @@ class ProfileSheetModel extends ReactiveViewModel {
   }
 
   void onMyVehiclesTapped() async {
-    // TODO: Implement my vehicles
+    await _navigationService.navigateToMyVehiculesView(
+      preventDuplicates: false,
+    );
   }
 
   void onMyParkingSpotsTapped() async {
@@ -50,7 +52,6 @@ class ProfileSheetModel extends ReactiveViewModel {
     final languageChanged = await _navigationService
         .navigateToChangeLanguageView(preventDuplicates: false);
 
-    // If the language was changed, rebuild the UI
     if (languageChanged ?? false) {
       rebuildUi();
     }
