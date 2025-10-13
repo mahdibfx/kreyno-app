@@ -54,4 +54,9 @@ class AppImages {
   static const String frenchFlag = '${_basePath}french_lang_flag.png';
 
   static const String loaderGif = '${_basePath}loader.gif';
+
+  static const String placeholderCarImage = '${_basePath}placeholder_image.jpg';
+
+  static const String errorStateIllustration =
+      '${_basePath}error_state_illustration.png';
 }

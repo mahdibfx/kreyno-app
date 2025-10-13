@@ -13,6 +13,8 @@ class CommonStrings {
   static String get skip => 'common.skip'.tr();
   static String get validTill => 'common.validTill'.tr();
   static String get complete => 'common.complete'.tr();
+  static String get error => 'common.error'.tr();
+  static String get retry => 'common.retry'.tr();
 
   // Months
   static String get january => 'common.months.january'.tr();
@@ -292,4 +294,17 @@ class AccountSettingsStrings {
   static String get deleteAccount => 'accountSettings.deleteAccount'.tr();
   static String get youJoinedKreynoOn =>
       'accountSettings.youJoinedKreynoOn'.tr();
+}
+
+class MyVehiculesStrings {
+  const MyVehiculesStrings._();
+
+  static String get title => 'myVehicules.title'.tr();
+  static String get addNewVehicle => 'myVehicules.addNewVehicle'.tr();
+  static String get color => 'myVehicules.color'.tr();
+  static String get co2Emission => 'myVehicules.co2Emission'.tr();
+  static String get principalVehicle => 'myVehicules.principalVehicle'.tr();
+  static String get setAsPrincipal => 'myVehicules.setAsPrincipal'.tr();
+  static String get edit => 'myVehicules.edit'.tr();
+  static String get delete => 'myVehicules.delete'.tr();
 }

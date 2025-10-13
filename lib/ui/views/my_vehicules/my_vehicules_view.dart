@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:kreyno/app/app.locator.dart';
-import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
-import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
+import 'package:kreyno/ui/common/responsive_sizer.dart';
+import 'package:kreyno/ui/views/my_vehicules/widgets/my_vehicle_card.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
-import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
-import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
-import 'package:kreyno/ui/widgets/dumb/gap.dart';
-import 'package:kreyno/ui/widgets/dumb/my_app_bar.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_loading_indicator.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_sliver_app_bar.dart';
+import 'package:kreyno/ui/widgets/dumb/error_state_widget.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 import 'my_vehicules_viewmodel.dart';
 
@@ -24,221 +22,89 @@ class MyVehiculesView extends StackedView<MyVehiculesViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: AppSpacing.px24,
-          vertical: AppSpacing.px20,
-        ).copyWith(bottom: AppSpacing.px32),
-        child: CustomButton.filled(
-          onPressed: () {
-            locator<NavigationService>().navigateToAddVehiculeView();
-          },
-          text: "Ajouter un nouveau véhicule",
-        ),
-      ),
       backgroundColor: Colors.white,
-      appBar: MyAppBar(title: 'Mes véhicules'),
-      body: CustomScrollView(
-        slivers: [
-          SliverList.builder(
-            itemCount: 20,
-            itemBuilder: (context, index) => const MyVehiculeCard(),
+      body: Stack(
+        children: [
+          CustomScrollView(
+            slivers: [
+              CustomSliverAppBar.shrunk(
+                title: MyVehiculesStrings.title,
+                onBackPressed: viewModel.goBack,
+              ),
+              SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
+                sliver: viewModel.isBusy
+                    ? SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 70.dh,
+                          child: Center(
+                            child: CustomLoadingIndicator(
+                              size: 64 * AppSpacing.px1,
+                            ),
+                          ),
+                        ),
+                      )
+                    : viewModel.hasError
+                    ? SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 70.dh,
+                          child: Center(
+                            child: ErrorStateWidget(
+                              errorMessage: viewModel.modelError ?? '',
+                              onRetryTapped: viewModel.getAllCars,
+                            ),
+                          ),
+                        ),
+                      )
+                    : viewModel.cars.isEmpty
+                    ? const SliverToBoxAdapter(child: SizedBox.shrink())
+                    : SliverList.builder(
+                        itemCount: viewModel.cars.length,
+                        itemBuilder: (context, index) {
+                          final car = viewModel.cars[index];
+                          return MyVehicleCard(
+                            vehicle: car,
+                            onEdit: () {},
+                            onDelete: () {},
+                            onSetAsPrincipal: () {},
+                          );
+                        },
+                      ),
+              ),
+            ],
           ),
+          if (!viewModel.hasError)
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                color: AppColors.white,
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppSpacing.px16,
+                  vertical: AppSpacing.px20,
+                ),
+                child: CustomButton.filled(
+                  text: MyVehiculesStrings.addNewVehicle,
+                  isDisabled: viewModel.isBusy,
+                  onPressed: () {},
+                ),
+              ),
+            ),
         ],
       ),
     );
+  }
+
+  @override
+  void onViewModelReady(MyVehiculesViewModel viewModel) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await viewModel.getAllCars();
+    });
+    super.onViewModelReady(viewModel);
   }
 
   @override
   MyVehiculesViewModel viewModelBuilder(BuildContext context) =>
       MyVehiculesViewModel();
-}
-
-class MyVehiculeCard extends StatelessWidget {
-  const MyVehiculeCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: AppSpacing.px1 * 280,
-      child: Stack(
-        fit: StackFit.loose,
-        children: [
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
-            height: AppSpacing.px1 * 150,
-            decoration: BoxDecoration(
-              border: Border.fromBorderSide(
-                BorderSide(
-                  color: const Color(0xFFA8A8A8).withValues(alpha: .25),
-                ),
-              ),
-              borderRadius: BorderRadius.circular(12),
-              image: const DecorationImage(
-                image: NetworkImage("https://picsum.photos/600/600"),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Positioned(
-            top: AppSpacing.px1 * 130,
-            right: 0,
-            left: 0,
-            child: Container(
-              padding: EdgeInsets.all(AppSpacing.px12),
-              margin: EdgeInsets.symmetric(horizontal: AppSpacing.px1 * 34),
-              height: AppSpacing.px1 * 130,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    offset: const Offset(0, 1),
-                    blurRadius: 4,
-                    spreadRadius: 0,
-                    color: Colors.black.withValues(alpha: .05),
-                  ),
-                ],
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.fromBorderSide(
-                  BorderSide(
-                    color: const Color(0xFFA8A8A8).withValues(alpha: .25),
-                  ),
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CustomText.paragraph("Mercedes Class G63"),
-                      GestureDetector(
-                        onTapDown: (details) {
-                          showMenu<String>(
-                            color: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            context: context,
-                            position: RelativeRect.fromRect(
-                              details.globalPosition &
-                                  const Size(
-                                    40.0,
-                                    40.0,
-                                  ), // Position of the menu
-                              Offset.zero &
-                                  MediaQuery.of(context).size, // Bounding box
-                            ),
-                            items: <PopupMenuEntry<String>>[
-                              PopupMenuItem<String>(
-                                value: 'p',
-                                child: Row(
-                                  children: [
-                                    const CustomIcon(
-                                      iconPath: AppIcons.crownMinimalistic,
-                                    ),
-                                    HGap(AppSpacing.px8),
-                                    const CustomText.smallParagraphMedium(
-                                      'Choisir comme principale',
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              PopupMenuItem<String>(
-                                value: 'm',
-                                child: Row(
-                                  children: [
-                                    const CustomIcon(iconPath: AppIcons.edit),
-                                    HGap(AppSpacing.px8),
-                                    const CustomText.smallParagraphMedium(
-                                      'Modifier',
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              PopupMenuItem<String>(
-                                value: 's',
-                                child: Row(
-                                  children: [
-                                    const CustomIcon(iconPath: AppIcons.delete),
-                                    HGap(AppSpacing.px8),
-                                    const CustomText.smallParagraphMedium(
-                                      'Supprimer',
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ).then((String? result) {
-                            if (result != null) {
-                              print('Selected: $result');
-                            }
-                          });
-                        },
-                        child: const Icon(Icons.more_horiz_outlined),
-                      ),
-                    ],
-                  ),
-                  VGap(AppSpacing.px4),
-                  const CustomText.smallParagraphMedium(
-                    "DD-123-DD",
-                    color: AppColors.textKre,
-                  ),
-                  VGap(AppSpacing.px8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const CustomText.labelMedium(
-                            "Couleur",
-                            color: AppColors.textKre,
-                          ),
-                          VGap(AppSpacing.px4),
-                          Row(
-                            children: [
-                              CustomIcon(
-                                iconPath: AppIcons.colors,
-                                size: AppSpacing.px16,
-                                color: AppColors.greenKre,
-                              ),
-                              SizedBox(width: AppSpacing.px4),
-                              const CustomText.smallParagraphMedium("Noire"),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const CustomText.labelMedium(
-                            "Émissions de CO₂ (g/km)",
-                            color: AppColors.textKre,
-                          ),
-                          VGap(AppSpacing.px4),
-                          Row(
-                            children: [
-                              CustomIcon(
-                                iconPath: AppIcons.ecoPower,
-                                size: AppSpacing.px16,
-                                color: AppColors.greenKre,
-                              ),
-                              SizedBox(width: AppSpacing.px4),
-                              const CustomText.smallParagraphMedium("60 ∼ 80"),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }

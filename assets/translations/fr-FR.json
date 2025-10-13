@@ -1,6 +1,8 @@
 {
     "common": {
         "validTill": "Valide jusqu'au",
+        "error": "Un problème est survenu",
+        "retry": "Réessayer",
         "continue": "Continuer",
         "save": "Enregistrer",
         "takePicture": "Prendre une photo",
@@ -204,5 +206,15 @@
         "title": "Êtes-vous sûr ?",
         "description": "En supprimant votre compte, toutes vos informations, y compris vos parkings, paiements et véhicules ajoutés, seront définitivement effacées de Kreyno.\n\nCette action est irréversible.",
         "buttonLabel": "Oui, supprimer le compte"
+    },
+    "myVehicules": {
+        "title": "Mes véhicules",
+        "addNewVehicle": "Ajouter un nouveau véhicule",
+        "color": "Couleur",
+        "co2Emission": "Émissions de CO₂ (g/km)",
+       "principalVehicle": "Principal",
+       "setAsPrincipal": "Choisir comme principal",
+       "edit": "Modifier",
+       "delete": "Supprimer"
     }
 }

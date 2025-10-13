@@ -20,4 +20,8 @@ class CarsService {
   Future<Either<String, Car>> createCar(CreateCarDto carDto) {
     return _apiCarService.createCar(carDto).toEither();
   }
+
+  Future<Either<String, List<Car>>> getAllCars() {
+    return _apiCarService.getAllCars().toEither();
+  }
 }
