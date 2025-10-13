@@ -36,7 +36,7 @@ class ChangeLanguageViewModel extends BaseViewModel {
   }
 
   void goBack() {
-    _navigationService.back();
+    _navigationService.back(result: true);
   }
 
   void onSavePressed() async {
@@ -64,7 +64,6 @@ class ChangeLanguageViewModel extends BaseViewModel {
           _logger.i('Language saved successfully');
         },
       );
-
       await Future.delayed(const Duration(milliseconds: 500));
     } finally {
       setBusy(false);

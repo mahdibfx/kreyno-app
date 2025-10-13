@@ -47,9 +47,13 @@ class ProfileSheetModel extends ReactiveViewModel {
   }
 
   void onChangeLanguageTapped() async {
-    await _navigationService.navigateToChangeLanguageView(
-      preventDuplicates: false,
-    );
+    final languageChanged = await _navigationService
+        .navigateToChangeLanguageView(preventDuplicates: false);
+
+    // If the language was changed, rebuild the UI
+    if (languageChanged ?? false) {
+      rebuildUi();
+    }
   }
 
   void onLogoutTapped() async {
