@@ -308,3 +308,13 @@ class MyVehiculesStrings {
   static String get edit => 'myVehicules.edit'.tr();
   static String get delete => 'myVehicules.delete'.tr();
 }
+
+class AddVehiculeStrings {
+  const AddVehiculeStrings._();
+
+  static String get title => 'addVehicule.title'.tr();
+  static String get description => 'addVehicule.description'.tr();
+  static String get saveButton => 'addVehicule.saveButton'.tr();
+  static String get vehicleSavedSuccessfully =>
+      'addVehicule.vehicleSavedSuccessfully'.tr();
+}

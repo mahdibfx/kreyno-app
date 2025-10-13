@@ -216,5 +216,11 @@
        "setAsPrincipal": "Choisir comme principal",
        "edit": "Modifier",
        "delete": "Supprimer"
+    },
+    "addVehicule": {
+        "title": "Nouveau véhicule",
+        "description": "Remplissez ces informations ci-dessous.",
+        "saveButton": "Enregistrer le véhicule",
+        "vehicleSavedSuccessfully": "Véhicule sauvegardé avec succès"
     }
 }

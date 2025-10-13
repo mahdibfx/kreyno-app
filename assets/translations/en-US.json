@@ -202,5 +202,11 @@
         "title": "Are you sure?",
         "description": "By deleting your account, all your information, including your parking spots, payments and added vehicles, will be permanently erased from Kreyno. This action is irreversible.",
         "buttonLabel": "Yes, delete account"
+    },
+    "addVehicule": {
+        "title": "New vehicle",
+        "description": "Fill in the information below.",
+        "saveButton": "Save vehicle",
+        "vehicleSavedSuccessfully": "Vehicle saved successfully"
     }
 }

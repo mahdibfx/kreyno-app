@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:kreyno/extensions/string_extensions.dart';
 import 'package:kreyno/models/car.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
@@ -27,7 +28,7 @@ class MyVehicleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: AppSpacing.px1 * 280,
+      height: AppSpacing.px1 * 274,
       child: Stack(
         fit: StackFit.loose,
         clipBehavior: Clip.none,
@@ -201,7 +202,7 @@ class MyVehicleCard extends StatelessWidget {
                   ),
                   VGap(AppSpacing.px4),
                   CustomText.smallParagraphMedium(
-                    vehicle.registrationNumber,
+                    vehicle.registrationNumber.formatRegistrationNumber(),
                     color: AppColors.textKre,
                   ),
                   VGap(AppSpacing.px8),

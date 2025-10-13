@@ -1,5 +1,6 @@
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
+import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/models/car.dart';
 import 'package:kreyno/services/cars_service.dart';
 import 'package:stacked/stacked.dart';
@@ -40,5 +41,12 @@ class MyVehiculesViewModel extends BaseViewModel {
 
   void goBack() {
     _navigationService.back();
+  }
+
+  void onAddNewVehicleTapped() async {
+    final result = await _navigationService.navigateToAddVehiculeView();
+    if (result != null && result is Car) {
+      setCars([...cars, result]);
+    }
   }
 }

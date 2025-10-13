@@ -8,6 +8,7 @@ import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_loading_indicator.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_sliver_app_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/error_state_widget.dart';
+import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:stacked/stacked.dart';
 
 import 'my_vehicules_viewmodel.dart';
@@ -32,7 +33,12 @@ class MyVehiculesView extends StackedView<MyVehiculesViewModel> {
                 onBackPressed: viewModel.goBack,
               ),
               SliverPadding(
-                padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
+                padding: EdgeInsets.only(
+                  left: AppSpacing.px16,
+                  right: AppSpacing.px16,
+                  bottom: 4 * AppSpacing.px20,
+                  top: AppSpacing.px12,
+                ),
                 sliver: viewModel.isBusy
                     ? SliverToBoxAdapter(
                         child: SizedBox(
@@ -87,7 +93,7 @@ class MyVehiculesView extends StackedView<MyVehiculesViewModel> {
                 child: CustomButton.filled(
                   text: MyVehiculesStrings.addNewVehicle,
                   isDisabled: viewModel.isBusy,
-                  onPressed: () {},
+                  onPressed: viewModel.onAddNewVehicleTapped,
                 ),
               ),
             ),
