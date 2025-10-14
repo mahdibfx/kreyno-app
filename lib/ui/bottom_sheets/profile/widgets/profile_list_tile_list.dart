@@ -20,7 +20,7 @@ class ProfileListTileList extends ViewModelWidget<ProfileSheetModel> {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
-          child: ProfileListTile(
+          child: ProfileListTile.withTrailingIcon(
             leadingIconPath: AppIcons.wallet,
             title: ProfileSheetStrings.walletKreyno,
             onTap: viewModel.onWalletKreynoTapped,
@@ -29,7 +29,7 @@ class ProfileListTileList extends ViewModelWidget<ProfileSheetModel> {
         VGap(AppSpacing.px4),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
-          child: ProfileListTile(
+          child: ProfileListTile.withTrailingIcon(
             leadingIconPath: AppIcons.creditCard,
             title: ProfileSheetStrings.paymentMethods,
             onTap: viewModel.onPaymentMethodsTapped,
@@ -40,18 +40,20 @@ class ProfileListTileList extends ViewModelWidget<ProfileSheetModel> {
         VGap(AppSpacing.px8),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
-          child: ProfileListTile(
+          child: ProfileListTile.withTrailingIcon(
             leadingIconPath: AppIcons.agreement,
             title: ProfileSheetStrings.conditionsOfUse,
             onTap: viewModel.onConditionsOfUseTapped,
+            trailingIconPath: AppIcons.arrowRightUp,
           ),
         ),
         VGap(AppSpacing.px4),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
-          child: ProfileListTile(
+          child: ProfileListTile.withTrailingIcon(
             leadingIconPath: AppIcons.documentText,
             title: ProfileSheetStrings.privacyPolicy,
+            trailingIconPath: AppIcons.arrowRightUp,
             onTap: viewModel.onPrivacyPolicyTapped,
           ),
         ),

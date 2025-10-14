@@ -121,4 +121,6 @@ class AppIcons {
   static const String languageCircle = '${_basePath}language-circle.svg';
 
   static const String personalCard = '${_basePath}personal-card.svg';
+
+  static const String arrowRightUp = '${_basePath}arrow_right_up.svg';
 }

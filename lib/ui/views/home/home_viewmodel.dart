@@ -20,7 +20,7 @@ import 'package:kreyno/ui/views/home/widgets/seller/tracking_course_widget.dart'
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class HomeViewModel extends BaseViewModel {
+class HomeViewModel extends ReactiveViewModel {
   final _logger = getLogger('HomeViewModel');
   final _bottomSheetService = locator<BottomSheetService>();
   final _userService = locator<UserService>();

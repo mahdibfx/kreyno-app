@@ -4,7 +4,6 @@ import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
-import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_sliver_app_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
@@ -46,12 +45,12 @@ class AccountSettingsView extends StackedView<AccountSettingsViewModel> {
                     ProfileListTile.withTrailingIcon(
                       leadingIconPath: AppIcons.personalCard,
                       title: AccountSettingsStrings.personalInformation,
-                      onTap: () {},
+                      onTap: viewModel.onPersonalInformationTapped,
                     ),
                     ProfileListTile.withTrailingIcon(
                       leadingIconPath: AppIcons.phone,
                       title: AccountSettingsStrings.changePhoneNumber,
-                      onTap: () {},
+                      onTap: viewModel.onChangePhoneNumberTapped,
                     ),
                   ],
                 ),
@@ -80,7 +79,7 @@ class AccountSettingsView extends StackedView<AccountSettingsViewModel> {
                         foregroundColor: AppColors.white,
                       ),
                       CustomText.labelMedium(
-                        '${AccountSettingsStrings.youJoinedKreynoOn} 12 / 12 / 2024',
+                        '${AccountSettingsStrings.youJoinedKreynoOn} ${viewModel.currentUser.createdAt.toLocal().day.toString().padLeft(2, '0')} - ${viewModel.currentUser.createdAt.toLocal().month.toString().padLeft(2, '0')} - ${viewModel.currentUser.createdAt.toLocal().year}',
                         color: AppColors.textKre,
                         textAlign: TextAlign.center,
                         maxLines: 2,

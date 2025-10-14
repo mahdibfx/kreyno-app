@@ -20,7 +20,9 @@ abstract class User with _$User {
     @JsonKey(name: "has_open_parking_place") required bool isSelling,
     @JsonKey(name: "has_open_reservation") required bool isBuying,
     @JsonKey(name: "avatar", fromJson: _avatarFromJson, toJson: _avatarToJson)
+    @JsonKey(name: "avatar")
     Avatar? avatar,
+    @JsonKey(name: "created_at") required DateTime createdAt,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

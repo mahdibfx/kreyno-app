@@ -21,6 +21,10 @@ class CarsService {
     return _apiCarService.createCar(carDto).toEither();
   }
 
+  Future<Either<String, Car>> setDefaultCar(int carId) {
+    return _apiCarService.setDefaultCar(carId).toEither();
+  }
+
   Future<Either<String, List<Car>>> getAllCars() {
     return _apiCarService.getAllCars().toEither();
   }

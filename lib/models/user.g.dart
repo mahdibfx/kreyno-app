@@ -20,6 +20,7 @@ _User _$UserFromJson(Map<String, dynamic> json) => _User(
   isSelling: json['has_open_parking_place'] as bool,
   isBuying: json['has_open_reservation'] as bool,
   avatar: _avatarFromJson(json['avatar']),
+  createdAt: DateTime.parse(json['created_at'] as String),
 );
 
 Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
@@ -36,6 +37,7 @@ Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
   'has_open_parking_place': instance.isSelling,
   'has_open_reservation': instance.isBuying,
   'avatar': ?_avatarToJson(instance.avatar),
+  'created_at': instance.createdAt.toIso8601String(),
 };
 
 const _$GenderEnumMap = {Gender.male: 1, Gender.female: 2};
