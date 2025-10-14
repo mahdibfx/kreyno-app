@@ -50,7 +50,7 @@ class MyVehicleCard extends StatelessWidget {
                   color: const Color(0xFFF5F5F5),
                   image: DecorationImage(
                     image: vehicle.image != null
-                        ? CachedNetworkImageProvider(vehicle.image!)
+                        ? CachedNetworkImageProvider(vehicle.image!.url)
                         : const AssetImage(AppImages.placeholderCarImage),
                     fit: BoxFit.cover,
                   ),
