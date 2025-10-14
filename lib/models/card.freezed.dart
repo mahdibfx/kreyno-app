@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Card {
 
-@JsonKey(name: "id") String get id;@JsonKey(name: "brand") String get brand;@JsonKey(name: "last_four") String get last4;@JsonKey(name: "exp_month") int get expMonth;@JsonKey(name: "exp_year") int get expYear;
+@JsonKey(name: "id") String get id;@JsonKey(name: "brand") String get brand;@JsonKey(name: "last_four") String get last4;@JsonKey(name: "exp_month") int get expMonth;@JsonKey(name: "exp_year") int get expYear;@JsonKey(name: "is_default") bool get isDefault;
 /// Create a copy of Card
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $CardCopyWith<Card> get copyWith => _$CardCopyWithImpl<Card>(this as Card, _$ide
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Card&&(identical(other.id, id) || other.id == id)&&(identical(other.brand, brand) || other.brand == brand)&&(identical(other.last4, last4) || other.last4 == last4)&&(identical(other.expMonth, expMonth) || other.expMonth == expMonth)&&(identical(other.expYear, expYear) || other.expYear == expYear));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Card&&(identical(other.id, id) || other.id == id)&&(identical(other.brand, brand) || other.brand == brand)&&(identical(other.last4, last4) || other.last4 == last4)&&(identical(other.expMonth, expMonth) || other.expMonth == expMonth)&&(identical(other.expYear, expYear) || other.expYear == expYear)&&(identical(other.isDefault, isDefault) || other.isDefault == isDefault));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,brand,last4,expMonth,expYear);
+int get hashCode => Object.hash(runtimeType,id,brand,last4,expMonth,expYear,isDefault);
 
 @override
 String toString() {
-  return 'Card(id: $id, brand: $brand, last4: $last4, expMonth: $expMonth, expYear: $expYear)';
+  return 'Card(id: $id, brand: $brand, last4: $last4, expMonth: $expMonth, expYear: $expYear, isDefault: $isDefault)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $CardCopyWith<$Res>  {
   factory $CardCopyWith(Card value, $Res Function(Card) _then) = _$CardCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "id") String id,@JsonKey(name: "brand") String brand,@JsonKey(name: "last_four") String last4,@JsonKey(name: "exp_month") int expMonth,@JsonKey(name: "exp_year") int expYear
+@JsonKey(name: "id") String id,@JsonKey(name: "brand") String brand,@JsonKey(name: "last_four") String last4,@JsonKey(name: "exp_month") int expMonth,@JsonKey(name: "exp_year") int expYear,@JsonKey(name: "is_default") bool isDefault
 });
 
 
@@ -65,14 +65,15 @@ class _$CardCopyWithImpl<$Res>
 
 /// Create a copy of Card
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? brand = null,Object? last4 = null,Object? expMonth = null,Object? expYear = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? brand = null,Object? last4 = null,Object? expMonth = null,Object? expYear = null,Object? isDefault = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,brand: null == brand ? _self.brand : brand // ignore: cast_nullable_to_non_nullable
 as String,last4: null == last4 ? _self.last4 : last4 // ignore: cast_nullable_to_non_nullable
 as String,expMonth: null == expMonth ? _self.expMonth : expMonth // ignore: cast_nullable_to_non_nullable
 as int,expYear: null == expYear ? _self.expYear : expYear // ignore: cast_nullable_to_non_nullable
-as int,
+as int,isDefault: null == isDefault ? _self.isDefault : isDefault // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -157,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String id, @JsonKey(name: "brand")  String brand, @JsonKey(name: "last_four")  String last4, @JsonKey(name: "exp_month")  int expMonth, @JsonKey(name: "exp_year")  int expYear)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String id, @JsonKey(name: "brand")  String brand, @JsonKey(name: "last_four")  String last4, @JsonKey(name: "exp_month")  int expMonth, @JsonKey(name: "exp_year")  int expYear, @JsonKey(name: "is_default")  bool isDefault)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Card() when $default != null:
-return $default(_that.id,_that.brand,_that.last4,_that.expMonth,_that.expYear);case _:
+return $default(_that.id,_that.brand,_that.last4,_that.expMonth,_that.expYear,_that.isDefault);case _:
   return orElse();
 
 }
@@ -178,10 +179,10 @@ return $default(_that.id,_that.brand,_that.last4,_that.expMonth,_that.expYear);c
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String id, @JsonKey(name: "brand")  String brand, @JsonKey(name: "last_four")  String last4, @JsonKey(name: "exp_month")  int expMonth, @JsonKey(name: "exp_year")  int expYear)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String id, @JsonKey(name: "brand")  String brand, @JsonKey(name: "last_four")  String last4, @JsonKey(name: "exp_month")  int expMonth, @JsonKey(name: "exp_year")  int expYear, @JsonKey(name: "is_default")  bool isDefault)  $default,) {final _that = this;
 switch (_that) {
 case _Card():
-return $default(_that.id,_that.brand,_that.last4,_that.expMonth,_that.expYear);case _:
+return $default(_that.id,_that.brand,_that.last4,_that.expMonth,_that.expYear,_that.isDefault);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -198,10 +199,10 @@ return $default(_that.id,_that.brand,_that.last4,_that.expMonth,_that.expYear);c
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id")  String id, @JsonKey(name: "brand")  String brand, @JsonKey(name: "last_four")  String last4, @JsonKey(name: "exp_month")  int expMonth, @JsonKey(name: "exp_year")  int expYear)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id")  String id, @JsonKey(name: "brand")  String brand, @JsonKey(name: "last_four")  String last4, @JsonKey(name: "exp_month")  int expMonth, @JsonKey(name: "exp_year")  int expYear, @JsonKey(name: "is_default")  bool isDefault)?  $default,) {final _that = this;
 switch (_that) {
 case _Card() when $default != null:
-return $default(_that.id,_that.brand,_that.last4,_that.expMonth,_that.expYear);case _:
+return $default(_that.id,_that.brand,_that.last4,_that.expMonth,_that.expYear,_that.isDefault);case _:
   return null;
 
 }
@@ -213,7 +214,7 @@ return $default(_that.id,_that.brand,_that.last4,_that.expMonth,_that.expYear);c
 @JsonSerializable()
 
 class _Card implements Card {
-  const _Card({@JsonKey(name: "id") required this.id, @JsonKey(name: "brand") required this.brand, @JsonKey(name: "last_four") required this.last4, @JsonKey(name: "exp_month") required this.expMonth, @JsonKey(name: "exp_year") required this.expYear});
+  const _Card({@JsonKey(name: "id") required this.id, @JsonKey(name: "brand") required this.brand, @JsonKey(name: "last_four") required this.last4, @JsonKey(name: "exp_month") required this.expMonth, @JsonKey(name: "exp_year") required this.expYear, @JsonKey(name: "is_default") this.isDefault = false});
   factory _Card.fromJson(Map<String, dynamic> json) => _$CardFromJson(json);
 
 @override@JsonKey(name: "id") final  String id;
@@ -221,6 +222,7 @@ class _Card implements Card {
 @override@JsonKey(name: "last_four") final  String last4;
 @override@JsonKey(name: "exp_month") final  int expMonth;
 @override@JsonKey(name: "exp_year") final  int expYear;
+@override@JsonKey(name: "is_default") final  bool isDefault;
 
 /// Create a copy of Card
 /// with the given fields replaced by the non-null parameter values.
@@ -235,16 +237,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Card&&(identical(other.id, id) || other.id == id)&&(identical(other.brand, brand) || other.brand == brand)&&(identical(other.last4, last4) || other.last4 == last4)&&(identical(other.expMonth, expMonth) || other.expMonth == expMonth)&&(identical(other.expYear, expYear) || other.expYear == expYear));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Card&&(identical(other.id, id) || other.id == id)&&(identical(other.brand, brand) || other.brand == brand)&&(identical(other.last4, last4) || other.last4 == last4)&&(identical(other.expMonth, expMonth) || other.expMonth == expMonth)&&(identical(other.expYear, expYear) || other.expYear == expYear)&&(identical(other.isDefault, isDefault) || other.isDefault == isDefault));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,brand,last4,expMonth,expYear);
+int get hashCode => Object.hash(runtimeType,id,brand,last4,expMonth,expYear,isDefault);
 
 @override
 String toString() {
-  return 'Card(id: $id, brand: $brand, last4: $last4, expMonth: $expMonth, expYear: $expYear)';
+  return 'Card(id: $id, brand: $brand, last4: $last4, expMonth: $expMonth, expYear: $expYear, isDefault: $isDefault)';
 }
 
 
@@ -255,7 +257,7 @@ abstract mixin class _$CardCopyWith<$Res> implements $CardCopyWith<$Res> {
   factory _$CardCopyWith(_Card value, $Res Function(_Card) _then) = __$CardCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "id") String id,@JsonKey(name: "brand") String brand,@JsonKey(name: "last_four") String last4,@JsonKey(name: "exp_month") int expMonth,@JsonKey(name: "exp_year") int expYear
+@JsonKey(name: "id") String id,@JsonKey(name: "brand") String brand,@JsonKey(name: "last_four") String last4,@JsonKey(name: "exp_month") int expMonth,@JsonKey(name: "exp_year") int expYear,@JsonKey(name: "is_default") bool isDefault
 });
 
 
@@ -272,14 +274,15 @@ class __$CardCopyWithImpl<$Res>
 
 /// Create a copy of Card
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? brand = null,Object? last4 = null,Object? expMonth = null,Object? expYear = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? brand = null,Object? last4 = null,Object? expMonth = null,Object? expYear = null,Object? isDefault = null,}) {
   return _then(_Card(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,brand: null == brand ? _self.brand : brand // ignore: cast_nullable_to_non_nullable
 as String,last4: null == last4 ? _self.last4 : last4 // ignore: cast_nullable_to_non_nullable
 as String,expMonth: null == expMonth ? _self.expMonth : expMonth // ignore: cast_nullable_to_non_nullable
 as int,expYear: null == expYear ? _self.expYear : expYear // ignore: cast_nullable_to_non_nullable
-as int,
+as int,isDefault: null == isDefault ? _self.isDefault : isDefault // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

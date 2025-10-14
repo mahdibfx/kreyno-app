@@ -1,6 +1,8 @@
 {
     "common": {
         "validTill": "Valid until",
+        "error": "A problem occurred",
+        "retry": "Retry",
         "continue": "Continue",
         "save": "Save",
         "takePicture": "Take a picture",
@@ -151,7 +153,8 @@
         "locationPermissionTitle": "Location",
         "locationPermissionDescription": "To find and give up spots around you.",
         "notificationPermissionTitle": "Notifications",
-        "notificationPermissionDescription": "To receive notifications from Kreyno."
+        "notificationPermissionDescription": "To receive notifications from Kreyno.",
+        "authorize": "Authorize"
     },
     "apiErrors": {
         "requestFailed": "Request failed",
@@ -223,5 +226,21 @@
         "description": "Fill in the information below.",
         "saveButton": "Save vehicle",
         "vehicleSavedSuccessfully": "Vehicle saved successfully"
+    },
+    "myPaymentMethodes": {
+        "title": "Payment methods",
+        "addNewCard": "Add a new card",
+        "defaultCard": "Default",
+        "setAsDefault": "Set as default",
+        "edit": "Edit",
+        "delete": "Delete",
+        "deleteCardDialogTitle": "Delete this card?",
+        "deleteCardDialogDescription": "This action will permanently delete the card from your account.",
+        "deleteCardDialogMainButton": "Delete",
+        "deleteCardDialogSecondaryButton": "Cancel",
+        "cardDeletedSuccessfully": "Card deleted successfully",
+        "cardSetAsDefaultSuccessfully": "Card set as default successfully",
+        "emptyStateTitle": "No cards added",
+        "emptyStateDescription": "Add a card to start using Kreyno."
     }
 }

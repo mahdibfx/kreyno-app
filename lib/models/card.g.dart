@@ -12,6 +12,7 @@ _Card _$CardFromJson(Map<String, dynamic> json) => _Card(
   last4: json['last_four'] as String,
   expMonth: (json['exp_month'] as num).toInt(),
   expYear: (json['exp_year'] as num).toInt(),
+  isDefault: json['is_default'] as bool? ?? false,
 );
 
 Map<String, dynamic> _$CardToJson(_Card instance) => <String, dynamic>{
@@ -20,4 +21,5 @@ Map<String, dynamic> _$CardToJson(_Card instance) => <String, dynamic>{
   'last_four': instance.last4,
   'exp_month': instance.expMonth,
   'exp_year': instance.expYear,
+  'is_default': instance.isDefault,
 };

@@ -319,6 +319,32 @@ class MyVehiculesStrings {
       'myVehicules.carDeletedSuccessfully'.tr();
 }
 
+class MyPaymentMethodesStrings {
+  const MyPaymentMethodesStrings._();
+
+  static String get title => 'myPaymentMethodes.title'.tr();
+  static String get addNewCard => 'myPaymentMethodes.addNewCard'.tr();
+  static String get defaultCard => 'myPaymentMethodes.defaultCard'.tr();
+  static String get setAsDefault => 'myPaymentMethodes.setAsDefault'.tr();
+  static String get edit => 'myPaymentMethodes.edit'.tr();
+  static String get delete => 'myPaymentMethodes.delete'.tr();
+  static String get deleteCardDialogTitle =>
+      'myPaymentMethodes.deleteCardDialogTitle'.tr();
+  static String get deleteCardDialogDescription =>
+      'myPaymentMethodes.deleteCardDialogDescription'.tr();
+  static String get deleteCardDialogMainButton =>
+      'myPaymentMethodes.deleteCardDialogMainButton'.tr();
+  static String get deleteCardDialogSecondaryButton =>
+      'myPaymentMethodes.deleteCardDialogSecondaryButton'.tr();
+  static String get cardDeletedSuccessfully =>
+      'myPaymentMethodes.cardDeletedSuccessfully'.tr();
+  static String get cardSetAsDefaultSuccessfully =>
+      'myPaymentMethodes.cardSetAsDefaultSuccessfully'.tr();
+  static String get emptyStateTitle => 'myPaymentMethodes.emptyStateTitle'.tr();
+  static String get emptyStateDescription =>
+      'myPaymentMethodes.emptyStateDescription'.tr();
+}
+
 class AddVehiculeStrings {
   const AddVehiculeStrings._();
 

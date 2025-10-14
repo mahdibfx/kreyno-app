@@ -58,5 +58,8 @@ class AppImages {
   static const String placeholderCarImage = '${_basePath}placeholder_image.jpg';
 
   static const String errorStateIllustration =
-      '${_basePath}error_state_illustration.png';
+      '${_basePath}error_state_illustrations.png';
+
+  static const String paymentMethodsEmptyStateIllustration =
+      '${_basePath}payment_method_empty_illustration.png';
 }

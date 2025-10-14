@@ -37,7 +37,9 @@ class ProfileSheetModel extends ReactiveViewModel {
   }
 
   void onPaymentMethodsTapped() async {
-    // TODO: Implement payment methods
+    await _navigationService.navigateToMyPaymentMethodesView(
+      preventDuplicates: false,
+    );
   }
 
   void onConditionsOfUseTapped() async {

@@ -198,7 +198,11 @@ class MyVehicleCard extends StatelessWidget {
                             }
                           });
                         },
-                        child: const Icon(Icons.more_horiz_outlined),
+                        child: Icon(
+                          Icons.more_horiz_outlined,
+                          color: const Color(0xFF141B34),
+                          size: AppSpacing.px20,
+                        ),
                       ),
                     ],
                   ),

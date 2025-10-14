@@ -227,5 +227,21 @@
         "description": "Remplissez ces informations ci-dessous.",
         "saveButton": "Enregistrer le véhicule",
         "vehicleSavedSuccessfully": "Véhicule sauvegardé avec succès"
+    },
+    "myPaymentMethodes": {
+        "title": "Moyens de paiement",
+        "addNewCard": "Ajouter une nouvelle carte",
+        "defaultCard": "Par défaut",
+        "setAsDefault": "Choisir comme principal",
+        "edit": "Modifier",
+        "delete": "Supprimer",
+        "deleteCardDialogTitle": "Supprimer cette carte ?",
+        "deleteCardDialogDescription": "Cette action supprimera définitivement la carte de votre compte.",
+        "deleteCardDialogMainButton": "Supprimer",
+        "deleteCardDialogSecondaryButton": "Annuler",
+        "cardDeletedSuccessfully": "Carte supprimée avec succès",
+        "cardSetAsDefaultSuccessfully": "Carte définie comme défaut avec succès",
+        "emptyStateTitle": "Aucune carte ajoutée",
+        "emptyStateDescription": "Ajoutez une carte pour commencer à utiliser Kreyno."
     }
 }

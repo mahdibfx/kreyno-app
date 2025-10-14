@@ -10,6 +10,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 // pagination was not implemented dues to the time constraint
+// pull to refresh was not implemented dues to the time constraint
 class MyVehiculesViewModel extends BaseViewModel {
   final _logger = getLogger('MyVehiculesViewModel');
   final _navigationService = locator<NavigationService>();
@@ -130,5 +131,9 @@ class MyVehiculesViewModel extends BaseViewModel {
     } finally {
       setActionInProgress(false);
     }
+  }
+
+  onEditCarTapped(int carId) async {
+    // TODO: Implement this
   }
 }
