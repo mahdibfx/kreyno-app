@@ -1,9 +1,11 @@
+import 'package:kreyno/app/app.dialogs.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/models/car.dart';
 import 'package:kreyno/services/cars_service.dart';
 import 'package:kreyno/services/toast_service.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -13,6 +15,7 @@ class MyVehiculesViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _carsService = locator<CarsService>();
   final _toastService = locator<ToastService>();
+  final _dialogService = locator<DialogService>();
 
   List<Car> _cars = [];
   List<Car> get cars => _cars;
@@ -92,5 +95,40 @@ class MyVehiculesViewModel extends BaseViewModel {
         );
       },
     );
+  }
+
+  void onDeleteCarTapped(int carId) async {
+    final response = await _dialogService.showCustomDialog(
+      variant: DialogType.destructive,
+      title: MyVehiculesStrings.deleteCarDialogTitle,
+      description: MyVehiculesStrings.deleteCarDialogDescription,
+      mainButtonTitle: MyVehiculesStrings.deleteCarDialogMainButton,
+      secondaryButtonTitle: MyVehiculesStrings.deleteCarDialogSecondaryButton,
+    );
+    if (response != null && response.confirmed == true) {
+      await _deleteCar(carId);
+    }
+  }
+
+  Future<void> _deleteCar(int carId) async {
+    setActionInProgress(true);
+    try {
+      final result = await _carsService.deleteCar(carId);
+      await result.match(
+        (error) async {
+          _logger.e('Error deleting car', error: error);
+          _toastService.showError(title: error, showIcon: true);
+        },
+        (carId) async {
+          setCars(cars.where((car) => car.id != carId).toList());
+          _toastService.showSuccess(
+            title: MyVehiculesStrings.carDeletedSuccessfully,
+            showIcon: true,
+          );
+        },
+      );
+    } finally {
+      setActionInProgress(false);
+    }
   }
 }

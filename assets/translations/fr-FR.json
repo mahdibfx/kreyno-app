@@ -215,7 +215,12 @@
        "principalVehicle": "Principal",
        "setAsPrincipal": "Choisir comme principal",
        "edit": "Modifier",
-       "delete": "Supprimer"
+       "delete": "Supprimer",
+       "deleteCarDialogTitle": "Supprimer ce véhicule ?",
+       "deleteCarDialogDescription": "Cette action supprimera définitivement le véhicule de votre compte.",
+       "deleteCarDialogMainButton": "Supprimer",
+       "deleteCarDialogSecondaryButton": "Annuler",
+       "carDeletedSuccessfully": "Véhicule supprimé avec succès"
     },
     "addVehicule": {
         "title": "Nouveau véhicule",

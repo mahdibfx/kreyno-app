@@ -21,6 +21,13 @@ class CarsService {
     return _apiCarService.createCar(carDto).toEither();
   }
 
+  Future<Either<String, int>> deleteCar(int carId) {
+    return _apiCarService
+        .deleteCar(carId)
+        .toEither()
+        .then((result) => result.map((response) => response.carId));
+  }
+
   Future<Either<String, Car>> setDefaultCar(int carId) {
     return _apiCarService.setDefaultCar(carId).toEither();
   }

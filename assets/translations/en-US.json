@@ -203,6 +203,21 @@
         "description": "By deleting your account, all your information, including your parking spots, payments and added vehicles, will be permanently erased from Kreyno. This action is irreversible.",
         "buttonLabel": "Yes, delete account"
     },
+    "myVehicules": {
+        "title": "My vehicles",
+        "addNewVehicle": "Add a new vehicle",
+        "color": "Color",
+        "co2Emission": "CO₂ emissions (g/km)",
+        "principalVehicle": "Principal",
+        "setAsPrincipal": "Set as principal",
+        "edit": "Edit",
+        "delete": "Delete",
+        "deleteCarDialogTitle": "Delete this vehicle?",
+        "deleteCarDialogDescription": "This action will permanently delete the vehicle from your account.",
+        "deleteCarDialogMainButton": "Delete",
+        "deleteCarDialogSecondaryButton": "Cancel",
+        "carDeletedSuccessfully": "Vehicle deleted successfully"
+    },
     "addVehicule": {
         "title": "New vehicle",
         "description": "Fill in the information below.",

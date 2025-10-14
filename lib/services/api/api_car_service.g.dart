@@ -114,12 +114,12 @@ class _ApiCarService implements ApiCarService {
   }
 
   @override
-  Future<ApiResponse<Car>> deleteCar(int id) async {
+  Future<ApiResponse<DeleteCarApiResponse>> deleteCar(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ApiResponse<Car>>(
+    final _options = _setStreamType<ApiResponse<DeleteCarApiResponse>>(
       Options(method: 'DELETE', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -130,11 +130,11 @@ class _ApiCarService implements ApiCarService {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ApiResponse<Car> _value;
+    late ApiResponse<DeleteCarApiResponse> _value;
     try {
-      _value = ApiResponse<Car>.fromJson(
+      _value = ApiResponse<DeleteCarApiResponse>.fromJson(
         _result.data!,
-        (json) => Car.fromJson(json as Map<String, dynamic>),
+        (json) => DeleteCarApiResponse.fromJson(json as Map<String, dynamic>),
       );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);

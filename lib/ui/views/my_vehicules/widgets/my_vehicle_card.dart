@@ -15,6 +15,7 @@ class MyVehicleCard extends StatelessWidget {
   final VoidCallback onEdit;
   final VoidCallback onDelete;
   final VoidCallback onSetAsPrincipal;
+  final bool canDelete;
   final Car vehicle;
 
   const MyVehicleCard({
@@ -23,6 +24,7 @@ class MyVehicleCard extends StatelessWidget {
     required this.onEdit,
     required this.onDelete,
     required this.onSetAsPrincipal,
+    required this.canDelete,
   });
 
   @override
@@ -159,9 +161,9 @@ class MyVehicleCard extends StatelessWidget {
                               PopupMenuItem<int>(
                                 value: 3,
                                 child: IgnorePointer(
-                                  ignoring: vehicle.isSelected,
+                                  ignoring: !canDelete,
                                   child: Opacity(
-                                    opacity: vehicle.isSelected ? .15 : 1.0,
+                                    opacity: !canDelete ? .15 : 1.0,
                                     child: Row(
                                       spacing: AppSpacing.px8,
                                       children: [
@@ -189,7 +191,7 @@ class MyVehicleCard extends StatelessWidget {
                                   onEdit();
                                   break;
                                 case 3:
-                                  if (vehicle.isSelected) return;
+                                  if (!canDelete) return;
                                   onDelete();
                                   break;
                               }

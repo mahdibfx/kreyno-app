@@ -307,6 +307,16 @@ class MyVehiculesStrings {
   static String get setAsPrincipal => 'myVehicules.setAsPrincipal'.tr();
   static String get edit => 'myVehicules.edit'.tr();
   static String get delete => 'myVehicules.delete'.tr();
+  static String get deleteCarDialogTitle =>
+      'myVehicules.deleteCarDialogTitle'.tr();
+  static String get deleteCarDialogDescription =>
+      'myVehicules.deleteCarDialogDescription'.tr();
+  static String get deleteCarDialogMainButton =>
+      'myVehicules.deleteCarDialogMainButton'.tr();
+  static String get deleteCarDialogSecondaryButton =>
+      'myVehicules.deleteCarDialogSecondaryButton'.tr();
+  static String get carDeletedSuccessfully =>
+      'myVehicules.carDeletedSuccessfully'.tr();
 }
 
 class AddVehiculeStrings {
