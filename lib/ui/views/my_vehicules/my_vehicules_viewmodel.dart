@@ -120,8 +120,8 @@ class MyVehiculesViewModel extends BaseViewModel {
           _logger.e('Error deleting car', error: error);
           _toastService.showError(title: error, showIcon: true);
         },
-        (carId) async {
-          setCars(cars.where((car) => car.id != carId).toList());
+        (_) async {
+          await getAllCars();
           _toastService.showSuccess(
             title: MyVehiculesStrings.carDeletedSuccessfully,
             showIcon: true,
