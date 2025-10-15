@@ -162,7 +162,12 @@ class MyPaymentMethodesViewModel extends BaseViewModel {
             title: MyPaymentMethodesStrings.cardDeletedSuccessfully,
             showIcon: true,
           );
-          await getAllCards();
+
+          if (cards.length <= 1) {
+            setCards([]);
+          } else {
+            await getAllCards();
+          }
         },
       );
     } finally {
