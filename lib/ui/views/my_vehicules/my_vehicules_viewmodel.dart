@@ -10,7 +10,6 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 // pagination was not implemented dues to the time constraint
-// pull to refresh was not implemented dues to the time constraint
 class MyVehiculesViewModel extends BaseViewModel {
   final _logger = getLogger('MyVehiculesViewModel');
   final _navigationService = locator<NavigationService>();
@@ -51,6 +50,24 @@ class MyVehiculesViewModel extends BaseViewModel {
     } finally {
       setBusy(false);
     }
+  }
+
+  Future<void> onRefresh() async {
+    setError(null);
+    final allCarsResponse = await _carsService.getAllCars();
+    await allCarsResponse.match(
+      (error) async {
+        _logger.e('Error refreshing cars', error: error);
+        _toastService.showError(
+          title: 'Unable to refresh',
+          description: error,
+          showIcon: true,
+        );
+      },
+      (cars) async {
+        setCars(cars);
+      },
+    );
   }
 
   void goBack() {

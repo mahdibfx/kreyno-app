@@ -9,7 +9,6 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 // pagination was not implemented dues to the time constraint
-// pull to refresh was not implemented dues to the time constraint
 class MyPaymentMethodesViewModel extends BaseViewModel {
   final _logger = getLogger('MyPaymentMethodesViewModel');
   final _navigationService = locator<NavigationService>();
@@ -50,6 +49,24 @@ class MyPaymentMethodesViewModel extends BaseViewModel {
     } finally {
       setBusy(false);
     }
+  }
+
+  Future<void> onRefresh() async {
+    setError(null);
+    final allCardsResponse = await _stripeService.getCards();
+    await allCardsResponse.match(
+      (error) async {
+        _logger.e('Error refreshing cards', error: error);
+        _toastService.showError(
+          title: 'Unable to refresh',
+          description: error,
+          showIcon: true,
+        );
+      },
+      (cards) async {
+        setCards(cards);
+      },
+    );
   }
 
   void goBack() {
