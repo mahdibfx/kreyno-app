@@ -244,5 +244,14 @@
         "cardSetAsDefaultSuccessfully": "Carte définie comme défaut avec succès",
         "emptyStateTitle": "Aucune carte ajoutée",
         "emptyStateDescription": "Ajoutez une carte pour commencer à utiliser Kreyno."
+    },
+    "changePhoneNumber": {
+        "title": "Changer mon numéro",
+        "description": "Pour changer votre numéro de téléphone, un code OTP de vérification vous sera envoyé.",
+        "phoneNumber": "Numéro de téléphone",
+        "phoneNumberPlaceholder": "Entrez votre nouveau numéro de téléphone",
+        "buttonLabel": "Vérifier et changer",
+        "phoneNumberTaken": "Ce numéro de téléphone est déjà utilisé",
+        "phoneNumberUpdatedSuccessfully": "Numéro de téléphone mis à jour avec succès"
     }
 }

@@ -100,7 +100,7 @@
     "setUpVehicule": {
         "title": "Add your vehicle",
         "description": "Fill in the information below.",
-        "autoFill": "The information below will be automatically filled from our database.",
+        "autoFill": "The information will be added automatically if available, otherwise you will have to enter it.",
         "frenchLicensePlate": "French license plate",
         "licensePlate": "License plate number",
         "licensePlatePlaceholder": "AA - 000 - AA",
@@ -144,7 +144,7 @@
         "description": "Add your credit card information.",
         "buttonLabel": "Add a card",
         "paymentMethodsDescription": "Your payment information is completely secure and protected.",
-        "savePaymentMethodsToMoveToNextStep": "You need to save the payment methods to move to the next step.",
+        "savePaymentMethodsToMoveToNextStep": "You need to save a payment method to move to the next step or press Skip to continue.",
         "cardAddedSuccessfully": "Card added successfully",
         "saveCard": "Save this card"
     },
@@ -204,7 +204,7 @@
     },
     "deleteAccountConfirmation": {
         "title": "Are you sure?",
-        "description": "By deleting your account, all your information, including your parking spots, payments and added vehicles, will be permanently erased from Kreyno. This action is irreversible.",
+        "description": "By deleting your account, all your information, including your parking spots, payments and added vehicles, will be permanently erased from Kreyno.\n\nThis action is irreversible.",
         "buttonLabel": "Yes, delete account"
     },
     "myVehicules": {
@@ -243,5 +243,14 @@
         "cardSetAsDefaultSuccessfully": "Card set as default successfully",
         "emptyStateTitle": "No cards added",
         "emptyStateDescription": "Add a card to start using Kreyno."
+    },
+    "changePhoneNumber": {
+        "title": "Change phone number",
+        "description": "To change your phone number, a verification OTP code will be sent to you.",
+        "phoneNumber": "Phone number",
+        "phoneNumberPlaceholder": "Enter your new phone number",
+        "buttonLabel": "Verify and change",
+        "phoneNumberTaken": "This phone number is already in use",
+        "phoneNumberUpdatedSuccessfully": "Phone number updated successfully"
     }
 }

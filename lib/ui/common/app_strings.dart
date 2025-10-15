@@ -346,6 +346,21 @@ class MyPaymentMethodesStrings {
       'myPaymentMethodes.emptyStateDescription'.tr();
 }
 
+class ChangePhoneNumberStrings {
+  const ChangePhoneNumberStrings._();
+
+  static String get title => 'changePhoneNumber.title'.tr();
+  static String get description => 'changePhoneNumber.description'.tr();
+  static String get phoneNumber => 'changePhoneNumber.phoneNumber'.tr();
+  static String get phoneNumberPlaceholder =>
+      'changePhoneNumber.phoneNumberPlaceholder'.tr();
+  static String get buttonLabel => 'changePhoneNumber.buttonLabel'.tr();
+  static String get phoneNumberTaken =>
+      'changePhoneNumber.phoneNumberTaken'.tr();
+  static String get phoneNumberUpdatedSuccessfully =>
+      'changePhoneNumber.phoneNumberUpdatedSuccessfully'.tr();
+}
+
 class AddVehiculeStrings {
   const AddVehiculeStrings._();
 

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:kreyno/dtos/change_phone_number_dto.dart';
 import 'package:kreyno/dtos/login_dto.dart';
 import 'package:kreyno/dtos/register_dto.dart';
 import 'package:kreyno/dtos/send_otp_dto.dart';
@@ -36,4 +37,9 @@ abstract class ApiAuthService {
 
   @PATCH(ApiEndpoints.profile)
   Future<ApiResponse<User>> updateProfile(@Body() UpdateProfileDto request);
+
+  @POST(ApiEndpoints.changePhoneNumber)
+  Future<ApiResponse<User>> changePhoneNumber(
+    @Body() ChangePhoneNumberDto request,
+  );
 }

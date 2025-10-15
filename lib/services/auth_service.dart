@@ -2,6 +2,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/app/app_constants.dart';
+import 'package:kreyno/dtos/change_phone_number_dto.dart';
 import 'package:kreyno/dtos/login_dto.dart';
 import 'package:kreyno/dtos/register_dto.dart';
 import 'package:kreyno/dtos/send_otp_dto.dart';
@@ -10,6 +11,7 @@ import 'package:kreyno/enums/gender.dart';
 import 'package:kreyno/enums/unique_existence_id.dart';
 import 'package:kreyno/extensions/api_response_extensions.dart';
 import 'package:kreyno/models/auth_response.dart';
+import 'package:kreyno/models/user.dart';
 import 'package:kreyno/services/api/api_auth_service.dart';
 import 'package:kreyno/services/api/dio_service.dart';
 import 'package:kreyno/services/device_service.dart';
@@ -52,6 +54,15 @@ class AuthService {
           .signIn(LoginDto(phone: phone, otp: otp, deviceId: deviceId))
           .toEither(),
     );
+  }
+
+  Future<Either<String, User>> changePhoneNumber({
+    required String phone,
+    required String otp,
+  }) async {
+    return _apiAuthService
+        .changePhoneNumber(ChangePhoneNumberDto(phone: phone, otp: otp))
+        .toEither();
   }
 
   Future<Either<String, AuthResponse>> register({
