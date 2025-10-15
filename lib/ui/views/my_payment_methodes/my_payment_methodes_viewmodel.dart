@@ -58,7 +58,7 @@ class MyPaymentMethodesViewModel extends BaseViewModel {
       (error) async {
         _logger.e('Error refreshing cards', error: error);
         _toastService.showError(
-          title: 'Unable to refresh',
+          title: CommonStrings.unableToRefresh,
           description: error,
           showIcon: true,
         );

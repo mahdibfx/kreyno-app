@@ -15,6 +15,7 @@ class CommonStrings {
   static String get complete => 'common.complete'.tr();
   static String get error => 'common.error'.tr();
   static String get retry => 'common.retry'.tr();
+  static String get unableToRefresh => 'common.unableToRefresh'.tr();
 
   // Months
   static String get january => 'common.months.january'.tr();

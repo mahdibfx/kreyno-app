@@ -4,6 +4,7 @@
         "error": "A problem occurred",
         "retry": "Retry",
         "continue": "Continue",
+        "unableToRefresh": "Unable to refresh",
         "save": "Save",
         "takePicture": "Take a picture",
         "pickFromGallery": "Pick from gallery",

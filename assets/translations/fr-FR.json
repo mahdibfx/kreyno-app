@@ -4,6 +4,7 @@
         "error": "Un problème est survenu",
         "retry": "Réessayer",
         "continue": "Continuer",
+        "unableToRefresh": "Impossible de rafraîchir",
         "save": "Enregistrer",
         "takePicture": "Prendre une photo",
         "pickFromGallery": "Choisir depuis la gallerie",

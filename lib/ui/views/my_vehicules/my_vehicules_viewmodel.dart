@@ -59,7 +59,7 @@ class MyVehiculesViewModel extends BaseViewModel {
       (error) async {
         _logger.e('Error refreshing cars', error: error);
         _toastService.showError(
-          title: 'Unable to refresh',
+          title: CommonStrings.unableToRefresh,
           description: error,
           showIcon: true,
         );
