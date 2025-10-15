@@ -158,11 +158,11 @@ class MyPaymentMethodesViewModel extends BaseViewModel {
           _toastService.showError(title: error, showIcon: true);
         },
         (_) async {
-          setCards(cards.where((card) => card.id != cardId).toList());
           _toastService.showSuccess(
             title: MyPaymentMethodesStrings.cardDeletedSuccessfully,
             showIcon: true,
           );
+          await getAllCards();
         },
       );
     } finally {
