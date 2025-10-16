@@ -26,6 +26,7 @@ import '../ui/bottom_sheets/otp/otp_sheet.dart';
 import '../ui/bottom_sheets/pay_for_spot/pay_for_spot_sheet.dart';
 import '../ui/bottom_sheets/profile/profile_sheet.dart';
 import '../ui/bottom_sheets/rejection_reasons/rejection_reasons_sheet.dart';
+import '../ui/bottom_sheets/upload_profile_image/upload_profile_image_sheet.dart';
 import '../ui/bottom_sheets/upload_vehicule_image/upload_vehicule_image_sheet.dart';
 
 enum BottomSheetType {
@@ -48,6 +49,7 @@ enum BottomSheetType {
   deleteAccountConfirmation,
   checkoutMoneyFeedback,
   countryCodePicker,
+  uploadProfileImage,
 }
 
 void setupBottomSheetUi() {
@@ -92,6 +94,8 @@ void setupBottomSheetUi() {
         CheckoutMoneyFeedbackSheet(request: request, completer: completer),
     BottomSheetType.countryCodePicker: (context, request, completer) =>
         CountryCodePickerSheet(request: request, completer: completer),
+    BottomSheetType.uploadProfileImage: (context, request, completer) =>
+        UploadProfileImageSheet(request: request, completer: completer),
   };
 
   bottomsheetService.setCustomSheetBuilders(builders);

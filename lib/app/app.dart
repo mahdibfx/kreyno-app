@@ -59,6 +59,7 @@ import 'package:kreyno/ui/dialogs/destructive/destructive_dialog.dart';
 import 'package:kreyno/ui/views/account_settings/account_settings_view.dart';
 import 'package:kreyno/ui/views/change_language/change_language_view.dart';
 import 'package:kreyno/ui/views/change_phone_number/change_phone_number_view.dart';
+import 'package:kreyno/ui/bottom_sheets/upload_profile_image/upload_profile_image_sheet.dart';
 // @stacked-import
 
 @StackedApp(
@@ -131,6 +132,7 @@ import 'package:kreyno/ui/views/change_phone_number/change_phone_number_view.dar
     StackedBottomsheet(classType: DeleteAccountConfirmationSheet),
     StackedBottomsheet(classType: CheckoutMoneyFeedbackSheet),
     StackedBottomsheet(classType: CountryCodePickerSheet),
+    StackedBottomsheet(classType: UploadProfileImageSheet),
     // @stacked-bottom-sheet
   ],
   dialogs: [

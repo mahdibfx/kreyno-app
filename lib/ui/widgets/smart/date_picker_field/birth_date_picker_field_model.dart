@@ -89,12 +89,11 @@ class BirthDatePickerFieldModel extends FormViewModel {
     onDateChanged = callback;
   }
 
-  initDefaultValues() {
-    DateTime defaultBirthDate = DateTime(
-      today.year - minimumDrivingAge,
-      today.month,
-      today.day,
-    );
+  initDefaultValues({DateTime? initialDate}) {
+    // Use initialDate if provided, otherwise fall back to default (18 years ago)
+    DateTime defaultBirthDate =
+        initialDate ??
+        DateTime(today.year - minimumDrivingAge, today.month, today.day);
     selectedYearValue = defaultBirthDate.year.toString();
     selectedMonthValue = defaultBirthDate.month.toString();
     selectedDayValue = defaultBirthDate.day.toString();

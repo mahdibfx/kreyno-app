@@ -43,7 +43,7 @@ Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
 const _$GenderEnumMap = {Gender.male: 1, Gender.female: 2};
 
 _Avatar _$AvatarFromJson(Map<String, dynamic> json) =>
-    _Avatar(id: json['id'] as String, url: json['url'] as String);
+    _Avatar(id: (json['id'] as num).toInt(), url: json['url'] as String);
 
 Map<String, dynamic> _$AvatarToJson(_Avatar instance) => <String, dynamic>{
   'id': instance.id,

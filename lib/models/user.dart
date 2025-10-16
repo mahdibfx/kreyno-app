@@ -43,7 +43,7 @@ Map<String, dynamic>? _avatarToJson(Avatar? avatar) {
 @freezed
 abstract class Avatar with _$Avatar {
   const factory Avatar({
-    @JsonKey(name: "id") required String id,
+    @JsonKey(name: "id") required int id,
     @JsonKey(name: "url") required String url,
   }) = _Avatar;
 

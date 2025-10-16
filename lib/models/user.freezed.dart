@@ -341,7 +341,7 @@ $AvatarCopyWith<$Res>? get avatar {
 /// @nodoc
 mixin _$Avatar {
 
-@JsonKey(name: "id") String get id;@JsonKey(name: "url") String get url;
+@JsonKey(name: "id") int get id;@JsonKey(name: "url") String get url;
 /// Create a copy of Avatar
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -374,7 +374,7 @@ abstract mixin class $AvatarCopyWith<$Res>  {
   factory $AvatarCopyWith(Avatar value, $Res Function(Avatar) _then) = _$AvatarCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "id") String id,@JsonKey(name: "url") String url
+@JsonKey(name: "id") int id,@JsonKey(name: "url") String url
 });
 
 
@@ -394,7 +394,7 @@ class _$AvatarCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? url = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
+as int,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -480,7 +480,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String id, @JsonKey(name: "url")  String url)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  int id, @JsonKey(name: "url")  String url)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Avatar() when $default != null:
 return $default(_that.id,_that.url);case _:
@@ -501,7 +501,7 @@ return $default(_that.id,_that.url);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  String id, @JsonKey(name: "url")  String url)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  int id, @JsonKey(name: "url")  String url)  $default,) {final _that = this;
 switch (_that) {
 case _Avatar():
 return $default(_that.id,_that.url);case _:
@@ -521,7 +521,7 @@ return $default(_that.id,_that.url);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id")  String id, @JsonKey(name: "url")  String url)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id")  int id, @JsonKey(name: "url")  String url)?  $default,) {final _that = this;
 switch (_that) {
 case _Avatar() when $default != null:
 return $default(_that.id,_that.url);case _:
@@ -539,7 +539,7 @@ class _Avatar implements Avatar {
   const _Avatar({@JsonKey(name: "id") required this.id, @JsonKey(name: "url") required this.url});
   factory _Avatar.fromJson(Map<String, dynamic> json) => _$AvatarFromJson(json);
 
-@override@JsonKey(name: "id") final  String id;
+@override@JsonKey(name: "id") final  int id;
 @override@JsonKey(name: "url") final  String url;
 
 /// Create a copy of Avatar
@@ -575,7 +575,7 @@ abstract mixin class _$AvatarCopyWith<$Res> implements $AvatarCopyWith<$Res> {
   factory _$AvatarCopyWith(_Avatar value, $Res Function(_Avatar) _then) = __$AvatarCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "id") String id,@JsonKey(name: "url") String url
+@JsonKey(name: "id") int id,@JsonKey(name: "url") String url
 });
 
 
@@ -595,7 +595,7 @@ class __$AvatarCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? url = null,}) {
   return _then(_Avatar(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
+as int,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

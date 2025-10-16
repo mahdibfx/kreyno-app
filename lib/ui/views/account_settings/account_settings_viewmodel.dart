@@ -32,7 +32,7 @@ class AccountSettingsViewModel extends ReactiveViewModel {
   }
 
   void onPersonalInformationTapped() async {
-    // TODO: Implement personal information
+    await _navigationService.navigateToEditProfileView();
   }
 
   void onChangePhoneNumberTapped() async {

@@ -22,5 +22,5 @@ abstract class ApiMediaService {
   Future<ApiResponse<List<Object>>> removeUpload(@Path('uuid') String uuid);
 
   @DELETE(ApiEndpoints.deleteUpload)
-  Future<ApiResponse<List<Object>>> deleteUpload(@Path('id') String id);
+  Future<ApiResponse<List<Object>>> deleteUpload(@Path('id') int id);
 }
