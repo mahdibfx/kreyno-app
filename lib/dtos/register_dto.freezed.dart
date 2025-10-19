@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$RegisterDto {
 
-@JsonKey(name: 'first_name') String get firstName;@JsonKey(name: 'last_name') String get lastName;@JsonKey(name: 'username') String get userName;@JsonKey(name: 'phone') String get phone;@JsonKey(name: 'email') String get email;@JsonKey(name: 'gender') Gender get gender;@JsonKey(name: 'birth_date') DateTime get birthDate;// @JsonKey(name: 'address', includeIfNull: false) String? address,
+@JsonKey(name: 'first_name') String get firstName;@JsonKey(name: 'last_name') String get lastName;@JsonKey(name: 'username') String get userName;@JsonKey(name: 'phone') String get phone;@JsonKey(name: 'email') String get email;@JsonKey(name: 'gender') Gender get gender;@JsonKey(name: 'birth_date', toJson: _birthDateToJson, fromJson: _birthDateFromJson) DateTime get birthDate;// @JsonKey(name: 'address', includeIfNull: false) String? address,
 @JsonKey(name: 'otp') String get otp;@JsonKey(name: 'device_id') String get deviceId;
 /// Create a copy of RegisterDto
 /// with the given fields replaced by the non-null parameter values.
@@ -49,7 +49,7 @@ abstract mixin class $RegisterDtoCopyWith<$Res>  {
   factory $RegisterDtoCopyWith(RegisterDto value, $Res Function(RegisterDto) _then) = _$RegisterDtoCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'first_name') String firstName,@JsonKey(name: 'last_name') String lastName,@JsonKey(name: 'username') String userName,@JsonKey(name: 'phone') String phone,@JsonKey(name: 'email') String email,@JsonKey(name: 'gender') Gender gender,@JsonKey(name: 'birth_date') DateTime birthDate,@JsonKey(name: 'otp') String otp,@JsonKey(name: 'device_id') String deviceId
+@JsonKey(name: 'first_name') String firstName,@JsonKey(name: 'last_name') String lastName,@JsonKey(name: 'username') String userName,@JsonKey(name: 'phone') String phone,@JsonKey(name: 'email') String email,@JsonKey(name: 'gender') Gender gender,@JsonKey(name: 'birth_date', toJson: _birthDateToJson, fromJson: _birthDateFromJson) DateTime birthDate,@JsonKey(name: 'otp') String otp,@JsonKey(name: 'device_id') String deviceId
 });
 
 
@@ -162,7 +162,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'first_name')  String firstName, @JsonKey(name: 'last_name')  String lastName, @JsonKey(name: 'username')  String userName, @JsonKey(name: 'phone')  String phone, @JsonKey(name: 'email')  String email, @JsonKey(name: 'gender')  Gender gender, @JsonKey(name: 'birth_date')  DateTime birthDate, @JsonKey(name: 'otp')  String otp, @JsonKey(name: 'device_id')  String deviceId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'first_name')  String firstName, @JsonKey(name: 'last_name')  String lastName, @JsonKey(name: 'username')  String userName, @JsonKey(name: 'phone')  String phone, @JsonKey(name: 'email')  String email, @JsonKey(name: 'gender')  Gender gender, @JsonKey(name: 'birth_date', toJson: _birthDateToJson, fromJson: _birthDateFromJson)  DateTime birthDate, @JsonKey(name: 'otp')  String otp, @JsonKey(name: 'device_id')  String deviceId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _RegisterDto() when $default != null:
 return $default(_that.firstName,_that.lastName,_that.userName,_that.phone,_that.email,_that.gender,_that.birthDate,_that.otp,_that.deviceId);case _:
@@ -183,7 +183,7 @@ return $default(_that.firstName,_that.lastName,_that.userName,_that.phone,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'first_name')  String firstName, @JsonKey(name: 'last_name')  String lastName, @JsonKey(name: 'username')  String userName, @JsonKey(name: 'phone')  String phone, @JsonKey(name: 'email')  String email, @JsonKey(name: 'gender')  Gender gender, @JsonKey(name: 'birth_date')  DateTime birthDate, @JsonKey(name: 'otp')  String otp, @JsonKey(name: 'device_id')  String deviceId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'first_name')  String firstName, @JsonKey(name: 'last_name')  String lastName, @JsonKey(name: 'username')  String userName, @JsonKey(name: 'phone')  String phone, @JsonKey(name: 'email')  String email, @JsonKey(name: 'gender')  Gender gender, @JsonKey(name: 'birth_date', toJson: _birthDateToJson, fromJson: _birthDateFromJson)  DateTime birthDate, @JsonKey(name: 'otp')  String otp, @JsonKey(name: 'device_id')  String deviceId)  $default,) {final _that = this;
 switch (_that) {
 case _RegisterDto():
 return $default(_that.firstName,_that.lastName,_that.userName,_that.phone,_that.email,_that.gender,_that.birthDate,_that.otp,_that.deviceId);case _:
@@ -203,7 +203,7 @@ return $default(_that.firstName,_that.lastName,_that.userName,_that.phone,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'first_name')  String firstName, @JsonKey(name: 'last_name')  String lastName, @JsonKey(name: 'username')  String userName, @JsonKey(name: 'phone')  String phone, @JsonKey(name: 'email')  String email, @JsonKey(name: 'gender')  Gender gender, @JsonKey(name: 'birth_date')  DateTime birthDate, @JsonKey(name: 'otp')  String otp, @JsonKey(name: 'device_id')  String deviceId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'first_name')  String firstName, @JsonKey(name: 'last_name')  String lastName, @JsonKey(name: 'username')  String userName, @JsonKey(name: 'phone')  String phone, @JsonKey(name: 'email')  String email, @JsonKey(name: 'gender')  Gender gender, @JsonKey(name: 'birth_date', toJson: _birthDateToJson, fromJson: _birthDateFromJson)  DateTime birthDate, @JsonKey(name: 'otp')  String otp, @JsonKey(name: 'device_id')  String deviceId)?  $default,) {final _that = this;
 switch (_that) {
 case _RegisterDto() when $default != null:
 return $default(_that.firstName,_that.lastName,_that.userName,_that.phone,_that.email,_that.gender,_that.birthDate,_that.otp,_that.deviceId);case _:
@@ -218,7 +218,7 @@ return $default(_that.firstName,_that.lastName,_that.userName,_that.phone,_that.
 @JsonSerializable()
 
 class _RegisterDto implements RegisterDto {
-  const _RegisterDto({@JsonKey(name: 'first_name') required this.firstName, @JsonKey(name: 'last_name') required this.lastName, @JsonKey(name: 'username') required this.userName, @JsonKey(name: 'phone') required this.phone, @JsonKey(name: 'email') required this.email, @JsonKey(name: 'gender') required this.gender, @JsonKey(name: 'birth_date') required this.birthDate, @JsonKey(name: 'otp') required this.otp, @JsonKey(name: 'device_id') required this.deviceId});
+  const _RegisterDto({@JsonKey(name: 'first_name') required this.firstName, @JsonKey(name: 'last_name') required this.lastName, @JsonKey(name: 'username') required this.userName, @JsonKey(name: 'phone') required this.phone, @JsonKey(name: 'email') required this.email, @JsonKey(name: 'gender') required this.gender, @JsonKey(name: 'birth_date', toJson: _birthDateToJson, fromJson: _birthDateFromJson) required this.birthDate, @JsonKey(name: 'otp') required this.otp, @JsonKey(name: 'device_id') required this.deviceId});
   factory _RegisterDto.fromJson(Map<String, dynamic> json) => _$RegisterDtoFromJson(json);
 
 @override@JsonKey(name: 'first_name') final  String firstName;
@@ -227,7 +227,7 @@ class _RegisterDto implements RegisterDto {
 @override@JsonKey(name: 'phone') final  String phone;
 @override@JsonKey(name: 'email') final  String email;
 @override@JsonKey(name: 'gender') final  Gender gender;
-@override@JsonKey(name: 'birth_date') final  DateTime birthDate;
+@override@JsonKey(name: 'birth_date', toJson: _birthDateToJson, fromJson: _birthDateFromJson) final  DateTime birthDate;
 // @JsonKey(name: 'address', includeIfNull: false) String? address,
 @override@JsonKey(name: 'otp') final  String otp;
 @override@JsonKey(name: 'device_id') final  String deviceId;
@@ -265,7 +265,7 @@ abstract mixin class _$RegisterDtoCopyWith<$Res> implements $RegisterDtoCopyWith
   factory _$RegisterDtoCopyWith(_RegisterDto value, $Res Function(_RegisterDto) _then) = __$RegisterDtoCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'first_name') String firstName,@JsonKey(name: 'last_name') String lastName,@JsonKey(name: 'username') String userName,@JsonKey(name: 'phone') String phone,@JsonKey(name: 'email') String email,@JsonKey(name: 'gender') Gender gender,@JsonKey(name: 'birth_date') DateTime birthDate,@JsonKey(name: 'otp') String otp,@JsonKey(name: 'device_id') String deviceId
+@JsonKey(name: 'first_name') String firstName,@JsonKey(name: 'last_name') String lastName,@JsonKey(name: 'username') String userName,@JsonKey(name: 'phone') String phone,@JsonKey(name: 'email') String email,@JsonKey(name: 'gender') Gender gender,@JsonKey(name: 'birth_date', toJson: _birthDateToJson, fromJson: _birthDateFromJson) DateTime birthDate,@JsonKey(name: 'otp') String otp,@JsonKey(name: 'device_id') String deviceId
 });
 
 

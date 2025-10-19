@@ -7,6 +7,7 @@ import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/models/user.dart';
 import 'package:kreyno/services/toast_service.dart';
 import 'package:kreyno/services/user_service.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -50,7 +51,7 @@ class ProfileImageUpdaterModel extends ReactiveViewModel {
         (success) {
           _logger.i('Profile image updated successfully');
           _toastService.showSuccess(
-            title: 'Image de profil mise à jour avec succès',
+            title: EditProfileStrings.profileImageUpdatedSuccessfully,
           );
         },
       );
@@ -71,7 +72,7 @@ class ProfileImageUpdaterModel extends ReactiveViewModel {
         (success) {
           _logger.i('Profile image deleted successfully');
           _toastService.showSuccess(
-            title: 'Image de profil supprimée avec succès',
+            title: EditProfileStrings.profileImageDeletedSuccessfully,
           );
         },
       );

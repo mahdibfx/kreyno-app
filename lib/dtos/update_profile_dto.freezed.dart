@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UpdateProfileDto {
 
-@JsonKey(name: 'first_name', includeIfNull: false) String? get firstName;@JsonKey(name: 'last_name', includeIfNull: false) String? get lastName;@JsonKey(name: 'email', includeIfNull: false) String? get email;@JsonKey(name: 'gender', includeIfNull: false) Gender? get gender;@JsonKey(name: 'birth_date', includeIfNull: false) DateTime? get birthDate;
+@JsonKey(name: 'first_name', includeIfNull: false) String? get firstName;@JsonKey(name: 'last_name', includeIfNull: false) String? get lastName;@JsonKey(name: 'email', includeIfNull: false) String? get email;@JsonKey(name: 'gender', includeIfNull: false) Gender? get gender;@JsonKey(name: 'birth_date', includeIfNull: false, toJson: _birthDateToJson, fromJson: _birthDateFromJson) DateTime? get birthDate;
 /// Create a copy of UpdateProfileDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UpdateProfileDtoCopyWith<$Res>  {
   factory $UpdateProfileDtoCopyWith(UpdateProfileDto value, $Res Function(UpdateProfileDto) _then) = _$UpdateProfileDtoCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'first_name', includeIfNull: false) String? firstName,@JsonKey(name: 'last_name', includeIfNull: false) String? lastName,@JsonKey(name: 'email', includeIfNull: false) String? email,@JsonKey(name: 'gender', includeIfNull: false) Gender? gender,@JsonKey(name: 'birth_date', includeIfNull: false) DateTime? birthDate
+@JsonKey(name: 'first_name', includeIfNull: false) String? firstName,@JsonKey(name: 'last_name', includeIfNull: false) String? lastName,@JsonKey(name: 'email', includeIfNull: false) String? email,@JsonKey(name: 'gender', includeIfNull: false) Gender? gender,@JsonKey(name: 'birth_date', includeIfNull: false, toJson: _birthDateToJson, fromJson: _birthDateFromJson) DateTime? birthDate
 });
 
 
@@ -157,7 +157,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'first_name', includeIfNull: false)  String? firstName, @JsonKey(name: 'last_name', includeIfNull: false)  String? lastName, @JsonKey(name: 'email', includeIfNull: false)  String? email, @JsonKey(name: 'gender', includeIfNull: false)  Gender? gender, @JsonKey(name: 'birth_date', includeIfNull: false)  DateTime? birthDate)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'first_name', includeIfNull: false)  String? firstName, @JsonKey(name: 'last_name', includeIfNull: false)  String? lastName, @JsonKey(name: 'email', includeIfNull: false)  String? email, @JsonKey(name: 'gender', includeIfNull: false)  Gender? gender, @JsonKey(name: 'birth_date', includeIfNull: false, toJson: _birthDateToJson, fromJson: _birthDateFromJson)  DateTime? birthDate)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UpdateProfileDto() when $default != null:
 return $default(_that.firstName,_that.lastName,_that.email,_that.gender,_that.birthDate);case _:
@@ -178,7 +178,7 @@ return $default(_that.firstName,_that.lastName,_that.email,_that.gender,_that.bi
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'first_name', includeIfNull: false)  String? firstName, @JsonKey(name: 'last_name', includeIfNull: false)  String? lastName, @JsonKey(name: 'email', includeIfNull: false)  String? email, @JsonKey(name: 'gender', includeIfNull: false)  Gender? gender, @JsonKey(name: 'birth_date', includeIfNull: false)  DateTime? birthDate)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'first_name', includeIfNull: false)  String? firstName, @JsonKey(name: 'last_name', includeIfNull: false)  String? lastName, @JsonKey(name: 'email', includeIfNull: false)  String? email, @JsonKey(name: 'gender', includeIfNull: false)  Gender? gender, @JsonKey(name: 'birth_date', includeIfNull: false, toJson: _birthDateToJson, fromJson: _birthDateFromJson)  DateTime? birthDate)  $default,) {final _that = this;
 switch (_that) {
 case _UpdateProfileDto():
 return $default(_that.firstName,_that.lastName,_that.email,_that.gender,_that.birthDate);case _:
@@ -198,7 +198,7 @@ return $default(_that.firstName,_that.lastName,_that.email,_that.gender,_that.bi
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'first_name', includeIfNull: false)  String? firstName, @JsonKey(name: 'last_name', includeIfNull: false)  String? lastName, @JsonKey(name: 'email', includeIfNull: false)  String? email, @JsonKey(name: 'gender', includeIfNull: false)  Gender? gender, @JsonKey(name: 'birth_date', includeIfNull: false)  DateTime? birthDate)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'first_name', includeIfNull: false)  String? firstName, @JsonKey(name: 'last_name', includeIfNull: false)  String? lastName, @JsonKey(name: 'email', includeIfNull: false)  String? email, @JsonKey(name: 'gender', includeIfNull: false)  Gender? gender, @JsonKey(name: 'birth_date', includeIfNull: false, toJson: _birthDateToJson, fromJson: _birthDateFromJson)  DateTime? birthDate)?  $default,) {final _that = this;
 switch (_that) {
 case _UpdateProfileDto() when $default != null:
 return $default(_that.firstName,_that.lastName,_that.email,_that.gender,_that.birthDate);case _:
@@ -213,14 +213,14 @@ return $default(_that.firstName,_that.lastName,_that.email,_that.gender,_that.bi
 @JsonSerializable()
 
 class _UpdateProfileDto implements UpdateProfileDto {
-  const _UpdateProfileDto({@JsonKey(name: 'first_name', includeIfNull: false) this.firstName, @JsonKey(name: 'last_name', includeIfNull: false) this.lastName, @JsonKey(name: 'email', includeIfNull: false) this.email, @JsonKey(name: 'gender', includeIfNull: false) this.gender, @JsonKey(name: 'birth_date', includeIfNull: false) this.birthDate});
+  const _UpdateProfileDto({@JsonKey(name: 'first_name', includeIfNull: false) this.firstName, @JsonKey(name: 'last_name', includeIfNull: false) this.lastName, @JsonKey(name: 'email', includeIfNull: false) this.email, @JsonKey(name: 'gender', includeIfNull: false) this.gender, @JsonKey(name: 'birth_date', includeIfNull: false, toJson: _birthDateToJson, fromJson: _birthDateFromJson) this.birthDate});
   factory _UpdateProfileDto.fromJson(Map<String, dynamic> json) => _$UpdateProfileDtoFromJson(json);
 
 @override@JsonKey(name: 'first_name', includeIfNull: false) final  String? firstName;
 @override@JsonKey(name: 'last_name', includeIfNull: false) final  String? lastName;
 @override@JsonKey(name: 'email', includeIfNull: false) final  String? email;
 @override@JsonKey(name: 'gender', includeIfNull: false) final  Gender? gender;
-@override@JsonKey(name: 'birth_date', includeIfNull: false) final  DateTime? birthDate;
+@override@JsonKey(name: 'birth_date', includeIfNull: false, toJson: _birthDateToJson, fromJson: _birthDateFromJson) final  DateTime? birthDate;
 
 /// Create a copy of UpdateProfileDto
 /// with the given fields replaced by the non-null parameter values.
@@ -255,7 +255,7 @@ abstract mixin class _$UpdateProfileDtoCopyWith<$Res> implements $UpdateProfileD
   factory _$UpdateProfileDtoCopyWith(_UpdateProfileDto value, $Res Function(_UpdateProfileDto) _then) = __$UpdateProfileDtoCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'first_name', includeIfNull: false) String? firstName,@JsonKey(name: 'last_name', includeIfNull: false) String? lastName,@JsonKey(name: 'email', includeIfNull: false) String? email,@JsonKey(name: 'gender', includeIfNull: false) Gender? gender,@JsonKey(name: 'birth_date', includeIfNull: false) DateTime? birthDate
+@JsonKey(name: 'first_name', includeIfNull: false) String? firstName,@JsonKey(name: 'last_name', includeIfNull: false) String? lastName,@JsonKey(name: 'email', includeIfNull: false) String? email,@JsonKey(name: 'gender', includeIfNull: false) Gender? gender,@JsonKey(name: 'birth_date', includeIfNull: false, toJson: _birthDateToJson, fromJson: _birthDateFromJson) DateTime? birthDate
 });
 
 

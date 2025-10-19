@@ -253,5 +253,16 @@
         "buttonLabel": "Vérifier et changer",
         "phoneNumberTaken": "Ce numéro de téléphone est déjà utilisé",
         "phoneNumberUpdatedSuccessfully": "Numéro de téléphone mis à jour avec succès"
+    },
+    "editProfile": {
+        "title": "Informations personnelles",
+        "saveChanges": "Enregistrer les modifications",
+        "profileImageLabel": "Photo de profil",
+        "addImage": "Ajouter",
+        "changeImage": "Changer",
+        "deleteImage": "Supprimer",
+        "profileUpdatedSuccessfully": "Profil mis à jour avec succès",
+        "profileImageUpdatedSuccessfully": "Image de profil mise à jour avec succès",
+        "profileImageDeletedSuccessfully": "Image de profil supprimée avec succès"
     }
 }

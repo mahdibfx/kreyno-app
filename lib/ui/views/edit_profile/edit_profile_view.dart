@@ -57,7 +57,7 @@ class EditProfileView extends StackedView<EditProfileViewModel>
           body: CustomScrollView(
             slivers: [
               CustomSliverAppBar.shrunk(
-                title: "Informations personnelles",
+                title: EditProfileStrings.title,
                 onBackPressed: viewModel.goBack,
               ),
               SliverPadding(
@@ -202,7 +202,7 @@ class EditProfileView extends StackedView<EditProfileViewModel>
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         CustomButton.filled(
-                          text: 'Enregistrer les modifications',
+                          text: EditProfileStrings.saveChanges,
                           onPressed: viewModel.saveProfile,
                           isDisabled:
                               !viewModel.isFormValid || !viewModel.hasChanges,

@@ -252,5 +252,16 @@
         "buttonLabel": "Verify and change",
         "phoneNumberTaken": "This phone number is already in use",
         "phoneNumberUpdatedSuccessfully": "Phone number updated successfully"
+    },
+    "editProfile": {
+        "title": "Personal information",
+        "saveChanges": "Save changes",
+        "profileImageLabel": "Profile picture",
+        "addImage": "Add",
+        "changeImage": "Change",
+        "deleteImage": "Delete",
+        "profileUpdatedSuccessfully": "Profile updated successfully",
+        "profileImageUpdatedSuccessfully": "Profile picture updated successfully",
+        "profileImageDeletedSuccessfully": "Profile picture deleted successfully"
     }
 }

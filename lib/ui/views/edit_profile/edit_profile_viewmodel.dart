@@ -200,7 +200,9 @@ class EditProfileViewModel extends FormViewModel {
         },
         (success) async {
           _logger.i('Profile updated successfully');
-          _toastService.showSuccess(title: 'Profil mis à jour avec succès');
+          _toastService.showSuccess(
+            title: EditProfileStrings.profileUpdatedSuccessfully,
+          );
         },
       );
     } finally {

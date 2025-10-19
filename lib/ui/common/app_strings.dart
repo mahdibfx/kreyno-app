@@ -370,3 +370,20 @@ class AddVehiculeStrings {
   static String get vehicleSavedSuccessfully =>
       'addVehicule.vehicleSavedSuccessfully'.tr();
 }
+
+class EditProfileStrings {
+  const EditProfileStrings._();
+
+  static String get title => 'editProfile.title'.tr();
+  static String get saveChanges => 'editProfile.saveChanges'.tr();
+  static String get profileImageLabel => 'editProfile.profileImageLabel'.tr();
+  static String get addImage => 'editProfile.addImage'.tr();
+  static String get changeImage => 'editProfile.changeImage'.tr();
+  static String get deleteImage => 'editProfile.deleteImage'.tr();
+  static String get profileUpdatedSuccessfully =>
+      'editProfile.profileUpdatedSuccessfully'.tr();
+  static String get profileImageUpdatedSuccessfully =>
+      'editProfile.profileImageUpdatedSuccessfully'.tr();
+  static String get profileImageDeletedSuccessfully =>
+      'editProfile.profileImageDeletedSuccessfully'.tr();
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/views/edit_profile/widgets/profile_image_updater/profile_image_updater_model.dart';
 import 'package:kreyno/ui/views/edit_profile/widgets/profile_image_updater/widgets/profile_image_circle.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
@@ -30,7 +31,7 @@ class ProfileImageExistsState
             spacing: AppSpacing.px12,
             children: [
               CustomText.smallParagraphMedium(
-                "Photo de profil",
+                EditProfileStrings.profileImageLabel,
                 color: AppColors.textKre,
               ),
               Row(
@@ -40,7 +41,7 @@ class ProfileImageExistsState
                     child: CustomButton.filled(
                       isDisabled: viewModel.isBusy,
                       size: CustomButtonSize.small,
-                      text: "Changer",
+                      text: EditProfileStrings.changeImage,
                       backgroundColor: AppColors.mainKre,
                       foregroundColor: AppColors.white,
                       onPressed: viewModel.onChangeProfileImageTapped,
@@ -50,7 +51,7 @@ class ProfileImageExistsState
                     child: CustomButton.outlined(
                       isDisabled: viewModel.isBusy,
                       size: CustomButtonSize.small,
-                      text: "Supprimer",
+                      text: EditProfileStrings.deleteImage,
                       padding: EdgeInsets.symmetric(
                         horizontal: AppSpacing.px12,
                       ),
