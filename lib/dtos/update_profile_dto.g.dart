@@ -15,7 +15,6 @@ _UpdateProfileDto _$UpdateProfileDtoFromJson(Map<String, dynamic> json) =>
       birthDate: json['birth_date'] == null
           ? null
           : DateTime.parse(json['birth_date'] as String),
-      address: json['address'] as String?,
     );
 
 Map<String, dynamic> _$UpdateProfileDtoToJson(_UpdateProfileDto instance) =>
@@ -25,7 +24,6 @@ Map<String, dynamic> _$UpdateProfileDtoToJson(_UpdateProfileDto instance) =>
       'email': ?instance.email,
       'gender': ?_$GenderEnumMap[instance.gender],
       'birth_date': ?instance.birthDate?.toIso8601String(),
-      'address': ?instance.address,
     };
 
 const _$GenderEnumMap = {Gender.male: 1, Gender.female: 2};

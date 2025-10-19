@@ -20,6 +20,8 @@ class ApiEndpoints {
   static const String sendOtp = '$_authBaseUrl/send-otp';
   static const String profile = '$_authBaseUrl/profile';
   static const String changePhoneNumber = '$_authBaseUrl/change-phone';
+  static const String updateProfileImage = '$profile/update-image';
+  static const String deleteProfileImage = '$profile/delete-image';
 
   // STRIPE
   static const String setupIntent = '$_stripeBaseUrl/setup-intent';

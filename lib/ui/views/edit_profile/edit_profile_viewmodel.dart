@@ -141,16 +141,56 @@ class EditProfileViewModel extends FormViewModel {
     _logger.d('isFormValid: $isFormValid');
   }
 
+  UpdateProfileDto _buildChangedFieldsDto() {
+    String? changedFirstName;
+    String? changedLastName;
+    String? changedEmail;
+    Gender? changedGender;
+    DateTime? changedBirthDate;
+
+    // Check firstName
+    if (firstNameValue?.trim() != currentUser?.firstName.trim()) {
+      changedFirstName = firstNameValue?.trim();
+    }
+
+    // Check lastName
+    if (lastNameValue?.trim() != currentUser?.lastName.trim()) {
+      changedLastName = lastNameValue?.trim();
+    }
+
+    // Check email
+    if (emailValue?.trim() != currentUser?.email.trim()) {
+      changedEmail = emailValue?.trim();
+    }
+
+    // Check gender
+    final newGender = isMale ? Gender.male : Gender.female;
+    if (newGender != currentUser?.gender) {
+      changedGender = newGender;
+    }
+
+    // Check birthDate
+    if (selectedBirthday != null && currentUser != null) {
+      if (selectedBirthday!.day != currentUser!.birthDate.day ||
+          selectedBirthday!.month != currentUser!.birthDate.month ||
+          selectedBirthday!.year != currentUser!.birthDate.year) {
+        changedBirthDate = selectedBirthday;
+      }
+    }
+
+    return UpdateProfileDto(
+      firstName: changedFirstName,
+      lastName: changedLastName,
+      email: changedEmail,
+      gender: changedGender,
+      birthDate: changedBirthDate,
+    );
+  }
+
   void saveProfile() async {
     setBusy(true);
     try {
-      final dto = UpdateProfileDto(
-        firstName: firstNameValue?.trim(),
-        lastName: lastNameValue?.trim(),
-        email: emailValue?.trim(),
-        gender: isMale ? Gender.male : Gender.female,
-        birthDate: selectedBirthday,
-      );
+      final dto = _buildChangedFieldsDto();
 
       final response = await _userService.updateProfile(dto);
       await response.match(
