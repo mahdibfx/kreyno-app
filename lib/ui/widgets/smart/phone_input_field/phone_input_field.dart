@@ -61,6 +61,7 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
       disabled: disabled,
       maxLength: maxLength,
       isRequired: isRequired,
+      showOptionalLabel: false,
       restorationId: restorationId,
       trailingIcon: trailingIcon,
       onChanged: (value) {

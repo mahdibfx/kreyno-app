@@ -97,6 +97,7 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                               labelText: SignupStrings.firstName,
                               hintText: SignupStrings.firstNamePlaceholder,
                               keyboardType: TextInputType.name,
+                              showOptionalLabel: false,
                               errorText: viewModel.hasFirstName
                                   ? viewModel.firstNameValidationMessage
                                   : null,
@@ -109,6 +110,7 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                               labelText: SignupStrings.lastName,
                               hintText: SignupStrings.lastNamePlaceholder,
                               keyboardType: TextInputType.name,
+                              showOptionalLabel: false,
                               errorText: viewModel.hasLastName
                                   ? viewModel.lastNameValidationMessage
                                   : null,
@@ -122,6 +124,7 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                         labelText: SignupStrings.userName,
                         hintText: SignupStrings.userNamePlaceholder,
                         keyboardType: TextInputType.name,
+                        showOptionalLabel: false,
                         onChanged: viewModel.onUserNameChanged,
                         trailingIcon: viewModel.checkingUserNameTaken
                             ? Transform.scale(
@@ -147,6 +150,7 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                         labelText: SignupStrings.email,
                         hintText: SignupStrings.emailPlaceholder,
                         keyboardType: TextInputType.emailAddress,
+                        showOptionalLabel: false,
                         onChanged: viewModel.onEmailChanged,
                         trailingIcon: viewModel.checkingEmailTaken
                             ? Transform.scale(

@@ -92,6 +92,7 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel>
                                 SetUpVehiculeStrings.vehicleBrandPlaceholder,
                             keyboardType: TextInputType.name,
                             textInputAction: TextInputAction.next,
+                            showOptionalLabel: false,
                             errorText: viewModel.hasBrand
                                 ? viewModel.brandValidationMessage
                                 : null,
@@ -104,6 +105,7 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel>
                                 SetUpVehiculeStrings.vehicleModelPlaceholder,
                             keyboardType: TextInputType.name,
                             textInputAction: TextInputAction.next,
+                            showOptionalLabel: false,
                             errorText: viewModel.hasModel
                                 ? viewModel.modelValidationMessage
                                 : null,
@@ -115,6 +117,7 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel>
                             hintText: SetUpVehiculeStrings.colorPlaceholder,
                             keyboardType: TextInputType.name,
                             textInputAction: TextInputAction.next,
+                            showOptionalLabel: false,
                             errorText: viewModel.hasColor
                                 ? viewModel.colorValidationMessage
                                 : null,
@@ -127,6 +130,7 @@ class AddVehiculeView extends StackedView<AddVehiculeViewModel>
                                 SetUpVehiculeStrings.co2EmissionPlaceholder,
                             keyboardType: TextInputType.name,
                             textInputAction: TextInputAction.done,
+                            showOptionalLabel: false,
                             errorText: viewModel.hasCo2Emission
                                 ? viewModel.co2EmissionValidationMessage
                                 : null,
