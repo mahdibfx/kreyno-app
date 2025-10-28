@@ -387,3 +387,64 @@ class EditProfileStrings {
   static String get profileImageDeletedSuccessfully =>
       'editProfile.profileImageDeletedSuccessfully'.tr();
 }
+
+class DeleteBankAccountConfirmationStrings {
+  const DeleteBankAccountConfirmationStrings._();
+
+  static String get title => 'deleteBankAccountConfirmation.title'.tr();
+  static String get description =>
+      'deleteBankAccountConfirmation.description'.tr();
+  static String get warning => 'deleteBankAccountConfirmation.warning'.tr();
+  static String get cancel => 'deleteBankAccountConfirmation.cancel'.tr();
+  static String get delete => 'deleteBankAccountConfirmation.delete'.tr();
+}
+
+class WalletStrings {
+  const WalletStrings._();
+
+  static String get walletKreyno => 'wallet.walletKreyno'.tr();
+  static String get transactionHistory => 'wallet.transactionHistory'.tr();
+  static String get noTransactionsFound => 'wallet.noTransactionsFound'.tr();
+  static String get transactionsWillAppearHere =>
+      'wallet.transactionsWillAppearHere'.tr();
+  static String get earnings => 'wallet.earnings'.tr();
+  static String get sale => 'wallet.sale'.tr();
+  static String get withdrawal => 'wallet.withdrawal'.tr();
+  static String get yourBalance => 'wallet.yourBalance'.tr();
+  static String get withdrawMyMoney => 'wallet.withdrawMyMoney'.tr();
+  static String get removeMyBankAccount => 'wallet.removeMyBankAccount'.tr();
+  static String get addBankAccount => 'wallet.addBankAccount'.tr();
+  static String get unableToLoad => 'wallet.unableToLoad'.tr();
+  static String get noEarningsYet => 'wallet.noEarningsYet'.tr();
+  static String get earningsWillAppearHere =>
+      'wallet.earningsWillAppearHere'.tr();
+}
+
+class DatePickerFilterSheetStrings {
+  const DatePickerFilterSheetStrings._();
+
+  static String get title => 'datePickerFilter.title'.tr();
+  static String get startDate => 'datePickerFilter.startDate'.tr();
+  static String get endDate => 'datePickerFilter.endDate'.tr();
+  static String get reset => 'datePickerFilter.reset'.tr();
+  static String get apply => 'datePickerFilter.apply'.tr();
+}
+
+class MyParkingSpotsStrings {
+  const MyParkingSpotsStrings._();
+
+  static String get title => 'myParkingSpots.title'.tr();
+  static String get boughtSpotsTab => 'myParkingSpots.boughtSpotsTab'.tr();
+  static String get soldSpotsTab => 'myParkingSpots.soldSpotsTab'.tr();
+  static String get chargingAvailable =>
+      'myParkingSpots.chargingAvailable'.tr();
+  static String get chargingNotAvailable =>
+      'myParkingSpots.chargingNotAvailable'.tr();
+  static String get price => 'myParkingSpots.price'.tr();
+  static String get boughtEmptyTitle => 'myParkingSpots.boughtEmptyTitle'.tr();
+  static String get boughtEmptyDescription =>
+      'myParkingSpots.boughtEmptyDescription'.tr();
+  static String get soldEmptyTitle => 'myParkingSpots.soldEmptyTitle'.tr();
+  static String get soldEmptyDescription =>
+      'myParkingSpots.soldEmptyDescription'.tr();
+}

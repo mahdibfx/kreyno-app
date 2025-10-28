@@ -4,7 +4,10 @@ import 'package:kreyno/services/cars_service.dart';
 import 'package:kreyno/services/device_service.dart';
 import 'package:kreyno/services/media_service.dart';
 import 'package:kreyno/services/onboarding_service.dart';
+import 'package:kreyno/services/parking_spots_service.dart';
 import 'package:kreyno/services/permissions_service.dart';
+import 'package:kreyno/services/reservations_service.dart';
+import 'package:kreyno/services/wallet_service.dart';
 import 'package:kreyno/services/picked_language_service.dart';
 import 'package:kreyno/services/shared_prefs_service.dart';
 import 'package:kreyno/services/stripe_service.dart';
@@ -48,7 +51,6 @@ import 'package:kreyno/ui/bottom_sheets/completed_action/completed_action_sheet.
 import 'package:kreyno/ui/bottom_sheets/add_payment_cart/add_payment_cart_sheet.dart';
 import 'package:kreyno/ui/bottom_sheets/logout_confirmation/logout_confirmation_sheet.dart';
 import 'package:kreyno/ui/bottom_sheets/delete_account_confirmation/delete_account_confirmation_sheet.dart';
-import 'package:kreyno/ui/views/my_stationements/my_stationements_view.dart';
 import 'package:kreyno/ui/views/kreyono_portfolio/kreyono_portfolio_view.dart';
 import 'package:kreyno/ui/views/checkout_money/checkout_money_view.dart';
 import 'package:kreyno/ui/bottom_sheets/checkout_money_feedback/checkout_money_feedback_sheet.dart';
@@ -60,6 +62,10 @@ import 'package:kreyno/ui/views/account_settings/account_settings_view.dart';
 import 'package:kreyno/ui/views/change_language/change_language_view.dart';
 import 'package:kreyno/ui/views/change_phone_number/change_phone_number_view.dart';
 import 'package:kreyno/ui/bottom_sheets/upload_profile_image/upload_profile_image_sheet.dart';
+import 'package:kreyno/ui/views/my_parking_spots/my_parking_spots_view.dart';
+import 'package:kreyno/ui/views/add_bank_account/add_bank_account_view.dart';
+import 'package:kreyno/ui/bottom_sheets/delete_bank_account_confirmation/delete_bank_account_confirmation_sheet.dart';
+import 'package:kreyno/ui/views/payout/payout_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -85,13 +91,15 @@ import 'package:kreyno/ui/bottom_sheets/upload_profile_image/upload_profile_imag
     MaterialRoute(page: CashoutView),
     MaterialRoute(page: EditVehiculeView),
     MaterialRoute(page: SetUpLanguageView),
-    MaterialRoute(page: MyStationementsView),
     MaterialRoute(page: KreyonoPortfolioView),
     MaterialRoute(page: CheckoutMoneyView),
     MaterialRoute(page: AddVehiculeView),
     MaterialRoute(page: AccountSettingsView),
     MaterialRoute(page: ChangeLanguageView),
     MaterialRoute(page: ChangePhoneNumberView),
+    MaterialRoute(page: MyParkingSpotsView),
+    MaterialRoute(page: AddBankAccountView),
+    MaterialRoute(page: PayoutView),
     // @stacked-route
   ],
   dependencies: [
@@ -110,6 +118,9 @@ import 'package:kreyno/ui/bottom_sheets/upload_profile_image/upload_profile_imag
     LazySingleton(classType: MediaService),
     LazySingleton(classType: StripeService),
     LazySingleton(classType: PermissionsService),
+    LazySingleton(classType: ParkingSpotsService),
+    LazySingleton(classType: ReservationsService),
+    LazySingleton(classType: WalletService),
     // @stacked-service
   ],
   bottomsheets: [
@@ -133,6 +144,7 @@ import 'package:kreyno/ui/bottom_sheets/upload_profile_image/upload_profile_imag
     StackedBottomsheet(classType: CheckoutMoneyFeedbackSheet),
     StackedBottomsheet(classType: CountryCodePickerSheet),
     StackedBottomsheet(classType: UploadProfileImageSheet),
+    StackedBottomsheet(classType: DeleteBankAccountConfirmationSheet),
     // @stacked-bottom-sheet
   ],
   dialogs: [
