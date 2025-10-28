@@ -29,11 +29,15 @@ class ProfileSheetModel extends ReactiveViewModel {
   }
 
   void onMyParkingSpotsTapped() async {
-    // TODO: Implement my parking spots
+    await _navigationService.navigateToMyParkingSpotsView(
+      preventDuplicates: false,
+    );
   }
 
   void onWalletKreynoTapped() async {
-    // TODO: Implement wallet kreyno
+    await _navigationService.navigateToKreynoWalletView(
+      preventDuplicates: false,
+    );
   }
 
   void onPaymentMethodsTapped() async {

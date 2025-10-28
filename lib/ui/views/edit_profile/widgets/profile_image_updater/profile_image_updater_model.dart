@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
-import 'package:kreyno/models/user.dart';
+import 'package:kreyno/models/avatar.dart';
 import 'package:kreyno/services/toast_service.dart';
 import 'package:kreyno/services/user_service.dart';
 import 'package:kreyno/ui/common/app_strings.dart';

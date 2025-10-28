@@ -123,4 +123,8 @@ class AppIcons {
   static const String personalCard = '${_basePath}personal-card.svg';
 
   static const String arrowRightUp = '${_basePath}arrow_right_up.svg';
+
+  static const String bank = '${_basePath}bank.svg';
+
+  static const String warningHex = '${_basePath}warning_hex.svg';
 }

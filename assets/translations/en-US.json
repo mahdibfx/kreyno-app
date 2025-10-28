@@ -179,16 +179,20 @@
         "gatewayTimeout": "Gateway timeout. The server took too long to respond.",
         "serverError": "Server error occurred. Please try again later."
     },
-    "profileSheet": {
-        "accountSettings": "Account settings",
-        "myVehicles": "My vehicles",
-        "myParkingSpots": "My parking spots",
+    "wallet": {
         "walletKreyno": "Kreyno wallet",
-        "paymentMethods": "Payment methods",
-        "conditionsOfUse": "Terms of use",
-        "privacyPolicy": "Privacy policy",
-        "changeLanguage": "Change language",
-        "logout": "Logout"
+        "transactionHistory": "Transaction history",
+        "noTransactionsFound": "No transactions found",
+        "transactionsWillAppearHere": "Your transactions will appear here",
+        "earnings": "Earnings",
+        "withdrawal": "Withdrawal",
+        "yourBalance": "Your balance",
+        "withdrawMyMoney": "Withdraw my money",
+        "removeMyBankAccount": "Remove my bank account",
+        "addBankAccount": "Add a bank account",
+        "unableToLoad": "Unable to load",
+        "noEarningsYet": "No earnings yet",
+        "earningsWillAppearHere": "Income from your parking will appear here from your first transaction."
     },
     "logoutConfirmation": {
         "title": "Log out of Kreyno?",
@@ -263,5 +267,31 @@
         "profileUpdatedSuccessfully": "Profile updated successfully",
         "profileImageUpdatedSuccessfully": "Profile picture updated successfully",
         "profileImageDeletedSuccessfully": "Profile picture deleted successfully"
+    },
+    "deleteBankAccountConfirmation": {
+        "title": "Are you sure?",
+        "description": "Are you sure you want to delete this bank account from your Kreyno wallet?",
+        "warning": "Transfers already in progress will be sent to your old bank account.",
+        "cancel": "Cancel",
+        "delete": "Delete"
+    },
+    "datePickerFilter": {
+        "title": "Filter by date",
+        "startDate": "Start date",
+        "endDate": "End date",
+        "reset": "Reset",
+        "apply": "Apply"
+    },
+    "myParkingSpots": {
+        "title": "My parking spots",
+        "boughtSpotsTab": "Bought spots",
+        "soldSpotsTab": "Sold spots",
+        "chargingAvailable": "Charging available",
+        "chargingNotAvailable": "Charging not available",
+        "price": "Price",
+        "boughtEmptyTitle": "No parking purchased",
+        "boughtEmptyDescription": "You haven't purchased any parking yet. Start now to easily find your purchases.",
+        "soldEmptyTitle": "No parking sold",
+        "soldEmptyDescription": "You haven't sold any parking yet. Start now to easily find your sales."
     }
 }

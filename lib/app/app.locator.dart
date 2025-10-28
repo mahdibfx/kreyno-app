@@ -18,12 +18,15 @@ import '../services/cars_service.dart';
 import '../services/device_service.dart';
 import '../services/media_service.dart';
 import '../services/onboarding_service.dart';
+import '../services/parking_spots_service.dart';
 import '../services/permissions_service.dart';
 import '../services/picked_language_service.dart';
+import '../services/reservations_service.dart';
 import '../services/shared_prefs_service.dart';
 import '../services/stripe_service.dart';
 import '../services/toast_service.dart';
 import '../services/user_service.dart';
+import '../services/wallet_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -53,4 +56,7 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => MediaService());
   locator.registerLazySingleton(() => StripeService());
   locator.registerLazySingleton(() => PermissionsService());
+  locator.registerLazySingleton(() => ParkingSpotsService());
+  locator.registerLazySingleton(() => ReservationsService());
+  locator.registerLazySingleton(() => WalletService());
 }

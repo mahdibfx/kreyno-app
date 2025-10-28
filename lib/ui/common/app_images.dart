@@ -62,4 +62,10 @@ class AppImages {
 
   static const String paymentMethodsEmptyStateIllustration =
       '${_basePath}payment_method_empty_illustration.png';
+
+  static const String parkingSpotsEmptyStateIllustration =
+      '${_basePath}parking_spots_empty_state_illustartion.png';
+
+  static const String walletEmptyStateIllustration =
+      '${_basePath}wallet_empty_illustration.png';
 }

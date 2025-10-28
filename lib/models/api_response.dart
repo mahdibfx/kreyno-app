@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:kreyno/models/transaction_data.dart';
 
 part 'api_response.g.dart';
 
@@ -16,6 +17,14 @@ class ApiResponse<T> {
   ) {
     // Handling the case where data might be an empty list
     if (json['data'] is List && (json['data'] as List).isEmpty) {
+      // If T is TransactionData, return empty TransactionData
+      if (T == TransactionData) {
+        return ApiResponse._(
+          success: json['success'] as bool,
+          message: json['message'] as String?,
+          data: const TransactionData(transactionsByMonth: {}) as T,
+        );
+      }
       return ApiResponse._(
         success: json['success'] as bool,
         message: json['message'] as String?,

@@ -154,7 +154,6 @@ class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   double get minExtent => 112 * AppSpacing.px1;
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return !isShrunk;
-  }
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+      true;
 }

@@ -5,6 +5,8 @@ import 'package:kreyno/ui/common/app_spacing.dart';
 class Refresher extends StatelessWidget {
   final bool enableRefresh;
   final Future<void> Function() onRefresh;
+  final double? edgeOffset;
+  final double? displacement;
   final Widget child;
 
   const Refresher({
@@ -12,6 +14,8 @@ class Refresher extends StatelessWidget {
     required this.onRefresh,
     required this.child,
     this.enableRefresh = true,
+    this.edgeOffset,
+    this.displacement,
   });
 
   @override
@@ -21,7 +25,8 @@ class Refresher extends StatelessWidget {
             onRefresh: onRefresh,
             color: AppColors.greenKre,
             backgroundColor: AppColors.white,
-            edgeOffset: 60 * AppSpacing.px1,
+            edgeOffset: edgeOffset ?? 60 * AppSpacing.px1,
+            displacement: displacement ?? 40 * AppSpacing.px1,
             child: child,
           )
         : child;

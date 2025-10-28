@@ -180,16 +180,21 @@
         "gatewayTimeout": "Délai de passerelle dépassé. Le serveur a pris trop de temps à répondre.",
         "serverError": "Erreur serveur détectée. Veuillez réessayer plus tard."
     },
-    "profileSheet": {
-        "accountSettings": "Paramètres du compte",
-        "myVehicles": "Mes véhicules",
-        "myParkingSpots": "Mes stationnements",
+    "wallet": {
         "walletKreyno": "Portefeuille Kreyno",
-        "paymentMethods": "Moyens de paiement",
-        "conditionsOfUse": "Conditions d'utilisation",
-        "privacyPolicy": "Politique de confidentialité",
-        "changeLanguage": "Changer la langue",
-        "logout": "Déconnexion"
+        "transactionHistory": "Historique des gains",
+        "sale": "Vente",
+        "noTransactionsFound": "Aucune transaction trouvée",
+        "transactionsWillAppearHere": "Vos transactions apparaîtront ici",
+        "earnings": "Gains",
+        "withdrawal": "Retrait",
+        "yourBalance": "Votre balance",
+        "withdrawMyMoney": "Retirer mon argent",
+        "removeMyBankAccount": "Supprimer mon compte bancaire",
+        "addBankAccount": "Ajouter un compte bancaire",
+        "unableToLoad": "Chargement impossible",
+        "noEarningsYet": "Aucun gain pour l'instant",
+        "earningsWillAppearHere": "Les revenus de vos stationnements apparaîtront ici dès votre première transaction."
     },
     "logoutConfirmation": {
         "title": "Se déconnecter de Kreyno ?",
@@ -264,5 +269,42 @@
         "profileUpdatedSuccessfully": "Profil mis à jour avec succès",
         "profileImageUpdatedSuccessfully": "Image de profil mise à jour avec succès",
         "profileImageDeletedSuccessfully": "Image de profil supprimée avec succès"
+    },
+    "profileSheet": {
+        "accountSettings": "Paramètres du compte",
+        "myVehicles": "Mes véhicules",
+        "myParkingSpots": "Mes stationnements",
+        "walletKreyno": "Portefeuille Kreyno",
+        "paymentMethods": "Moyens de paiement",
+        "conditionsOfUse": "Conditions d'utilisation",
+        "privacyPolicy": "Politique de confidentialité",
+        "changeLanguage": "Changer la langue",
+        "logout": "Déconnexion"
+    },
+    "deleteBankAccountConfirmation": {
+        "title": "Êtes-vous sûr ?",
+        "description": "Êtes-vous sûr de vouloir supprimer ce compte bancaire de votre portefeuille Kreyno ?",
+        "warning": "Les virements déjà en cours seront envoyés sur votre ancien compte bancaire.",
+        "cancel": "Annuler",
+        "delete": "Supprimer"
+    },
+    "datePickerFilter": {
+        "title": "Filtre par date",
+        "startDate": "Date de début",
+        "endDate": "Date de fin",
+        "reset": "Réinitialiser",
+        "apply": "Appliquer"
+    },
+    "myParkingSpots": {
+        "title": "Mes parkings",
+        "boughtSpotsTab": "Places obtenues",
+        "soldSpotsTab": "Places cédées",
+        "chargingAvailable": "Borne disponible",
+        "chargingNotAvailable": "Borne non disponible",
+        "price": "Prix",
+        "boughtEmptyTitle": "Aucun stationnement acheté",
+        "boughtEmptyDescription": "Vous n'avez pas encore acheté de stationnement. Commencez dès maintenant pour retrouver facilement vos achats.",
+        "soldEmptyTitle": "Aucun stationnement vendu",
+        "soldEmptyDescription": "Vous n'avez pas encore vendu de stationnement. Commencez dès maintenant pour retrouver facilement vos ventes."
     }
 }
