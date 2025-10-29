@@ -39,7 +39,8 @@
             "firstNameInvalidCharacters": "First name can only contain letters",
             "firstNameTooShort": "First name must contain at least 2 characters",
             "lastNameInvalidCharacters": "Last name can only contain letters",
-            "lastNameTooShort": "Last name must contain at least 2 characters"
+            "lastNameTooShort": "Last name must contain at least 2 characters",
+            "iban": "Invalid IBAN"
         },
         "otpSuccess": {
             "codeSentTitle": "Code sent",
@@ -274,6 +275,38 @@
         "warning": "Transfers already in progress will be sent to your old bank account.",
         "cancel": "Cancel",
         "delete": "Delete"
+    },
+    "addBankAccount": {
+        "title": "Add a bank account",
+        "description": "Add your account to withdraw your earnings.",
+        "errorOccurred": "An error occurred",
+        "accountDetails": "Account details",
+        "lastName": "Last name",
+        "lastNamePlaceholder": "Last name",
+        "firstName": "First name",
+        "firstNamePlaceholder": "First name",
+        "accountHolderNameHint": "Enter the full name of the account holder or company exactly as it appears on your bank statement.",
+        "nameMatchesBankAccountCheckbox": "Check if the name matches that of your bank account.",
+        "iban": "Account number (IBAN)",
+        "ibanPlaceholder": "Account number (IBAN)",
+        "ibanHint": "Enter a valid IBAN, without spaces or errors.",
+        "confirmIban": "Confirm account number (IBAN)",
+        "confirmIbanPlaceholder": "Re-enter your IBAN",
+        "ibanMismatch": "IBANs do not match",
+        "email": "Associated email address",
+        "emailPlaceholder": "Ex: john.doe@email.com",
+        "accountHolderAddress": "Account holder address",
+        "city": "City",
+        "cityPlaceholder": "Ex: Paris",
+        "region": "Region / Department",
+        "regionPlaceholder": "Ex: Île-de-France",
+        "country": "Country",
+        "countryPlaceholder": "Ex: France",
+        "address": "Address",
+        "addressPlaceholder": "Ex: 12 Rue Victor Hugo",
+        "postalCode": "Postal code",
+        "postalCodePlaceholder": "Ex: 75008",
+        "validateButton": "Validate my information"
     },
     "datePickerFilter": {
         "title": "Filter by date",

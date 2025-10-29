@@ -52,6 +52,7 @@ class CommonStrings {
       'common.validation.lastNameInvalidCharacters'.tr();
   static String get lastNameTooShortValidationText =>
       'common.validation.lastNameTooShort'.tr();
+  static String get ibanValidationText => 'common.validation.iban'.tr();
 
   // otp success
   static String get codeSentTitle => 'common.otpSuccess.codeSentTitle'.tr();
@@ -397,6 +398,51 @@ class DeleteBankAccountConfirmationStrings {
   static String get warning => 'deleteBankAccountConfirmation.warning'.tr();
   static String get cancel => 'deleteBankAccountConfirmation.cancel'.tr();
   static String get delete => 'deleteBankAccountConfirmation.delete'.tr();
+}
+
+class AddBankAccountStrings {
+  const AddBankAccountStrings._();
+
+  static String get title => 'addBankAccount.title'.tr();
+  static String get description => 'addBankAccount.description'.tr();
+  static String get errorOccurred => 'addBankAccount.errorOccurred'.tr();
+  static String get accountDetails => 'addBankAccount.accountDetails'.tr();
+  static String get lastName => 'addBankAccount.lastName'.tr();
+  static String get lastNamePlaceholder =>
+      'addBankAccount.lastNamePlaceholder'.tr();
+  static String get firstName => 'addBankAccount.firstName'.tr();
+  static String get firstNamePlaceholder =>
+      'addBankAccount.firstNamePlaceholder'.tr();
+  static String get accountHolderNameHint =>
+      'addBankAccount.accountHolderNameHint'.tr();
+  static String get nameMatchesBankAccountCheckbox =>
+      'addBankAccount.nameMatchesBankAccountCheckbox'.tr();
+  static String get iban => 'addBankAccount.iban'.tr();
+  static String get ibanPlaceholder => 'addBankAccount.ibanPlaceholder'.tr();
+  static String get ibanHint => 'addBankAccount.ibanHint'.tr();
+  static String get confirmIban => 'addBankAccount.confirmIban'.tr();
+  static String get confirmIbanPlaceholder =>
+      'addBankAccount.confirmIbanPlaceholder'.tr();
+  static String get ibanMismatch => 'addBankAccount.ibanMismatch'.tr();
+  static String get email => 'addBankAccount.email'.tr();
+  static String get emailPlaceholder => 'addBankAccount.emailPlaceholder'.tr();
+  static String get accountHolderAddress =>
+      'addBankAccount.accountHolderAddress'.tr();
+  static String get city => 'addBankAccount.city'.tr();
+  static String get cityPlaceholder => 'addBankAccount.cityPlaceholder'.tr();
+  static String get region => 'addBankAccount.region'.tr();
+  static String get regionPlaceholder =>
+      'addBankAccount.regionPlaceholder'.tr();
+  static String get country => 'addBankAccount.country'.tr();
+  static String get countryPlaceholder =>
+      'addBankAccount.countryPlaceholder'.tr();
+  static String get address => 'addBankAccount.address'.tr();
+  static String get addressPlaceholder =>
+      'addBankAccount.addressPlaceholder'.tr();
+  static String get postalCode => 'addBankAccount.postalCode'.tr();
+  static String get postalCodePlaceholder =>
+      'addBankAccount.postalCodePlaceholder'.tr();
+  static String get validateButton => 'addBankAccount.validateButton'.tr();
 }
 
 class WalletStrings {

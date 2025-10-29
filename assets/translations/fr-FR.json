@@ -39,7 +39,8 @@
             "firstNameInvalidCharacters": "Le prénom ne peut contenir que des lettres",
             "firstNameTooShort": "Le prénom doit contenir au moins 2 caractères",
             "lastNameInvalidCharacters": "Le nom ne peut contenir que des lettres",
-            "lastNameTooShort": "Le nom doit contenir au moins 2 caractères"
+            "lastNameTooShort": "Le nom doit contenir au moins 2 caractères",
+            "iban": "IBAN invalide"
         },
         "otpSuccess": {
             "codeSentTitle": "Code envoyé",
@@ -287,6 +288,38 @@
         "warning": "Les virements déjà en cours seront envoyés sur votre ancien compte bancaire.",
         "cancel": "Annuler",
         "delete": "Supprimer"
+    },
+    "addBankAccount": {
+        "title": "Ajouter un compte bancaire",
+        "description": "Ajoutez votre compte pour pouvoir retirer vos gains.",
+        "errorOccurred": "Une erreur est survenue",
+        "accountDetails": "Détails du compte",
+        "lastName": "Nom",
+        "lastNamePlaceholder": "Nom",
+        "firstName": "Prénom",
+        "firstNamePlaceholder": "Prénom",
+        "accountHolderNameHint": "Saisissez le nom complet du titulaire ou de l'entreprise exactement comme il apparaît sur votre relevé bancaire.",
+        "nameMatchesBankAccountCheckbox": "Cochez si le nom correspond à celui de votre compte bancaire.",
+        "iban": "Numéro de compte (IBAN)",
+        "ibanPlaceholder": "Numéro de compte (IBAN)",
+        "ibanHint": "Entrez un IBAN valide, sans espaces ni erreurs.",
+        "confirmIban": "Confirmer le numéro de compte (IBAN)",
+        "confirmIbanPlaceholder": "Saisissez à nouveau votre IBAN",
+        "ibanMismatch": "Les IBAN ne correspondent pas",
+        "email": "Adresse email associée",
+        "emailPlaceholder": "Ex. : jean.dupont@email.com",
+        "accountHolderAddress": "Adresse du titulaire",
+        "city": "Ville",
+        "cityPlaceholder": "Ex. : Paris",
+        "region": "Région / Département",
+        "regionPlaceholder": "Ex. : Île-de-France",
+        "country": "Pays",
+        "countryPlaceholder": "Ex. : France",
+        "address": "Adresse",
+        "addressPlaceholder": "Ex. : 12 Rue Victor Hugo",
+        "postalCode": "Code postal",
+        "postalCodePlaceholder": "Ex. : 75008",
+        "validateButton": "Valider mes informations"
     },
     "datePickerFilter": {
         "title": "Filtre par date",

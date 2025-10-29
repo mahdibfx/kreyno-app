@@ -66,13 +66,13 @@ class PhoneInputFieldModel extends BaseViewModel {
       barrierColor: Colors.black.withValues(alpha: .1),
       ignoreSafeArea: false,
       isScrollControlled: true,
+      data: true,
     );
 
     if (response != null && response.confirmed) {
-      _logger.i(
-        'country code selected: ${response.data.$1} ${response.data.$2}',
-      );
-      setCodes(response.data.$1, response.data.$2);
+      final (dialCode, code, name) = response.data as (String, String, String);
+      _logger.i('country code selected: $dialCode $code ($name)');
+      setCodes(dialCode, code);
     }
   }
 }
