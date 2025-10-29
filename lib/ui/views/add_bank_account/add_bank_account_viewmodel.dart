@@ -19,14 +19,6 @@ class AddBankAccountViewModel extends ReactiveViewModel with FormStateHelper {
 
   String _countryCode = '';
 
-  bool _nameMatchesBankAccountName = true;
-  bool get nameMatchesBankAccountName => _nameMatchesBankAccountName;
-
-  void setNameMatchesBankAccountName(bool value) {
-    _nameMatchesBankAccountName = value;
-    rebuildUi();
-  }
-
   void onConfirmIbanChanged(String value) {
     if (value.trim().isNotEmpty) {
       if (value.trim().toUpperCase() != ibanValue?.trim().toUpperCase()) {

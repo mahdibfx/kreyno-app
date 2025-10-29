@@ -145,16 +145,6 @@ class AddBankAccountView extends StackedView<AddBankAccountViewModel>
                         maxLines: 3,
                       ),
                       VGap(AppSpacing.px16),
-                      LabeledCheckbox(
-                        label: AddBankAccountStrings
-                            .nameMatchesBankAccountCheckbox,
-                        value: viewModel.nameMatchesBankAccountName,
-                        onChanged: (_) =>
-                            viewModel.setNameMatchesBankAccountName(
-                              !viewModel.nameMatchesBankAccountName,
-                            ),
-                      ),
-                      VGap(AppSpacing.px16),
                       InputField(
                         controller: ibanController,
                         focusNode: ibanFocusNode,
