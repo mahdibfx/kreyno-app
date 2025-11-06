@@ -127,4 +127,6 @@ class AppIcons {
   static const String bank = '${_basePath}bank.svg';
 
   static const String warningHex = '${_basePath}warning_hex.svg';
+
+  static const String backDialPad = '${_basePath}back.svg';
 }

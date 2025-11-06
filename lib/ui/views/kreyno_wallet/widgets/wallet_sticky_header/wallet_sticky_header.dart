@@ -45,7 +45,8 @@ class WalletStickyHeader extends StackedView<WalletStickyHeaderModel> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 VGap(AppSpacing.px12),
-                if (viewModel.hasBankAccount) ...[
+                // TODO: revert back to if (viewModel.hasBankAccount) ...[
+                if (!viewModel.hasBankAccount) ...[
                   CustomButton.filled(
                     text: WalletStrings.withdrawMyMoney,
                     icon: AppIcons.cardReceive,
