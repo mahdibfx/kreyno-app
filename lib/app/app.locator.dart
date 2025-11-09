@@ -25,6 +25,7 @@ import '../services/reservations_service.dart';
 import '../services/shared_prefs_service.dart';
 import '../services/stripe_service.dart';
 import '../services/toast_service.dart';
+import '../services/url_launcher_service.dart';
 import '../services/user_service.dart';
 import '../services/wallet_service.dart';
 
@@ -59,4 +60,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => ParkingSpotsService());
   locator.registerLazySingleton(() => ReservationsService());
   locator.registerLazySingleton(() => WalletService());
+  locator.registerLazySingleton(() => UrlLauncherService());
 }

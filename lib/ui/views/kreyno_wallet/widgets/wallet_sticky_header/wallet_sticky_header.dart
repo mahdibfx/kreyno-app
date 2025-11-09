@@ -6,6 +6,7 @@ import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/views/kreyno_wallet/widgets/wallet_sticky_header/widgets/balance_card.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_loading_indicator.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -88,7 +89,9 @@ class WalletStickyHeader extends StackedView<WalletStickyHeaderModel> {
                                 maxLines: 2,
                               ),
                               GestureDetector(
-                                onTap: viewModel.onVerifyBankAccountTapped,
+                                onTap: viewModel.verifyingBankAccount
+                                    ? null
+                                    : viewModel.onVerifyBankAccountTapped,
                                 child: Container(
                                   padding: EdgeInsets.only(
                                     top: AppSpacing.px16,
@@ -101,10 +104,14 @@ class WalletStickyHeader extends StackedView<WalletStickyHeaderModel> {
                                         'Vérifier maintenant',
                                         maxLines: 2,
                                       ),
-                                      CustomIcon(
-                                        iconPath: AppIcons.arrowRight,
-                                        size: AppSpacing.px20,
-                                      ),
+                                      viewModel.verifyingBankAccount
+                                          ? CustomLoadingIndicator(
+                                              size: AppSpacing.px20,
+                                            )
+                                          : CustomIcon(
+                                              iconPath: AppIcons.arrowRight,
+                                              size: AppSpacing.px20,
+                                            ),
                                     ],
                                   ),
                                 ),

@@ -12,6 +12,7 @@ import 'package:kreyno/services/picked_language_service.dart';
 import 'package:kreyno/services/shared_prefs_service.dart';
 import 'package:kreyno/services/stripe_service.dart';
 import 'package:kreyno/services/toast_service.dart';
+import 'package:kreyno/services/url_launcher_service.dart';
 import 'package:kreyno/services/user_service.dart';
 import 'package:kreyno/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:kreyno/ui/views/home/home_view.dart';
@@ -121,6 +122,7 @@ import 'package:kreyno/ui/views/payout/payout_view.dart';
     LazySingleton(classType: ParkingSpotsService),
     LazySingleton(classType: ReservationsService),
     LazySingleton(classType: WalletService),
+    LazySingleton(classType: UrlLauncherService),
     // @stacked-service
   ],
   bottomsheets: [

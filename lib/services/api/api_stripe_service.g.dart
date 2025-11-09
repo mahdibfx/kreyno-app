@@ -240,27 +240,33 @@ class _ApiStripeService implements ApiStripeService {
   }
 
   @override
-  Future<ApiResponse<dynamic>> getStripeConnectOnboardingLink() async {
+  Future<ApiResponse<StripeConnectOnboardingLinkResponse>>
+  getStripeConnectOnboardingLink() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ApiResponse<dynamic>>(
-      Options(method: 'DELETE', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            'stripe/connect/onboarding-link',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
+    final _options =
+        _setStreamType<ApiResponse<StripeConnectOnboardingLinkResponse>>(
+          Options(method: 'GET', headers: _headers, extra: _extra)
+              .compose(
+                _dio.options,
+                'stripe/connect/onboarding-link',
+                queryParameters: queryParameters,
+                data: _data,
+              )
+              .copyWith(
+                baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl),
+              ),
+        );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ApiResponse<dynamic> _value;
+    late ApiResponse<StripeConnectOnboardingLinkResponse> _value;
     try {
-      _value = ApiResponse<dynamic>.fromJson(
+      _value = ApiResponse<StripeConnectOnboardingLinkResponse>.fromJson(
         _result.data!,
-        (json) => json as dynamic,
+        (json) => StripeConnectOnboardingLinkResponse.fromJson(
+          json as Map<String, dynamic>,
+        ),
       );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);

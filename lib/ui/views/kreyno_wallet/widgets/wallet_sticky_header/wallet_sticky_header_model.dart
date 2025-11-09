@@ -4,6 +4,9 @@ import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/models/wallet.dart';
+import 'package:kreyno/services/stripe_service.dart';
+import 'package:kreyno/services/toast_service.dart';
+import 'package:kreyno/services/url_launcher_service.dart';
 import 'package:kreyno/services/wallet_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -13,6 +16,9 @@ class WalletStickyHeaderModel extends BaseViewModel {
   final _walletService = locator<WalletService>();
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
+  final _stripeService = locator<StripeService>();
+  final _toastService = locator<ToastService>();
+  final _urlLauncherService = locator<UrlLauncherService>();
 
   final Function(bool success) onPayoutSuccess;
   WalletStickyHeaderModel({required this.onPayoutSuccess});
@@ -40,6 +46,14 @@ class WalletStickyHeaderModel extends BaseViewModel {
     return bankAccount;
   }
 
+  bool _verifyingBankAccount = false;
+  bool get verifyingBankAccount => _verifyingBankAccount;
+
+  void setVerifyingBankAccount(bool value) {
+    _verifyingBankAccount = value;
+    rebuildUi();
+  }
+
   Future<void> fetchWallet() async {
     setError(null);
     setBusy(true);
@@ -61,11 +75,35 @@ class WalletStickyHeaderModel extends BaseViewModel {
   }
 
   void onVerifyBankAccountTapped() async {
-    // TODO: Implement verify bank account logic
+    setVerifyingBankAccount(true);
+    try {
+      final response = await _stripeService.getStripeConnectOnboardingLink();
+      await response.match(
+        (error) async {
+          _logger.e('Failed to get stripe connect onboarding link: $error');
+          _toastService.showError(title: error);
+        },
+        (data) async {
+          _logger.i('Stripe connect onboarding link: ${data.url}');
+          final launchResult = await _urlLauncherService.launchUrl(data.url);
+          await launchResult.match(
+            (error) async {
+              _logger.e('Failed to launch onboarding link: $error');
+              _toastService.showError(title: error);
+            },
+            (_) async {
+              _logger.i('Successfully launched onboarding link');
+              // TODO: update state after the onboarding is completed based on what the designer provides
+            },
+          );
+        },
+      );
+    } finally {
+      setVerifyingBankAccount(false);
+    }
   }
 
   void onAddBankAccountTapped() async {
-    // TODO : make sure AddBankAccountView returns a Wallet object in case the bank account creation is successful
     final Wallet? updatedWallet = await _navigationService
         .navigateToAddBankAccountView();
     if (updatedWallet != null) {

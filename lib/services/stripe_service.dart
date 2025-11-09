@@ -8,6 +8,7 @@ import 'package:kreyno/dtos/create_stripe_account_dto.dart';
 import 'package:kreyno/extensions/api_response_extensions.dart';
 import 'package:kreyno/models/card.dart';
 import 'package:kreyno/models/setup_intent_response.dart';
+import 'package:kreyno/models/strip_connect_onboarding_link_response.dart';
 import 'package:kreyno/models/wallet.dart';
 import 'package:kreyno/services/api/api_stripe_service.dart';
 import 'package:kreyno/services/api/dio_service.dart';
@@ -163,5 +164,10 @@ class StripeService {
         return unit;
       }),
     );
+  }
+
+  Future<Either<String, StripeConnectOnboardingLinkResponse>>
+  getStripeConnectOnboardingLink() {
+    return _apiStripeService.getStripeConnectOnboardingLink().toEither();
   }
 }
