@@ -178,15 +178,45 @@ class _ApiStripeService implements ApiStripeService {
   }
 
   @override
-  Future<ApiResponse<dynamic>> createAccount(
+  Future<ApiResponse<Wallet>> createAccount(
     CreateStripeAccountDto createStripeAccountDto,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = createStripeAccountDto;
-    final _options = _setStreamType<ApiResponse<dynamic>>(
+    final _options = _setStreamType<ApiResponse<Wallet>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'stripe/account',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiResponse<Wallet> _value;
+    try {
+      _value = ApiResponse<Wallet>.fromJson(
+        _result.data!,
+        (json) => Wallet.fromJson(json as Map<String, dynamic>),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<ApiResponse<dynamic>> getAccount() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<ApiResponse<dynamic>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
             'stripe/account',
@@ -210,16 +240,16 @@ class _ApiStripeService implements ApiStripeService {
   }
 
   @override
-  Future<ApiResponse<dynamic>> getAccount() async {
+  Future<ApiResponse<dynamic>> getStripeConnectOnboardingLink() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<ApiResponse<dynamic>>(
-      Options(method: 'GET', headers: _headers, extra: _extra)
+      Options(method: 'DELETE', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'stripe/account',
+            'stripe/connect/onboarding-link',
             queryParameters: queryParameters,
             data: _data,
           )

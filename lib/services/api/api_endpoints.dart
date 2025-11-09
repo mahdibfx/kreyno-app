@@ -68,4 +68,8 @@ class ApiEndpoints {
   static const String wallet = _walletBaseUrl;
   static const String walletHistory = '$_walletBaseUrl/history';
   static const String walletWithdraw = '$_walletBaseUrl/withdraw';
+
+  // STRIPE ACCOUNT
+  static const String stripeConnectOnboardingLink =
+      '$_stripeBaseUrl/connect/onboarding-link';
 }

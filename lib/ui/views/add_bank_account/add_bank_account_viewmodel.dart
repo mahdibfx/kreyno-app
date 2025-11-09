@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
+import 'package:kreyno/dtos/create_stripe_account_dto.dart';
 import 'package:kreyno/models/user.dart';
+import 'package:kreyno/services/stripe_service.dart';
+import 'package:kreyno/services/toast_service.dart';
 import 'package:kreyno/services/user_service.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:stacked/stacked.dart';
@@ -14,6 +17,8 @@ class AddBankAccountViewModel extends ReactiveViewModel with FormStateHelper {
   final _navigationService = locator<NavigationService>();
   final _bottomSheetService = locator<BottomSheetService>();
   final _userService = locator<UserService>();
+  final _stripeService = locator<StripeService>();
+  final _toastService = locator<ToastService>();
 
   User get currentUser => _userService.currentUser!;
 
@@ -62,7 +67,33 @@ class AddBankAccountViewModel extends ReactiveViewModel with FormStateHelper {
   void onCtaTapped() async {
     // TODO: Implement API call to create bank account
     if (isFormValid) {
-      _logger.i('form is valid');
+      setBusy(true);
+      try {
+        final response = await _stripeService.createAccount(
+          CreateStripeAccountDto(
+            country: _countryCode,
+            email: emailValue!,
+            street: addressValue!,
+            city: cityValue!,
+            state: regionValue!,
+            postalCode: postalCodeValue!,
+            iban: ibanValue!,
+            accountHolderName: '${firstNameValue!} ${lastNameValue!}',
+          ),
+        );
+
+        response.match(
+          (error) {
+            _logger.e('error creating bank account: $error');
+            _toastService.showError(title: error);
+          },
+          (wallet) {
+            _navigationService.back(result: wallet);
+          },
+        );
+      } finally {
+        setBusy(false);
+      }
     }
   }
 

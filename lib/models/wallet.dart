@@ -9,6 +9,8 @@ abstract class Wallet with _$Wallet {
     @JsonKey(name: 'balance') required double balance,
     @JsonKey(name: 'currency') required String currency,
     @JsonKey(name: 'iban') required String? bankAccountNumber,
+    @JsonKey(name: 'validated_account') required bool validatedAccount,
+    @JsonKey(name: 'transfer_capability') required bool transferCapability,
     @JsonKey(name: 'updated_at') required DateTime updatedAt,
   }) = _Wallet;
 

@@ -21,6 +21,8 @@ class WalletStickyHeaderModel extends BaseViewModel {
   Wallet? get wallet => _wallet;
 
   bool get hasBankAccount => _wallet?.bankAccountNumber != null;
+  bool get isBankAccountVerified => _wallet?.validatedAccount ?? false;
+  bool get isBankAccountTransferCapable => _wallet?.transferCapability ?? false;
 
   double get balance => _wallet?.balance ?? 0.0;
 
@@ -56,6 +58,10 @@ class WalletStickyHeaderModel extends BaseViewModel {
     } finally {
       setBusy(false);
     }
+  }
+
+  void onVerifyBankAccountTapped() async {
+    // TODO: Implement verify bank account logic
   }
 
   void onAddBankAccountTapped() async {

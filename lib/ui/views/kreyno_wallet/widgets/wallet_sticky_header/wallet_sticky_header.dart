@@ -5,6 +5,7 @@ import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/views/kreyno_wallet/widgets/wallet_sticky_header/widgets/balance_card.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -36,43 +37,108 @@ class WalletStickyHeader extends StackedView<WalletStickyHeaderModel> {
             onRetry: viewModel.fetchWallet,
           ),
         ),
-        SliverPadding(
-          padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
-          sliver: SliverToBoxAdapter(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                VGap(AppSpacing.px12),
-                // TODO: revert back to if (viewModel.hasBankAccount) ...[
-                if (!viewModel.hasBankAccount) ...[
-                  CustomButton.filled(
-                    text: WalletStrings.withdrawMyMoney,
-                    icon: AppIcons.cardReceive,
-                    onPressed: viewModel.onPayoutTapped,
-                    isDisabled: viewModel.isBusy || viewModel.hasError,
-                  ),
-                  VGap(AppSpacing.px16),
-                  GestureDetector(
-                    onTap: viewModel.isBusy || viewModel.hasError
-                        ? null
-                        : viewModel.onRemoveBankAccountTapped,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: AppSpacing.px4),
-                      color: Colors.transparent,
-                      child: CustomText.smallParagraphBold(
-                        WalletStrings.removeMyBankAccount,
-                        color: viewModel.isBusy || viewModel.hasError
-                            ? AppColors.placeholderKre
-                            : AppColors.textKre,
-                        textDecoration: TextDecoration.underline,
-                        textDecorationColor: AppColors.textKre,
-                      ),
+        SliverToBoxAdapter(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              VGap(AppSpacing.px12),
+              // TODO: revert back to if (viewModel.hasBankAccount) ...[
+              if (viewModel.hasBankAccount) ...[
+                if (viewModel.isBankAccountTransferCapable) ...[
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
+                    child: CustomButton.filled(
+                      text: WalletStrings.withdrawMyMoney,
+                      icon: AppIcons.cardReceive,
+                      onPressed: viewModel.onPayoutTapped,
+                      isDisabled: viewModel.isBusy || viewModel.hasError,
                     ),
                   ),
-                ] else ...[
-                  CustomButton.filled(
+                  VGap(AppSpacing.px16),
+                ],
+                if (!viewModel.isBankAccountVerified) ...[
+                  Container(
+                    padding: EdgeInsets.all(AppSpacing.px16),
+                    color: const Color(0xFFFEF3F2),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: AppSpacing.px8,
+                      children: [
+                        CustomIcon(
+                          iconPath: AppIcons.closeCircle,
+                          size: AppSpacing.px32,
+                          color: AppColors.redKre,
+                        ),
+                        Expanded(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomText.smallParagraphBold(
+                                'Compte bancaire non vérifié.',
+                                maxLines: 2,
+                              ),
+                              VGap(2 * AppSpacing.px1),
+                              CustomText.labelRegular(
+                                'Vérifiez-le pour pouvoir retirer votre argent.',
+                                color: AppColors.redKre,
+                                maxLines: 2,
+                              ),
+                              GestureDetector(
+                                onTap: viewModel.onVerifyBankAccountTapped,
+                                child: Container(
+                                  padding: EdgeInsets.only(
+                                    top: AppSpacing.px16,
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    spacing: AppSpacing.px8,
+                                    children: [
+                                      CustomText.smallParagraphBold(
+                                        'Vérifier maintenant',
+                                        maxLines: 2,
+                                      ),
+                                      CustomIcon(
+                                        iconPath: AppIcons.arrowRight,
+                                        size: AppSpacing.px20,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  VGap(AppSpacing.px16),
+                ],
+                GestureDetector(
+                  onTap: viewModel.isBusy || viewModel.hasError
+                      ? null
+                      : viewModel.onRemoveBankAccountTapped,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: AppSpacing.px4),
+                    margin: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
+                    color: Colors.transparent,
+                    child: CustomText.smallParagraphBold(
+                      WalletStrings.removeMyBankAccount,
+                      color: viewModel.isBusy || viewModel.hasError
+                          ? AppColors.placeholderKre
+                          : AppColors.textKre,
+                      textDecoration: TextDecoration.underline,
+                      textDecorationColor: AppColors.textKre,
+                    ),
+                  ),
+                ),
+              ] else ...[
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
+                  child: CustomButton.filled(
                     text: WalletStrings.addBankAccount,
                     icon: AppIcons.bank,
                     backgroundColor: const Color(0xFFFAFAFA),
@@ -83,9 +149,9 @@ class WalletStickyHeader extends StackedView<WalletStickyHeaderModel> {
                     onPressed: viewModel.onAddBankAccountTapped,
                     isDisabled: viewModel.isBusy || viewModel.hasError,
                   ),
-                ],
+                ),
               ],
-            ),
+            ],
           ),
         ),
       ],

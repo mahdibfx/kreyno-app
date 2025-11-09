@@ -12,7 +12,6 @@ import 'package:kreyno/ui/widgets/dumb/custom_sliver_app_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:kreyno/ui/widgets/dumb/input_field.dart';
-import 'package:kreyno/ui/widgets/dumb/labeled_checkbox.dart';
 import 'package:kreyno/ui/widgets/dumb/loading_overlay.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -293,7 +292,7 @@ class AddBankAccountView extends StackedView<AddBankAccountViewModel>
                       children: [
                         CustomButton.filled(
                           text: AddBankAccountStrings.validateButton,
-                          onPressed: () {},
+                          onPressed: viewModel.onCtaTapped,
                           isDisabled: !viewModel.isFormValid,
                         ),
                       ],
