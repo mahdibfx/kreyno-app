@@ -129,4 +129,6 @@ class AppIcons {
   static const String warningHex = '${_basePath}warning_hex.svg';
 
   static const String backDialPad = '${_basePath}back.svg';
+
+  static const String infoCircleFilled = '${_basePath}info-circle-filled.svg';
 }

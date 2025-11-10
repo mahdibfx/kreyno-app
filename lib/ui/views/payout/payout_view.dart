@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
+import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/common/app_typography.dart';
+import 'package:kreyno/ui/views/payout/widgets/payouts_header.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_sliver_app_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:stacked/stacked.dart';
@@ -38,17 +41,7 @@ class PayoutView extends StackedView<PayoutViewModel> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // TODO: make it selectable if client asked for it
-                  // SelectableText(
-                  //   viewModel.amount.isEmpty ? '0.00' : viewModel.amount,
-                  //   style: AppTypography.largeTitle.copyWith(
-                  //     fontSize: 48 * AppSpacing.px1,
-                  //     fontWeight: FontWeight.bold,
-                  //     color: viewModel.amount.isEmpty
-                  //         ? AppColors.textKre
-                  //         : AppColors.mainKre,
-                  //   ),
-                  // ),
+                  const PayoutsHeader(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,

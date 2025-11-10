@@ -183,6 +183,7 @@
     "wallet": {
         "walletKreyno": "Kreyno wallet",
         "transactionHistory": "Transaction history",
+        "sale": "Sale",
         "noTransactionsFound": "No transactions found",
         "transactionsWillAppearHere": "Your transactions will appear here",
         "earnings": "Earnings",
@@ -268,6 +269,17 @@
         "profileUpdatedSuccessfully": "Profile updated successfully",
         "profileImageUpdatedSuccessfully": "Profile picture updated successfully",
         "profileImageDeletedSuccessfully": "Profile picture deleted successfully"
+    },
+    "profileSheet": {
+        "accountSettings": "Account settings",
+        "myVehicles": "My vehicles",
+        "myParkingSpots": "My parking spots",
+        "walletKreyno": "Kreyno wallet",
+        "paymentMethods": "Payment methods",
+        "conditionsOfUse": "Terms of use",
+        "privacyPolicy": "Privacy policy",
+        "changeLanguage": "Change language",
+        "logout": "Logout"
     },
     "deleteBankAccountConfirmation": {
         "title": "Are you sure?",
