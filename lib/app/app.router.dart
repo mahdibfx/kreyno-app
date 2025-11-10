@@ -8,6 +8,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i31;
 import 'package:flutter/material.dart';
+import 'package:kreyno/models/wallet.dart' as _i32;
 import 'package:kreyno/ui/views/account_settings/account_settings_view.dart'
     as _i25;
 import 'package:kreyno/ui/views/add_bank_account/add_bank_account_view.dart'
@@ -54,7 +55,7 @@ import 'package:kreyno/ui/views/spot_sold_success/spot_sold_success_view.dart'
 import 'package:kreyno/ui/views/spots_history/spots_history_view.dart' as _i17;
 import 'package:kreyno/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i32;
+import 'package:stacked_services/stacked_services.dart' as _i33;
 
 class Routes {
   static const homeView = '/home-view';
@@ -449,11 +450,10 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i30.PayoutView: (data) {
-      final args = data.getArgs<PayoutViewArguments>(
-        orElse: () => const PayoutViewArguments(),
-      );
+      final args = data.getArgs<PayoutViewArguments>(nullOk: false);
       return _i31.MaterialPageRoute<dynamic>(
-        builder: (context) => _i30.PayoutView(key: args.key),
+        builder: (context) =>
+            _i30.PayoutView(key: args.key, wallet: args.wallet),
         settings: data,
       );
     },
@@ -1086,28 +1086,30 @@ class AddBankAccountViewArguments {
 }
 
 class PayoutViewArguments {
-  const PayoutViewArguments({this.key});
+  const PayoutViewArguments({this.key, required this.wallet});
 
   final _i31.Key? key;
 
+  final _i32.Wallet wallet;
+
   @override
   String toString() {
-    return '{"key": "$key"}';
+    return '{"key": "$key", "wallet": "$wallet"}';
   }
 
   @override
   bool operator ==(covariant PayoutViewArguments other) {
     if (identical(this, other)) return true;
-    return other.key == key;
+    return other.key == key && other.wallet == wallet;
   }
 
   @override
   int get hashCode {
-    return key.hashCode;
+    return key.hashCode ^ wallet.hashCode;
   }
 }
 
-extension NavigatorStateExtension on _i32.NavigationService {
+extension NavigatorStateExtension on _i33.NavigationService {
   Future<dynamic> navigateToHomeView({
     _i31.Key? key,
     int? routerId,
@@ -1616,6 +1618,7 @@ extension NavigatorStateExtension on _i32.NavigationService {
 
   Future<dynamic> navigateToPayoutView({
     _i31.Key? key,
+    required _i32.Wallet wallet,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1624,7 +1627,7 @@ extension NavigatorStateExtension on _i32.NavigationService {
   }) async {
     return navigateTo<dynamic>(
       Routes.payoutView,
-      arguments: PayoutViewArguments(key: key),
+      arguments: PayoutViewArguments(key: key, wallet: wallet),
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,
@@ -2140,6 +2143,7 @@ extension NavigatorStateExtension on _i32.NavigationService {
 
   Future<dynamic> replaceWithPayoutView({
     _i31.Key? key,
+    required _i32.Wallet wallet,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -2148,7 +2152,7 @@ extension NavigatorStateExtension on _i32.NavigationService {
   }) async {
     return replaceWith<dynamic>(
       Routes.payoutView,
-      arguments: PayoutViewArguments(key: key),
+      arguments: PayoutViewArguments(key: key, wallet: wallet),
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,

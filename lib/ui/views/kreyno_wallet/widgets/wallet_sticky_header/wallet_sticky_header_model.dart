@@ -125,7 +125,9 @@ class WalletStickyHeaderModel extends BaseViewModel {
 
   void onPayoutTapped() async {
     // TODO : make sure PayoutView returns a boolean in case the payout is successful
-    final bool? success = await _navigationService.navigateToPayoutView();
+    final bool? success = await _navigationService.navigateToPayoutView(
+      wallet: _wallet!,
+    );
     if (success != null) {
       onPayoutSuccess(success);
     }

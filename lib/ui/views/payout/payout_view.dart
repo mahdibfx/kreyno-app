@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/models/wallet.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
-import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
-import 'package:kreyno/ui/common/app_typography.dart';
 import 'package:kreyno/ui/views/payout/widgets/payouts_header.dart';
-import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_sliver_app_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:stacked/stacked.dart';
@@ -13,7 +11,8 @@ import 'payout_viewmodel.dart';
 import 'widgets/dial_pad.dart';
 
 class PayoutView extends StackedView<PayoutViewModel> {
-  const PayoutView({Key? key}) : super(key: key);
+  final Wallet wallet;
+  const PayoutView({Key? key, required this.wallet}) : super(key: key);
 
   @override
   Widget builder(
@@ -42,25 +41,47 @@ class PayoutView extends StackedView<PayoutViewModel> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const PayoutsHeader(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: AppSpacing.px8,
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Flexible(
-                        child: CustomText.largeTitle(
-                          viewModel.amount.isEmpty ? '0.00' : viewModel.amount,
-                          fontSize: 48 * AppSpacing.px1,
-                          color: viewModel.amount.isEmpty
-                              ? AppColors.textKre
-                              : AppColors.mainKre,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        spacing: AppSpacing.px8,
+                        children: [
+                          Flexible(
+                            child: CustomText.largeTitle(
+                              viewModel.formattedAmount,
+                              fontSize: 48 * AppSpacing.px1,
+                              color: viewModel.amount.isEmpty
+                                  ? AppColors.placeholderKre
+                                  : AppColors.mainKre,
+                            ),
+                          ),
+                          CustomText.title(
+                            '€',
+                            color: viewModel.amount.isEmpty
+                                ? AppColors.placeholderKre
+                                : AppColors.mainKre,
+                          ),
+                        ],
                       ),
-                      CustomText.title(
-                        '€',
-                        color: viewModel.amount.isEmpty
-                            ? AppColors.textKre
-                            : AppColors.mainKre,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        spacing: AppSpacing.px4,
+                        children: [
+                          Flexible(
+                            child: CustomText.smallParagraphMedium(
+                              'Solde disponible :',
+                              color: AppColors.textKre,
+                            ),
+                          ),
+                          CustomText.smallParagraphBold(
+                            '${wallet.balance}€',
+                            color: AppColors.mainKre,
+                          ),
+                        ],
                       ),
                     ],
                   ),
