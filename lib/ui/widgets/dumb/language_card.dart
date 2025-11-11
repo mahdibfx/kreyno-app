@@ -10,12 +10,14 @@ enum LanguageCardType { english, french }
 class LanguageCard extends StatelessWidget {
   final LanguageCardType type;
   final bool isSelected;
+  final bool isOnDarkBackground;
   final VoidCallback onTap;
 
   const LanguageCard({
     super.key,
     required this.type,
     required this.isSelected,
+    this.isOnDarkBackground = true,
     required this.onTap,
   });
 
@@ -49,7 +51,9 @@ class LanguageCard extends StatelessWidget {
                 ),
                 CustomText.smallParagraphBold(
                   type == LanguageCardType.english ? "English" : "Français",
-                  color: AppColors.white,
+                  color: isOnDarkBackground
+                      ? AppColors.white
+                      : AppColors.mainKre,
                 ),
               ],
             ),

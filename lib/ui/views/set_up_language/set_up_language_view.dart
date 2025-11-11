@@ -4,7 +4,7 @@ import 'package:kreyno/enums/supported_language.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
-import 'package:kreyno/ui/views/set_up_language/widgets/language_card.dart';
+import 'package:kreyno/ui/widgets/dumb/language_card.dart';
 import 'package:kreyno/ui/widgets/dumb/app_logo.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';

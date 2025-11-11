@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fpdart/fpdart.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
@@ -42,6 +44,26 @@ class UserService with ListenableServiceMixin {
       return result.map((user) {
         setUserData(user);
         _logger.i('Profile updated and synchronized in memory');
+        return unit;
+      });
+    });
+  }
+
+  Future<Either<String, Unit>> updateProfileImage(File image) async {
+    return _apiAuthService.updateProfileImage(image).toEither().then((result) {
+      return result.map((user) {
+        setUserData(user);
+        _logger.i('Profile image updated and synchronized in memory');
+        return unit;
+      });
+    });
+  }
+
+  Future<Either<String, Unit>> deleteProfileImage() async {
+    return _apiAuthService.deleteProfileImage().toEither().then((result) {
+      return result.map((user) {
+        setUserData(user);
+        _logger.i('Profile image deleted and synchronized in memory');
         return unit;
       });
     });

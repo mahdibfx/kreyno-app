@@ -3,17 +3,19 @@ import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/views/home/home_viewmodel.dart';
 import 'package:kreyno/ui/views/home/widgets/common/car_top_bar.dart';
 import 'package:kreyno/ui/views/home/widgets/home_bottom_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:kreyno/ui/widgets/dumb/rounded_button.dart';
+import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class NormalHomeState extends StatelessWidget {
+class NormalHomeState extends ViewModelWidget<HomeViewModel> {
   const NormalHomeState({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, HomeViewModel viewModel) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

@@ -7,11 +7,16 @@ class BottomSheetLayout extends StatelessWidget {
   // TODO : Add other props based on the
   final EdgeInsets? padding;
   final bool? showDragHandler;
+
+  /// The spacing between the body and the drag handler
+  final double? spacing;
+
   const BottomSheetLayout({
     super.key,
     required this.body,
     this.showDragHandler,
     this.padding,
+    this.spacing,
   });
 
   @override
@@ -42,7 +47,7 @@ class BottomSheetLayout extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
-        spacing: AppSpacing.px20,
+        spacing: spacing ?? AppSpacing.px20,
         children: [
           if (showDragHandler == null || showDragHandler == true)
             Container(

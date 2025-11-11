@@ -117,4 +117,18 @@ class AppIcons {
   static const String bell = '${_basePath}bell.svg';
 
   static const String locationPin = '${_basePath}location-pin.svg';
+
+  static const String languageCircle = '${_basePath}language-circle.svg';
+
+  static const String personalCard = '${_basePath}personal-card.svg';
+
+  static const String arrowRightUp = '${_basePath}arrow_right_up.svg';
+
+  static const String bank = '${_basePath}bank.svg';
+
+  static const String warningHex = '${_basePath}warning_hex.svg';
+
+  static const String backDialPad = '${_basePath}back.svg';
+
+  static const String infoCircleFilled = '${_basePath}info-circle-filled.svg';
 }

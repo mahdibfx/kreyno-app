@@ -154,10 +154,10 @@ class AuthAppBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   double get maxExtent => title != null
       ? ((description != null ? 10 : 9) * AppSpacing.px20)
-      : 110 * AppSpacing.px1;
+      : 112 * AppSpacing.px1;
 
   @override
-  double get minExtent => 110 * AppSpacing.px1;
+  double get minExtent => 112 * AppSpacing.px1;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {

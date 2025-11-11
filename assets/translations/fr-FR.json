@@ -1,7 +1,10 @@
 {
     "common": {
         "validTill": "Valide jusqu'au",
+        "error": "Un problème est survenu",
+        "retry": "Réessayer",
         "continue": "Continuer",
+        "unableToRefresh": "Impossible de rafraîchir",
         "save": "Enregistrer",
         "takePicture": "Prendre une photo",
         "pickFromGallery": "Choisir depuis la gallerie",
@@ -36,7 +39,8 @@
             "firstNameInvalidCharacters": "Le prénom ne peut contenir que des lettres",
             "firstNameTooShort": "Le prénom doit contenir au moins 2 caractères",
             "lastNameInvalidCharacters": "Le nom ne peut contenir que des lettres",
-            "lastNameTooShort": "Le nom doit contenir au moins 2 caractères"
+            "lastNameTooShort": "Le nom doit contenir au moins 2 caractères",
+            "iban": "IBAN invalide"
         },
         "otpSuccess": {
             "codeSentTitle": "Code envoyé",
@@ -176,5 +180,179 @@
         "serviceUnavailable": "Service indisponible. Veuillez réessayer plus tard.",
         "gatewayTimeout": "Délai de passerelle dépassé. Le serveur a pris trop de temps à répondre.",
         "serverError": "Erreur serveur détectée. Veuillez réessayer plus tard."
+    },
+    "wallet": {
+        "walletKreyno": "Portefeuille Kreyno",
+        "transactionHistory": "Historique des gains",
+        "sale": "Vente",
+        "noTransactionsFound": "Aucune transaction trouvée",
+        "transactionsWillAppearHere": "Vos transactions apparaîtront ici",
+        "earnings": "Gains",
+        "withdrawal": "Retrait",
+        "yourBalance": "Votre balance",
+        "withdrawMyMoney": "Retirer mon argent",
+        "updateMyAccountDetails": "Remplacer mon compte bancaire",
+        "addBankAccount": "Ajouter un compte bancaire",
+        "unableToLoad": "Chargement impossible",
+        "noEarningsYet": "Aucun gain pour l'instant",
+        "earningsWillAppearHere": "Les revenus de vos stationnements apparaîtront ici dès votre première transaction."
+    },
+    "logoutConfirmation": {
+        "title": "Se déconnecter de Kreyno ?",
+        "description": "Êtes-vous sûr de vouloir vous déconnecter ? Vous pourrez toujours vous reconnecter à tout moment.",
+        "buttonLabel": "Oui, se déconnecter"
+    },
+    "accountSettings": {
+        "title": "Paramètres du compte",
+        "personalInformation": "Informations personnelles",
+        "changePhoneNumber": "Changer mon numéro",
+        "deleteAccount": "Supprimer mon compte",
+        "youJoinedKreynoOn": "Vous avez rejoint Kreyno le"
+    },
+    "deleteAccountConfirmation": {
+        "title": "Êtes-vous sûr ?",
+        "description": "En supprimant votre compte, toutes vos informations, y compris vos parkings, paiements et véhicules ajoutés, seront définitivement effacées de Kreyno.\n\nCette action est irréversible.",
+        "buttonLabel": "Oui, supprimer le compte"
+    },
+    "myVehicules": {
+        "title": "Mes véhicules",
+        "addNewVehicle": "Ajouter un nouveau véhicule",
+        "color": "Couleur",
+        "co2Emission": "Émissions de CO₂ (g/km)",
+       "principalVehicle": "Principal",
+       "setAsPrincipal": "Choisir comme principal",
+       "edit": "Modifier",
+       "delete": "Supprimer",
+       "deleteCarDialogTitle": "Supprimer ce véhicule ?",
+       "deleteCarDialogDescription": "Cette action supprimera définitivement le véhicule de votre compte.",
+       "deleteCarDialogMainButton": "Supprimer",
+       "deleteCarDialogSecondaryButton": "Annuler",
+       "carDeletedSuccessfully": "Véhicule supprimé avec succès"
+    },
+    "addVehicule": {
+        "title": "Nouveau véhicule",
+        "description": "Remplissez ces informations ci-dessous.",
+        "saveButton": "Enregistrer le véhicule",
+        "vehicleSavedSuccessfully": "Véhicule sauvegardé avec succès"
+    },
+    "myPaymentMethodes": {
+        "title": "Moyens de paiement",
+        "addNewCard": "Ajouter une nouvelle carte",
+        "defaultCard": "Par défaut",
+        "setAsDefault": "Choisir comme principal",
+        "edit": "Modifier",
+        "delete": "Supprimer",
+        "deleteCardDialogTitle": "Supprimer cette carte ?",
+        "deleteCardDialogDescription": "Cette action supprimera définitivement la carte de votre compte.",
+        "deleteCardDialogMainButton": "Supprimer",
+        "deleteCardDialogSecondaryButton": "Annuler",
+        "cardDeletedSuccessfully": "Carte supprimée avec succès",
+        "cardSetAsDefaultSuccessfully": "Carte définie comme défaut avec succès",
+        "emptyStateTitle": "Aucune carte ajoutée",
+        "emptyStateDescription": "Ajoutez une carte pour commencer à utiliser Kreyno."
+    },
+    "changePhoneNumber": {
+        "title": "Changer mon numéro",
+        "description": "Pour changer votre numéro de téléphone, un code OTP de vérification vous sera envoyé.",
+        "phoneNumber": "Numéro de téléphone",
+        "phoneNumberPlaceholder": "Entrez votre nouveau numéro de téléphone",
+        "buttonLabel": "Vérifier et changer",
+        "phoneNumberTaken": "Ce numéro de téléphone est déjà utilisé",
+        "phoneNumberUpdatedSuccessfully": "Numéro de téléphone mis à jour avec succès"
+    },
+    "editProfile": {
+        "title": "Informations personnelles",
+        "saveChanges": "Enregistrer les modifications",
+        "profileImageLabel": "Photo de profil",
+        "addImage": "Ajouter",
+        "changeImage": "Changer",
+        "deleteImage": "Supprimer",
+        "profileUpdatedSuccessfully": "Profil mis à jour avec succès",
+        "profileImageUpdatedSuccessfully": "Image de profil mise à jour avec succès",
+        "profileImageDeletedSuccessfully": "Image de profil supprimée avec succès"
+    },
+    "profileSheet": {
+        "accountSettings": "Paramètres du compte",
+        "myVehicles": "Mes véhicules",
+        "myParkingSpots": "Mes stationnements",
+        "walletKreyno": "Portefeuille Kreyno",
+        "paymentMethods": "Moyens de paiement",
+        "conditionsOfUse": "Conditions d'utilisation",
+        "privacyPolicy": "Politique de confidentialité",
+        "changeLanguage": "Changer la langue",
+        "logout": "Déconnexion"
+    },
+    "deleteBankAccountConfirmation": {
+        "title": "Êtes-vous sûr ?",
+        "description": "Êtes-vous sûr de vouloir supprimer ce compte bancaire de votre portefeuille Kreyno ?",
+        "warning": "Les virements déjà en cours seront envoyés sur votre ancien compte bancaire.",
+        "cancel": "Annuler",
+        "delete": "Supprimer"
+    },
+    "addBankAccount": {
+        "title": "Ajouter un compte bancaire",
+        "description": "Ajoutez votre compte pour pouvoir retirer vos gains.",
+        "errorOccurred": "Une erreur est survenue",
+        "accountDetails": "Détails du compte",
+        "lastName": "Nom",
+        "lastNamePlaceholder": "Nom",
+        "firstName": "Prénom",
+        "firstNamePlaceholder": "Prénom",
+        "accountHolderNameHint": "Saisissez le nom complet du titulaire ou de l'entreprise exactement comme il apparaît sur votre relevé bancaire.",
+        "nameMatchesBankAccountCheckbox": "Cochez si le nom correspond à celui de votre compte bancaire.",
+        "iban": "Numéro de compte (IBAN)",
+        "ibanPlaceholder": "Numéro de compte (IBAN)",
+        "ibanHint": "Entrez un IBAN valide, sans espaces ni erreurs.",
+        "confirmIban": "Confirmer le numéro de compte (IBAN)",
+        "confirmIbanPlaceholder": "Saisissez à nouveau votre IBAN",
+        "ibanMismatch": "Les IBAN ne correspondent pas",
+        "email": "Adresse email associée",
+        "emailPlaceholder": "Ex. : jean.dupont@email.com",
+        "accountHolderAddress": "Adresse du titulaire",
+        "city": "Ville",
+        "cityPlaceholder": "Ex. : Paris",
+        "region": "Région / Département",
+        "regionPlaceholder": "Ex. : Île-de-France",
+        "country": "Pays",
+        "countryPlaceholder": "Ex. : France",
+        "address": "Adresse",
+        "addressPlaceholder": "Ex. : 12 Rue Victor Hugo",
+        "postalCode": "Code postal",
+        "postalCodePlaceholder": "Ex. : 75008",
+        "validateButton": "Valider mes informations"
+    },
+    "datePickerFilter": {
+        "title": "Filtre par date",
+        "startDate": "Date de début",
+        "endDate": "Date de fin",
+        "reset": "Réinitialiser",
+        "apply": "Appliquer"
+    },
+    "myParkingSpots": {
+        "title": "Mes parkings",
+        "boughtSpotsTab": "Places obtenues",
+        "soldSpotsTab": "Places cédées",
+        "chargingAvailable": "Borne disponible",
+        "chargingNotAvailable": "Borne non disponible",
+        "price": "Prix",
+        "boughtEmptyTitle": "Aucun stationnement acheté",
+        "boughtEmptyDescription": "Vous n'avez pas encore acheté de stationnement. Commencez dès maintenant pour retrouver facilement vos achats.",
+        "soldEmptyTitle": "Aucun stationnement vendu",
+        "soldEmptyDescription": "Vous n'avez pas encore vendu de stationnement. Commencez dès maintenant pour retrouver facilement vos ventes."
+    },
+    "payout": {
+        "title": "Retirer mon argent",
+        "balanceAfterWithdraw": "Solde après retrait :",
+        "availableBalance": "Solde disponible :",
+        "confirm": "Confirmer",
+        "successTitle": "Retrait confirmé",
+        "successDescription": "Votre demande a été enregistrée. Vous recevrez votre virement sous peu.",
+        "goToHome": "Retourner vers l'accueil",
+        "failedTitle": "Échec du retrait",
+        "weekendOnlyTransfers": "Transferts les week-end uniquement",
+        "weekendProcessingInfo": "Les retraits seront traités au prochain week-end.",
+        "accountOf": "Compte de",
+        "enterAmountHint": "Saisissez le montant à transférer vers ce compte.",
+        "amountExceedsBalance": "Ce montant dépasse votre solde disponible"
     }
 }

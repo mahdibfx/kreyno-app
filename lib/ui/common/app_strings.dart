@@ -13,6 +13,9 @@ class CommonStrings {
   static String get skip => 'common.skip'.tr();
   static String get validTill => 'common.validTill'.tr();
   static String get complete => 'common.complete'.tr();
+  static String get error => 'common.error'.tr();
+  static String get retry => 'common.retry'.tr();
+  static String get unableToRefresh => 'common.unableToRefresh'.tr();
 
   // Months
   static String get january => 'common.months.january'.tr();
@@ -49,6 +52,7 @@ class CommonStrings {
       'common.validation.lastNameInvalidCharacters'.tr();
   static String get lastNameTooShortValidationText =>
       'common.validation.lastNameTooShort'.tr();
+  static String get ibanValidationText => 'common.validation.iban'.tr();
 
   // otp success
   static String get codeSentTitle => 'common.otpSuccess.codeSentTitle'.tr();
@@ -249,4 +253,264 @@ class ApiErrorStrings {
   static String get serviceUnavailable => 'apiErrors.serviceUnavailable'.tr();
   static String get gatewayTimeout => 'apiErrors.gatewayTimeout'.tr();
   static String get serverError => 'apiErrors.serverError'.tr();
+}
+
+class ProfileSheetStrings {
+  const ProfileSheetStrings._();
+
+  static String get accountSettings => 'profileSheet.accountSettings'.tr();
+  static String get myVehicles => 'profileSheet.myVehicles'.tr();
+  static String get myParkingSpots => 'profileSheet.myParkingSpots'.tr();
+  static String get walletKreyno => 'profileSheet.walletKreyno'.tr();
+  static String get paymentMethods => 'profileSheet.paymentMethods'.tr();
+  static String get conditionsOfUse => 'profileSheet.conditionsOfUse'.tr();
+  static String get privacyPolicy => 'profileSheet.privacyPolicy'.tr();
+  static String get logout => 'profileSheet.logout'.tr();
+  static String get changeLanguage => 'profileSheet.changeLanguage'.tr();
+}
+
+class LogoutConfirmationStrings {
+  const LogoutConfirmationStrings._();
+
+  static String get title => 'logoutConfirmation.title'.tr();
+  static String get description => 'logoutConfirmation.description'.tr();
+  static String get buttonLabel => 'logoutConfirmation.buttonLabel'.tr();
+}
+
+class DeleteAccountConfirmationStrings {
+  const DeleteAccountConfirmationStrings._();
+
+  static String get title => 'deleteAccountConfirmation.title'.tr();
+  static String get description => 'deleteAccountConfirmation.description'.tr();
+  static String get buttonLabel => 'deleteAccountConfirmation.buttonLabel'.tr();
+}
+
+class AccountSettingsStrings {
+  const AccountSettingsStrings._();
+
+  static String get title => 'accountSettings.title'.tr();
+  static String get personalInformation =>
+      'accountSettings.personalInformation'.tr();
+  static String get changePhoneNumber =>
+      'accountSettings.changePhoneNumber'.tr();
+  static String get deleteAccount => 'accountSettings.deleteAccount'.tr();
+  static String get youJoinedKreynoOn =>
+      'accountSettings.youJoinedKreynoOn'.tr();
+}
+
+class MyVehiculesStrings {
+  const MyVehiculesStrings._();
+
+  static String get title => 'myVehicules.title'.tr();
+  static String get addNewVehicle => 'myVehicules.addNewVehicle'.tr();
+  static String get color => 'myVehicules.color'.tr();
+  static String get co2Emission => 'myVehicules.co2Emission'.tr();
+  static String get principalVehicle => 'myVehicules.principalVehicle'.tr();
+  static String get setAsPrincipal => 'myVehicules.setAsPrincipal'.tr();
+  static String get edit => 'myVehicules.edit'.tr();
+  static String get delete => 'myVehicules.delete'.tr();
+  static String get deleteCarDialogTitle =>
+      'myVehicules.deleteCarDialogTitle'.tr();
+  static String get deleteCarDialogDescription =>
+      'myVehicules.deleteCarDialogDescription'.tr();
+  static String get deleteCarDialogMainButton =>
+      'myVehicules.deleteCarDialogMainButton'.tr();
+  static String get deleteCarDialogSecondaryButton =>
+      'myVehicules.deleteCarDialogSecondaryButton'.tr();
+  static String get carDeletedSuccessfully =>
+      'myVehicules.carDeletedSuccessfully'.tr();
+}
+
+class MyPaymentMethodesStrings {
+  const MyPaymentMethodesStrings._();
+
+  static String get title => 'myPaymentMethodes.title'.tr();
+  static String get addNewCard => 'myPaymentMethodes.addNewCard'.tr();
+  static String get defaultCard => 'myPaymentMethodes.defaultCard'.tr();
+  static String get setAsDefault => 'myPaymentMethodes.setAsDefault'.tr();
+  static String get edit => 'myPaymentMethodes.edit'.tr();
+  static String get delete => 'myPaymentMethodes.delete'.tr();
+  static String get deleteCardDialogTitle =>
+      'myPaymentMethodes.deleteCardDialogTitle'.tr();
+  static String get deleteCardDialogDescription =>
+      'myPaymentMethodes.deleteCardDialogDescription'.tr();
+  static String get deleteCardDialogMainButton =>
+      'myPaymentMethodes.deleteCardDialogMainButton'.tr();
+  static String get deleteCardDialogSecondaryButton =>
+      'myPaymentMethodes.deleteCardDialogSecondaryButton'.tr();
+  static String get cardDeletedSuccessfully =>
+      'myPaymentMethodes.cardDeletedSuccessfully'.tr();
+  static String get cardSetAsDefaultSuccessfully =>
+      'myPaymentMethodes.cardSetAsDefaultSuccessfully'.tr();
+  static String get emptyStateTitle => 'myPaymentMethodes.emptyStateTitle'.tr();
+  static String get emptyStateDescription =>
+      'myPaymentMethodes.emptyStateDescription'.tr();
+}
+
+class ChangePhoneNumberStrings {
+  const ChangePhoneNumberStrings._();
+
+  static String get title => 'changePhoneNumber.title'.tr();
+  static String get description => 'changePhoneNumber.description'.tr();
+  static String get phoneNumber => 'changePhoneNumber.phoneNumber'.tr();
+  static String get phoneNumberPlaceholder =>
+      'changePhoneNumber.phoneNumberPlaceholder'.tr();
+  static String get buttonLabel => 'changePhoneNumber.buttonLabel'.tr();
+  static String get phoneNumberTaken =>
+      'changePhoneNumber.phoneNumberTaken'.tr();
+  static String get phoneNumberUpdatedSuccessfully =>
+      'changePhoneNumber.phoneNumberUpdatedSuccessfully'.tr();
+}
+
+class AddVehiculeStrings {
+  const AddVehiculeStrings._();
+
+  static String get title => 'addVehicule.title'.tr();
+  static String get description => 'addVehicule.description'.tr();
+  static String get saveButton => 'addVehicule.saveButton'.tr();
+  static String get vehicleSavedSuccessfully =>
+      'addVehicule.vehicleSavedSuccessfully'.tr();
+}
+
+class EditProfileStrings {
+  const EditProfileStrings._();
+
+  static String get title => 'editProfile.title'.tr();
+  static String get saveChanges => 'editProfile.saveChanges'.tr();
+  static String get profileImageLabel => 'editProfile.profileImageLabel'.tr();
+  static String get addImage => 'editProfile.addImage'.tr();
+  static String get changeImage => 'editProfile.changeImage'.tr();
+  static String get deleteImage => 'editProfile.deleteImage'.tr();
+  static String get profileUpdatedSuccessfully =>
+      'editProfile.profileUpdatedSuccessfully'.tr();
+  static String get profileImageUpdatedSuccessfully =>
+      'editProfile.profileImageUpdatedSuccessfully'.tr();
+  static String get profileImageDeletedSuccessfully =>
+      'editProfile.profileImageDeletedSuccessfully'.tr();
+}
+
+class DeleteBankAccountConfirmationStrings {
+  const DeleteBankAccountConfirmationStrings._();
+
+  static String get title => 'deleteBankAccountConfirmation.title'.tr();
+  static String get description =>
+      'deleteBankAccountConfirmation.description'.tr();
+  static String get warning => 'deleteBankAccountConfirmation.warning'.tr();
+  static String get cancel => 'deleteBankAccountConfirmation.cancel'.tr();
+  static String get delete => 'deleteBankAccountConfirmation.delete'.tr();
+}
+
+class AddBankAccountStrings {
+  const AddBankAccountStrings._();
+
+  static String get title => 'addBankAccount.title'.tr();
+  static String get description => 'addBankAccount.description'.tr();
+  static String get errorOccurred => 'addBankAccount.errorOccurred'.tr();
+  static String get accountDetails => 'addBankAccount.accountDetails'.tr();
+  static String get lastName => 'addBankAccount.lastName'.tr();
+  static String get lastNamePlaceholder =>
+      'addBankAccount.lastNamePlaceholder'.tr();
+  static String get firstName => 'addBankAccount.firstName'.tr();
+  static String get firstNamePlaceholder =>
+      'addBankAccount.firstNamePlaceholder'.tr();
+  static String get accountHolderNameHint =>
+      'addBankAccount.accountHolderNameHint'.tr();
+  static String get nameMatchesBankAccountCheckbox =>
+      'addBankAccount.nameMatchesBankAccountCheckbox'.tr();
+  static String get iban => 'addBankAccount.iban'.tr();
+  static String get ibanPlaceholder => 'addBankAccount.ibanPlaceholder'.tr();
+  static String get ibanHint => 'addBankAccount.ibanHint'.tr();
+  static String get confirmIban => 'addBankAccount.confirmIban'.tr();
+  static String get confirmIbanPlaceholder =>
+      'addBankAccount.confirmIbanPlaceholder'.tr();
+  static String get ibanMismatch => 'addBankAccount.ibanMismatch'.tr();
+  static String get email => 'addBankAccount.email'.tr();
+  static String get emailPlaceholder => 'addBankAccount.emailPlaceholder'.tr();
+  static String get accountHolderAddress =>
+      'addBankAccount.accountHolderAddress'.tr();
+  static String get city => 'addBankAccount.city'.tr();
+  static String get cityPlaceholder => 'addBankAccount.cityPlaceholder'.tr();
+  static String get region => 'addBankAccount.region'.tr();
+  static String get regionPlaceholder =>
+      'addBankAccount.regionPlaceholder'.tr();
+  static String get country => 'addBankAccount.country'.tr();
+  static String get countryPlaceholder =>
+      'addBankAccount.countryPlaceholder'.tr();
+  static String get address => 'addBankAccount.address'.tr();
+  static String get addressPlaceholder =>
+      'addBankAccount.addressPlaceholder'.tr();
+  static String get postalCode => 'addBankAccount.postalCode'.tr();
+  static String get postalCodePlaceholder =>
+      'addBankAccount.postalCodePlaceholder'.tr();
+  static String get validateButton => 'addBankAccount.validateButton'.tr();
+}
+
+class WalletStrings {
+  const WalletStrings._();
+
+  static String get walletKreyno => 'wallet.walletKreyno'.tr();
+  static String get transactionHistory => 'wallet.transactionHistory'.tr();
+  static String get noTransactionsFound => 'wallet.noTransactionsFound'.tr();
+  static String get transactionsWillAppearHere =>
+      'wallet.transactionsWillAppearHere'.tr();
+  static String get earnings => 'wallet.earnings'.tr();
+  static String get sale => 'wallet.sale'.tr();
+  static String get withdrawal => 'wallet.withdrawal'.tr();
+  static String get yourBalance => 'wallet.yourBalance'.tr();
+  static String get withdrawMyMoney => 'wallet.withdrawMyMoney'.tr();
+  static String get updateMyAccountDetails =>
+      'wallet.updateMyAccountDetails'.tr();
+  static String get addBankAccount => 'wallet.addBankAccount'.tr();
+  static String get unableToLoad => 'wallet.unableToLoad'.tr();
+  static String get noEarningsYet => 'wallet.noEarningsYet'.tr();
+  static String get earningsWillAppearHere =>
+      'wallet.earningsWillAppearHere'.tr();
+}
+
+class DatePickerFilterSheetStrings {
+  const DatePickerFilterSheetStrings._();
+
+  static String get title => 'datePickerFilter.title'.tr();
+  static String get startDate => 'datePickerFilter.startDate'.tr();
+  static String get endDate => 'datePickerFilter.endDate'.tr();
+  static String get reset => 'datePickerFilter.reset'.tr();
+  static String get apply => 'datePickerFilter.apply'.tr();
+}
+
+class MyParkingSpotsStrings {
+  const MyParkingSpotsStrings._();
+
+  static String get title => 'myParkingSpots.title'.tr();
+  static String get boughtSpotsTab => 'myParkingSpots.boughtSpotsTab'.tr();
+  static String get soldSpotsTab => 'myParkingSpots.soldSpotsTab'.tr();
+  static String get chargingAvailable =>
+      'myParkingSpots.chargingAvailable'.tr();
+  static String get chargingNotAvailable =>
+      'myParkingSpots.chargingNotAvailable'.tr();
+  static String get price => 'myParkingSpots.price'.tr();
+  static String get boughtEmptyTitle => 'myParkingSpots.boughtEmptyTitle'.tr();
+  static String get boughtEmptyDescription =>
+      'myParkingSpots.boughtEmptyDescription'.tr();
+  static String get soldEmptyTitle => 'myParkingSpots.soldEmptyTitle'.tr();
+  static String get soldEmptyDescription =>
+      'myParkingSpots.soldEmptyDescription'.tr();
+}
+
+class PayoutStrings {
+  const PayoutStrings._();
+
+  static String get title => 'payout.title'.tr();
+  static String get balanceAfterWithdraw => 'payout.balanceAfterWithdraw'.tr();
+  static String get availableBalance => 'payout.availableBalance'.tr();
+  static String get confirm => 'payout.confirm'.tr();
+  static String get successTitle => 'payout.successTitle'.tr();
+  static String get successDescription => 'payout.successDescription'.tr();
+  static String get goToHome => 'payout.goToHome'.tr();
+  static String get failedTitle => 'payout.failedTitle'.tr();
+  static String get weekendOnlyTransfers => 'payout.weekendOnlyTransfers'.tr();
+  static String get weekendProcessingInfo =>
+      'payout.weekendProcessingInfo'.tr();
+  static String get accountOf => 'payout.accountOf'.tr();
+  static String get enterAmountHint => 'payout.enterAmountHint'.tr();
+  static String get amountExceedsBalance => 'payout.amountExceedsBalance'.tr();
 }

@@ -55,9 +55,9 @@ class MediaService {
         .then((result) => result.map((response) => response.isEmpty));
   }
 
-  Future<Either<String, bool>> deleteImage(String uuid) async {
+  Future<Either<String, bool>> deleteImage(int id) async {
     return _apiMediaService
-        .deleteUpload(uuid)
+        .deleteUpload(id)
         .toEither()
         .then((result) => result.map((response) => response.isEmpty));
   }

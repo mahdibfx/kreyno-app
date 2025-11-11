@@ -14,9 +14,9 @@ _CreateStripeAccountDto _$CreateStripeAccountDtoFromJson(
   city: json['city'] as String,
   state: json['state'] as String,
   postalCode: json['postal_code'] as String,
-  accountNumber: json['account_number'] as String,
-  routingNumber: json['routing_number'] as String,
+  iban: json['iban'] as String,
   accountHolderName: json['account_holder_name'] as String,
+  email: json['email'] as String,
 );
 
 Map<String, dynamic> _$CreateStripeAccountDtoToJson(
@@ -27,7 +27,7 @@ Map<String, dynamic> _$CreateStripeAccountDtoToJson(
   'city': instance.city,
   'state': instance.state,
   'postal_code': instance.postalCode,
-  'account_number': instance.accountNumber,
-  'routing_number': instance.routingNumber,
+  'iban': instance.iban,
   'account_holder_name': instance.accountHolderName,
+  'email': instance.email,
 };

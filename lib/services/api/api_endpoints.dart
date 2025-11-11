@@ -12,6 +12,7 @@ class ApiEndpoints {
   static const String _parkingPlaceBaseUrl = 'parking-places';
   static const String _reservationBaseUrl = 'reservations';
   static const String _reservationChatBaseUrl = 'reservation-chats';
+  static const String _walletBaseUrl = 'wallet';
 
   // AUTH
   static const String exists = '$_authBaseUrl/exists';
@@ -19,6 +20,9 @@ class ApiEndpoints {
   static const String register = '$_authBaseUrl/register';
   static const String sendOtp = '$_authBaseUrl/send-otp';
   static const String profile = '$_authBaseUrl/profile';
+  static const String changePhoneNumber = '$_authBaseUrl/change-phone';
+  static const String updateProfileImage = '$profile/update-image';
+  static const String deleteProfileImage = '$profile/delete-image';
 
   // STRIPE
   static const String setupIntent = '$_stripeBaseUrl/setup-intent';
@@ -59,4 +63,13 @@ class ApiEndpoints {
       '$_reservationChatBaseUrl/{id}/history';
   static const String reservationChatsSend =
       '$_reservationChatBaseUrl/{id}/send';
+
+  // WALLET
+  static const String wallet = _walletBaseUrl;
+  static const String walletHistory = '$_walletBaseUrl/history';
+  static const String walletWithdraw = '$_walletBaseUrl/withdraw';
+
+  // STRIPE ACCOUNT
+  static const String stripeConnectOnboardingLink =
+      '$_stripeBaseUrl/connect/onboarding-link';
 }

@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kreyno/enums/gender.dart';
+import 'package:kreyno/models/avatar.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';
@@ -19,33 +20,11 @@ abstract class User with _$User {
     @JsonKey(name: "has_car") required bool hasVehicle,
     @JsonKey(name: "has_open_parking_place") required bool isSelling,
     @JsonKey(name: "has_open_reservation") required bool isBuying,
-    @JsonKey(name: "avatar", fromJson: _avatarFromJson, toJson: _avatarToJson)
+    @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)
+    @JsonKey(name: "avatar")
     Avatar? avatar,
+    @JsonKey(name: "created_at") required DateTime createdAt,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-}
-
-// Helper functions for nullable Avatar handling
-Avatar? _avatarFromJson(dynamic json) {
-  if (json == null) {
-    return null;
-  }
-  return Avatar.fromJson(json as Map<String, dynamic>);
-}
-
-Map<String, dynamic>? _avatarToJson(Avatar? avatar) {
-  return avatar?.toJson();
-}
-
-@freezed
-abstract class Avatar with _$Avatar {
-  const factory Avatar({
-    @JsonKey(name: "id") required String id,
-    @JsonKey(name: "url") required String url,
-  }) = _Avatar;
-
-  factory Avatar.fromJson(Map<String, dynamic> json) => _$AvatarFromJson(json);
-
-  Map<String, dynamic> toJson();
 }

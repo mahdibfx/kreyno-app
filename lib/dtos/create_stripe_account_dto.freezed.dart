@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CreateStripeAccountDto {
 
-@JsonKey(name: "country") String get country;@JsonKey(name: "street") String get street;@JsonKey(name: "city") String get city;@JsonKey(name: "state") String get state;@JsonKey(name: "postal_code") String get postalCode;@JsonKey(name: "account_number") String get accountNumber;@JsonKey(name: "routing_number") String get routingNumber;@JsonKey(name: "account_holder_name") String get accountHolderName;
+@JsonKey(name: "country") String get country;@JsonKey(name: "street") String get street;@JsonKey(name: "city") String get city;@JsonKey(name: "state") String get state;@JsonKey(name: "postal_code") String get postalCode;@JsonKey(name: "iban") String get iban;@JsonKey(name: "account_holder_name") String get accountHolderName;@JsonKey(name: "email") String get email;
 /// Create a copy of CreateStripeAccountDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $CreateStripeAccountDtoCopyWith<CreateStripeAccountDto> get copyWith => _$Create
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateStripeAccountDto&&(identical(other.country, country) || other.country == country)&&(identical(other.street, street) || other.street == street)&&(identical(other.city, city) || other.city == city)&&(identical(other.state, state) || other.state == state)&&(identical(other.postalCode, postalCode) || other.postalCode == postalCode)&&(identical(other.accountNumber, accountNumber) || other.accountNumber == accountNumber)&&(identical(other.routingNumber, routingNumber) || other.routingNumber == routingNumber)&&(identical(other.accountHolderName, accountHolderName) || other.accountHolderName == accountHolderName));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CreateStripeAccountDto&&(identical(other.country, country) || other.country == country)&&(identical(other.street, street) || other.street == street)&&(identical(other.city, city) || other.city == city)&&(identical(other.state, state) || other.state == state)&&(identical(other.postalCode, postalCode) || other.postalCode == postalCode)&&(identical(other.iban, iban) || other.iban == iban)&&(identical(other.accountHolderName, accountHolderName) || other.accountHolderName == accountHolderName)&&(identical(other.email, email) || other.email == email));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,country,street,city,state,postalCode,accountNumber,routingNumber,accountHolderName);
+int get hashCode => Object.hash(runtimeType,country,street,city,state,postalCode,iban,accountHolderName,email);
 
 @override
 String toString() {
-  return 'CreateStripeAccountDto(country: $country, street: $street, city: $city, state: $state, postalCode: $postalCode, accountNumber: $accountNumber, routingNumber: $routingNumber, accountHolderName: $accountHolderName)';
+  return 'CreateStripeAccountDto(country: $country, street: $street, city: $city, state: $state, postalCode: $postalCode, iban: $iban, accountHolderName: $accountHolderName, email: $email)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $CreateStripeAccountDtoCopyWith<$Res>  {
   factory $CreateStripeAccountDtoCopyWith(CreateStripeAccountDto value, $Res Function(CreateStripeAccountDto) _then) = _$CreateStripeAccountDtoCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "country") String country,@JsonKey(name: "street") String street,@JsonKey(name: "city") String city,@JsonKey(name: "state") String state,@JsonKey(name: "postal_code") String postalCode,@JsonKey(name: "account_number") String accountNumber,@JsonKey(name: "routing_number") String routingNumber,@JsonKey(name: "account_holder_name") String accountHolderName
+@JsonKey(name: "country") String country,@JsonKey(name: "street") String street,@JsonKey(name: "city") String city,@JsonKey(name: "state") String state,@JsonKey(name: "postal_code") String postalCode,@JsonKey(name: "iban") String iban,@JsonKey(name: "account_holder_name") String accountHolderName,@JsonKey(name: "email") String email
 });
 
 
@@ -65,16 +65,16 @@ class _$CreateStripeAccountDtoCopyWithImpl<$Res>
 
 /// Create a copy of CreateStripeAccountDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? country = null,Object? street = null,Object? city = null,Object? state = null,Object? postalCode = null,Object? accountNumber = null,Object? routingNumber = null,Object? accountHolderName = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? country = null,Object? street = null,Object? city = null,Object? state = null,Object? postalCode = null,Object? iban = null,Object? accountHolderName = null,Object? email = null,}) {
   return _then(_self.copyWith(
 country: null == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
 as String,street: null == street ? _self.street : street // ignore: cast_nullable_to_non_nullable
 as String,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
 as String,state: null == state ? _self.state : state // ignore: cast_nullable_to_non_nullable
 as String,postalCode: null == postalCode ? _self.postalCode : postalCode // ignore: cast_nullable_to_non_nullable
-as String,accountNumber: null == accountNumber ? _self.accountNumber : accountNumber // ignore: cast_nullable_to_non_nullable
-as String,routingNumber: null == routingNumber ? _self.routingNumber : routingNumber // ignore: cast_nullable_to_non_nullable
+as String,iban: null == iban ? _self.iban : iban // ignore: cast_nullable_to_non_nullable
 as String,accountHolderName: null == accountHolderName ? _self.accountHolderName : accountHolderName // ignore: cast_nullable_to_non_nullable
+as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -160,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "country")  String country, @JsonKey(name: "street")  String street, @JsonKey(name: "city")  String city, @JsonKey(name: "state")  String state, @JsonKey(name: "postal_code")  String postalCode, @JsonKey(name: "account_number")  String accountNumber, @JsonKey(name: "routing_number")  String routingNumber, @JsonKey(name: "account_holder_name")  String accountHolderName)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "country")  String country, @JsonKey(name: "street")  String street, @JsonKey(name: "city")  String city, @JsonKey(name: "state")  String state, @JsonKey(name: "postal_code")  String postalCode, @JsonKey(name: "iban")  String iban, @JsonKey(name: "account_holder_name")  String accountHolderName, @JsonKey(name: "email")  String email)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CreateStripeAccountDto() when $default != null:
-return $default(_that.country,_that.street,_that.city,_that.state,_that.postalCode,_that.accountNumber,_that.routingNumber,_that.accountHolderName);case _:
+return $default(_that.country,_that.street,_that.city,_that.state,_that.postalCode,_that.iban,_that.accountHolderName,_that.email);case _:
   return orElse();
 
 }
@@ -181,10 +181,10 @@ return $default(_that.country,_that.street,_that.city,_that.state,_that.postalCo
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "country")  String country, @JsonKey(name: "street")  String street, @JsonKey(name: "city")  String city, @JsonKey(name: "state")  String state, @JsonKey(name: "postal_code")  String postalCode, @JsonKey(name: "account_number")  String accountNumber, @JsonKey(name: "routing_number")  String routingNumber, @JsonKey(name: "account_holder_name")  String accountHolderName)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "country")  String country, @JsonKey(name: "street")  String street, @JsonKey(name: "city")  String city, @JsonKey(name: "state")  String state, @JsonKey(name: "postal_code")  String postalCode, @JsonKey(name: "iban")  String iban, @JsonKey(name: "account_holder_name")  String accountHolderName, @JsonKey(name: "email")  String email)  $default,) {final _that = this;
 switch (_that) {
 case _CreateStripeAccountDto():
-return $default(_that.country,_that.street,_that.city,_that.state,_that.postalCode,_that.accountNumber,_that.routingNumber,_that.accountHolderName);case _:
+return $default(_that.country,_that.street,_that.city,_that.state,_that.postalCode,_that.iban,_that.accountHolderName,_that.email);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -201,10 +201,10 @@ return $default(_that.country,_that.street,_that.city,_that.state,_that.postalCo
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "country")  String country, @JsonKey(name: "street")  String street, @JsonKey(name: "city")  String city, @JsonKey(name: "state")  String state, @JsonKey(name: "postal_code")  String postalCode, @JsonKey(name: "account_number")  String accountNumber, @JsonKey(name: "routing_number")  String routingNumber, @JsonKey(name: "account_holder_name")  String accountHolderName)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "country")  String country, @JsonKey(name: "street")  String street, @JsonKey(name: "city")  String city, @JsonKey(name: "state")  String state, @JsonKey(name: "postal_code")  String postalCode, @JsonKey(name: "iban")  String iban, @JsonKey(name: "account_holder_name")  String accountHolderName, @JsonKey(name: "email")  String email)?  $default,) {final _that = this;
 switch (_that) {
 case _CreateStripeAccountDto() when $default != null:
-return $default(_that.country,_that.street,_that.city,_that.state,_that.postalCode,_that.accountNumber,_that.routingNumber,_that.accountHolderName);case _:
+return $default(_that.country,_that.street,_that.city,_that.state,_that.postalCode,_that.iban,_that.accountHolderName,_that.email);case _:
   return null;
 
 }
@@ -216,7 +216,7 @@ return $default(_that.country,_that.street,_that.city,_that.state,_that.postalCo
 @JsonSerializable()
 
 class _CreateStripeAccountDto implements CreateStripeAccountDto {
-  const _CreateStripeAccountDto({@JsonKey(name: "country") required this.country, @JsonKey(name: "street") required this.street, @JsonKey(name: "city") required this.city, @JsonKey(name: "state") required this.state, @JsonKey(name: "postal_code") required this.postalCode, @JsonKey(name: "account_number") required this.accountNumber, @JsonKey(name: "routing_number") required this.routingNumber, @JsonKey(name: "account_holder_name") required this.accountHolderName});
+  const _CreateStripeAccountDto({@JsonKey(name: "country") required this.country, @JsonKey(name: "street") required this.street, @JsonKey(name: "city") required this.city, @JsonKey(name: "state") required this.state, @JsonKey(name: "postal_code") required this.postalCode, @JsonKey(name: "iban") required this.iban, @JsonKey(name: "account_holder_name") required this.accountHolderName, @JsonKey(name: "email") required this.email});
   factory _CreateStripeAccountDto.fromJson(Map<String, dynamic> json) => _$CreateStripeAccountDtoFromJson(json);
 
 @override@JsonKey(name: "country") final  String country;
@@ -224,9 +224,9 @@ class _CreateStripeAccountDto implements CreateStripeAccountDto {
 @override@JsonKey(name: "city") final  String city;
 @override@JsonKey(name: "state") final  String state;
 @override@JsonKey(name: "postal_code") final  String postalCode;
-@override@JsonKey(name: "account_number") final  String accountNumber;
-@override@JsonKey(name: "routing_number") final  String routingNumber;
+@override@JsonKey(name: "iban") final  String iban;
 @override@JsonKey(name: "account_holder_name") final  String accountHolderName;
+@override@JsonKey(name: "email") final  String email;
 
 /// Create a copy of CreateStripeAccountDto
 /// with the given fields replaced by the non-null parameter values.
@@ -241,16 +241,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateStripeAccountDto&&(identical(other.country, country) || other.country == country)&&(identical(other.street, street) || other.street == street)&&(identical(other.city, city) || other.city == city)&&(identical(other.state, state) || other.state == state)&&(identical(other.postalCode, postalCode) || other.postalCode == postalCode)&&(identical(other.accountNumber, accountNumber) || other.accountNumber == accountNumber)&&(identical(other.routingNumber, routingNumber) || other.routingNumber == routingNumber)&&(identical(other.accountHolderName, accountHolderName) || other.accountHolderName == accountHolderName));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CreateStripeAccountDto&&(identical(other.country, country) || other.country == country)&&(identical(other.street, street) || other.street == street)&&(identical(other.city, city) || other.city == city)&&(identical(other.state, state) || other.state == state)&&(identical(other.postalCode, postalCode) || other.postalCode == postalCode)&&(identical(other.iban, iban) || other.iban == iban)&&(identical(other.accountHolderName, accountHolderName) || other.accountHolderName == accountHolderName)&&(identical(other.email, email) || other.email == email));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,country,street,city,state,postalCode,accountNumber,routingNumber,accountHolderName);
+int get hashCode => Object.hash(runtimeType,country,street,city,state,postalCode,iban,accountHolderName,email);
 
 @override
 String toString() {
-  return 'CreateStripeAccountDto(country: $country, street: $street, city: $city, state: $state, postalCode: $postalCode, accountNumber: $accountNumber, routingNumber: $routingNumber, accountHolderName: $accountHolderName)';
+  return 'CreateStripeAccountDto(country: $country, street: $street, city: $city, state: $state, postalCode: $postalCode, iban: $iban, accountHolderName: $accountHolderName, email: $email)';
 }
 
 
@@ -261,7 +261,7 @@ abstract mixin class _$CreateStripeAccountDtoCopyWith<$Res> implements $CreateSt
   factory _$CreateStripeAccountDtoCopyWith(_CreateStripeAccountDto value, $Res Function(_CreateStripeAccountDto) _then) = __$CreateStripeAccountDtoCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "country") String country,@JsonKey(name: "street") String street,@JsonKey(name: "city") String city,@JsonKey(name: "state") String state,@JsonKey(name: "postal_code") String postalCode,@JsonKey(name: "account_number") String accountNumber,@JsonKey(name: "routing_number") String routingNumber,@JsonKey(name: "account_holder_name") String accountHolderName
+@JsonKey(name: "country") String country,@JsonKey(name: "street") String street,@JsonKey(name: "city") String city,@JsonKey(name: "state") String state,@JsonKey(name: "postal_code") String postalCode,@JsonKey(name: "iban") String iban,@JsonKey(name: "account_holder_name") String accountHolderName,@JsonKey(name: "email") String email
 });
 
 
@@ -278,16 +278,16 @@ class __$CreateStripeAccountDtoCopyWithImpl<$Res>
 
 /// Create a copy of CreateStripeAccountDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? country = null,Object? street = null,Object? city = null,Object? state = null,Object? postalCode = null,Object? accountNumber = null,Object? routingNumber = null,Object? accountHolderName = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? country = null,Object? street = null,Object? city = null,Object? state = null,Object? postalCode = null,Object? iban = null,Object? accountHolderName = null,Object? email = null,}) {
   return _then(_CreateStripeAccountDto(
 country: null == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
 as String,street: null == street ? _self.street : street // ignore: cast_nullable_to_non_nullable
 as String,city: null == city ? _self.city : city // ignore: cast_nullable_to_non_nullable
 as String,state: null == state ? _self.state : state // ignore: cast_nullable_to_non_nullable
 as String,postalCode: null == postalCode ? _self.postalCode : postalCode // ignore: cast_nullable_to_non_nullable
-as String,accountNumber: null == accountNumber ? _self.accountNumber : accountNumber // ignore: cast_nullable_to_non_nullable
-as String,routingNumber: null == routingNumber ? _self.routingNumber : routingNumber // ignore: cast_nullable_to_non_nullable
+as String,iban: null == iban ? _self.iban : iban // ignore: cast_nullable_to_non_nullable
 as String,accountHolderName: null == accountHolderName ? _self.accountHolderName : accountHolderName // ignore: cast_nullable_to_non_nullable
+as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

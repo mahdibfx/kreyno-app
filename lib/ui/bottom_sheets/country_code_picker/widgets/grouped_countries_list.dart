@@ -10,7 +10,13 @@ import 'package:stacked_services/stacked_services.dart';
 class GroupedCountriesList
     extends ViewModelWidget<CountryCodePickerSheetModel> {
   final Function(SheetResponse response)? completer;
-  const GroupedCountriesList({super.key, required this.completer});
+  final bool showPhoneCode;
+
+  const GroupedCountriesList({
+    super.key,
+    required this.completer,
+    this.showPhoneCode = true,
+  });
 
   @override
   Widget build(BuildContext context, CountryCodePickerSheetModel viewModel) {
@@ -46,7 +52,11 @@ class GroupedCountriesList
                     completer?.call(
                       SheetResponse(
                         confirmed: true,
-                        data: (countries[j].dialCode, countries[j].code),
+                        data: (
+                          countries[j].dialCode,
+                          countries[j].code,
+                          countries[j].name,
+                        ),
                       ),
                     );
                   },
@@ -79,11 +89,12 @@ class GroupedCountriesList
                             ],
                           ),
                         ),
-                        CustomText.smallParagraphMedium(
-                          countries[j].dialCode,
-                          color: AppColors.mainKre,
-                          textAlign: TextAlign.end,
-                        ),
+                        if (showPhoneCode)
+                          CustomText.smallParagraphMedium(
+                            countries[j].dialCode,
+                            color: AppColors.mainKre,
+                            textAlign: TextAlign.end,
+                          ),
                       ],
                     ),
                   ),

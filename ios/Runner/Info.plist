@@ -62,5 +62,10 @@
 		<string>camera</string>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>photos</string>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>https</string>
+			<string>tel</string>
+		</array>
 	</dict>
 </plist>

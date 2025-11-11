@@ -22,6 +22,7 @@ class InputField extends StatelessWidget {
   final Function(String)? onChanged;
   final bool? isRequired;
   final String? restorationId;
+  final bool? showOptionalLabel;
 
   const InputField({
     super.key,
@@ -41,6 +42,7 @@ class InputField extends StatelessWidget {
     this.onChanged,
     this.isRequired = true,
     this.restorationId,
+    this.showOptionalLabel = true,
   });
 
   @override
@@ -69,7 +71,7 @@ class InputField extends StatelessWidget {
                     ),
                 ],
               ),
-              if (isRequired != null && !isRequired!)
+              if (showOptionalLabel != null && showOptionalLabel!)
                 CustomText.smallParagraphMedium(
                   CommonStrings.optional,
                   color: AppColors.mainKre,

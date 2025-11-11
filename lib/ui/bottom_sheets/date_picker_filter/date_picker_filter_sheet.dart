@@ -1,7 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
+import 'package:kreyno/ui/common/app_typography.dart';
 import 'package:kreyno/ui/widgets/dumb/bottom_sheet_layout.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_divider.dart';
@@ -15,6 +18,7 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import 'date_picker_filter_sheet_model.dart';
 
+// TODO: this still needs some work, we need to improve the UI and the logic.
 class DatePickerFilterSheet extends StackedView<DatePickerFilterSheetModel> {
   final Function(SheetResponse response)? completer;
   final SheetRequest request;
@@ -32,52 +36,65 @@ class DatePickerFilterSheet extends StackedView<DatePickerFilterSheetModel> {
   ) {
     return BottomSheetLayout(
       showDragHandler: false,
-      padding: EdgeInsets.all(AppSpacing.px24),
+      padding: EdgeInsets.all(AppSpacing.px16),
       body: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText.largeTitle("Filtre par date"),
+              CustomText.largeTitle(DatePickerFilterSheetStrings.title),
               RoundedButton(
                 iconPath: AppIcons.multiplicationSign,
-                onPressed: () {},
+                onPressed: () =>
+                    completer?.call(SheetResponse(confirmed: false)),
               ),
             ],
           ),
           VGap(AppSpacing.px20),
           SfDateRangePicker(
-            monthCellStyle: const DateRangePickerMonthCellStyle(
-              textStyle: TextStyle(
-                fontFamily: "Satoshi",
-                fontWeight: FontWeight.bold,
+            monthViewSettings: DateRangePickerMonthViewSettings(
+              showTrailingAndLeadingDates: false,
+              viewHeaderStyle: DateRangePickerViewHeaderStyle(
+                textStyle: AppTypography.smallParagraphBold.copyWith(
+                  color: AppColors.textKre,
+                ),
+                backgroundColor: AppColors.white,
               ),
             ),
-            selectionTextStyle: const TextStyle(
-              fontFamily: "Satoshi",
-              fontWeight: FontWeight.bold,
-            ),
-            allowViewNavigation: false,
-            showNavigationArrow: true,
-            showTodayButton: false,
-            headerHeight: 60,
-            headerStyle: const DateRangePickerHeaderStyle(
+            headerHeight: 56 * AppSpacing.px1,
+            headerStyle: DateRangePickerHeaderStyle(
               textAlign: TextAlign.center,
-              textStyle: TextStyle(
-                fontFamily: "Satoshi",
-                fontWeight: FontWeight.bold,
+              textStyle: AppTypography.paragraph.copyWith(
+                color: AppColors.mainKre,
               ),
-              backgroundColor: Colors.white,
+              backgroundColor: AppColors.white,
             ),
+            monthCellStyle: DateRangePickerMonthCellStyle(
+              textStyle: AppTypography.smallParagraphBold.copyWith(
+                color: AppColors.mainKre,
+              ),
+              todayTextStyle: AppTypography.smallParagraphBold.copyWith(
+                color: AppColors.mainKre,
+              ),
+            ),
+            selectionTextStyle: AppTypography.smallParagraphBold.copyWith(
+              color: AppColors.mainKre,
+            ),
+            selectionShape: DateRangePickerSelectionShape.rectangle,
+            selectionRadius: AppSpacing.px12,
+            allowViewNavigation: false,
+            showTodayButton: false,
+            todayHighlightColor: AppColors.greenKre,
+            onSelectionChanged: viewModel.setSelectedRange,
             rangeSelectionColor: AppColors.greenKre,
             selectionColor: AppColors.greenKre,
             startRangeSelectionColor: AppColors.greenKre,
             endRangeSelectionColor: AppColors.greenKre,
             selectionMode: DateRangePickerSelectionMode.range,
             backgroundColor: AppColors.white,
-            rangeTextStyle: const TextStyle(
-              fontFamily: "Satoshi",
-              fontWeight: FontWeight.bold,
+            rangeTextStyle: AppTypography.smallParagraphBold.copyWith(
+              color: AppColors.mainKre,
             ),
           ),
           const CustomDivider(),
@@ -94,7 +111,16 @@ class DatePickerFilterSheet extends StackedView<DatePickerFilterSheetModel> {
                       BorderSide(color: AppColors.strokeKre),
                     ),
                   ),
-                  child: const CustomText.smallParagraphBold("13/07/25"),
+                  child: viewModel.selectedStartDate != null
+                      ? CustomText.smallParagraphBold(
+                          DateFormat(
+                            "dd/MM/yy",
+                          ).format(viewModel.selectedStartDate!),
+                        )
+                      : CustomText.smallParagraphBold(
+                          DatePickerFilterSheetStrings.startDate,
+                          color: AppColors.textKre,
+                        ),
                 ),
               ),
               HGap(AppSpacing.px8),
@@ -110,7 +136,16 @@ class DatePickerFilterSheet extends StackedView<DatePickerFilterSheetModel> {
                       BorderSide(color: AppColors.strokeKre),
                     ),
                   ),
-                  child: const CustomText.smallParagraphBold("13/07/25"),
+                  child: viewModel.selectedEndDate != null
+                      ? CustomText.smallParagraphBold(
+                          DateFormat(
+                            "dd/MM/yy",
+                          ).format(viewModel.selectedEndDate!),
+                        )
+                      : CustomText.smallParagraphBold(
+                          DatePickerFilterSheetStrings.endDate,
+                          color: AppColors.textKre,
+                        ),
                 ),
               ),
             ],
@@ -119,17 +154,39 @@ class DatePickerFilterSheet extends StackedView<DatePickerFilterSheetModel> {
           Row(
             children: [
               CustomButton.plain(
-                text: "Réinitialiser",
-                onPressed: () {},
+                text: DatePickerFilterSheetStrings.reset,
+
                 foregroundColor: AppColors.redKre,
+                isDisabled: !viewModel.isFilterApplied,
+                onPressed: viewModel.resetFilter,
               ),
               Expanded(
-                child: CustomButton.filled(onPressed: () {}, text: "Appliquer"),
+                child: CustomButton.filled(
+                  text: DatePickerFilterSheetStrings.apply,
+                  onPressed: () => completer?.call(
+                    SheetResponse(
+                      confirmed: true,
+                      data: [
+                        viewModel.selectedStartDate,
+                        viewModel.selectedEndDate,
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
         ],
       ),
+    );
+  }
+
+  @override
+  void onViewModelReady(DatePickerFilterSheetModel viewModel) {
+    super.onViewModelReady(viewModel);
+    viewModel.initializeFilter(
+      request.data[0] as DateTime?,
+      request.data[1] as DateTime?,
     );
   }
 

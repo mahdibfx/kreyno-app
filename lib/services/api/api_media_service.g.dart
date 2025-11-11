@@ -96,7 +96,7 @@ class _ApiMediaService implements ApiMediaService {
   }
 
   @override
-  Future<ApiResponse<List<Object>>> deleteUpload(String id) async {
+  Future<ApiResponse<List<Object>>> deleteUpload(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

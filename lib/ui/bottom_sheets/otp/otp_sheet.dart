@@ -151,6 +151,7 @@ class OtpSheet extends StackedView<OtpSheetModel> {
         final sheetData = request.data[1] as ({String phoneNumber});
         return OtpSheetModel.updatePhoneNumber(
           phoneNumber: sheetData.phoneNumber,
+          completer: completer,
         );
     }
   }

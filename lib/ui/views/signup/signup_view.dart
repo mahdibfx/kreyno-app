@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/services/validation_service.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
-import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/views/signup/signup_view.form.dart';
 import 'package:kreyno/ui/widgets/dumb/auth_sliver_app_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
-import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_loading_indicator.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/input_field.dart';
@@ -99,6 +97,7 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                               labelText: SignupStrings.firstName,
                               hintText: SignupStrings.firstNamePlaceholder,
                               keyboardType: TextInputType.name,
+                              showOptionalLabel: false,
                               errorText: viewModel.hasFirstName
                                   ? viewModel.firstNameValidationMessage
                                   : null,
@@ -111,6 +110,7 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                               labelText: SignupStrings.lastName,
                               hintText: SignupStrings.lastNamePlaceholder,
                               keyboardType: TextInputType.name,
+                              showOptionalLabel: false,
                               errorText: viewModel.hasLastName
                                   ? viewModel.lastNameValidationMessage
                                   : null,
@@ -124,6 +124,7 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                         labelText: SignupStrings.userName,
                         hintText: SignupStrings.userNamePlaceholder,
                         keyboardType: TextInputType.name,
+                        showOptionalLabel: false,
                         onChanged: viewModel.onUserNameChanged,
                         trailingIcon: viewModel.checkingUserNameTaken
                             ? Transform.scale(
@@ -149,6 +150,7 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                         labelText: SignupStrings.email,
                         hintText: SignupStrings.emailPlaceholder,
                         keyboardType: TextInputType.emailAddress,
+                        showOptionalLabel: false,
                         onChanged: viewModel.onEmailChanged,
                         trailingIcon: viewModel.checkingEmailTaken
                             ? Transform.scale(

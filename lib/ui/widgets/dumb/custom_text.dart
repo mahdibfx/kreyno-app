@@ -23,6 +23,7 @@ class CustomText extends StatelessWidget {
   final Color? textDecorationColor;
   final TextAlign? textAlign;
   final int? maxLines;
+  final double? lineHeight;
 
   const CustomText({
     super.key,
@@ -36,6 +37,7 @@ class CustomText extends StatelessWidget {
     this.textDecorationColor,
     this.textAlign = TextAlign.start,
     this.maxLines = 1,
+    this.lineHeight,
   });
 
   const CustomText.largeTitle(
@@ -49,6 +51,7 @@ class CustomText extends StatelessWidget {
     this.textDecorationColor,
     this.textAlign = TextAlign.start,
     this.maxLines = 1,
+    this.lineHeight,
   }) : style = CustomTextStyle.largeTitle;
 
   const CustomText.title(
@@ -62,6 +65,7 @@ class CustomText extends StatelessWidget {
     this.textDecorationColor,
     this.textAlign = TextAlign.start,
     this.maxLines = 1,
+    this.lineHeight,
   }) : style = CustomTextStyle.title;
 
   const CustomText.paragraph(
@@ -75,6 +79,7 @@ class CustomText extends StatelessWidget {
     this.textDecorationColor,
     this.textAlign = TextAlign.start,
     this.maxLines = 1,
+    this.lineHeight,
   }) : style = CustomTextStyle.paragraph;
 
   const CustomText.smallParagraphMedium(
@@ -88,6 +93,7 @@ class CustomText extends StatelessWidget {
     this.textDecorationColor,
     this.textAlign = TextAlign.start,
     this.maxLines = 1,
+    this.lineHeight,
   }) : style = CustomTextStyle.smallParagraphMedium;
 
   const CustomText.smallParagraphBold(
@@ -101,6 +107,7 @@ class CustomText extends StatelessWidget {
     this.textDecorationColor,
     this.textAlign = TextAlign.start,
     this.maxLines = 1,
+    this.lineHeight,
   }) : style = CustomTextStyle.smallParagraphBold;
 
   const CustomText.labelMedium(
@@ -114,6 +121,7 @@ class CustomText extends StatelessWidget {
     this.textDecorationColor,
     this.textAlign = TextAlign.start,
     this.maxLines = 1,
+    this.lineHeight,
   }) : style = CustomTextStyle.labelMedium;
 
   const CustomText.labelRegular(
@@ -127,6 +135,7 @@ class CustomText extends StatelessWidget {
     this.textDecorationColor,
     this.textAlign = TextAlign.start,
     this.maxLines = 1,
+    this.lineHeight,
   }) : style = CustomTextStyle.labelRegular;
 
   TextStyle _getTextStyle() {
@@ -164,6 +173,7 @@ class CustomText extends StatelessWidget {
         decoration: textDecoration,
         decorationStyle: textDecorationStyle,
         decorationColor: textDecorationColor,
+        height: lineHeight,
       ),
     );
   }

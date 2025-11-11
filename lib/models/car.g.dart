@@ -15,7 +15,7 @@ _Car _$CarFromJson(Map<String, dynamic> json) => _Car(
   registrationNumber: json['registration_number'] as String,
   co2Emission: json['co2_emission'] as num,
   isSelected: json['is_selected'] as bool? ?? false,
-  image: json['image'] as String? ?? null,
+  image: _imageFromJson(json['image']),
 );
 
 Map<String, dynamic> _$CarToJson(_Car instance) => <String, dynamic>{
@@ -27,11 +27,19 @@ Map<String, dynamic> _$CarToJson(_Car instance) => <String, dynamic>{
   'registration_number': instance.registrationNumber,
   'co2_emission': instance.co2Emission,
   'is_selected': instance.isSelected,
-  'image': ?instance.image,
+  'image': ?_imageToJson(instance.image),
 };
 
 const _$VehicleTypeEnumMap = {
   VehicleType.fuel: 1,
   VehicleType.electric: 2,
   VehicleType.motorcycle: 3,
+};
+
+_Image _$ImageFromJson(Map<String, dynamic> json) =>
+    _Image(id: (json['id'] as num).toInt(), url: json['url'] as String);
+
+Map<String, dynamic> _$ImageToJson(_Image instance) => <String, dynamic>{
+  'id': instance.id,
+  'url': instance.url,
 };

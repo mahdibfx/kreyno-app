@@ -21,11 +21,13 @@ class BirthDatePickerField extends StackedView<BirthDatePickerFieldModel>
     with $BirthDatePickerField {
   final String labelText;
   final Function(DateTime) onBirthdayChanged;
+  final DateTime? initialDate;
 
   const BirthDatePickerField({
     super.key,
     required this.labelText,
     required this.onBirthdayChanged,
+    this.initialDate,
   });
 
   @override
@@ -106,7 +108,7 @@ class BirthDatePickerField extends StackedView<BirthDatePickerFieldModel>
     syncFormWithViewModel(viewModel);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       viewModel.setOnDateChanged(onBirthdayChanged);
-      viewModel.initDefaultValues();
+      viewModel.initDefaultValues(initialDate: initialDate);
     });
   }
 

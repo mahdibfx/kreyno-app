@@ -4,6 +4,8 @@ import 'package:kreyno/dtos/create_stripe_account_dto.dart';
 import 'package:kreyno/models/api_response.dart';
 import 'package:kreyno/models/card.dart';
 import 'package:kreyno/models/setup_intent_response.dart';
+import 'package:kreyno/models/strip_connect_onboarding_link_response.dart';
+import 'package:kreyno/models/wallet.dart';
 import 'package:kreyno/services/api/api_endpoints.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -29,10 +31,14 @@ abstract class ApiStripeService {
   Future<ApiResponse> removeCard(@Body() ActionOnPaymentCardDto actionDto);
 
   @POST(ApiEndpoints.stripeAccount)
-  Future<ApiResponse> createAccount(
+  Future<ApiResponse<Wallet>> createAccount(
     @Body() CreateStripeAccountDto createStripeAccountDto,
   );
 
   @GET(ApiEndpoints.stripeAccount)
   Future<ApiResponse> getAccount();
+
+  @GET(ApiEndpoints.stripeConnectOnboardingLink)
+  Future<ApiResponse<StripeConnectOnboardingLinkResponse>>
+  getStripeConnectOnboardingLink();
 }

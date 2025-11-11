@@ -1,7 +1,10 @@
 {
     "common": {
         "validTill": "Valid until",
+        "error": "A problem occurred",
+        "retry": "Retry",
         "continue": "Continue",
+        "unableToRefresh": "Unable to refresh",
         "save": "Save",
         "takePicture": "Take a picture",
         "pickFromGallery": "Pick from gallery",
@@ -36,7 +39,8 @@
             "firstNameInvalidCharacters": "First name can only contain letters",
             "firstNameTooShort": "First name must contain at least 2 characters",
             "lastNameInvalidCharacters": "Last name can only contain letters",
-            "lastNameTooShort": "Last name must contain at least 2 characters"
+            "lastNameTooShort": "Last name must contain at least 2 characters",
+            "iban": "Invalid IBAN"
         },
         "otpSuccess": {
             "codeSentTitle": "Code sent",
@@ -97,7 +101,7 @@
     "setUpVehicule": {
         "title": "Add your vehicle",
         "description": "Fill in the information below.",
-        "autoFill": "The information below will be automatically filled from our database.",
+        "autoFill": "The information will be added automatically if available, otherwise you will have to enter it.",
         "frenchLicensePlate": "French license plate",
         "licensePlate": "License plate number",
         "licensePlatePlaceholder": "AA - 000 - AA",
@@ -141,7 +145,7 @@
         "description": "Add your credit card information.",
         "buttonLabel": "Add a card",
         "paymentMethodsDescription": "Your payment information is completely secure and protected.",
-        "savePaymentMethodsToMoveToNextStep": "You need to save the payment methods to move to the next step.",
+        "savePaymentMethodsToMoveToNextStep": "You need to save a payment method to move to the next step or press Skip to continue.",
         "cardAddedSuccessfully": "Card added successfully",
         "saveCard": "Save this card"
     },
@@ -151,7 +155,8 @@
         "locationPermissionTitle": "Location",
         "locationPermissionDescription": "To find and give up spots around you.",
         "notificationPermissionTitle": "Notifications",
-        "notificationPermissionDescription": "To receive notifications from Kreyno."
+        "notificationPermissionDescription": "To receive notifications from Kreyno.",
+        "authorize": "Authorize"
     },
     "apiErrors": {
         "requestFailed": "Request failed",
@@ -174,5 +179,179 @@
         "serviceUnavailable": "Service unavailable. Please try again later.",
         "gatewayTimeout": "Gateway timeout. The server took too long to respond.",
         "serverError": "Server error occurred. Please try again later."
+    },
+    "wallet": {
+        "walletKreyno": "Kreyno wallet",
+        "transactionHistory": "Transaction history",
+        "sale": "Sale",
+        "noTransactionsFound": "No transactions found",
+        "transactionsWillAppearHere": "Your transactions will appear here",
+        "earnings": "Earnings",
+        "withdrawal": "Withdrawal",
+        "yourBalance": "Your balance",
+        "withdrawMyMoney": "Withdraw my money",
+        "updateMyAccountDetails": "Update my bank account",
+        "addBankAccount": "Add a bank account",
+        "unableToLoad": "Unable to load",
+        "noEarningsYet": "No earnings yet",
+        "earningsWillAppearHere": "Income from your parking will appear here from your first transaction."
+    },
+    "logoutConfirmation": {
+        "title": "Log out of Kreyno?",
+        "description": "Are you sure you want to log out? You can always log back in at any time.",
+        "buttonLabel": "Yes, log out"
+    },
+    "accountSettings": {
+        "title": "Account settings",
+        "personalInformation": "Personal information",
+        "changePhoneNumber": "Change my number",
+        "deleteAccount": "Delete my account",
+        "youJoinedKreynoOn": "You joined Kreyno on"
+    },
+    "deleteAccountConfirmation": {
+        "title": "Are you sure?",
+        "description": "By deleting your account, all your information, including your parking spots, payments and added vehicles, will be permanently erased from Kreyno.\n\nThis action is irreversible.",
+        "buttonLabel": "Yes, delete account"
+    },
+    "myVehicules": {
+        "title": "My vehicles",
+        "addNewVehicle": "Add a new vehicle",
+        "color": "Color",
+        "co2Emission": "CO₂ emissions (g/km)",
+        "principalVehicle": "Principal",
+        "setAsPrincipal": "Set as principal",
+        "edit": "Edit",
+        "delete": "Delete",
+        "deleteCarDialogTitle": "Delete this vehicle?",
+        "deleteCarDialogDescription": "This action will permanently delete the vehicle from your account.",
+        "deleteCarDialogMainButton": "Delete",
+        "deleteCarDialogSecondaryButton": "Cancel",
+        "carDeletedSuccessfully": "Vehicle deleted successfully"
+    },
+    "addVehicule": {
+        "title": "New vehicle",
+        "description": "Fill in the information below.",
+        "saveButton": "Save vehicle",
+        "vehicleSavedSuccessfully": "Vehicle saved successfully"
+    },
+    "myPaymentMethodes": {
+        "title": "Payment methods",
+        "addNewCard": "Add a new card",
+        "defaultCard": "Default",
+        "setAsDefault": "Set as default",
+        "edit": "Edit",
+        "delete": "Delete",
+        "deleteCardDialogTitle": "Delete this card?",
+        "deleteCardDialogDescription": "This action will permanently delete the card from your account.",
+        "deleteCardDialogMainButton": "Delete",
+        "deleteCardDialogSecondaryButton": "Cancel",
+        "cardDeletedSuccessfully": "Card deleted successfully",
+        "cardSetAsDefaultSuccessfully": "Card set as default successfully",
+        "emptyStateTitle": "No cards added",
+        "emptyStateDescription": "Add a card to start using Kreyno."
+    },
+    "changePhoneNumber": {
+        "title": "Change phone number",
+        "description": "To change your phone number, a verification OTP code will be sent to you.",
+        "phoneNumber": "Phone number",
+        "phoneNumberPlaceholder": "Enter your new phone number",
+        "buttonLabel": "Verify and change",
+        "phoneNumberTaken": "This phone number is already in use",
+        "phoneNumberUpdatedSuccessfully": "Phone number updated successfully"
+    },
+    "editProfile": {
+        "title": "Personal information",
+        "saveChanges": "Save changes",
+        "profileImageLabel": "Profile picture",
+        "addImage": "Add",
+        "changeImage": "Change",
+        "deleteImage": "Delete",
+        "profileUpdatedSuccessfully": "Profile updated successfully",
+        "profileImageUpdatedSuccessfully": "Profile picture updated successfully",
+        "profileImageDeletedSuccessfully": "Profile picture deleted successfully"
+    },
+    "profileSheet": {
+        "accountSettings": "Account settings",
+        "myVehicles": "My vehicles",
+        "myParkingSpots": "My parking spots",
+        "walletKreyno": "Kreyno wallet",
+        "paymentMethods": "Payment methods",
+        "conditionsOfUse": "Terms of use",
+        "privacyPolicy": "Privacy policy",
+        "changeLanguage": "Change language",
+        "logout": "Logout"
+    },
+    "deleteBankAccountConfirmation": {
+        "title": "Are you sure?",
+        "description": "Are you sure you want to delete this bank account from your Kreyno wallet?",
+        "warning": "Transfers already in progress will be sent to your old bank account.",
+        "cancel": "Cancel",
+        "delete": "Delete"
+    },
+    "addBankAccount": {
+        "title": "Add a bank account",
+        "description": "Add your account to withdraw your earnings.",
+        "errorOccurred": "An error occurred",
+        "accountDetails": "Account details",
+        "lastName": "Last name",
+        "lastNamePlaceholder": "Last name",
+        "firstName": "First name",
+        "firstNamePlaceholder": "First name",
+        "accountHolderNameHint": "Enter the full name of the account holder or company exactly as it appears on your bank statement.",
+        "nameMatchesBankAccountCheckbox": "Check if the name matches that of your bank account.",
+        "iban": "Account number (IBAN)",
+        "ibanPlaceholder": "Account number (IBAN)",
+        "ibanHint": "Enter a valid IBAN, without spaces or errors.",
+        "confirmIban": "Confirm account number (IBAN)",
+        "confirmIbanPlaceholder": "Re-enter your IBAN",
+        "ibanMismatch": "IBANs do not match",
+        "email": "Associated email address",
+        "emailPlaceholder": "Ex: john.doe@email.com",
+        "accountHolderAddress": "Account holder address",
+        "city": "City",
+        "cityPlaceholder": "Ex: Paris",
+        "region": "Region / Department",
+        "regionPlaceholder": "Ex: Île-de-France",
+        "country": "Country",
+        "countryPlaceholder": "Ex: France",
+        "address": "Address",
+        "addressPlaceholder": "Ex: 12 Rue Victor Hugo",
+        "postalCode": "Postal code",
+        "postalCodePlaceholder": "Ex: 75008",
+        "validateButton": "Validate my information"
+    },
+    "datePickerFilter": {
+        "title": "Filter by date",
+        "startDate": "Start date",
+        "endDate": "End date",
+        "reset": "Reset",
+        "apply": "Apply"
+    },
+    "myParkingSpots": {
+        "title": "My parking spots",
+        "boughtSpotsTab": "Bought spots",
+        "soldSpotsTab": "Sold spots",
+        "chargingAvailable": "Charging available",
+        "chargingNotAvailable": "Charging not available",
+        "price": "Price",
+        "boughtEmptyTitle": "No parking purchased",
+        "boughtEmptyDescription": "You haven't purchased any parking yet. Start now to easily find your purchases.",
+        "soldEmptyTitle": "No parking sold",
+        "soldEmptyDescription": "You haven't sold any parking yet. Start now to easily find your sales."
+    },
+    "payout": {
+        "title": "Withdraw my money",
+        "balanceAfterWithdraw": "Balance after withdrawal:",
+        "availableBalance": "Available balance:",
+        "confirm": "Confirm",
+        "successTitle": "Withdrawal confirmed",
+        "successDescription": "Your request has been registered. You will receive your transfer shortly.",
+        "goToHome": "Return to home",
+        "failedTitle": "Withdrawal failed",
+        "weekendOnlyTransfers": "Weekend transfers only",
+        "weekendProcessingInfo": "Withdrawals will be processed on the next weekend.",
+        "accountOf": "Account of",
+        "enterAmountHint": "Enter the amount to transfer to this account.",
+        "amountExceedsBalance": "This amount exceeds your available balance"
     }
 }

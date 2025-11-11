@@ -24,6 +24,8 @@ class CustomButton extends StatelessWidget {
   final bool expandToFullWidth;
   final CustomButtonSize size;
   final double? borderRadius;
+  final EdgeInsets? padding;
+  final BorderSide? border;
 
   const CustomButton.filled({
     super.key,
@@ -36,6 +38,8 @@ class CustomButton extends StatelessWidget {
     this.expandToFullWidth = true,
     this.size = CustomButtonSize.medium,
     this.borderRadius,
+    this.padding,
+    this.border,
   }) : outlineColor = null,
        variant = CustomButtonVariant.filled;
 
@@ -50,6 +54,8 @@ class CustomButton extends StatelessWidget {
     this.expandToFullWidth = true,
     this.size = CustomButtonSize.medium,
     this.borderRadius,
+    this.padding,
+    this.border,
   }) : backgroundColor = null,
        variant = CustomButtonVariant.outlined;
 
@@ -63,8 +69,10 @@ class CustomButton extends StatelessWidget {
     this.expandToFullWidth = false,
     this.size = CustomButtonSize.medium,
     this.borderRadius,
+    this.padding,
   }) : backgroundColor = null,
        outlineColor = null,
+       border = null,
        variant = CustomButtonVariant.plain;
 
   @override
@@ -115,8 +123,9 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(_getBorderRadius()),
         ),
-        padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+        padding: padding ?? EdgeInsets.symmetric(horizontal: AppSpacing.px24),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        side: border,
         fixedSize: expandToFullWidth
             ? Size(double.maxFinite, _getButtonHeight())
             : Size.fromHeight(_getButtonHeight()),
@@ -136,14 +145,16 @@ class CustomButton extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         foregroundColor: disabled ? AppColors.textKre : buttonForegroundColor,
         disabledForegroundColor: AppColors.textKre,
-        side: BorderSide(
-          color: disabled ? AppColors.strokeKre : buttonOutlineColor,
-          width: 1,
-        ),
+        side:
+            border ??
+            BorderSide(
+              color: disabled ? AppColors.strokeKre : buttonOutlineColor,
+              width: 1,
+            ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(_getBorderRadius()),
         ),
-        padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+        padding: padding ?? EdgeInsets.symmetric(horizontal: AppSpacing.px24),
         fixedSize: expandToFullWidth
             ? Size(double.maxFinite, _getButtonHeight())
             : Size.fromHeight(_getButtonHeight()),
@@ -166,7 +177,7 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(_getBorderRadius()),
         ),
-        padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+        padding: padding ?? EdgeInsets.symmetric(horizontal: AppSpacing.px24),
         fixedSize: expandToFullWidth
             ? Size(double.maxFinite, _getButtonHeight())
             : Size.fromHeight(_getButtonHeight()),

@@ -11,9 +11,9 @@ abstract class CreateStripeAccountDto with _$CreateStripeAccountDto {
     @JsonKey(name: "city") required String city,
     @JsonKey(name: "state") required String state,
     @JsonKey(name: "postal_code") required String postalCode,
-    @JsonKey(name: "account_number") required String accountNumber,
-    @JsonKey(name: "routing_number") required String routingNumber,
+    @JsonKey(name: "iban") required String iban,
     @JsonKey(name: "account_holder_name") required String accountHolderName,
+    @JsonKey(name: "email") required String email,
   }) = _CreateStripeAccountDto;
 
   factory CreateStripeAccountDto.fromJson(Map<String, dynamic> json) =>

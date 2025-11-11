@@ -29,6 +29,8 @@ class CountryCodePickerSheet extends StackedView<CountryCodePickerSheetModel>
     CountryCodePickerSheetModel viewModel,
     Widget? child,
   ) {
+    final showPhoneCode = request.data as bool? ?? true;
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: SafeArea(
@@ -55,7 +57,10 @@ class CountryCodePickerSheet extends StackedView<CountryCodePickerSheetModel>
                           viewModel.searchQuery.isNotEmpty &&
                               viewModel.filteredCountries.isEmpty
                           ? const CountryCodePickerEmptyState()
-                          : GroupedCountriesList(completer: completer),
+                          : GroupedCountriesList(
+                              completer: completer,
+                              showPhoneCode: showPhoneCode,
+                            ),
                     ),
                     SliverToBoxAdapter(child: VGap(AppSpacing.px16)),
                   ],

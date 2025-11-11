@@ -1,27 +1,43 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kreyno/app/app.bottomsheets.dart';
-import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/services/validation_service.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
-import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
-import 'package:kreyno/ui/views/spot_sold_success/spot_sold_success_view.dart';
-import 'package:kreyno/ui/widgets/dumb/bottom_sheet_layout.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
+import 'package:kreyno/ui/views/edit_profile/edit_profile_view.form.dart';
+import 'package:kreyno/ui/views/edit_profile/widgets/profile_image_updater/profile_image_updater.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
-import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_loading_indicator.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_sliver_app_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:kreyno/ui/widgets/dumb/input_field.dart';
 import 'package:kreyno/ui/widgets/dumb/labeled_checkbox.dart';
-import 'package:kreyno/ui/widgets/dumb/labeled_radio.dart';
+import 'package:kreyno/ui/widgets/dumb/loading_overlay.dart';
+import 'package:kreyno/ui/widgets/smart/date_picker_field/birth_date_picker_field.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
+import 'package:stacked/stacked_annotations.dart';
 
 import 'edit_profile_viewmodel.dart';
 
-class EditProfileView extends StackedView<EditProfileViewModel> {
+@FormView(
+  fields: [
+    FormTextField(
+      name: 'firstName',
+      validator: ValidationService.firstNameValidator,
+    ),
+    FormTextField(
+      name: 'lastName',
+      validator: ValidationService.lastNameValidator,
+    ),
+    FormTextField(name: 'email', validator: ValidationService.emailValidator),
+    FormTextField(
+      name: 'userName',
+      validator: ValidationService.emptyValidator,
+    ),
+  ],
+)
+class EditProfileView extends StackedView<EditProfileViewModel>
+    with $EditProfileView {
   const EditProfileView({Key? key}) : super(key: key);
 
   @override
@@ -30,185 +46,170 @@ class EditProfileView extends StackedView<EditProfileViewModel> {
     EditProfileViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      backgroundColor: AppColors.white,
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: AppSpacing.px24,
-          vertical: AppSpacing.px20,
-        ).copyWith(bottom: AppSpacing.px32),
-        child: CustomButton.filled(
-          onPressed: () {},
-          text: "Enregistrer les modifications",
-        ),
-      ),
-      appBar: AppBar(
-        backgroundColor: AppColors.white,
-        surfaceTintColor: AppColors.greenKre.withValues(alpha: .2),
-        leading: IconButton(
-          onPressed: () {},
-          icon: const CustomIcon(iconPath: AppIcons.arrowLeft),
-        ),
-        title: const CustomText.paragraph("Modifier mon profil"),
-      ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              VGap(AppSpacing.px20),
-              const CircleAvatar(
-                radius: 40,
-                backgroundImage: NetworkImage("https://picsum.photos/300/300"),
-                child: CircleAvatar(
-                  radius: 15,
-                  backgroundColor: Colors.black38,
-                  child: CustomIcon(
-                    iconPath: AppIcons.camera,
-                    color: Colors.white,
-                    size: 20,
+    print('hasChanges: ${viewModel.hasChanges}');
+    print('isFormValid: ${viewModel.isFormValid}');
+    return LoadingOverlay(
+      isShown: viewModel.isBusy,
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Scaffold(
+          backgroundColor: AppColors.white,
+          body: CustomScrollView(
+            slivers: [
+              CustomSliverAppBar.shrunk(
+                title: EditProfileStrings.title,
+                onBackPressed: viewModel.goBack,
+              ),
+              SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    // spacing: AppSpacing.px16,
+                    children: [
+                      VGap(AppSpacing.px20),
+                      const ProfileImageUpdater(),
+                      VGap(AppSpacing.px24),
+                      InputField(
+                        controller: userNameController,
+                        focusNode: userNameFocusNode,
+                        labelText: SignupStrings.userName,
+                        hintText: SignupStrings.userNamePlaceholder,
+                        keyboardType: TextInputType.name,
+                        disabled: true,
+                        showOptionalLabel: false,
+                        isRequired: false,
+                        errorText: viewModel.hasUserName
+                            ? viewModel.userNameValidationMessage
+                            : null,
+                      ),
+                      VGap(AppSpacing.px16),
+                      Row(
+                        spacing: AppSpacing.px12,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: InputField(
+                              showOptionalLabel: false,
+                              isRequired: false,
+                              controller: firstNameController,
+                              focusNode: firstNameFocusNode,
+                              labelText: SignupStrings.firstName,
+                              hintText: SignupStrings.firstNamePlaceholder,
+                              keyboardType: TextInputType.name,
+                              errorText: viewModel.hasFirstName
+                                  ? viewModel.firstNameValidationMessage
+                                  : null,
+                            ),
+                          ),
+                          Expanded(
+                            child: InputField(
+                              showOptionalLabel: false,
+                              isRequired: false,
+                              controller: lastNameController,
+                              focusNode: lastNameFocusNode,
+                              labelText: SignupStrings.lastName,
+                              hintText: SignupStrings.lastNamePlaceholder,
+                              keyboardType: TextInputType.name,
+                              errorText: viewModel.hasLastName
+                                  ? viewModel.lastNameValidationMessage
+                                  : null,
+                            ),
+                          ),
+                        ],
+                      ),
+                      VGap(AppSpacing.px16),
+                      InputField(
+                        showOptionalLabel: false,
+                        isRequired: false,
+                        controller: emailController,
+                        focusNode: emailFocusNode,
+                        labelText: SignupStrings.email,
+                        hintText: SignupStrings.emailPlaceholder,
+                        keyboardType: TextInputType.emailAddress,
+                        onChanged: viewModel.onEmailChanged,
+                        trailingIcon: viewModel.checkingEmailTaken
+                            ? Transform.scale(
+                                scale: .8,
+                                child: CustomLoadingIndicator(
+                                  size: AppSpacing.px1,
+                                ),
+                              )
+                            : viewModel.emailAllowed
+                            ? Icon(
+                                Icons.check_circle,
+                                color: AppColors.greenKre,
+                                size: AppSpacing.px20,
+                              )
+                            : null,
+                        errorText: viewModel.hasEmail
+                            ? viewModel.emailValidationMessage
+                            : null,
+                      ),
+                      VGap(AppSpacing.px16),
+                      BirthDatePickerField(
+                        labelText: SignupStrings.birthday,
+                        onBirthdayChanged: viewModel.onBirthdayChanged,
+                        initialDate: viewModel.currentUser?.birthDate,
+                      ),
+                      VGap(AppSpacing.px16),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        spacing: AppSpacing.px12 / 2,
+                        children: [
+                          CustomText.smallParagraphMedium(
+                            SignupStrings.gender,
+                            color: AppColors.textKre,
+                          ),
+                          Row(
+                            children: [
+                              Flexible(
+                                child: LabeledCheckbox(
+                                  label: SignupStrings.male,
+                                  value: viewModel.isMale,
+                                  onChanged: (_) => viewModel.setIsMale(true),
+                                ),
+                              ),
+                              Flexible(
+                                child: LabeledCheckbox(
+                                  label: SignupStrings.female,
+                                  value: !viewModel.isMale,
+                                  onChanged: (_) => viewModel.setIsMale(false),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
-              VGap(AppSpacing.px8),
-              const CustomText.smallParagraphMedium("Changer la photo"),
-              VGap(AppSpacing.px24),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: SafeArea(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: AppSpacing.px16,
+                      right: AppSpacing.px16,
+                      bottom: AppSpacing.px20,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Expanded(
-                          child: InputField(
-                            controller: TextEditingController(),
-                            focusNode: FocusNode(),
-                            labelText: "Nom",
-                            hintText: "Nom",
-                            keyboardType: TextInputType.text,
-                          ),
-                        ),
-                        HGap(AppSpacing.px12),
-                        Expanded(
-                          child: InputField(
-                            controller: TextEditingController(),
-                            focusNode: FocusNode(),
-                            labelText: "Prenom",
-                            hintText: "Prenom",
-                            keyboardType: TextInputType.text,
-                          ),
+                        CustomButton.filled(
+                          text: EditProfileStrings.saveChanges,
+                          onPressed: viewModel.saveProfile,
+                          isDisabled:
+                              !viewModel.isFormValid || !viewModel.hasChanges,
                         ),
                       ],
                     ),
-                    VGap(AppSpacing.px16),
-                    InputField(
-                      controller: TextEditingController(),
-                      focusNode: FocusNode(),
-                      labelText: "Nom d’utilisateur",
-                      hintText: "Ex: johndoe22",
-                      keyboardType: TextInputType.text,
-                    ),
-                    VGap(AppSpacing.px16),
-                    InputField(
-                      controller: TextEditingController(),
-                      focusNode: FocusNode(),
-                      labelText: "Email",
-                      hintText: "Ex: JohnDoe@gmail.com",
-                      keyboardType: TextInputType.text,
-                    ),
-                    VGap(AppSpacing.px16),
-                    InputField(
-                      controller: TextEditingController(),
-                      focusNode: FocusNode(),
-                      labelText: "Numéro de téléphone",
-                      hintText: "Ex: +33484883",
-                      keyboardType: TextInputType.text,
-                    ),
-                    VGap(AppSpacing.px16),
-                    InputField(
-                      controller: TextEditingController(),
-                      focusNode: FocusNode(),
-                      labelText: "Adresse postale",
-                      hintText: "Ex: +33484883",
-                      keyboardType: TextInputType.text,
-                    ),
-                    VGap(AppSpacing.px16),
-                    InkWell(
-                      onTap: () {
-                        // print("fff");
-                        // showModalBottomSheet(
-                        //     context: context,
-                        //     builder: (c) => BottomSheetLayout(
-                        //             body: Column(
-                        //           children: [
-                        //             SizedBox(
-                        //               height: 200,
-                        //               child: CupertinoDatePicker(
-                        //                   onDateTimeChanged: (f) {}),
-                        //             )
-                        //           ],
-                        //         )));
-                      },
-                      child: IgnorePointer(
-                        ignoring: true,
-                        child: InputField(
-                          controller: TextEditingController(),
-                          focusNode: FocusNode(),
-                          labelText: "Date de naissance",
-                          hintText: "22/08/2004",
-                          keyboardType: TextInputType.text,
-                        ),
-                      ),
-                    ),
-                    VGap(AppSpacing.px16),
-                    const CustomText.smallParagraphMedium(
-                      "Sex",
-                      color: AppColors.textKre,
-                    ),
-                    VGap(AppSpacing.px1 * 6),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: LabeledCheckbox(
-                            label: "Homme",
-                            value: true,
-                            onChanged: (f) {},
-                          ),
-                        ),
-                        Expanded(
-                          child: LabeledCheckbox(
-                            label: "Femme",
-                            value: false,
-                            onChanged: (f) {},
-                          ),
-                        ),
-                      ],
-                    ),
-                    VGap(AppSpacing.px32),
-                    CustomButton.filled(
-                      text: "Supprimer mon compte",
-                      backgroundColor: AppColors.redKre,
-                      foregroundColor: AppColors.white,
-                      onPressed: () {
-                        locator<BottomSheetService>().showCustomSheet(
-                          variant: BottomSheetType.deleteAccountConfirmation,
-                        );
-                      },
-                    ),
-                    VGap(AppSpacing.px16),
-                    const Center(
-                      child: CustomText.labelMedium(
-                        "Vous avez rejoint Kreyno le 01-01-2024.",
-                        textAlign: TextAlign.center,
-                        color: AppColors.textKre,
-                      ),
-                    ),
-                    VGap(AppSpacing.px24),
-                    // CustomButton.filled(
-                    //   text: "Enregistrer les modifications",
-                    //   onPressed: () {},
-                    // )
-                  ],
+                  ),
                 ),
               ),
             ],
@@ -216,6 +217,28 @@ class EditProfileView extends StackedView<EditProfileViewModel> {
         ),
       ),
     );
+  }
+
+  @override
+  void onViewModelReady(EditProfileViewModel viewModel) {
+    syncFormWithViewModel(viewModel);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final user = viewModel.currentUser;
+      if (user != null) {
+        firstNameController.text = user.firstName;
+        lastNameController.text = user.lastName;
+        userNameController.text = user.username;
+        emailController.text = user.email;
+      }
+      viewModel.initializeForm();
+    });
+    super.onViewModelReady(viewModel);
+  }
+
+  @override
+  void onDispose(EditProfileViewModel viewModel) {
+    disposeForm();
+    super.onDispose(viewModel);
   }
 
   @override

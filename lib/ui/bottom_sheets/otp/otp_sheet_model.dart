@@ -6,6 +6,7 @@ import 'package:kreyno/enums/gender.dart';
 import 'package:kreyno/enums/onboarding_step.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/onboarding_service.dart';
+import 'package:kreyno/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -16,6 +17,7 @@ class OtpSheetModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _authService = locator<AuthService>();
   final _onboardingService = locator<OnboardingService>();
+  final _userService = locator<UserService>();
 
   final OtpSheetType type;
   final String phoneNumber;
@@ -27,6 +29,7 @@ class OtpSheetModel extends BaseViewModel {
   final String? userName;
   final Gender? gender;
   final DateTime? birthDate;
+  final Function(SheetResponse response)? completer;
 
   OtpSheetModel.signin({required this.phoneNumber})
     : type = OtpSheetType.signin,
@@ -36,7 +39,8 @@ class OtpSheetModel extends BaseViewModel {
       // address = null,
       userName = null,
       gender = null,
-      birthDate = null;
+      birthDate = null,
+      completer = null;
 
   OtpSheetModel.signup({
     required this.phoneNumber,
@@ -47,17 +51,20 @@ class OtpSheetModel extends BaseViewModel {
     // this.address,
     required this.birthDate,
     required this.gender,
-  }) : type = OtpSheetType.signup;
+  }) : type = OtpSheetType.signup,
+       completer = null;
 
-  OtpSheetModel.updatePhoneNumber({required this.phoneNumber})
-    : type = OtpSheetType.updatePhoneNumber,
-      firstName = null,
-      lastName = null,
-      email = null,
-      // address = null,
-      userName = null,
-      gender = null,
-      birthDate = null;
+  OtpSheetModel.updatePhoneNumber({
+    required this.phoneNumber,
+    required this.completer,
+  }) : type = OtpSheetType.updatePhoneNumber,
+       firstName = null,
+       lastName = null,
+       email = null,
+       // address = null,
+       userName = null,
+       gender = null,
+       birthDate = null;
 
   Timer? _timer;
   int _remainingTime = 60;
@@ -204,8 +211,22 @@ class OtpSheetModel extends BaseViewModel {
     );
   }
 
-  //TODO: when i get to the profile section
-  Future<void> _handleUpdatePhoneNumber(String otp) async {}
+  Future<void> _handleUpdatePhoneNumber(String otp) async {
+    final response = await _authService.changePhoneNumber(
+      phone: phoneNumber,
+      otp: otp,
+    );
+    await response.match(
+      (error) async {
+        _logger.e('Error updating phone number', error: error);
+        setErrorMessage(error);
+      },
+      (user) async {
+        _userService.setUserData(user);
+        completer?.call(SheetResponse(confirmed: true));
+      },
+    );
+  }
 
   @override
   void dispose() {

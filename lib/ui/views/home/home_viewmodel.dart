@@ -4,6 +4,9 @@ import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.dialogs.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
+import 'package:kreyno/app/app_constants.dart';
+import 'package:kreyno/models/user.dart';
+import 'package:kreyno/services/user_service.dart';
 import 'package:kreyno/ui/views/home/widgets/buyer/buyer_confirm_arrive.dart';
 import 'package:kreyno/ui/views/home/widgets/buyer/buyer_selected_mark.dart';
 import 'package:kreyno/ui/views/home/widgets/buyer/buyer_waiting_confirmation.dart';
@@ -17,9 +20,14 @@ import 'package:kreyno/ui/views/home/widgets/seller/tracking_course_widget.dart'
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class HomeViewModel extends BaseViewModel {
+class HomeViewModel extends ReactiveViewModel {
   final _logger = getLogger('HomeViewModel');
   final _bottomSheetService = locator<BottomSheetService>();
+  final _userService = locator<UserService>();
+
+  User get currentUser => _userService.currentUser!;
+  String get currentUserAvatarUrl =>
+      currentUser.avatar?.url ?? AppConstants.defaultAvatarUrl;
 
   final Set<Marker> markers = {};
   bool isThisMarkerMine = false;
@@ -110,4 +118,7 @@ class HomeViewModel extends BaseViewModel {
       isScrollControlled: true,
     );
   }
+
+  @override
+  List<ListenableServiceMixin> get listenableServices => [_userService];
 }

@@ -3,6 +3,7 @@ import 'package:kreyno/dtos/create_car_dto.dart';
 import 'package:kreyno/dtos/update_car_dto.dart';
 import 'package:kreyno/models/api_response.dart';
 import 'package:kreyno/models/car.dart';
+import 'package:kreyno/models/delete_car_api_response.dart';
 import 'package:kreyno/models/get_car_by_registration_response.dart';
 import 'package:kreyno/services/api/api_endpoints.dart';
 import 'package:retrofit/retrofit.dart';
@@ -26,7 +27,7 @@ abstract class ApiCarService {
   );
 
   @DELETE(ApiEndpoints.oneCar)
-  Future<ApiResponse<Car>> deleteCar(@Path('id') int id);
+  Future<ApiResponse<DeleteCarApiResponse>> deleteCar(@Path('id') int id);
 
   @POST(ApiEndpoints.setDefaultCar)
   Future<ApiResponse<Car>> setDefaultCar(@Path('id') int id);
