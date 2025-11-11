@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
@@ -15,7 +13,6 @@ class WalletStickyHeaderModel extends BaseViewModel {
   final _logger = getLogger('WalletStickyHeaderModel');
   final _walletService = locator<WalletService>();
   final _navigationService = locator<NavigationService>();
-  final _bottomSheetService = locator<BottomSheetService>();
   final _stripeService = locator<StripeService>();
   final _toastService = locator<ToastService>();
   final _urlLauncherService = locator<UrlLauncherService>();
@@ -49,8 +46,16 @@ class WalletStickyHeaderModel extends BaseViewModel {
   bool _verifyingBankAccount = false;
   bool get verifyingBankAccount => _verifyingBankAccount;
 
+  bool _updatingMyAccountDetails = false;
+  bool get updatingMyAccountDetails => _updatingMyAccountDetails;
+
   void setVerifyingBankAccount(bool value) {
     _verifyingBankAccount = value;
+    rebuildUi();
+  }
+
+  void setUpdatingMyAccountDetails(bool value) {
+    _updatingMyAccountDetails = value;
     rebuildUi();
   }
 
@@ -93,7 +98,7 @@ class WalletStickyHeaderModel extends BaseViewModel {
             },
             (_) async {
               _logger.i('Successfully launched onboarding link');
-              // TODO: update state after the onboarding is completed based on what the designer provides
+              // TODO: listen to wallet update channel once we implment it
             },
           );
         },
@@ -112,19 +117,37 @@ class WalletStickyHeaderModel extends BaseViewModel {
     }
   }
 
-  void onRemoveBankAccountTapped() async {
-    final response = await _bottomSheetService.showCustomSheet(
-      variant: BottomSheetType.deleteBankAccountConfirmation,
-      barrierColor: Colors.black.withValues(alpha: .1),
-      isScrollControlled: true,
-    );
-    if (response != null && response.confirmed == true) {
-      // TODO Handle delete bank account
+  void onUpdateMyAccountDetails() async {
+    setUpdatingMyAccountDetails(true);
+    try {
+      final response = await _stripeService.getStripeConnectOnboardingLink();
+      await response.match(
+        (error) async {
+          _logger.e('Failed to get stripe connect onboarding link: $error');
+          _toastService.showError(title: error);
+        },
+        (data) async {
+          _logger.i('Stripe connect onboarding link: ${data.url}');
+          final launchResult = await _urlLauncherService.launchUrl(data.url);
+          await launchResult.match(
+            (error) async {
+              _logger.e('Failed to launch onboarding link: $error');
+              _toastService.showError(title: error);
+            },
+            (_) async {
+              _logger.i(
+                'Successfully launched onboarding link to update my account details',
+              );
+            },
+          );
+        },
+      );
+    } finally {
+      setUpdatingMyAccountDetails(false);
     }
   }
 
   void onPayoutTapped() async {
-    // TODO : make sure PayoutView returns a boolean in case the payout is successful
     final bool? success = await _navigationService.navigateToPayoutView(
       wallet: _wallet!,
     );

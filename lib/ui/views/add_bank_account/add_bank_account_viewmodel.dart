@@ -65,7 +65,6 @@ class AddBankAccountViewModel extends ReactiveViewModel with FormStateHelper {
   }
 
   void onCtaTapped() async {
-    // TODO: Implement API call to create bank account
     if (isFormValid) {
       setBusy(true);
       try {

@@ -1,16 +1,29 @@
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
+import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/models/user.dart';
 import 'package:kreyno/services/user_service.dart';
+import 'package:kreyno/services/wallet_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:string_validator/string_validator.dart';
 
 class PayoutViewModel extends ReactiveViewModel {
   final _logger = getLogger('PayoutViewModel');
   final _navigationService = locator<NavigationService>();
   final _userService = locator<UserService>();
+  final _walletService = locator<WalletService>();
 
   User get currentUser => _userService.currentUser!;
+
+  double _balance = 0.0;
+  double get balance => _balance;
+
+  bool get canWithdraw =>
+      _balance >= (_amount.isEmpty ? 0.0 : _amount.toDouble());
+
+  double get balanceAfterWithdraw =>
+      _balance - (_amount.isEmpty ? 0.0 : _amount.toDouble());
 
   String _amount = '';
   String get amount => _amount;
@@ -48,6 +61,19 @@ class PayoutViewModel extends ReactiveViewModel {
       // If no decimal, max 7 digits total
       return _amount.length >= 7;
     }
+  }
+
+  bool _success = false;
+  bool get success => _success;
+
+  void setSuccess(bool success) {
+    _success = success;
+    rebuildUi();
+  }
+
+  void setBalance(double balance) {
+    _balance = balance;
+    rebuildUi();
   }
 
   void setAmount(String typedAmount) {
@@ -105,7 +131,37 @@ class PayoutViewModel extends ReactiveViewModel {
   }
 
   void goBack() {
-    _navigationService.back();
+    _navigationService.back(result: _success || false);
+  }
+
+  void onConfirmTapped() async {
+    setError(null);
+    setBusy(true);
+    try {
+      final response = await _walletService.withdraw(_amount.toDouble());
+      await response.match(
+        (error) async {
+          _logger.e('Failed to withdraw: $error');
+          setSuccess(false);
+          setError(error);
+        },
+        (wallet) async {
+          setBalance(wallet.balance);
+          setSuccess(true);
+        },
+      );
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  void onRetryTapped() {
+    setError(null);
+    setSuccess(false);
+  }
+
+  void onGoToHomeTapped() async {
+    await _navigationService.clearStackAndShow(Routes.homeView);
   }
 
   @override

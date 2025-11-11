@@ -31,7 +31,6 @@ class MyParkingSpotsViewModel extends IndexTrackingViewModel {
     );
 
     if (response != null && response.confirmed == true) {
-      // TODO Handle filter
       _from = response.data[0] as DateTime?;
       _to = response.data[1] as DateTime?;
       rebuildUi();

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/views/payout/payout_viewmodel.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
@@ -20,8 +21,13 @@ class DialPad extends ViewModelWidget<PayoutViewModel> {
       children: [
         CustomButton.filled(
           size: CustomButtonSize.large,
-          text: 'Confirmer',
-          onPressed: () {},
+          text: PayoutStrings.confirm,
+          onPressed: viewModel.onConfirmTapped,
+          isDisabled:
+              viewModel.isBusy ||
+              viewModel.hasError ||
+              viewModel.amount.isEmpty ||
+              !viewModel.canWithdraw,
         ),
         VGap(AppSpacing.px24),
         Row(

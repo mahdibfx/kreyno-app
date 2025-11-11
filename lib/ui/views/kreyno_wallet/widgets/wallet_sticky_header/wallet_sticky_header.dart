@@ -9,6 +9,7 @@ import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_loading_indicator.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
+import 'package:kreyno/ui/widgets/dumb/loading_overlay.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import 'package:stacked/stacked.dart';
 
@@ -26,6 +27,12 @@ class WalletStickyHeader extends StackedView<WalletStickyHeaderModel> {
   ) {
     return MultiSliver(
       children: [
+        SliverToBoxAdapter(
+          child: LoadingOverlay(
+            isShown: viewModel.updatingMyAccountDetails,
+            child: const SizedBox.shrink(),
+          ),
+        ),
         SliverPersistentHeader(
           pinned: true,
           delegate: _WalletStickyHeaderDelegate(
@@ -45,7 +52,6 @@ class WalletStickyHeader extends StackedView<WalletStickyHeaderModel> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               VGap(AppSpacing.px12),
-              // TODO: revert back to if (viewModel.hasBankAccount) ...[
               if (viewModel.hasBankAccount) ...[
                 if (viewModel.isBankAccountTransferCapable) ...[
                   Padding(
@@ -54,7 +60,10 @@ class WalletStickyHeader extends StackedView<WalletStickyHeaderModel> {
                       text: WalletStrings.withdrawMyMoney,
                       icon: AppIcons.cardReceive,
                       onPressed: viewModel.onPayoutTapped,
-                      isDisabled: viewModel.isBusy || viewModel.hasError,
+                      isDisabled:
+                          viewModel.isBusy ||
+                          viewModel.hasError ||
+                          viewModel.wallet?.balance == 0.0,
                     ),
                   ),
                   VGap(AppSpacing.px16),
@@ -127,13 +136,13 @@ class WalletStickyHeader extends StackedView<WalletStickyHeaderModel> {
                 GestureDetector(
                   onTap: viewModel.isBusy || viewModel.hasError
                       ? null
-                      : viewModel.onRemoveBankAccountTapped,
+                      : viewModel.onUpdateMyAccountDetails,
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: AppSpacing.px4),
                     margin: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
                     color: Colors.transparent,
                     child: CustomText.smallParagraphBold(
-                      WalletStrings.removeMyBankAccount,
+                      WalletStrings.updateMyAccountDetails,
                       color: viewModel.isBusy || viewModel.hasError
                           ? AppColors.placeholderKre
                           : AppColors.textKre,

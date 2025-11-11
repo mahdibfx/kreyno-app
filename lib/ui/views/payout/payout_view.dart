@@ -1,14 +1,14 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/models/wallet.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
-import 'package:kreyno/ui/common/app_spacing.dart';
-import 'package:kreyno/ui/views/payout/widgets/payouts_header.dart';
-import 'package:kreyno/ui/widgets/dumb/custom_sliver_app_bar.dart';
-import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
+import 'package:kreyno/ui/views/payout/widgets/payout_success_state.dart';
+import 'package:kreyno/ui/widgets/dumb/loading_overlay.dart';
 import 'package:stacked/stacked.dart';
 
 import 'payout_viewmodel.dart';
-import 'widgets/dial_pad.dart';
+import 'widgets/payout_default_state.dart';
+import 'widgets/payout_failed_state.dart';
 
 class PayoutView extends StackedView<PayoutViewModel> {
   final Wallet wallet;
@@ -20,79 +20,41 @@ class PayoutView extends StackedView<PayoutViewModel> {
     PayoutViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      backgroundColor: AppColors.white,
-      body: CustomScrollView(
-        physics: const NeverScrollableScrollPhysics(),
-        slivers: [
-          CustomSliverAppBar.shrunk(
-            title: "Retirer mon argent",
-            onBackPressed: viewModel.goBack,
-          ),
-          SliverFillRemaining(
-            child: Padding(
-              padding: EdgeInsets.only(
-                bottom: AppSpacing.px16,
-                left: AppSpacing.px16,
-                right: AppSpacing.px16,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const PayoutsHeader(),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        spacing: AppSpacing.px8,
-                        children: [
-                          Flexible(
-                            child: CustomText.largeTitle(
-                              viewModel.formattedAmount,
-                              fontSize: 48 * AppSpacing.px1,
-                              color: viewModel.amount.isEmpty
-                                  ? AppColors.placeholderKre
-                                  : AppColors.mainKre,
-                            ),
-                          ),
-                          CustomText.title(
-                            '€',
-                            color: viewModel.amount.isEmpty
-                                ? AppColors.placeholderKre
-                                : AppColors.mainKre,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        spacing: AppSpacing.px4,
-                        children: [
-                          Flexible(
-                            child: CustomText.smallParagraphMedium(
-                              'Solde disponible :',
-                              color: AppColors.textKre,
-                            ),
-                          ),
-                          CustomText.smallParagraphBold(
-                            '${wallet.balance}€',
-                            color: AppColors.mainKre,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const DialPad(),
-                ],
-              ),
-            ),
-          ),
-        ],
+    return LoadingOverlay(
+      isShown: viewModel.isBusy,
+      child: Scaffold(
+        backgroundColor: AppColors.white,
+        body: PageTransitionSwitcher(
+          duration: const Duration(milliseconds: 300),
+          reverse: true,
+          transitionBuilder:
+              (
+                Widget child,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation,
+              ) {
+                return SharedAxisTransition(
+                  animation: animation,
+                  secondaryAnimation: secondaryAnimation,
+                  transitionType: SharedAxisTransitionType.scaled,
+                  fillColor: AppColors.white,
+                  child: child,
+                );
+              },
+          child: viewModel.hasError
+              ? const PayoutFailedState()
+              : viewModel.success
+              ? const PayoutSuccessState()
+              : const PayoutDefaultState(),
+        ),
       ),
     );
+  }
+
+  @override
+  void onViewModelReady(PayoutViewModel viewModel) {
+    viewModel.setBalance(wallet.balance);
+    super.onViewModelReady(viewModel);
   }
 
   @override

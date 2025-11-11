@@ -458,7 +458,8 @@ class WalletStrings {
   static String get withdrawal => 'wallet.withdrawal'.tr();
   static String get yourBalance => 'wallet.yourBalance'.tr();
   static String get withdrawMyMoney => 'wallet.withdrawMyMoney'.tr();
-  static String get removeMyBankAccount => 'wallet.removeMyBankAccount'.tr();
+  static String get updateMyAccountDetails =>
+      'wallet.updateMyAccountDetails'.tr();
   static String get addBankAccount => 'wallet.addBankAccount'.tr();
   static String get unableToLoad => 'wallet.unableToLoad'.tr();
   static String get noEarningsYet => 'wallet.noEarningsYet'.tr();
@@ -493,4 +494,23 @@ class MyParkingSpotsStrings {
   static String get soldEmptyTitle => 'myParkingSpots.soldEmptyTitle'.tr();
   static String get soldEmptyDescription =>
       'myParkingSpots.soldEmptyDescription'.tr();
+}
+
+class PayoutStrings {
+  const PayoutStrings._();
+
+  static String get title => 'payout.title'.tr();
+  static String get balanceAfterWithdraw => 'payout.balanceAfterWithdraw'.tr();
+  static String get availableBalance => 'payout.availableBalance'.tr();
+  static String get confirm => 'payout.confirm'.tr();
+  static String get successTitle => 'payout.successTitle'.tr();
+  static String get successDescription => 'payout.successDescription'.tr();
+  static String get goToHome => 'payout.goToHome'.tr();
+  static String get failedTitle => 'payout.failedTitle'.tr();
+  static String get weekendOnlyTransfers => 'payout.weekendOnlyTransfers'.tr();
+  static String get weekendProcessingInfo =>
+      'payout.weekendProcessingInfo'.tr();
+  static String get accountOf => 'payout.accountOf'.tr();
+  static String get enterAmountHint => 'payout.enterAmountHint'.tr();
+  static String get amountExceedsBalance => 'payout.amountExceedsBalance'.tr();
 }

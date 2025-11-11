@@ -190,7 +190,7 @@
         "withdrawal": "Withdrawal",
         "yourBalance": "Your balance",
         "withdrawMyMoney": "Withdraw my money",
-        "removeMyBankAccount": "Remove my bank account",
+        "updateMyAccountDetails": "Update my bank account",
         "addBankAccount": "Add a bank account",
         "unableToLoad": "Unable to load",
         "noEarningsYet": "No earnings yet",
@@ -338,5 +338,20 @@
         "boughtEmptyDescription": "You haven't purchased any parking yet. Start now to easily find your purchases.",
         "soldEmptyTitle": "No parking sold",
         "soldEmptyDescription": "You haven't sold any parking yet. Start now to easily find your sales."
+    },
+    "payout": {
+        "title": "Withdraw my money",
+        "balanceAfterWithdraw": "Balance after withdrawal:",
+        "availableBalance": "Available balance:",
+        "confirm": "Confirm",
+        "successTitle": "Withdrawal confirmed",
+        "successDescription": "Your request has been registered. You will receive your transfer shortly.",
+        "goToHome": "Return to home",
+        "failedTitle": "Withdrawal failed",
+        "weekendOnlyTransfers": "Weekend transfers only",
+        "weekendProcessingInfo": "Withdrawals will be processed on the next weekend.",
+        "accountOf": "Account of",
+        "enterAmountHint": "Enter the amount to transfer to this account.",
+        "amountExceedsBalance": "This amount exceeds your available balance"
     }
 }

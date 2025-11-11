@@ -142,7 +142,7 @@ class WalletService {
     // );
   }
 
-  Future<Either<String, Wallet>> withdraw(WithdrawDto dto) {
-    return _apiWalletService.withdraw(dto).toEither();
+  Future<Either<String, Wallet>> withdraw(double amount) {
+    return _apiWalletService.withdraw(WithdrawDto(amount: amount)).toEither();
   }
 }

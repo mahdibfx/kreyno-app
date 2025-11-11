@@ -191,7 +191,7 @@
         "withdrawal": "Retrait",
         "yourBalance": "Votre balance",
         "withdrawMyMoney": "Retirer mon argent",
-        "removeMyBankAccount": "Supprimer mon compte bancaire",
+        "updateMyAccountDetails": "Remplacer mon compte bancaire",
         "addBankAccount": "Ajouter un compte bancaire",
         "unableToLoad": "Chargement impossible",
         "noEarningsYet": "Aucun gain pour l'instant",
@@ -339,5 +339,20 @@
         "boughtEmptyDescription": "Vous n'avez pas encore acheté de stationnement. Commencez dès maintenant pour retrouver facilement vos achats.",
         "soldEmptyTitle": "Aucun stationnement vendu",
         "soldEmptyDescription": "Vous n'avez pas encore vendu de stationnement. Commencez dès maintenant pour retrouver facilement vos ventes."
+    },
+    "payout": {
+        "title": "Retirer mon argent",
+        "balanceAfterWithdraw": "Solde après retrait :",
+        "availableBalance": "Solde disponible :",
+        "confirm": "Confirmer",
+        "successTitle": "Retrait confirmé",
+        "successDescription": "Votre demande a été enregistrée. Vous recevrez votre virement sous peu.",
+        "goToHome": "Retourner vers l'accueil",
+        "failedTitle": "Échec du retrait",
+        "weekendOnlyTransfers": "Transferts les week-end uniquement",
+        "weekendProcessingInfo": "Les retraits seront traités au prochain week-end.",
+        "accountOf": "Compte de",
+        "enterAmountHint": "Saisissez le montant à transférer vers ce compte.",
+        "amountExceedsBalance": "Ce montant dépasse votre solde disponible"
     }
 }

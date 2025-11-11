@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/views/payout/payout_viewmodel.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
@@ -37,12 +38,12 @@ class PayoutsHeader extends ViewModelWidget<PayoutViewModel> {
                   spacing: 2 * AppSpacing.px1,
                   children: [
                     CustomText.smallParagraphBold(
-                      "Transferts les week-end uniquement",
+                      PayoutStrings.weekendOnlyTransfers,
                       color: AppColors.textInfo,
                       maxLines: 2,
                     ),
                     CustomText.labelRegular(
-                      "Les retraits seront traités au prochain week-end.",
+                      PayoutStrings.weekendProcessingInfo,
                       color: AppColors.textInfoSecondary,
                       maxLines: 2,
                     ),
@@ -66,7 +67,7 @@ class PayoutsHeader extends ViewModelWidget<PayoutViewModel> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText.smallParagraphMedium(
-                "Compte de",
+                PayoutStrings.accountOf,
                 color: AppColors.textKre,
               ),
               Flexible(
@@ -79,8 +80,10 @@ class PayoutsHeader extends ViewModelWidget<PayoutViewModel> {
         ),
         VGap(AppSpacing.px8),
         CustomText.smallParagraphMedium(
-          "Saisissez le montant à transférer vers ce compte.",
-          color: AppColors.textKre,
+          viewModel.canWithdraw
+              ? PayoutStrings.enterAmountHint
+              : PayoutStrings.amountExceedsBalance,
+          color: viewModel.canWithdraw ? AppColors.textKre : AppColors.redKre,
           maxLines: 2,
           textAlign: TextAlign.center,
         ),
