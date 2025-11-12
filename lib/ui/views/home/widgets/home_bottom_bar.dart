@@ -18,6 +18,14 @@ class HomeBottomBar extends ViewModelWidget<HomeViewModel> {
           topLeft: Radius.circular(AppSpacing.px20),
           topRight: Radius.circular(AppSpacing.px20),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: .1),
+            blurRadius: AppSpacing.px20,
+            spreadRadius: 0,
+            offset: Offset(0, -5 * AppSpacing.px1),
+          ),
+        ],
       ),
       padding: EdgeInsets.symmetric(
         horizontal: AppSpacing.px16,
@@ -44,6 +52,7 @@ class HomeBottomBar extends ViewModelWidget<HomeViewModel> {
                   strokeAlign: BorderSide.strokeAlignOutside,
                 ),
                 image: DecorationImage(
+                  fit: BoxFit.cover,
                   image: CachedNetworkImageProvider(
                     viewModel.currentUserAvatarUrl,
                   ),

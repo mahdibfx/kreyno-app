@@ -16,9 +16,9 @@ class HomeView extends StackedView<HomeViewModel> {
       backgroundColor: AppColors.white,
       body: Stack(
         children: [
-          GoogleMap(
+          const GoogleMap(
             zoomControlsEnabled: false,
-            initialCameraPosition: const CameraPosition(target: LatLng(4, 8)),
+            initialCameraPosition: CameraPosition(target: LatLng(4, 8)),
             markers: {},
           ),
           Column(
@@ -26,7 +26,7 @@ class HomeView extends StackedView<HomeViewModel> {
             children: [
               CarSelector(
                 selectedCar: viewModel.selectedCar,
-                onSelectedCarChanged: (car) => viewModel.setSelectedCar(car),
+                onSelectedCarChanged: (car) => viewModel.updateSelectedCar(car),
               ),
               const HomeBottomBar(),
             ],

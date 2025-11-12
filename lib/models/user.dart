@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kreyno/enums/gender.dart';
 import 'package:kreyno/models/avatar.dart';
+import 'package:kreyno/models/car.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';
@@ -20,6 +21,7 @@ abstract class User with _$User {
     @JsonKey(name: "has_car") required bool hasVehicle,
     @JsonKey(name: "has_open_parking_place") required bool isSelling,
     @JsonKey(name: "has_open_reservation") required bool isBuying,
+    @JsonKey(name: "selected_car") required SelectedCar? selectedCar,
     @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)
     @JsonKey(name: "avatar")
     Avatar? avatar,
@@ -27,4 +29,18 @@ abstract class User with _$User {
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+}
+
+@freezed
+abstract class SelectedCar with _$SelectedCar {
+  const factory SelectedCar({
+    @JsonKey(name: "brand") required String brand,
+    @JsonKey(name: "model") required String model,
+    @JsonKey(name: "color") required String color,
+    @JsonKey(name: "registration_number") required String registrationNumber,
+    @JsonKey(name: "image") required Image? image,
+  }) = _SelectedCar;
+
+  factory SelectedCar.fromJson(Map<String, dynamic> json) =>
+      _$SelectedCarFromJson(json);
 }

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$User {
 
-@JsonKey(name: "id") int get id;@JsonKey(name: "username") String get username;@JsonKey(name: "first_name") String get firstName;@JsonKey(name: "last_name") String get lastName;@JsonKey(name: "phone") String get phone;@JsonKey(name: "email") String get email;@JsonKey(name: "address") String? get address;@JsonKey(name: "birth_date") DateTime get birthDate;@JsonKey(name: "gender") Gender get gender;@JsonKey(name: "has_car") bool get hasVehicle;@JsonKey(name: "has_open_parking_place") bool get isSelling;@JsonKey(name: "has_open_reservation") bool get isBuying;@JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)@JsonKey(name: "avatar") Avatar? get avatar;@JsonKey(name: "created_at") DateTime get createdAt;
+@JsonKey(name: "id") int get id;@JsonKey(name: "username") String get username;@JsonKey(name: "first_name") String get firstName;@JsonKey(name: "last_name") String get lastName;@JsonKey(name: "phone") String get phone;@JsonKey(name: "email") String get email;@JsonKey(name: "address") String? get address;@JsonKey(name: "birth_date") DateTime get birthDate;@JsonKey(name: "gender") Gender get gender;@JsonKey(name: "has_car") bool get hasVehicle;@JsonKey(name: "has_open_parking_place") bool get isSelling;@JsonKey(name: "has_open_reservation") bool get isBuying;@JsonKey(name: "selected_car") SelectedCar? get selectedCar;@JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)@JsonKey(name: "avatar") Avatar? get avatar;@JsonKey(name: "created_at") DateTime get createdAt;
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $UserCopyWith<User> get copyWith => _$UserCopyWithImpl<User>(this as User, _$ide
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.id, id) || other.id == id)&&(identical(other.username, username) || other.username == username)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.address, address) || other.address == address)&&(identical(other.birthDate, birthDate) || other.birthDate == birthDate)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.hasVehicle, hasVehicle) || other.hasVehicle == hasVehicle)&&(identical(other.isSelling, isSelling) || other.isSelling == isSelling)&&(identical(other.isBuying, isBuying) || other.isBuying == isBuying)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.id, id) || other.id == id)&&(identical(other.username, username) || other.username == username)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.address, address) || other.address == address)&&(identical(other.birthDate, birthDate) || other.birthDate == birthDate)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.hasVehicle, hasVehicle) || other.hasVehicle == hasVehicle)&&(identical(other.isSelling, isSelling) || other.isSelling == isSelling)&&(identical(other.isBuying, isBuying) || other.isBuying == isBuying)&&(identical(other.selectedCar, selectedCar) || other.selectedCar == selectedCar)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,username,firstName,lastName,phone,email,address,birthDate,gender,hasVehicle,isSelling,isBuying,avatar,createdAt);
+int get hashCode => Object.hash(runtimeType,id,username,firstName,lastName,phone,email,address,birthDate,gender,hasVehicle,isSelling,isBuying,selectedCar,avatar,createdAt);
 
 @override
 String toString() {
-  return 'User(id: $id, username: $username, firstName: $firstName, lastName: $lastName, phone: $phone, email: $email, address: $address, birthDate: $birthDate, gender: $gender, hasVehicle: $hasVehicle, isSelling: $isSelling, isBuying: $isBuying, avatar: $avatar, createdAt: $createdAt)';
+  return 'User(id: $id, username: $username, firstName: $firstName, lastName: $lastName, phone: $phone, email: $email, address: $address, birthDate: $birthDate, gender: $gender, hasVehicle: $hasVehicle, isSelling: $isSelling, isBuying: $isBuying, selectedCar: $selectedCar, avatar: $avatar, createdAt: $createdAt)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $UserCopyWith<$Res>  {
   factory $UserCopyWith(User value, $Res Function(User) _then) = _$UserCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "id") int id,@JsonKey(name: "username") String username,@JsonKey(name: "first_name") String firstName,@JsonKey(name: "last_name") String lastName,@JsonKey(name: "phone") String phone,@JsonKey(name: "email") String email,@JsonKey(name: "address") String? address,@JsonKey(name: "birth_date") DateTime birthDate,@JsonKey(name: "gender") Gender gender,@JsonKey(name: "has_car") bool hasVehicle,@JsonKey(name: "has_open_parking_place") bool isSelling,@JsonKey(name: "has_open_reservation") bool isBuying,@JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)@JsonKey(name: "avatar") Avatar? avatar,@JsonKey(name: "created_at") DateTime createdAt
+@JsonKey(name: "id") int id,@JsonKey(name: "username") String username,@JsonKey(name: "first_name") String firstName,@JsonKey(name: "last_name") String lastName,@JsonKey(name: "phone") String phone,@JsonKey(name: "email") String email,@JsonKey(name: "address") String? address,@JsonKey(name: "birth_date") DateTime birthDate,@JsonKey(name: "gender") Gender gender,@JsonKey(name: "has_car") bool hasVehicle,@JsonKey(name: "has_open_parking_place") bool isSelling,@JsonKey(name: "has_open_reservation") bool isBuying,@JsonKey(name: "selected_car") SelectedCar? selectedCar,@JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)@JsonKey(name: "avatar") Avatar? avatar,@JsonKey(name: "created_at") DateTime createdAt
 });
 
 
-$AvatarCopyWith<$Res>? get avatar;
+$SelectedCarCopyWith<$Res>? get selectedCar;$AvatarCopyWith<$Res>? get avatar;
 
 }
 /// @nodoc
@@ -65,7 +65,7 @@ class _$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? username = null,Object? firstName = null,Object? lastName = null,Object? phone = null,Object? email = null,Object? address = freezed,Object? birthDate = null,Object? gender = null,Object? hasVehicle = null,Object? isSelling = null,Object? isBuying = null,Object? avatar = freezed,Object? createdAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? username = null,Object? firstName = null,Object? lastName = null,Object? phone = null,Object? email = null,Object? address = freezed,Object? birthDate = null,Object? gender = null,Object? hasVehicle = null,Object? isSelling = null,Object? isBuying = null,Object? selectedCar = freezed,Object? avatar = freezed,Object? createdAt = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
@@ -79,12 +79,25 @@ as DateTime,gender: null == gender ? _self.gender : gender // ignore: cast_nulla
 as Gender,hasVehicle: null == hasVehicle ? _self.hasVehicle : hasVehicle // ignore: cast_nullable_to_non_nullable
 as bool,isSelling: null == isSelling ? _self.isSelling : isSelling // ignore: cast_nullable_to_non_nullable
 as bool,isBuying: null == isBuying ? _self.isBuying : isBuying // ignore: cast_nullable_to_non_nullable
-as bool,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as bool,selectedCar: freezed == selectedCar ? _self.selectedCar : selectedCar // ignore: cast_nullable_to_non_nullable
+as SelectedCar?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
 as Avatar?,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,
   ));
 }
 /// Create a copy of User
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SelectedCarCopyWith<$Res>? get selectedCar {
+    if (_self.selectedCar == null) {
+    return null;
+  }
+
+  return $SelectedCarCopyWith<$Res>(_self.selectedCar!, (value) {
+    return _then(_self.copyWith(selectedCar: value));
+  });
+}/// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -178,10 +191,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  int id, @JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: "email")  String email, @JsonKey(name: "address")  String? address, @JsonKey(name: "birth_date")  DateTime birthDate, @JsonKey(name: "gender")  Gender gender, @JsonKey(name: "has_car")  bool hasVehicle, @JsonKey(name: "has_open_parking_place")  bool isSelling, @JsonKey(name: "has_open_reservation")  bool isBuying, @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)@JsonKey(name: "avatar")  Avatar? avatar, @JsonKey(name: "created_at")  DateTime createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  int id, @JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: "email")  String email, @JsonKey(name: "address")  String? address, @JsonKey(name: "birth_date")  DateTime birthDate, @JsonKey(name: "gender")  Gender gender, @JsonKey(name: "has_car")  bool hasVehicle, @JsonKey(name: "has_open_parking_place")  bool isSelling, @JsonKey(name: "has_open_reservation")  bool isBuying, @JsonKey(name: "selected_car")  SelectedCar? selectedCar, @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)@JsonKey(name: "avatar")  Avatar? avatar, @JsonKey(name: "created_at")  DateTime createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
-return $default(_that.id,_that.username,_that.firstName,_that.lastName,_that.phone,_that.email,_that.address,_that.birthDate,_that.gender,_that.hasVehicle,_that.isSelling,_that.isBuying,_that.avatar,_that.createdAt);case _:
+return $default(_that.id,_that.username,_that.firstName,_that.lastName,_that.phone,_that.email,_that.address,_that.birthDate,_that.gender,_that.hasVehicle,_that.isSelling,_that.isBuying,_that.selectedCar,_that.avatar,_that.createdAt);case _:
   return orElse();
 
 }
@@ -199,10 +212,10 @@ return $default(_that.id,_that.username,_that.firstName,_that.lastName,_that.pho
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  int id, @JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: "email")  String email, @JsonKey(name: "address")  String? address, @JsonKey(name: "birth_date")  DateTime birthDate, @JsonKey(name: "gender")  Gender gender, @JsonKey(name: "has_car")  bool hasVehicle, @JsonKey(name: "has_open_parking_place")  bool isSelling, @JsonKey(name: "has_open_reservation")  bool isBuying, @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)@JsonKey(name: "avatar")  Avatar? avatar, @JsonKey(name: "created_at")  DateTime createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  int id, @JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: "email")  String email, @JsonKey(name: "address")  String? address, @JsonKey(name: "birth_date")  DateTime birthDate, @JsonKey(name: "gender")  Gender gender, @JsonKey(name: "has_car")  bool hasVehicle, @JsonKey(name: "has_open_parking_place")  bool isSelling, @JsonKey(name: "has_open_reservation")  bool isBuying, @JsonKey(name: "selected_car")  SelectedCar? selectedCar, @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)@JsonKey(name: "avatar")  Avatar? avatar, @JsonKey(name: "created_at")  DateTime createdAt)  $default,) {final _that = this;
 switch (_that) {
 case _User():
-return $default(_that.id,_that.username,_that.firstName,_that.lastName,_that.phone,_that.email,_that.address,_that.birthDate,_that.gender,_that.hasVehicle,_that.isSelling,_that.isBuying,_that.avatar,_that.createdAt);case _:
+return $default(_that.id,_that.username,_that.firstName,_that.lastName,_that.phone,_that.email,_that.address,_that.birthDate,_that.gender,_that.hasVehicle,_that.isSelling,_that.isBuying,_that.selectedCar,_that.avatar,_that.createdAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -219,10 +232,10 @@ return $default(_that.id,_that.username,_that.firstName,_that.lastName,_that.pho
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id")  int id, @JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: "email")  String email, @JsonKey(name: "address")  String? address, @JsonKey(name: "birth_date")  DateTime birthDate, @JsonKey(name: "gender")  Gender gender, @JsonKey(name: "has_car")  bool hasVehicle, @JsonKey(name: "has_open_parking_place")  bool isSelling, @JsonKey(name: "has_open_reservation")  bool isBuying, @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)@JsonKey(name: "avatar")  Avatar? avatar, @JsonKey(name: "created_at")  DateTime createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id")  int id, @JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: "email")  String email, @JsonKey(name: "address")  String? address, @JsonKey(name: "birth_date")  DateTime birthDate, @JsonKey(name: "gender")  Gender gender, @JsonKey(name: "has_car")  bool hasVehicle, @JsonKey(name: "has_open_parking_place")  bool isSelling, @JsonKey(name: "has_open_reservation")  bool isBuying, @JsonKey(name: "selected_car")  SelectedCar? selectedCar, @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)@JsonKey(name: "avatar")  Avatar? avatar, @JsonKey(name: "created_at")  DateTime createdAt)?  $default,) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
-return $default(_that.id,_that.username,_that.firstName,_that.lastName,_that.phone,_that.email,_that.address,_that.birthDate,_that.gender,_that.hasVehicle,_that.isSelling,_that.isBuying,_that.avatar,_that.createdAt);case _:
+return $default(_that.id,_that.username,_that.firstName,_that.lastName,_that.phone,_that.email,_that.address,_that.birthDate,_that.gender,_that.hasVehicle,_that.isSelling,_that.isBuying,_that.selectedCar,_that.avatar,_that.createdAt);case _:
   return null;
 
 }
@@ -234,7 +247,7 @@ return $default(_that.id,_that.username,_that.firstName,_that.lastName,_that.pho
 @JsonSerializable()
 
 class _User implements User {
-  const _User({@JsonKey(name: "id") required this.id, @JsonKey(name: "username") required this.username, @JsonKey(name: "first_name") required this.firstName, @JsonKey(name: "last_name") required this.lastName, @JsonKey(name: "phone") required this.phone, @JsonKey(name: "email") required this.email, @JsonKey(name: "address") this.address, @JsonKey(name: "birth_date") required this.birthDate, @JsonKey(name: "gender") required this.gender, @JsonKey(name: "has_car") required this.hasVehicle, @JsonKey(name: "has_open_parking_place") required this.isSelling, @JsonKey(name: "has_open_reservation") required this.isBuying, @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)@JsonKey(name: "avatar") this.avatar, @JsonKey(name: "created_at") required this.createdAt});
+  const _User({@JsonKey(name: "id") required this.id, @JsonKey(name: "username") required this.username, @JsonKey(name: "first_name") required this.firstName, @JsonKey(name: "last_name") required this.lastName, @JsonKey(name: "phone") required this.phone, @JsonKey(name: "email") required this.email, @JsonKey(name: "address") this.address, @JsonKey(name: "birth_date") required this.birthDate, @JsonKey(name: "gender") required this.gender, @JsonKey(name: "has_car") required this.hasVehicle, @JsonKey(name: "has_open_parking_place") required this.isSelling, @JsonKey(name: "has_open_reservation") required this.isBuying, @JsonKey(name: "selected_car") required this.selectedCar, @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)@JsonKey(name: "avatar") this.avatar, @JsonKey(name: "created_at") required this.createdAt});
   factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
 @override@JsonKey(name: "id") final  int id;
@@ -249,6 +262,7 @@ class _User implements User {
 @override@JsonKey(name: "has_car") final  bool hasVehicle;
 @override@JsonKey(name: "has_open_parking_place") final  bool isSelling;
 @override@JsonKey(name: "has_open_reservation") final  bool isBuying;
+@override@JsonKey(name: "selected_car") final  SelectedCar? selectedCar;
 @override@JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)@JsonKey(name: "avatar") final  Avatar? avatar;
 @override@JsonKey(name: "created_at") final  DateTime createdAt;
 
@@ -265,16 +279,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _User&&(identical(other.id, id) || other.id == id)&&(identical(other.username, username) || other.username == username)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.address, address) || other.address == address)&&(identical(other.birthDate, birthDate) || other.birthDate == birthDate)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.hasVehicle, hasVehicle) || other.hasVehicle == hasVehicle)&&(identical(other.isSelling, isSelling) || other.isSelling == isSelling)&&(identical(other.isBuying, isBuying) || other.isBuying == isBuying)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _User&&(identical(other.id, id) || other.id == id)&&(identical(other.username, username) || other.username == username)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.address, address) || other.address == address)&&(identical(other.birthDate, birthDate) || other.birthDate == birthDate)&&(identical(other.gender, gender) || other.gender == gender)&&(identical(other.hasVehicle, hasVehicle) || other.hasVehicle == hasVehicle)&&(identical(other.isSelling, isSelling) || other.isSelling == isSelling)&&(identical(other.isBuying, isBuying) || other.isBuying == isBuying)&&(identical(other.selectedCar, selectedCar) || other.selectedCar == selectedCar)&&(identical(other.avatar, avatar) || other.avatar == avatar)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,username,firstName,lastName,phone,email,address,birthDate,gender,hasVehicle,isSelling,isBuying,avatar,createdAt);
+int get hashCode => Object.hash(runtimeType,id,username,firstName,lastName,phone,email,address,birthDate,gender,hasVehicle,isSelling,isBuying,selectedCar,avatar,createdAt);
 
 @override
 String toString() {
-  return 'User(id: $id, username: $username, firstName: $firstName, lastName: $lastName, phone: $phone, email: $email, address: $address, birthDate: $birthDate, gender: $gender, hasVehicle: $hasVehicle, isSelling: $isSelling, isBuying: $isBuying, avatar: $avatar, createdAt: $createdAt)';
+  return 'User(id: $id, username: $username, firstName: $firstName, lastName: $lastName, phone: $phone, email: $email, address: $address, birthDate: $birthDate, gender: $gender, hasVehicle: $hasVehicle, isSelling: $isSelling, isBuying: $isBuying, selectedCar: $selectedCar, avatar: $avatar, createdAt: $createdAt)';
 }
 
 
@@ -285,11 +299,11 @@ abstract mixin class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) _then) = __$UserCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "id") int id,@JsonKey(name: "username") String username,@JsonKey(name: "first_name") String firstName,@JsonKey(name: "last_name") String lastName,@JsonKey(name: "phone") String phone,@JsonKey(name: "email") String email,@JsonKey(name: "address") String? address,@JsonKey(name: "birth_date") DateTime birthDate,@JsonKey(name: "gender") Gender gender,@JsonKey(name: "has_car") bool hasVehicle,@JsonKey(name: "has_open_parking_place") bool isSelling,@JsonKey(name: "has_open_reservation") bool isBuying,@JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)@JsonKey(name: "avatar") Avatar? avatar,@JsonKey(name: "created_at") DateTime createdAt
+@JsonKey(name: "id") int id,@JsonKey(name: "username") String username,@JsonKey(name: "first_name") String firstName,@JsonKey(name: "last_name") String lastName,@JsonKey(name: "phone") String phone,@JsonKey(name: "email") String email,@JsonKey(name: "address") String? address,@JsonKey(name: "birth_date") DateTime birthDate,@JsonKey(name: "gender") Gender gender,@JsonKey(name: "has_car") bool hasVehicle,@JsonKey(name: "has_open_parking_place") bool isSelling,@JsonKey(name: "has_open_reservation") bool isBuying,@JsonKey(name: "selected_car") SelectedCar? selectedCar,@JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)@JsonKey(name: "avatar") Avatar? avatar,@JsonKey(name: "created_at") DateTime createdAt
 });
 
 
-@override $AvatarCopyWith<$Res>? get avatar;
+@override $SelectedCarCopyWith<$Res>? get selectedCar;@override $AvatarCopyWith<$Res>? get avatar;
 
 }
 /// @nodoc
@@ -302,7 +316,7 @@ class __$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? username = null,Object? firstName = null,Object? lastName = null,Object? phone = null,Object? email = null,Object? address = freezed,Object? birthDate = null,Object? gender = null,Object? hasVehicle = null,Object? isSelling = null,Object? isBuying = null,Object? avatar = freezed,Object? createdAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? username = null,Object? firstName = null,Object? lastName = null,Object? phone = null,Object? email = null,Object? address = freezed,Object? birthDate = null,Object? gender = null,Object? hasVehicle = null,Object? isSelling = null,Object? isBuying = null,Object? selectedCar = freezed,Object? avatar = freezed,Object? createdAt = null,}) {
   return _then(_User(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
@@ -316,13 +330,26 @@ as DateTime,gender: null == gender ? _self.gender : gender // ignore: cast_nulla
 as Gender,hasVehicle: null == hasVehicle ? _self.hasVehicle : hasVehicle // ignore: cast_nullable_to_non_nullable
 as bool,isSelling: null == isSelling ? _self.isSelling : isSelling // ignore: cast_nullable_to_non_nullable
 as bool,isBuying: null == isBuying ? _self.isBuying : isBuying // ignore: cast_nullable_to_non_nullable
-as bool,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as bool,selectedCar: freezed == selectedCar ? _self.selectedCar : selectedCar // ignore: cast_nullable_to_non_nullable
+as SelectedCar?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
 as Avatar?,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,
   ));
 }
 
 /// Create a copy of User
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SelectedCarCopyWith<$Res>? get selectedCar {
+    if (_self.selectedCar == null) {
+    return null;
+  }
+
+  return $SelectedCarCopyWith<$Res>(_self.selectedCar!, (value) {
+    return _then(_self.copyWith(selectedCar: value));
+  });
+}/// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -333,6 +360,305 @@ $AvatarCopyWith<$Res>? get avatar {
 
   return $AvatarCopyWith<$Res>(_self.avatar!, (value) {
     return _then(_self.copyWith(avatar: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$SelectedCar {
+
+@JsonKey(name: "brand") String get brand;@JsonKey(name: "model") String get model;@JsonKey(name: "color") String get color;@JsonKey(name: "registration_number") String get registrationNumber;@JsonKey(name: "image") Image? get image;
+/// Create a copy of SelectedCar
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SelectedCarCopyWith<SelectedCar> get copyWith => _$SelectedCarCopyWithImpl<SelectedCar>(this as SelectedCar, _$identity);
+
+  /// Serializes this SelectedCar to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SelectedCar&&(identical(other.brand, brand) || other.brand == brand)&&(identical(other.model, model) || other.model == model)&&(identical(other.color, color) || other.color == color)&&(identical(other.registrationNumber, registrationNumber) || other.registrationNumber == registrationNumber)&&(identical(other.image, image) || other.image == image));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,brand,model,color,registrationNumber,image);
+
+@override
+String toString() {
+  return 'SelectedCar(brand: $brand, model: $model, color: $color, registrationNumber: $registrationNumber, image: $image)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SelectedCarCopyWith<$Res>  {
+  factory $SelectedCarCopyWith(SelectedCar value, $Res Function(SelectedCar) _then) = _$SelectedCarCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: "brand") String brand,@JsonKey(name: "model") String model,@JsonKey(name: "color") String color,@JsonKey(name: "registration_number") String registrationNumber,@JsonKey(name: "image") Image? image
+});
+
+
+$ImageCopyWith<$Res>? get image;
+
+}
+/// @nodoc
+class _$SelectedCarCopyWithImpl<$Res>
+    implements $SelectedCarCopyWith<$Res> {
+  _$SelectedCarCopyWithImpl(this._self, this._then);
+
+  final SelectedCar _self;
+  final $Res Function(SelectedCar) _then;
+
+/// Create a copy of SelectedCar
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? brand = null,Object? model = null,Object? color = null,Object? registrationNumber = null,Object? image = freezed,}) {
+  return _then(_self.copyWith(
+brand: null == brand ? _self.brand : brand // ignore: cast_nullable_to_non_nullable
+as String,model: null == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
+as String,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as String,registrationNumber: null == registrationNumber ? _self.registrationNumber : registrationNumber // ignore: cast_nullable_to_non_nullable
+as String,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as Image?,
+  ));
+}
+/// Create a copy of SelectedCar
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ImageCopyWith<$Res>? get image {
+    if (_self.image == null) {
+    return null;
+  }
+
+  return $ImageCopyWith<$Res>(_self.image!, (value) {
+    return _then(_self.copyWith(image: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [SelectedCar].
+extension SelectedCarPatterns on SelectedCar {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SelectedCar value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SelectedCar() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SelectedCar value)  $default,){
+final _that = this;
+switch (_that) {
+case _SelectedCar():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SelectedCar value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SelectedCar() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "brand")  String brand, @JsonKey(name: "model")  String model, @JsonKey(name: "color")  String color, @JsonKey(name: "registration_number")  String registrationNumber, @JsonKey(name: "image")  Image? image)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SelectedCar() when $default != null:
+return $default(_that.brand,_that.model,_that.color,_that.registrationNumber,_that.image);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "brand")  String brand, @JsonKey(name: "model")  String model, @JsonKey(name: "color")  String color, @JsonKey(name: "registration_number")  String registrationNumber, @JsonKey(name: "image")  Image? image)  $default,) {final _that = this;
+switch (_that) {
+case _SelectedCar():
+return $default(_that.brand,_that.model,_that.color,_that.registrationNumber,_that.image);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "brand")  String brand, @JsonKey(name: "model")  String model, @JsonKey(name: "color")  String color, @JsonKey(name: "registration_number")  String registrationNumber, @JsonKey(name: "image")  Image? image)?  $default,) {final _that = this;
+switch (_that) {
+case _SelectedCar() when $default != null:
+return $default(_that.brand,_that.model,_that.color,_that.registrationNumber,_that.image);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _SelectedCar implements SelectedCar {
+  const _SelectedCar({@JsonKey(name: "brand") required this.brand, @JsonKey(name: "model") required this.model, @JsonKey(name: "color") required this.color, @JsonKey(name: "registration_number") required this.registrationNumber, @JsonKey(name: "image") required this.image});
+  factory _SelectedCar.fromJson(Map<String, dynamic> json) => _$SelectedCarFromJson(json);
+
+@override@JsonKey(name: "brand") final  String brand;
+@override@JsonKey(name: "model") final  String model;
+@override@JsonKey(name: "color") final  String color;
+@override@JsonKey(name: "registration_number") final  String registrationNumber;
+@override@JsonKey(name: "image") final  Image? image;
+
+/// Create a copy of SelectedCar
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SelectedCarCopyWith<_SelectedCar> get copyWith => __$SelectedCarCopyWithImpl<_SelectedCar>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$SelectedCarToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SelectedCar&&(identical(other.brand, brand) || other.brand == brand)&&(identical(other.model, model) || other.model == model)&&(identical(other.color, color) || other.color == color)&&(identical(other.registrationNumber, registrationNumber) || other.registrationNumber == registrationNumber)&&(identical(other.image, image) || other.image == image));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,brand,model,color,registrationNumber,image);
+
+@override
+String toString() {
+  return 'SelectedCar(brand: $brand, model: $model, color: $color, registrationNumber: $registrationNumber, image: $image)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SelectedCarCopyWith<$Res> implements $SelectedCarCopyWith<$Res> {
+  factory _$SelectedCarCopyWith(_SelectedCar value, $Res Function(_SelectedCar) _then) = __$SelectedCarCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: "brand") String brand,@JsonKey(name: "model") String model,@JsonKey(name: "color") String color,@JsonKey(name: "registration_number") String registrationNumber,@JsonKey(name: "image") Image? image
+});
+
+
+@override $ImageCopyWith<$Res>? get image;
+
+}
+/// @nodoc
+class __$SelectedCarCopyWithImpl<$Res>
+    implements _$SelectedCarCopyWith<$Res> {
+  __$SelectedCarCopyWithImpl(this._self, this._then);
+
+  final _SelectedCar _self;
+  final $Res Function(_SelectedCar) _then;
+
+/// Create a copy of SelectedCar
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? brand = null,Object? model = null,Object? color = null,Object? registrationNumber = null,Object? image = freezed,}) {
+  return _then(_SelectedCar(
+brand: null == brand ? _self.brand : brand // ignore: cast_nullable_to_non_nullable
+as String,model: null == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
+as String,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as String,registrationNumber: null == registrationNumber ? _self.registrationNumber : registrationNumber // ignore: cast_nullable_to_non_nullable
+as String,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as Image?,
+  ));
+}
+
+/// Create a copy of SelectedCar
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ImageCopyWith<$Res>? get image {
+    if (_self.image == null) {
+    return null;
+  }
+
+  return $ImageCopyWith<$Res>(_self.image!, (value) {
+    return _then(_self.copyWith(image: value));
   });
 }
 }
