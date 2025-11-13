@@ -2,6 +2,7 @@ import 'package:kreyno/services/api/dio_service.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/cars_service.dart';
 import 'package:kreyno/services/device_service.dart';
+import 'package:kreyno/services/google_map_service.dart';
 import 'package:kreyno/services/location_service.dart';
 import 'package:kreyno/services/media_service.dart';
 import 'package:kreyno/services/onboarding_service.dart';
@@ -125,6 +126,7 @@ import 'package:kreyno/ui/views/payout/payout_view.dart';
     LazySingleton(classType: WalletService),
     LazySingleton(classType: UrlLauncherService),
     LazySingleton(classType: LocationService),
+    Factory(classType: GoogleMapService),
     // @stacked-service
   ],
   bottomsheets: [

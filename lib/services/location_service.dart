@@ -32,4 +32,13 @@ class LocationService {
       return Left(e.toString());
     }
   }
+
+  Future<Either<String, bool>> openLocationSettings() async {
+    try {
+      await Geolocator.openLocationSettings();
+      return const Right(true);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
 }

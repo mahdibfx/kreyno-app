@@ -16,6 +16,7 @@ import '../services/api/dio_service.dart';
 import '../services/auth_service.dart';
 import '../services/cars_service.dart';
 import '../services/device_service.dart';
+import '../services/google_map_service.dart';
 import '../services/location_service.dart';
 import '../services/media_service.dart';
 import '../services/onboarding_service.dart';
@@ -63,4 +64,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => WalletService());
   locator.registerLazySingleton(() => UrlLauncherService());
   locator.registerLazySingleton(() => LocationService());
+  locator.registerFactory(() => GoogleMapService());
 }
