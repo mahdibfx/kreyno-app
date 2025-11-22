@@ -16,7 +16,9 @@ _ParkingSpot _$ParkingSpotFromJson(Map<String, dynamic> json) => _ParkingSpot(
   totalPaidPrice: (json['total_paid_price'] as num).toDouble(),
   electricChargeStation: json['electric_charge_station'] as bool,
   reserved: json['reserved'] as bool,
-  seller: Seller.fromJson(json['seller'] as Map<String, dynamic>),
+  seller: json['seller'] == null
+      ? null
+      : Seller.fromJson(json['seller'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$ParkingSpotToJson(_ParkingSpot instance) =>
@@ -30,7 +32,7 @@ Map<String, dynamic> _$ParkingSpotToJson(_ParkingSpot instance) =>
       'total_paid_price': instance.totalPaidPrice,
       'electric_charge_station': instance.electricChargeStation,
       'reserved': instance.reserved,
-      'seller': instance.seller.toJson(),
+      'seller': ?instance.seller?.toJson(),
     };
 
 _Seller _$SellerFromJson(Map<String, dynamic> json) => _Seller(

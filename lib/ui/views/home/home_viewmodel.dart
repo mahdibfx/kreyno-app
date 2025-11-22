@@ -101,11 +101,10 @@ class HomeViewModel extends ReactiveViewModel {
     _userService.setUserData(currentUser.copyWith(selectedCar: car));
   }
 
-  void showProfileSheet() async {
-    await _bottomSheetService.showCustomSheet(
-      variant: BottomSheetType.profile,
-      barrierColor: Colors.black.withValues(alpha: .1),
-      isScrollControlled: true,
+  void openCreationSpotSheet() {
+    _bottomSheetService.showCustomSheet(
+      variant: BottomSheetType.createSpot,
+      isScrollControlled: false,
     );
   }
 

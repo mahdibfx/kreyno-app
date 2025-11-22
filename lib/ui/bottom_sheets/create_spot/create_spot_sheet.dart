@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
@@ -12,6 +16,7 @@ import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:kreyno/ui/widgets/dumb/input_field.dart';
 import 'package:kreyno/ui/widgets/dumb/labeled_checkbox.dart';
+import 'package:logger/logger.dart';
 
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -40,8 +45,8 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: "Céder ma place",
+              CustomText(
+                text: "home.let_my_place".tr(),
                 style: CustomTextStyle.largeTitle,
               ),
               RoundedButton(
@@ -53,27 +58,61 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
             ],
           ),
           VGap(AppSpacing.px20),
-          InputField(
-            controller: TextEditingController(),
-            focusNode: FocusNode(),
-            labelText: "Emplacement",
-            hintText: "Au Gustave",
-            keyboardType: TextInputType.text,
+          InkWell(
+            onTap: () async {
+              viewModel.choosePlaceInputClicked();
+            },
+            child: IgnorePointer(
+              ignoring: true,
+              child: InputField(
+                disabled: false,
+                controller: viewModel.placeController,
+                focusNode: FocusNode(),
+                labelText: "home.place".tr(),
+                hintText: "Au Gustave",
+                keyboardType: TextInputType.text,
+              ),
+            ),
           ),
           VGap(AppSpacing.px8),
           Row(
             children: [
-              const CustomIcon(iconPath: AppIcons.locationUser),
-              HGap(AppSpacing.px1 * 10),
-              const CustomText(
-                text: "Utiliser ma position actuelle",
-                style: CustomTextStyle.smallParagraphMedium,
+              InkWell(
+                onTap: () {
+                  if (viewModel.isLocationEnabled) {
+                    Logger().i("Use my position clicked");
+                    viewModel.useMyPosition();
+                  }
+                },
+                child: Opacity(
+                  opacity: viewModel.isLocationEnabled ? 1 : 0.3,
+                  child: Row(
+                    children: [
+                      const CustomIcon(iconPath: AppIcons.locationUser),
+                      HGap(AppSpacing.px1 * 10),
+                      CustomText(
+                        text: "use_my_position".tr(),
+                        style: CustomTextStyle.smallParagraphMedium,
+                      ),
+                    ],
+                  ),
+                ),
               ),
               const Expanded(child: SizedBox()),
-              const CustomText(
-                text: "Activer",
-                style: CustomTextStyle.smallParagraphBold,
-                textDecoration: TextDecoration.underline,
+              InkWell(
+                onTap: () {
+                  if (!viewModel.isLocationEnabled) {
+                    viewModel.onEnableButtonClicked();
+                  }
+                },
+                child: Opacity(
+                  opacity: viewModel.isLocationEnabled ? 0.3 : 1,
+                  child: CustomText(
+                    text: "enable".tr(),
+                    style: CustomTextStyle.smallParagraphBold,
+                    textDecoration: TextDecoration.underline,
+                  ),
+                ),
               ),
             ],
           ),
@@ -81,10 +120,15 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
           const CustomDivider(),
           VGap(AppSpacing.px16),
           InputField(
-            controller: TextEditingController(),
+            controller: viewModel.priceController,
             focusNode: FocusNode(),
-            labelText: "Choisissez un prix",
-            hintText: "Recommmendé: 2€ ∼ 7€",
+            labelText: "home.choose_price".tr(),
+            onChanged: (f) {
+              viewModel.rebuildUi();
+            },
+            hintText:
+                "${"home.recommended".tr()}: "
+                "2.4€ ∼ 7€",
             trailingIcon: Container(
               padding: const EdgeInsets.all(10),
               child: const CustomIcon(
@@ -103,8 +147,8 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
                 color: AppColors.greenKre,
               ),
               HGap(AppSpacing.px4),
-              const CustomText(
-                text: "Borne de recharge électrique",
+              CustomText(
+                text: "home.born_recharge_electrique".tr(),
                 style: CustomTextStyle.smallParagraphMedium,
                 color: AppColors.textKre,
               ),
@@ -115,27 +159,48 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
             children: [
               Expanded(
                 child: LabeledCheckbox(
-                  label: "Disponible",
-                  value: true,
-                  onChanged: (d) {},
+                  label: "possible".tr(),
+                  value: viewModel.bornDisponible,
+                  onChanged: (d) {
+                    viewModel.changedBorneValue(true);
+                  },
                 ),
               ),
               Expanded(
                 child: LabeledCheckbox(
-                  label: "Non Disponible",
-                  value: false,
-                  onChanged: (d) {},
+                  label: "not_possible".tr(),
+                  value: !viewModel.bornDisponible,
+                  onChanged: (d) {
+                    viewModel.changedBorneValue(false);
+                  },
                 ),
               ),
             ],
           ),
           VGap(AppSpacing.px24),
-          CustomButton.filled(text: "Céder ma place", onPressed: () {}),
+          SafeArea(
+            top: false,
+            bottom: Platform.isAndroid,
+            child: CustomButton.filled(
+              isDisabled: !viewModel.validateCreateSpotButton(),
+              text: "home.let_my_place".tr(),
+              onPressed: () {
+                viewModel.letMyPlaceButtonClicked();
+              },
+            ),
+          ),
           VGap(AppSpacing.px8),
         ],
       ),
       showDragHandler: false,
     );
+  }
+
+  @override
+  void onViewModelReady(CreateSpotSheetModel viewModel) {
+    // TODO: implement onViewModelReady
+    super.onViewModelReady(viewModel);
+    viewModel.checkIfLocationEnabled();
   }
 
   @override

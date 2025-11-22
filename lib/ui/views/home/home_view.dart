@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/services/auth_service.dart';
+import 'package:kreyno/services/socket_service.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/views/home/widgets/car_selector/car_selector.dart';
@@ -44,7 +47,16 @@ class HomeView extends StackedView<HomeViewModel> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.end,
-                children: [HomeFabs(), VGap(AppSpacing.px24), HomeBottomBar()],
+                children: [
+                  const HomeFabs(),
+                  VGap(AppSpacing.px24),
+                  HomeBottomBar(
+                    avatarUrl: viewModel.currentUserAvatarUrl,
+                    onLetMyPlaceButtonPressed: () {
+                      viewModel.openCreationSpotSheet();
+                    },
+                  ),
+                ],
               ),
             ],
           ),

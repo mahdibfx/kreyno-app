@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:google_places_flutter/google_places_flutter.dart';
+import 'package:google_places_flutter/model/place_type.dart';
+import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/views/choose_selling_place_location/choose_selling_place_location_viewmodel.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
-import 'package:kreyno/ui/widgets/dumb/input_field.dart';
 import 'package:kreyno/ui/widgets/dumb/rounded_button.dart';
+import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
-class MyNewMarkLabel extends StatelessWidget {
+class MyNewMarkLabel
+    extends ViewModelWidget<ChooseSellingPlaceLocationViewModel> {
   const MyNewMarkLabel({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, viewModel) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -23,27 +29,36 @@ class MyNewMarkLabel extends StatelessWidget {
               children: [
                 RoundedButton(
                   iconPath: AppIcons.arrowLeft,
-                  onPressed: () {},
+                  onPressed: () {
+                    locator<NavigationService>().back();
+                  },
                   shape: BoxShape.rectangle,
                 ),
                 HGap(AppSpacing.px8),
                 Expanded(
-                  child: TextFormField(
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: AppSpacing.px1 * 14,
-                      fontFamily: "Satoshi",
+                  child: GooglePlaceAutoCompleteTextField(
+                    placeType: PlaceType.address,
+                    countries: const ["fr"],
+                    itemClick: (positionPrediction) {
+                      viewModel.onItemClicked(positionPrediction.description!);
+                    },
+
+                    boxDecoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(14),
                     ),
-                    decoration: InputDecoration(
-                      hintText: 'Search ..',
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      isDense: true,
+                    inputDecoration: InputDecoration(
                       filled: true,
                       fillColor: AppColors.white,
+                      isDense: true,
+
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(14),
+                      ),
                     ),
+                    textEditingController: TextEditingController(),
+                    googleAPIKey: "AIzaSyAhoFVZiHJ05kCvSW6tqV3rwQX4YrgGsxA",
                   ),
                 ),
               ],
@@ -56,11 +71,12 @@ class MyNewMarkLabel extends StatelessWidget {
   }
 }
 
-class ChoosePlaceBottomBar extends StatelessWidget {
+class ChoosePlaceBottomBar
+    extends ViewModelWidget<ChooseSellingPlaceLocationViewModel> {
   const ChoosePlaceBottomBar({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, viewModel) {
     return Column(
       children: [
         Padding(
@@ -70,7 +86,9 @@ class ChoosePlaceBottomBar extends StatelessWidget {
             child: RoundedButton(
               shape: BoxShape.rectangle,
               iconPath: AppIcons.gpsOn,
-              onPressed: () {},
+              onPressed: () {
+                viewModel.useMyPosition();
+              },
             ),
           ),
         ),
@@ -94,13 +112,20 @@ class ChoosePlaceBottomBar extends StatelessWidget {
                 style: CustomTextStyle.title,
               ),
               VGap(AppSpacing.px4),
-              const CustomText(
-                text: "58-64 Rue de l'Université, 75007 Paris, France",
+              CustomText(
+                text: viewModel.address,
                 style: CustomTextStyle.smallParagraphMedium,
                 color: AppColors.textKre,
               ),
               VGap(AppSpacing.px24),
-              CustomButton.filled(text: "Choisir", onPressed: () async {}),
+              CustomButton.filled(
+                isDisabled: viewModel.isBusy,
+                text: "Choisir",
+                onPressed: () async {
+                  viewModel.chooseClicked();
+                },
+              ),
+              VGap(AppSpacing.px8),
             ],
           ),
         ),

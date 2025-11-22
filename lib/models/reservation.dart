@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kreyno/enums/reservation_status.dart';
+import 'package:kreyno/models/car.dart';
 
 import 'avatar.dart';
 
@@ -28,12 +29,15 @@ abstract class Buyer with _$Buyer {
     @JsonKey(name: "first_name") required String firstName,
     @JsonKey(name: "last_name") required String lastName,
     @JsonKey(name: "phone") required String phone,
+    @JsonKey(name: 'car') required Car car,
+
     @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)
     Avatar? avatar,
   }) = _Buyer;
 
   factory Buyer.fromJson(Map<String, dynamic> json) => _$BuyerFromJson(json);
 
+  @override
   Map<String, dynamic> toJson();
 }
 

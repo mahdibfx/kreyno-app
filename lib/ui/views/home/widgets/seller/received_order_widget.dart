@@ -3,25 +3,28 @@ import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/views/home/home_viewmodel.dart';
+import 'package:kreyno/ui/views/my_let_place/my_let_place_view.dart';
+import 'package:kreyno/ui/views/my_let_place/my_let_place_viewmodel.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_divider.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
+import 'package:kreyno/ui/widgets/dumb/input_field.dart';
 import 'package:kreyno/ui/widgets/dumb/labeled_checkbox.dart';
 import 'package:kreyno/ui/widgets/dumb/labeled_radio.dart';
 import 'package:kreyno/ui/widgets/dumb/rounded_button.dart';
 import 'package:stacked/stacked.dart';
 
-class ReceivedOrderWidget extends ViewModelWidget<HomeViewModel> {
+class ReceivedOrderWidget extends ViewModelWidget<MyLetPlaceViewModel> {
   const ReceivedOrderWidget({super.key});
 
   @override
   Widget build(BuildContext context, viewModel) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        const CounterBar(),
+        // const CounterBar(),
         Container(
           decoration: const BoxDecoration(
             color: AppColors.white,
@@ -44,9 +47,10 @@ class ReceivedOrderWidget extends ViewModelWidget<HomeViewModel> {
               );
             },
             duration: const Duration(milliseconds: 800),
-            child: viewModel.showRefuseReasonForm
+            child: viewModel.isRefused
                 ? const RefuseReasonForm(key: ValueKey("refuse-form"))
                 : const DemandOrderBody(key: ValueKey("demand-order")),
+            //  const DemandOrderBody(key: ValueKey("demand-order")),
           ),
         ),
       ],
@@ -54,7 +58,7 @@ class ReceivedOrderWidget extends ViewModelWidget<HomeViewModel> {
   }
 }
 
-class RefuseReasonForm extends ViewModelWidget<HomeViewModel> {
+class RefuseReasonForm extends ViewModelWidget<MyLetPlaceViewModel> {
   const RefuseReasonForm({super.key});
 
   @override
@@ -65,7 +69,9 @@ class RefuseReasonForm extends ViewModelWidget<HomeViewModel> {
         VGap(AppSpacing.px20),
         InkWell(
           onTap: () {
-            viewModel.cancelRefuseOrder();
+            // viewModel.cancelRefuseOrder();
+            viewModel.isRefused = false;
+            viewModel.rebuildUi();
           },
           child: const CustomIcon(iconPath: AppIcons.arrowLeft),
         ),
@@ -82,42 +88,58 @@ class RefuseReasonForm extends ViewModelWidget<HomeViewModel> {
           color: AppColors.textKre,
         ),
         VGap(AppSpacing.px24),
-        LabeledRadio(
-          label: "J’ai changé mes plans",
-          value: true,
-          onChanged: (d) {},
+        ...List.generate(
+          viewModel.observations.length,
+          (index) => Column(
+            children: [
+              LabeledRadio(
+                label: viewModel.observations[index],
+                value:
+                    !viewModel.isOtherSelected &&
+                    viewModel.observation == viewModel.observations[index],
+                onChanged: (d) {
+                  viewModel.observation = viewModel.observations[index];
+                  viewModel.rebuildUi();
+                },
+              ),
+              VGap(AppSpacing.px8),
+            ],
+          ),
         ),
-        VGap(AppSpacing.px8),
-        LabeledRadio(
-          label: "J’ai fait une erreur",
-          value: false,
-          onChanged: (d) {},
-        ),
-        VGap(AppSpacing.px8),
-        LabeledRadio(
-          label: "Le/la client(e) est trop loin",
-          value: false,
-          onChanged: (d) {},
-        ),
-        VGap(AppSpacing.px8),
+
         LabeledRadio(
           label: "Autre (a spécifier)",
-          value: false,
-          onChanged: (d) {},
+          value: viewModel.isOtherSelected,
+          onChanged: (d) {
+            viewModel.isOtherSelected = true;
+            viewModel.observation = "";
+            viewModel.rebuildUi();
+          },
+        ),
+        VGap(AppSpacing.px8),
+
+        InputField(
+          controller: viewModel.otherTextController,
+          focusNode: FocusNode(),
+          hintText: "Saisissez votre raison d’annulation",
+          keyboardType: TextInputType.text,
+          maxLines: 4,
         ),
         VGap(AppSpacing.px24),
         CustomButton.filled(
           text: "Valider",
           backgroundColor: AppColors.redKre,
           foregroundColor: AppColors.white,
-          onPressed: () {},
+          onPressed: () {
+            viewModel.cancelOrder();
+          },
         ),
       ],
     );
   }
 }
 
-class DemandOrderBody extends ViewModelWidget<HomeViewModel> {
+class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
   const DemandOrderBody({super.key});
 
   @override
@@ -144,9 +166,12 @@ class DemandOrderBody extends ViewModelWidget<HomeViewModel> {
           height: AppSpacing.px1 * 196,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            image: const DecorationImage(
+            image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage("https://picsum.photos/400/400"),
+              image: NetworkImage(
+                viewModel.reservation!.buyer.avatar?.url ??
+                    "https://picsum.photos/400/300",
+              ),
             ),
           ),
           child: Column(
@@ -188,8 +213,8 @@ class DemandOrderBody extends ViewModelWidget<HomeViewModel> {
                           ),
                         ),
                         HGap(AppSpacing.px8),
-                        const CustomText.paragraph(
-                          "sarah.dupons92",
+                        CustomText.paragraph(
+                          viewModel.reservation!.buyer.username,
                           color: AppColors.white,
                         ),
                       ],
@@ -253,12 +278,12 @@ class DemandOrderBody extends ViewModelWidget<HomeViewModel> {
           color: AppColors.textKre,
         ),
         VGap(AppSpacing.px1 * 6),
-        const Row(
+        Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: CustomText(
-                text: "58-64 Rue de l'Université, 75007 Paris, France",
+                text: viewModel.reservation!.parkingSpot.address,
                 maxLines: 2,
               ),
             ),
@@ -266,11 +291,12 @@ class DemandOrderBody extends ViewModelWidget<HomeViewModel> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomText(
-                  text: "2",
+                  text: viewModel.reservation!.parkingSpot.totalPaidPrice
+                      .toString(),
                   color: AppColors.greenKre,
                   style: CustomTextStyle.title,
                 ),
-                CustomIcon(
+                const CustomIcon(
                   iconPath: AppIcons.euro,
                   size: 20,
                   color: AppColors.greenKre,
@@ -287,34 +313,43 @@ class DemandOrderBody extends ViewModelWidget<HomeViewModel> {
               color: AppColors.greenKre,
             ),
             HGap(AppSpacing.px4),
-            const CustomText(
-              text: "Borne disponible",
+            CustomText(
+              text: viewModel.reservation!.parkingSpot.electricChargeStation
+                  ? "Borne disponible"
+                  : "Borne indisponible",
               style: CustomTextStyle.smallParagraphMedium,
-              color: AppColors.greenKre,
+              color: viewModel.reservation!.parkingSpot.electricChargeStation
+                  ? AppColors.greenKre
+                  : AppColors.textKre,
             ),
           ],
         ),
         VGap(AppSpacing.px24),
-        Row(
-          children: [
-            Expanded(
-              child: CustomButton.filled(
-                text: "Refuser",
-                backgroundColor: AppColors.redKre,
-                foregroundColor: AppColors.white,
-                onPressed: () {
-                  viewModel.sellerClickedRefuseOrder();
-                },
+        SafeArea(
+          top: false,
+          bottom: true,
+          child: Row(
+            children: [
+              Expanded(
+                child: CustomButton.filled(
+                  text: "Refuser",
+                  backgroundColor: AppColors.redKre,
+                  foregroundColor: AppColors.white,
+                  onPressed: () {
+                    // viewModel.sellerClickedRefuseOrder();
+                    viewModel.refuseOrder();
+                  },
+                ),
               ),
-            ),
-            SizedBox(width: AppSpacing.px8),
-            Expanded(
-              child: CustomButton.filled(
-                text: "Accepter",
-                onPressed: () async {},
+              SizedBox(width: AppSpacing.px8),
+              Expanded(
+                child: CustomButton.filled(
+                  text: "Accepter",
+                  onPressed: () async {},
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );

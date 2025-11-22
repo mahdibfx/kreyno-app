@@ -9,9 +9,9 @@ part of 'delete_parking_spot_api_response.dart';
 _DeleteParkingSpotApiResponse _$DeleteParkingSpotApiResponseFromJson(
   Map<String, dynamic> json,
 ) => _DeleteParkingSpotApiResponse(
-  parkingSpotId: (json['parking_spot_id'] as num).toInt(),
+  parkingSpotId: (json['parkingPlace_id'] as num).toInt(),
 );
 
 Map<String, dynamic> _$DeleteParkingSpotApiResponseToJson(
   _DeleteParkingSpotApiResponse instance,
-) => <String, dynamic>{'parking_spot_id': instance.parkingSpotId};
+) => <String, dynamic>{'parkingPlace_id': instance.parkingSpotId};

@@ -18,7 +18,7 @@ abstract class ParkingSpot with _$ParkingSpot {
     @JsonKey(name: "electric_charge_station")
     required bool electricChargeStation,
     @JsonKey(name: "reserved") required bool reserved,
-    @JsonKey(name: "seller") required Seller seller,
+    @JsonKey(name: "seller") Seller? seller,
   }) = _ParkingSpot;
 
   factory ParkingSpot.fromJson(Map<String, dynamic> json) =>
@@ -38,5 +38,6 @@ abstract class Seller with _$Seller {
 
   factory Seller.fromJson(Map<String, dynamic> json) => _$SellerFromJson(json);
 
+  @override
   Map<String, dynamic> toJson();
 }

@@ -6,9 +6,9 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i31;
+import 'package:flutter/material.dart' as _i33;
 import 'package:flutter/material.dart';
-import 'package:kreyno/models/wallet.dart' as _i32;
+import 'package:kreyno/models/wallet.dart' as _i34;
 import 'package:kreyno/ui/views/account_settings/account_settings_view.dart'
     as _i25;
 import 'package:kreyno/ui/views/add_bank_account/add_bank_account_view.dart'
@@ -23,12 +23,15 @@ import 'package:kreyno/ui/views/change_phone_number/change_phone_number_view.dar
     as _i27;
 import 'package:kreyno/ui/views/checkout_money/checkout_money_view.dart'
     as _i23;
+import 'package:kreyno/ui/views/choose_selling_place_location/choose_selling_place_location_view.dart'
+    as _i31;
 import 'package:kreyno/ui/views/edit_profile/edit_profile_view.dart' as _i14;
 import 'package:kreyno/ui/views/edit_vehicule/edit_vehicule_view.dart' as _i20;
 import 'package:kreyno/ui/views/home/home_view.dart' as _i2;
 import 'package:kreyno/ui/views/kreyno_wallet/kreyno_wallet_view.dart' as _i18;
 import 'package:kreyno/ui/views/kreyono_portfolio/kreyono_portfolio_view.dart'
     as _i22;
+import 'package:kreyno/ui/views/my_let_place/my_let_place_view.dart' as _i32;
 import 'package:kreyno/ui/views/my_parking_spots/my_parking_spots_view.dart'
     as _i28;
 import 'package:kreyno/ui/views/my_payment_methodes/my_payment_methodes_view.dart'
@@ -55,7 +58,7 @@ import 'package:kreyno/ui/views/spot_sold_success/spot_sold_success_view.dart'
 import 'package:kreyno/ui/views/spots_history/spots_history_view.dart' as _i17;
 import 'package:kreyno/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i33;
+import 'package:stacked_services/stacked_services.dart' as _i35;
 
 class Routes {
   static const homeView = '/home-view';
@@ -116,6 +119,11 @@ class Routes {
 
   static const payoutView = '/payout-view';
 
+  static const chooseSellingPlaceLocationView =
+      '/choose-selling-place-location-view';
+
+  static const myLetPlaceView = '/my-let-place-view';
+
   static const all = <String>{
     homeView,
     startupView,
@@ -146,6 +154,8 @@ class Routes {
     myParkingSpotsView,
     addBankAccountView,
     payoutView,
+    chooseSellingPlaceLocationView,
+    myLetPlaceView,
   };
 }
 
@@ -195,6 +205,11 @@ class StackedRouter extends _i1.RouterBase {
     _i1.RouteDef(Routes.myParkingSpotsView, page: _i28.MyParkingSpotsView),
     _i1.RouteDef(Routes.addBankAccountView, page: _i29.AddBankAccountView),
     _i1.RouteDef(Routes.payoutView, page: _i30.PayoutView),
+    _i1.RouteDef(
+      Routes.chooseSellingPlaceLocationView,
+      page: _i31.ChooseSellingPlaceLocationView,
+    ),
+    _i1.RouteDef(Routes.myLetPlaceView, page: _i32.MyLetPlaceView),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
@@ -202,7 +217,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<HomeViewArguments>(
         orElse: () => const HomeViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i2.HomeView(key: args.key),
         settings: data,
       );
@@ -211,7 +226,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<StartupViewArguments>(
         orElse: () => const StartupViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i3.StartupView(key: args.key),
         settings: data,
       );
@@ -220,7 +235,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<OnboardingViewArguments>(
         orElse: () => const OnboardingViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i4.OnboardingView(key: args.key),
         settings: data,
       );
@@ -229,14 +244,14 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<SigninViewArguments>(
         orElse: () => const SigninViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i5.SigninView(key: args.key),
         settings: data,
       );
     },
     _i6.SignupView: (data) {
       final args = data.getArgs<SignupViewArguments>(nullOk: false);
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) =>
             _i6.SignupView(key: args.key, phoneNumber: args.phoneNumber),
         settings: data,
@@ -246,7 +261,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<SetUpVehiculeViewArguments>(
         orElse: () => const SetUpVehiculeViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i7.SetUpVehiculeView(key: args.key),
         settings: data,
       );
@@ -255,7 +270,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<SetUpPaymentMethodsViewArguments>(
         orElse: () => const SetUpPaymentMethodsViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i8.SetUpPaymentMethodsView(key: args.key),
         settings: data,
       );
@@ -264,7 +279,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<SetUpPermissionsViewArguments>(
         orElse: () => const SetUpPermissionsViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i9.SetUpPermissionsView(key: args.key),
         settings: data,
       );
@@ -273,7 +288,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<SellerSpotDetailsViewArguments>(
         orElse: () => const SellerSpotDetailsViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i10.SellerSpotDetailsView(key: args.key),
         settings: data,
       );
@@ -282,7 +297,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<BuyerSpotDetailsViewArguments>(
         orElse: () => const BuyerSpotDetailsViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i11.BuyerSpotDetailsView(key: args.key),
         settings: data,
       );
@@ -291,7 +306,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<SpotSoldSuccessViewArguments>(
         orElse: () => const SpotSoldSuccessViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i12.SpotSoldSuccessView(key: args.key),
         settings: data,
       );
@@ -300,7 +315,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<SpotBoughtSuccessViewArguments>(
         orElse: () => const SpotBoughtSuccessViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i13.SpotBoughtSuccessView(key: args.key),
         settings: data,
       );
@@ -309,7 +324,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<EditProfileViewArguments>(
         orElse: () => const EditProfileViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i14.EditProfileView(key: args.key),
         settings: data,
       );
@@ -318,7 +333,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<MyVehiculesViewArguments>(
         orElse: () => const MyVehiculesViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i15.MyVehiculesView(key: args.key),
         settings: data,
       );
@@ -327,7 +342,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<MyPaymentMethodesViewArguments>(
         orElse: () => const MyPaymentMethodesViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i16.MyPaymentMethodesView(key: args.key),
         settings: data,
       );
@@ -336,7 +351,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<SpotsHistoryViewArguments>(
         orElse: () => const SpotsHistoryViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i17.SpotsHistoryView(key: args.key),
         settings: data,
       );
@@ -345,7 +360,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<KreynoWalletViewArguments>(
         orElse: () => const KreynoWalletViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i18.KreynoWalletView(key: args.key),
         settings: data,
       );
@@ -354,7 +369,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<CashoutViewArguments>(
         orElse: () => const CashoutViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i19.CashoutView(key: args.key),
         settings: data,
       );
@@ -363,7 +378,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<EditVehiculeViewArguments>(
         orElse: () => const EditVehiculeViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i20.EditVehiculeView(key: args.key),
         settings: data,
       );
@@ -372,7 +387,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<SetUpLanguageViewArguments>(
         orElse: () => const SetUpLanguageViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i21.SetUpLanguageView(key: args.key),
         settings: data,
       );
@@ -381,7 +396,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<KreyonoPortfolioViewArguments>(
         orElse: () => const KreyonoPortfolioViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i22.KreyonoPortfolioView(key: args.key),
         settings: data,
       );
@@ -390,7 +405,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<CheckoutMoneyViewArguments>(
         orElse: () => const CheckoutMoneyViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i23.CheckoutMoneyView(key: args.key),
         settings: data,
       );
@@ -399,7 +414,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<AddVehiculeViewArguments>(
         orElse: () => const AddVehiculeViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i24.AddVehiculeView(key: args.key),
         settings: data,
       );
@@ -408,7 +423,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<AccountSettingsViewArguments>(
         orElse: () => const AccountSettingsViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i25.AccountSettingsView(key: args.key),
         settings: data,
       );
@@ -417,7 +432,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<ChangeLanguageViewArguments>(
         orElse: () => const ChangeLanguageViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i26.ChangeLanguageView(key: args.key),
         settings: data,
       );
@@ -426,7 +441,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<ChangePhoneNumberViewArguments>(
         orElse: () => const ChangePhoneNumberViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i27.ChangePhoneNumberView(key: args.key),
         settings: data,
       );
@@ -435,7 +450,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<MyParkingSpotsViewArguments>(
         orElse: () => const MyParkingSpotsViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i28.MyParkingSpotsView(key: args.key),
         settings: data,
       );
@@ -444,16 +459,35 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<AddBankAccountViewArguments>(
         orElse: () => const AddBankAccountViewArguments(),
       );
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) => _i29.AddBankAccountView(key: args.key),
         settings: data,
       );
     },
     _i30.PayoutView: (data) {
       final args = data.getArgs<PayoutViewArguments>(nullOk: false);
-      return _i31.MaterialPageRoute<dynamic>(
+      return _i33.MaterialPageRoute<dynamic>(
         builder: (context) =>
             _i30.PayoutView(key: args.key, wallet: args.wallet),
+        settings: data,
+      );
+    },
+    _i31.ChooseSellingPlaceLocationView: (data) {
+      final args = data.getArgs<ChooseSellingPlaceLocationViewArguments>(
+        orElse: () => const ChooseSellingPlaceLocationViewArguments(),
+      );
+      return _i33.MaterialPageRoute<dynamic>(
+        builder: (context) =>
+            _i31.ChooseSellingPlaceLocationView(key: args.key),
+        settings: data,
+      );
+    },
+    _i32.MyLetPlaceView: (data) {
+      final args = data.getArgs<MyLetPlaceViewArguments>(
+        orElse: () => const MyLetPlaceViewArguments(),
+      );
+      return _i33.MaterialPageRoute<dynamic>(
+        builder: (context) => _i32.MyLetPlaceView(key: args.key),
         settings: data,
       );
     },
@@ -469,7 +503,7 @@ class StackedRouter extends _i1.RouterBase {
 class HomeViewArguments {
   const HomeViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -491,7 +525,7 @@ class HomeViewArguments {
 class StartupViewArguments {
   const StartupViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -513,7 +547,7 @@ class StartupViewArguments {
 class OnboardingViewArguments {
   const OnboardingViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -535,7 +569,7 @@ class OnboardingViewArguments {
 class SigninViewArguments {
   const SigninViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -557,7 +591,7 @@ class SigninViewArguments {
 class SignupViewArguments {
   const SignupViewArguments({this.key, required this.phoneNumber});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   final ({String countryCode, String countryDialCode, String phoneNumber})
   phoneNumber;
@@ -582,7 +616,7 @@ class SignupViewArguments {
 class SetUpVehiculeViewArguments {
   const SetUpVehiculeViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -604,7 +638,7 @@ class SetUpVehiculeViewArguments {
 class SetUpPaymentMethodsViewArguments {
   const SetUpPaymentMethodsViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -626,7 +660,7 @@ class SetUpPaymentMethodsViewArguments {
 class SetUpPermissionsViewArguments {
   const SetUpPermissionsViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -648,7 +682,7 @@ class SetUpPermissionsViewArguments {
 class SellerSpotDetailsViewArguments {
   const SellerSpotDetailsViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -670,7 +704,7 @@ class SellerSpotDetailsViewArguments {
 class BuyerSpotDetailsViewArguments {
   const BuyerSpotDetailsViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -692,7 +726,7 @@ class BuyerSpotDetailsViewArguments {
 class SpotSoldSuccessViewArguments {
   const SpotSoldSuccessViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -714,7 +748,7 @@ class SpotSoldSuccessViewArguments {
 class SpotBoughtSuccessViewArguments {
   const SpotBoughtSuccessViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -736,7 +770,7 @@ class SpotBoughtSuccessViewArguments {
 class EditProfileViewArguments {
   const EditProfileViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -758,7 +792,7 @@ class EditProfileViewArguments {
 class MyVehiculesViewArguments {
   const MyVehiculesViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -780,7 +814,7 @@ class MyVehiculesViewArguments {
 class MyPaymentMethodesViewArguments {
   const MyPaymentMethodesViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -802,7 +836,7 @@ class MyPaymentMethodesViewArguments {
 class SpotsHistoryViewArguments {
   const SpotsHistoryViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -824,7 +858,7 @@ class SpotsHistoryViewArguments {
 class KreynoWalletViewArguments {
   const KreynoWalletViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -846,7 +880,7 @@ class KreynoWalletViewArguments {
 class CashoutViewArguments {
   const CashoutViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -868,7 +902,7 @@ class CashoutViewArguments {
 class EditVehiculeViewArguments {
   const EditVehiculeViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -890,7 +924,7 @@ class EditVehiculeViewArguments {
 class SetUpLanguageViewArguments {
   const SetUpLanguageViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -912,7 +946,7 @@ class SetUpLanguageViewArguments {
 class KreyonoPortfolioViewArguments {
   const KreyonoPortfolioViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -934,7 +968,7 @@ class KreyonoPortfolioViewArguments {
 class CheckoutMoneyViewArguments {
   const CheckoutMoneyViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -956,7 +990,7 @@ class CheckoutMoneyViewArguments {
 class AddVehiculeViewArguments {
   const AddVehiculeViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -978,7 +1012,7 @@ class AddVehiculeViewArguments {
 class AccountSettingsViewArguments {
   const AccountSettingsViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -1000,7 +1034,7 @@ class AccountSettingsViewArguments {
 class ChangeLanguageViewArguments {
   const ChangeLanguageViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -1022,7 +1056,7 @@ class ChangeLanguageViewArguments {
 class ChangePhoneNumberViewArguments {
   const ChangePhoneNumberViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -1044,7 +1078,7 @@ class ChangePhoneNumberViewArguments {
 class MyParkingSpotsViewArguments {
   const MyParkingSpotsViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -1066,7 +1100,7 @@ class MyParkingSpotsViewArguments {
 class AddBankAccountViewArguments {
   const AddBankAccountViewArguments({this.key});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
   @override
   String toString() {
@@ -1088,9 +1122,9 @@ class AddBankAccountViewArguments {
 class PayoutViewArguments {
   const PayoutViewArguments({this.key, required this.wallet});
 
-  final _i31.Key? key;
+  final _i33.Key? key;
 
-  final _i32.Wallet wallet;
+  final _i34.Wallet wallet;
 
   @override
   String toString() {
@@ -1109,9 +1143,53 @@ class PayoutViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i33.NavigationService {
+class ChooseSellingPlaceLocationViewArguments {
+  const ChooseSellingPlaceLocationViewArguments({this.key});
+
+  final _i33.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant ChooseSellingPlaceLocationViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+class MyLetPlaceViewArguments {
+  const MyLetPlaceViewArguments({this.key});
+
+  final _i33.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant MyLetPlaceViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+extension NavigatorStateExtension on _i35.NavigationService {
   Future<dynamic> navigateToHomeView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1129,7 +1207,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToStartupView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1147,7 +1225,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToOnboardingView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1165,7 +1243,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToSigninView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1183,7 +1261,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToSignupView({
-    _i31.Key? key,
+    _i33.Key? key,
     required ({String countryCode, String countryDialCode, String phoneNumber})
     phoneNumber,
     int? routerId,
@@ -1203,7 +1281,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToSetUpVehiculeView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1221,7 +1299,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToSetUpPaymentMethodsView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1239,7 +1317,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToSetUpPermissionsView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1257,7 +1335,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToSellerSpotDetailsView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1275,7 +1353,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToBuyerSpotDetailsView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1293,7 +1371,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToSpotSoldSuccessView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1311,7 +1389,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToSpotBoughtSuccessView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1329,7 +1407,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToEditProfileView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1347,7 +1425,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToMyVehiculesView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1365,7 +1443,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToMyPaymentMethodesView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1383,7 +1461,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToSpotsHistoryView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1401,7 +1479,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToKreynoWalletView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1419,7 +1497,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToCashoutView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1437,7 +1515,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToEditVehiculeView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1455,7 +1533,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToSetUpLanguageView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1473,7 +1551,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToKreyonoPortfolioView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1491,7 +1569,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToCheckoutMoneyView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1509,7 +1587,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToAddVehiculeView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1527,7 +1605,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToAccountSettingsView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1545,7 +1623,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToChangeLanguageView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1563,7 +1641,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToChangePhoneNumberView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1581,7 +1659,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToMyParkingSpotsView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1599,7 +1677,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToAddBankAccountView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1617,8 +1695,8 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> navigateToPayoutView({
-    _i31.Key? key,
-    required _i32.Wallet wallet,
+    _i33.Key? key,
+    required _i34.Wallet wallet,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1635,8 +1713,44 @@ extension NavigatorStateExtension on _i33.NavigationService {
     );
   }
 
+  Future<dynamic> navigateToChooseSellingPlaceLocationView({
+    _i33.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+    transition,
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.chooseSellingPlaceLocationView,
+      arguments: ChooseSellingPlaceLocationViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
+  }
+
+  Future<dynamic> navigateToMyLetPlaceView({
+    _i33.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+    transition,
+  }) async {
+    return navigateTo<dynamic>(
+      Routes.myLetPlaceView,
+      arguments: MyLetPlaceViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
+  }
+
   Future<dynamic> replaceWithHomeView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1654,7 +1768,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithStartupView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1672,7 +1786,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithOnboardingView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1690,7 +1804,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithSigninView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1708,7 +1822,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithSignupView({
-    _i31.Key? key,
+    _i33.Key? key,
     required ({String countryCode, String countryDialCode, String phoneNumber})
     phoneNumber,
     int? routerId,
@@ -1728,7 +1842,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithSetUpVehiculeView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1746,7 +1860,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithSetUpPaymentMethodsView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1764,7 +1878,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithSetUpPermissionsView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1782,7 +1896,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithSellerSpotDetailsView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1800,7 +1914,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithBuyerSpotDetailsView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1818,7 +1932,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithSpotSoldSuccessView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1836,7 +1950,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithSpotBoughtSuccessView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1854,7 +1968,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithEditProfileView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1872,7 +1986,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithMyVehiculesView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1890,7 +2004,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithMyPaymentMethodesView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1908,7 +2022,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithSpotsHistoryView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1926,7 +2040,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithKreynoWalletView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1944,7 +2058,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithCashoutView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1962,7 +2076,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithEditVehiculeView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1980,7 +2094,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithSetUpLanguageView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1998,7 +2112,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithKreyonoPortfolioView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -2016,7 +2130,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithCheckoutMoneyView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -2034,7 +2148,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithAddVehiculeView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -2052,7 +2166,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithAccountSettingsView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -2070,7 +2184,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithChangeLanguageView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -2088,7 +2202,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithChangePhoneNumberView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -2106,7 +2220,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithMyParkingSpotsView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -2124,7 +2238,7 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithAddBankAccountView({
-    _i31.Key? key,
+    _i33.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -2142,8 +2256,8 @@ extension NavigatorStateExtension on _i33.NavigationService {
   }
 
   Future<dynamic> replaceWithPayoutView({
-    _i31.Key? key,
-    required _i32.Wallet wallet,
+    _i33.Key? key,
+    required _i34.Wallet wallet,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -2153,6 +2267,42 @@ extension NavigatorStateExtension on _i33.NavigationService {
     return replaceWith<dynamic>(
       Routes.payoutView,
       arguments: PayoutViewArguments(key: key, wallet: wallet),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
+  }
+
+  Future<dynamic> replaceWithChooseSellingPlaceLocationView({
+    _i33.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+    transition,
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.chooseSellingPlaceLocationView,
+      arguments: ChooseSellingPlaceLocationViewArguments(key: key),
+      id: routerId,
+      preventDuplicates: preventDuplicates,
+      parameters: parameters,
+      transition: transition,
+    );
+  }
+
+  Future<dynamic> replaceWithMyLetPlaceView({
+    _i33.Key? key,
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+    transition,
+  }) async {
+    return replaceWith<dynamic>(
+      Routes.myLetPlaceView,
+      arguments: MyLetPlaceViewArguments(key: key),
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,

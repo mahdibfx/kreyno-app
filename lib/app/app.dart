@@ -69,6 +69,8 @@ import 'package:kreyno/ui/views/my_parking_spots/my_parking_spots_view.dart';
 import 'package:kreyno/ui/views/add_bank_account/add_bank_account_view.dart';
 import 'package:kreyno/ui/bottom_sheets/delete_bank_account_confirmation/delete_bank_account_confirmation_sheet.dart';
 import 'package:kreyno/ui/views/payout/payout_view.dart';
+import 'package:kreyno/ui/views/choose_selling_place_location/choose_selling_place_location_view.dart';
+import 'package:kreyno/ui/views/my_let_place/my_let_place_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -103,6 +105,8 @@ import 'package:kreyno/ui/views/payout/payout_view.dart';
     MaterialRoute(page: MyParkingSpotsView),
     MaterialRoute(page: AddBankAccountView),
     MaterialRoute(page: PayoutView),
+    MaterialRoute(page: ChooseSellingPlaceLocationView),
+    MaterialRoute(page: MyLetPlaceView),
     // @stacked-route
   ],
   dependencies: [

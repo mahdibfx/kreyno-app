@@ -19,17 +19,17 @@ class TrackingCourseWidget extends ViewModelWidget<HomeViewModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
-    return Column(
+    return const Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const CounterAppBar(),
-            if (viewModel.clientArrived) const YourClientArrived(),
+            CounterAppBar(),
+            // if (viewModel.clientArrived) const YourClientArrived(),
           ],
         ),
-        const BottomActionBar(),
+        BottomActionBar(),
       ],
     );
   }
@@ -95,64 +95,64 @@ class BottomActionBar extends ViewModelWidget<HomeViewModel> {
       ),
       child: Column(
         children: [
-          if (!viewModel.clientArrived)
-            Column(
-              children: [
-                Row(
-                  children: [
-                    const CustomIcon(
-                      iconPath: AppIcons.info,
-                      color: AppColors.textKre,
-                    ),
-                    HGap(AppSpacing.px4),
-                    const CustomText.labelMedium(
-                      "Vous pouvez annuler la réservation après 5 minutes.",
-                      color: AppColors.textKre,
-                    ),
-                  ],
-                ),
-                VGap(AppSpacing.px12),
-              ],
-            ),
-          if (viewModel.clientArrived)
-            Column(
-              children: [
-                const CustomText.title(
-                  "58-64 Rue de l'Université, 75007 Paris, France",
-                  maxLines: 2,
-                ),
-                VGap(AppSpacing.px8),
-                Row(
-                  children: [
-                    const CustomIcon(
-                      iconPath: AppIcons.evCharging,
-                      color: AppColors.greenKre,
-                    ),
-                    HGap(AppSpacing.px4),
-                    const CustomText(
-                      text: "Borne disponible",
-                      style: CustomTextStyle.smallParagraphMedium,
-                      color: AppColors.greenKre,
-                    ),
-                    HGap(AppSpacing.px8),
-                    Row(
-                      children: [
-                        const CustomIcon(
-                          iconPath: AppIcons.route,
-                          color: AppColors.textKre,
-                        ),
-                        HGap(AppSpacing.px1 * 5),
-                        const CustomText(
-                          text: "2.5 km",
-                          style: CustomTextStyle.smallParagraphMedium,
-                          color: AppColors.textKre,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          // if (!viewModel.clientArrived)
+          //   Column(
+          //     children: [
+          //       Row(
+          //         children: [
+          //           const CustomIcon(
+          //             iconPath: AppIcons.info,
+          //             color: AppColors.textKre,
+          //           ),
+          //           HGap(AppSpacing.px4),
+          //           const CustomText.labelMedium(
+          //             "Vous pouvez annuler la réservation après 5 minutes.",
+          //             color: AppColors.textKre,
+          //           ),
+          //         ],
+          //       ),
+          //       VGap(AppSpacing.px12),
+          //     ],
+          //   ),
+          // if (viewModel.clientArrived)
+          //   Column(
+          //     children: [
+          //       const CustomText.title(
+          //         "58-64 Rue de l'Université, 75007 Paris, France",
+          //         maxLines: 2,
+          //       ),
+          //       VGap(AppSpacing.px8),
+          //       Row(
+          //         children: [
+          //           const CustomIcon(
+          //             iconPath: AppIcons.evCharging,
+          //             color: AppColors.greenKre,
+          //           ),
+          //           HGap(AppSpacing.px4),
+          //           const CustomText(
+          //             text: "Borne disponible",
+          //             style: CustomTextStyle.smallParagraphMedium,
+          //             color: AppColors.greenKre,
+          //           ),
+          //           HGap(AppSpacing.px8),
+          //           Row(
+          //             children: [
+          //               const CustomIcon(
+          //                 iconPath: AppIcons.route,
+          //                 color: AppColors.textKre,
+          //               ),
+          //               HGap(AppSpacing.px1 * 5),
+          //               const CustomText(
+          //                 text: "2.5 km",
+          //                 style: CustomTextStyle.smallParagraphMedium,
+          //                 color: AppColors.textKre,
+          //               ),
+          //             ],
+          //           ),
+          //         ],
+          //       ),
+          //     ],
+          //   ),
           VGap(AppSpacing.px16),
           const CustomDivider(),
           VGap(AppSpacing.px16),
@@ -163,14 +163,12 @@ class BottomActionBar extends ViewModelWidget<HomeViewModel> {
                   text: "Annuler",
                   backgroundColor: AppColors.redKre,
                   foregroundColor: AppColors.white,
-                  onPressed: viewModel.clientArrived
-                      ? null
-                      : () {
-                          locator<BottomSheetService>().showCustomSheet(
-                            variant: BottomSheetType.cancelationReasons,
-                            isScrollControlled: true,
-                          );
-                        },
+                  onPressed: () {
+                    locator<BottomSheetService>().showCustomSheet(
+                      variant: BottomSheetType.cancelationReasons,
+                      isScrollControlled: true,
+                    );
+                  },
                 ),
               ),
               SizedBox(width: AppSpacing.px8),

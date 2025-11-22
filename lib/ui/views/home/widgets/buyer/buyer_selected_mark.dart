@@ -118,7 +118,7 @@ class BuyerSelectedMark extends StatelessWidget {
                 ),
               ),
               VGap(AppSpacing.px8 * 2),
-              const HomeBottomBar(),
+              // const HomeBottomBar(),
             ],
           ),
         ),

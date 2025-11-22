@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DeleteParkingSpotApiResponse {
 
-@JsonKey(name: 'parking_spot_id') int get parkingSpotId;
+@JsonKey(name: 'parkingPlace_id') int get parkingSpotId;
 /// Create a copy of DeleteParkingSpotApiResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $DeleteParkingSpotApiResponseCopyWith<$Res>  {
   factory $DeleteParkingSpotApiResponseCopyWith(DeleteParkingSpotApiResponse value, $Res Function(DeleteParkingSpotApiResponse) _then) = _$DeleteParkingSpotApiResponseCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'parking_spot_id') int parkingSpotId
+@JsonKey(name: 'parkingPlace_id') int parkingSpotId
 });
 
 
@@ -153,7 +153,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'parking_spot_id')  int parkingSpotId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'parkingPlace_id')  int parkingSpotId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DeleteParkingSpotApiResponse() when $default != null:
 return $default(_that.parkingSpotId);case _:
@@ -174,7 +174,7 @@ return $default(_that.parkingSpotId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'parking_spot_id')  int parkingSpotId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'parkingPlace_id')  int parkingSpotId)  $default,) {final _that = this;
 switch (_that) {
 case _DeleteParkingSpotApiResponse():
 return $default(_that.parkingSpotId);case _:
@@ -194,7 +194,7 @@ return $default(_that.parkingSpotId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'parking_spot_id')  int parkingSpotId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'parkingPlace_id')  int parkingSpotId)?  $default,) {final _that = this;
 switch (_that) {
 case _DeleteParkingSpotApiResponse() when $default != null:
 return $default(_that.parkingSpotId);case _:
@@ -209,10 +209,10 @@ return $default(_that.parkingSpotId);case _:
 @JsonSerializable()
 
 class _DeleteParkingSpotApiResponse implements DeleteParkingSpotApiResponse {
-  const _DeleteParkingSpotApiResponse({@JsonKey(name: 'parking_spot_id') required this.parkingSpotId});
+  const _DeleteParkingSpotApiResponse({@JsonKey(name: 'parkingPlace_id') required this.parkingSpotId});
   factory _DeleteParkingSpotApiResponse.fromJson(Map<String, dynamic> json) => _$DeleteParkingSpotApiResponseFromJson(json);
 
-@override@JsonKey(name: 'parking_spot_id') final  int parkingSpotId;
+@override@JsonKey(name: 'parkingPlace_id') final  int parkingSpotId;
 
 /// Create a copy of DeleteParkingSpotApiResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -247,7 +247,7 @@ abstract mixin class _$DeleteParkingSpotApiResponseCopyWith<$Res> implements $De
   factory _$DeleteParkingSpotApiResponseCopyWith(_DeleteParkingSpotApiResponse value, $Res Function(_DeleteParkingSpotApiResponse) _then) = __$DeleteParkingSpotApiResponseCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'parking_spot_id') int parkingSpotId
+@JsonKey(name: 'parkingPlace_id') int parkingSpotId
 });
 
 

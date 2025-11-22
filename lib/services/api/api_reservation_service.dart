@@ -15,4 +15,15 @@ abstract class ApiReservationService {
     @Query('from') DateTime? from,
     @Query('to') DateTime? to,
   );
+
+  @POST('${ApiEndpoints.reservations}/{id}/cancel')
+  Future<ApiResponse<void>> cancelReservation(
+    @Path('id') int id,
+    @Body() Map<String, dynamic> observationMap,
+  );
+  @POST('${ApiEndpoints.reservations}/{id}/confirm')
+  Future<ApiResponse<void>> confirmReservation(@Path('id') int id);
+
+  @POST('${ApiEndpoints.reservations}/{id}/complete')
+  Future<ApiResponse<void>> completeReservation(@Path('id') int id);
 }

@@ -3,10 +3,13 @@ import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/dtos/create_parking_spot_dto.dart';
 import 'package:kreyno/extensions/api_response_extensions.dart';
 import 'package:kreyno/models/parking_spot.dart';
+import 'package:kreyno/models/reservation.dart';
 import 'package:kreyno/services/api/api_parking_spot_service.dart';
 import 'package:kreyno/services/api/dio_service.dart';
+import 'package:kreyno/services/socket_service.dart';
+import 'package:stacked/stacked.dart';
 
-class ParkingSpotsService {
+class ParkingSpotsService with ListenableServiceMixin {
   final _apiParkingSpotService = ApiParkingSpotService(
     locator<DioService>().dio,
   );

@@ -47,7 +47,7 @@ class NormalHomeState extends ViewModelWidget<HomeViewModel> {
               ),
             ),
             VGap(AppSpacing.px24),
-            const HomeBottomBar(),
+            HomeBottomBar(avatarUrl: viewModel.currentUserAvatarUrl),
           ],
         ),
       ],

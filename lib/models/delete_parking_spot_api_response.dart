@@ -7,7 +7,7 @@ part 'delete_parking_spot_api_response.g.dart';
 abstract class DeleteParkingSpotApiResponse
     with _$DeleteParkingSpotApiResponse {
   const factory DeleteParkingSpotApiResponse({
-    @JsonKey(name: 'parking_spot_id') required int parkingSpotId,
+    @JsonKey(name: 'parkingPlace_id') required int parkingSpotId,
   }) = _DeleteParkingSpotApiResponse;
 
   factory DeleteParkingSpotApiResponse.fromJson(Map<String, dynamic> json) =>

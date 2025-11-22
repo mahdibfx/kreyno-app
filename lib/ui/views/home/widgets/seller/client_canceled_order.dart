@@ -79,7 +79,7 @@ class ClientCanceledOrder extends StatelessWidget {
             ),
           ),
         ),
-        const HomeBottomBar(),
+        // const HomeBottomBar(),
       ],
     );
   }

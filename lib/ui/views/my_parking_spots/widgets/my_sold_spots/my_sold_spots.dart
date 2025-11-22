@@ -66,7 +66,7 @@ class MySoldSpots extends StackedView<MySoldSpotsModel> {
                   date: DateTime.now(),
                   address: spot.address,
                   imageUrl:
-                      spot.seller.avatar?.url ?? AppConstants.defaultAvatarUrl,
+                      spot.seller?.avatar?.url ?? AppConstants.defaultAvatarUrl,
                   hasElectricCharging: spot.electricChargeStation,
                   price: spot.price,
                 );

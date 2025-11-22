@@ -23,6 +23,7 @@ class InputField extends StatelessWidget {
   final bool? isRequired;
   final String? restorationId;
   final bool? showOptionalLabel;
+  final int? maxLines;
 
   const InputField({
     super.key,
@@ -43,6 +44,7 @@ class InputField extends StatelessWidget {
     this.isRequired = true,
     this.restorationId,
     this.showOptionalLabel = true,
+    this.maxLines,
   });
 
   @override
@@ -90,6 +92,7 @@ class InputField extends StatelessWidget {
                 controller: controller,
                 focusNode: focusNode,
                 textInputAction: textInputAction,
+                maxLines: maxLines,
                 keyboardType: keyboardType,
                 maxLength: maxLength,
                 onChanged: onChanged,

@@ -131,4 +131,5 @@ class AppIcons {
   static const String backDialPad = '${_basePath}back.svg';
 
   static const String infoCircleFilled = '${_basePath}info-circle-filled.svg';
+  static const String mapPin = '${_basePath}map-pin.svg';
 }
