@@ -7,7 +7,7 @@ import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/views/home/home_view.dart';
 import 'package:kreyno/ui/views/home/home_viewmodel.dart';
 import 'package:kreyno/ui/views/home/widgets/home_bottom_bar.dart';
-import 'package:kreyno/ui/views/home/widgets/seller/received_order_widget.dart';
+import 'package:kreyno/ui/views/my_let_place/widgets/smart/received_order_widget.dart';
 import 'package:kreyno/ui/views/my_let_place/my_let_place_viewmodel.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';

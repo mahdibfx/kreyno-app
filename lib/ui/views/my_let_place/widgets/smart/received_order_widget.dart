@@ -345,7 +345,9 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
               Expanded(
                 child: CustomButton.filled(
                   text: "Accepter",
-                  onPressed: () async {},
+                  onPressed: () async {
+                    viewModel.acceptOrder();
+                  },
                 ),
               ),
             ],

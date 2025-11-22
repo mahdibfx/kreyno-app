@@ -71,6 +71,8 @@ import 'package:kreyno/ui/bottom_sheets/delete_bank_account_confirmation/delete_
 import 'package:kreyno/ui/views/payout/payout_view.dart';
 import 'package:kreyno/ui/views/choose_selling_place_location/choose_selling_place_location_view.dart';
 import 'package:kreyno/ui/views/my_let_place/my_let_place_view.dart';
+import 'package:kreyno/ui/views/client_tracking/client_tracking_view.dart';
+import 'package:kreyno/services/tracking_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -107,6 +109,7 @@ import 'package:kreyno/ui/views/my_let_place/my_let_place_view.dart';
     MaterialRoute(page: PayoutView),
     MaterialRoute(page: ChooseSellingPlaceLocationView),
     MaterialRoute(page: MyLetPlaceView),
+    MaterialRoute(page: ClientTrackingView),
     // @stacked-route
   ],
   dependencies: [
@@ -131,6 +134,7 @@ import 'package:kreyno/ui/views/my_let_place/my_let_place_view.dart';
     LazySingleton(classType: UrlLauncherService),
     LazySingleton(classType: LocationService),
     Factory(classType: GoogleMapService),
+    LazySingleton(classType: TrackingService),
     // @stacked-service
   ],
   bottomsheets: [

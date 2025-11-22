@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
-import 'package:kreyno/ui/views/home/widgets/seller/received_order_widget.dart';
+import 'package:kreyno/ui/views/my_let_place/widgets/smart/received_order_widget.dart';
 import 'package:kreyno/ui/widgets/dumb/bottom_sheet_layout.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';

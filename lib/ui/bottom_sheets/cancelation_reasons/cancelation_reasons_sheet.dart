@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/models/reservation.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
@@ -8,6 +9,7 @@ import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
+import 'package:kreyno/ui/widgets/dumb/input_field.dart';
 import 'package:kreyno/ui/widgets/dumb/labeled_radio.dart';
 
 import 'package:stacked/stacked.dart';
@@ -53,35 +55,61 @@ class CancelationReasonsSheet
             color: AppColors.textKre,
           ),
           VGap(AppSpacing.px24),
-          LabeledRadio(
-            label: "J’ai changé mes plans",
-            value: true,
-            onChanged: (d) {},
+          ...List.generate(
+            viewModel.observations.length,
+            (index) => Column(
+              children: [
+                LabeledRadio(
+                  label: viewModel.observations[index],
+                  value:
+                      !viewModel.isOtherSelected &&
+                      viewModel.observation == viewModel.observations[index],
+                  onChanged: (d) {
+                    viewModel.observation = viewModel.observations[index];
+                    viewModel.isOtherSelected = false;
+                    viewModel.rebuildUi();
+                  },
+                ),
+                VGap(AppSpacing.px8),
+              ],
+            ),
           ),
-          VGap(AppSpacing.px8),
-          LabeledRadio(
-            label: "Le/la client(e) prends trop de temps pour arriver",
-            value: false,
-            onChanged: (d) {},
-          ),
-          VGap(AppSpacing.px8),
-          LabeledRadio(
-            label: "Le/la client(e) est trop loin",
-            value: false,
-            onChanged: (d) {},
-          ),
-          VGap(AppSpacing.px8),
+
           LabeledRadio(
             label: "Autre (a spécifier)",
-            value: false,
-            onChanged: (d) {},
+            value: viewModel.isOtherSelected,
+            onChanged: (d) {
+              viewModel.isOtherSelected = true;
+              viewModel.observation = "";
+              viewModel.rebuildUi();
+            },
           ),
+          VGap(AppSpacing.px8),
+          if (viewModel.isOtherSelected)
+            InputField(
+              controller: viewModel.otherTextController,
+              focusNode: FocusNode(),
+              hintText: "Saisissez votre raison d’annulation",
+              keyboardType: TextInputType.text,
+              onChanged: (value) {
+                viewModel.observation = value;
+                viewModel.rebuildUi();
+              },
+              maxLines: 4,
+            ),
           VGap(AppSpacing.px24),
-          CustomButton.filled(
-            text: "Valider",
-            backgroundColor: AppColors.redKre,
-            foregroundColor: AppColors.white,
-            onPressed: () {},
+          VGap(AppSpacing.px24),
+          SafeArea(
+            top: false,
+            bottom: true,
+            child: CustomButton.filled(
+              text: "Valider",
+              backgroundColor: AppColors.redKre,
+              foregroundColor: AppColors.white,
+              onPressed: () {
+                viewModel.cancelOrder(request.data as Reservation);
+              },
+            ),
           ),
         ],
       ),

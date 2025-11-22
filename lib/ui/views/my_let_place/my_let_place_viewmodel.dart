@@ -42,6 +42,8 @@ class MyLetPlaceViewModel extends ReactiveViewModel {
     notifyListeners();
   }
 
+  acceptOrder() {}
+
   refuseOrder() {
     isRefused = true;
     observation = observations.first;
