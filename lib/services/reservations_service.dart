@@ -43,52 +43,50 @@ class ReservationsService with ListenableServiceMixin {
   }
 
   Future<void> listenToReservationUpdates(int userId) async {
-    Future.delayed(const Duration(seconds: 2)).whenComplete(() {
-      _reservation = Reservation(
-        id: 1,
-        buyer: const Buyer(
-          username: "username",
-          firstName: "firstName",
-          lastName: "lastName",
-          phone: "phone",
-          car: Car(
-            id: 2,
-            vehicleType: VehicleType.fuel,
-            brand: "brand",
-            model: "model",
-            color: "color",
-            registrationNumber: "registrationNumber",
-            co2Emission: 1,
-            image: Image(id: 2, url: "https://picsum.photos/400/400"),
-          ),
-          avatar: Avatar(id: 3, url: "https://picsum.photos/400/400"),
-        ),
-        parkingSpot: const ParkingPlace(
-          address: "address",
-          longitude: 1,
-          latitude: 1,
-          // geohash: "geohash",
-          price: 1,
-          totalPaidPrice: 1,
-          electricChargeStation: true,
-          reserved: true,
-          geoHash: 'fff',
-        ),
-        status: ReservationStatus.pending,
-        observation: "observation",
-        createdAt: DateTime.now(),
-      );
-    });
-    notifyListeners();
-    return;
+    // Future.delayed(const Duration(seconds: 2)).whenComplete(() {
+    //   _reservation = Reservation(
+    //     id: 1,
+    //     buyer: const Buyer(
+    //       username: "username",
+    //       firstName: "firstName",
+    //       lastName: "lastName",
+    //       phone: "phone",
+    //       car: Car(
+    //         id: 2,
+    //         vehicleType: VehicleType.fuel,
+    //         brand: "brand",
+    //         model: "model",
+    //         color: "color",
+    //         registrationNumber: "registrationNumber",
+    //         co2Emission: 1,
+    //         image: Image(id: 2, url: "https://picsum.photos/400/400"),
+    //       ),
+    //       avatar: Avatar(id: 3, url: "https://picsum.photos/400/400"),
+    //     ),
+    //     parkingSpot: const ParkingPlace(
+    //       address: "address",
+    //       longitude: 1,
+    //       latitude: 1,
+    //       // geohash: "geohash",
+    //       price: 1,
+    //       totalPaidPrice: 1,
+    //       electricChargeStation: true,
+    //       reserved: true,
+    //       geoHash: 'fff',
+    //     ),
+    //     status: ReservationStatus.pending,
+    //     observation: "observation",
+    //     createdAt: DateTime.now(),
+    //   );
+    // });
+    // notifyListeners();
+    // return;
     try {
       // Check if socket is initialized
       if (_wsService.echo == null || !_wsService.isConnected) {
         final token = await _authService.getAccessToken();
 
         if (token == null) {
-          Logger().e("[RESERVATION] ❌ ERROR: No access token available!");
-
           return;
         }
 
@@ -107,7 +105,6 @@ class ReservationsService with ListenableServiceMixin {
         Logger().e(
           "[RESERVATION] ❌ CRITICAL: Echo still null after initialization!",
         );
-        Logger().e("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         return;
       }
 
@@ -121,10 +118,6 @@ class ReservationsService with ListenableServiceMixin {
 
             final reservationReceived = Reservation.fromJson(event);
 
-            Logger().i("[RESERVATION] ✅ Reservation parsed successfully");
-            Logger().i(
-              "[RESERVATION] 🆔 Reservation ID: ${reservationReceived.id}",
-            );
             Logger().d(
               "[RESERVATION] 📋 Reservation details: $reservationReceived",
             );

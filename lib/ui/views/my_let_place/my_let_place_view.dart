@@ -17,7 +17,6 @@ class MyLetPlaceView extends StackedView<MyLetPlaceViewModel> {
     MyLetPlaceViewModel viewModel,
     Widget? child,
   ) {
-    // print(viewModel.reservation!.status.toString());
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
