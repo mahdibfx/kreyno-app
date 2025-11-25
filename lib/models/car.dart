@@ -44,5 +44,6 @@ abstract class Image with _$Image {
 
   factory Image.fromJson(Map<String, dynamic> json) => _$ImageFromJson(json);
 
+  @override
   Map<String, dynamic> toJson();
 }

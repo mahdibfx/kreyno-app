@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:kreyno/models/parking_spot.dart';
 
 class GoogleMapService {
   final Completer<GoogleMapController> _controller =

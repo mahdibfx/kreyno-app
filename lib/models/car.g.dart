@@ -7,13 +7,13 @@ part of 'car.dart';
 // **************************************************************************
 
 _Car _$CarFromJson(Map<String, dynamic> json) => _Car(
-  id: (json['id'] as num).toInt(),
-  vehicleType: $enumDecode(_$VehicleTypeEnumMap, json['car_type']),
+  id: (json['id'] as num?)?.toInt() ?? 0,
+  vehicleType: $enumDecode(_$VehicleTypeEnumMap, json['car_type'] ?? 1),
   brand: json['brand'] as String,
   model: json['model'] as String,
   color: json['color'] as String,
   registrationNumber: json['registration_number'] as String,
-  co2Emission: json['co2_emission'] as num,
+  co2Emission: (json['co2_emission'] as num?)?.toDouble() ?? 0,
   isSelected: json['is_selected'] as bool? ?? false,
   image: _imageFromJson(json['image']),
 );

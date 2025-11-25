@@ -24,6 +24,31 @@ class StripeService {
     return _apiStripeService.getSetupIntent().toEither();
   }
 
+  Future<Either<String, PaymentIntent>> confirmPayment({
+    required String paymentIntentClientSecret,
+    required String paymentMethodId,
+  }) async {
+    try {
+      final result = await Stripe.instance.confirmPayment(
+        paymentIntentClientSecret: paymentIntentClientSecret,
+        data: PaymentMethodParams.cardFromMethodId(
+          paymentMethodData: PaymentMethodDataCardFromMethod(
+            paymentMethodId: paymentMethodId,
+          ),
+        ),
+      );
+
+      return Right(result);
+    } on StripeException catch (e) {
+      return left(
+        e.error.localizedMessage ??
+            'Failed to confirm payment : ${e.error.message}',
+      );
+    } catch (e) {
+      return left('Failed to confirm payment : $e');
+    }
+  }
+
   Future<Either<String, Unit>> initializePaymentSheet({
     required String clientSecret,
     String? merchantDisplayName,

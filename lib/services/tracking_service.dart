@@ -20,7 +20,7 @@ class TrackingService with ListenableServiceMixin {
   Future<void> listenToBuyerLocation(int userId) async {
     try {
       // Check if socket is initialized
-      if (_wsService.echo == null || !_wsService.isConnected) {
+      if (!_wsService.isConnected) {
         final token = await _authService.getAccessToken();
         if (token == null) {
           return;
@@ -33,7 +33,7 @@ class TrackingService with ListenableServiceMixin {
         Logger().i("[RESERVATION] ✅ Socket already initialized and connected");
       }
       // Verify echo is available after initialization
-      if (_wsService.echo == null) {
+      if (!_wsService.isConnected) {
         Logger().e(
           "[RESERVATION] ❌ CRITICAL: Echo still null after initialization!",
         );

@@ -73,6 +73,8 @@ import 'package:kreyno/ui/views/choose_selling_place_location/choose_selling_pla
 import 'package:kreyno/ui/views/my_let_place/my_let_place_view.dart';
 import 'package:kreyno/ui/views/client_tracking/client_tracking_view.dart';
 import 'package:kreyno/services/tracking_service.dart';
+import 'package:kreyno/ui/views/seller_tracking/seller_tracking_view.dart';
+import 'package:kreyno/ui/views/chat/chat_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -110,6 +112,8 @@ import 'package:kreyno/services/tracking_service.dart';
     MaterialRoute(page: ChooseSellingPlaceLocationView),
     MaterialRoute(page: MyLetPlaceView),
     MaterialRoute(page: ClientTrackingView),
+    MaterialRoute(page: SellerTrackingView),
+    MaterialRoute(page: ChatView),
     // @stacked-route
   ],
   dependencies: [

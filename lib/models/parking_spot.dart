@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'avatar.dart';
-
+import 'car.dart';
 part 'parking_spot.freezed.dart';
 part 'parking_spot.g.dart';
 
@@ -32,6 +32,8 @@ abstract class Seller with _$Seller {
     @JsonKey(name: "first_name") required String firstName,
     @JsonKey(name: "last_name") required String lastName,
     @JsonKey(name: "phone") required String phone,
+    @JsonKey(name: 'car') required Car car,
+
     @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)
     Avatar? avatar,
   }) = _Seller;
@@ -41,3 +43,20 @@ abstract class Seller with _$Seller {
   @override
   Map<String, dynamic> toJson();
 }
+// @freezed
+// abstract class Seller with _$Seller {
+//   const factory Seller({
+//     @JsonKey(name: "username") required String username,
+//     @JsonKey(name: "first_name") required String firstName,
+//     @JsonKey(name: "last_name") required String lastName,
+//     @JsonKey(name: "phone") required String phone,
+//     @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson),
+//     @JsonKey(name: "car") Car? car,
+//     Avatar? avatar,
+//   }) = _Seller;
+
+//   factory Seller.fromJson(Map<String, dynamic> json) => _$SellerFromJson(json);
+
+//   @override
+//   Map<String, dynamic> toJson();
+// }

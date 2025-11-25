@@ -10,37 +10,50 @@ import 'my_let_place_viewmodel.dart';
 
 class MyLetPlaceView extends StackedView<MyLetPlaceViewModel> {
   const MyLetPlaceView({Key? key}) : super(key: key);
-
+  @override
+  // TODO: implement reactive
+  bool get reactive => true;
   @override
   Widget builder(
     BuildContext context,
     MyLetPlaceViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          locator<NavigationService>().navigateToClientTrackingView(
-            parkingSpot: viewModel.parkingSpot!,
-            reservation: viewModel.reservation!,
-          );
-        },
-      ),
-      body: Stack(
-        children: [
-          GoogleMap(
-            initialCameraPosition: CameraPosition(
-              zoom: 17,
-              target: LatLng(
-                viewModel.parkingSpot!.latitude,
-                viewModel.parkingSpot!.longitude,
+    return ViewModelBuilder.reactive(
+      viewModelBuilder: () => viewModel,
+      builder: (context, viewModel, child) => Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            locator<NavigationService>().navigateToClientTrackingView(
+              parkingSpot: viewModel.parkingSpot!,
+              reservation: viewModel.reservation!,
+            );
+          },
+        ),
+        body: Stack(
+          children: [
+            GoogleMap(
+              initialCameraPosition: CameraPosition(
+                zoom: 17,
+                target: LatLng(
+                  viewModel.parkingSpot!.latitude,
+                  viewModel.parkingSpot!.longitude,
+                ),
               ),
             ),
-          ),
-          const MyMarkerDetails(),
-        ],
+            const MyMarkerDetails(),
+          ],
+        ),
       ),
     );
+  }
+
+  @override
+  void onDispose(MyLetPlaceViewModel viewModel) {
+    // TODO: implement onDispose
+    viewModel.disposeSocketService();
+
+    super.onDispose(viewModel);
   }
 
   @override

@@ -1,12 +1,13 @@
 import 'package:laravel_echo_null/laravel_echo_null.dart';
 import 'package:logger/logger.dart';
+import 'package:pusher_client_socket/pusher_client_socket.dart' as PUSHER;
 
 class SocketService {
   static final SocketService _instance = SocketService._internal();
   factory SocketService() => _instance;
   SocketService._internal();
 
-  Echo? _echo;
+  Echo<PUSHER.PusherClient, PusherChannel>? _echo;
   bool _isConnected = false;
 
   String? _authToken;
@@ -15,7 +16,7 @@ class SocketService {
   final Logger _logger = Logger();
 
   bool get isConnected => _isConnected;
-  Echo? get echo => _echo;
+  Echo<PUSHER.PusherClient, PusherChannel>? get echo => _echo;
 
   // ------------------------------------------------------------
   // INITIALIZE & CONNECT
@@ -34,9 +35,10 @@ class SocketService {
 
       _echo = Echo.pusher(
         "8174546d46469a411de7f80aeed657fb",
-        authEndPoint: "https://ws.kreyno.fr/broadcasting/auth",
+        authEndPoint: "https://app.kreyno.fr/broadcasting/auth",
         autoConnect: false,
         host: "ws.kreyno.fr",
+        enableLogging: true,
         wsPort: 443,
         wssPort: 443,
         encrypted: true,
@@ -103,23 +105,29 @@ class SocketService {
   // ------------------------------------------------------------
   // PRIVATE CHANNEL
   // ------------------------------------------------------------
-
   void listenToPrivateChannel({
     required String channel,
     required String event,
     required Function(dynamic) onEvent,
     Function(dynamic)? onError,
   }) {
+    final d = echo!.connector as PusherConnector;
     if (_echo == null) {
       _logger.e("Echo is null — cannot subscribe.");
       return;
     }
 
     try {
-      _echo!.listen(channel, event, onEvent);
-      _logger.i("Subscribed to private-$channel -> $event");
-    } catch (e) {
+      final privateChannel = _echo!.private(channel);
+      echo!.connector.client.bind(event, (d, v) {
+        _logger.i("Event received: $v $d");
+        onEvent(d);
+      });
+
+      _logger.i("👂 Listening to private-$channel -> $event");
+    } catch (e, stack) {
       _logger.e("Failed to subscribe to private-$channel: $e");
+      _logger.e(stack.toString());
       if (onError != null) onError(e);
     }
   }

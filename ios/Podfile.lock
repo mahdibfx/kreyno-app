@@ -28,22 +28,12 @@ PODS:
     - FlutterMacOS
   - permission_handler_apple (9.3.0):
     - Flutter
-  - pusher_client (2.0.0):
-    - Flutter
-    - PusherSwiftWithEncryption (~> 8.0.0)
-  - PusherSwiftWithEncryption (8.0.0):
-    - ReachabilitySwift (~> 5.0)
-    - Sodium (= 0.8.0)
-    - Starscream (~> 3.1)
-  - ReachabilitySwift (5.2.4)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - Sodium (0.8.0)
   - sqflite_darwin (0.0.4):
     - Flutter
     - FlutterMacOS
-  - Starscream (3.1.1)
   - Stripe (24.16.2):
     - StripeApplePay (= 24.16.2)
     - StripeCore (= 24.16.2)
@@ -114,7 +104,6 @@ DEPENDENCIES:
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
-  - pusher_client (from `.symlinks/plugins/pusher_client/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sqflite_darwin (from `.symlinks/plugins/sqflite_darwin/darwin`)
   - stripe_ios (from `.symlinks/plugins/stripe_ios/ios`)
@@ -125,10 +114,6 @@ SPEC REPOS:
     - Google-Maps-iOS-Utils
     - GoogleMaps
     - GooglePlaces
-    - PusherSwiftWithEncryption
-    - ReachabilitySwift
-    - Sodium
-    - Starscream
     - Stripe
     - StripeApplePay
     - StripeCore
@@ -157,8 +142,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
   permission_handler_apple:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
-  pusher_client:
-    :path: ".symlinks/plugins/pusher_client/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   sqflite_darwin:
@@ -181,13 +164,8 @@ SPEC CHECKSUMS:
   package_info_plus: c0502532a26c7662a62a356cebe2692ec5fe4ec4
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   permission_handler_apple: 9878588469a2b0d0fc1e048d9f43605f92e6cec2
-  pusher_client: ffcefc0aeeb910ef85e82c9bb333146adad0d8ce
-  PusherSwiftWithEncryption: e8626abf1067a7e1b06afde720934fe1872498e3
-  ReachabilitySwift: 32793e867593cfc1177f5d16491e3a197d2fccda
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
-  Sodium: 63c0ca312a932e6da481689537d4b35568841bdc
   sqflite_darwin: 5a7236e3b501866c1c9befc6771dfd73ffb8702d
-  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   Stripe: ae1b368097280ad027c1ec4a817a0a78bb74a6ee
   stripe_ios: d98b76bae238e6335c8f5871d45426f32918adc2
   StripeApplePay: 66dc43ec1284904a2cf4c5a0906f86296d23afbd

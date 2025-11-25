@@ -10,6 +10,11 @@ part 'api_reservation_service.g.dart';
 abstract class ApiReservationService {
   factory ApiReservationService(Dio dio) = _ApiReservationService;
 
+  @POST(ApiEndpoints.reservations)
+  Future<ApiResponse<Reservation>> createReservation(
+    @Body() Map<String, dynamic> reservationMap,
+  );
+
   @GET(ApiEndpoints.reservations)
   Future<ApiResponse<List<Reservation>>> getReservations(
     @Query('from') DateTime? from,

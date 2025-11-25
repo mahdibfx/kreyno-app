@@ -1,29 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/app/app_constants.dart';
+import 'package:kreyno/models/parking_spot.dart';
+import 'package:kreyno/services/stripe_service.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/views/home/home_viewmodel.dart';
 import 'package:kreyno/ui/views/home/widgets/common/car_top_bar.dart';
 import 'package:kreyno/ui/views/home/widgets/home_bottom_bar.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
+import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class BuyerSelectedMark extends StatelessWidget {
-  const BuyerSelectedMark({super.key});
-
+class BuyerSelectedMark extends ViewModelWidget<HomeViewModel> {
+  const BuyerSelectedMark({super.key, required this.parkingSpot});
+  final ParkingSpot parkingSpot;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, HomeViewModel viewModel) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const CarTopBar(),
         InkWell(
           onTap: () {
             final result = locator<BottomSheetService>().showCustomSheet(
               variant: BottomSheetType.payForSpot,
+              isScrollControlled: true,
+              data: parkingSpot,
             );
           },
           child: Column(
@@ -36,40 +42,45 @@ class BuyerSelectedMark extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8),
                           child: Image.network(
-                            "https://picsum.photos/200/300",
+                            parkingSpot.seller!.avatar?.url ??
+                                AppConstants.defaultAvatarUrl,
+
                             width: AppSpacing.px1 * 40,
                             height: AppSpacing.px1 * 40,
                             fit: BoxFit.cover,
                           ),
                         ),
                         HGap(AppSpacing.px8),
-                        const Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            CustomText.smallParagraphMedium("sarah.dupons92"),
-                            CustomText.labelMedium(
+                            CustomText.smallParagraphMedium(
+                              parkingSpot.seller!.username,
+                            ),
+                            const CustomText.labelMedium(
                               "propose une place à",
                               color: AppColors.textKre,
                             ),
                           ],
                         ),
-                        const Expanded(
+                        Expanded(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               CustomText(
-                                text: "2",
+                                text: viewModel.selectedSpot!.price.toString(),
                                 color: AppColors.greenKre,
                                 style: CustomTextStyle.title,
                               ),
-                              CustomIcon(
+                              const CustomIcon(
                                 iconPath: AppIcons.euro,
                                 size: 20,
                                 color: AppColors.greenKre,
@@ -80,9 +91,10 @@ class BuyerSelectedMark extends StatelessWidget {
                       ],
                     ),
                     VGap(AppSpacing.px8),
-                    const CustomText.paragraph(
-                      "Rue de la paix 8ème arrondissement, Paris, France",
+                    CustomText.paragraph(
+                      parkingSpot.address,
                       maxLines: 2,
+                      textAlign: TextAlign.start,
                     ),
                     VGap(AppSpacing.px8),
                     Row(
@@ -92,10 +104,14 @@ class BuyerSelectedMark extends StatelessWidget {
                           color: AppColors.greenKre,
                         ),
                         HGap(AppSpacing.px4),
-                        const CustomText(
-                          text: "Borne disponible",
+                        CustomText(
+                          text: viewModel.selectedSpot!.electricChargeStation
+                              ? "Borne disponible"
+                              : "Borne indisponible",
                           style: CustomTextStyle.smallParagraphMedium,
-                          color: AppColors.greenKre,
+                          color: viewModel.selectedSpot!.electricChargeStation
+                              ? AppColors.greenKre
+                              : AppColors.textKre,
                         ),
                         HGap(AppSpacing.px8),
                         Row(

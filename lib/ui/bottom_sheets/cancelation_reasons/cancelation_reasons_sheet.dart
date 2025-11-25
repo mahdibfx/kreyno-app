@@ -39,7 +39,9 @@ class CancelationReasonsSheet
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              locator<NavigationService>().back();
+            },
             child: const CustomIcon(iconPath: AppIcons.arrowLeft),
           ),
           VGap(AppSpacing.px20),
@@ -107,7 +109,7 @@ class CancelationReasonsSheet
               backgroundColor: AppColors.redKre,
               foregroundColor: AppColors.white,
               onPressed: () {
-                viewModel.cancelOrder(request.data as Reservation);
+                viewModel.cancelOrder(request.data);
               },
             ),
           ),

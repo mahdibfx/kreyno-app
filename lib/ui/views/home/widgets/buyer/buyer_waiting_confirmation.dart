@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/views/home/home_viewmodel.dart';
 import 'package:kreyno/ui/views/my_let_place/widgets/smart/received_order_widget.dart';
 import 'package:kreyno/ui/views/client_tracking/widgets/tracking_course_widget.dart';
+import 'package:kreyno/ui/views/seller_tracking/seller_tracking_viewmodel.dart';
 import 'package:kreyno/ui/widgets/dumb/bottom_sheet_layout.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_divider.dart';
@@ -16,7 +18,8 @@ import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class BuyerWaitingConfirmation extends ViewModelWidget<HomeViewModel> {
+class BuyerWaitingConfirmation
+    extends ViewModelWidget<SellerTrackingViewModel> {
   const BuyerWaitingConfirmation({super.key});
 
   @override
@@ -24,17 +27,18 @@ class BuyerWaitingConfirmation extends ViewModelWidget<HomeViewModel> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const SafeArea(child: CounterBar()),
+        // const SafeArea(child: CounterBar()),
+        const SizedBox(),
         BottomSheetLayout(
           body: Column(
             children: [
               VGap(AppSpacing.px8),
-              const Row(
+              Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     child: CustomText(
-                      text: "58-64 Rue de l'Université,\n 75007 Paris, France",
+                      text: viewModel.parkingSpot.address,
                       maxLines: 2,
                     ),
                   ),
@@ -42,11 +46,11 @@ class BuyerWaitingConfirmation extends ViewModelWidget<HomeViewModel> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       CustomText(
-                        text: "2",
+                        text: viewModel.parkingSpot.price.toString(),
                         color: AppColors.greenKre,
                         style: CustomTextStyle.title,
                       ),
-                      CustomIcon(
+                      const CustomIcon(
                         iconPath: AppIcons.euro,
                         size: 20,
                         color: AppColors.greenKre,
@@ -63,10 +67,14 @@ class BuyerWaitingConfirmation extends ViewModelWidget<HomeViewModel> {
                     color: AppColors.greenKre,
                   ),
                   HGap(AppSpacing.px4),
-                  const CustomText(
-                    text: "Borne disponible",
+                  CustomText(
+                    text: viewModel.parkingSpot.electricChargeStation
+                        ? "Borne disponible"
+                        : "Borne indisponible",
                     style: CustomTextStyle.smallParagraphMedium,
-                    color: AppColors.greenKre,
+                    color: viewModel.parkingSpot.electricChargeStation
+                        ? AppColors.greenKre
+                        : AppColors.textKre,
                   ),
                   HGap(AppSpacing.px8),
                   Row(
@@ -93,13 +101,15 @@ class BuyerWaitingConfirmation extends ViewModelWidget<HomeViewModel> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Image.network(
-                      'https://picsum.photos/40/40',
+                      viewModel.parkingSpot.seller.avatar?.url ??
+                          AppConstants.defaultAvatarUrl,
+                      fit: BoxFit.cover,
                       width: AppSpacing.px1 * 32,
                       height: AppSpacing.px1 * 32,
                     ),
                   ),
                   HGap(AppSpacing.px8),
-                  const CustomText.paragraph("sarah.dupons92"),
+                  CustomText.paragraph(viewModel.parkingSpot.seller.username),
                 ],
               ),
               VGap(AppSpacing.px12),
@@ -118,18 +128,22 @@ class BuyerWaitingConfirmation extends ViewModelWidget<HomeViewModel> {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: Image.network(
-                            'https://picsum.photos/48/48',
+                            viewModel.parkingSpot.seller.car.image?.url ??
+                                AppConstants.defaultAvatarUrl,
+                            fit: BoxFit.cover,
                             width: AppSpacing.px1 * 48,
                             height: AppSpacing.px1 * 48,
                           ),
                         ),
                         HGap(AppSpacing.px8),
-                        const Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            CustomText.smallParagraphBold("Renault Clio 5"),
+                            CustomText.smallParagraphBold(
+                              "${viewModel.parkingSpot.seller.car.brand} ${viewModel.parkingSpot.seller.car.model}",
+                            ),
                             CustomText.smallParagraphMedium(
-                              "DE-123-JW · Blanche",
+                              "${viewModel.parkingSpot.seller.car.registrationNumber} · ${viewModel.parkingSpot.seller.car.color}",
                             ),
                           ],
                         ),
@@ -149,6 +163,7 @@ class BuyerWaitingConfirmation extends ViewModelWidget<HomeViewModel> {
                       onPressed: () {
                         locator<BottomSheetService>().showCustomSheet(
                           variant: BottomSheetType.cancelationReasons,
+                          data: viewModel.reservation,
                         );
                       },
                     ),
@@ -157,11 +172,14 @@ class BuyerWaitingConfirmation extends ViewModelWidget<HomeViewModel> {
                   Expanded(
                     child: CustomButton.filled(
                       text: "Message",
-                      onPressed: () async {},
+                      onPressed: () async {
+                        // locator<NavigationService>().navigatetoCh
+                      },
                     ),
                   ),
                 ],
               ),
+              const SizedBox(height: 24),
             ],
           ),
           showDragHandler: true,

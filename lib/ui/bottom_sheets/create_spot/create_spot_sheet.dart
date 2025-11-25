@@ -40,6 +40,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
   ) {
     return BottomSheetLayout(
       body: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(

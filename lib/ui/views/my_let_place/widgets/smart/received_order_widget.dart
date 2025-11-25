@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
@@ -70,8 +71,12 @@ class RefuseReasonForm extends ViewModelWidget<MyLetPlaceViewModel> {
         InkWell(
           onTap: () {
             // viewModel.cancelRefuseOrder();
+            print("hello world ${viewModel.isRefused}");
             viewModel.isRefused = false;
+            print("hello world ${viewModel.isRefused}");
+
             viewModel.rebuildUi();
+            print("hello world ${viewModel.isRefused}");
           },
           child: const CustomIcon(iconPath: AppIcons.arrowLeft),
         ),
@@ -116,15 +121,16 @@ class RefuseReasonForm extends ViewModelWidget<MyLetPlaceViewModel> {
             viewModel.rebuildUi();
           },
         ),
-        VGap(AppSpacing.px8),
+        if (viewModel.isOtherSelected) VGap(AppSpacing.px8),
 
-        InputField(
-          controller: viewModel.otherTextController,
-          focusNode: FocusNode(),
-          hintText: "Saisissez votre raison d’annulation",
-          keyboardType: TextInputType.text,
-          maxLines: 4,
-        ),
+        if (viewModel.isOtherSelected)
+          InputField(
+            controller: viewModel.otherTextController,
+            focusNode: FocusNode(),
+            hintText: "Saisissez votre raison d’annulation",
+            keyboardType: TextInputType.text,
+            maxLines: 4,
+          ),
         VGap(AppSpacing.px24),
         CustomButton.filled(
           text: "Valider",
@@ -169,8 +175,8 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
             image: DecorationImage(
               fit: BoxFit.cover,
               image: NetworkImage(
-                viewModel.reservation!.buyer.avatar?.url ??
-                    "https://picsum.photos/400/300",
+                viewModel.reservation!.buyer.car.image?.url ??
+                    "assets/images/car.png",
               ),
             ),
           ),
@@ -207,7 +213,9 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: Image.network(
-                            'https://picsum.photos/40/40',
+                            viewModel.reservation!.buyer.avatar?.url ??
+                                AppConstants.defaultAvatarUrl,
+                            fit: BoxFit.cover,
                             width: AppSpacing.px1 * 32,
                             height: AppSpacing.px1 * 32,
                           ),
@@ -220,12 +228,12 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
                       ],
                     ),
                     VGap(AppSpacing.px4),
-                    const CustomText.smallParagraphMedium(
-                      "Renault Clio 5",
+                    CustomText.smallParagraphMedium(
+                      viewModel.reservation!.buyer.car.model ?? "",
                       color: AppColors.white,
                     ),
                     CustomText.labelMedium(
-                      "DE-123-JW · Blanche",
+                      "${viewModel.reservation!.buyer.car.registrationNumber} · ${viewModel.reservation!.buyer.car.color}",
                       color: AppColors.white.withValues(alpha: .7),
                     ),
                   ],
@@ -283,7 +291,7 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
           children: [
             Expanded(
               child: CustomText(
-                text: viewModel.reservation!.parkingSpot.address,
+                text: viewModel.reservation!.parkingPlace.address,
                 maxLines: 2,
               ),
             ),
@@ -291,7 +299,7 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomText(
-                  text: viewModel.reservation!.parkingSpot.totalPaidPrice
+                  text: viewModel.reservation!.parkingPlace.totalPaidPrice
                       .toString(),
                   color: AppColors.greenKre,
                   style: CustomTextStyle.title,
@@ -314,11 +322,11 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
             ),
             HGap(AppSpacing.px4),
             CustomText(
-              text: viewModel.reservation!.parkingSpot.electricChargeStation
+              text: viewModel.reservation!.parkingPlace.electricChargeStation
                   ? "Borne disponible"
                   : "Borne indisponible",
               style: CustomTextStyle.smallParagraphMedium,
-              color: viewModel.reservation!.parkingSpot.electricChargeStation
+              color: viewModel.reservation!.parkingPlace.electricChargeStation
                   ? AppColors.greenKre
                   : AppColors.textKre,
             ),
@@ -338,6 +346,8 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
                   onPressed: () {
                     // viewModel.sellerClickedRefuseOrder();
                     viewModel.refuseOrder();
+                    viewModel.rebuildUi();
+                    viewModel.notifyListeners();
                   },
                 ),
               ),

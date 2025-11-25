@@ -5,6 +5,7 @@ import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/socket_service.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/views/home/widgets/buyer/buyer_selected_mark.dart';
 import 'package:kreyno/ui/views/home/widgets/car_selector/car_selector.dart';
 import 'package:kreyno/ui/views/home/widgets/home_bottom_bar.dart';
 import 'package:kreyno/ui/views/home/widgets/home_fabs.dart';
@@ -27,6 +28,7 @@ class HomeView extends StackedView<HomeViewModel> {
             initialCameraPosition: viewModel.initialCameraPosition,
             onMapCreated: viewModel.onMapCreated,
             zoomControlsEnabled: false,
+            markers: viewModel.spotsMarkers.toSet(),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,6 +52,10 @@ class HomeView extends StackedView<HomeViewModel> {
                 children: [
                   const HomeFabs(),
                   VGap(AppSpacing.px24),
+                  if (viewModel.selectedSpot != null)
+                    BuyerSelectedMark(parkingSpot: viewModel.selectedSpot!),
+                  VGap(AppSpacing.px24),
+
                   HomeBottomBar(
                     avatarUrl: viewModel.currentUserAvatarUrl,
                     onLetMyPlaceButtonPressed: () {

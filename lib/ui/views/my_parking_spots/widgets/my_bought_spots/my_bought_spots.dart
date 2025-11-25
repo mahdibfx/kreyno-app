@@ -64,13 +64,13 @@ class MyBoughtSpots extends StackedView<MyBoughtSpotsModel> {
                 return ParkingSpaceListItem(
                   // TODO : add date from backend
                   date: reservation.createdAt,
-                  address: reservation.parkingSpot.address,
+                  address: reservation.parkingPlace.address,
                   imageUrl:
                       reservation.buyer.avatar?.url ??
                       AppConstants.defaultAvatarUrl,
                   hasElectricCharging:
                       false, // ParkingPlace doesn't have electric charging info
-                  price: reservation.parkingSpot.price,
+                  price: reservation.parkingPlace.price,
                 );
               },
             ),

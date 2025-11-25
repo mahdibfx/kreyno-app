@@ -1141,16 +1141,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
-  pusher_client:
-    dependency: "direct main"
-    description:
-      name: pusher_client
-      sha256: "0dce30a1b4b0dca2a9af2f680eec495b9cdc2b0281491426f3af9718776dc14a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   pusher_client_socket:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: pusher_client_socket
       sha256: ad05f9419263c817ba27eaf96c1bd1c1916359f91edc18b5c67ac4acb0aa0145
@@ -1283,7 +1275,7 @@ packages:
     source: hosted
     version: "0.2.12"
   socket_io_client:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: socket_io_client
       sha256: c8471c2c6843cf308a5532ff653f2bcdb7fa9ae79d84d1179920578a06624f0d

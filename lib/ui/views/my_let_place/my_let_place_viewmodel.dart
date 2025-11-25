@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/models/parking_spot.dart';
 import 'package:kreyno/models/reservation.dart';
@@ -42,12 +43,25 @@ class MyLetPlaceViewModel extends ReactiveViewModel {
     notifyListeners();
   }
 
-  acceptOrder() {}
+  acceptOrder() async {
+    final result = await _reservationService.confirmReservation(
+      reservation!.id,
+    );
+    result.match((l) => _toastService.showError(title: l), (r) {
+      _toastService.showInfo(title: "Confirmed succesfuly ");
+      _navigationService.navigateToClientTrackingView(
+        parkingSpot: parkingSpot!,
+        reservation: reservation!,
+      );
+    });
+  }
 
   refuseOrder() {
     isRefused = true;
+    rebuildUi();
+
     observation = observations.first;
-    notifyListeners();
+    rebuildUi();
   }
 
   removePlace() async {
@@ -72,14 +86,15 @@ class MyLetPlaceViewModel extends ReactiveViewModel {
       observation,
     );
     result.match((l) => _toastService.showError(title: l), (r) {
-      _navigationService.back();
+      isRefused = false;
+      notifyListeners();
+      _reservationService.removeReservation();
+      // _navigationService.back();
     });
   }
 
-  @override
-  void addListener(VoidCallback listener) {
-    // TODO: implement addListener
-    if (isOtherSelected) super.addListener(listener);
+  disposeSocketService() {
+    _reservationService.disconnectSocket();
   }
 
   @override

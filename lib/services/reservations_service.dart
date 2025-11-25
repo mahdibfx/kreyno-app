@@ -1,10 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:kreyno/app/app.locator.dart';
-import 'package:kreyno/enums/reservation_status.dart';
-import 'package:kreyno/enums/vehicle_type.dart';
 import 'package:kreyno/extensions/api_response_extensions.dart';
-import 'package:kreyno/models/avatar.dart';
-import 'package:kreyno/models/car.dart';
 import 'package:kreyno/models/reservation.dart';
 import 'package:kreyno/services/api/api_reservation_service.dart';
 import 'package:kreyno/services/api/dio_service.dart';
@@ -13,20 +9,30 @@ import 'package:kreyno/services/socket_service.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 
-import '../models/parking_spot.dart';
-
 class ReservationsService with ListenableServiceMixin {
   final _wsService = SocketService();
   final _authService = locator<AuthService>();
   final _apiReservationService = ApiReservationService(
     locator<DioService>().dio,
   );
+  final _logger = Logger();
+
   Reservation? _reservation;
 
   Reservation? get reservation => _reservation;
 
   ReservationsService() {
     listenToReactiveValues([_reservation]);
+  }
+
+  Future<Either<String, Reservation>> createReservation(
+    int parkingSpotId,
+    String paymentMethodId,
+  ) {
+    return _apiReservationService.createReservation({
+      "parking_place_id": parkingSpotId,
+      "payment_method_id": "pm_22994881993884d881",
+    }).toEither();
   }
 
   Future<Either<String, void>> cancelReservation(
@@ -38,73 +44,98 @@ class ReservationsService with ListenableServiceMixin {
     }).toEither();
   }
 
+  Future<Either<String, void>> confirmReservation(int reservationId) {
+    return _apiReservationService.confirmReservation(reservationId).toEither();
+  }
+
   Future<Either<String, void>> completeReservation(int reservationId) {
     return _apiReservationService.completeReservation(reservationId).toEither();
   }
 
-  Future<void> listenToReservationUpdates(int userId) async {
-    // Future.delayed(const Duration(seconds: 2)).whenComplete(() {
-    //   _reservation = Reservation(
-    //     id: 1,
-    //     buyer: const Buyer(
-    //       username: "username",
-    //       firstName: "firstName",
-    //       lastName: "lastName",
-    //       phone: "phone",
-    //       car: Car(
-    //         id: 2,
-    //         vehicleType: VehicleType.fuel,
-    //         brand: "brand",
-    //         model: "model",
-    //         color: "color",
-    //         registrationNumber: "registrationNumber",
-    //         co2Emission: 1,
-    //         image: Image(id: 2, url: "https://picsum.photos/400/400"),
-    //       ),
-    //       avatar: Avatar(id: 3, url: "https://picsum.photos/400/400"),
-    //     ),
-    //     parkingSpot: const ParkingPlace(
-    //       address: "address",
-    //       longitude: 1,
-    //       latitude: 1,
-    //       // geohash: "geohash",
-    //       price: 1,
-    //       totalPaidPrice: 1,
-    //       electricChargeStation: true,
-    //       reserved: true,
-    //       geoHash: 'fff',
-    //     ),
-    //     status: ReservationStatus.pending,
-    //     observation: "observation",
-    //     createdAt: DateTime.now(),
-    //   );
-    // });
-    // notifyListeners();
-    // return;
+  Future<void> listenToReservationStatusChanged(int userId) async {
     try {
       // Check if socket is initialized
-      if (_wsService.echo == null || !_wsService.isConnected) {
+      if (!_wsService.isConnected) {
         final token = await _authService.getAccessToken();
 
         if (token == null) {
+          _logger.w("No access token available");
           return;
         }
 
         _wsService.initialize(authToken: token, userId: userId.toString());
 
-        // Wait a bit for connection to establish
+        // Wait for connection to establish
         await Future.delayed(const Duration(seconds: 2));
-
-        _wsService.debugStatus();
-      } else {
-        Logger().i("[RESERVATION] ✅ Socket already initialized and connected");
       }
 
       // Verify echo is available after initialization
-      if (_wsService.echo == null) {
-        Logger().e(
-          "[RESERVATION] ❌ CRITICAL: Echo still null after initialization!",
-        );
+      if (!_wsService.isConnected) {
+        _logger.e("Pusher still null after initialization");
+        return;
+      }
+
+      // Subscribe to the private channel
+      _wsService.listenToPrivateChannel(
+        channel: 'user.$userId',
+        event: 'reservation.status.changed',
+        onEvent: (event) {
+          try {
+            _logger.i("📨 Reservation event received");
+
+            // The data structure is: { "reservation": { ... } }
+            // Extract the reservation object
+            final reservationData = event['reservation'];
+
+            if (reservationData == null) {
+              _logger.e("No reservation data in event");
+              return;
+            }
+
+            // Parse the reservation
+            final reservationReceived = Reservation.fromJson(reservationData);
+
+            // Update the reservation
+            _reservation = reservationReceived;
+            notifyListeners();
+
+            _logger.i("✅ Reservation updated successfully");
+          } catch (e, stackTrace) {
+            rethrow;
+            _logger.e("Error parsing reservation: $e");
+            _logger.e(stackTrace.toString());
+          }
+        },
+        onError: (error) {
+          _logger.e("Reservation channel error: $error");
+        },
+      );
+    } catch (e, stackTrace) {
+      _logger.e("Error setting up reservation listener: $e");
+      _logger.e(stackTrace.toString());
+    }
+  }
+
+  Future<void> listenToReservationUpdates(int userId) async {
+    try {
+      // Check if socket is initialized
+      if (!_wsService.isConnected) {
+        final token = await _authService.getAccessToken();
+
+        if (token == null) {
+          _logger.w("No access token available");
+          return;
+        }
+
+        _wsService.initialize(authToken: token, userId: userId.toString());
+
+        // Wait for connection to establish
+        await Future.delayed(const Duration(seconds: 2));
+      }
+
+      // Verify echo is available after initialization
+      if (!_wsService.isConnected) {
+        _logger.e("Pusher still null after initialization");
         return;
       }
 
@@ -114,53 +145,56 @@ class ReservationsService with ListenableServiceMixin {
         event: 'reservation.new',
         onEvent: (event) {
           try {
+            _logger.i("📨 Reservation event received");
+
+            // The data structure is: { "reservation": { ... } }
+            // Extract the reservation object
+            final reservationData = event['reservation'];
+
+            if (reservationData == null) {
+              _logger.e("No reservation data in event");
+              return;
+            }
+
             // Parse the reservation
-
-            final reservationReceived = Reservation.fromJson(event);
-
-            Logger().d(
-              "[RESERVATION] 📋 Reservation details: $reservationReceived",
-            );
+            final reservationReceived = Reservation.fromJson(reservationData);
 
             // Update the reservation
             _reservation = reservationReceived;
-
             notifyListeners();
+
+            _logger.i("✅ Reservation updated successfully");
           } catch (e, stackTrace) {
-            Logger().e("[RESERVATION] Error: $e");
+            rethrow;
+            _logger.e("Error parsing reservation: $e");
+            _logger.e(stackTrace.toString());
           }
         },
         onError: (error) {
-          Logger().e("[RESERVATION] Error: $error");
+          _logger.e("Reservation channel error: $error");
         },
       );
     } catch (e, stackTrace) {
-      Logger().e("[RESERVATION] Error: $e");
+      _logger.e("Error setting up reservation listener: $e");
+      _logger.e(stackTrace.toString());
     }
   }
 
-  // Optional: Method to stop listening
   void stopListeningToReservationUpdates(int userId) {
-    Logger().i("[RESERVATION] 🛑 stopListeningToReservationUpdates() called");
-    Logger().i("[RESERVATION] 👤 User ID: $userId");
-
     try {
       _wsService.leaveChannel('user.$userId', isPrivate: true);
-      Logger().i("[RESERVATION] ✅ Left channel successfully");
+      _logger.i("Stopped listening to reservation updates");
     } catch (e) {
-      Logger().e("[RESERVATION] ❌ Error leaving channel: $e");
+      _logger.e("Error leaving channel: $e");
     }
   }
 
-  // Optional: Method to manually disconnect socket
   void disconnectSocket() {
-    Logger().i("[RESERVATION] 🔌 disconnectSocket() called");
-
     try {
       _wsService.disconnect();
-      Logger().i("[RESERVATION] ✅ Socket disconnected");
+      _logger.i("Socket disconnected");
     } catch (e) {
-      Logger().e("[RESERVATION] ❌ Error disconnecting: $e");
+      _logger.e("Error disconnecting: $e");
     }
   }
 
@@ -171,7 +205,7 @@ class ReservationsService with ListenableServiceMixin {
     return _apiReservationService.getReservations(from, to).toEither();
   }
 
-  removeReservation() {
+  void removeReservation() {
     _reservation = null;
     notifyListeners();
   }

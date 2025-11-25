@@ -187,7 +187,7 @@ class SpotBoughtSuccessView extends StackedView<SpotBoughtSuccessViewModel> {
                         ],
                       ),
                       VGap(AppSpacing.px16),
-                      const PaymentMethodListTile(),
+                      // const PaymentMethodListTile(card: null,),
                       VGap(AppSpacing.px1 * 34),
                       CustomButton.filled(
                         text: "Retourner vers l’accueil",

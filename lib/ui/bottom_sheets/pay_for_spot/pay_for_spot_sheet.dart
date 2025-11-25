@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:kreyno/app/app.bottomsheets.dart';
-import 'package:kreyno/app/app.dart';
-import 'package:kreyno/app/app.locator.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart' hide Card;
+import 'package:flutter_stripe/flutter_stripe.dart' hide Card;
+import 'package:kreyno/app/app_constants.dart';
+import 'package:kreyno/models/parking_spot.dart';
+import 'package:kreyno/ui/bottom_sheets/pay_for_spot/widgets/payment_list_tile.dart';
+import 'package:kreyno/ui/bottom_sheets/pay_for_spot/widgets/slideable_button.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
-import 'package:kreyno/ui/common/app_images.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
-import 'package:kreyno/ui/views/spot_sold_success/spot_sold_success_view.dart';
 import 'package:kreyno/ui/widgets/dumb/bottom_sheet_layout.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_divider.dart';
@@ -19,6 +20,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'pay_for_spot_sheet_model.dart';
+import '../../../models/card.dart';
 
 class PayForSpotSheet extends StackedView<PayForSpotSheetModel> {
   final Function(SheetResponse response)? completer;
@@ -35,11 +37,28 @@ class PayForSpotSheet extends StackedView<PayForSpotSheetModel> {
     PayForSpotSheetModel viewModel,
     Widget? child,
   ) {
+    print(viewModel.cards.length);
     return BottomSheetLayout(
-      body: viewModel.paymentSubmitted
-          ? const PaymentSubmit()
-          : const InitialPaymentState(),
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 400),
+        switchInCurve: Curves.easeInOut,
+        switchOutCurve: Curves.easeInOut,
+
+        child: viewModel.paymentSubmitted
+            ? PaymentSubmit(key: const Key("submit"), parkingSpot: request.data)
+            : InitialPaymentState(
+                key: const Key("initial"),
+                parkingSpot: request.data,
+              ),
+      ),
     );
+  }
+
+  @override
+  void onViewModelReady(PayForSpotSheetModel viewModel) {
+    // TODO: implement onViewModelReady
+    super.onViewModelReady(viewModel);
+    viewModel.getAllCards();
   }
 
   @override
@@ -48,19 +67,26 @@ class PayForSpotSheet extends StackedView<PayForSpotSheetModel> {
 }
 
 class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
-  const PaymentSubmit({super.key});
-
+  const PaymentSubmit({super.key, required this.parkingSpot});
+  final ParkingSpot parkingSpot;
   @override
   Widget build(BuildContext context, viewModel) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomIcon(iconPath: AppIcons.arrowLeft),
-            CustomText.paragraph("Paiment"),
-            CustomIcon(iconPath: AppIcons.multiplicationSign),
+            InkWell(
+              onTap: () {
+                viewModel.paymentSubmitted = false;
+                viewModel.rebuildUi();
+              },
+              child: const CustomIcon(iconPath: AppIcons.arrowLeft),
+            ),
+            const CustomText.paragraph("Paiment"),
+            const CustomIcon(iconPath: AppIcons.multiplicationSign),
           ],
         ),
         VGap(AppSpacing.px20),
@@ -68,18 +94,54 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
         VGap(AppSpacing.px20),
         const CustomText.labelRegular("Payer avec", color: AppColors.textKre),
         VGap(AppSpacing.px8),
-        const PaymentMethodListTile(),
+        if (viewModel.cards.isNotEmpty)
+          Column(
+            children: List.generate(
+              viewModel.cards.length,
+              (index) => Padding(
+                padding: EdgeInsets.only(
+                  bottom: index == viewModel.cards.length - 1 ? 0 : 6.0,
+                ),
+                child: InkWell(
+                  onTap: () {
+                    viewModel.selectPaymentMethod(viewModel.cards[index]);
+                  },
+                  child: PaymentMethodListTile(
+                    card: viewModel.cards[index],
+                    isSelected:
+                        viewModel.paymentMethodId == viewModel.cards[index].id,
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+        if (viewModel.cards.isEmpty)
+          const Column(
+            children: [
+              CustomText.title(
+                "Aucun moyen de paiement enregistré",
+                maxLines: 2,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 4),
+              CustomText.smallParagraphMedium(
+                "Vous devez ajouter une carte pour payer.",
+                color: AppColors.textKre,
+              ),
+            ],
+          ),
         VGap(AppSpacing.px16),
         InkWell(
           onTap: () {
-            locator<BottomSheetService>().showCustomSheet(
-              variant: BottomSheetType.addPaymentCart,
-              isScrollControlled: true,
-            );
+            viewModel.onAddNewCardTapped();
           },
           child: Container(
             padding: EdgeInsets.all(AppSpacing.px1 * 10),
             decoration: BoxDecoration(
+              color: viewModel.cards.isEmpty
+                  ? AppColors.greenKre
+                  : Colors.transparent,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
                 color: AppColors.textKre.withValues(alpha: .25),
@@ -100,15 +162,62 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
         VGap(AppSpacing.px16),
         const CustomDivider(),
         VGap(AppSpacing.px16),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CustomText.smallParagraphMedium(
-              "Montant",
-              color: AppColors.textKre,
+        Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: const Border.fromBorderSide(
+              BorderSide(color: AppColors.strokeKre),
             ),
-            CustomText.paragraph("2.4€", color: AppColors.mainKre),
-          ],
+          ),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const CustomText.smallParagraphMedium(
+                    "Stationnement",
+                    color: AppColors.textKre,
+                  ),
+                  CustomText.smallParagraphBold("${parkingSpot.price}€"),
+                ],
+              ),
+              const SizedBox(height: 4),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const CustomText.smallParagraphMedium(
+                    "Frais Kreyno (20%)",
+                    color: AppColors.textKre,
+                  ),
+                  CustomText.smallParagraphBold(
+                    "${parkingSpot.totalPaidPrice - parkingSpot.price}€",
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: const Color(0xFFF1F1F1),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 7,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const CustomText.smallParagraphBold("Total à payer"),
+                    CustomText.smallParagraphBold(
+                      "${parkingSpot.totalPaidPrice}€",
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
         VGap(AppSpacing.px16),
         Row(
@@ -130,75 +239,45 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
         VGap(AppSpacing.px24),
         CustomButton.filled(
           text: "Payer & réserver cette place",
-          onPressed: () {},
+          isDisabled: viewModel.cards.isEmpty,
+          onPressed: () async {
+            viewModel.paySubmitted(parkingSpot);
+            // final result = await locator<StripeService>().getSetupIntent();
+            // result.fold((l) => null, (r) {
+            //   locator<StripeService>().initializePaymentSheet(
+            //     clientSecret: r.clientSecret,
+            //   );
+            //   locator<StripeService>().presentPaymentSheet();
+            // });
+          },
         ),
       ],
     );
   }
 }
 
-class PaymentMethodListTile extends StatelessWidget {
-  const PaymentMethodListTile({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(AppSpacing.px1 * 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.textKre.withValues(alpha: .25)),
-      ),
-      child: Row(
-        children: [
-          // Image.asset(AppImages.visa),
-          HGap(AppSpacing.px12),
-          const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomText.labelRegular(
-                "OLIVER DUPONS",
-                color: AppColors.textKre,
-              ),
-              CustomText.labelRegular("**** 1234"),
-            ],
-          ),
-          const Expanded(child: SizedBox()),
-          CircleAvatar(
-            radius: AppSpacing.px8 + 1,
-            backgroundColor: AppColors.greenKre,
-            child: const Icon(Icons.done, color: Colors.white, size: 14),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
-  const InitialPaymentState({super.key});
+  const InitialPaymentState({super.key, required this.parkingSpot});
+  final ParkingSpot parkingSpot;
 
   @override
   Widget build(BuildContext context, viewModel) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        const Row(
+        Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: CustomText(
-                text: "58-64 Rue de l'Université,\n 75007 Paris, France",
-                maxLines: 2,
-              ),
-            ),
+            Expanded(child: CustomText(text: parkingSpot.address, maxLines: 2)),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomText(
-                  text: "2",
+                  text: parkingSpot.price.toString(),
                   color: AppColors.greenKre,
                   style: CustomTextStyle.title,
                 ),
-                CustomIcon(
+                const CustomIcon(
                   iconPath: AppIcons.euro,
                   size: 20,
                   color: AppColors.greenKre,
@@ -215,10 +294,14 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
               color: AppColors.greenKre,
             ),
             HGap(AppSpacing.px4),
-            const CustomText(
-              text: "Borne disponible",
+            CustomText(
+              text: parkingSpot.electricChargeStation
+                  ? "Borne disponible"
+                  : "Borne indisponible",
               style: CustomTextStyle.smallParagraphMedium,
-              color: AppColors.greenKre,
+              color: parkingSpot.electricChargeStation
+                  ? AppColors.greenKre
+                  : AppColors.textKre,
             ),
             HGap(AppSpacing.px8),
             Row(
@@ -243,9 +326,12 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
           height: AppSpacing.px1 * 196,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            image: const DecorationImage(
+            image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage("https://picsum.photos/400/400"),
+              image: CachedNetworkImageProvider(
+                parkingSpot.seller?.car.image?.url ??
+                    AppConstants.defaultAvatarUrl,
+              ),
             ),
           ),
           child: Column(
@@ -280,26 +366,29 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(12),
-                          child: Image.network(
-                            'https://picsum.photos/40/40',
+                          child: CachedNetworkImage(
+                            imageUrl:
+                                parkingSpot.seller?.avatar?.url ??
+                                AppConstants.defaultAvatarUrl,
+                            fit: BoxFit.cover,
                             width: AppSpacing.px1 * 32,
                             height: AppSpacing.px1 * 32,
                           ),
                         ),
                         HGap(AppSpacing.px8),
-                        const CustomText.paragraph(
-                          "sarah.dupons92",
+                        CustomText.paragraph(
+                          parkingSpot.seller?.username ?? "",
                           color: AppColors.white,
                         ),
                       ],
                     ),
                     VGap(AppSpacing.px4),
-                    const CustomText.smallParagraphMedium(
-                      "Renault Clio 5",
+                    CustomText.smallParagraphMedium(
+                      parkingSpot.seller?.car.brand ?? "",
                       color: AppColors.white,
                     ),
                     CustomText.labelMedium(
-                      "DE-123-JW · Blanche",
+                      parkingSpot.seller?.car.registrationNumber ?? "",
                       color: AppColors.white.withValues(alpha: .7),
                     ),
                   ],
@@ -309,11 +398,11 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
           ),
         ),
         VGap(AppSpacing.px24),
-        GestureDetector(
-          onTap: () {
-            viewModel.paySubmitted();
+        SlideableButton(
+          onCompleted: () {
+            print("completed");
+            viewModel.goToPaymentPart();
           },
-          child: const SlideableButton(),
         ),
         // CustomButton.filled(
         //   text: "Passer au paiment",
@@ -322,114 +411,5 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
         // VGap(AppSpacing.px24),
       ],
     );
-  }
-}
-
-class SlideableButton extends StatefulWidget {
-  const SlideableButton({super.key});
-
-  @override
-  State<SlideableButton> createState() => _SlideableButtonState();
-}
-
-class _SlideableButtonState extends State<SlideableButton> {
-  double width = 0;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(AppSpacing.px4),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: AppColors.greenKre,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          return SizedBox(
-            width: constraints.maxWidth,
-            child: Row(
-              children: [
-                Draggable(
-                  onDraggableCanceled: (velocity, offset) {
-                    width = 0;
-                    setState(() {});
-                  },
-                  onDragCompleted: () {
-                    print("completed");
-                  },
-                  onDragUpdate: (details) {
-                    setState(() {
-                      width = details.localPosition.dx;
-                    });
-                  },
-                  childWhenDragging: Container(
-                    clipBehavior: Clip.hardEdge,
-                    width: width,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    padding: EdgeInsets.all(AppSpacing.px1 * 10),
-                    child: Row(
-                      children: List.generate(
-                        (width / 20).toInt(),
-                        (index) => const AnimatedSwitcher(
-                          duration: Duration(milliseconds: 300),
-                          child: CustomIcon(
-                            iconPath: AppIcons.doubleAltArrowRight,
-                            color: AppColors.textKre,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  axis: Axis.horizontal,
-                  feedback: Opacity(
-                    opacity: 0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      padding: EdgeInsets.all(AppSpacing.px1 * 10),
-                      child: const CustomIcon(
-                        iconPath: AppIcons.doubleAltArrowRight,
-                      ),
-                    ),
-                  ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    padding: EdgeInsets.all(AppSpacing.px1 * 10),
-                    child: const CustomIcon(
-                      iconPath: AppIcons.doubleAltArrowRight,
-                    ),
-                  ),
-                ),
-                const Expanded(child: SizedBox()),
-                AnimatedOpacity(
-                  opacity: opacity,
-                  duration: const Duration(milliseconds: 100),
-                  child: const CustomText(
-                    text: "Passer au paiement",
-                    textAlign: TextAlign.start,
-                  ),
-                ),
-                const Expanded(child: SizedBox()),
-              ],
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  double get opacity {
-    // normalize width to range [0.0, 1.0]
-    // Example: if max width is 300
-    double maxWidth = MediaQuery.of(context).size.width - 300;
-    return (1 - (width / maxWidth)).clamp(0.0, 1.0);
   }
 }
