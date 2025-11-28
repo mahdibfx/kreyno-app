@@ -10,6 +10,7 @@ import 'package:kreyno/services/google_map_service.dart';
 import 'package:kreyno/services/location_service.dart';
 import 'package:kreyno/services/parking_spots_service.dart';
 import 'package:kreyno/services/toast_service.dart';
+import 'package:kreyno/services/tracking_service.dart';
 import 'package:kreyno/services/user_service.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
@@ -20,6 +21,7 @@ class HomeViewModel extends ReactiveViewModel {
   final _bottomSheetService = locator<BottomSheetService>();
   final _userService = locator<UserService>();
   final _locationService = locator<LocationService>();
+  final _trackingService = locator<TrackingService>();
   final _toastService = locator<ToastService>();
   final _googleMapService = locator<GoogleMapService>();
   final _parkingSpotService = locator<ParkingSpotsService>();
@@ -37,19 +39,7 @@ class HomeViewModel extends ReactiveViewModel {
   bool _loadingPlaces = true;
   bool get loadingPlaces => _loadingPlaces;
   final List<Marker> _spotsMarkers = [];
-  final List<ParkingSpot> _parkingSpots = [
-    // const ParkingSpot(
-    //   id: 1,
-    //   address: "address",
-    //   longitude: 48.8322,
-    //   latitude: 2.8433,
-    //   geoHash: "geoHash",
-    //   price: 300,
-    //   totalPaidPrice: 312,
-    //   electricChargeStation: true,
-    //   reserved: false,
-    // ),
-  ];
+  final List<ParkingSpot> _parkingSpots = [];
 
   List<Marker> get spotsMarkers => _spotsMarkers;
   List<ParkingSpot> get parkingSpots => _parkingSpots;
@@ -75,11 +65,11 @@ class HomeViewModel extends ReactiveViewModel {
     _loadingPlaces = true;
     rebuildUi();
     _spotsMarkers.clear();
-    // _parkingSpots.clear();
+    _parkingSpots.clear();
     rebuildUi();
     final result = await _parkingSpotService.getNearbyParkingSpots(
-      48.8566,
-      2.3522,
+      _locationService.currentLocation?.latitude ?? 0,
+      _locationService.currentLocation?.longitude ?? 0,
       8,
     );
     result.match(
@@ -88,69 +78,7 @@ class HomeViewModel extends ReactiveViewModel {
       },
       (parkingSpots) {
         _parkingSpots.addAll(parkingSpots);
-        // spotsMarkers = parkingSpots.map((spot) {
-        //   return Marker(
-        //     markerId: MarkerId(spot.id.toString()),
-        //     position: LatLng(spot.latitude, spot.longitude),
-        //     icon: AssetMapBitmap("assets/images/Map_pin.png"),
-        //     infoWindow: InfoWindow(snippet: spot.address),
-        //   );
-        // }).toList();
 
-        // Fake places for testing
-        // _spotsMarkers.addAll([
-        // Marker(
-        //   markerId: const MarkerId('eiffel_tower'),
-        //   position: const LatLng(48.8584, 2.2945),
-        //   icon: AssetMapBitmap("assets/images/Map_pin.png"),
-        //   onTap: () {
-        //     // _bottomSheetService.showBottomSheet(
-        //     //   context: context,
-        //     //   builder: (context) => const ParkingSpotDetailsBottomSheet(),
-        //     // );
-        //   },
-        // ),
-        // Marker(
-        //   markerId: const MarkerId('louvre_museum'),
-        //   position: const LatLng(48.8606, 2.3376),
-        //   icon: AssetMapBitmap("assets/images/Map_pin.png"),
-
-        //   infoWindow: const InfoWindow(
-        //     title: 'Louvre Museum',
-        //     snippet: 'Rue de Rivoli, 75001 Paris, France',
-        //   ),
-        // ),
-        // Marker(
-        //   markerId: const MarkerId('notre_dame'),
-        //   position: const LatLng(48.8529, 2.3499),
-        //   icon: AssetMapBitmap("assets/images/Map_pin.png"),
-        //   infoWindow: const InfoWindow(
-        //     title: 'Notre Dame Cathedral',
-        //     snippet:
-        //         '6 Parvis Notre-Dame - Pl. Jean-Paul II, 75004 Paris, France',
-        //   ),
-        // ),
-        // Marker(
-        //   markerId: const MarkerId('arc_de_triomphe'),
-        //   position: const LatLng(48.8738, 2.2950),
-        //   icon: AssetMapBitmap("assets/images/Map_pin.png"),
-
-        //   infoWindow: const InfoWindow(
-        //     title: 'Arc de Triomphe',
-        //     snippet: 'Place Charles de Gaulle, 75008 Paris, France',
-        //   ),
-        // ),
-        // Marker(
-        //   markerId: const MarkerId('sacre_coeur'),
-        //   position: const LatLng(48.8867, 2.3431),
-        //   icon: AssetMapBitmap("assets/images/Map_pin.png"),
-
-        //   infoWindow: const InfoWindow(
-        //     title: 'Sacre-Cœur Basilica',
-        //     snippet: '35 Rue du Chevalier de la Barre, 75018 Paris, France',
-        //   ),
-        // ),
-        // ]);
         rebuildUi();
 
         var spotsMarkers = parkingSpots.map((spot) {
@@ -178,8 +106,14 @@ class HomeViewModel extends ReactiveViewModel {
     if (!_isLocationServiceEnabled) return;
     // TODO: check if user has a location permission first
     await goToCurrentLocation();
-
+    int fireIdStored = _trackingService.fireId;
     getNearbyPlaces();
+    _trackingService.addListener(() {
+      if (fireIdStored != _trackingService.fireId) {
+        getNearbyPlaces();
+        fireIdStored = _trackingService.fireId;
+      }
+    });
   }
 
   Future<void> goToCurrentLocation() async {
@@ -239,5 +173,8 @@ class HomeViewModel extends ReactiveViewModel {
   }
 
   @override
-  List<ListenableServiceMixin> get listenableServices => [_userService];
+  List<ListenableServiceMixin> get listenableServices => [
+    _userService,
+    _trackingService,
+  ];
 }

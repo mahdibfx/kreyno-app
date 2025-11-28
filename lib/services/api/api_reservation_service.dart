@@ -26,8 +26,15 @@ abstract class ApiReservationService {
     @Path('id') int id,
     @Body() Map<String, dynamic> observationMap,
   );
+
   @POST('${ApiEndpoints.reservations}/{id}/confirm')
   Future<ApiResponse<void>> confirmReservation(@Path('id') int id);
+
+  @POST('${ApiEndpoints.reservations}/{id}/location')
+  Future<ApiResponse<void>> buyerChangedLocation(
+    @Path('id') int id,
+    @Body() Map<String, dynamic> locationMap,
+  );
 
   @POST('${ApiEndpoints.reservations}/{id}/complete')
   Future<ApiResponse<void>> completeReservation(@Path('id') int id);

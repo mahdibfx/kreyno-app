@@ -1,4 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/app/app_constants.dart';
+import 'package:kreyno/models/reservation.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_images.dart';
@@ -11,12 +15,14 @@ import 'package:kreyno/ui/widgets/dumb/gap.dart';
 import 'package:kreyno/ui/widgets/dumb/input_field.dart';
 import 'package:kreyno/ui/widgets/dumb/rounded_button.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import 'spot_sold_success_viewmodel.dart';
 
 class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
-  const SpotSoldSuccessView({Key? key}) : super(key: key);
-
+  const SpotSoldSuccessView({Key? key, required this.reservation})
+    : super(key: key);
+  final Reservation reservation;
   @override
   Widget builder(
     BuildContext context,
@@ -59,16 +65,18 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                   decoration: const BoxDecoration(color: Color(0xFFFAFAFA)),
                   child: Column(
                     children: [
-                      const InfoListTile(
+                      InfoListTile(
                         title: 'N° de réservation',
-                        value: "#12981972",
+                        value: "#${reservation.id}",
                       ),
                       VGap(AppSpacing.px8),
                       const InfoListTile(title: 'Prix', value: "2€"),
                       VGap(AppSpacing.px8),
-                      const InfoListTile(
+                      InfoListTile(
                         title: 'Date et heure',
-                        value: "12-07-2025, 11:49",
+                        value: DateFormat(
+                          "dd-MM-yyyy, HH:mm",
+                        ).format(DateTime.now()),
                       ),
                     ],
                   ),
@@ -123,25 +131,26 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(12),
                                   child: Image.network(
-                                    'https://picsum.photos/40/40',
+                                    reservation.buyer.avatar?.url ??
+                                        AppConstants.defaultAvatarUrl,
                                     width: AppSpacing.px1 * 32,
                                     height: AppSpacing.px1 * 32,
                                   ),
                                 ),
                                 HGap(AppSpacing.px8),
-                                const CustomText.paragraph(
-                                  "sarah.dupons92",
+                                CustomText.paragraph(
+                                  reservation.buyer.username,
                                   color: AppColors.white,
                                 ),
                               ],
                             ),
                             VGap(AppSpacing.px4),
-                            const CustomText.smallParagraphMedium(
-                              "Renault Clio 5",
+                            CustomText.smallParagraphMedium(
+                              "${reservation.buyer.car.brand} ${reservation.buyer.car.model}",
                               color: AppColors.white,
                             ),
                             CustomText.labelMedium(
-                              "DE-123-JW · Blanche",
+                              "${reservation.buyer.car.registrationNumber} · ${reservation.buyer.car.color}",
                               color: AppColors.white.withValues(alpha: .7),
                             ),
                           ],
@@ -161,8 +170,8 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                         color: AppColors.textKre,
                       ),
                       VGap(AppSpacing.px1 * 6),
-                      const CustomText.smallParagraphBold(
-                        "58-64 Rue de l'Université, 75007 Paris, France",
+                      CustomText.smallParagraphBold(
+                        reservation.parkingPlace.address,
                       ),
                       VGap(AppSpacing.px16),
                       const CustomText.smallParagraphMedium(
@@ -177,10 +186,15 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                             color: AppColors.greenKre,
                           ),
                           HGap(AppSpacing.px4),
-                          const CustomText(
-                            text: "Borne disponible",
+                          CustomText(
+                            text: reservation.parkingPlace.electricChargeStation
+                                ? "Borne disponible"
+                                : "Borne indisponible",
                             style: CustomTextStyle.smallParagraphMedium,
-                            color: AppColors.greenKre,
+                            color:
+                                reservation.parkingPlace.electricChargeStation
+                                ? AppColors.greenKre
+                                : AppColors.textKre,
                           ),
                         ],
                       ),
@@ -204,7 +218,9 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                       VGap(AppSpacing.px1 * 34),
                       CustomButton.filled(
                         text: "Retourner vers l’accueil",
-                        onPressed: () {},
+                        onPressed: () {
+                          locator<NavigationService>().back();
+                        },
                       ),
                       VGap(AppSpacing.px20),
                     ],

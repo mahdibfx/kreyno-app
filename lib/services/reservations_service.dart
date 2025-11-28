@@ -1,4 +1,5 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/extensions/api_response_extensions.dart';
 import 'package:kreyno/models/reservation.dart';
@@ -23,6 +24,18 @@ class ReservationsService with ListenableServiceMixin {
 
   ReservationsService() {
     listenToReactiveValues([_reservation]);
+  }
+
+  Future<Either<String, void>> buyerChangedLocation(
+    int reservationId,
+    LatLng location,
+    bool arrived,
+  ) {
+    return _apiReservationService.buyerChangedLocation(reservationId, {
+      "latitude": location.latitude,
+      "longitude": location.longitude,
+      "arrived": arrived,
+    }).toEither();
   }
 
   Future<Either<String, Reservation>> createReservation(

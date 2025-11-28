@@ -24,8 +24,6 @@ class SellerTrackingView extends StackedView<SellerTrackingViewModel> {
       body: Stack(
         children: [
           GoogleMap(
-            // scrollGesturesEnabled: false,
-            // zoomControlsEnabled: false,
             polylines: {
               Polyline(
                 width: 3,
@@ -36,12 +34,10 @@ class SellerTrackingView extends StackedView<SellerTrackingViewModel> {
 
                 polylineId: const PolylineId('userd'),
                 points: [
-                  // LatLng(
-                  //   viewModel.buyerLocation?.longitude ?? parkingSpot.longitude,
-                  //   viewModel.buyerLocation?.latitude ?? parkingSpot.latitude,
-                  // ),
-                  // LatLng(parkingSpot.latitude, parkingSpot.longitude),
-                  const LatLng(31.0444, 29.9510),
+                  LatLng(
+                    viewModel.currentLocationStream!.latitude,
+                    viewModel.currentLocationStream!.longitude,
+                  ),
                   LatLng(
                     reservation.parkingPlace.latitude,
                     reservation.parkingPlace.longitude,

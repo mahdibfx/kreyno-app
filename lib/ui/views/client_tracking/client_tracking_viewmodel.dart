@@ -58,14 +58,16 @@ class ClientTrackingViewModel extends ReactiveViewModel {
   }
 
   Future<void> completeReservation() async {
-    _navigationService.navigateToSpotSoldSuccessView();
-    return;
+    // _navigationService.navigateToSpotSoldSuccessView();
+    // return;
     final result = await _reservationsService.completeReservation(
       reservation!.id,
     );
 
     result.match((l) => _toastService.showError(title: l), (r) {
-      _navigationService.navigateToSpotSoldSuccessView();
+      _navigationService.navigateToSpotSoldSuccessView(
+        reservation: reservation!,
+      );
     });
   }
 

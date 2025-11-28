@@ -6,7 +6,14 @@ import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:stacked/stacked.dart';
 
-class LocationService {
+class LocationService with ListenableServiceMixin {
+  LatLng? _currentLocation;
+  LatLng? get currentLocation => _currentLocation;
+
+  LocationService() {
+    listenToReactiveValues([_currentLocation]);
+  }
+
   Future<Either<String, String>> getPlaceFromCoordinates(
     LatLng position,
   ) async {
@@ -26,6 +33,8 @@ class LocationService {
   Future<Either<String, Position>> getCurrentLocation() async {
     try {
       final position = await Geolocator.getCurrentPosition();
+      _currentLocation = LatLng(position.latitude, position.longitude);
+      notifyListeners();
       return Right(position);
     } catch (e) {
       return Left(e.toString());
@@ -41,6 +50,13 @@ class LocationService {
             distanceFilter: 10,
           ),
     );
+  }
+
+  listenToMyLocationReactive() {
+    listenToLocation().listen((event) {
+      _currentLocation = LatLng(event.latitude, event.longitude);
+      notifyListeners();
+    });
   }
 
   Future<Either<String, bool>> isLocationServiceEnabled() async {

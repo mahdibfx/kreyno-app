@@ -8,9 +8,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i36;
 import 'package:flutter/material.dart';
-import 'package:kreyno/models/parking_spot.dart' as _i38;
-import 'package:kreyno/models/reservation.dart' as _i39;
-import 'package:kreyno/models/wallet.dart' as _i37;
+import 'package:kreyno/models/parking_spot.dart' as _i39;
+import 'package:kreyno/models/reservation.dart' as _i37;
+import 'package:kreyno/models/wallet.dart' as _i38;
 import 'package:kreyno/ui/views/account_settings/account_settings_view.dart'
     as _i25;
 import 'package:kreyno/ui/views/add_bank_account/add_bank_account_view.dart'
@@ -322,20 +322,22 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i12.SpotSoldSuccessView: (data) {
-      final args = data.getArgs<SpotSoldSuccessViewArguments>(
-        orElse: () => const SpotSoldSuccessViewArguments(),
-      );
+      final args = data.getArgs<SpotSoldSuccessViewArguments>(nullOk: false);
       return _i36.MaterialPageRoute<dynamic>(
-        builder: (context) => _i12.SpotSoldSuccessView(key: args.key),
+        builder: (context) => _i12.SpotSoldSuccessView(
+          key: args.key,
+          reservation: args.reservation,
+        ),
         settings: data,
       );
     },
     _i13.SpotBoughtSuccessView: (data) {
-      final args = data.getArgs<SpotBoughtSuccessViewArguments>(
-        orElse: () => const SpotBoughtSuccessViewArguments(),
-      );
+      final args = data.getArgs<SpotBoughtSuccessViewArguments>(nullOk: false);
       return _i36.MaterialPageRoute<dynamic>(
-        builder: (context) => _i13.SpotBoughtSuccessView(key: args.key),
+        builder: (context) => _i13.SpotBoughtSuccessView(
+          key: args.key,
+          reservation: args.reservation,
+        ),
         settings: data,
       );
     },
@@ -773,46 +775,50 @@ class BuyerSpotDetailsViewArguments {
 }
 
 class SpotSoldSuccessViewArguments {
-  const SpotSoldSuccessViewArguments({this.key});
+  const SpotSoldSuccessViewArguments({this.key, required this.reservation});
 
   final _i36.Key? key;
 
+  final _i37.Reservation reservation;
+
   @override
   String toString() {
-    return '{"key": "$key"}';
+    return '{"key": "$key", "reservation": "$reservation"}';
   }
 
   @override
   bool operator ==(covariant SpotSoldSuccessViewArguments other) {
     if (identical(this, other)) return true;
-    return other.key == key;
+    return other.key == key && other.reservation == reservation;
   }
 
   @override
   int get hashCode {
-    return key.hashCode;
+    return key.hashCode ^ reservation.hashCode;
   }
 }
 
 class SpotBoughtSuccessViewArguments {
-  const SpotBoughtSuccessViewArguments({this.key});
+  const SpotBoughtSuccessViewArguments({this.key, required this.reservation});
 
   final _i36.Key? key;
 
+  final _i37.Reservation reservation;
+
   @override
   String toString() {
-    return '{"key": "$key"}';
+    return '{"key": "$key", "reservation": "$reservation"}';
   }
 
   @override
   bool operator ==(covariant SpotBoughtSuccessViewArguments other) {
     if (identical(this, other)) return true;
-    return other.key == key;
+    return other.key == key && other.reservation == reservation;
   }
 
   @override
   int get hashCode {
-    return key.hashCode;
+    return key.hashCode ^ reservation.hashCode;
   }
 }
 
@@ -1173,7 +1179,7 @@ class PayoutViewArguments {
 
   final _i36.Key? key;
 
-  final _i37.Wallet wallet;
+  final _i38.Wallet wallet;
 
   @override
   String toString() {
@@ -1245,9 +1251,9 @@ class ClientTrackingViewArguments {
 
   final _i36.Key? key;
 
-  final _i38.ParkingSpot parkingSpot;
+  final _i39.ParkingSpot parkingSpot;
 
-  final _i39.Reservation reservation;
+  final _i37.Reservation reservation;
 
   @override
   String toString() {
@@ -1273,7 +1279,7 @@ class SellerTrackingViewArguments {
 
   final _i36.Key? key;
 
-  final _i39.Reservation reservation;
+  final _i37.Reservation reservation;
 
   @override
   String toString() {
@@ -1499,6 +1505,7 @@ extension NavigatorStateExtension on _i40.NavigationService {
 
   Future<dynamic> navigateToSpotSoldSuccessView({
     _i36.Key? key,
+    required _i37.Reservation reservation,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1507,7 +1514,10 @@ extension NavigatorStateExtension on _i40.NavigationService {
   }) async {
     return navigateTo<dynamic>(
       Routes.spotSoldSuccessView,
-      arguments: SpotSoldSuccessViewArguments(key: key),
+      arguments: SpotSoldSuccessViewArguments(
+        key: key,
+        reservation: reservation,
+      ),
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,
@@ -1517,6 +1527,7 @@ extension NavigatorStateExtension on _i40.NavigationService {
 
   Future<dynamic> navigateToSpotBoughtSuccessView({
     _i36.Key? key,
+    required _i37.Reservation reservation,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1525,7 +1536,10 @@ extension NavigatorStateExtension on _i40.NavigationService {
   }) async {
     return navigateTo<dynamic>(
       Routes.spotBoughtSuccessView,
-      arguments: SpotBoughtSuccessViewArguments(key: key),
+      arguments: SpotBoughtSuccessViewArguments(
+        key: key,
+        reservation: reservation,
+      ),
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,
@@ -1823,7 +1837,7 @@ extension NavigatorStateExtension on _i40.NavigationService {
 
   Future<dynamic> navigateToPayoutView({
     _i36.Key? key,
-    required _i37.Wallet wallet,
+    required _i38.Wallet wallet,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1878,8 +1892,8 @@ extension NavigatorStateExtension on _i40.NavigationService {
 
   Future<dynamic> navigateToClientTrackingView({
     _i36.Key? key,
-    required _i38.ParkingSpot parkingSpot,
-    required _i39.Reservation reservation,
+    required _i39.ParkingSpot parkingSpot,
+    required _i37.Reservation reservation,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1902,7 +1916,7 @@ extension NavigatorStateExtension on _i40.NavigationService {
 
   Future<dynamic> navigateToSellerTrackingView({
     _i36.Key? key,
-    required _i39.Reservation reservation,
+    required _i37.Reservation reservation,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -2124,6 +2138,7 @@ extension NavigatorStateExtension on _i40.NavigationService {
 
   Future<dynamic> replaceWithSpotSoldSuccessView({
     _i36.Key? key,
+    required _i37.Reservation reservation,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -2132,7 +2147,10 @@ extension NavigatorStateExtension on _i40.NavigationService {
   }) async {
     return replaceWith<dynamic>(
       Routes.spotSoldSuccessView,
-      arguments: SpotSoldSuccessViewArguments(key: key),
+      arguments: SpotSoldSuccessViewArguments(
+        key: key,
+        reservation: reservation,
+      ),
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,
@@ -2142,6 +2160,7 @@ extension NavigatorStateExtension on _i40.NavigationService {
 
   Future<dynamic> replaceWithSpotBoughtSuccessView({
     _i36.Key? key,
+    required _i37.Reservation reservation,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -2150,7 +2169,10 @@ extension NavigatorStateExtension on _i40.NavigationService {
   }) async {
     return replaceWith<dynamic>(
       Routes.spotBoughtSuccessView,
-      arguments: SpotBoughtSuccessViewArguments(key: key),
+      arguments: SpotBoughtSuccessViewArguments(
+        key: key,
+        reservation: reservation,
+      ),
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,
@@ -2448,7 +2470,7 @@ extension NavigatorStateExtension on _i40.NavigationService {
 
   Future<dynamic> replaceWithPayoutView({
     _i36.Key? key,
-    required _i37.Wallet wallet,
+    required _i38.Wallet wallet,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -2503,8 +2525,8 @@ extension NavigatorStateExtension on _i40.NavigationService {
 
   Future<dynamic> replaceWithClientTrackingView({
     _i36.Key? key,
-    required _i38.ParkingSpot parkingSpot,
-    required _i39.Reservation reservation,
+    required _i39.ParkingSpot parkingSpot,
+    required _i37.Reservation reservation,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -2527,7 +2549,7 @@ extension NavigatorStateExtension on _i40.NavigationService {
 
   Future<dynamic> replaceWithSellerTrackingView({
     _i36.Key? key,
-    required _i39.Reservation reservation,
+    required _i37.Reservation reservation,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,

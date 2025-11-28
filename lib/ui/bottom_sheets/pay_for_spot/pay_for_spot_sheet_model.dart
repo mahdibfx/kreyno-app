@@ -131,27 +131,6 @@ class PayForSpotSheetModel extends BaseViewModel {
 
     _handleReservationResult(reservation);
     return;
-    _logger.i(paymentMethodId);
-    // 1. إنشاء SetupIntent
-    final setupIntentResult = await _stripeService.getSetupIntent();
-
-    setupIntentResult.match((error) => _toastService.showError(title: error), (
-      setupIntent,
-    ) async {
-      // 2. تهيئة PaymentSheet
-      try {
-        final initSheet = await Stripe.instance.retrievePaymentIntent(
-          setupIntent.clientSecret,
-        );
-        final confirmResult = await _stripeService.confirmPayment(
-          paymentIntentClientSecret: setupIntent.clientSecret,
-          paymentMethodId: paymentMethodId,
-        );
-
-        // 5. معالجة النتيجة
-        _handlePaymentResult(confirmResult, parkingSpot, paymentMethodId);
-      } catch (e) {}
-    });
   }
 
   _handlePaymentResult(

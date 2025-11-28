@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app_constants.dart';
+import 'package:kreyno/enums/reservation_status.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/views/home/home_viewmodel.dart';
+import 'package:kreyno/ui/views/home/widgets/buyer/buyer_confirm_arrive.dart';
 import 'package:kreyno/ui/views/my_let_place/widgets/smart/received_order_widget.dart';
 import 'package:kreyno/ui/views/client_tracking/widgets/tracking_course_widget.dart';
 import 'package:kreyno/ui/views/seller_tracking/seller_tracking_viewmodel.dart';
@@ -28,6 +30,7 @@ class BuyerWaitingConfirmation
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         // const SafeArea(child: CounterBar()),
+        const BuyerConfirmArrive(),
         const SizedBox(),
         BottomSheetLayout(
           body: Column(
@@ -153,32 +156,33 @@ class BuyerWaitingConfirmation
                 ),
               ),
               VGap(AppSpacing.px16),
-              Row(
-                children: [
-                  Expanded(
-                    child: CustomButton.filled(
-                      text: "Annuler",
-                      backgroundColor: AppColors.redKre,
-                      foregroundColor: AppColors.white,
-                      onPressed: () {
-                        locator<BottomSheetService>().showCustomSheet(
-                          variant: BottomSheetType.cancelationReasons,
-                          data: viewModel.reservation,
-                        );
-                      },
+              if (viewModel.reservation.status == ReservationStatus.confirmed)
+                Row(
+                  children: [
+                    Expanded(
+                      child: CustomButton.filled(
+                        text: "Annuler",
+                        backgroundColor: AppColors.redKre,
+                        foregroundColor: AppColors.white,
+                        onPressed: () {
+                          locator<BottomSheetService>().showCustomSheet(
+                            variant: BottomSheetType.cancelationReasons,
+                            data: viewModel.reservation,
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                  SizedBox(width: AppSpacing.px8),
-                  Expanded(
-                    child: CustomButton.filled(
-                      text: "Message",
-                      onPressed: () async {
-                        // locator<NavigationService>().navigatetoCh
-                      },
+                    SizedBox(width: AppSpacing.px8),
+                    Expanded(
+                      child: CustomButton.filled(
+                        text: "Message",
+                        onPressed: () async {
+                          // locator<NavigationService>().navigatetoCh
+                        },
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
               const SizedBox(height: 24),
             ],
           ),

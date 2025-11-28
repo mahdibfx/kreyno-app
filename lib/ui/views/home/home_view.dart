@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:kreyno/app/app.locator.dart';
-import 'package:kreyno/services/auth_service.dart';
-import 'package:kreyno/services/socket_service.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/views/home/widgets/buyer/buyer_selected_mark.dart';
