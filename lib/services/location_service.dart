@@ -32,6 +32,9 @@ class LocationService with ListenableServiceMixin {
 
   Future<Either<String, Position>> getCurrentLocation() async {
     try {
+      if (await Geolocator.checkPermission() == LocationPermission.denied) {
+        await Geolocator.requestPermission();
+      }
       final position = await Geolocator.getCurrentPosition();
       _currentLocation = LatLng(position.latitude, position.longitude);
       notifyListeners();

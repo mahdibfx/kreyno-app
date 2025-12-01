@@ -119,6 +119,7 @@ class SocketService {
 
     try {
       final privateChannel = _echo!.private(channel);
+
       echo!.connector.client.bind(event, (d, v) {
         _logger.i("Event received: $v $d");
         onEvent(d);

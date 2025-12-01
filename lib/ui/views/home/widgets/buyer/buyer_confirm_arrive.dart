@@ -27,7 +27,7 @@ class BuyerConfirmArrive extends ViewModelWidget<SellerTrackingViewModel> {
               if (viewModel.reservation.status == ReservationStatus.confirmed)
                 _statusBar(viewModel),
               VGap(AppSpacing.px12),
-              if (viewModel.nearParkingSpotLocation)
+              if (viewModel.nearParkingSpotLocation && !viewModel.isArrived)
                 _confirmArrivalWindow(viewModel),
               if (viewModel.isArrived) _arrivalConfirmed(viewModel),
             ],
@@ -58,13 +58,24 @@ class BuyerConfirmArrive extends ViewModelWidget<SellerTrackingViewModel> {
             ),
           ),
           HGap(AppSpacing.px8),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: AppColors.white,
+          GestureDetector(
+            onTap: () {
+              // locator<NavigationService>().navigateToChatView(
+              //   id: null,
+              //   name: '',
+              //   image: '',
+              //   phone: '',
+              //   reservationId: viewModel.reservation.id,
+              // );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: AppColors.white,
+              ),
+              padding: EdgeInsets.all(AppSpacing.px8),
+              child: SvgPicture.asset(AppIcons.chatRoundDots),
             ),
-            padding: EdgeInsets.all(AppSpacing.px8),
-            child: SvgPicture.asset(AppIcons.chatRoundDots),
           ),
         ],
       ),

@@ -7,25 +7,25 @@ part of 'car.dart';
 // **************************************************************************
 
 _Car _$CarFromJson(Map<String, dynamic> json) => _Car(
-  id: (json['id'] as num).toInt(),
-  vehicleType: $enumDecode(_$VehicleTypeEnumMap, json['car_type']),
+  id: (json['id'] as num?)?.toInt(),
+  vehicleType: $enumDecodeNullable(_$VehicleTypeEnumMap, json['car_type']),
   brand: json['brand'] as String,
   model: json['model'] as String,
   color: json['color'] as String,
   registrationNumber: json['registration_number'] as String,
-  co2Emission: json['co2_emission'] as num,
+  co2Emission: json['co2_emission'] as num?,
   isSelected: json['is_selected'] as bool? ?? false,
   image: _imageFromJson(json['image']),
 );
 
 Map<String, dynamic> _$CarToJson(_Car instance) => <String, dynamic>{
-  'id': instance.id,
-  'car_type': _$VehicleTypeEnumMap[instance.vehicleType]!,
+  'id': ?instance.id,
+  'car_type': ?_$VehicleTypeEnumMap[instance.vehicleType],
   'brand': instance.brand,
   'model': instance.model,
   'color': instance.color,
   'registration_number': instance.registrationNumber,
-  'co2_emission': instance.co2Emission,
+  'co2_emission': ?instance.co2Emission,
   'is_selected': instance.isSelected,
   'image': ?_imageToJson(instance.image),
 };

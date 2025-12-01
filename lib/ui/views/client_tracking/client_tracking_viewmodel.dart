@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
+import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/models/reservation.dart';
 import 'package:kreyno/services/reservations_service.dart';
 import 'package:kreyno/services/toast_service.dart';
@@ -20,13 +21,24 @@ class ClientTrackingViewModel extends ReactiveViewModel {
 
   get userId => _userService.currentUser?.id;
   get buyerLocation => _trackingService.buyerLocationUpdated;
-  get buyerArrived => _trackingService.buyerArrived;
+  bool get buyerArrived =>
+      _trackingService.buyerLocationUpdated?.arrived ?? false;
   bool cancelButtonDisabled = true;
   String remainingTime = "05:00";
   int remainingSeconds = 0;
   int seconds = 0;
   Timer? _timer;
   Reservation? reservation;
+
+  goToChat() {
+    _navigationService.navigateToChatView(
+      reservationId: reservation!.id,
+      id: reservation!.id,
+      name: reservation!.buyer.username,
+      image: reservation!.buyer.avatar?.url ?? AppConstants.defaultAvatarUrl,
+      phone: reservation!.buyer.phone,
+    );
+  }
 
   String formatSecondsToMMSS(int totalSeconds) {
     final minutes = totalSeconds ~/ 60; // integer division

@@ -1,4 +1,6 @@
+import 'package:dart_geohash/dart_geohash.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
@@ -47,6 +49,8 @@ class HomeViewModel extends ReactiveViewModel {
   CameraPosition get initialCameraPosition =>
       GoogleMapService.initialCameraPosition;
 
+  LatLng? _lastPosition;
+
   void onMapCreated(GoogleMapController controller) {
     _googleMapService.onMapCreated(controller);
   }
@@ -60,8 +64,10 @@ class HomeViewModel extends ReactiveViewModel {
     rebuildUi();
   }
 
-  getNearbyPlaces() async {
-    Logger().i("Getting nearby places ..");
+  Future<void> getNearbyPlaces() async {
+    Logger().i(
+      "Getting nearby places ..  ${_locationService.currentLocation?.latitude ?? 0}, ${_locationService.currentLocation?.longitude ?? 0}",
+    );
     _loadingPlaces = true;
     rebuildUi();
     _spotsMarkers.clear();
@@ -70,7 +76,7 @@ class HomeViewModel extends ReactiveViewModel {
     final result = await _parkingSpotService.getNearbyParkingSpots(
       _locationService.currentLocation?.latitude ?? 0,
       _locationService.currentLocation?.longitude ?? 0,
-      8,
+      10,
     );
     result.match(
       (errorMessage) {
@@ -85,8 +91,15 @@ class HomeViewModel extends ReactiveViewModel {
           return Marker(
             markerId: MarkerId(spot.id.toString()),
             position: LatLng(spot.latitude, spot.longitude),
-            icon: AssetMapBitmap("assets/images/Map_pin.png"),
-            // infoWindow: InfoWindow(snippet: spot.address),
+
+            icon: AssetMapBitmap(
+              spot.electricChargeStation
+                  ? "assets/images/electric_place_pin.png"
+                  : "assets/images/normal_parking_pin.png",
+              width: 42,
+              height: 55,
+            ),
+
             onTap: () {
               _selectedSpot = spot;
               rebuildUi();
@@ -97,8 +110,38 @@ class HomeViewModel extends ReactiveViewModel {
         rebuildUi();
       },
     );
+    final hash = GeoHash.fromDecimalDegrees(
+      _locationService.currentLocation?.longitude ?? 0,
+      _locationService.currentLocation?.latitude ?? 0,
+    );
+
+    _trackingService.listenToPlacesChange(
+      parkingSpots.isEmpty ? hash.geohash : parkingSpots.first.geoHash,
+    );
     _loadingPlaces = false;
     rebuildUi();
+  }
+
+  final double _targetDistance = 1000;
+
+  void onLocationUpdate(LatLng newPosition) {
+    if (_lastPosition != null) {
+      double distance = Geolocator.distanceBetween(
+        _lastPosition!.latitude,
+        _lastPosition!.longitude,
+        newPosition.latitude,
+        newPosition.longitude,
+      );
+
+      // Add to total
+      if (distance > _targetDistance) {
+        getNearbyPlaces();
+        distance = 0;
+      }
+
+      // Update last position
+      _lastPosition = newPosition;
+    }
   }
 
   void initHome() async {
@@ -107,7 +150,11 @@ class HomeViewModel extends ReactiveViewModel {
     // TODO: check if user has a location permission first
     await goToCurrentLocation();
     int fireIdStored = _trackingService.fireId;
-    getNearbyPlaces();
+    await getNearbyPlaces();
+    _locationService.listenToMyLocationReactive();
+    _locationService.addListener(() {
+      onLocationUpdate(_locationService.currentLocation!);
+    });
     _trackingService.addListener(() {
       if (fireIdStored != _trackingService.fireId) {
         getNearbyPlaces();
@@ -123,10 +170,11 @@ class HomeViewModel extends ReactiveViewModel {
         _logger.e('Failed to get current location: $error');
       },
       (location) async {
+        _lastPosition = LatLng(location.latitude, location.longitude);
         _animateToCameraPosition(
           CameraPosition(
             target: LatLng(location.latitude, location.longitude),
-            zoom: 15,
+            zoom: 10,
           ),
         );
       },
@@ -176,5 +224,6 @@ class HomeViewModel extends ReactiveViewModel {
   List<ListenableServiceMixin> get listenableServices => [
     _userService,
     _trackingService,
+    _locationService,
   ];
 }

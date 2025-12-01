@@ -146,14 +146,14 @@ class PayForSpotSheetModel extends BaseViewModel {
           // إنشاء الحجز
           final reservation = await _reservationService.createReservation(
             parkingSpot.id,
-            "pm_22994881993884d881",
+            paymentMethodId,
           );
 
           _handleReservationResult(reservation);
           break;
 
         default:
-          _toastService.showError(title: "عملية الدفع لم تكتمل");
+          _toastService.showError(title: "An error occured");
       }
     });
   }

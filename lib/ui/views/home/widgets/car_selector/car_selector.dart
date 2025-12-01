@@ -103,7 +103,7 @@ class CarSelector extends StackedView<CarSelectorModel> {
       children: [
         for (final car in viewModel.cars)
           GestureDetector(
-            onTap: car.isSelected ? null : () => viewModel.selectCar(car.id),
+            onTap: car.isSelected ? null : () => viewModel.selectCar(car.id!),
             child: Container(
               color: Colors.transparent,
               child: Row(
@@ -303,7 +303,7 @@ class CarSelector extends StackedView<CarSelectorModel> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomText.labelRegular(
+                          const CustomText.labelRegular(
                             "Véhicule choisi",
                             color: AppColors.textKre,
                           ),

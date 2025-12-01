@@ -109,7 +109,10 @@ class ReservationsService with ListenableServiceMixin {
             final reservationReceived = Reservation.fromJson(reservationData);
 
             // Update the reservation
+            _reservation = null;
+
             _reservation = reservationReceived;
+
             notifyListeners();
 
             _logger.i("✅ Reservation updated successfully");

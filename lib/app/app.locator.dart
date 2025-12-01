@@ -15,6 +15,7 @@ import 'package:stacked_shared/stacked_shared.dart';
 import '../services/api/dio_service.dart';
 import '../services/auth_service.dart';
 import '../services/cars_service.dart';
+import '../services/chat_service.dart';
 import '../services/device_service.dart';
 import '../services/google_map_service.dart';
 import '../services/location_service.dart';
@@ -67,4 +68,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => LocationService());
   locator.registerFactory(() => GoogleMapService());
   locator.registerLazySingleton(() => TrackingService());
+  locator.registerLazySingleton(() => ChatService());
 }

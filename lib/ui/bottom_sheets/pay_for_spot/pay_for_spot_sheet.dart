@@ -37,7 +37,7 @@ class PayForSpotSheet extends StackedView<PayForSpotSheetModel> {
     PayForSpotSheetModel viewModel,
     Widget? child,
   ) {
-    print(viewModel.cards.length);
+    print(viewModel.paymentMethodId.isEmpty);
     return BottomSheetLayout(
       body: AnimatedSwitcher(
         duration: const Duration(milliseconds: 400),
@@ -239,7 +239,8 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
         VGap(AppSpacing.px24),
         CustomButton.filled(
           text: "Payer & réserver cette place",
-          isDisabled: viewModel.cards.isEmpty,
+          isDisabled:
+              viewModel.cards.isEmpty || viewModel.paymentMethodId.isEmpty,
           onPressed: () async {
             viewModel.paySubmitted(parkingSpot);
             // final result = await locator<StripeService>().getSetupIntent();

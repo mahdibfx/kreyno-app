@@ -5,17 +5,21 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/enums/reservation_status.dart';
 import 'package:kreyno/models/reservation.dart';
+import 'package:kreyno/services/google_map_service.dart';
 import 'package:kreyno/services/location_service.dart';
 import 'package:kreyno/services/reservations_service.dart';
 import 'package:kreyno/services/toast_service.dart';
 import 'package:kreyno/services/tracking_service.dart';
+import 'package:kreyno/services/user_service.dart';
 import 'package:kreyno/ui/views/spot_bought_success/spot_bought_success_view.dart';
+import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class SellerTrackingViewModel extends ReactiveViewModel {
   final _locationService = locator<LocationService>();
   final _toastService = locator<ToastService>();
+  late GoogleMapController googleController;
 
   final _reservationService = locator<ReservationsService>();
   final _navigationService = locator<NavigationService>();
@@ -31,6 +35,11 @@ class SellerTrackingViewModel extends ReactiveViewModel {
   bool get isArrived => _isArrived;
   bool _nearParkingSpotLocation = false;
   bool get nearParkingSpotLocation => _nearParkingSpotLocation;
+  setMapController(GoogleMapController controller) {
+    googleController = controller;
+    rebuildUi();
+  }
+
   setArrived() {
     _isArrived = true;
     rebuildUi();
@@ -82,6 +91,7 @@ class SellerTrackingViewModel extends ReactiveViewModel {
         },
         (r) {
           currentLocation = LatLng(r.latitude, r.longitude);
+          listenToReservationUpdates();
           rebuildUi();
         },
       );
@@ -90,7 +100,9 @@ class SellerTrackingViewModel extends ReactiveViewModel {
   }
 
   listenToReservationUpdates() {
-    _reservationService.listenToReservationUpdates(_reservation!.id);
+    _reservationService.listenToReservationStatusChanged(
+      locator<UserService>().currentUser!.id,
+    );
     listenableServices.first.addListener(() {
       if (_reservationService.reservation?.status ==
           ReservationStatus.canceled) {
@@ -109,8 +121,10 @@ class SellerTrackingViewModel extends ReactiveViewModel {
               "Après 5 min, l’hôte peut annuler et vous serez remboursé.",
           duration: const Duration(seconds: 5),
         );
+        _reservation = _reservationService.reservation;
+        notifyListeners();
       } else if (_reservationService.reservation?.status ==
-          ReservationStatus.confirmed) {
+          ReservationStatus.finished) {
         _navigationService.clearTillFirstAndShowView(
           SpotBoughtSuccessView(reservation: reservation),
         );
@@ -126,6 +140,12 @@ class SellerTrackingViewModel extends ReactiveViewModel {
         currentLocation!,
         parkingSpotLocation,
         500,
+      );
+
+      print("called here : $_nearParkingSpotLocation");
+
+      googleController.animateCamera(
+        CameraUpdate.newLatLngZoom(currentLocationStream!, 15),
       );
       rebuildUi();
     });

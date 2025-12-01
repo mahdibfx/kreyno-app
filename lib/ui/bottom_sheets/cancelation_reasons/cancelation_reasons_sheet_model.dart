@@ -31,9 +31,9 @@ class CancelationReasonsSheetModel extends BaseViewModel {
         _toastService.showError(title: l);
       },
       (r) {
-        _navigationService.back();
-        _navigationService.back();
-        _reservationService.removeReservation();
+        // _navigationService.back();
+        // _navigationService.back();
+        // _reservationService.removeReservation();
       },
     );
   }

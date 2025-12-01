@@ -19,30 +19,34 @@ class MyLetPlaceView extends StackedView<MyLetPlaceViewModel> {
     MyLetPlaceViewModel viewModel,
     Widget? child,
   ) {
-    return ViewModelBuilder.reactive(
-      viewModelBuilder: () => viewModel,
-      builder: (context, viewModel, child) => Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            locator<NavigationService>().navigateToClientTrackingView(
-              parkingSpot: viewModel.parkingSpot!,
-              reservation: viewModel.reservation!,
-            );
-          },
-        ),
-        body: Stack(
-          children: [
-            GoogleMap(
-              initialCameraPosition: CameraPosition(
-                zoom: 17,
-                target: LatLng(
-                  viewModel.parkingSpot!.latitude,
-                  viewModel.parkingSpot!.longitude,
+    return PopScope(
+      canPop: false,
+
+      child: ViewModelBuilder.reactive(
+        viewModelBuilder: () => viewModel,
+        builder: (context, viewModel, child) => Scaffold(
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              locator<NavigationService>().navigateToClientTrackingView(
+                parkingSpot: viewModel.parkingSpot!,
+                reservation: viewModel.reservation!,
+              );
+            },
+          ),
+          body: Stack(
+            children: [
+              GoogleMap(
+                initialCameraPosition: CameraPosition(
+                  zoom: 17,
+                  target: LatLng(
+                    viewModel.parkingSpot!.latitude,
+                    viewModel.parkingSpot!.longitude,
+                  ),
                 ),
               ),
-            ),
-            const MyMarkerDetails(),
-          ],
+              const MyMarkerDetails(),
+            ],
+          ),
         ),
       ),
     );

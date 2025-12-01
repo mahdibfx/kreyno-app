@@ -75,6 +75,7 @@ import 'package:kreyno/ui/views/client_tracking/client_tracking_view.dart';
 import 'package:kreyno/services/tracking_service.dart';
 import 'package:kreyno/ui/views/seller_tracking/seller_tracking_view.dart';
 import 'package:kreyno/ui/views/chat/chat_view.dart';
+import 'package:kreyno/services/chat_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -139,6 +140,7 @@ import 'package:kreyno/ui/views/chat/chat_view.dart';
     LazySingleton(classType: LocationService),
     Factory(classType: GoogleMapService),
     LazySingleton(classType: TrackingService),
+    LazySingleton(classType: ChatService),
     // @stacked-service
   ],
   bottomsheets: [

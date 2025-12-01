@@ -253,7 +253,7 @@ class MyVehicleCard extends StatelessWidget {
                               ),
                               SizedBox(width: AppSpacing.px4),
                               CustomText.smallParagraphMedium(
-                                "${vehicle.co2Emission} ∼ ${vehicle.co2Emission + 6}",
+                                "${vehicle.co2Emission} ∼ ${vehicle.co2Emission! + 6}",
                               ),
                             ],
                           ),

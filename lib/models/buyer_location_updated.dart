@@ -12,7 +12,7 @@ class BuyerLocationUpdated {
 
   factory BuyerLocationUpdated.fromJson(Map<String, dynamic> json) {
     return BuyerLocationUpdated(
-      reservationId: json['reservationId'],
+      reservationId: json['reservation_id'],
       latitude: json['latitude'],
       longitude: json['longitude'],
       arrived: json['arrived'],

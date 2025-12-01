@@ -7,13 +7,13 @@ part 'car.g.dart';
 @freezed
 abstract class Car with _$Car {
   const factory Car({
-    @JsonKey(name: "id") required int id,
-    @JsonKey(name: "car_type") required VehicleType vehicleType,
+    @JsonKey(name: "id") int? id,
+    @JsonKey(name: "car_type") VehicleType? vehicleType,
     @JsonKey(name: "brand") required String brand,
     @JsonKey(name: "model") required String model,
     @JsonKey(name: "color") required String color,
     @JsonKey(name: "registration_number") required String registrationNumber,
-    @JsonKey(name: "co2_emission") required num co2Emission,
+    @JsonKey(name: "co2_emission") num? co2Emission,
     @Default(false) @JsonKey(name: "is_selected") bool isSelected,
     @JsonKey(name: "image", fromJson: _imageFromJson, toJson: _imageToJson)
     @JsonKey(name: "image")

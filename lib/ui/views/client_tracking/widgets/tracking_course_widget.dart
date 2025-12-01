@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/views/client_tracking/client_tracking_viewmodel.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
+import 'package:kreyno/ui/widgets/dumb/custom_divider.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
@@ -20,9 +22,13 @@ class TrackingCourseWidget extends ViewModelWidget<ClientTrackingViewModel> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Column(
+        Column(
           mainAxisSize: MainAxisSize.min,
-          children: [CounterAppBar(), YourClientArrived()],
+          children: [
+            const CounterAppBar(),
+
+            if (viewModel.buyerArrived) const YourClientArrived(),
+          ],
         ),
         BottomActionBar(),
       ],
@@ -47,18 +53,22 @@ class CounterAppBar extends ViewModelWidget<ClientTrackingViewModel> {
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.network(
-              "https://picsum.photos/50/50",
+              viewModel.reservation!.buyer.avatar?.url ??
+                  AppConstants.defaultAvatarUrl,
+              fit: BoxFit.cover,
               width: AppSpacing.px1 * 40,
               height: AppSpacing.px1 * 40,
             ),
           ),
           HGap(AppSpacing.px8),
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomText.smallParagraphBold("sarah.dupons92"),
+              CustomText.smallParagraphBold(
+                viewModel.reservation!.buyer.username,
+              ),
               CustomText.smallParagraphMedium(
-                "Renault Clio 5 · DE-123-JW",
+                "${viewModel.reservation!.buyer.car.brand} ${viewModel.reservation!.buyer.car.model} · ${viewModel.reservation!.buyer.car.registrationNumber}",
                 color: AppColors.textKre,
               ),
             ],
@@ -112,22 +122,40 @@ class BottomActionBar extends ViewModelWidget<ClientTrackingViewModel> {
           if (viewModel.buyerArrived)
             Column(
               children: [
-                const CustomText.title(
-                  "58-64 Rue de l'Université, 75007 Paris, France",
+                CustomText.title(
+                  viewModel.reservation!.parkingPlace.address,
                   maxLines: 2,
                 ),
                 VGap(AppSpacing.px8),
                 Row(
                   children: [
-                    const CustomIcon(
+                    CustomIcon(
                       iconPath: AppIcons.evCharging,
-                      color: AppColors.greenKre,
+                      color:
+                          viewModel
+                              .reservation!
+                              .parkingPlace
+                              .electricChargeStation
+                          ? AppColors.greenKre
+                          : AppColors.textKre,
                     ),
                     HGap(AppSpacing.px4),
-                    const CustomText(
-                      text: "Borne disponible",
+                    CustomText(
+                      text:
+                          viewModel
+                              .reservation!
+                              .parkingPlace
+                              .electricChargeStation
+                          ? "Borne disponible"
+                          : "Borne indisponible",
                       style: CustomTextStyle.smallParagraphMedium,
-                      color: AppColors.greenKre,
+                      color:
+                          viewModel
+                              .reservation!
+                              .parkingPlace
+                              .electricChargeStation
+                          ? AppColors.greenKre
+                          : AppColors.textKre,
                     ),
                     HGap(AppSpacing.px8),
                     Row(
@@ -148,9 +176,14 @@ class BottomActionBar extends ViewModelWidget<ClientTrackingViewModel> {
                 ),
               ],
             ),
-          // VGap(AppSpacing.px16),
-          // const CustomDivider(),
-          // VGap(AppSpacing.px16),
+          if (viewModel.buyerArrived)
+            Column(
+              children: [
+                VGap(AppSpacing.px16),
+                const CustomDivider(),
+                VGap(AppSpacing.px16),
+              ],
+            ),
           SafeArea(
             top: false,
             child: Row(
@@ -172,7 +205,12 @@ class BottomActionBar extends ViewModelWidget<ClientTrackingViewModel> {
                 ),
                 SizedBox(width: AppSpacing.px8),
                 Expanded(
-                  child: CustomButton.filled(text: "Message", onPressed: () {}),
+                  child: CustomButton.filled(
+                    text: "Message",
+                    onPressed: () {
+                      viewModel.goToChat();
+                    },
+                  ),
                 ),
               ],
             ),

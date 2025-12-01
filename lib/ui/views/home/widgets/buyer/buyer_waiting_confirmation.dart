@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/enums/reservation_status.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
@@ -65,9 +66,11 @@ class BuyerWaitingConfirmation
               VGap(AppSpacing.px8),
               Row(
                 children: [
-                  const CustomIcon(
+                  CustomIcon(
                     iconPath: AppIcons.evCharging,
-                    color: AppColors.greenKre,
+                    color: viewModel.parkingSpot.electricChargeStation
+                        ? AppColors.greenKre
+                        : AppColors.textKre,
                   ),
                   HGap(AppSpacing.px4),
                   CustomText(
@@ -156,7 +159,7 @@ class BuyerWaitingConfirmation
                 ),
               ),
               VGap(AppSpacing.px16),
-              if (viewModel.reservation.status == ReservationStatus.confirmed)
+              if (viewModel.reservation.status == ReservationStatus.pending)
                 Row(
                   children: [
                     Expanded(
@@ -177,7 +180,15 @@ class BuyerWaitingConfirmation
                       child: CustomButton.filled(
                         text: "Message",
                         onPressed: () async {
-                          // locator<NavigationService>().navigatetoCh
+                          locator<NavigationService>().navigateToChatView(
+                            id: 0,
+                            name: viewModel.parkingSpot.seller.username,
+                            image:
+                                viewModel.parkingSpot.seller.avatar?.url ??
+                                AppConstants.defaultAvatarUrl,
+                            phone: viewModel.parkingSpot.seller.phone,
+                            reservationId: viewModel.reservation.id,
+                          );
                         },
                       ),
                     ),

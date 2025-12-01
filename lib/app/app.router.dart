@@ -534,11 +534,16 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i35.ChatView: (data) {
-      final args = data.getArgs<ChatViewArguments>(
-        orElse: () => const ChatViewArguments(),
-      );
+      final args = data.getArgs<ChatViewArguments>(nullOk: false);
       return _i36.MaterialPageRoute<dynamic>(
-        builder: (context) => _i35.ChatView(key: args.key),
+        builder: (context) => _i35.ChatView(
+          key: args.key,
+          id: args.id,
+          name: args.name,
+          image: args.image,
+          phone: args.phone,
+          reservationId: args.reservationId,
+        ),
         settings: data,
       );
     },
@@ -1299,24 +1304,51 @@ class SellerTrackingViewArguments {
 }
 
 class ChatViewArguments {
-  const ChatViewArguments({this.key});
+  const ChatViewArguments({
+    this.key,
+    required this.id,
+    required this.name,
+    required this.image,
+    required this.phone,
+    required this.reservationId,
+  });
 
   final _i36.Key? key;
 
+  final int id;
+
+  final String name;
+
+  final String image;
+
+  final String phone;
+
+  final int reservationId;
+
   @override
   String toString() {
-    return '{"key": "$key"}';
+    return '{"key": "$key", "id": "$id", "name": "$name", "image": "$image", "phone": "$phone", "reservationId": "$reservationId"}';
   }
 
   @override
   bool operator ==(covariant ChatViewArguments other) {
     if (identical(this, other)) return true;
-    return other.key == key;
+    return other.key == key &&
+        other.id == id &&
+        other.name == name &&
+        other.image == image &&
+        other.phone == phone &&
+        other.reservationId == reservationId;
   }
 
   @override
   int get hashCode {
-    return key.hashCode;
+    return key.hashCode ^
+        id.hashCode ^
+        name.hashCode ^
+        image.hashCode ^
+        phone.hashCode ^
+        reservationId.hashCode;
   }
 }
 
@@ -1938,6 +1970,11 @@ extension NavigatorStateExtension on _i40.NavigationService {
 
   Future<dynamic> navigateToChatView({
     _i36.Key? key,
+    required int id,
+    required String name,
+    required String image,
+    required String phone,
+    required int reservationId,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1946,7 +1983,14 @@ extension NavigatorStateExtension on _i40.NavigationService {
   }) async {
     return navigateTo<dynamic>(
       Routes.chatView,
-      arguments: ChatViewArguments(key: key),
+      arguments: ChatViewArguments(
+        key: key,
+        id: id,
+        name: name,
+        image: image,
+        phone: phone,
+        reservationId: reservationId,
+      ),
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,
@@ -2571,6 +2615,11 @@ extension NavigatorStateExtension on _i40.NavigationService {
 
   Future<dynamic> replaceWithChatView({
     _i36.Key? key,
+    required int id,
+    required String name,
+    required String image,
+    required String phone,
+    required int reservationId,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -2579,7 +2628,14 @@ extension NavigatorStateExtension on _i40.NavigationService {
   }) async {
     return replaceWith<dynamic>(
       Routes.chatView,
-      arguments: ChatViewArguments(key: key),
+      arguments: ChatViewArguments(
+        key: key,
+        id: id,
+        name: name,
+        image: image,
+        phone: phone,
+        reservationId: reservationId,
+      ),
       id: routerId,
       preventDuplicates: preventDuplicates,
       parameters: parameters,

@@ -22,12 +22,13 @@ class ClientTrackingView extends StackedView<ClientTrackingViewModel> {
     ClientTrackingViewModel viewModel,
     Widget? child,
   ) {
+    print(viewModel.buyerLocation.toJson().toString());
     return Scaffold(
       body: Stack(
         children: [
           GoogleMap(
-            scrollGesturesEnabled: false,
-            zoomControlsEnabled: false,
+            scrollGesturesEnabled: true,
+            zoomControlsEnabled: true,
             polylines: {
               Polyline(
                 width: 3,
@@ -39,8 +40,8 @@ class ClientTrackingView extends StackedView<ClientTrackingViewModel> {
                 polylineId: const PolylineId('userd'),
                 points: [
                   LatLng(
-                    viewModel.buyerLocation?.longitude ?? parkingSpot.longitude,
-                    viewModel.buyerLocation?.latitude ?? parkingSpot.latitude,
+                    viewModel.buyerLocation?.latitude,
+                    viewModel.buyerLocation?.longitude,
                   ),
                   LatLng(parkingSpot.latitude, parkingSpot.longitude),
                 ],

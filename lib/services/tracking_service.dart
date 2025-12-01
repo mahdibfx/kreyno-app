@@ -18,7 +18,7 @@ class TrackingService with ListenableServiceMixin {
     listenToReactiveValues([_buyerLocationUpdated, fireId]);
   }
 
-  Future<void> listenToPlacesChange(int userId) async {
+  Future<void> listenToPlacesChange(String geoHash) async {
     try {
       // Check if socket is initialized
       if (!_wsService.isConnected) {
@@ -26,24 +26,22 @@ class TrackingService with ListenableServiceMixin {
         if (token == null) {
           return;
         }
-        _wsService.initialize(authToken: token, userId: userId.toString());
+        _wsService.initialize(authToken: token, userId: "".toString());
         // Wait a bit for connection to establish
         await Future.delayed(const Duration(seconds: 2));
         _wsService.debugStatus();
-      } else {
-        Logger().i("[RESERVATION] ✅ Socket already initialized and connected");
-      }
+      } else {}
       // Verify echo is available after initialization
       if (!_wsService.isConnected) {
-        Logger().e(
-          "[RESERVATION] ❌ CRITICAL: Echo still null after initialization!",
-        );
-        Logger().e("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         return;
       }
       // Subscribe to the private channel
+
+      try {
+        _wsService.leaveChannel("parking.zone.$geoHash");
+      } catch (e) {}
       _wsService.listenToPrivateChannel(
-        channel: 'user.$userId',
+        channel: 'parking.zone.$geoHash',
         event: 'parking-place.grid-updated',
         onEvent: (event) {
           try {

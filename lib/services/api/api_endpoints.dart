@@ -11,7 +11,7 @@ class ApiEndpoints {
   static const String _carBaseUrl = 'cars';
   static const String _parkingPlaceBaseUrl = 'parking-places';
   static const String _reservationBaseUrl = 'reservations';
-  static const String _reservationChatBaseUrl = 'reservation-chats';
+  static const String _reservationChatBaseUrl = 'reservation-chat';
   static const String _walletBaseUrl = 'wallet';
 
   // AUTH
