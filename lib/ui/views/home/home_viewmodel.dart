@@ -51,6 +51,37 @@ class HomeViewModel extends ReactiveViewModel {
 
   LatLng? _lastPosition;
 
+  String get distanceToSelectedSpot {
+    if (_lastPosition == null || _selectedSpot == null) return "0 km";
+    final distanceInMeters = Geolocator.distanceBetween(
+      _lastPosition!.latitude,
+      _lastPosition!.longitude,
+      _selectedSpot!.latitude,
+      _selectedSpot!.longitude,
+    );
+    return "${(distanceInMeters / 1000).toStringAsFixed(1)} km";
+  }
+
+  String get timeToSelectedSpot {
+    if (_lastPosition == null || _selectedSpot == null) return "0 min";
+    final distanceInMeters = Geolocator.distanceBetween(
+      _lastPosition!.latitude,
+      _lastPosition!.longitude,
+      _selectedSpot!.latitude,
+      _selectedSpot!.longitude,
+    );
+    // Assuming average speed of 30 km/h = 8.33 m/s
+    final timeInSeconds = distanceInMeters / 8.33;
+    final timeInMinutes = (timeInSeconds / 60).ceil();
+    return "$timeInMinutes min";
+  }
+
+  Future<void> openFilterBottomSheet() async {
+    final result = await _bottomSheetService.showCustomSheet(
+      variant: BottomSheetType.homeFilter,
+    );
+  }
+
   void onMapCreated(GoogleMapController controller) {
     _googleMapService.onMapCreated(controller);
   }

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/models/user.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
@@ -303,8 +304,8 @@ class CarSelector extends StackedView<CarSelectorModel> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const CustomText.labelRegular(
-                            "Véhicule choisi",
+                          CustomText.labelRegular(
+                            "carSelector.vehicleChosen".tr(),
                             color: AppColors.textKre,
                           ),
                           CustomText.smallParagraphMedium(

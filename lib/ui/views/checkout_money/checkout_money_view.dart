@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
@@ -39,11 +40,11 @@ class CheckoutMoneyView extends StackedView<CheckoutMoneyViewModel> {
               variant: BottomSheetType.checkoutMoneyFeedback,
             );
           },
-          text: "Retirer",
+          text: "checkoutMoney.withdraw".tr(),
         ),
       ),
       backgroundColor: AppColors.white,
-      appBar: MyAppBar(title: "Retirer mon argent"),
+      appBar: MyAppBar(title: "checkoutMoney.title".tr()),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
         child: Column(
@@ -68,14 +69,14 @@ class CheckoutMoneyView extends StackedView<CheckoutMoneyViewModel> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                child: const Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText.smallParagraphMedium(
-                      "Votre balance",
+                      "checkoutMoney.yourBalance".tr(),
                       color: AppColors.placeholderKre,
                     ),
-                    CustomText.largeTitle("33.25€", color: Colors.white),
+                    const CustomText.largeTitle("33.25€", color: Colors.white),
                   ],
                 ),
               ),
@@ -94,7 +95,7 @@ class CheckoutMoneyView extends StackedView<CheckoutMoneyViewModel> {
             InputField(
               controller: TextEditingController(),
               focusNode: FocusNode(),
-              labelText: "Montant de retrait",
+              labelText: "checkoutMoney.withdrawalAmount".tr(),
               hintText: "",
               trailingIcon: const Padding(
                 padding: EdgeInsets.all(12),

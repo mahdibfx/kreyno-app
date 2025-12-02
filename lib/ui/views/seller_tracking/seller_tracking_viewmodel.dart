@@ -1,18 +1,17 @@
 import 'dart:math';
-import 'dart:ui';
 
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/enums/reservation_status.dart';
 import 'package:kreyno/models/reservation.dart';
-import 'package:kreyno/services/google_map_service.dart';
 import 'package:kreyno/services/location_service.dart';
 import 'package:kreyno/services/reservations_service.dart';
 import 'package:kreyno/services/toast_service.dart';
-import 'package:kreyno/services/tracking_service.dart';
 import 'package:kreyno/services/user_service.dart';
 import 'package:kreyno/ui/views/spot_bought_success/spot_bought_success_view.dart';
-import 'package:logger/logger.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -38,6 +37,31 @@ class SellerTrackingViewModel extends ReactiveViewModel {
   setMapController(GoogleMapController controller) {
     googleController = controller;
     rebuildUi();
+  }
+
+  String get distanceToSpot {
+    if (currentLocationStream == null || _parkingSpot == null) return "0 km";
+    final distanceInMeters = Geolocator.distanceBetween(
+      currentLocationStream!.latitude,
+      currentLocationStream!.longitude,
+      _parkingSpot!.latitude,
+      _parkingSpot!.longitude,
+    );
+    return "${(distanceInMeters / 1000).toStringAsFixed(1)} km";
+  }
+
+  String get timeToSpot {
+    if (currentLocationStream == null || _parkingSpot == null) return "0 min";
+    final distanceInMeters = Geolocator.distanceBetween(
+      currentLocationStream!.latitude,
+      currentLocationStream!.longitude,
+      _parkingSpot!.latitude,
+      _parkingSpot!.longitude,
+    );
+    // Assuming average speed of 30 km/h = 8.33 m/s
+    final timeInSeconds = distanceInMeters / 8.33;
+    final timeInMinutes = (timeInSeconds / 60).ceil();
+    return "$timeInMinutes min";
   }
 
   setArrived() {
@@ -111,14 +135,13 @@ class SellerTrackingViewModel extends ReactiveViewModel {
         _navigationService.back();
         _navigationService.back();
 
-        _toastService.showError(title: "Reservation annulée par le client");
+        // _toastService.showError(title: "clientCanceledOrder.title".tr());
       } else if (_reservationService.reservation?.status ==
           ReservationStatus.confirmed) {
         _locationService.listenToMyLocationReactive();
         _toastService.showInfo(
-          title: "Reservation confirmée",
-          description:
-              "Après 5 min, l’hôte peut annuler et vous serez remboursé.",
+          title: "sellerTracking.reservationConfirmed".tr(),
+          description: "sellerConfirmedForBuyer.cancellationPolicy".tr(),
           duration: const Duration(seconds: 5),
         );
         _reservation = _reservationService.reservation;

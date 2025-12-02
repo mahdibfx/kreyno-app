@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
@@ -75,8 +76,8 @@ class BuyerWaitingConfirmation
                   HGap(AppSpacing.px4),
                   CustomText(
                     text: viewModel.parkingSpot.electricChargeStation
-                        ? "Borne disponible"
-                        : "Borne indisponible",
+                        ? "myParkingSpots.chargingAvailable".tr()
+                        : "myParkingSpots.chargingNotAvailable".tr(),
                     style: CustomTextStyle.smallParagraphMedium,
                     color: viewModel.parkingSpot.electricChargeStation
                         ? AppColors.greenKre
@@ -90,8 +91,8 @@ class BuyerWaitingConfirmation
                         color: AppColors.textKre,
                       ),
                       HGap(AppSpacing.px1 * 5),
-                      const CustomText(
-                        text: "2.5 km",
+                      CustomText(
+                        text: viewModel.distanceToSpot,
                         style: CustomTextStyle.smallParagraphMedium,
                         color: AppColors.textKre,
                       ),
@@ -171,6 +172,7 @@ class BuyerWaitingConfirmation
                           locator<BottomSheetService>().showCustomSheet(
                             variant: BottomSheetType.cancelationReasons,
                             data: viewModel.reservation,
+                            isScrollControlled: true,
                           );
                         },
                       ),

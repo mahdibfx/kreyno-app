@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
@@ -110,8 +111,8 @@ class BottomActionBar extends ViewModelWidget<ClientTrackingViewModel> {
                       color: AppColors.textKre,
                     ),
                     HGap(AppSpacing.px4),
-                    const CustomText.labelMedium(
-                      "Vous pouvez annuler la réservation après 5 minutes.",
+                    CustomText.labelMedium(
+                      "tracking.cancelInfo".tr(),
                       color: AppColors.textKre,
                     ),
                   ],
@@ -146,8 +147,8 @@ class BottomActionBar extends ViewModelWidget<ClientTrackingViewModel> {
                               .reservation!
                               .parkingPlace
                               .electricChargeStation
-                          ? "Borne disponible"
-                          : "Borne indisponible",
+                          ? "myParkingSpots.chargingAvailable".tr()
+                          : "myParkingSpots.chargingNotAvailable".tr(),
                       style: CustomTextStyle.smallParagraphMedium,
                       color:
                           viewModel
@@ -165,8 +166,8 @@ class BottomActionBar extends ViewModelWidget<ClientTrackingViewModel> {
                           color: AppColors.textKre,
                         ),
                         HGap(AppSpacing.px1 * 5),
-                        const CustomText(
-                          text: "2.5 km",
+                        CustomText(
+                          text: viewModel.distanceToSpot,
                           style: CustomTextStyle.smallParagraphMedium,
                           color: AppColors.textKre,
                         ),
@@ -191,13 +192,14 @@ class BottomActionBar extends ViewModelWidget<ClientTrackingViewModel> {
                 Expanded(
                   child: CustomButton.filled(
                     isDisabled: viewModel.cancelButtonDisabled,
-                    text: "Annuler",
+                    text: "tracking.cancel".tr(),
                     backgroundColor: AppColors.redKre,
                     foregroundColor: AppColors.white,
                     onPressed: () {
                       locator<BottomSheetService>().showCustomSheet(
                         data: viewModel.reservation,
                         variant: BottomSheetType.cancelationReasons,
+
                         isScrollControlled: true,
                       );
                     },
@@ -206,7 +208,7 @@ class BottomActionBar extends ViewModelWidget<ClientTrackingViewModel> {
                 SizedBox(width: AppSpacing.px8),
                 Expanded(
                   child: CustomButton.filled(
-                    text: "Message",
+                    text: "tracking.message".tr(),
                     onPressed: () {
                       viewModel.goToChat();
                     },
@@ -239,16 +241,16 @@ class YourClientArrived extends ViewModelWidget<ClientTrackingViewModel> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CustomText.title("Votre client(e) est arrivé(e)"),
+          CustomText.title("tracking.clientArrived".tr()),
           VGap(AppSpacing.px4),
-          const CustomText.smallParagraphMedium(
-            "Cédez-lui votre place dès maintenant pour finaliser la réservation.",
+          CustomText.smallParagraphMedium(
+            "tracking.finalizeMessage".tr(),
             maxLines: 2,
             color: AppColors.textKre,
           ),
           VGap(AppSpacing.px1 * 18),
           CustomButton.filled(
-            text: "J’ai cédé ma place",
+            text: "tracking.placeCeded".tr(),
             onPressed: () {
               viewModel.completeReservation();
             },

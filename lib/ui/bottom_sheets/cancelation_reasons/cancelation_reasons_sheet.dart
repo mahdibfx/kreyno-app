@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/models/reservation.dart';
@@ -45,14 +46,14 @@ class CancelationReasonsSheet
             child: const CustomIcon(iconPath: AppIcons.arrowLeft),
           ),
           VGap(AppSpacing.px20),
-          const CustomText(
-            text: "Êtes-vous sur de vouloir annuler cette réservation?",
+          CustomText(
+            text: "cancelationReasons.title".tr(),
             style: CustomTextStyle.largeTitle,
             maxLines: 2,
           ),
           VGap(AppSpacing.px4),
-          const CustomText(
-            text: "Sélectionnez une raison ci-dessous.",
+          CustomText(
+            text: "cancelationReasons.selectReason".tr(),
             style: CustomTextStyle.smallParagraphMedium,
             color: AppColors.textKre,
           ),
@@ -78,7 +79,7 @@ class CancelationReasonsSheet
           ),
 
           LabeledRadio(
-            label: "Autre (a spécifier)",
+            label: "cancelationReasons.other".tr(),
             value: viewModel.isOtherSelected,
             onChanged: (d) {
               viewModel.isOtherSelected = true;
@@ -91,7 +92,7 @@ class CancelationReasonsSheet
             InputField(
               controller: viewModel.otherTextController,
               focusNode: FocusNode(),
-              hintText: "Saisissez votre raison d’annulation",
+              hintText: "cancelationReasons.enterReason".tr(),
               keyboardType: TextInputType.text,
               onChanged: (value) {
                 viewModel.observation = value;
@@ -105,7 +106,7 @@ class CancelationReasonsSheet
             top: false,
             bottom: true,
             child: CustomButton.filled(
-              text: "Valider",
+              text: "cancelationReasons.validate".tr(),
               backgroundColor: AppColors.redKre,
               foregroundColor: AppColors.white,
               onPressed: () {

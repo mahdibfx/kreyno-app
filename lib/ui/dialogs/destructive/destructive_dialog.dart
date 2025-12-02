@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
@@ -53,11 +54,11 @@ class DestructiveDialog extends StackedView<DestructiveDialogModel> {
                     spacing: AppSpacing.px4,
                     children: [
                       CustomText.paragraph(
-                        request.title ?? 'TITLE',
+                        request.title ?? "common.title".tr(),
                         maxLines: 2,
                       ),
                       CustomText.smallParagraphMedium(
-                        request.description ?? 'DESCRIPTION',
+                        request.description ?? "common.description".tr(),
                         color: AppColors.textKre,
                         maxLines: 5,
                       ),
@@ -82,14 +83,14 @@ class DestructiveDialog extends StackedView<DestructiveDialogModel> {
               children: [
                 Flexible(
                   child: CustomButton.outlined(
-                    text: request.secondaryButtonTitle ?? 'CANCEL',
+                    text: request.secondaryButtonTitle ?? "common.cancel".tr(),
                     onPressed: () =>
                         completer(DialogResponse(confirmed: false)),
                   ),
                 ),
                 Flexible(
                   child: CustomButton.filled(
-                    text: request.mainButtonTitle ?? 'DELETE',
+                    text: request.mainButtonTitle ?? "common.delete".tr(),
                     backgroundColor: AppColors.redKre,
                     foregroundColor: AppColors.white,
                     onPressed: () => completer(DialogResponse(confirmed: true)),

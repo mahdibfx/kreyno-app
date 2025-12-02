@@ -1,5 +1,9 @@
 {
     "common": {
+        "title": "Title",
+        "description": "Description",
+        "cancel": "Cancel",
+        "important": "Important",
         "validTill": "Valid until",
         "error": "A problem occurred",
         "retry": "Retry",
@@ -331,8 +335,8 @@
         "title": "My parking spots",
         "boughtSpotsTab": "Bought spots",
         "soldSpotsTab": "Sold spots",
-        "chargingAvailable": "Charging available",
-        "chargingNotAvailable": "Charging not available",
+        "chargingAvailable": "Charging station available",
+        "chargingNotAvailable": "Charging station unavailable",
         "price": "Price",
         "boughtEmptyTitle": "No parking purchased",
         "boughtEmptyDescription": "You haven't purchased any parking yet. Start now to easily find your purchases.",
@@ -353,5 +357,184 @@
         "accountOf": "Account of",
         "enterAmountHint": "Enter the amount to transfer to this account.",
         "amountExceedsBalance": "This amount exceeds your available balance"
+    },
+    "spotSoldSuccess": {
+        "title": "Transfer confirmed!",
+        "successMessage": "Place successfully transferred!",
+        "earningsMessage": "You just earned 2€ by transferring your spot",
+        "reservationNumber": "Reservation number",
+        "price": "Price",
+        "dateTime": "Date and time",
+        "placeLocation": "Spot location",
+        "other": "Other",
+        "yourWallet": "Your Kreyno wallet"
+    },
+    "spotBoughtSuccess": {
+        "title": "Trip completed",
+        "arrivedMessage": "Arrived at destination",
+        "hostMessage": "Your spot host has transferred their spot to you.",
+        "reservationNumber": "Reservation number",
+        "price": "Price",
+        "dateTime": "Date and time",
+        "placeLocation": "Spot location",
+        "other": "Other"
+    },
+    "tracking": {
+        "cancelInfo": "You can cancel the reservation after 5 minutes.",
+        "cancel": "Cancel",
+        "message": "Message",
+        "clientArrived": "Your client has arrived",
+        "finalizeMessage": "Transfer your spot to them now to finalize the reservation.",
+        "placeCeded": "I have transferred my spot"
+    },
+    "chat": {
+        "newMessage": "New message",
+        "online": "Online",
+        "offline": "Offline"
+    },
+    "checkoutMoney": {
+        "withdraw": "Withdraw",
+        "title": "Withdraw my money",
+        "yourBalance": "Your balance",
+        "withdrawalAmount": "Withdrawal amount"
+    },
+    "kreynoWallet": {
+        "title": "Kreyno wallet",
+        "yourBalance": "Your balance",
+        "withdrawMyMoney": "Withdraw my money",
+        "earningsHistory": "Earnings history"
+    },
+    "cancelationReasons": {
+        "title": "Are you sure you want to cancel this reservation?",
+        "selectReason": "Select a reason below.",
+        "changedPlans": "I changed my plans",
+        "madeMistake": "I made a mistake",
+        "clientTooFar": "The client is too far",
+        "other": "Other (specify)",
+        "enterReason": "Enter your cancellation reason",
+        "validate": "Validate"
+    },
+    "payForSpot": {
+        "payment": "Payment",
+        "payWith": "Pay with",
+        "noPaymentMethod": "No payment method registered",
+        "mustAddCard": "You must add a card to pay.",
+        "addNewCard": "Add a new card",
+        "parking": "Parking",
+        "kreynoFees": "Kreyno fees (20%)",
+        "reservationCreated": "Reservation created successfully",
+        "totalToPay": "Total to pay",
+        "securePayment": "Your payment information is completely secure and protected.",
+        "payAndReserve": "Pay & reserve this spot"
+    },
+    "slideableButton": {
+        "slideToPay": "Slide to pay"
+    },
+    "createSpot": {
+        "spotNameHint": "Ex: At Gustave's",
+        "spotDescriptionHint": "Spot description",
+        "spotPriceHint": "Spot price",
+        "title": "Let my place",
+        "placeLabel": "Place",
+        "useMyPosition": "Use my position",
+        "choosePrice": "Choose price",
+        "recommended": "Recommended",
+        "electricCharging": "Electric charging station",
+        "possible": "Possible",
+        "notPossible": "Not possible",
+        "validate": "Let my place"
+    },
+    "homeFilter": {
+        "title": "Filters",
+        "placeType": "Spot type",
+        "allPlaces": "All spots",
+        "onlyWithCharging": "Only with charging station",
+        "withoutCharging": "Without charging station",
+        "searchRadius": "Search radius",
+        "reset": "Reset",
+        "apply": "Apply"
+    },
+    "checkoutMoneyFeedback": {
+        "successTitle": "Withdrawal confirmed",
+        "failedTitle": "Withdrawal failed",
+        "successDescription": "Your request has been registered. You will receive your transfer shortly.",
+        "errorDescription": "An error occurred. Please try again later.",
+        "finish": "Finish",
+        "retry": "Retry"
+    },
+    "addPaymentCard": {
+        "title": "Add a card",
+        "cardName": "Name on card",
+        "enterName": "Enter name",
+        "cardNumber": "Card number",
+        "expiration": "Expiration",
+        "setAsDefault": "Set as default card",
+        "termsAndConditions": "I have read and approved the terms and conditions of use.",
+        "saveCard": "Save this card"
+    },
+    "receivedOrder": {
+        "refuseReason": "Why do you want to refuse this request?",
+        "selectReason": "Select a reason below.",
+        "other": "Other (specify)",
+        "enterReason": "Enter your cancellation reason",
+        "validate": "Validate",
+        "newDemand": "New request received",
+        "demandDescription": "Someone wants to reserve your spot. Accept or refuse their request.",
+        "distanceAndTime": "Approximate distance & time for their arrival",
+        "place": "Spot",
+        "refuse": "Refuse",
+        "accept": "Accept",
+        "responseTimeRemaining": "Response time remaining"
+    },
+    "buyerSelectedMark": {
+        "proposesSpotAt": "proposes a spot at"
+    },
+    "chooseLocation": {
+        "title": "Choose a location",
+        "choose": "Choose"
+    },
+    "buyerConfirmArrive": {
+        "arrivedAtDestination": "Arrived at destination",
+        "itineraryReady": "Your itinerary is ready!",
+        "arrivalConfirmed": "Arrival confirmed",
+        "hostInformed": "Your host is informed of your arrival and will soon free up the spot.",
+        "confirmArrival": "Confirm your arrival",
+        "confirmArrivalDescription": "Please confirm your arrival so the host can yield the spot to you.",
+        "confirmMyArrival": "Confirm my arrival"
+    },
+    "sellerConfirmedForBuyer": {
+        "itineraryReady": "Your itinerary is ready!",
+        "cancellationPolicy": "After 5 min, the host can cancel and you will be refunded.",
+        "openWaze": "Open Waze"
+    },
+    "clientCanceledOrder": {
+        "title": "Reservation canceled by client",
+        "description": "Your spot is available again."
+    },
+    "locationDisabled": {
+        "title": "Oops, location disabled!"
+    },
+    "carTopBar": {
+        "vehicleChosen": "Chosen vehicle",
+        "exampleCar": "Peugeot 308"
+    },
+    "carSelector": {
+        "vehicleChosen": "Chosen vehicle"
+    },
+    "myMarkerDetails": {
+        "you": "You",
+        "proposeSpotAt": "propose a spot at",
+        "deleteSpotTitle": "Delete this spot",
+        "deleteSpotDescription": "This spot will be removed and will no longer be offered to users."
+    },
+    "sellerTracking": {
+        "reservationConfirmed": "Reservation confirmed"
+    },
+    "portfolio": {
+        "sale": "SALE",
+        "withdrawal": "WITHDRAWAL"
+    },
+    "home": {
+        "let_my_place": "Let my place"
     }
 }

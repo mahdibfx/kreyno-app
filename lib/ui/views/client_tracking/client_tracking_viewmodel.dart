@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/models/reservation.dart';
+import 'package:kreyno/services/location_service.dart';
 import 'package:kreyno/services/reservations_service.dart';
 import 'package:kreyno/services/toast_service.dart';
 import 'package:kreyno/services/tracking_service.dart';
@@ -18,6 +20,7 @@ class ClientTrackingViewModel extends ReactiveViewModel {
   final _reservationsService = locator<ReservationsService>();
   final _navigationService = locator<NavigationService>();
   final _toastService = locator<ToastService>();
+  final _locationService = locator<LocationService>();
 
   get userId => _userService.currentUser?.id;
   get buyerLocation => _trackingService.buyerLocationUpdated;
@@ -29,6 +32,18 @@ class ClientTrackingViewModel extends ReactiveViewModel {
   int seconds = 0;
   Timer? _timer;
   Reservation? reservation;
+
+  String get distanceToSpot {
+    final currentLocation = _locationService.currentLocation;
+    if (currentLocation == null || reservation == null) return "0 km";
+    final distanceInMeters = Geolocator.distanceBetween(
+      currentLocation.latitude,
+      currentLocation.longitude,
+      reservation!.parkingPlace.latitude,
+      reservation!.parkingPlace.longitude,
+    );
+    return "${(distanceInMeters / 1000).toStringAsFixed(1)} km";
+  }
 
   goToChat() {
     _navigationService.navigateToChatView(

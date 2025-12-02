@@ -44,7 +44,7 @@ class ReservationsService with ListenableServiceMixin {
   ) {
     return _apiReservationService.createReservation({
       "parking_place_id": parkingSpotId,
-      "payment_method_id": "pm_22994881993884d881",
+      "payment_method_id": paymentMethodId,
     }).toEither();
   }
 

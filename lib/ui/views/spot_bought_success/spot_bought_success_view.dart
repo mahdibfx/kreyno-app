@@ -38,7 +38,7 @@ class SpotBoughtSuccessView extends StackedView<SpotBoughtSuccessViewModel> {
           onPressed: () {},
           icon: const CustomIcon(iconPath: AppIcons.multiplicationSign),
         ),
-        title: const CustomText.paragraph("Trajet terminé"),
+        title: CustomText.paragraph("spotBoughtSuccess.title".tr()),
       ),
       backgroundColor: AppColors.white,
       body: SafeArea(
@@ -53,10 +53,10 @@ class SpotBoughtSuccessView extends StackedView<SpotBoughtSuccessViewModel> {
                   height: AppSpacing.px1 * 128,
                 ),
                 VGap(AppSpacing.px8),
-                const CustomText.largeTitle("Arrivé à destination"),
+                CustomText.largeTitle("spotBoughtSuccess.arrivedMessage".tr()),
                 VGap(AppSpacing.px4),
-                const CustomText.smallParagraphMedium(
-                  "Votre hôte de place vous a cédé sa place.",
+                CustomText.smallParagraphMedium(
+                  "spotBoughtSuccess.hostMessage".tr(),
                   color: AppColors.textKre,
                 ),
                 VGap(AppSpacing.px24),
@@ -67,17 +67,17 @@ class SpotBoughtSuccessView extends StackedView<SpotBoughtSuccessViewModel> {
                   child: Column(
                     children: [
                       InfoListTile(
-                        title: 'N° de réservation',
+                        title: "spotBoughtSuccess.reservationNumber".tr(),
                         value: "#${reservation.id}",
                       ),
                       VGap(AppSpacing.px8),
                       InfoListTile(
-                        title: 'Prix',
+                        title: "spotBoughtSuccess.price".tr(),
                         value: "${reservation.parkingPlace.totalPaidPrice}€",
                       ),
                       VGap(AppSpacing.px8),
                       InfoListTile(
-                        title: 'Date et heure',
+                        title: "spotBoughtSuccess.dateTime".tr(),
                         value: DateFormat(
                           "dd-MM-yyyy, HH:mm",
                         ).format(reservation.createdAt),
@@ -173,8 +173,8 @@ class SpotBoughtSuccessView extends StackedView<SpotBoughtSuccessViewModel> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      const CustomText.smallParagraphMedium(
-                        "Emplacement de la place",
+                      CustomText.smallParagraphMedium(
+                        "spotBoughtSuccess.placeLocation".tr(),
                         color: AppColors.textKre,
                       ),
                       VGap(AppSpacing.px1 * 6),
@@ -182,8 +182,8 @@ class SpotBoughtSuccessView extends StackedView<SpotBoughtSuccessViewModel> {
                         reservation.parkingPlace.address,
                       ),
                       VGap(AppSpacing.px16),
-                      const CustomText.smallParagraphMedium(
-                        "Autre",
+                      CustomText.smallParagraphMedium(
+                        "spotBoughtSuccess.other".tr(),
                         color: AppColors.textKre,
                       ),
                       VGap(AppSpacing.px1 * 6),
@@ -196,8 +196,8 @@ class SpotBoughtSuccessView extends StackedView<SpotBoughtSuccessViewModel> {
                           HGap(AppSpacing.px4),
                           CustomText(
                             text: reservation.parkingPlace.electricChargeStation
-                                ? "Borne disponible"
-                                : "Borne indisponible",
+                                ? "myParkingSpots.chargingAvailable".tr()
+                                : "myParkingSpots.chargingNotAvailable".tr(),
                             style: CustomTextStyle.smallParagraphMedium,
                             color:
                                 reservation.parkingPlace.electricChargeStation
@@ -210,7 +210,7 @@ class SpotBoughtSuccessView extends StackedView<SpotBoughtSuccessViewModel> {
                       // const PaymentMethodListTile(card: null,),
                       VGap(AppSpacing.px1 * 34),
                       CustomButton.filled(
-                        text: "Retourner vers l’accueil",
+                        text: "payout.goToHome".tr(),
                         onPressed: () {
                           locator<NavigationService>().clearStackAndShowView(
                             const HomeView(),

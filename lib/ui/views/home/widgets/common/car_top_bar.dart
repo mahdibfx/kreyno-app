@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
@@ -33,15 +34,15 @@ class CarTopBar extends StatelessWidget {
               ),
             ),
             HGap(AppSpacing.px8),
-            const Expanded(
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText.labelRegular(
-                    "Véhicule choisi",
+                    "carTopBar.vehicleChosen".tr(),
                     color: AppColors.textKre,
                   ),
-                  CustomText.smallParagraphMedium("Peugeot 308"),
+                  CustomText.smallParagraphMedium("carTopBar.exampleCar".tr()),
                 ],
               ),
             ),

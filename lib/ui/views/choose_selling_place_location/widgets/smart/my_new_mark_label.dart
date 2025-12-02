@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
 import 'package:google_places_flutter/model/place_type.dart';
@@ -107,8 +108,8 @@ class ChoosePlaceBottomBar
           ),
           child: Column(
             children: [
-              const CustomText(
-                text: "Choisissez un emplacement",
+              CustomText(
+                text: "chooseLocation.title".tr(),
                 style: CustomTextStyle.title,
               ),
               VGap(AppSpacing.px4),
@@ -120,7 +121,7 @@ class ChoosePlaceBottomBar
               VGap(AppSpacing.px24),
               CustomButton.filled(
                 isDisabled: viewModel.isBusy,
-                text: "Choisir",
+                text: "chooseLocation.choose".tr(),
                 onPressed: () async {
                   viewModel.chooseClicked();
                 },

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_stripe/flutter_stripe.dart' hide Card;
 import 'package:kreyno/app/app_constants.dart';
@@ -85,14 +86,17 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
               },
               child: const CustomIcon(iconPath: AppIcons.arrowLeft),
             ),
-            const CustomText.paragraph("Paiment"),
+            CustomText.paragraph("payForSpot.payment".tr()),
             const CustomIcon(iconPath: AppIcons.multiplicationSign),
           ],
         ),
         VGap(AppSpacing.px20),
         const CustomDivider(),
         VGap(AppSpacing.px20),
-        const CustomText.labelRegular("Payer avec", color: AppColors.textKre),
+        CustomText.labelRegular(
+          "payForSpot.payWith".tr(),
+          color: AppColors.textKre,
+        ),
         VGap(AppSpacing.px8),
         if (viewModel.cards.isNotEmpty)
           Column(
@@ -117,16 +121,16 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
           ),
 
         if (viewModel.cards.isEmpty)
-          const Column(
+          Column(
             children: [
               CustomText.title(
-                "Aucun moyen de paiement enregistré",
+                "payForSpot.noPaymentMethod".tr(),
                 maxLines: 2,
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               CustomText.smallParagraphMedium(
-                "Vous devez ajouter une carte pour payer.",
+                "payForSpot.mustAddCard".tr(),
                 color: AppColors.textKre,
               ),
             ],
@@ -152,9 +156,7 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
               children: [
                 const CustomIcon(iconPath: AppIcons.creditCardAdd),
                 HGap(AppSpacing.px8),
-                const CustomText.smallParagraphBold(
-                  "Ajouter une nouvelle carte",
-                ),
+                CustomText.smallParagraphBold("payForSpot.addNewCard".tr()),
               ],
             ),
           ),
@@ -175,8 +177,8 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const CustomText.smallParagraphMedium(
-                    "Stationnement",
+                  CustomText.smallParagraphMedium(
+                    "payForSpot.parking".tr(),
                     color: AppColors.textKre,
                   ),
                   CustomText.smallParagraphBold("${parkingSpot.price}€"),
@@ -187,8 +189,8 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const CustomText.smallParagraphMedium(
-                    "Frais Kreyno (20%)",
+                  CustomText.smallParagraphMedium(
+                    "payForSpot.kreynoFees".tr(),
                     color: AppColors.textKre,
                   ),
                   CustomText.smallParagraphBold(
@@ -209,7 +211,7 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const CustomText.smallParagraphBold("Total à payer"),
+                    CustomText.smallParagraphBold("payForSpot.totalToPay".tr()),
                     CustomText.smallParagraphBold(
                       "${parkingSpot.totalPaidPrice}€",
                     ),
@@ -227,9 +229,9 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
               color: AppColors.textKre,
             ),
             HGap(AppSpacing.px8),
-            const Expanded(
+            Expanded(
               child: CustomText.smallParagraphMedium(
-                "Vos informations de paiement sont entièrement sécurisées et protégées.",
+                "payForSpot.securePayment".tr(),
                 maxLines: 2,
                 color: AppColors.textKre,
               ),
@@ -238,7 +240,7 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
         ),
         VGap(AppSpacing.px24),
         CustomButton.filled(
-          text: "Payer & réserver cette place",
+          text: "payForSpot.payAndReserve".tr(),
           isDisabled:
               viewModel.cards.isEmpty || viewModel.paymentMethodId.isEmpty,
           onPressed: () async {
@@ -297,8 +299,8 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
             HGap(AppSpacing.px4),
             CustomText(
               text: parkingSpot.electricChargeStation
-                  ? "Borne disponible"
-                  : "Borne indisponible",
+                  ? "myParkingSpots.chargingAvailable".tr()
+                  : "myParkingSpots.chargingNotAvailable".tr(),
               style: CustomTextStyle.smallParagraphMedium,
               color: parkingSpot.electricChargeStation
                   ? AppColors.greenKre
@@ -312,8 +314,8 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
                   color: AppColors.textKre,
                 ),
                 HGap(AppSpacing.px1 * 5),
-                const CustomText(
-                  text: "2.5 km",
+                CustomText(
+                  text: viewModel.getDistanceToSpot(parkingSpot),
                   style: CustomTextStyle.smallParagraphMedium,
                   color: AppColors.textKre,
                 ),

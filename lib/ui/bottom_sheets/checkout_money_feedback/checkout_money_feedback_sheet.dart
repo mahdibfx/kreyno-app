@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
@@ -55,20 +56,24 @@ class CheckoutMoneyFeedbackSheet
           ),
           VGap(AppSpacing.px20),
           CustomText.largeTitle(
-            request.data == "success" ? "Retrait confirmé" : "Échec du retrait",
+            request.data == "success"
+                ? "checkoutMoneyFeedback.successTitle".tr()
+                : "checkoutMoneyFeedback.failedTitle".tr(),
           ),
           VGap(AppSpacing.px4),
           CustomText.smallParagraphMedium(
             request.data == "success"
-                ? "Votre demande a été enregistrée. Vous recevrez votre virement sous peu."
-                : "Une erreur est survenue. Veuillez réessayer ultérieurement.",
+                ? "checkoutMoneyFeedback.successDescription".tr()
+                : "checkoutMoneyFeedback.errorDescription".tr(),
             color: AppColors.textKre,
             maxLines: 2,
             textAlign: TextAlign.center,
           ),
           VGap(AppSpacing.px1 * 26),
           CustomButton.filled(
-            text: request.data == "success" ? "Terminer" : "Ressayer",
+            text: request.data == "success"
+                ? "checkoutMoneyFeedback.finish".tr()
+                : "checkoutMoneyFeedback.retry".tr(),
             onPressed: () {},
           ),
           VGap(AppSpacing.px12),

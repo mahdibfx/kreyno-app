@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.dialogs.dart';
 import 'package:kreyno/app/app.locator.dart';
@@ -66,15 +67,15 @@ class SoldParkingSpotWidget extends ViewModelWidget<MyLetPlaceViewModel> {
                 ),
               ),
               HGap(AppSpacing.px8),
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    text: "Vous",
+                    text: "myMarkerDetails.you".tr(),
                     style: CustomTextStyle.smallParagraphMedium,
                   ),
                   CustomText(
-                    text: "proposez une place à",
+                    text: "myMarkerDetails.proposeSpotAt".tr(),
                     style: CustomTextStyle.labelMedium,
                     color: AppColors.textKre,
                   ),
@@ -117,8 +118,8 @@ class SoldParkingSpotWidget extends ViewModelWidget<MyLetPlaceViewModel> {
               HGap(AppSpacing.px4),
               CustomText(
                 text: viewModel.parkingSpot!.electricChargeStation
-                    ? "Borne disponible"
-                    : "Borne non disponible",
+                    ? "myParkingSpots.chargingAvailable".tr()
+                    : "myParkingSpots.chargingNotAvailable".tr(),
                 style: CustomTextStyle.smallParagraphMedium,
                 color: viewModel.parkingSpot!.electricChargeStation
                     ? AppColors.greenKre
@@ -130,12 +131,10 @@ class SoldParkingSpotWidget extends ViewModelWidget<MyLetPlaceViewModel> {
                   final d = await locator<DialogService>().showCustomDialog(
                     variant: DialogType.destructive,
 
-                    title: "Supprimer cette place",
-
-                    description:
-                        "Cette place sera retirée et ne sera plus proposée aux utilisateurs.",
-                    mainButtonTitle: "supprimer",
-                    secondaryButtonTitle: "Annuler",
+                    title: "myMarkerDetails.deleteSpotTitle".tr(),
+                    description: "myMarkerDetails.deleteSpotDescription".tr(),
+                    mainButtonTitle: "common.delete".tr(),
+                    secondaryButtonTitle: "common.cancel".tr(),
                   );
                   if (d != null && d.confirmed) {
                     viewModel.removePlace();

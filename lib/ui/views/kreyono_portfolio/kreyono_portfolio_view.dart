@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
@@ -27,7 +28,7 @@ class KreyonoPortfolioView extends StackedView<KreyonoPortfolioViewModel> {
   ) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: MyAppBar(title: "Portefeuille Kreyno"),
+      appBar: MyAppBar(title: "kreynoWallet.title".tr()),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
         child: Column(
@@ -52,21 +53,21 @@ class KreyonoPortfolioView extends StackedView<KreyonoPortfolioViewModel> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                child: const Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText.smallParagraphMedium(
-                      "Votre balance",
+                      "kreynoWallet.yourBalance".tr(),
                       color: AppColors.placeholderKre,
                     ),
-                    CustomText.largeTitle("33.25€", color: Colors.white),
+                    const CustomText.largeTitle("33.25€", color: Colors.white),
                   ],
                 ),
               ),
             ),
             VGap(AppSpacing.px12),
             CustomButton.outlined(
-              text: "Retirer mon argent",
+              text: "kreynoWallet.withdrawMyMoney".tr(),
               onPressed: () {
                 locator<NavigationService>().navigateToCheckoutMoneyView();
               },
@@ -78,7 +79,7 @@ class KreyonoPortfolioView extends StackedView<KreyonoPortfolioViewModel> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(text: "Historique des gains"),
+                CustomText(text: "kreynoWallet.earningsHistory".tr()),
                 IconButton(
                   onPressed: () {},
                   icon: const CustomIcon(iconPath: AppIcons.sort),
@@ -86,8 +87,8 @@ class KreyonoPortfolioView extends StackedView<KreyonoPortfolioViewModel> {
               ],
             ),
             VGap(AppSpacing.px20),
-            const CustomText.labelMedium(
-              "Juillet 2025",
+            CustomText.labelMedium(
+              DateFormat('MMMM yyyy').format(DateTime.now()),
               color: AppColors.textKre,
             ),
             VGap(AppSpacing.px8),
@@ -142,7 +143,9 @@ class GainWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomText.paragraph("${type.toUpperCase()} #182771621"),
+                CustomText.paragraph(
+                  "${type == "vente" ? "portfolio.sale".tr() : "portfolio.withdrawal".tr()} #182771621",
+                ),
                 const CustomText.smallParagraphMedium(
                   "02-01-2025 · 19:10",
                   color: AppColors.textKre,

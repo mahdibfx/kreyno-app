@@ -23,46 +23,49 @@ class ClientTrackingView extends StackedView<ClientTrackingViewModel> {
     Widget? child,
   ) {
     print(viewModel.buyerLocation.toJson().toString());
-    return Scaffold(
-      body: Stack(
-        children: [
-          GoogleMap(
-            scrollGesturesEnabled: true,
-            zoomControlsEnabled: true,
-            polylines: {
-              Polyline(
-                width: 3,
-                color: AppColors.greenKre,
-                jointType: JointType.round,
-                startCap: Cap.roundCap,
-                endCap: Cap.roundCap,
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        body: Stack(
+          children: [
+            GoogleMap(
+              scrollGesturesEnabled: true,
+              zoomControlsEnabled: true,
+              polylines: {
+                Polyline(
+                  width: 3,
+                  color: AppColors.greenKre,
+                  jointType: JointType.round,
+                  startCap: Cap.roundCap,
+                  endCap: Cap.roundCap,
 
-                polylineId: const PolylineId('userd'),
-                points: [
-                  LatLng(
-                    viewModel.buyerLocation?.latitude,
-                    viewModel.buyerLocation?.longitude,
-                  ),
-                  LatLng(parkingSpot.latitude, parkingSpot.longitude),
-                ],
-              ),
-            },
-            markers: {
-              Marker(
-                icon: AssetMapBitmap("assets/images/Map_pin.png"),
+                  polylineId: const PolylineId('userd'),
+                  points: [
+                    LatLng(
+                      viewModel.buyerLocation?.latitude,
+                      viewModel.buyerLocation?.longitude,
+                    ),
+                    LatLng(parkingSpot.latitude, parkingSpot.longitude),
+                  ],
+                ),
+              },
+              markers: {
+                Marker(
+                  icon: AssetMapBitmap("assets/images/Map_pin.png"),
 
-                position: LatLng(parkingSpot.latitude, parkingSpot.longitude),
-                markerId: MarkerId(parkingSpot.id.toString()),
+                  position: LatLng(parkingSpot.latitude, parkingSpot.longitude),
+                  markerId: MarkerId(parkingSpot.id.toString()),
+                ),
+              },
+              initialCameraPosition: CameraPosition(
+                target: LatLng(parkingSpot.latitude, parkingSpot.longitude),
+                zoom: 10,
               ),
-            },
-            initialCameraPosition: CameraPosition(
-              target: LatLng(parkingSpot.latitude, parkingSpot.longitude),
-              zoom: 10,
             ),
-          ),
-          const TrackingCourseWidget(),
-          // const MyMarkerDetails(),
-        ],
+            const TrackingCourseWidget(),
+            // const MyMarkerDetails(),
+          ],
+        ),
       ),
     );
   }

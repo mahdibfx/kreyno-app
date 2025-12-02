@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kreyno/app/app.locator.dart';
@@ -52,8 +53,8 @@ class BuyerConfirmArrive extends ViewModelWidget<SellerTrackingViewModel> {
               ),
               child: CustomText.smallParagraphMedium(
                 viewModel.nearParkingSpotLocation
-                    ? "Arrivé a destination"
-                    : "Votre itinéraire est prêt !",
+                    ? "buyerConfirmArrive.arrivedAtDestination".tr()
+                    : "buyerConfirmArrive.itineraryReady".tr(),
               ),
             ),
           ),
@@ -105,14 +106,16 @@ class BuyerConfirmArrive extends ViewModelWidget<SellerTrackingViewModel> {
             child: SvgPicture.asset(AppIcons.flag, color: AppColors.greenKre),
           ),
           HGap(AppSpacing.px8),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomText.smallParagraphBold("Arrivée confirmée"),
+                CustomText.smallParagraphBold(
+                  "buyerConfirmArrive.arrivalConfirmed".tr(),
+                ),
                 SizedBox(
                   child: CustomText.smallParagraphMedium(
-                    "Votre hôte est informé de votre arrivée et va bientôt libérer la place..",
+                    "buyerConfirmArrive.hostInformed".tr(),
                     maxLines: 2,
                     color: AppColors.textKre,
                   ),
@@ -140,12 +143,12 @@ class BuyerConfirmArrive extends ViewModelWidget<SellerTrackingViewModel> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CustomText.largeTitle("Confirmez votre arrivée"),
-          const Row(
+          CustomText.largeTitle("buyerConfirmArrive.confirmArrival".tr()),
+          Row(
             children: [
               Expanded(
                 child: CustomText.smallParagraphMedium(
-                  "Veuillez confirmer votre arrivée pour que l'hôte de la place puisse vous la céder.",
+                  "buyerConfirmArrive.confirmArrivalDescription".tr(),
                   maxLines: 2,
                   color: AppColors.textKre,
                 ),
@@ -154,7 +157,7 @@ class BuyerConfirmArrive extends ViewModelWidget<SellerTrackingViewModel> {
           ),
           VGap(AppSpacing.px16),
           CustomButton.filled(
-            text: "Confirmer mon arrivée",
+            text: "buyerConfirmArrive.confirmMyArrival".tr(),
             onPressed: () {
               viewModel.confirmMonArrival();
             },

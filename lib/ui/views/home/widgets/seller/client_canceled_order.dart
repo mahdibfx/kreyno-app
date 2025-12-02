@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
@@ -44,15 +45,15 @@ class ClientCanceledOrder extends StatelessWidget {
                         ),
                       ),
                       HGap(AppSpacing.px8),
-                      const Column(
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(
-                            text: "Réservation annulée par le client",
+                            text: "clientCanceledOrder.title".tr(),
                             style: CustomTextStyle.smallParagraphBold,
                           ),
                           CustomText(
-                            text: "Votre place est de nouveau disponible.",
+                            text: "clientCanceledOrder.description".tr(),
                             style: CustomTextStyle.labelMedium,
                             color: AppColors.textKre,
                           ),

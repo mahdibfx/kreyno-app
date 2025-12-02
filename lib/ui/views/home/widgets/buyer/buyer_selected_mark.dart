@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
@@ -61,8 +62,8 @@ class BuyerSelectedMark extends ViewModelWidget<HomeViewModel> {
                             CustomText.smallParagraphMedium(
                               parkingSpot.seller!.username,
                             ),
-                            const CustomText.labelMedium(
-                              "propose une place à",
+                            CustomText.labelMedium(
+                              "buyerSelectedMark.proposesSpotAt".tr(),
                               color: AppColors.textKre,
                             ),
                           ],
@@ -103,8 +104,8 @@ class BuyerSelectedMark extends ViewModelWidget<HomeViewModel> {
                         HGap(AppSpacing.px4),
                         CustomText(
                           text: viewModel.selectedSpot!.electricChargeStation
-                              ? "Borne disponible"
-                              : "Borne indisponible",
+                              ? "myParkingSpots.chargingAvailable".tr()
+                              : "myParkingSpots.chargingNotAvailable".tr(),
                           style: CustomTextStyle.smallParagraphMedium,
                           color: viewModel.selectedSpot!.electricChargeStation
                               ? AppColors.greenKre
@@ -118,8 +119,8 @@ class BuyerSelectedMark extends ViewModelWidget<HomeViewModel> {
                               color: AppColors.textKre,
                             ),
                             HGap(AppSpacing.px1 * 5),
-                            const CustomText(
-                              text: "2.5 km",
+                            CustomText(
+                              text: viewModel.distanceToSelectedSpot,
                               style: CustomTextStyle.smallParagraphMedium,
                               color: AppColors.textKre,
                             ),

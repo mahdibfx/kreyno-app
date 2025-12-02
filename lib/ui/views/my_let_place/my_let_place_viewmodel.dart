@@ -1,10 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/models/parking_spot.dart';
 import 'package:kreyno/models/reservation.dart';
 import 'package:kreyno/models/user.dart';
+import 'package:kreyno/services/location_service.dart';
 import 'package:kreyno/services/parking_spots_service.dart';
 import 'package:kreyno/services/reservations_service.dart';
 import 'package:kreyno/services/toast_service.dart';
@@ -22,9 +25,9 @@ class MyLetPlaceViewModel extends ReactiveViewModel {
 
   final otherTextController = TextEditingController();
   List<String> observations = [
-    "J’ai changé mes plans",
-    "J’ai fait une erreur",
-    "Le/la client(e) est trop loin",
+    "cancelationReasons.changedPlans".tr(),
+    "cancelationReasons.madeMistake".tr(),
+    "cancelationReasons.clientTooFar".tr(),
   ];
   String observation = "";
   bool isOtherSelected = false;
@@ -35,6 +38,33 @@ class MyLetPlaceViewModel extends ReactiveViewModel {
   String get currentUserAvatarUrl =>
       currentUser.avatar?.url ?? AppConstants.defaultAvatarUrl;
   ParkingSpot? parkingSpot;
+
+  String get distanceToSpot {
+    final currentLocation = locator<LocationService>().currentLocation;
+    if (currentLocation == null || reservation == null) return "0 km";
+    final distanceInMeters = Geolocator.distanceBetween(
+      currentLocation.latitude,
+      currentLocation.longitude,
+      reservation!.parkingPlace.latitude,
+      reservation!.parkingPlace.longitude,
+    );
+    return "∼${(distanceInMeters / 1000).toStringAsFixed(1)} km";
+  }
+
+  String get timeToSpot {
+    final currentLocation = locator<LocationService>().currentLocation;
+    if (currentLocation == null || reservation == null) return "0 min";
+    final distanceInMeters = Geolocator.distanceBetween(
+      currentLocation.latitude,
+      currentLocation.longitude,
+      reservation!.parkingPlace.latitude,
+      reservation!.parkingPlace.longitude,
+    );
+    // Assuming average speed of 30 km/h = 8.33 m/s
+    final timeInSeconds = distanceInMeters / 8.33;
+    final timeInMinutes = (timeInSeconds / 60).ceil();
+    return "∼$timeInMinutes minutes";
+  }
 
   initialise() {
     _reservationService.listenToReservationUpdates(currentUser.id);
@@ -48,7 +78,7 @@ class MyLetPlaceViewModel extends ReactiveViewModel {
       reservation!.id,
     );
     result.match((l) => _toastService.showError(title: l), (r) {
-      _toastService.showInfo(title: "Confirmed succesfuly ");
+      _toastService.showInfo(title: "common.confirmedSuccessfully".tr());
       _navigationService.navigateToClientTrackingView(
         parkingSpot: parkingSpot!,
         reservation: reservation!,
@@ -73,7 +103,7 @@ class MyLetPlaceViewModel extends ReactiveViewModel {
         _toastService.showError(title: error);
       },
       (value) {
-        _toastService.showInfo(title: "Deleted succesfuly ");
+        _toastService.showInfo(title: "common.deletedSuccessfully".tr());
         _navigationService.back();
         _navigationService.back();
       },

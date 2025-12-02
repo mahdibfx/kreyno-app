@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
@@ -9,9 +10,9 @@ import 'package:stacked_services/stacked_services.dart';
 
 class CancelationReasonsSheetModel extends BaseViewModel {
   List<String> observations = [
-    "J’ai changé mes plans",
-    "J’ai fait une erreur",
-    "Le/la client(e) est trop loin",
+    "cancelationReasons.changedPlans".tr(),
+    "cancelationReasons.madeMistake".tr(),
+    "cancelationReasons.clientTooFar".tr(),
   ];
 
   final _reservationService = locator<ReservationsService>();

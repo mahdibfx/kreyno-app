@@ -23,70 +23,73 @@ class SellerTrackingView extends StackedView<SellerTrackingViewModel> {
   ) {
     print(viewModel.reservation.parkingPlace.latitude);
 
-    return Scaffold(
-      body: Stack(
-        children: [
-          viewModel.isBusy
-              ? const Center(child: CupertinoActivityIndicator())
-              : GoogleMap(
-                  onMapCreated: (controller) {
-                    viewModel.setMapController(controller);
-                  },
-                  polylines: {
-                    Polyline(
-                      width: 3,
-                      color: AppColors.greenKre,
-                      jointType: JointType.round,
-                      startCap: Cap.roundCap,
-                      endCap: Cap.roundCap,
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        body: Stack(
+          children: [
+            viewModel.isBusy
+                ? const Center(child: CupertinoActivityIndicator())
+                : GoogleMap(
+                    onMapCreated: (controller) {
+                      viewModel.setMapController(controller);
+                    },
+                    polylines: {
+                      Polyline(
+                        width: 3,
+                        color: AppColors.greenKre,
+                        jointType: JointType.round,
+                        startCap: Cap.roundCap,
+                        endCap: Cap.roundCap,
 
-                      polylineId: const PolylineId('3'),
-                      points: [
-                        LatLng(
-                          viewModel.currentLocationStream!.latitude,
-                          viewModel.currentLocationStream!.longitude,
-                        ),
-                        LatLng(
+                        polylineId: const PolylineId('3'),
+                        points: [
+                          LatLng(
+                            viewModel.currentLocationStream!.latitude,
+                            viewModel.currentLocationStream!.longitude,
+                          ),
+                          LatLng(
+                            reservation.parkingPlace.latitude,
+                            reservation.parkingPlace.longitude,
+                          ),
+                        ],
+                      ),
+                    },
+                    markers: {
+                      Marker(
+                        icon: AssetMapBitmap("assets/images/Map_pin.png"),
+
+                        position: LatLng(
                           reservation.parkingPlace.latitude,
                           reservation.parkingPlace.longitude,
                         ),
-                      ],
-                    ),
-                  },
-                  markers: {
-                    Marker(
-                      icon: AssetMapBitmap("assets/images/Map_pin.png"),
-
-                      position: LatLng(
-                        reservation.parkingPlace.latitude,
-                        reservation.parkingPlace.longitude,
+                        markerId: MarkerId(
+                          reservation.parkingPlace.id.toString(),
+                        ),
                       ),
-                      markerId: MarkerId(
-                        reservation.parkingPlace.id.toString(),
-                      ),
-                    ),
 
-                    Marker(
-                      markerId: const MarkerId('user'),
-                      icon: AssetMapBitmap("assets/images/point.png"),
-                      position: LatLng(
+                      Marker(
+                        markerId: const MarkerId('user'),
+                        icon: AssetMapBitmap("assets/images/point.png"),
+                        position: LatLng(
+                          viewModel.currentLocationStream!.latitude,
+                          viewModel.currentLocationStream!.longitude,
+                        ),
+                      ),
+                    },
+                    initialCameraPosition: CameraPosition(
+                      target: LatLng(
                         viewModel.currentLocationStream!.latitude,
                         viewModel.currentLocationStream!.longitude,
                       ),
-                    ),
-                  },
-                  initialCameraPosition: CameraPosition(
-                    target: LatLng(
-                      viewModel.currentLocationStream!.latitude,
-                      viewModel.currentLocationStream!.longitude,
-                    ),
 
-                    zoom: 10,
+                      zoom: 10,
+                    ),
                   ),
-                ),
-          const BuyerWaitingConfirmation(),
-          // const MyMarkerDetails(),
-        ],
+            const BuyerWaitingConfirmation(),
+            // const MyMarkerDetails(),
+          ],
+        ),
       ),
     );
   }

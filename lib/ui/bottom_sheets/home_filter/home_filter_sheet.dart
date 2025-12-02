@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
@@ -38,37 +40,39 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText.largeTitle("Filtres"),
+              CustomText.largeTitle("homeFilter.title".tr()),
               RoundedButton(
                 iconPath: AppIcons.multiplicationSign,
-                onPressed: () {},
+                onPressed: () {
+                  locator<NavigationService>().back();
+                },
               ),
             ],
           ),
           VGap(AppSpacing.px20),
           const CustomDivider(),
           VGap(AppSpacing.px20),
-          const CustomText.paragraph(
-            "Type de place",
+          CustomText.paragraph(
+            "homeFilter.placeType".tr(),
             fontWeight: FontWeight.bold,
           ),
           VGap(AppSpacing.px12),
           Column(
             children: [
               LabeledCheckbox(
-                label: "Toutes les places",
+                label: "homeFilter.allPlaces".tr(),
                 value: true,
                 onChanged: (d) {},
               ),
               VGap(AppSpacing.px4),
               LabeledCheckbox(
-                label: "Uniquement avec borne de recharge",
+                label: "homeFilter.onlyWithCharging".tr(),
                 value: false,
                 onChanged: (d) {},
               ),
               VGap(AppSpacing.px4),
               LabeledCheckbox(
-                label: "Sans borne de recharge",
+                label: "homeFilter.withoutCharging".tr(),
                 value: false,
                 onChanged: (d) {},
               ),
@@ -77,11 +81,14 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
           VGap(AppSpacing.px12),
           const CustomDivider(),
           VGap(AppSpacing.px12),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomText.paragraph("Rayon de recherche"),
-              CustomText.smallParagraphBold("3 min", color: AppColors.greenKre),
+              CustomText.paragraph("homeFilter.searchRadius".tr()),
+              const CustomText.smallParagraphBold(
+                "3 min",
+                color: AppColors.greenKre,
+              ),
             ],
           ),
           VGap(AppSpacing.px12),
@@ -98,13 +105,16 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
           Row(
             children: [
               CustomButton.plain(
-                text: "Réinitialiser",
+                text: "homeFilter.reset".tr(),
                 onPressed: () {},
                 foregroundColor: AppColors.redKre,
               ),
               HGap(AppSpacing.px8),
               Expanded(
-                child: CustomButton.filled(text: "Appliquer", onPressed: () {}),
+                child: CustomButton.filled(
+                  text: "homeFilter.apply".tr(),
+                  onPressed: () {},
+                ),
               ),
             ],
           ),

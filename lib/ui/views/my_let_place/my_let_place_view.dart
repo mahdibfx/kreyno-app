@@ -25,14 +25,14 @@ class MyLetPlaceView extends StackedView<MyLetPlaceViewModel> {
       child: ViewModelBuilder.reactive(
         viewModelBuilder: () => viewModel,
         builder: (context, viewModel, child) => Scaffold(
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              locator<NavigationService>().navigateToClientTrackingView(
-                parkingSpot: viewModel.parkingSpot!,
-                reservation: viewModel.reservation!,
-              );
-            },
-          ),
+          // floatingActionButton: FloatingActionButton(
+          //   onPressed: () {
+          //     locator<NavigationService>().navigateToClientTrackingView(
+          //       parkingSpot: viewModel.parkingSpot!,
+          //       reservation: viewModel.reservation!,
+          //     );
+          //   },
+          // ),
           body: Stack(
             children: [
               GoogleMap(

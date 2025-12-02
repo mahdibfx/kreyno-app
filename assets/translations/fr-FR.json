@@ -1,5 +1,9 @@
 {
     "common": {
+        "title": "Titre",
+        "description": "Description",
+        "cancel": "Annuler",
+        "important": "Important",
         "validTill": "Valide jusqu'au",
         "error": "Un problème est survenu",
         "retry": "Réessayer",
@@ -12,7 +16,7 @@
         "optional": "Optionnel",
         "delete": "Supprimer",
         "complete": "Terminer",
-        "months":{
+        "months": {
             "january": "Janvier",
             "february": "Février",
             "march": "Mars",
@@ -60,7 +64,6 @@
         "phoneNumber": "Numéro de téléphone",
         "phoneNumberPlaceholder": "Entrez votre numéro de téléphone",
         "buttonLabel": "Connexion"
-       
     },
     "countryCodePicker": {
         "title": "Choisissez votre pays",
@@ -219,15 +222,15 @@
         "addNewVehicle": "Ajouter un nouveau véhicule",
         "color": "Couleur",
         "co2Emission": "Émissions de CO₂ (g/km)",
-       "principalVehicle": "Principal",
-       "setAsPrincipal": "Choisir comme principal",
-       "edit": "Modifier",
-       "delete": "Supprimer",
-       "deleteCarDialogTitle": "Supprimer ce véhicule ?",
-       "deleteCarDialogDescription": "Cette action supprimera définitivement le véhicule de votre compte.",
-       "deleteCarDialogMainButton": "Supprimer",
-       "deleteCarDialogSecondaryButton": "Annuler",
-       "carDeletedSuccessfully": "Véhicule supprimé avec succès"
+        "principalVehicle": "Principal",
+        "setAsPrincipal": "Choisir comme principal",
+        "edit": "Modifier",
+        "delete": "Supprimer",
+        "deleteCarDialogTitle": "Supprimer ce véhicule ?",
+        "deleteCarDialogDescription": "Cette action supprimera définitivement le véhicule de votre compte.",
+        "deleteCarDialogMainButton": "Supprimer",
+        "deleteCarDialogSecondaryButton": "Annuler",
+        "carDeletedSuccessfully": "Véhicule supprimé avec succès"
     },
     "addVehicule": {
         "title": "Nouveau véhicule",
@@ -331,9 +334,9 @@
     "myParkingSpots": {
         "title": "Mes parkings",
         "boughtSpotsTab": "Places obtenues",
-        "soldSpotsTab": "Places cédées",
+        "soldSpotsTab": "Places vendues",
         "chargingAvailable": "Borne disponible",
-        "chargingNotAvailable": "Borne non disponible",
+        "chargingNotAvailable": "Borne indisponible",
         "price": "Prix",
         "boughtEmptyTitle": "Aucun stationnement acheté",
         "boughtEmptyDescription": "Vous n'avez pas encore acheté de stationnement. Commencez dès maintenant pour retrouver facilement vos achats.",
@@ -354,5 +357,184 @@
         "accountOf": "Compte de",
         "enterAmountHint": "Saisissez le montant à transférer vers ce compte.",
         "amountExceedsBalance": "Ce montant dépasse votre solde disponible"
+    },
+    "spotSoldSuccess": {
+        "title": "Cession confirmée !",
+        "successMessage": "Place cédée avec succès!",
+        "earningsMessage": "Vous venez de gagner 2€ en cédant votre place",
+        "reservationNumber": "N° de réservation",
+        "price": "Prix",
+        "dateTime": "Date et heure",
+        "placeLocation": "Emplacement de la place",
+        "other": "Autre",
+        "yourWallet": "Votre portefeuille Kreyno"
+    },
+    "spotBoughtSuccess": {
+        "title": "Trajet terminé",
+        "arrivedMessage": "Arrivé à destination",
+        "hostMessage": "Votre hôte de place vous a cédé sa place.",
+        "reservationNumber": "N° de réservation",
+        "price": "Prix",
+        "dateTime": "Date et heure",
+        "placeLocation": "Emplacement de la place",
+        "other": "Autre"
+    },
+    "tracking": {
+        "cancelInfo": "Vous pouvez annuler la réservation après 5 minutes.",
+        "cancel": "Annuler",
+        "message": "Message",
+        "clientArrived": "Votre client(e) est arrivé(e)",
+        "finalizeMessage": "Cédez-lui votre place dès maintenant pour finaliser la réservation.",
+        "placeCeded": "J'ai cédé ma place"
+    },
+    "chat": {
+        "newMessage": "Nouveau message",
+        "online": "Online",
+        "offline": "Offline"
+    },
+    "checkoutMoney": {
+        "withdraw": "Retirer",
+        "title": "Retirer mon argent",
+        "yourBalance": "Votre balance",
+        "withdrawalAmount": "Montant de retrait"
+    },
+    "kreynoWallet": {
+        "title": "Portefeuille Kreyno",
+        "yourBalance": "Votre balance",
+        "withdrawMyMoney": "Retirer mon argent",
+        "earningsHistory": "Historique des gains"
+    },
+    "cancelationReasons": {
+        "title": "Êtes-vous sur de vouloir annuler cette réservation?",
+        "selectReason": "Sélectionnez une raison ci-dessous.",
+        "changedPlans": "J'ai changé mes plans",
+        "madeMistake": "J'ai fait une erreur",
+        "clientTooFar": "Le client est trop loin",
+        "other": "Autre (a spécifier)",
+        "enterReason": "Saisissez votre raison d'annulation",
+        "validate": "Valider"
+    },
+    "payForSpot": {
+        "payment": "Paiment",
+        "payWith": "Payer avec",
+        "noPaymentMethod": "Aucun moyen de paiement enregistré",
+        "mustAddCard": "Vous devez ajouter une carte pour payer.",
+        "addNewCard": "Ajouter une nouvelle carte",
+        "parking": "Stationnement",
+        "kreynoFees": "Frais Kreyno (20%)",
+        "reservationCreated": "Réservation créée avec succès",
+        "totalToPay": "Total à payer",
+        "securePayment": "Vos informations de paiement sont entièrement sécurisées et protégées.",
+        "payAndReserve": "Payer & réserver cette place"
+    },
+    "slideableButton": {
+        "slideToPay": "Glisser pour payer"
+    },
+    "createSpot": {
+        "spotNameHint": "Au Gustave",
+        "spotDescriptionHint": "Description de la place",
+        "spotPriceHint": "Prix de la place",
+        "title": "Louer ma place",
+        "placeLabel": "Place",
+        "useMyPosition": "Utiliser ma position",
+        "choosePrice": "Choisir le prix",
+        "recommended": "Recommandé",
+        "electricCharging": "Borne de recharge électrique",
+        "possible": "Possible",
+        "notPossible": "Pas possible",
+        "validate": "Louer ma place"
+    },
+    "homeFilter": {
+        "title": "Filtres",
+        "placeType": "Type de place",
+        "allPlaces": "Toutes les places",
+        "onlyWithCharging": "Uniquement avec borne de recharge",
+        "withoutCharging": "Sans borne de recharge",
+        "searchRadius": "Rayon de recherche",
+        "reset": "Réinitialiser",
+        "apply": "Appliquer"
+    },
+    "checkoutMoneyFeedback": {
+        "successTitle": "Retrait confirmé",
+        "failedTitle": "Échec du retrait",
+        "successDescription": "Votre demande a été enregistrée. Vous recevrez votre virement sous peu.",
+        "errorDescription": "Une erreur est survenue. Veuillez réessayer ultérieurement.",
+        "finish": "Terminer",
+        "retry": "Ressayer"
+    },
+    "addPaymentCard": {
+        "title": "Ajouter une carte",
+        "cardName": "Nom sur la carte",
+        "enterName": "Entrez le nom",
+        "cardNumber": "Numero de la carte",
+        "expiration": "Expiration",
+        "setAsDefault": "Définir en tant que carte principale",
+        "termsAndConditions": "J'ai lu et approuvé les termes et les conditions d'utilisations.",
+        "saveCard": "Enregistrer cette carte"
+    },
+    "receivedOrder": {
+        "refuseReason": "Pourquoi voulez-vous refuser cette demande?",
+        "selectReason": "Sélectionnez une raison ci-dessous.",
+        "other": "Autre (a spécifier)",
+        "enterReason": "Saisissez votre raison d'annulation",
+        "validate": "Valider",
+        "newDemand": "Nouvelle demande reçue",
+        "demandDescription": "Quelqu'un souhaite réserver votre place. Acceptez ou refusez sa demande.",
+        "distanceAndTime": "Distance & temps approximatifs pour son arrivée",
+        "place": "Place",
+        "refuse": "Refuser",
+        "accept": "Accepter",
+        "responseTimeRemaining": "Temps de réponse restant"
+    },
+    "buyerSelectedMark": {
+        "proposesSpotAt": "propose une place à"
+    },
+    "chooseLocation": {
+        "title": "Choisissez un emplacement",
+        "choose": "Choisir"
+    },
+    "buyerConfirmArrive": {
+        "arrivedAtDestination": "Arrivé a destination",
+        "itineraryReady": "Votre itinéraire est prêt !",
+        "arrivalConfirmed": "Arrivée confirmée",
+        "hostInformed": "Votre hôte est informé de votre arrivée et va bientôt libérer la place..",
+        "confirmArrival": "Confirmez votre arrivée",
+        "confirmArrivalDescription": "Veuillez confirmer votre arrivée pour que l'hôte de la place puisse vous la céder.",
+        "confirmMyArrival": "Confirmer mon arrivée"
+    },
+    "sellerConfirmedForBuyer": {
+        "itineraryReady": "Votre itinéraire est prêt !",
+        "cancellationPolicy": "Après 5 min, l’hôte peut annuler et vous serez remboursé.",
+        "openWaze": "Ouvrir Waze"
+    },
+    "clientCanceledOrder": {
+        "title": "Réservation annulée par le client",
+        "description": "Votre place est de nouveau disponible."
+    },
+    "locationDisabled": {
+        "title": "Oups, localisation désactivée !"
+    },
+    "carTopBar": {
+        "vehicleChosen": "Véhicule choisi",
+        "exampleCar": "Peugeot 308"
+    },
+    "carSelector": {
+        "vehicleChosen": "Véhicule choisi"
+    },
+    "myMarkerDetails": {
+        "you": "Vous",
+        "proposeSpotAt": "proposez une place à",
+        "deleteSpotTitle": "Supprimer cette place",
+        "deleteSpotDescription": "Cette place sera retirée et ne sera plus proposée aux utilisateurs."
+    },
+    "sellerTracking": {
+        "reservationConfirmed": "Réservation confirmée"
+    },
+    "portfolio": {
+        "sale": "VENTE",
+        "withdrawal": "RETRAIT"
+    },
+    "home": {
+        "let_my_place": "Louer ma place"
     }
 }

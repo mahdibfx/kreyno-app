@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
@@ -32,12 +33,12 @@ class AddPaymentCartSheet extends StackedView<AddPaymentCartSheetModel> {
     return BottomSheetLayout(
       body: Column(
         children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomIcon(iconPath: AppIcons.arrowLeft),
-              CustomText.paragraph("Ajouter une carte"),
-              Opacity(
+              const CustomIcon(iconPath: AppIcons.arrowLeft),
+              CustomText.paragraph("addPaymentCard.title".tr()),
+              const Opacity(
                 opacity: 0,
                 child: CustomIcon(iconPath: AppIcons.multiplicationSign),
               ),
@@ -47,15 +48,15 @@ class AddPaymentCartSheet extends StackedView<AddPaymentCartSheetModel> {
           InputField(
             controller: TextEditingController(),
             focusNode: FocusNode(),
-            labelText: "Nom sur la carte",
-            hintText: "Entrez le nom",
+            labelText: "addPaymentCard.cardName".tr(),
+            hintText: "addPaymentCard.enterName".tr(),
             keyboardType: TextInputType.text,
           ),
           VGap(AppSpacing.px16),
           InputField(
             controller: TextEditingController(),
             focusNode: FocusNode(),
-            labelText: "Numero de la carte",
+            labelText: "addPaymentCard.cardNumber".tr(),
             hintText: "XXXX XXXX XXXX XXXX",
             keyboardType: TextInputType.text,
           ),
@@ -66,7 +67,7 @@ class AddPaymentCartSheet extends StackedView<AddPaymentCartSheetModel> {
                 child: InputField(
                   controller: TextEditingController(),
                   focusNode: FocusNode(),
-                  labelText: "Expiration",
+                  labelText: "addPaymentCard.expiration".tr(),
                   hintText: "mm/aaaa",
                   keyboardType: TextInputType.text,
                 ),
@@ -87,14 +88,13 @@ class AddPaymentCartSheet extends StackedView<AddPaymentCartSheetModel> {
           Column(
             children: [
               LabeledCheckbox(
-                label: "Définir en tant que carte principale",
+                label: "addPaymentCard.setAsDefault".tr(),
                 value: true,
                 onChanged: (d) {},
               ),
               VGap(AppSpacing.px8),
               LabeledCheckbox(
-                label:
-                    "J’ai lu et approuvé les termes et les conditions d’utilisations.",
+                label: "addPaymentCard.termsAndConditions".tr(),
                 value: true,
                 onChanged: (d) {},
               ),
@@ -102,7 +102,7 @@ class AddPaymentCartSheet extends StackedView<AddPaymentCartSheetModel> {
           ),
           VGap(AppSpacing.px16),
           CustomButton.filled(
-            text: "Enregistrer cette carte",
+            text: "addPaymentCard.saveCard".tr(),
             onPressed: () {},
           ),
           VGap(AppSpacing.px16),

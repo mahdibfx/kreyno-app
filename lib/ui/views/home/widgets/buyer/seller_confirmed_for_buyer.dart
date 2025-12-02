@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
@@ -36,8 +37,8 @@ class SellerConfirmedForBuyer extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                           color: AppColors.white,
                         ),
-                        child: const CustomText.smallParagraphMedium(
-                          "Votre itinéraire est prêt !",
+                        child: CustomText.smallParagraphMedium(
+                          "sellerConfirmedForBuyer.itineraryReady".tr(),
                         ),
                       ),
                     ),
@@ -83,14 +84,17 @@ class SellerConfirmedForBuyer extends StatelessWidget {
                           ),
                         ),
                         HGap(AppSpacing.px8),
-                        const Expanded(
+                        Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              CustomText.smallParagraphBold("Important"),
+                              CustomText.smallParagraphBold(
+                                "common.important".tr(),
+                              ),
                               SizedBox(
                                 child: CustomText.smallParagraphMedium(
-                                  "Après 5 min, l’hôte peut annuler et vous serez remboursé.",
+                                  "sellerConfirmedForBuyer.cancellationPolicy"
+                                      .tr(),
                                   maxLines: 2,
                                   color: AppColors.textKre,
                                 ),
@@ -119,7 +123,7 @@ class SellerConfirmedForBuyer extends StatelessWidget {
                 children: [
                   Expanded(
                     child: CustomButton.filled(
-                      text: "Ouvrir Waze",
+                      text: "sellerConfirmedForBuyer.openWaze".tr(),
                       foregroundColor: AppColors.disabledFillKre,
                       icon: AppIcons.waze,
                       backgroundColor: AppColors.wazeBlue,

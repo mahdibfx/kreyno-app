@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
@@ -27,7 +28,7 @@ class LocationDisabledBanner extends ViewModelWidget<HomeViewModel> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 9 * AppSpacing.px1),
             child: CustomText.smallParagraphBold(
-              "Oups, localisation désactivée !",
+              "locationDisabled.title".tr(),
               color: AppColors.white,
             ),
           ),

@@ -1,11 +1,15 @@
+import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter_stripe/flutter_stripe.dart' hide Card;
 import 'package:fpdart/fpdart.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/models/card.dart';
 import 'package:kreyno/models/parking_spot.dart';
 import 'package:kreyno/models/reservation.dart';
+import 'package:kreyno/services/location_service.dart';
 import 'package:kreyno/services/reservations_service.dart';
 import 'package:kreyno/services/stripe_service.dart';
 import 'package:kreyno/services/toast_service.dart';
@@ -15,6 +19,7 @@ import 'package:stacked_services/stacked_services.dart';
 class PayForSpotSheetModel extends BaseViewModel {
   final _stripeService = locator<StripeService>();
   final _navigationService = locator<NavigationService>();
+  final _locationService = locator<LocationService>();
 
   final _logger = getLogger('PayForSpotSheetModel');
   final _toastService = locator<ToastService>();
@@ -26,6 +31,18 @@ class PayForSpotSheetModel extends BaseViewModel {
 
   List<Card> _cards = [];
   List<Card> get cards => _cards;
+
+  String getDistanceToSpot(ParkingSpot parkingSpot) {
+    final currentLocation = _locationService.currentLocation;
+    if (currentLocation == null) return "0 km";
+    final distanceInMeters = Geolocator.distanceBetween(
+      currentLocation.latitude,
+      currentLocation.longitude,
+      parkingSpot.latitude,
+      parkingSpot.longitude,
+    );
+    return "${(distanceInMeters / 1000).toStringAsFixed(1)} km";
+  }
 
   selectPaymentMethod(Card card) {
     paymentMethodId = card.id;
@@ -153,7 +170,7 @@ class PayForSpotSheetModel extends BaseViewModel {
           break;
 
         default:
-          _toastService.showError(title: "An error occured");
+          _toastService.showError(title: "common.error".tr());
       }
     });
   }
@@ -161,7 +178,7 @@ class PayForSpotSheetModel extends BaseViewModel {
   _handleReservationResult(Either<String, Reservation> result) {
     result.match((l) => _toastService.showError(title: l), (r) {
       _navigationService.navigateToSellerTrackingView(reservation: r);
-      // toastService.showSuccess(title: "Reservation created successfully");
+      // toastService.showSuccess(title: "payForSpot.reservationCreated".tr());
     });
   }
 }

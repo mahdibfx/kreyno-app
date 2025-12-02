@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
@@ -81,14 +82,14 @@ class RefuseReasonForm extends ViewModelWidget<MyLetPlaceViewModel> {
           child: const CustomIcon(iconPath: AppIcons.arrowLeft),
         ),
         VGap(AppSpacing.px20),
-        const CustomText(
-          text: "Pourquoi voulez-vous refuser cette demande?",
+        CustomText(
+          text: "receivedOrder.refuseReason".tr(),
           style: CustomTextStyle.largeTitle,
           maxLines: 2,
         ),
         VGap(AppSpacing.px4),
-        const CustomText(
-          text: "Sélectionnez une raison ci-dessous.",
+        CustomText(
+          text: "receivedOrder.selectReason".tr(),
           style: CustomTextStyle.smallParagraphMedium,
           color: AppColors.textKre,
         ),
@@ -113,7 +114,7 @@ class RefuseReasonForm extends ViewModelWidget<MyLetPlaceViewModel> {
         ),
 
         LabeledRadio(
-          label: "Autre (a spécifier)",
+          label: "receivedOrder.other".tr(),
           value: viewModel.isOtherSelected,
           onChanged: (d) {
             viewModel.isOtherSelected = true;
@@ -127,13 +128,13 @@ class RefuseReasonForm extends ViewModelWidget<MyLetPlaceViewModel> {
           InputField(
             controller: viewModel.otherTextController,
             focusNode: FocusNode(),
-            hintText: "Saisissez votre raison d’annulation",
+            hintText: "receivedOrder.enterReason".tr(),
             keyboardType: TextInputType.text,
             maxLines: 4,
           ),
         VGap(AppSpacing.px24),
         CustomButton.filled(
-          text: "Valider",
+          text: "receivedOrder.validate".tr(),
           backgroundColor: AppColors.redKre,
           foregroundColor: AppColors.white,
           onPressed: () {
@@ -154,14 +155,13 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         VGap(AppSpacing.px4),
-        const CustomText(
-          text: "Nouvelle demande reçue",
+        CustomText(
+          text: "receivedOrder.newDemand".tr(),
           style: CustomTextStyle.largeTitle,
         ),
         VGap(AppSpacing.px4),
-        const CustomText(
-          text:
-              "Quelqu’un souhaite réserver votre place. `Acceptez ou refusez sa demande.",
+        CustomText(
+          text: "receivedOrder.demandDescription".tr(),
           color: AppColors.textKre,
           style: CustomTextStyle.smallParagraphMedium,
           maxLines: 2,
@@ -243,8 +243,8 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
           ),
         ),
         VGap(AppSpacing.px1 * 15),
-        const CustomText(
-          text: "Distance & temps approximatifs pour son arrivée",
+        CustomText(
+          text: "receivedOrder.distanceAndTime".tr(),
           style: CustomTextStyle.smallParagraphMedium,
           color: AppColors.textKre,
         ),
@@ -256,8 +256,8 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
                 children: [
                   const CustomIcon(iconPath: AppIcons.route),
                   HGap(AppSpacing.px1 * 5),
-                  const CustomText(
-                    text: "∼2.5 km",
+                  CustomText(
+                    text: viewModel.distanceToSpot,
                     style: CustomTextStyle.smallParagraphMedium,
                   ),
                 ],
@@ -268,8 +268,8 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
                 children: [
                   const CustomIcon(iconPath: AppIcons.stopwatch),
                   HGap(AppSpacing.px1 * 5),
-                  const CustomText(
-                    text: "∼3 minutes",
+                  CustomText(
+                    text: viewModel.timeToSpot,
                     style: CustomTextStyle.smallParagraphMedium,
                   ),
                 ],
@@ -280,8 +280,8 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
         VGap(AppSpacing.px16),
         const CustomDivider(),
         VGap(AppSpacing.px16),
-        const CustomText(
-          text: "Place",
+        CustomText(
+          text: "receivedOrder.place".tr(),
           style: CustomTextStyle.smallParagraphMedium,
           color: AppColors.textKre,
         ),
@@ -323,8 +323,8 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
             HGap(AppSpacing.px4),
             CustomText(
               text: viewModel.reservation!.parkingPlace.electricChargeStation
-                  ? "Borne disponible"
-                  : "Borne indisponible",
+                  ? "myParkingSpots.chargingAvailable".tr()
+                  : "myParkingSpots.chargingNotAvailable".tr(),
               style: CustomTextStyle.smallParagraphMedium,
               color: viewModel.reservation!.parkingPlace.electricChargeStation
                   ? AppColors.greenKre
@@ -340,7 +340,7 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
             children: [
               Expanded(
                 child: CustomButton.filled(
-                  text: "Refuser",
+                  text: "receivedOrder.refuse".tr(),
                   backgroundColor: AppColors.redKre,
                   foregroundColor: AppColors.white,
                   onPressed: () {
@@ -354,7 +354,7 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
               SizedBox(width: AppSpacing.px8),
               Expanded(
                 child: CustomButton.filled(
-                  text: "Accepter",
+                  text: "receivedOrder.accept".tr(),
                   onPressed: () async {
                     viewModel.acceptOrder();
                   },
@@ -391,8 +391,8 @@ class CounterBar extends StatelessWidget {
               ),
             ),
             HGap(AppSpacing.px8),
-            const CustomText(
-              text: "Temps de réponse restant",
+            CustomText(
+              text: "receivedOrder.responseTimeRemaining".tr(),
               style: CustomTextStyle.smallParagraphMedium,
               color: AppColors.white,
             ),

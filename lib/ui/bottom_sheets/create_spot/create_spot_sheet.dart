@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
@@ -47,7 +48,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(
-                text: "home.let_my_place".tr(),
+                text: "createSpot.title".tr(),
                 style: CustomTextStyle.largeTitle,
               ),
               RoundedButton(
@@ -69,8 +70,8 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
                 disabled: false,
                 controller: viewModel.placeController,
                 focusNode: FocusNode(),
-                labelText: "home.place".tr(),
-                hintText: "Au Gustave",
+                labelText: "createSpot.placeLabel".tr(),
+                hintText: "createSpot.spotNameHint".tr(),
                 keyboardType: TextInputType.text,
               ),
             ),
@@ -92,7 +93,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
                       const CustomIcon(iconPath: AppIcons.locationUser),
                       HGap(AppSpacing.px1 * 10),
                       CustomText(
-                        text: "use_my_position".tr(),
+                        text: "createSpot.useMyPosition".tr(),
                         style: CustomTextStyle.smallParagraphMedium,
                       ),
                     ],
@@ -109,7 +110,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
                 child: Opacity(
                   opacity: viewModel.isLocationEnabled ? 0.3 : 1,
                   child: CustomText(
-                    text: "enable".tr(),
+                    text: "createSpot.spotDescriptionHint".tr(),
                     style: CustomTextStyle.smallParagraphBold,
                     textDecoration: TextDecoration.underline,
                   ),
@@ -123,12 +124,12 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
           InputField(
             controller: viewModel.priceController,
             focusNode: FocusNode(),
-            labelText: "home.choose_price".tr(),
+            labelText: "createSpot.choosePrice".tr(),
             onChanged: (f) {
               viewModel.rebuildUi();
             },
             hintText:
-                "${"home.recommended".tr()}: "
+                "${"createSpot.recommended".tr()}: "
                 "2.4€ ∼ 7€",
             trailingIcon: Container(
               padding: const EdgeInsets.all(10),
@@ -149,7 +150,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
               ),
               HGap(AppSpacing.px4),
               CustomText(
-                text: "home.born_recharge_electrique".tr(),
+                text: "createSpot.electricCharging".tr(),
                 style: CustomTextStyle.smallParagraphMedium,
                 color: AppColors.textKre,
               ),
@@ -160,7 +161,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
             children: [
               Expanded(
                 child: LabeledCheckbox(
-                  label: "possible".tr(),
+                  label: "createSpot.possible".tr(),
                   value: viewModel.bornDisponible,
                   onChanged: (d) {
                     viewModel.changedBorneValue(true);
@@ -169,7 +170,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
               ),
               Expanded(
                 child: LabeledCheckbox(
-                  label: "not_possible".tr(),
+                  label: "createSpot.notPossible".tr(),
                   value: !viewModel.bornDisponible,
                   onChanged: (d) {
                     viewModel.changedBorneValue(false);
@@ -184,7 +185,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
             bottom: Platform.isAndroid,
             child: CustomButton.filled(
               isDisabled: !viewModel.validateCreateSpotButton(),
-              text: "home.let_my_place".tr(),
+              text: "createSpot.validate".tr(),
               onPressed: () {
                 viewModel.letMyPlaceButtonClicked();
               },

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
@@ -5,14 +6,10 @@ import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 
 class SlideableButton extends StatefulWidget {
-  const SlideableButton({
-    super.key,
-    required this.onCompleted,
-    this.label = "Passer au paiement",
-  });
+  const SlideableButton({super.key, required this.onCompleted, this.label});
 
   final VoidCallback onCompleted;
-  final String label;
+  final String? label;
 
   @override
   State<SlideableButton> createState() => _SlideableButtonState();
@@ -53,7 +50,10 @@ class _SlideableButtonState extends State<SlideableButton> {
             child: AnimatedOpacity(
               opacity: (1 - (dragX / maxDrag)).clamp(0.0, 1.0),
               duration: const Duration(milliseconds: 100),
-              child: CustomText(text: widget.label, color: AppColors.mainKre),
+              child: CustomText(
+                text: widget.label ?? "slideableButton.slideToPay".tr(),
+                color: AppColors.mainKre,
+              ),
             ),
           ),
 

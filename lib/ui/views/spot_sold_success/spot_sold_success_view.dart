@@ -37,7 +37,7 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
           onPressed: () {},
           icon: const CustomIcon(iconPath: AppIcons.multiplicationSign),
         ),
-        title: const CustomText.paragraph("Cession confirmée !"),
+        title: CustomText.paragraph("spotSoldSuccess.title".tr()),
       ),
       backgroundColor: AppColors.white,
       body: SafeArea(
@@ -52,10 +52,10 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                   height: AppSpacing.px1 * 128,
                 ),
                 VGap(AppSpacing.px8),
-                const CustomText.largeTitle("Place cédée avec succès!"),
+                CustomText.largeTitle("spotSoldSuccess.successMessage".tr()),
                 VGap(AppSpacing.px4),
-                const CustomText.smallParagraphMedium(
-                  "Vous venez de gagner 2€ en cédant votre place",
+                CustomText.smallParagraphMedium(
+                  "spotSoldSuccess.earningsMessage".tr(),
                   color: AppColors.textKre,
                 ),
                 VGap(AppSpacing.px24),
@@ -66,14 +66,17 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                   child: Column(
                     children: [
                       InfoListTile(
-                        title: 'N° de réservation',
+                        title: "spotSoldSuccess.reservationNumber".tr(),
                         value: "#${reservation.id}",
                       ),
                       VGap(AppSpacing.px8),
-                      const InfoListTile(title: 'Prix', value: "2€"),
+                      InfoListTile(
+                        title: "spotSoldSuccess.price".tr(),
+                        value: "2€",
+                      ),
                       VGap(AppSpacing.px8),
                       InfoListTile(
-                        title: 'Date et heure',
+                        title: "spotSoldSuccess.dateTime".tr(),
                         value: DateFormat(
                           "dd-MM-yyyy, HH:mm",
                         ).format(DateTime.now()),
@@ -165,8 +168,8 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      const CustomText.smallParagraphMedium(
-                        "Emplacement de la place",
+                      CustomText.smallParagraphMedium(
+                        "spotSoldSuccess.placeLocation".tr(),
                         color: AppColors.textKre,
                       ),
                       VGap(AppSpacing.px1 * 6),
@@ -174,8 +177,8 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                         reservation.parkingPlace.address,
                       ),
                       VGap(AppSpacing.px16),
-                      const CustomText.smallParagraphMedium(
-                        "Autre",
+                      CustomText.smallParagraphMedium(
+                        "spotSoldSuccess.other".tr(),
                         color: AppColors.textKre,
                       ),
                       VGap(AppSpacing.px1 * 6),
@@ -188,8 +191,8 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                           HGap(AppSpacing.px4),
                           CustomText(
                             text: reservation.parkingPlace.electricChargeStation
-                                ? "Borne disponible"
-                                : "Borne indisponible",
+                                ? "myParkingSpots.chargingAvailable".tr()
+                                : "myParkingSpots.chargingNotAvailable".tr(),
                             style: CustomTextStyle.smallParagraphMedium,
                             color:
                                 reservation.parkingPlace.electricChargeStation
@@ -202,7 +205,7 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                       InputField(
                         controller: TextEditingController(),
                         focusNode: FocusNode(),
-                        labelText: "Votre portefeuille Kreyno",
+                        labelText: "spotSoldSuccess.yourWallet".tr(),
                         hintText: "Olivier Dupons",
                         trailingIcon: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -217,7 +220,7 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                       ),
                       VGap(AppSpacing.px1 * 34),
                       CustomButton.filled(
-                        text: "Retourner vers l’accueil",
+                        text: "payout.goToHome".tr(),
                         onPressed: () {
                           locator<NavigationService>().back();
                         },

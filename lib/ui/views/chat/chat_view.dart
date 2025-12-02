@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.locator.dart';
@@ -53,7 +54,7 @@ class ChatView extends StackedView<ChatViewModel> {
                       child: InputField(
                         controller: viewModel.messageTextController,
                         focusNode: FocusNode(),
-                        hintText: "Nouveau message",
+                        hintText: "chat.newMessage".tr(),
                         keyboardType: TextInputType.text,
                       ),
                     ),
@@ -117,7 +118,7 @@ class ChatView extends StackedView<ChatViewModel> {
                   children: [
                     CustomText.smallParagraphBold(name),
                     CustomText.smallParagraphMedium(
-                      online ? "Online" : "Offline",
+                      online ? "chat.online".tr() : "chat.offline".tr(),
                       color: online ? AppColors.greenKre : AppColors.textKre,
                     ),
                   ],
