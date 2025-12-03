@@ -152,5 +152,7 @@ class MyVehiculesViewModel extends BaseViewModel {
 
   onEditCarTapped(int carId) async {
     // TODO: Implement this
+
+    _navigationService.navigateToEditVehiculeView();
   }
 }

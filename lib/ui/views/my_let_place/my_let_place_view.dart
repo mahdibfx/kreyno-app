@@ -36,6 +36,17 @@ class MyLetPlaceView extends StackedView<MyLetPlaceViewModel> {
           body: Stack(
             children: [
               GoogleMap(
+                markers: {
+                  Marker(
+                    markerId: MarkerId("${viewModel.parkingSpot!.id}"),
+
+                    icon: AssetMapBitmap("assets/images/Map_pin.png"),
+                    position: LatLng(
+                      viewModel.parkingSpot!.latitude,
+                      viewModel.parkingSpot!.longitude,
+                    ),
+                  ),
+                },
                 initialCameraPosition: CameraPosition(
                   zoom: 17,
                   target: LatLng(

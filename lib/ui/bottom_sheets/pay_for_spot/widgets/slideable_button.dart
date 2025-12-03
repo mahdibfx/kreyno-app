@@ -26,7 +26,7 @@ class _SlideableButtonState extends State<SlideableButton> {
     final maxDrag = totalWidth - knobSize;
 
     return Container(
-      width: totalWidth,
+      width: double.infinity,
       height: 58,
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(

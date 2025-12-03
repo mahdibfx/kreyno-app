@@ -22,7 +22,7 @@ class ClientTrackingView extends StackedView<ClientTrackingViewModel> {
     ClientTrackingViewModel viewModel,
     Widget? child,
   ) {
-    print(viewModel.buyerLocation.toJson().toString());
+    print(viewModel.buyerLocation!.longitude);
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -39,17 +39,29 @@ class ClientTrackingView extends StackedView<ClientTrackingViewModel> {
                   startCap: Cap.roundCap,
                   endCap: Cap.roundCap,
 
-                  polylineId: const PolylineId('userd'),
+                  polylineId: const PolylineId('s'),
                   points: [
                     LatLng(
-                      viewModel.buyerLocation?.latitude,
-                      viewModel.buyerLocation?.longitude,
+                      viewModel.buyerLocation?.latitude.toDouble() ??
+                          parkingSpot.latitude,
+                      viewModel.buyerLocation?.longitude.toDouble() ??
+                          parkingSpot.longitude,
                     ),
                     LatLng(parkingSpot.latitude, parkingSpot.longitude),
                   ],
                 ),
               },
               markers: {
+                Marker(
+                  markerId: const MarkerId('user'),
+                  icon: AssetMapBitmap("assets/images/point.png"),
+                  position: LatLng(
+                    viewModel.buyerLocation?.latitude.toDouble() ??
+                        parkingSpot.latitude,
+                    viewModel.buyerLocation?.longitude.toDouble() ??
+                        parkingSpot.longitude,
+                  ),
+                ),
                 Marker(
                   icon: AssetMapBitmap("assets/images/Map_pin.png"),
 

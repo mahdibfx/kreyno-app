@@ -78,6 +78,7 @@ class HomeViewModel extends ReactiveViewModel {
 
   Future<void> openFilterBottomSheet() async {
     final result = await _bottomSheetService.showCustomSheet(
+      isScrollControlled: true,
       variant: BottomSheetType.homeFilter,
     );
   }

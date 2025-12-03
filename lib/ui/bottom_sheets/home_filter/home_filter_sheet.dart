@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -36,6 +38,7 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
     return BottomSheetLayout(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -78,45 +81,51 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
               ),
             ],
           ),
-          VGap(AppSpacing.px12),
+          VGap(AppSpacing.px20),
+
           const CustomDivider(),
-          VGap(AppSpacing.px12),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              CustomText.paragraph("homeFilter.searchRadius".tr()),
-              const CustomText.smallParagraphBold(
-                "3 min",
-                color: AppColors.greenKre,
-              ),
-            ],
-          ),
-          VGap(AppSpacing.px12),
-          SizedBox(
-            width: double.infinity,
-            child: Slider(
-              value: 0.5,
-              onChanged: (d) {},
-              activeColor: AppColors.greenKre,
-              thumbColor: AppColors.white,
-            ),
-          ),
-          VGap(AppSpacing.px12),
-          Row(
-            children: [
-              CustomButton.plain(
-                text: "homeFilter.reset".tr(),
-                onPressed: () {},
-                foregroundColor: AppColors.redKre,
-              ),
-              HGap(AppSpacing.px8),
-              Expanded(
-                child: CustomButton.filled(
-                  text: "homeFilter.apply".tr(),
+          // VGap(AppSpacing.px12),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          //     CustomText.paragraph("homeFilter.searchRadius".tr()),
+          //     const CustomText.smallParagraphBold(
+          //       "3 min",
+          //       color: AppColors.greenKre,
+          //     ),
+          //   ],
+          // ),
+          // VGap(AppSpacing.px12),
+          // SizedBox(
+          //   width: double.infinity,
+          //   child: Slider(
+          //     value: 0.5,
+          //     onChanged: (d) {},
+          //     activeColor: AppColors.greenKre,
+          //     thumbColor: AppColors.white,
+          //   ),
+          // ),
+          VGap(AppSpacing.px20),
+
+          SafeArea(
+            top: false,
+            bottom: Platform.isAndroid,
+            child: Row(
+              children: [
+                CustomButton.plain(
+                  text: "homeFilter.reset".tr(),
                   onPressed: () {},
+                  foregroundColor: AppColors.redKre,
                 ),
-              ),
-            ],
+                HGap(AppSpacing.px8),
+                Expanded(
+                  child: CustomButton.filled(
+                    text: "homeFilter.apply".tr(),
+                    onPressed: () {},
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

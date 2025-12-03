@@ -5,6 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/app/app_constants.dart';
+import 'package:kreyno/models/buyer_location_updated.dart';
 import 'package:kreyno/models/reservation.dart';
 import 'package:kreyno/services/location_service.dart';
 import 'package:kreyno/services/reservations_service.dart';
@@ -23,7 +24,8 @@ class ClientTrackingViewModel extends ReactiveViewModel {
   final _locationService = locator<LocationService>();
 
   get userId => _userService.currentUser?.id;
-  get buyerLocation => _trackingService.buyerLocationUpdated;
+  BuyerLocationUpdated? get buyerLocation =>
+      _trackingService.buyerLocationUpdated;
   bool get buyerArrived =>
       _trackingService.buyerLocationUpdated?.arrived ?? false;
   bool cancelButtonDisabled = true;

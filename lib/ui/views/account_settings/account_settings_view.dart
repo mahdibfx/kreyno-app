@@ -32,7 +32,6 @@ class AccountSettingsView extends StackedView<AccountSettingsViewModel> {
               title: AccountSettingsStrings.title,
               onBackPressed: viewModel.goBack,
             ),
-
             SliverPadding(
               padding: EdgeInsets.symmetric(horizontal: AppSpacing.px16),
               sliver: SliverToBoxAdapter(

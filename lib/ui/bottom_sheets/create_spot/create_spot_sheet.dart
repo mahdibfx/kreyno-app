@@ -69,6 +69,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
               child: InputField(
                 disabled: false,
                 controller: viewModel.placeController,
+                showOptionalLabel: false,
                 focusNode: FocusNode(),
                 labelText: "createSpot.placeLabel".tr(),
                 hintText: "createSpot.spotNameHint".tr(),
@@ -125,6 +126,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
             controller: viewModel.priceController,
             focusNode: FocusNode(),
             labelText: "createSpot.choosePrice".tr(),
+            showOptionalLabel: false,
             onChanged: (f) {
               viewModel.rebuildUi();
             },

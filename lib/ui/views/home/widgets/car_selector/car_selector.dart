@@ -129,6 +129,7 @@ class CarSelector extends StackedView<CarSelectorModel> {
                                   : const AssetImage(
                                       AppImages.placeholderCarImage,
                                     ),
+
                               fit: BoxFit.cover,
                             ),
                             borderRadius: BorderRadius.circular(AppSpacing.px8),

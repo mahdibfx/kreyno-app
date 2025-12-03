@@ -39,6 +39,7 @@ class MyNewMarkLabel
                 Expanded(
                   child: GooglePlaceAutoCompleteTextField(
                     placeType: PlaceType.address,
+
                     countries: const ["fr"],
                     itemClick: (positionPrediction) {
                       viewModel.onItemClicked(positionPrediction.description!);
@@ -50,6 +51,7 @@ class MyNewMarkLabel
                     ),
                     inputDecoration: InputDecoration(
                       filled: true,
+                      hintText: "common.search".tr(),
                       fillColor: AppColors.white,
                       isDense: true,
 

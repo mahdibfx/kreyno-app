@@ -21,7 +21,7 @@ class SellerTrackingView extends StackedView<SellerTrackingViewModel> {
     SellerTrackingViewModel viewModel,
     Widget? child,
   ) {
-    print(viewModel.reservation.parkingPlace.latitude);
+    print(viewModel.nearParkingSpotLocation);
 
     return PopScope(
       canPop: false,

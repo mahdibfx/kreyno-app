@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.dialogs.dart';
@@ -60,10 +61,12 @@ class SoldParkingSpotWidget extends ViewModelWidget<MyLetPlaceViewModel> {
                 height: 11 * AppSpacing.px4,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(viewModel.currentUserAvatarUrl),
+                    image: CachedNetworkImageProvider(
+                      viewModel.currentUserAvatarUrl,
+                    ),
+                    fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.circular(12),
-                  color: Colors.red,
                 ),
               ),
               HGap(AppSpacing.px8),

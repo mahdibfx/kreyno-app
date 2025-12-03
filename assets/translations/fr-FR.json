@@ -4,6 +4,7 @@
         "description": "Description",
         "cancel": "Annuler",
         "important": "Important",
+        "search": "Rechercher",
         "validTill": "Valide jusqu'au",
         "error": "Un problème est survenu",
         "retry": "Réessayer",
@@ -258,7 +259,7 @@
         "title": "Changer mon numéro",
         "description": "Pour changer votre numéro de téléphone, un code OTP de vérification vous sera envoyé.",
         "phoneNumber": "Numéro de téléphone",
-        "phoneNumberPlaceholder": "Entrez votre nouveau numéro de téléphone",
+        "phoneNumberPlaceholder": "votre numéro de téléphone",
         "buttonLabel": "Vérifier et changer",
         "phoneNumberTaken": "Ce numéro de téléphone est déjà utilisé",
         "phoneNumberUpdatedSuccessfully": "Numéro de téléphone mis à jour avec succès"
@@ -432,7 +433,7 @@
     },
     "createSpot": {
         "spotNameHint": "Au Gustave",
-        "spotDescriptionHint": "Description de la place",
+        "spotDescriptionHint": "Activer localisation",
         "spotPriceHint": "Prix de la place",
         "title": "Louer ma place",
         "placeLabel": "Place",

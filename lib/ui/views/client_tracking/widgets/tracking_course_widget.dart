@@ -100,6 +100,7 @@ class BottomActionBar extends ViewModelWidget<ClientTrackingViewModel> {
         vertical: AppSpacing.px20,
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (!viewModel.buyerArrived)
             Column(
@@ -122,6 +123,7 @@ class BottomActionBar extends ViewModelWidget<ClientTrackingViewModel> {
             ),
           if (viewModel.buyerArrived)
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText.title(
                   viewModel.reservation!.parkingPlace.address,
@@ -191,7 +193,9 @@ class BottomActionBar extends ViewModelWidget<ClientTrackingViewModel> {
               children: [
                 Expanded(
                   child: CustomButton.filled(
-                    isDisabled: viewModel.cancelButtonDisabled,
+                    isDisabled:
+                        viewModel.cancelButtonDisabled ||
+                        viewModel.buyerArrived,
                     text: "tracking.cancel".tr(),
                     backgroundColor: AppColors.redKre,
                     foregroundColor: AppColors.white,

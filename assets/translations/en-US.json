@@ -5,6 +5,7 @@
         "cancel": "Cancel",
         "important": "Important",
         "validTill": "Valid until",
+        "search": "Search",
         "error": "A problem occurred",
         "retry": "Retry",
         "continue": "Continue",
@@ -258,7 +259,7 @@
         "title": "Change phone number",
         "description": "To change your phone number, a verification OTP code will be sent to you.",
         "phoneNumber": "Phone number",
-        "phoneNumberPlaceholder": "Enter your new phone number",
+        "phoneNumberPlaceholder": "Your phone number",
         "buttonLabel": "Verify and change",
         "phoneNumberTaken": "This phone number is already in use",
         "phoneNumberUpdatedSuccessfully": "Phone number updated successfully"

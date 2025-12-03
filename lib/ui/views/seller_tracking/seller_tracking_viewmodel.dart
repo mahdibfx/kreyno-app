@@ -159,11 +159,14 @@ class SellerTrackingViewModel extends ReactiveViewModel {
         _parkingSpot!.latitude,
         _parkingSpot!.longitude,
       );
-      _nearParkingSpotLocation = isCloseTo(
-        currentLocation!,
-        parkingSpotLocation,
-        500,
-      );
+      _nearParkingSpotLocation =
+          Geolocator.distanceBetween(
+            currentLocationStream!.latitude,
+            currentLocationStream!.longitude,
+            parkingSpotLocation.latitude,
+            parkingSpotLocation.longitude,
+          ) <=
+          400;
 
       print("called here : $_nearParkingSpotLocation");
 

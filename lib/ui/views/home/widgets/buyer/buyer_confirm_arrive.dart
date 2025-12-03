@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
+import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/enums/reservation_status.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
@@ -61,13 +62,15 @@ class BuyerConfirmArrive extends ViewModelWidget<SellerTrackingViewModel> {
           HGap(AppSpacing.px8),
           GestureDetector(
             onTap: () {
-              // locator<NavigationService>().navigateToChatView(
-              //   id: null,
-              //   name: '',
-              //   image: '',
-              //   phone: '',
-              //   reservationId: viewModel.reservation.id,
-              // );
+              locator<NavigationService>().navigateToChatView(
+                id: 0,
+                name: viewModel.reservation.parkingPlace.seller.username,
+                image:
+                    viewModel.reservation.parkingPlace.seller.avatar?.url ??
+                    AppConstants.defaultAvatarUrl,
+                phone: viewModel.reservation.parkingPlace.seller.phone,
+                reservationId: viewModel.reservation.id,
+              );
             },
             child: Container(
               decoration: BoxDecoration(

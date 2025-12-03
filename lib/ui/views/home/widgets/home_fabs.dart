@@ -27,12 +27,12 @@ class HomeFabs extends ViewModelWidget<HomeViewModel> {
               viewModel.getNearbyPlaces();
             },
           ),
-          // HomeFabButton(
-          //   iconPath: AppIcons.sort,
-          //   onTap: () {
-          //     viewModel.openFilterBottomSheet();
-          //   },
-          // ),
+          HomeFabButton(
+            iconPath: AppIcons.sort,
+            onTap: () {
+              viewModel.openFilterBottomSheet();
+            },
+          ),
           HomeFabButton(
             iconPath: AppIcons.gpsOn,
             onTap: () {
