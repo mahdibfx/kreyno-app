@@ -6,9 +6,11 @@
         "important": "Important",
         "search": "Rechercher",
         "validTill": "Valide jusqu'au",
+        "deletedSuccessfully": "Supprimé avec succès",
         "error": "Un problème est survenu",
         "retry": "Réessayer",
         "continue": "Continuer",
+        "confirmedSuccesfuly": "Confirmé avec succès",
         "unableToRefresh": "Impossible de rafraîchir",
         "save": "Enregistrer",
         "takePicture": "Prendre une photo",
@@ -360,7 +362,7 @@
         "amountExceedsBalance": "Ce montant dépasse votre solde disponible"
     },
     "spotSoldSuccess": {
-        "title": "Cession confirmée !",
+        "title": "Session confirmée !",
         "successMessage": "Place cédée avec succès!",
         "earningsMessage": "Vous venez de gagner 2€ en cédant votre place",
         "reservationNumber": "N° de réservation",

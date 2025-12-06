@@ -31,6 +31,7 @@ abstract class ApiParkingSpotService {
     @Query('latitude') double latitude,
     @Query('longitude') double longitude,
     @Query('radius') double radius,
+    @Query('electric_charge_station') int? possibleElectric,
   );
 
   @POST(ApiEndpoints.parkingPlaces)

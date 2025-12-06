@@ -194,7 +194,7 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
                     color: AppColors.textKre,
                   ),
                   CustomText.smallParagraphBold(
-                    "${parkingSpot.totalPaidPrice - parkingSpot.price}€",
+                    "${(parkingSpot.totalPaidPrice - parkingSpot.price).toStringAsFixed(2)}€",
                   ),
                 ],
               ),

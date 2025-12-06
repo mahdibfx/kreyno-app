@@ -64,47 +64,56 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
             children: [
               LabeledCheckbox(
                 label: "homeFilter.allPlaces".tr(),
-                value: true,
-                onChanged: (d) {},
+                value: viewModel.possibleElectric == null,
+                onChanged: (d) {
+                  viewModel.possibleElectric = null;
+                  viewModel.rebuildUi();
+                },
               ),
               VGap(AppSpacing.px4),
               LabeledCheckbox(
                 label: "homeFilter.onlyWithCharging".tr(),
-                value: false,
-                onChanged: (d) {},
+                value: viewModel.possibleElectric == true,
+                onChanged: (d) {
+                  viewModel.possibleElectric = true;
+                  viewModel.rebuildUi();
+                },
               ),
               VGap(AppSpacing.px4),
               LabeledCheckbox(
                 label: "homeFilter.withoutCharging".tr(),
-                value: false,
-                onChanged: (d) {},
+                value: viewModel.possibleElectric == false,
+                onChanged: (d) {
+                  viewModel.possibleElectric = false;
+                  viewModel.rebuildUi();
+                },
               ),
             ],
           ),
           VGap(AppSpacing.px20),
 
           const CustomDivider(),
-          // VGap(AppSpacing.px12),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //   children: [
-          //     CustomText.paragraph("homeFilter.searchRadius".tr()),
-          //     const CustomText.smallParagraphBold(
-          //       "3 min",
-          //       color: AppColors.greenKre,
-          //     ),
-          //   ],
-          // ),
-          // VGap(AppSpacing.px12),
-          // SizedBox(
-          //   width: double.infinity,
-          //   child: Slider(
-          //     value: 0.5,
-          //     onChanged: (d) {},
-          //     activeColor: AppColors.greenKre,
-          //     thumbColor: AppColors.white,
-          //   ),
-          // ),
+          VGap(AppSpacing.px12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomText.paragraph("homeFilter.searchRadius".tr()),
+              const CustomText.smallParagraphBold(
+                "3 min",
+                color: AppColors.greenKre,
+              ),
+            ],
+          ),
+          VGap(AppSpacing.px12),
+          SizedBox(
+            width: double.infinity,
+            child: Slider(
+              value: 0.5,
+              onChanged: (d) {},
+              activeColor: AppColors.greenKre,
+              thumbColor: AppColors.white,
+            ),
+          ),
           VGap(AppSpacing.px20),
 
           SafeArea(
@@ -114,14 +123,24 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
               children: [
                 CustomButton.plain(
                   text: "homeFilter.reset".tr(),
-                  onPressed: () {},
+                  onPressed: () {
+                    viewModel.possibleElectric = null;
+                    viewModel.rebuildUi();
+                  },
                   foregroundColor: AppColors.redKre,
                 ),
                 HGap(AppSpacing.px8),
                 Expanded(
                   child: CustomButton.filled(
                     text: "homeFilter.apply".tr(),
-                    onPressed: () {},
+                    onPressed: () {
+                      completer?.call(
+                        SheetResponse(
+                          confirmed: true,
+                          data: viewModel.possibleElectric,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],

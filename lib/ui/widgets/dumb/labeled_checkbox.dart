@@ -17,7 +17,7 @@ class LabeledCheckbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () => onChanged(!value),
       child: Container(
         color: Colors.transparent,

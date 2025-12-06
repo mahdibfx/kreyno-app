@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.locator.dart';
@@ -7,6 +8,7 @@ import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_images.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/views/home/home_view.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_divider.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
@@ -34,7 +36,11 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
         backgroundColor: AppColors.white,
         surfaceTintColor: AppColors.greenKre.withValues(alpha: .2),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            locator<NavigationService>().clearStackAndShowView(
+              const HomeView(),
+            );
+          },
           icon: const CustomIcon(iconPath: AppIcons.multiplicationSign),
         ),
         title: CustomText.paragraph("spotSoldSuccess.title".tr()),
@@ -55,7 +61,10 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                 CustomText.largeTitle("spotSoldSuccess.successMessage".tr()),
                 VGap(AppSpacing.px4),
                 CustomText.smallParagraphMedium(
-                  "spotSoldSuccess.earningsMessage".tr(),
+                  "spotSoldSuccess.earningsMessage".tr().replaceAll(
+                    "2€",
+                    "${reservation.parkingPlace.totalPaidPrice}€",
+                  ),
                   color: AppColors.textKre,
                 ),
                 VGap(AppSpacing.px24),
@@ -72,14 +81,14 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                       VGap(AppSpacing.px8),
                       InfoListTile(
                         title: "spotSoldSuccess.price".tr(),
-                        value: "2€",
+                        value: "${reservation.parkingPlace.totalPaidPrice}€",
                       ),
                       VGap(AppSpacing.px8),
                       InfoListTile(
                         title: "spotSoldSuccess.dateTime".tr(),
                         value: DateFormat(
                           "dd-MM-yyyy, HH:mm",
-                        ).format(DateTime.now()),
+                        ).format(reservation.createdAt),
                       ),
                     ],
                   ),
@@ -93,9 +102,11 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                   height: AppSpacing.px1 * 196,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    image: const DecorationImage(
+                    image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage("https://picsum.photos/400/400"),
+                      image: CachedNetworkImageProvider(
+                        reservation.buyer.car.image?.url ?? "",
+                      ),
                     ),
                   ),
                   child: Column(
@@ -133,10 +144,12 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                               children: [
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(12),
-                                  child: Image.network(
-                                    reservation.buyer.avatar?.url ??
+                                  child: CachedNetworkImage(
+                                    imageUrl:
+                                        reservation.buyer.avatar?.url ??
                                         AppConstants.defaultAvatarUrl,
                                     width: AppSpacing.px1 * 32,
+                                    fit: BoxFit.cover,
                                     height: AppSpacing.px1 * 32,
                                   ),
                                 ),
@@ -203,15 +216,16 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                       ),
                       VGap(AppSpacing.px16),
                       InputField(
+                        disabled: true,
                         controller: TextEditingController(),
                         focusNode: FocusNode(),
                         labelText: "spotSoldSuccess.yourWallet".tr(),
                         hintText: "Olivier Dupons",
-                        trailingIcon: const Column(
+                        trailingIcon: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CustomText.smallParagraphBold(
-                              "+2€",
+                              "+${reservation.parkingPlace.totalPaidPrice} €",
                               color: AppColors.greenKre,
                             ),
                           ],
@@ -222,7 +236,9 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                       CustomButton.filled(
                         text: "payout.goToHome".tr(),
                         onPressed: () {
-                          locator<NavigationService>().back();
+                          locator<NavigationService>().clearStackAndShowView(
+                            const HomeView(),
+                          );
                         },
                       ),
                       VGap(AppSpacing.px20),

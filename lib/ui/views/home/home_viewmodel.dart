@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dart_geohash/dart_geohash.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -27,6 +29,7 @@ class HomeViewModel extends ReactiveViewModel {
   final _toastService = locator<ToastService>();
   final _googleMapService = locator<GoogleMapService>();
   final _parkingSpotService = locator<ParkingSpotsService>();
+  bool? _possibleElectric;
   ParkingSpot? _selectedSpot;
 
   ParkingSpot? get selectedSpot => _selectedSpot;
@@ -81,6 +84,11 @@ class HomeViewModel extends ReactiveViewModel {
       isScrollControlled: true,
       variant: BottomSheetType.homeFilter,
     );
+
+    if (result != null && result.confirmed) {
+      _possibleElectric = result.data;
+      getNearbyPlaces();
+    }
   }
 
   void onMapCreated(GoogleMapController controller) {
@@ -109,6 +117,11 @@ class HomeViewModel extends ReactiveViewModel {
       _locationService.currentLocation?.latitude ?? 0,
       _locationService.currentLocation?.longitude ?? 0,
       10,
+      _possibleElectric == true
+          ? 1
+          : _possibleElectric == null
+          ? null
+          : 0,
     );
     result.match(
       (errorMessage) {
@@ -177,11 +190,15 @@ class HomeViewModel extends ReactiveViewModel {
   }
 
   void initHome() async {
+    setBusy(true);
+    await _userService.getProfile();
     await _checkLocationService();
     if (!_isLocationServiceEnabled) return;
     // TODO: check if user has a location permission first
     await goToCurrentLocation();
     int fireIdStored = _trackingService.fireId;
+    setBusy(false);
+
     await getNearbyPlaces();
     _locationService.listenToMyLocationReactive();
     _locationService.addListener(() {

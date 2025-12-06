@@ -35,6 +35,7 @@ class ChooseSellingPlaceLocationViewModel extends BaseViewModel {
   }
 
   Future<void> setAddress(LatLng lng) async {
+    center = lng;
     final result = await _locationService.getPlaceFromCoordinates(lng);
 
     result.match((error) {}, (placeName) {

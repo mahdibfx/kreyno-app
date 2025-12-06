@@ -52,7 +52,7 @@ class SigninView extends StackedView<SigninViewModel> with $SigninView {
                         controller: phoneNumberController,
                         focusNode: phoneNumberFocusNode,
                         labelText: SigninStrings.phoneNumber,
-                        hintText: SigninStrings.phoneNumberPlaceholder,
+                        hintText: "",
                         onChanged: viewModel.onPhoneNumberChanged,
                         errorText: viewModel.hasPhoneNumber
                             ? viewModel.phoneNumberValidationMessage

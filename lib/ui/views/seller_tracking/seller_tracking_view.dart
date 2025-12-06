@@ -21,7 +21,8 @@ class SellerTrackingView extends StackedView<SellerTrackingViewModel> {
     SellerTrackingViewModel viewModel,
     Widget? child,
   ) {
-    print(viewModel.nearParkingSpotLocation);
+    // print(viewModel.reservation.parkingPlace.latitude.toString());
+    // print(viewModel.reservation.parkingPlace.longitude.toString());
 
     return PopScope(
       canPop: false,
@@ -34,27 +35,27 @@ class SellerTrackingView extends StackedView<SellerTrackingViewModel> {
                     onMapCreated: (controller) {
                       viewModel.setMapController(controller);
                     },
-                    polylines: {
-                      Polyline(
-                        width: 3,
-                        color: AppColors.greenKre,
-                        jointType: JointType.round,
-                        startCap: Cap.roundCap,
-                        endCap: Cap.roundCap,
+                    // polylines: {
+                    //   Polyline(
+                    //     width: 3,
+                    //     color: AppColors.greenKre,
+                    //     jointType: JointType.round,
+                    //     startCap: Cap.roundCap,
+                    //     endCap: Cap.roundCap,
 
-                        polylineId: const PolylineId('3'),
-                        points: [
-                          LatLng(
-                            viewModel.currentLocationStream!.latitude,
-                            viewModel.currentLocationStream!.longitude,
-                          ),
-                          LatLng(
-                            reservation.parkingPlace.latitude,
-                            reservation.parkingPlace.longitude,
-                          ),
-                        ],
-                      ),
-                    },
+                    //     polylineId: const PolylineId('3'),
+                    //     points: [
+                    //       LatLng(
+                    //         viewModel.currentLocationStream!.latitude,
+                    //         viewModel.currentLocationStream!.longitude,
+                    //       ),
+                    //       LatLng(
+                    //         reservation.parkingPlace.latitude,
+                    //         reservation.parkingPlace.longitude,
+                    //       ),
+                    //     ],
+                    //   ),
+                    // },
                     markers: {
                       Marker(
                         icon: AssetMapBitmap("assets/images/Map_pin.png"),

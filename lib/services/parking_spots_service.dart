@@ -34,9 +34,10 @@ class ParkingSpotsService with ListenableServiceMixin {
     double latitude,
     double longitude,
     double radius,
+    int? possibleElectric,
   ) {
     return _apiParkingSpotService
-        .getNearbyParkingSpots(latitude, longitude, radius)
+        .getNearbyParkingSpots(latitude, longitude, radius, possibleElectric)
         .toEither();
   }
 

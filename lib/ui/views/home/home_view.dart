@@ -8,6 +8,7 @@ import 'package:kreyno/ui/views/home/widgets/home_bottom_bar.dart';
 import 'package:kreyno/ui/views/home/widgets/home_fabs.dart';
 import 'package:kreyno/ui/views/home/widgets/location_disabled_banner.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
+import 'package:kreyno/ui/widgets/dumb/loading_overlay.dart';
 import 'package:stacked/stacked.dart';
 
 import 'home_viewmodel.dart';
@@ -19,51 +20,58 @@ class HomeView extends StackedView<HomeViewModel> {
   Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      body: Stack(
-        children: [
-          GoogleMap(
-            initialCameraPosition: viewModel.initialCameraPosition,
-            onMapCreated: viewModel.onMapCreated,
-            zoomControlsEnabled: false,
-            markers: viewModel.spotsMarkers.toSet(),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
+      body: LoadingOverlay(
+        isShown: viewModel.isBusy,
+        child: viewModel.isBusy
+            ? const SizedBox()
+            : Stack(
                 children: [
-                  CarSelector(
-                    selectedCar: viewModel.selectedCar,
-                    onSelectedCarChanged: (car) =>
-                        viewModel.updateSelectedCar(car),
+                  GoogleMap(
+                    initialCameraPosition: viewModel.initialCameraPosition,
+                    onMapCreated: viewModel.onMapCreated,
+                    zoomControlsEnabled: false,
+                    markers: viewModel.spotsMarkers.toSet(),
                   ),
-                  if (!viewModel.isLocationServiceEnabled)
-                    const LocationDisabledBanner(),
-                ],
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  const HomeFabs(),
-                  VGap(AppSpacing.px24),
-                  if (viewModel.selectedSpot != null)
-                    BuyerSelectedMark(parkingSpot: viewModel.selectedSpot!),
-                  VGap(AppSpacing.px24),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CarSelector(
+                            selectedCar: viewModel.selectedCar,
+                            onSelectedCarChanged: (car) =>
+                                viewModel.updateSelectedCar(car),
+                          ),
+                          if (!viewModel.isLocationServiceEnabled)
+                            const LocationDisabledBanner(),
+                        ],
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          const HomeFabs(),
+                          VGap(AppSpacing.px24),
+                          if (viewModel.selectedSpot != null)
+                            BuyerSelectedMark(
+                              parkingSpot: viewModel.selectedSpot!,
+                            ),
+                          VGap(AppSpacing.px24),
 
-                  HomeBottomBar(
-                    avatarUrl: viewModel.currentUserAvatarUrl,
-                    onLetMyPlaceButtonPressed: () {
-                      viewModel.openCreationSpotSheet();
-                    },
+                          HomeBottomBar(
+                            avatarUrl: viewModel.currentUserAvatarUrl,
+                            onLetMyPlaceButtonPressed: () {
+                              viewModel.openCreationSpotSheet();
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
-        ],
       ),
     );
   }

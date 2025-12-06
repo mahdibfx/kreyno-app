@@ -56,8 +56,7 @@ class ChangePhoneNumberView extends StackedView<ChangePhoneNumberViewModel>
                         controller: phoneNumberController,
                         focusNode: phoneNumberFocusNode,
                         labelText: ChangePhoneNumberStrings.phoneNumber,
-                        hintText:
-                            ChangePhoneNumberStrings.phoneNumberPlaceholder,
+                        hintText: "",
                         onChanged: viewModel.onPhoneNumberChanged,
                         errorText: viewModel.hasPhoneNumber
                             ? viewModel.phoneNumberValidationMessage

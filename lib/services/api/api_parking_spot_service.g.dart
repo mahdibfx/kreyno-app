@@ -130,13 +130,16 @@ class _ApiParkingSpotService implements ApiParkingSpotService {
     double latitude,
     double longitude,
     double radius,
+    int? possibleElectric,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'latitude': latitude,
       r'longitude': longitude,
       r'radius': radius,
+      r'electric_charge_station': possibleElectric,
     };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<ApiResponse<List<ParkingSpot>>>(

@@ -19,6 +19,7 @@ class MyLetPlaceView extends StackedView<MyLetPlaceViewModel> {
     MyLetPlaceViewModel viewModel,
     Widget? child,
   ) {
+    // print(viewModel.parkingSpot!.id);
     return PopScope(
       canPop: false,
 

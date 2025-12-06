@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -35,15 +36,8 @@ class ChooseSellingPlaceLocationView
             zoomControlsEnabled: false,
 
             onCameraMove: (position) {
-              if (viewModel.debouncer?.isActive ?? false)
-                viewModel.debouncer!.cancel();
-
-              viewModel.debouncer = Timer(
-                const Duration(milliseconds: 1000),
-                () {
-                  viewModel.setAddress(position.target);
-                },
-              );
+              log(position.target.toString());
+              viewModel.setAddress(position.target);
             },
           ),
           Positioned(

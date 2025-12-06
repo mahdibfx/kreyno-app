@@ -22,7 +22,7 @@ class ClientTrackingView extends StackedView<ClientTrackingViewModel> {
     ClientTrackingViewModel viewModel,
     Widget? child,
   ) {
-    print(viewModel.buyerLocation!.longitude);
+    // print(viewModel.buyerLocation!.longitude);
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -31,26 +31,26 @@ class ClientTrackingView extends StackedView<ClientTrackingViewModel> {
             GoogleMap(
               scrollGesturesEnabled: true,
               zoomControlsEnabled: true,
-              polylines: {
-                Polyline(
-                  width: 3,
-                  color: AppColors.greenKre,
-                  jointType: JointType.round,
-                  startCap: Cap.roundCap,
-                  endCap: Cap.roundCap,
+              // polylines: {
+              //   Polyline(
+              //     width: 3,
+              //     color: AppColors.greenKre,
+              //     jointType: JointType.round,
+              //     startCap: Cap.roundCap,
+              //     endCap: Cap.roundCap,
 
-                  polylineId: const PolylineId('s'),
-                  points: [
-                    LatLng(
-                      viewModel.buyerLocation?.latitude.toDouble() ??
-                          parkingSpot.latitude,
-                      viewModel.buyerLocation?.longitude.toDouble() ??
-                          parkingSpot.longitude,
-                    ),
-                    LatLng(parkingSpot.latitude, parkingSpot.longitude),
-                  ],
-                ),
-              },
+              //     polylineId: const PolylineId('s'),
+              //     points: [
+              //       LatLng(
+              //         viewModel.buyerLocation?.latitude.toDouble() ??
+              //             parkingSpot.latitude,
+              //         viewModel.buyerLocation?.longitude.toDouble() ??
+              //             parkingSpot.longitude,
+              //       ),
+              //       LatLng(parkingSpot.latitude, parkingSpot.longitude),
+              //     ],
+              //   ),
+              // },
               markers: {
                 Marker(
                   markerId: const MarkerId('user'),
