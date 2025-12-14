@@ -31,10 +31,10 @@ class SetUpPermissionsView extends StackedView<SetUpPermissionsViewModel> {
           backgroundColor: AppColors.white,
           body: CustomScrollView(
             slivers: [
-              AuthSliverAppBar.noText(
-                onBackPressed: viewModel.goBack,
-                onSkipPressed: viewModel.onSkipTapped,
-              ),
+              // AuthSliverAppBar.noText(
+              //   onBackPressed: viewModel.goBack,
+              //   onSkipPressed: viewModel.onSkipTapped,
+              // ),
               SliverPadding(
                 padding: EdgeInsets.only(
                   right: AppSpacing.px16,
@@ -97,7 +97,7 @@ class SetUpPermissionsView extends StackedView<SetUpPermissionsViewModel> {
                         CustomButton.filled(
                           text: CommonStrings.complete,
                           onPressed: viewModel.onContinueTapped,
-                          isDisabled: !viewModel.allPermissionsGranted,
+                          isDisabled: false ?? !viewModel.allPermissionsGranted,
                         ),
                       ],
                     ),

@@ -1,7 +1,9 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/models/buyer_location_updated.dart';
 import 'package:kreyno/services/auth_service.dart';
+import 'package:kreyno/services/location_service.dart';
 import 'package:kreyno/services/socket_service.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
@@ -9,10 +11,14 @@ import 'package:stacked/stacked.dart';
 class TrackingService with ListenableServiceMixin {
   final _wsService = SocketService();
   final _authService = locator<AuthService>();
+  final _locationService = locator<LocationService>();
   BuyerLocationUpdated? _buyerLocationUpdated;
 
   BuyerLocationUpdated? get buyerLocationUpdated => _buyerLocationUpdated;
   bool get buyerArrived => _buyerLocationUpdated?.arrived ?? false;
+  final List<Polyline> _buyerPlaceChangedPolylines = [];
+  List<Polyline> get buyerPlaceChangedPolylines => _buyerPlaceChangedPolylines;
+
   int fireId = DateTime.now().millisecondsSinceEpoch;
   TrackingService() {
     listenToReactiveValues([_buyerLocationUpdated, fireId]);
@@ -61,7 +67,7 @@ class TrackingService with ListenableServiceMixin {
     }
   }
 
-  Future<void> listenToBuyerLocation(int userId) async {
+  Future<void> listenToBuyerLocation(int userId, LatLng spotPosition) async {
     try {
       // Check if socket is initialized
       if (!_wsService.isConnected) {
@@ -88,11 +94,13 @@ class TrackingService with ListenableServiceMixin {
       _wsService.listenToPrivateChannel(
         channel: 'user.$userId',
         event: 'reservation.buyer-location.changed',
-        onEvent: (event) {
+        onEvent: (event) async {
           try {
             // Parse the reservation
+
             final buyerLocationUpdated = BuyerLocationUpdated.fromJson(event);
             _buyerLocationUpdated = buyerLocationUpdated;
+
             notifyListeners();
           } catch (e, stackTrace) {
             Logger().e("[Location] Error: $e");

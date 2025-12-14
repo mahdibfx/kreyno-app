@@ -85,5 +85,12 @@ class HomeView extends StackedView<HomeViewModel> {
   }
 
   @override
+  void onDispose(HomeViewModel viewModel) {
+    // TODO: implement onDispose
+
+    super.onDispose(viewModel);
+  }
+
+  @override
   HomeViewModel viewModelBuilder(BuildContext context) => HomeViewModel();
 }

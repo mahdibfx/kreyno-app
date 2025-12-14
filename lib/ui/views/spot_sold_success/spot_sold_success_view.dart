@@ -31,221 +31,225 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
     SpotSoldSuccessViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.white,
-        surfaceTintColor: AppColors.greenKre.withValues(alpha: .2),
-        leading: IconButton(
-          onPressed: () {
-            locator<NavigationService>().clearStackAndShowView(
-              const HomeView(),
-            );
-          },
-          icon: const CustomIcon(iconPath: AppIcons.multiplicationSign),
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.white,
+          surfaceTintColor: AppColors.greenKre.withValues(alpha: .2),
+          leading: IconButton(
+            onPressed: () {
+              locator<NavigationService>().clearStackAndShowView(
+                const HomeView(),
+              );
+            },
+            icon: const CustomIcon(iconPath: AppIcons.multiplicationSign),
+          ),
+          title: CustomText.paragraph("spotSoldSuccess.title".tr()),
         ),
-        title: CustomText.paragraph("spotSoldSuccess.title".tr()),
-      ),
-      backgroundColor: AppColors.white,
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                VGap(AppSpacing.px16),
-                Image.asset(
-                  AppImages.parkedCar,
-                  width: AppSpacing.px1 * 128,
-                  height: AppSpacing.px1 * 128,
-                ),
-                VGap(AppSpacing.px8),
-                CustomText.largeTitle("spotSoldSuccess.successMessage".tr()),
-                VGap(AppSpacing.px4),
-                CustomText.smallParagraphMedium(
-                  "spotSoldSuccess.earningsMessage".tr().replaceAll(
-                    "2€",
-                    "${reservation.parkingPlace.totalPaidPrice}€",
+        backgroundColor: AppColors.white,
+        body: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  VGap(AppSpacing.px16),
+                  Image.asset(
+                    AppImages.parkedCar,
+                    width: AppSpacing.px1 * 128,
+                    height: AppSpacing.px1 * 128,
                   ),
-                  color: AppColors.textKre,
-                ),
-                VGap(AppSpacing.px24),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
-                  padding: EdgeInsets.all(AppSpacing.px12),
-                  decoration: const BoxDecoration(color: Color(0xFFFAFAFA)),
-                  child: Column(
-                    children: [
-                      InfoListTile(
-                        title: "spotSoldSuccess.reservationNumber".tr(),
-                        value: "#${reservation.id}",
-                      ),
-                      VGap(AppSpacing.px8),
-                      InfoListTile(
-                        title: "spotSoldSuccess.price".tr(),
-                        value: "${reservation.parkingPlace.totalPaidPrice}€",
-                      ),
-                      VGap(AppSpacing.px8),
-                      InfoListTile(
-                        title: "spotSoldSuccess.dateTime".tr(),
-                        value: DateFormat(
-                          "dd-MM-yyyy, HH:mm",
-                        ).format(reservation.createdAt),
-                      ),
-                    ],
+                  VGap(AppSpacing.px8),
+                  CustomText.largeTitle("spotSoldSuccess.successMessage".tr()),
+                  VGap(AppSpacing.px4),
+                  CustomText.smallParagraphMedium(
+                    "spotSoldSuccess.earningsMessage".tr().replaceAll(
+                      "2€",
+                      "${reservation.parkingPlace.totalPaidPrice}€",
+                    ),
+                    color: AppColors.textKre,
                   ),
-                ),
-                VGap(AppSpacing.px16),
-                const CustomDivider(),
-                VGap(AppSpacing.px16),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
-                  width: double.infinity,
-                  height: AppSpacing.px1 * 196,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: CachedNetworkImageProvider(
-                        reservation.buyer.car.image?.url ?? "",
-                      ),
+                  VGap(AppSpacing.px24),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+                    padding: EdgeInsets.all(AppSpacing.px12),
+                    decoration: const BoxDecoration(color: Color(0xFFFAFAFA)),
+                    child: Column(
+                      children: [
+                        InfoListTile(
+                          title: "spotSoldSuccess.reservationNumber".tr(),
+                          value: "#${reservation.id}",
+                        ),
+                        VGap(AppSpacing.px8),
+                        InfoListTile(
+                          title: "spotSoldSuccess.price".tr(),
+                          value: "${reservation.parkingPlace.totalPaidPrice}€",
+                        ),
+                        VGap(AppSpacing.px8),
+                        InfoListTile(
+                          title: "spotSoldSuccess.dateTime".tr(),
+                          value: DateFormat(
+                            "dd-MM-yyyy, HH:mm",
+                          ).format(reservation.createdAt),
+                        ),
+                      ],
                     ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(AppSpacing.px1 * 10),
-                        child: RoundedButton(
-                          iconPath: AppIcons.arrowExpandSharp,
-                          onPressed: () {},
-                          shape: BoxShape.rectangle,
+                  VGap(AppSpacing.px16),
+                  const CustomDivider(),
+                  VGap(AppSpacing.px16),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+                    width: double.infinity,
+                    height: AppSpacing.px1 * 196,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: CachedNetworkImageProvider(
+                          reservation.buyer.car.image?.url ?? "",
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.all(AppSpacing.px1 * 10),
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                            bottomRight: Radius.circular(12),
-                            bottomLeft: Radius.circular(12),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(AppSpacing.px1 * 10),
+                          child: RoundedButton(
+                            iconPath: AppIcons.arrowExpandSharp,
+                            onPressed: () {},
+                            shape: BoxShape.rectangle,
                           ),
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Colors.black.withValues(alpha: .2),
-                              Colors.black,
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(AppSpacing.px1 * 10),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                              bottomRight: Radius.circular(12),
+                              bottomLeft: Radius.circular(12),
+                            ),
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Colors.black.withValues(alpha: .2),
+                                Colors.black,
+                              ],
+                            ),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                          reservation.buyer.avatar?.url ??
+                                          AppConstants.defaultAvatarUrl,
+                                      width: AppSpacing.px1 * 32,
+                                      fit: BoxFit.cover,
+                                      height: AppSpacing.px1 * 32,
+                                    ),
+                                  ),
+                                  HGap(AppSpacing.px8),
+                                  CustomText.paragraph(
+                                    reservation.buyer.username,
+                                    color: AppColors.white,
+                                  ),
+                                ],
+                              ),
+                              VGap(AppSpacing.px4),
+                              CustomText.smallParagraphMedium(
+                                "${reservation.buyer.car.brand} ${reservation.buyer.car.model}",
+                                color: AppColors.white,
+                              ),
+                              CustomText.labelMedium(
+                                "${reservation.buyer.car.registrationNumber} · ${reservation.buyer.car.color}",
+                                color: AppColors.white.withValues(alpha: .7),
+                              ),
                             ],
                           ),
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: CachedNetworkImage(
-                                    imageUrl:
-                                        reservation.buyer.avatar?.url ??
-                                        AppConstants.defaultAvatarUrl,
-                                    width: AppSpacing.px1 * 32,
-                                    fit: BoxFit.cover,
-                                    height: AppSpacing.px1 * 32,
-                                  ),
-                                ),
-                                HGap(AppSpacing.px8),
-                                CustomText.paragraph(
-                                  reservation.buyer.username,
-                                  color: AppColors.white,
-                                ),
-                              ],
-                            ),
-                            VGap(AppSpacing.px4),
-                            CustomText.smallParagraphMedium(
-                              "${reservation.buyer.car.brand} ${reservation.buyer.car.model}",
-                              color: AppColors.white,
-                            ),
-                            CustomText.labelMedium(
-                              "${reservation.buyer.car.registrationNumber} · ${reservation.buyer.car.color}",
-                              color: AppColors.white.withValues(alpha: .7),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                VGap(AppSpacing.px20),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      CustomText.smallParagraphMedium(
-                        "spotSoldSuccess.placeLocation".tr(),
-                        color: AppColors.textKre,
-                      ),
-                      VGap(AppSpacing.px1 * 6),
-                      CustomText.smallParagraphBold(
-                        reservation.parkingPlace.address,
-                      ),
-                      VGap(AppSpacing.px16),
-                      CustomText.smallParagraphMedium(
-                        "spotSoldSuccess.other".tr(),
-                        color: AppColors.textKre,
-                      ),
-                      VGap(AppSpacing.px1 * 6),
-                      Row(
-                        children: [
-                          const CustomIcon(
-                            iconPath: AppIcons.evCharging,
-                            color: AppColors.greenKre,
-                          ),
-                          HGap(AppSpacing.px4),
-                          CustomText(
-                            text: reservation.parkingPlace.electricChargeStation
-                                ? "myParkingSpots.chargingAvailable".tr()
-                                : "myParkingSpots.chargingNotAvailable".tr(),
-                            style: CustomTextStyle.smallParagraphMedium,
-                            color:
-                                reservation.parkingPlace.electricChargeStation
-                                ? AppColors.greenKre
-                                : AppColors.textKre,
-                          ),
-                        ],
-                      ),
-                      VGap(AppSpacing.px16),
-                      InputField(
-                        disabled: true,
-                        controller: TextEditingController(),
-                        focusNode: FocusNode(),
-                        labelText: "spotSoldSuccess.yourWallet".tr(),
-                        hintText: "Olivier Dupons",
-                        trailingIcon: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                  VGap(AppSpacing.px20),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        CustomText.smallParagraphMedium(
+                          "spotSoldSuccess.placeLocation".tr(),
+                          color: AppColors.textKre,
+                        ),
+                        VGap(AppSpacing.px1 * 6),
+                        CustomText.smallParagraphBold(
+                          reservation.parkingPlace.address,
+                        ),
+                        VGap(AppSpacing.px16),
+                        CustomText.smallParagraphMedium(
+                          "spotSoldSuccess.other".tr(),
+                          color: AppColors.textKre,
+                        ),
+                        VGap(AppSpacing.px1 * 6),
+                        Row(
                           children: [
-                            CustomText.smallParagraphBold(
-                              "+${reservation.parkingPlace.totalPaidPrice} €",
+                            const CustomIcon(
+                              iconPath: AppIcons.evCharging,
                               color: AppColors.greenKre,
                             ),
+                            HGap(AppSpacing.px4),
+                            CustomText(
+                              text:
+                                  reservation.parkingPlace.electricChargeStation
+                                  ? "myParkingSpots.chargingAvailable".tr()
+                                  : "myParkingSpots.chargingNotAvailable".tr(),
+                              style: CustomTextStyle.smallParagraphMedium,
+                              color:
+                                  reservation.parkingPlace.electricChargeStation
+                                  ? AppColors.greenKre
+                                  : AppColors.textKre,
+                            ),
                           ],
                         ),
-                        keyboardType: TextInputType.text,
-                      ),
-                      VGap(AppSpacing.px1 * 34),
-                      CustomButton.filled(
-                        text: "payout.goToHome".tr(),
-                        onPressed: () {
-                          locator<NavigationService>().clearStackAndShowView(
-                            const HomeView(),
-                          );
-                        },
-                      ),
-                      VGap(AppSpacing.px20),
-                    ],
+                        VGap(AppSpacing.px16),
+                        InputField(
+                          disabled: true,
+                          controller: TextEditingController(),
+                          focusNode: FocusNode(),
+                          labelText: "spotSoldSuccess.yourWallet".tr(),
+                          hintText: "Olivier Dupons",
+                          trailingIcon: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CustomText.smallParagraphBold(
+                                "+${reservation.parkingPlace.totalPaidPrice} €",
+                                color: AppColors.greenKre,
+                              ),
+                            ],
+                          ),
+                          keyboardType: TextInputType.text,
+                        ),
+                        VGap(AppSpacing.px1 * 34),
+                        CustomButton.filled(
+                          text: "payout.goToHome".tr(),
+                          onPressed: () {
+                            locator<NavigationService>().clearStackAndShowView(
+                              const HomeView(),
+                            );
+                          },
+                        ),
+                        VGap(AppSpacing.px20),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

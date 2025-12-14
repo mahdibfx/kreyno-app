@@ -18,6 +18,8 @@ class VehiculeImageUploader extends StackedView<VehiculeImageUploaderModel> {
   final Function(bool isUploading) onImageUploading;
   final Function() onImageDeleteSuccess;
   final Function(String errorMessage) onImageDeleteFailure;
+  final String? initialImageUrl;
+  final String? initialImageUuid;
 
   const VehiculeImageUploader({
     super.key,
@@ -26,6 +28,8 @@ class VehiculeImageUploader extends StackedView<VehiculeImageUploaderModel> {
     required this.onImageUploading,
     required this.onImageDeleteSuccess,
     required this.onImageDeleteFailure,
+    this.initialImageUrl,
+    this.initialImageUuid,
   });
 
   @override
@@ -66,6 +70,14 @@ class VehiculeImageUploader extends StackedView<VehiculeImageUploaderModel> {
         ],
       ],
     );
+  }
+
+  @override
+  void onViewModelReady(VehiculeImageUploaderModel viewModel) {
+    if (initialImageUuid != null) {
+      viewModel.setUploadedImageUuid(initialImageUuid);
+    }
+    super.onViewModelReady(viewModel);
   }
 
   @override

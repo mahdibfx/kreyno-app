@@ -78,7 +78,7 @@ class MyVehiculesView extends StackedView<MyVehiculesViewModel> {
                                 vehicle: car,
                                 canDelete: viewModel.cars.length > 1,
                                 onEdit: () {
-                                  viewModel.onEditCarTapped(car.id!);
+                                  viewModel.onEditCarTapped(car);
                                 },
                                 onDelete: () =>
                                     viewModel.onDeleteCarTapped(car.id!),

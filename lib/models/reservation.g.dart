@@ -8,7 +8,16 @@ part of 'reservation.dart';
 
 _Reservation _$ReservationFromJson(Map<String, dynamic> json) => _Reservation(
   id: (json['id'] as num).toInt(),
-  buyer: Buyer.fromJson(json['buyer'] as Map<String, dynamic>),
+  buyer: json['buyer'] == null
+      ? const Buyer(
+          username: "",
+          firstName: "",
+          lastName: "",
+          phone: "",
+          car: Car(registrationNumber: "", brand: "", model: "", color: ""),
+          avatar: null,
+        )
+      : Buyer.fromJson(json['buyer'] as Map<String, dynamic>),
   parkingPlace: ParkingPlace.fromJson(
     json['parking_place'] as Map<String, dynamic>,
   ),
@@ -95,7 +104,9 @@ _Seller _$SellerFromJson(Map<String, dynamic> json) => _Seller(
   firstName: json['first_name'] as String,
   lastName: json['last_name'] as String,
   phone: json['phone'] as String,
-  car: Car.fromJson(json['car'] as Map<String, dynamic>),
+  car: json['car'] == null
+      ? null
+      : Car.fromJson(json['car'] as Map<String, dynamic>),
   avatar: avatarFromJson(json['avatar']),
 );
 
@@ -104,7 +115,7 @@ Map<String, dynamic> _$SellerToJson(_Seller instance) => <String, dynamic>{
   'first_name': instance.firstName,
   'last_name': instance.lastName,
   'phone': instance.phone,
-  'car': instance.car.toJson(),
+  'car': ?instance.car?.toJson(),
   'avatar': ?avatarToJson(instance.avatar),
 };
 

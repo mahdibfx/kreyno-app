@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_stripe/flutter_stripe.dart' hide Card;
+import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/models/parking_spot.dart';
 import 'package:kreyno/ui/bottom_sheets/pay_for_spot/widgets/payment_list_tile.dart';
@@ -87,7 +88,12 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
               child: const CustomIcon(iconPath: AppIcons.arrowLeft),
             ),
             CustomText.paragraph("payForSpot.payment".tr()),
-            const CustomIcon(iconPath: AppIcons.multiplicationSign),
+            InkWell(
+              onTap: () {
+                locator<NavigationService>().back();
+              },
+              child: const CustomIcon(iconPath: AppIcons.multiplicationSign),
+            ),
           ],
         ),
         VGap(AppSpacing.px20),
@@ -332,7 +338,7 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
             image: DecorationImage(
               fit: BoxFit.cover,
               image: CachedNetworkImageProvider(
-                parkingSpot.seller?.car.image?.url ??
+                parkingSpot.seller?.car!.image?.url ??
                     AppConstants.defaultAvatarUrl,
               ),
             ),
@@ -387,11 +393,11 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
                     ),
                     VGap(AppSpacing.px4),
                     CustomText.smallParagraphMedium(
-                      parkingSpot.seller?.car.brand ?? "",
+                      parkingSpot.seller?.car!.brand ?? "",
                       color: AppColors.white,
                     ),
                     CustomText.labelMedium(
-                      parkingSpot.seller?.car.registrationNumber ?? "",
+                      parkingSpot.seller?.car!.registrationNumber ?? "",
                       color: AppColors.white.withValues(alpha: .7),
                     ),
                   ],

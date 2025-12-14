@@ -130,7 +130,9 @@ class CarSelector extends StackedView<CarSelectorModel> {
                                       AppImages.placeholderCarImage,
                                     ),
 
-                              fit: BoxFit.cover,
+                              fit: selectedCar.image != null
+                                  ? BoxFit.cover
+                                  : BoxFit.contain,
                             ),
                             borderRadius: BorderRadius.circular(AppSpacing.px8),
                           ),
@@ -290,12 +292,15 @@ class CarSelector extends StackedView<CarSelectorModel> {
                       decoration: BoxDecoration(
                         color: const Color(0xFFF5F5F5),
                         image: DecorationImage(
+                          fit: selectedCar.image != null
+                              ? BoxFit.cover
+                              : BoxFit.contain,
                           image: selectedCar.image != null
                               ? CachedNetworkImageProvider(
                                   selectedCar.image!.url,
                                 )
                               : const AssetImage(AppImages.placeholderCarImage),
-                          fit: BoxFit.cover,
+                          // fit: BoxFit.cover,
                         ),
                         borderRadius: BorderRadius.circular(AppSpacing.px8),
                       ),

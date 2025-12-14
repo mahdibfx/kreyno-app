@@ -150,9 +150,18 @@ class MyVehiculesViewModel extends BaseViewModel {
     }
   }
 
-  onEditCarTapped(int carId) async {
+  onEditCarTapped(Car car) async {
     // TODO: Implement this
 
-    _navigationService.navigateToEditVehiculeView();
+    final result = await _navigationService.navigateToEditVehiculeView(
+      car: car,
+    );
+
+    if (result != null && result == true) {
+      setBusy(true);
+      cars.clear();
+      await getAllCars();
+      setBusy(false);
+    }
   }
 }

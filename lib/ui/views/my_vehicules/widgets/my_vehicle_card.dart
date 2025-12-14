@@ -143,21 +143,21 @@ class MyVehicleCard extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              // PopupMenuItem<int>(
-                              //   value: 2,
-                              //   child: Row(
-                              //     spacing: AppSpacing.px8,
-                              //     children: [
-                              //       CustomIcon(
-                              //         iconPath: AppIcons.edit,
-                              //         size: AppSpacing.px20,
-                              //       ),
-                              //       CustomText.smallParagraphMedium(
-                              //         MyVehiculesStrings.edit,
-                              //       ),
-                              //     ],
-                              //   ),
-                              // ),
+                              PopupMenuItem<int>(
+                                value: 2,
+                                child: Row(
+                                  spacing: AppSpacing.px8,
+                                  children: [
+                                    CustomIcon(
+                                      iconPath: AppIcons.edit,
+                                      size: AppSpacing.px20,
+                                    ),
+                                    CustomText.smallParagraphMedium(
+                                      MyVehiculesStrings.edit,
+                                    ),
+                                  ],
+                                ),
+                              ),
                               PopupMenuItem<int>(
                                 value: 3,
                                 child: IgnorePointer(

@@ -1,4 +1,5 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:kreyno/services/user_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:kreyno/app/app.locator.dart';
@@ -20,6 +21,10 @@ class StartupViewModel extends BaseViewModel {
 
   Future runStartupLogic() async {
     await _showSplashScreen();
+    if (!await InternetConnectionChecker.instance.hasConnection) {
+      await _navigationService.replaceWithErrorView();
+      return;
+    }
 
     if (!await _checkLanguageSelection()) {
       await _navigationService.replaceWithSetUpLanguageView();

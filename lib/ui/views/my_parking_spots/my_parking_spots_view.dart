@@ -28,6 +28,7 @@ class MyParkingSpotsView extends StackedView<MyParkingSpotsViewModel> {
       body: CustomScrollView(
         physics: const NeverScrollableScrollPhysics(),
         slivers: [
+          const SliverToBoxAdapter(child: SizedBox(height: 48)),
           CustomSliverAppBar.shrunk(
             title: MyParkingSpotsStrings.title,
             trailingWidget: GestureDetector(

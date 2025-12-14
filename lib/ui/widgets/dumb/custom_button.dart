@@ -1,5 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/services/toast_service.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
+import 'package:kreyno/ui/common/app_strings.dart';
 import 'package:kreyno/ui/common/app_typography.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
@@ -12,7 +18,7 @@ enum CustomButtonSize {
   small, // 40px
 }
 
-class CustomButton extends StatelessWidget {
+class CustomButton extends StatefulWidget {
   final String text;
   final VoidCallback? onPressed;
   final CustomButtonVariant variant;
@@ -20,6 +26,7 @@ class CustomButton extends StatelessWidget {
   final Color? foregroundColor;
   final Color? outlineColor;
   final String? icon;
+  final bool? showBadge;
   final bool isDisabled;
   final bool expandToFullWidth;
   final CustomButtonSize size;
@@ -34,6 +41,7 @@ class CustomButton extends StatelessWidget {
     this.backgroundColor,
     this.foregroundColor,
     this.icon,
+    this.showBadge,
     this.isDisabled = false,
     this.expandToFullWidth = true,
     this.size = CustomButtonSize.medium,
@@ -50,6 +58,7 @@ class CustomButton extends StatelessWidget {
     this.foregroundColor,
     this.outlineColor,
     this.icon,
+    this.showBadge,
     this.isDisabled = false,
     this.expandToFullWidth = true,
     this.size = CustomButtonSize.medium,
@@ -65,6 +74,7 @@ class CustomButton extends StatelessWidget {
     this.onPressed,
     this.foregroundColor,
     this.icon,
+    this.showBadge,
     this.isDisabled = false,
     this.expandToFullWidth = false,
     this.size = CustomButtonSize.medium,
@@ -76,13 +86,101 @@ class CustomButton extends StatelessWidget {
        variant = CustomButtonVariant.plain;
 
   @override
+  State<CustomButton> createState() => _CustomButtonState();
+}
+
+class _CustomButtonState extends State<CustomButton> {
+  final _toastService = locator<ToastService>();
+  StreamSubscription<InternetConnectionStatus>? _connectionSubscription;
+  bool _hasConnection = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkInitialConnection();
+    _listenToConnectionChanges();
+  }
+
+  Future<void> _checkInitialConnection() async {
+    final hasConnection =
+        await InternetConnectionChecker.instance.hasConnection;
+    if (mounted) {
+      setState(() {
+        _hasConnection = hasConnection;
+      });
+    }
+  }
+
+  void _listenToConnectionChanges() {
+    _connectionSubscription = InternetConnectionChecker.instance.onStatusChange
+        .listen((status) {
+          if (mounted) {
+            setState(() {
+              _hasConnection = status == InternetConnectionStatus.connected;
+            });
+          }
+        });
+  }
+
+  @override
+  void dispose() {
+    _connectionSubscription?.cancel();
+    super.dispose();
+  }
+
+  void _handleOfflineClick() {
+    _toastService.showError(
+      title: ConnectivityStrings.noInternetToast,
+      showIcon: true,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final bool disabled = isDisabled || onPressed == null;
-    return _buildButton(disabled);
+    final bool disabled = widget.isDisabled || widget.onPressed == null;
+
+    // For filled buttons without connection, show offline UI
+    if (!_hasConnection && widget.variant == CustomButtonVariant.filled) {
+      return _buildOfflineFilledButton();
+    }
+
+    // For outlined/plain buttons without connection, disable and show toast on click
+    final bool effectivelyDisabled = disabled || !_hasConnection;
+    final VoidCallback? effectiveOnPressed = !_hasConnection && !disabled
+        ? _handleOfflineClick
+        : widget.onPressed;
+
+    return _buildButton(effectivelyDisabled, effectiveOnPressed);
+  }
+
+  Widget _buildOfflineFilledButton() {
+    return FilledButton(
+      onPressed: null,
+      style: FilledButton.styleFrom(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        disabledBackgroundColor: Colors.black,
+        disabledForegroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(_getBorderRadius()),
+        ),
+        padding:
+            widget.padding ?? EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        side: widget.border,
+        fixedSize: widget.expandToFullWidth
+            ? Size(double.maxFinite, _getButtonHeight())
+            : Size.fromHeight(_getButtonHeight()),
+      ),
+      child: Text(
+        ConnectivityStrings.noInternetConnection,
+        style: AppTypography.smallParagraphBold.copyWith(color: Colors.white),
+      ),
+    );
   }
 
   double _getButtonHeight() {
-    switch (size) {
+    switch (widget.size) {
       case CustomButtonSize.large:
         return 12 * AppSpacing.px4; // 48px
       case CustomButtonSize.medium:
@@ -93,23 +191,25 @@ class CustomButton extends StatelessWidget {
   }
 
   double _getBorderRadius() {
-    return borderRadius ?? AppSpacing.px12;
+    return widget.borderRadius ?? AppSpacing.px12;
   }
 
-  Widget _buildButton(bool disabled) {
-    switch (variant) {
+  Widget _buildButton(bool disabled, VoidCallback? onPressed) {
+    switch (widget.variant) {
       case CustomButtonVariant.filled:
-        return _buildFilledButton(disabled);
+        return _buildFilledButton(disabled, onPressed);
       case CustomButtonVariant.outlined:
-        return _buildOutlinedButton(disabled);
+        return _buildOutlinedButton(disabled, onPressed);
       case CustomButtonVariant.plain:
-        return _buildPlainButton(disabled);
+        return _buildPlainButton(disabled, onPressed);
     }
   }
 
-  Widget _buildFilledButton(bool disabled) {
-    final Color buttonBackgroundColor = backgroundColor ?? AppColors.greenKre;
-    final Color buttonForegroundColor = foregroundColor ?? AppColors.mainKre;
+  Widget _buildFilledButton(bool disabled, VoidCallback? onPressed) {
+    final Color buttonBackgroundColor =
+        widget.backgroundColor ?? AppColors.greenKre;
+    final Color buttonForegroundColor =
+        widget.foregroundColor ?? AppColors.mainKre;
 
     return FilledButton(
       onPressed: disabled ? null : onPressed,
@@ -123,10 +223,11 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(_getBorderRadius()),
         ),
-        padding: padding ?? EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+        padding:
+            widget.padding ?? EdgeInsets.symmetric(horizontal: AppSpacing.px24),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        side: border,
-        fixedSize: expandToFullWidth
+        side: widget.border,
+        fixedSize: widget.expandToFullWidth
             ? Size(double.maxFinite, _getButtonHeight())
             : Size.fromHeight(_getButtonHeight()),
       ),
@@ -136,9 +237,10 @@ class CustomButton extends StatelessWidget {
     );
   }
 
-  Widget _buildOutlinedButton(bool disabled) {
-    final Color buttonForegroundColor = foregroundColor ?? AppColors.mainKre;
-    final Color buttonOutlineColor = outlineColor ?? AppColors.strokeKre;
+  Widget _buildOutlinedButton(bool disabled, VoidCallback? onPressed) {
+    final Color buttonForegroundColor =
+        widget.foregroundColor ?? AppColors.mainKre;
+    final Color buttonOutlineColor = widget.outlineColor ?? AppColors.strokeKre;
 
     return OutlinedButton(
       onPressed: disabled ? null : onPressed,
@@ -146,7 +248,7 @@ class CustomButton extends StatelessWidget {
         foregroundColor: disabled ? AppColors.textKre : buttonForegroundColor,
         disabledForegroundColor: AppColors.textKre,
         side:
-            border ??
+            widget.border ??
             BorderSide(
               color: disabled ? AppColors.strokeKre : buttonOutlineColor,
               width: 1,
@@ -154,8 +256,9 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(_getBorderRadius()),
         ),
-        padding: padding ?? EdgeInsets.symmetric(horizontal: AppSpacing.px24),
-        fixedSize: expandToFullWidth
+        padding:
+            widget.padding ?? EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+        fixedSize: widget.expandToFullWidth
             ? Size(double.maxFinite, _getButtonHeight())
             : Size.fromHeight(_getButtonHeight()),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -166,8 +269,9 @@ class CustomButton extends StatelessWidget {
     );
   }
 
-  Widget _buildPlainButton(bool disabled) {
-    final Color buttonForegroundColor = foregroundColor ?? AppColors.greenKre;
+  Widget _buildPlainButton(bool disabled, VoidCallback? onPressed) {
+    final Color buttonForegroundColor =
+        widget.foregroundColor ?? AppColors.greenKre;
 
     return TextButton(
       onPressed: disabled ? null : onPressed,
@@ -177,8 +281,9 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(_getBorderRadius()),
         ),
-        padding: padding ?? EdgeInsets.symmetric(horizontal: AppSpacing.px24),
-        fixedSize: expandToFullWidth
+        padding:
+            widget.padding ?? EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+        fixedSize: widget.expandToFullWidth
             ? Size(double.maxFinite, _getButtonHeight())
             : Size.fromHeight(_getButtonHeight()),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -190,18 +295,18 @@ class CustomButton extends StatelessWidget {
   }
 
   Widget _buildButtonContent(Color forGroundColor) {
-    if (icon != null) {
+    if (widget.icon != null) {
       return Row(
         mainAxisSize: MainAxisSize.min,
         spacing: AppSpacing.px8,
         children: [
           CustomIcon(
-            iconPath: icon!,
+            iconPath: widget.icon!,
             size: AppSpacing.px20,
             color: forGroundColor,
           ),
           Text(
-            text,
+            widget.text,
             style: AppTypography.smallParagraphBold.copyWith(
               color: forGroundColor,
             ),
@@ -210,9 +315,13 @@ class CustomButton extends StatelessWidget {
       );
     }
 
-    return Text(
-      text,
-      style: AppTypography.smallParagraphBold.copyWith(color: forGroundColor),
+    return Badge(
+      isLabelVisible: widget.showBadge ?? false,
+      backgroundColor: AppColors.redKre,
+      child: Text(
+        widget.text,
+        style: AppTypography.smallParagraphBold.copyWith(color: forGroundColor),
+      ),
     );
   }
 }

@@ -9,14 +9,24 @@ part 'reservation.g.dart';
 abstract class Reservation with _$Reservation {
   const factory Reservation({
     @JsonKey(name: "id") required int id,
-    @JsonKey(name: "buyer") required Buyer buyer,
-    @JsonKey(name: "parking_place")
-    required ParkingPlace
-    parkingPlace, // Changed from parkingSpot to match JSON
+
+    @Default(
+      Buyer(
+        username: "",
+        firstName: "",
+        lastName: "",
+        phone: "",
+        car: Car(registrationNumber: "", brand: "", model: "", color: ""),
+        avatar: null,
+      ),
+    )
+    @JsonKey(name: "buyer")
+    Buyer buyer,
+
+    @JsonKey(name: "parking_place") required ParkingPlace parkingPlace,
     @JsonKey(name: "status") required ReservationStatus status,
-    @JsonKey(name: "observation")
-    String? observation, // Made nullable since it can be null
-    @JsonKey(name: "validated_at") DateTime? validatedAt, // Added missing field
+    @JsonKey(name: "observation") String? observation,
+    @JsonKey(name: "validated_at") DateTime? validatedAt,
     @JsonKey(name: "created_at") required DateTime createdAt,
   }) = _Reservation;
 
@@ -69,7 +79,7 @@ abstract class Seller with _$Seller {
     @JsonKey(name: "first_name") required String firstName,
     @JsonKey(name: "last_name") required String lastName,
     @JsonKey(name: "phone") required String phone,
-    @JsonKey(name: 'car') required Car car,
+    @JsonKey(name: 'car') Car? car,
     @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)
     Avatar? avatar,
   }) = _Seller;

@@ -28,9 +28,15 @@ class HomeViewModel extends ReactiveViewModel {
   final _trackingService = locator<TrackingService>();
   final _toastService = locator<ToastService>();
   final _googleMapService = locator<GoogleMapService>();
+
   final _parkingSpotService = locator<ParkingSpotsService>();
+
+  double radius = 2.5;
   bool? _possibleElectric;
   ParkingSpot? _selectedSpot;
+  late VoidCallback _locationListener;
+  late VoidCallback _trackingListener;
+  late GoogleMapController googleMapController;
 
   ParkingSpot? get selectedSpot => _selectedSpot;
   User get currentUser => _userService.currentUser!;
@@ -79,6 +85,13 @@ class HomeViewModel extends ReactiveViewModel {
     return "$timeInMinutes min";
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _locationService.removeListener(_locationListener);
+    _trackingService.removeListener(_trackingListener);
+  }
+
   Future<void> openFilterBottomSheet() async {
     final result = await _bottomSheetService.showCustomSheet(
       isScrollControlled: true,
@@ -86,17 +99,23 @@ class HomeViewModel extends ReactiveViewModel {
     );
 
     if (result != null && result.confirmed) {
-      _possibleElectric = result.data;
+      _possibleElectric = result.data[0];
+      radius = result.data[1];
       getNearbyPlaces();
     }
   }
 
   void onMapCreated(GoogleMapController controller) {
+    setBusy(true);
+    googleMapController = controller;
     _googleMapService.onMapCreated(controller);
+    setBusy(false);
   }
 
   void _animateToCameraPosition(CameraPosition cameraPosition) {
-    _googleMapService.animateToCameraPosition(cameraPosition);
+    googleMapController.animateCamera(
+      CameraUpdate.newCameraPosition(cameraPosition),
+    );
   }
 
   void setIsLocationServiceEnabled(bool value) {
@@ -116,7 +135,7 @@ class HomeViewModel extends ReactiveViewModel {
     final result = await _parkingSpotService.getNearbyParkingSpots(
       _locationService.currentLocation?.latitude ?? 0,
       _locationService.currentLocation?.longitude ?? 0,
-      10,
+      radius,
       _possibleElectric == true
           ? 1
           : _possibleElectric == null
@@ -158,6 +177,7 @@ class HomeViewModel extends ReactiveViewModel {
     final hash = GeoHash.fromDecimalDegrees(
       _locationService.currentLocation?.longitude ?? 0,
       _locationService.currentLocation?.latitude ?? 0,
+      precision: 10,
     );
 
     _trackingService.listenToPlacesChange(
@@ -195,21 +215,23 @@ class HomeViewModel extends ReactiveViewModel {
     await _checkLocationService();
     if (!_isLocationServiceEnabled) return;
     // TODO: check if user has a location permission first
-    await goToCurrentLocation();
     int fireIdStored = _trackingService.fireId;
     setBusy(false);
+    await goToCurrentLocation();
 
     await getNearbyPlaces();
-    _locationService.listenToMyLocationReactive();
-    _locationService.addListener(() {
+    _locationService.listenToMyLocationReactive(null);
+    _locationListener = () {
       onLocationUpdate(_locationService.currentLocation!);
-    });
-    _trackingService.addListener(() {
+    };
+    _locationService.addListener(_locationListener);
+    _trackingListener = () {
       if (fireIdStored != _trackingService.fireId) {
         getNearbyPlaces();
         fireIdStored = _trackingService.fireId;
       }
-    });
+    };
+    _trackingService.addListener(_trackingListener);
   }
 
   Future<void> goToCurrentLocation() async {

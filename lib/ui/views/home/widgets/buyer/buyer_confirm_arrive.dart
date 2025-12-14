@@ -62,6 +62,8 @@ class BuyerConfirmArrive extends ViewModelWidget<SellerTrackingViewModel> {
           HGap(AppSpacing.px8),
           GestureDetector(
             onTap: () {
+              viewModel.unreadMessagesCount = 0;
+              viewModel.rebuildUi();
               locator<NavigationService>().navigateToChatView(
                 id: 0,
                 name: viewModel.reservation.parkingPlace.seller.username,
@@ -78,7 +80,14 @@ class BuyerConfirmArrive extends ViewModelWidget<SellerTrackingViewModel> {
                 color: AppColors.white,
               ),
               padding: EdgeInsets.all(AppSpacing.px8),
-              child: SvgPicture.asset(AppIcons.chatRoundDots),
+              child: Badge(
+                backgroundColor: AppColors.redKre,
+                isLabelVisible: viewModel.unreadMessagesCount > 0,
+                // label: CustomText.smallParagraphBold(
+                //   viewModel.unreadMessagesCount.toString(),
+                // ),
+                child: SvgPicture.asset(AppIcons.chatRoundDots),
+              ),
             ),
           ),
         ],

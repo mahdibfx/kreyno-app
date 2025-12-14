@@ -10,7 +10,7 @@
         "error": "Un problème est survenu",
         "retry": "Réessayer",
         "continue": "Continuer",
-        "confirmedSuccesfuly": "Confirmé avec succès",
+        "confirmedSuccessfully": "Confirmé avec succès",
         "unableToRefresh": "Impossible de rafraîchir",
         "save": "Enregistrer",
         "takePicture": "Prendre une photo",
@@ -241,6 +241,12 @@
         "saveButton": "Enregistrer le véhicule",
         "vehicleSavedSuccessfully": "Véhicule sauvegardé avec succès"
     },
+    "editVehicule": {
+        "title": "Modifier le véhicule",
+        "description": "Remplissez ces informations ci-dessous.",
+        "saveButton": "Enregistrer les modifications",
+        "vehicleUpdatedSuccessfully": "Véhicule mis à jour avec succès"
+    },
     "myPaymentMethodes": {
         "title": "Moyens de paiement",
         "addNewCard": "Ajouter une nouvelle carte",
@@ -418,7 +424,7 @@
         "validate": "Valider"
     },
     "payForSpot": {
-        "payment": "Paiment",
+        "payment": "paiement",
         "payWith": "Payer avec",
         "noPaymentMethod": "Aucun moyen de paiement enregistré",
         "mustAddCard": "Vous devez ajouter une carte pour payer.",
@@ -428,7 +434,7 @@
         "reservationCreated": "Réservation créée avec succès",
         "totalToPay": "Total à payer",
         "securePayment": "Vos informations de paiement sont entièrement sécurisées et protégées.",
-        "payAndReserve": "Payer & réserver cette place"
+        "payAndReserve": "Payer et réserver cette place"
     },
     "slideableButton": {
         "slideToPay": "Glisser pour payer"
@@ -437,7 +443,7 @@
         "spotNameHint": "Au Gustave",
         "spotDescriptionHint": "Activer localisation",
         "spotPriceHint": "Prix de la place",
-        "title": "Louer ma place",
+        "title": "Céder ma place",
         "placeLabel": "Place",
         "useMyPosition": "Utiliser ma position",
         "choosePrice": "Choisir le prix",
@@ -445,7 +451,7 @@
         "electricCharging": "Borne de recharge électrique",
         "possible": "Possible",
         "notPossible": "Pas possible",
-        "validate": "Louer ma place"
+        "validate": "Céder ma place"
     },
     "homeFilter": {
         "title": "Filtres",
@@ -483,7 +489,7 @@
         "validate": "Valider",
         "newDemand": "Nouvelle demande reçue",
         "demandDescription": "Quelqu'un souhaite réserver votre place. Acceptez ou refusez sa demande.",
-        "distanceAndTime": "Distance & temps approximatifs pour son arrivée",
+        "distanceAndTime": "Distance et temps approximatifs pour son arrivée",
         "place": "Place",
         "refuse": "Refuser",
         "accept": "Accepter",
@@ -511,8 +517,8 @@
         "openWaze": "Ouvrir Waze"
     },
     "clientCanceledOrder": {
-        "title": "Réservation annulée par le client",
-        "description": "Votre place est de nouveau disponible."
+        "title": "Réservation annulée",
+        "description": "La place est de nouveau disponible."
     },
     "locationDisabled": {
         "title": "Oups, localisation désactivée !"
@@ -538,6 +544,10 @@
         "withdrawal": "RETRAIT"
     },
     "home": {
-        "let_my_place": "Louer ma place"
+        "let_my_place": "Céder ma place"
+    },
+    "connectivity": {
+        "noInternetConnection": "Pas de connexion Internet",
+        "noInternetToast": "Pas de connexion Internet. Veuillez vérifier votre connexion et réessayer."
     }
 }

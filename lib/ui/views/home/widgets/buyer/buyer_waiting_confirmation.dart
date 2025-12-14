@@ -10,6 +10,7 @@ import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
 import 'package:kreyno/ui/views/home/home_viewmodel.dart';
 import 'package:kreyno/ui/views/home/widgets/buyer/buyer_confirm_arrive.dart';
+import 'package:kreyno/ui/views/home/widgets/home_fabs.dart';
 import 'package:kreyno/ui/views/my_let_place/widgets/smart/received_order_widget.dart';
 import 'package:kreyno/ui/views/client_tracking/widgets/tracking_course_widget.dart';
 import 'package:kreyno/ui/views/seller_tracking/seller_tracking_viewmodel.dart';
@@ -33,6 +34,7 @@ class BuyerWaitingConfirmation
       children: [
         // const SafeArea(child: CounterBar()),
         const BuyerConfirmArrive(),
+
         const SizedBox(),
         BottomSheetLayout(
           body: Column(
@@ -135,7 +137,7 @@ class BuyerWaitingConfirmation
                         ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: Image.network(
-                            viewModel.parkingSpot.seller.car.image?.url ??
+                            viewModel.parkingSpot.seller.car!.image?.url ??
                                 AppConstants.defaultAvatarUrl,
                             fit: BoxFit.cover,
                             width: AppSpacing.px1 * 48,
@@ -147,10 +149,10 @@ class BuyerWaitingConfirmation
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CustomText.smallParagraphBold(
-                              "${viewModel.parkingSpot.seller.car.brand} ${viewModel.parkingSpot.seller.car.model}",
+                              "${viewModel.parkingSpot.seller.car!.brand} ${viewModel.parkingSpot.seller.car!.model}",
                             ),
                             CustomText.smallParagraphMedium(
-                              "${viewModel.parkingSpot.seller.car.registrationNumber} · ${viewModel.parkingSpot.seller.car.color}",
+                              "${viewModel.parkingSpot.seller.car!.registrationNumber} · ${viewModel.parkingSpot.seller.car!.color}",
                             ),
                           ],
                         ),
@@ -181,7 +183,10 @@ class BuyerWaitingConfirmation
                     Expanded(
                       child: CustomButton.filled(
                         text: "Message",
+                        showBadge: viewModel.unreadMessagesCount > 0,
                         onPressed: () async {
+                          viewModel.unreadMessagesCount = 0;
+                          viewModel.rebuildUi();
                           locator<NavigationService>().navigateToChatView(
                             id: 0,
                             name: viewModel.parkingSpot.seller.username,

@@ -32,7 +32,7 @@ abstract class Seller with _$Seller {
     @JsonKey(name: "first_name") required String firstName,
     @JsonKey(name: "last_name") required String lastName,
     @JsonKey(name: "phone") required String phone,
-    @JsonKey(name: 'car') required Car car,
+    @JsonKey(name: 'car') Car? car,
 
     @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)
     Avatar? avatar,

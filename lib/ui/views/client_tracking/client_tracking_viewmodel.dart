@@ -2,16 +2,21 @@ import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/app/app_constants.dart';
+import 'package:kreyno/enums/reservation_status.dart';
 import 'package:kreyno/models/buyer_location_updated.dart';
 import 'package:kreyno/models/reservation.dart';
+import 'package:kreyno/services/chat_service.dart';
 import 'package:kreyno/services/location_service.dart';
 import 'package:kreyno/services/reservations_service.dart';
 import 'package:kreyno/services/toast_service.dart';
 import 'package:kreyno/services/tracking_service.dart';
 import 'package:kreyno/services/user_service.dart';
+import 'package:kreyno/ui/views/home/home_view.dart';
+import 'package:kreyno/ui/views/spot_sold_success/spot_sold_success_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -22,8 +27,10 @@ class ClientTrackingViewModel extends ReactiveViewModel {
   final _navigationService = locator<NavigationService>();
   final _toastService = locator<ToastService>();
   final _locationService = locator<LocationService>();
+  final _chatService = locator<ChatService>();
 
   get userId => _userService.currentUser?.id;
+  List<Polyline> get polyLines => _trackingService.buyerPlaceChangedPolylines;
   BuyerLocationUpdated? get buyerLocation =>
       _trackingService.buyerLocationUpdated;
   bool get buyerArrived =>
@@ -32,6 +39,7 @@ class ClientTrackingViewModel extends ReactiveViewModel {
   String remainingTime = "05:00";
   int remainingSeconds = 0;
   int seconds = 0;
+  int unreadMessagesCount = 0;
   Timer? _timer;
   Reservation? reservation;
 
@@ -67,12 +75,63 @@ class ClientTrackingViewModel extends ReactiveViewModel {
     return '$minutesStr:$secondsStr';
   }
 
+  void _setupChatListener() {
+    _chatService.removeListener(_onChatMessageReceived);
+    _chatService.listenToMessageReceiver(reservation!.id);
+    _chatService.addListener(_onChatMessageReceived);
+  }
+
+  void _onChatMessageReceived() {
+    unreadMessagesCount = _chatService.message != null ? 1 : 0;
+    notifyListeners();
+  }
+
+  void _setupReservationListener() {
+    _reservationsService.removeListener(_onReservationStatusChanged);
+    _reservationsService.listenToReservationStatusChanged(
+      locator<UserService>().currentUser!.id,
+    );
+    _reservationsService.addListener(_onReservationStatusChanged);
+  }
+
+  void _cleanupAndNavigateHome() {
+    _cleanupListeners();
+    _navigationService.clearStackAndShowView(const HomeView());
+  }
+
+  void _cleanupListeners() {
+    _chatService.removeListener(_onChatMessageReceived);
+    _reservationsService.removeListener(_onReservationStatusChanged);
+
+    if (reservation?.id != null) {
+      _reservationsService.stopListeningToReservationUpdates(reservation!.id);
+    }
+  }
+
+  void _onReservationStatusChanged() {
+    if (_reservationsService.reservation?.status ==
+        ReservationStatus.canceled) {
+      print("fumed here");
+      _toastService.showError(title: "clientCanceledOrder.title".tr());
+      _cleanupAndNavigateHome();
+    }
+  }
+
   void initialise(Reservation kReservation) {
     reservation = kReservation;
-    seconds = 1 * 60;
+    seconds = 5 * 60;
     remainingSeconds = seconds - 1;
 
-    _trackingService.listenToBuyerLocation(userId);
+    _trackingService.listenToBuyerLocation(
+      userId,
+      LatLng(
+        reservation!.parkingPlace.latitude,
+        reservation!.parkingPlace.longitude,
+      ),
+    );
+    _setupChatListener();
+    _setupReservationListener();
+
     Timer(Duration(seconds: seconds), () {
       cancelButtonDisabled = false;
 
@@ -94,13 +153,16 @@ class ClientTrackingViewModel extends ReactiveViewModel {
     );
 
     result.match((l) => _toastService.showError(title: l), (r) {
-      _navigationService.navigateToSpotSoldSuccessView(
-        reservation: reservation!,
+      _navigationService.clearStackAndShowView(
+        SpotSoldSuccessView(reservation: reservation!),
       );
     });
   }
 
   @override
   // TODO: implement listenableServices
-  List<ListenableServiceMixin> get listenableServices => [_trackingService];
+  List<ListenableServiceMixin> get listenableServices => [
+    _trackingService,
+    _chatService,
+  ];
 }

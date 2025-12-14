@@ -98,8 +98,8 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText.paragraph("homeFilter.searchRadius".tr()),
-              const CustomText.smallParagraphBold(
-                "3 min",
+              CustomText.smallParagraphBold(
+                "${viewModel.time.toInt()} min",
                 color: AppColors.greenKre,
               ),
             ],
@@ -108,8 +108,12 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
           SizedBox(
             width: double.infinity,
             child: Slider(
-              value: 0.5,
-              onChanged: (d) {},
+              min: 3,
+              max: 20,
+              label: "${viewModel.time.toInt()} min",
+              onChanged: (value) => viewModel.updateTime(value),
+              value: viewModel.time,
+
               activeColor: AppColors.greenKre,
               thumbColor: AppColors.white,
             ),
@@ -137,7 +141,10 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
                       completer?.call(
                         SheetResponse(
                           confirmed: true,
-                          data: viewModel.possibleElectric,
+                          data: {
+                            0: viewModel.possibleElectric,
+                            1: viewModel.radius,
+                          },
                         ),
                       );
                     },

@@ -12,6 +12,7 @@ import 'package:kreyno/services/parking_spots_service.dart';
 import 'package:kreyno/services/reservations_service.dart';
 import 'package:kreyno/services/toast_service.dart';
 import 'package:kreyno/services/user_service.dart';
+import 'package:kreyno/ui/views/home/home_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -103,9 +104,7 @@ class MyLetPlaceViewModel extends ReactiveViewModel {
         _toastService.showError(title: error);
       },
       (value) {
-        _toastService.showInfo(title: "common.deletedSuccessfully".tr());
-        _navigationService.back();
-        _navigationService.back();
+        _navigationService.clearStackAndShowView(const HomeView());
       },
     );
   }

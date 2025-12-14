@@ -12,10 +12,12 @@ import 'vehicule_type_drop_down_model.dart';
 class VehiculeTypeDropDown extends StackedView<VehiculeTypeDropDownModel> {
   final Function(VehicleType) onChanged;
   final bool? isRequired;
+  final VehicleType? initialValue;
   const VehiculeTypeDropDown({
     super.key,
     required this.onChanged,
     this.isRequired = true,
+    this.initialValue,
   });
 
   @override
@@ -74,6 +76,14 @@ class VehiculeTypeDropDown extends StackedView<VehiculeTypeDropDownModel> {
             )
           : null,
     );
+  }
+
+  @override
+  void onViewModelReady(VehiculeTypeDropDownModel viewModel) {
+    if (initialValue != null) {
+      viewModel.setSelectedVehicleType(initialValue);
+    }
+    super.onViewModelReady(viewModel);
   }
 
   @override

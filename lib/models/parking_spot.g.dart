@@ -40,7 +40,9 @@ _Seller _$SellerFromJson(Map<String, dynamic> json) => _Seller(
   firstName: json['first_name'] as String,
   lastName: json['last_name'] as String,
   phone: json['phone'] as String,
-  car: Car.fromJson(json['car'] as Map<String, dynamic>),
+  car: json['car'] == null
+      ? null
+      : Car.fromJson(json['car'] as Map<String, dynamic>),
   avatar: avatarFromJson(json['avatar']),
 );
 
@@ -49,6 +51,6 @@ Map<String, dynamic> _$SellerToJson(_Seller instance) => <String, dynamic>{
   'first_name': instance.firstName,
   'last_name': instance.lastName,
   'phone': instance.phone,
-  'car': instance.car.toJson(),
+  'car': ?instance.car?.toJson(),
   'avatar': ?avatarToJson(instance.avatar),
 };

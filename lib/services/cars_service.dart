@@ -1,6 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/dtos/create_car_dto.dart';
+import 'package:kreyno/dtos/update_car_dto.dart';
 import 'package:kreyno/extensions/api_response_extensions.dart';
 import 'package:kreyno/models/car.dart';
 import 'package:kreyno/models/get_car_by_registration_response.dart';
@@ -19,6 +20,10 @@ class CarsService {
 
   Future<Either<String, Car>> createCar(CreateCarDto carDto) {
     return _apiCarService.createCar(carDto).toEither();
+  }
+
+  Future<Either<String, Car>> updateCar(int carId, UpdateCarDto carDto) {
+    return _apiCarService.updateCar(carId, carDto).toEither();
   }
 
   Future<Either<String, int>> deleteCar(int carId) {

@@ -372,6 +372,16 @@ class AddVehiculeStrings {
       'addVehicule.vehicleSavedSuccessfully'.tr();
 }
 
+class EditVehiculeStrings {
+  const EditVehiculeStrings._();
+
+  static String get title => 'editVehicule.title'.tr();
+  static String get description => 'editVehicule.description'.tr();
+  static String get saveButton => 'editVehicule.saveButton'.tr();
+  static String get vehicleUpdatedSuccessfully =>
+      'editVehicule.vehicleUpdatedSuccessfully'.tr();
+}
+
 class EditProfileStrings {
   const EditProfileStrings._();
 
@@ -513,4 +523,12 @@ class PayoutStrings {
   static String get accountOf => 'payout.accountOf'.tr();
   static String get enterAmountHint => 'payout.enterAmountHint'.tr();
   static String get amountExceedsBalance => 'payout.amountExceedsBalance'.tr();
+}
+
+class ConnectivityStrings {
+  const ConnectivityStrings._();
+
+  static String get noInternetConnection =>
+      'connectivity.noInternetConnection'.tr();
+  static String get noInternetToast => 'connectivity.noInternetToast'.tr();
 }

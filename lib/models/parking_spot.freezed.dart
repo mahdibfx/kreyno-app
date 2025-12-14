@@ -329,7 +329,7 @@ $SellerCopyWith<$Res>? get seller {
 /// @nodoc
 mixin _$Seller {
 
-@JsonKey(name: "username") String get username;@JsonKey(name: "first_name") String get firstName;@JsonKey(name: "last_name") String get lastName;@JsonKey(name: "phone") String get phone;@JsonKey(name: 'car') Car get car;@JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson) Avatar? get avatar;
+@JsonKey(name: "username") String get username;@JsonKey(name: "first_name") String get firstName;@JsonKey(name: "last_name") String get lastName;@JsonKey(name: "phone") String get phone;@JsonKey(name: 'car') Car? get car;@JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson) Avatar? get avatar;
 /// Create a copy of Seller
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -362,11 +362,11 @@ abstract mixin class $SellerCopyWith<$Res>  {
   factory $SellerCopyWith(Seller value, $Res Function(Seller) _then) = _$SellerCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "username") String username,@JsonKey(name: "first_name") String firstName,@JsonKey(name: "last_name") String lastName,@JsonKey(name: "phone") String phone,@JsonKey(name: 'car') Car car,@JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson) Avatar? avatar
+@JsonKey(name: "username") String username,@JsonKey(name: "first_name") String firstName,@JsonKey(name: "last_name") String lastName,@JsonKey(name: "phone") String phone,@JsonKey(name: 'car') Car? car,@JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson) Avatar? avatar
 });
 
 
-$CarCopyWith<$Res> get car;$AvatarCopyWith<$Res>? get avatar;
+$CarCopyWith<$Res>? get car;$AvatarCopyWith<$Res>? get avatar;
 
 }
 /// @nodoc
@@ -379,14 +379,14 @@ class _$SellerCopyWithImpl<$Res>
 
 /// Create a copy of Seller
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? phone = null,Object? car = null,Object? avatar = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? phone = null,Object? car = freezed,Object? avatar = freezed,}) {
   return _then(_self.copyWith(
 username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
 as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String,car: null == car ? _self.car : car // ignore: cast_nullable_to_non_nullable
-as Car,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as String,car: freezed == car ? _self.car : car // ignore: cast_nullable_to_non_nullable
+as Car?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
 as Avatar?,
   ));
 }
@@ -394,9 +394,12 @@ as Avatar?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$CarCopyWith<$Res> get car {
-  
-  return $CarCopyWith<$Res>(_self.car, (value) {
+$CarCopyWith<$Res>? get car {
+    if (_self.car == null) {
+    return null;
+  }
+
+  return $CarCopyWith<$Res>(_self.car!, (value) {
     return _then(_self.copyWith(car: value));
   });
 }/// Create a copy of Seller
@@ -493,7 +496,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: 'car')  Car car, @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)  Avatar? avatar)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: 'car')  Car? car, @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)  Avatar? avatar)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Seller() when $default != null:
 return $default(_that.username,_that.firstName,_that.lastName,_that.phone,_that.car,_that.avatar);case _:
@@ -514,7 +517,7 @@ return $default(_that.username,_that.firstName,_that.lastName,_that.phone,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: 'car')  Car car, @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)  Avatar? avatar)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: 'car')  Car? car, @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)  Avatar? avatar)  $default,) {final _that = this;
 switch (_that) {
 case _Seller():
 return $default(_that.username,_that.firstName,_that.lastName,_that.phone,_that.car,_that.avatar);case _:
@@ -534,7 +537,7 @@ return $default(_that.username,_that.firstName,_that.lastName,_that.phone,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: 'car')  Car car, @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)  Avatar? avatar)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "username")  String username, @JsonKey(name: "first_name")  String firstName, @JsonKey(name: "last_name")  String lastName, @JsonKey(name: "phone")  String phone, @JsonKey(name: 'car')  Car? car, @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson)  Avatar? avatar)?  $default,) {final _that = this;
 switch (_that) {
 case _Seller() when $default != null:
 return $default(_that.username,_that.firstName,_that.lastName,_that.phone,_that.car,_that.avatar);case _:
@@ -549,14 +552,14 @@ return $default(_that.username,_that.firstName,_that.lastName,_that.phone,_that.
 @JsonSerializable()
 
 class _Seller implements Seller {
-  const _Seller({@JsonKey(name: "username") required this.username, @JsonKey(name: "first_name") required this.firstName, @JsonKey(name: "last_name") required this.lastName, @JsonKey(name: "phone") required this.phone, @JsonKey(name: 'car') required this.car, @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson) this.avatar});
+  const _Seller({@JsonKey(name: "username") required this.username, @JsonKey(name: "first_name") required this.firstName, @JsonKey(name: "last_name") required this.lastName, @JsonKey(name: "phone") required this.phone, @JsonKey(name: 'car') this.car, @JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson) this.avatar});
   factory _Seller.fromJson(Map<String, dynamic> json) => _$SellerFromJson(json);
 
 @override@JsonKey(name: "username") final  String username;
 @override@JsonKey(name: "first_name") final  String firstName;
 @override@JsonKey(name: "last_name") final  String lastName;
 @override@JsonKey(name: "phone") final  String phone;
-@override@JsonKey(name: 'car') final  Car car;
+@override@JsonKey(name: 'car') final  Car? car;
 @override@JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson) final  Avatar? avatar;
 
 /// Create a copy of Seller
@@ -592,11 +595,11 @@ abstract mixin class _$SellerCopyWith<$Res> implements $SellerCopyWith<$Res> {
   factory _$SellerCopyWith(_Seller value, $Res Function(_Seller) _then) = __$SellerCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "username") String username,@JsonKey(name: "first_name") String firstName,@JsonKey(name: "last_name") String lastName,@JsonKey(name: "phone") String phone,@JsonKey(name: 'car') Car car,@JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson) Avatar? avatar
+@JsonKey(name: "username") String username,@JsonKey(name: "first_name") String firstName,@JsonKey(name: "last_name") String lastName,@JsonKey(name: "phone") String phone,@JsonKey(name: 'car') Car? car,@JsonKey(name: "avatar", fromJson: avatarFromJson, toJson: avatarToJson) Avatar? avatar
 });
 
 
-@override $CarCopyWith<$Res> get car;@override $AvatarCopyWith<$Res>? get avatar;
+@override $CarCopyWith<$Res>? get car;@override $AvatarCopyWith<$Res>? get avatar;
 
 }
 /// @nodoc
@@ -609,14 +612,14 @@ class __$SellerCopyWithImpl<$Res>
 
 /// Create a copy of Seller
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? phone = null,Object? car = null,Object? avatar = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? username = null,Object? firstName = null,Object? lastName = null,Object? phone = null,Object? car = freezed,Object? avatar = freezed,}) {
   return _then(_Seller(
 username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
 as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
-as String,car: null == car ? _self.car : car // ignore: cast_nullable_to_non_nullable
-as Car,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
+as String,car: freezed == car ? _self.car : car // ignore: cast_nullable_to_non_nullable
+as Car?,avatar: freezed == avatar ? _self.avatar : avatar // ignore: cast_nullable_to_non_nullable
 as Avatar?,
   ));
 }
@@ -625,9 +628,12 @@ as Avatar?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$CarCopyWith<$Res> get car {
-  
-  return $CarCopyWith<$Res>(_self.car, (value) {
+$CarCopyWith<$Res>? get car {
+    if (_self.car == null) {
+    return null;
+  }
+
+  return $CarCopyWith<$Res>(_self.car!, (value) {
     return _then(_self.copyWith(car: value));
   });
 }/// Create a copy of Seller

@@ -37,7 +37,6 @@ import 'package:kreyno/ui/views/my_payment_methodes/my_payment_methodes_view.dar
 import 'package:kreyno/ui/views/spots_history/spots_history_view.dart';
 import 'package:kreyno/ui/views/kreyno_wallet/kreyno_wallet_view.dart';
 import 'package:kreyno/ui/views/cashout/cashout_view.dart';
-import 'package:kreyno/ui/views/edit_vehicule/edit_vehicule_view.dart';
 import 'package:kreyno/ui/bottom_sheets/otp/otp_sheet.dart';
 import 'package:kreyno/ui/bottom_sheets/upload_vehicule_image/upload_vehicule_image_sheet.dart';
 import 'package:kreyno/ui/bottom_sheets/buy_spot/buy_spot_sheet.dart';
@@ -76,6 +75,8 @@ import 'package:kreyno/services/tracking_service.dart';
 import 'package:kreyno/ui/views/seller_tracking/seller_tracking_view.dart';
 import 'package:kreyno/ui/views/chat/chat_view.dart';
 import 'package:kreyno/services/chat_service.dart';
+import 'package:kreyno/ui/views/error/error_view.dart';
+import 'package:kreyno/ui/views/edit_vehicule/edit_vehicule_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -99,7 +100,6 @@ import 'package:kreyno/services/chat_service.dart';
     MaterialRoute(page: SpotsHistoryView),
     MaterialRoute(page: KreynoWalletView),
     MaterialRoute(page: CashoutView),
-    MaterialRoute(page: EditVehiculeView),
     MaterialRoute(page: SetUpLanguageView),
     MaterialRoute(page: KreyonoPortfolioView),
     MaterialRoute(page: CheckoutMoneyView),
@@ -115,6 +115,8 @@ import 'package:kreyno/services/chat_service.dart';
     MaterialRoute(page: ClientTrackingView),
     MaterialRoute(page: SellerTrackingView),
     MaterialRoute(page: ChatView),
+    MaterialRoute(page: ErrorView),
+    MaterialRoute(page: EditVehiculeView),
     // @stacked-route
   ],
   dependencies: [

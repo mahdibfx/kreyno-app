@@ -20,7 +20,7 @@ class ChatViewModel extends ReactiveViewModel {
   init(int kReservationId) {
     reservationId = kReservationId;
     getChatHistory();
-    _chatService.listenToMessageReceiver(reservationId);
+    // _chatService.listenToMessageReceiver(reservationId);
     _chatService.addListener(() {
       messages.add(_chatService.message!);
       print("hello world");

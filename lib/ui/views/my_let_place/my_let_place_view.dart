@@ -3,6 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/ui/views/my_let_place/widgets/smart/my_marker_details.dart';
+import 'package:kreyno/ui/widgets/dumb/lifecycle_manager.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -19,45 +20,51 @@ class MyLetPlaceView extends StackedView<MyLetPlaceViewModel> {
     MyLetPlaceViewModel viewModel,
     Widget? child,
   ) {
-    // print(viewModel.parkingSpot!.id);
-    return PopScope(
-      canPop: false,
+    return LifeCycleManager(
+      didChangeAppLifecycleState: (state) {
+        if (state == AppLifecycleState.resumed) {
+          viewModel.rebuildUi();
+        }
+      },
+      child: PopScope(
+        canPop: false,
 
-      child: ViewModelBuilder.reactive(
-        viewModelBuilder: () => viewModel,
-        builder: (context, viewModel, child) => Scaffold(
-          // floatingActionButton: FloatingActionButton(
-          //   onPressed: () {
-          //     locator<NavigationService>().navigateToClientTrackingView(
-          //       parkingSpot: viewModel.parkingSpot!,
-          //       reservation: viewModel.reservation!,
-          //     );
-          //   },
-          // ),
-          body: Stack(
-            children: [
-              GoogleMap(
-                markers: {
-                  Marker(
-                    markerId: MarkerId("${viewModel.parkingSpot!.id}"),
+        child: ViewModelBuilder.reactive(
+          viewModelBuilder: () => viewModel,
+          builder: (context, viewModel, child) => Scaffold(
+            // floatingActionButton: FloatingActionButton(
+            //   onPressed: () {
+            //     locator<NavigationService>().navigateToClientTrackingView(
+            //       parkingSpot: viewModel.parkingSpot!,
+            //       reservation: viewModel.reservation!,
+            //     );
+            //   },
+            // ),
+            body: Stack(
+              children: [
+                GoogleMap(
+                  markers: {
+                    Marker(
+                      markerId: MarkerId("${viewModel.parkingSpot!.id}"),
 
-                    icon: AssetMapBitmap("assets/images/Map_pin.png"),
-                    position: LatLng(
+                      icon: AssetMapBitmap("assets/images/Map_pin.png"),
+                      position: LatLng(
+                        viewModel.parkingSpot!.latitude,
+                        viewModel.parkingSpot!.longitude,
+                      ),
+                    ),
+                  },
+                  initialCameraPosition: CameraPosition(
+                    zoom: 17,
+                    target: LatLng(
                       viewModel.parkingSpot!.latitude,
                       viewModel.parkingSpot!.longitude,
                     ),
                   ),
-                },
-                initialCameraPosition: CameraPosition(
-                  zoom: 17,
-                  target: LatLng(
-                    viewModel.parkingSpot!.latitude,
-                    viewModel.parkingSpot!.longitude,
-                  ),
                 ),
-              ),
-              const MyMarkerDetails(),
-            ],
+                const MyMarkerDetails(),
+              ],
+            ),
           ),
         ),
       ),

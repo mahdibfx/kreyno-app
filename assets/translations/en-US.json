@@ -10,7 +10,7 @@
         "error": "A problem occurred",
         "retry": "Retry",
         "continue": "Continue",
-        "confirmedSuccesfuly": "Confirmed succesfuly",
+        "confirmedSuccessfully": "Confirmed succesfuly",
         "unableToRefresh": "Unable to refresh",
         "save": "Save",
         "takePicture": "Take a picture",
@@ -240,6 +240,12 @@
         "description": "Fill in the information below.",
         "saveButton": "Save vehicle",
         "vehicleSavedSuccessfully": "Vehicle saved successfully"
+    },
+    "editVehicule": {
+        "title": "Edit vehicle",
+        "description": "Fill in the information below.",
+        "saveButton": "Save changes",
+        "vehicleUpdatedSuccessfully": "Vehicle updated successfully"
     },
     "myPaymentMethodes": {
         "title": "Payment methods",
@@ -511,8 +517,8 @@
         "openWaze": "Open Waze"
     },
     "clientCanceledOrder": {
-        "title": "Reservation canceled by client",
-        "description": "Your spot is available again."
+        "title": "Reservation canceled",
+        "description": "spot is available again."
     },
     "locationDisabled": {
         "title": "Oops, location disabled!"
@@ -539,5 +545,9 @@
     },
     "home": {
         "let_my_place": "Let my place"
+    },
+    "connectivity": {
+        "noInternetConnection": "No internet connection",
+        "noInternetToast": "No internet connection. Please check your connection and try again."
     }
 }

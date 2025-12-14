@@ -212,6 +212,8 @@ class BottomActionBar extends ViewModelWidget<ClientTrackingViewModel> {
                 SizedBox(width: AppSpacing.px8),
                 Expanded(
                   child: CustomButton.filled(
+                    showBadge: viewModel.unreadMessagesCount > 0,
+
                     text: "tracking.message".tr(),
                     onPressed: () {
                       viewModel.goToChat();
