@@ -70,6 +70,7 @@ class ChatService with ListenableServiceMixin {
       }
 
       // Subscribe to the private channel
+
       _wsService.listenToPrivateChannel(
         channel: 'reservation.$reservationId.chat',
         event: 'chat-message',

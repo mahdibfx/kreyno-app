@@ -161,4 +161,12 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
   @override
   HomeFilterSheetModel viewModelBuilder(BuildContext context) =>
       HomeFilterSheetModel();
+
+  @override
+  void onViewModelReady(HomeFilterSheetModel viewModel) {
+    if (request.data != null) {
+      viewModel.init(request.data[0], request.data[1]);
+    }
+    super.onViewModelReady(viewModel);
+  }
 }

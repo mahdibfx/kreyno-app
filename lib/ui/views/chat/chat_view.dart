@@ -34,10 +34,12 @@ class ChatView extends StackedView<ChatViewModel> {
   @override
   Widget builder(BuildContext context, ChatViewModel viewModel, Widget? child) {
     bool online = true;
-    print(reservationId);
     return Scaffold(
       backgroundColor: AppColors.white,
       bottomNavigationBar: Container(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+        ),
         child: SafeArea(
           top: false,
           child: Column(
@@ -147,7 +149,6 @@ class ChatView extends StackedView<ChatViewModel> {
 
   @override
   void onDispose(ChatViewModel viewModel) {
-    viewModel.disposeSocket();
     // TODO: implement onDispose
     super.onDispose(viewModel);
   }

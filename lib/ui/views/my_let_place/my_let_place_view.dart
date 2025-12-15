@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:kreyno/app/app.locator.dart';
-import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/ui/views/my_let_place/widgets/smart/my_marker_details.dart';
 import 'package:kreyno/ui/widgets/dumb/lifecycle_manager.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 import 'my_let_place_viewmodel.dart';
 
@@ -32,14 +29,6 @@ class MyLetPlaceView extends StackedView<MyLetPlaceViewModel> {
         child: ViewModelBuilder.reactive(
           viewModelBuilder: () => viewModel,
           builder: (context, viewModel, child) => Scaffold(
-            // floatingActionButton: FloatingActionButton(
-            //   onPressed: () {
-            //     locator<NavigationService>().navigateToClientTrackingView(
-            //       parkingSpot: viewModel.parkingSpot!,
-            //       reservation: viewModel.reservation!,
-            //     );
-            //   },
-            // ),
             body: Stack(
               children: [
                 GoogleMap(

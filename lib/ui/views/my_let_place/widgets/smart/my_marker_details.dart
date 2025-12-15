@@ -22,6 +22,7 @@ class MyMarkerDetails extends ViewModelWidget<MyLetPlaceViewModel> {
 
   @override
   Widget build(BuildContext context, viewModel) {
+    // print(viewModel.reservation!.status);
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

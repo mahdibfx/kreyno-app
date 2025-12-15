@@ -82,6 +82,12 @@ class ClientTrackingViewModel extends ReactiveViewModel {
   }
 
   void _onChatMessageReceived() {
+    if (_chatService.message!.senderId ==
+        locator<UserService>().currentUser!.id) {
+      unreadMessagesCount = 0;
+      notifyListeners();
+      return;
+    }
     unreadMessagesCount = _chatService.message != null ? 1 : 0;
     notifyListeners();
   }
@@ -132,10 +138,11 @@ class ClientTrackingViewModel extends ReactiveViewModel {
     _setupChatListener();
     _setupReservationListener();
 
+    _timer?.cancel(); // Cancel any existing timer
     Timer(Duration(seconds: seconds), () {
       cancelButtonDisabled = false;
 
-      _timer!.cancel();
+      _timer?.cancel();
       notifyListeners();
     });
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -157,6 +164,13 @@ class ClientTrackingViewModel extends ReactiveViewModel {
         SpotSoldSuccessView(reservation: reservation!),
       );
     });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _cleanupListeners();
+    super.dispose();
   }
 
   @override

@@ -35,6 +35,8 @@ class HomeFabs extends ViewModelWidget<HomeViewModel> {
           ),
           HomeFabButton(
             iconPath: AppIcons.gpsOn,
+            isLoading: viewModel.loadingCurrentLocation,
+
             onTap: () {
               viewModel.goToCurrentLocation();
             },

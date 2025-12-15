@@ -92,34 +92,13 @@ class CustomButton extends StatefulWidget {
 class _CustomButtonState extends State<CustomButton> {
   final _toastService = locator<ToastService>();
   StreamSubscription<InternetConnectionStatus>? _connectionSubscription;
-  bool _hasConnection = true;
+  final bool _hasConnection = true;
 
   @override
   void initState() {
     super.initState();
-    _checkInitialConnection();
-    _listenToConnectionChanges();
-  }
-
-  Future<void> _checkInitialConnection() async {
-    final hasConnection =
-        await InternetConnectionChecker.instance.hasConnection;
-    if (mounted) {
-      setState(() {
-        _hasConnection = hasConnection;
-      });
-    }
-  }
-
-  void _listenToConnectionChanges() {
-    _connectionSubscription = InternetConnectionChecker.instance.onStatusChange
-        .listen((status) {
-          if (mounted) {
-            setState(() {
-              _hasConnection = status == InternetConnectionStatus.connected;
-            });
-          }
-        });
+    // _checkInitialConnection();
+    // _listenToConnectionChanges();
   }
 
   @override

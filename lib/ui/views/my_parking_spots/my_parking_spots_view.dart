@@ -24,6 +24,11 @@ class MyParkingSpotsView extends StackedView<MyParkingSpotsViewModel> {
     Widget? child,
   ) {
     return Scaffold(
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     viewModel.showFilterSheet();
+      //   },
+      // ),
       backgroundColor: AppColors.white,
       body: CustomScrollView(
         physics: const NeverScrollableScrollPhysics(),

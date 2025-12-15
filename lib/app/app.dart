@@ -77,6 +77,7 @@ import 'package:kreyno/ui/views/chat/chat_view.dart';
 import 'package:kreyno/services/chat_service.dart';
 import 'package:kreyno/ui/views/error/error_view.dart';
 import 'package:kreyno/ui/views/edit_vehicule/edit_vehicule_view.dart';
+import 'package:kreyno/ui/views/expand_vehicule_info/expand_vehicule_info_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -117,6 +118,7 @@ import 'package:kreyno/ui/views/edit_vehicule/edit_vehicule_view.dart';
     MaterialRoute(page: ChatView),
     MaterialRoute(page: ErrorView),
     MaterialRoute(page: EditVehiculeView),
+    MaterialRoute(page: ExpandVehiculeInfoView),
     // @stacked-route
   ],
   dependencies: [

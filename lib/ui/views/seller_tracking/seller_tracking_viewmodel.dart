@@ -141,6 +141,13 @@ class SellerTrackingViewModel extends ReactiveViewModel {
   }
 
   void _onChatMessageReceived() {
+    if (_chatService.message != null &&
+        _chatService.message!.senderId ==
+            locator<UserService>().currentUser!.id) {
+      unreadMessagesCount = 0;
+      notifyListeners();
+      return;
+    }
     unreadMessagesCount = _chatService.message != null ? 1 : 0;
     notifyListeners();
   }

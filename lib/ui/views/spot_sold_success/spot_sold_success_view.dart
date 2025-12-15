@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/models/reservation.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
@@ -106,23 +107,38 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                       borderRadius: BorderRadius.circular(12),
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: CachedNetworkImageProvider(
-                          reservation.buyer.car.image?.url ?? "",
-                        ),
+                        image: reservation.buyer.car.image == null
+                            ? const AssetImage("assets/images/car_default.png")
+                            : CachedNetworkImageProvider(
+                                reservation.buyer.car.image?.url ?? "",
+                              ),
                       ),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: EdgeInsets.all(AppSpacing.px1 * 10),
-                          child: RoundedButton(
-                            iconPath: AppIcons.arrowExpandSharp,
-                            onPressed: () {},
-                            shape: BoxShape.rectangle,
+                        if (reservation.buyer.car.image == null)
+                          const SizedBox(),
+                        if (reservation.buyer.car.image != null)
+                          Padding(
+                            padding: EdgeInsets.all(AppSpacing.px1 * 10),
+                            child: RoundedButton(
+                              iconPath: AppIcons.arrowExpandSharp,
+                              onPressed: () {
+                                locator<NavigationService>()
+                                    .navigateToExpandVehiculeInfoView(
+                                      brand: reservation.buyer.car.brand ?? "",
+                                      model: reservation.buyer.car.model ?? "",
+                                      image:
+                                          reservation.buyer.car.image?.url ??
+                                          "",
+                                      color: reservation.buyer.car.color ?? "",
+                                    );
+                              },
+                              shape: BoxShape.rectangle,
+                            ),
                           ),
-                        ),
                         Container(
                           padding: EdgeInsets.all(AppSpacing.px1 * 10),
                           decoration: BoxDecoration(

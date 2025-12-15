@@ -20,11 +20,18 @@ class ChatViewModel extends ReactiveViewModel {
   init(int kReservationId) {
     reservationId = kReservationId;
     getChatHistory();
-    // _chatService.listenToMessageReceiver(reservationId);
-    _chatService.addListener(() {
-      messages.add(_chatService.message!);
-      print("hello world");
-    });
+    // if (_chatService.listenersCount == 1) {
+    _chatService.listenToMessageReceiver(reservationId);
+    // }
+
+    _chatService.removeListener(_onMessageReceived);
+    _chatService.addListener(_onMessageReceived);
+  }
+
+  void _onMessageReceived() {
+    if (messages.contains(_chatService.message)) return;
+    messages.add(_chatService.message!);
+    notifyListeners();
   }
 
   sendMessage() async {
@@ -52,8 +59,10 @@ class ChatViewModel extends ReactiveViewModel {
     });
   }
 
-  disposeSocket() {
-    _chatService.dispose(reservationId);
+  @override
+  void dispose() {
+    _chatService.removeListener(_onMessageReceived);
+    super.dispose();
   }
 
   @override

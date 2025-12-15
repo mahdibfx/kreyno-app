@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/app/app_constants.dart';
+import 'package:kreyno/enums/reservation_status.dart';
 import 'package:kreyno/models/parking_spot.dart';
 import 'package:kreyno/models/reservation.dart';
 import 'package:kreyno/models/user.dart';
@@ -67,9 +70,25 @@ class MyLetPlaceViewModel extends ReactiveViewModel {
     return "∼$timeInMinutes minutes";
   }
 
+  onStatusChanged() async {
+    if (_reservationService.reservation!.status == ReservationStatus.canceled) {
+      _reservationService.removeReservation();
+      notifyListeners();
+      _toastService.showInfo(title: "common.reservationCanceled".tr());
+    }
+  }
+
+  onReservationReceived() {
+    _reservationService.listenToReservationStatusChanged(currentUser.id);
+    _reservationService.removeListener(onStatusChanged);
+    _reservationService.addListener(onStatusChanged);
+  }
+
   initialise() {
+    _reservationService.removeReservation();
     _reservationService.listenToReservationUpdates(currentUser.id);
 
+    _reservationService.addListener(onReservationReceived);
     parkingSpot = _navigationService.currentArguments as ParkingSpot;
     notifyListeners();
   }
@@ -124,6 +143,13 @@ class MyLetPlaceViewModel extends ReactiveViewModel {
 
   disposeSocketService() {
     _reservationService.disconnectSocket();
+  }
+
+  @override
+  void dispose() {
+    _reservationService.removeListener(onReservationReceived);
+    _reservationService.removeListener(onStatusChanged);
+    super.dispose();
   }
 
   @override

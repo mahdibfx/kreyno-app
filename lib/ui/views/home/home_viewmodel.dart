@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:dart_geohash/dart_geohash.dart';
-import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
@@ -33,9 +32,8 @@ class HomeViewModel extends ReactiveViewModel {
 
   double radius = 2.5;
   bool? _possibleElectric;
+  bool loadingCurrentLocation = false;
   ParkingSpot? _selectedSpot;
-  late VoidCallback _locationListener;
-  late VoidCallback _trackingListener;
   late GoogleMapController googleMapController;
 
   ParkingSpot? get selectedSpot => _selectedSpot;
@@ -87,15 +85,16 @@ class HomeViewModel extends ReactiveViewModel {
 
   @override
   void dispose() {
+    _locationService.removeListener(_onLocationServiceUpdate);
+    _trackingService.removeListener(_onTrackingServiceUpdate);
     super.dispose();
-    _locationService.removeListener(_locationListener);
-    _trackingService.removeListener(_trackingListener);
   }
 
   Future<void> openFilterBottomSheet() async {
     final result = await _bottomSheetService.showCustomSheet(
       isScrollControlled: true,
       variant: BottomSheetType.homeFilter,
+      data: [_possibleElectric, radius],
     );
 
     if (result != null && result.confirmed) {
@@ -215,26 +214,37 @@ class HomeViewModel extends ReactiveViewModel {
     await _checkLocationService();
     if (!_isLocationServiceEnabled) return;
     // TODO: check if user has a location permission first
-    int fireIdStored = _trackingService.fireId;
+
     setBusy(false);
     await goToCurrentLocation();
-
     await getNearbyPlaces();
+
     _locationService.listenToMyLocationReactive(null);
-    _locationListener = () {
+
+    // _locationService.removeListener(_onLocationServiceUpdate);
+    _locationService.addListener(_onLocationServiceUpdate);
+
+    // _trackingService.removeListener(_onTrackingServiceUpdate);
+    // _trackingService.addListener(_onTrackingServiceUpdate);
+  }
+
+  void _onLocationServiceUpdate() {
+    if (_locationService.currentLocation != null) {
       onLocationUpdate(_locationService.currentLocation!);
-    };
-    _locationService.addListener(_locationListener);
-    _trackingListener = () {
-      if (fireIdStored != _trackingService.fireId) {
-        getNearbyPlaces();
-        fireIdStored = _trackingService.fireId;
-      }
-    };
-    _trackingService.addListener(_trackingListener);
+    }
+  }
+
+  int _fireIdStored = 0;
+  void _onTrackingServiceUpdate() {
+    if (_fireIdStored != _trackingService.fireId) {
+      getNearbyPlaces();
+      _fireIdStored = _trackingService.fireId;
+    }
   }
 
   Future<void> goToCurrentLocation() async {
+    loadingCurrentLocation = true;
+    notifyListeners();
     final result = await _locationService.getCurrentLocation();
     await result.match(
       (error) async {
@@ -250,6 +260,8 @@ class HomeViewModel extends ReactiveViewModel {
         );
       },
     );
+    loadingCurrentLocation = false;
+    notifyListeners();
   }
 
   void onLocationServiceDisabledTapped() async {

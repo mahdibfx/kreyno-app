@@ -70,7 +70,7 @@ class MyBoughtSpots extends StackedView<MyBoughtSpotsModel> {
                       AppConstants.defaultAvatarUrl,
                   hasElectricCharging:
                       false, // ParkingPlace doesn't have electric charging info
-                  price: reservation.parkingPlace.price,
+                  price: reservation.parkingPlace.totalPaidPrice,
                 );
               },
             ),

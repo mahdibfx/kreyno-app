@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart' hide Card;
 import 'package:flutter_stripe/flutter_stripe.dart' hide Card;
 import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/models/parking_spot.dart';
 import 'package:kreyno/ui/bottom_sheets/pay_for_spot/widgets/payment_list_tile.dart';
@@ -337,24 +338,36 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
             borderRadius: BorderRadius.circular(12),
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: CachedNetworkImageProvider(
-                parkingSpot.seller?.car!.image?.url ??
-                    AppConstants.defaultAvatarUrl,
-              ),
+              image: parkingSpot.seller?.car?.image == null
+                  ? Image.asset("assets/images/car_default.png").image
+                  : CachedNetworkImageProvider(
+                      parkingSpot.seller?.car!.image?.url ??
+                          AppConstants.defaultAvatarUrl,
+                    ),
             ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: EdgeInsets.all(AppSpacing.px1 * 10),
-                child: RoundedButton(
-                  iconPath: AppIcons.arrowExpandSharp,
-                  onPressed: () {},
-                  shape: BoxShape.rectangle,
+              if (parkingSpot.seller?.car?.image == null) const SizedBox(),
+              if (parkingSpot.seller?.car?.image != null)
+                Padding(
+                  padding: EdgeInsets.all(AppSpacing.px1 * 10),
+                  child: RoundedButton(
+                    iconPath: AppIcons.arrowExpandSharp,
+                    onPressed: () {
+                      locator<NavigationService>()
+                          .navigateToExpandVehiculeInfoView(
+                            brand: parkingSpot.seller?.car!.brand ?? "",
+                            model: parkingSpot.seller?.car!.model ?? "",
+                            image: parkingSpot.seller?.car!.image?.url ?? "",
+                            color: parkingSpot.seller?.car!.color ?? "",
+                          );
+                    },
+                    shape: BoxShape.rectangle,
+                  ),
                 ),
-              ),
               Container(
                 padding: EdgeInsets.all(AppSpacing.px1 * 10),
                 decoration: BoxDecoration(

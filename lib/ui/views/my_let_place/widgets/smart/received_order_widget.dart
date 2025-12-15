@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:kreyno/app/app.locator.dart';
+import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
@@ -17,6 +19,7 @@ import 'package:kreyno/ui/widgets/dumb/labeled_checkbox.dart';
 import 'package:kreyno/ui/widgets/dumb/labeled_radio.dart';
 import 'package:kreyno/ui/widgets/dumb/rounded_button.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class ReceivedOrderWidget extends ViewModelWidget<MyLetPlaceViewModel> {
   const ReceivedOrderWidget({super.key});
@@ -174,24 +177,39 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
             borderRadius: BorderRadius.circular(12),
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage(
-                viewModel.reservation!.buyer.car.image?.url ??
-                    "assets/images/car.png",
-              ),
+              image: viewModel.reservation!.buyer.car.image?.url != null
+                  ? NetworkImage(
+                      viewModel.reservation!.buyer.car.image?.url ??
+                          "assets/images/car.png",
+                    )
+                  : const AssetImage("assets/images/car_default.png"),
             ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: EdgeInsets.all(AppSpacing.px1 * 10),
-                child: RoundedButton(
-                  iconPath: AppIcons.arrowExpandSharp,
-                  onPressed: () {},
-                  shape: BoxShape.rectangle,
+              if (viewModel.reservation!.buyer.car.image == null)
+                const SizedBox(),
+              if (viewModel.reservation!.buyer.car.image != null)
+                Padding(
+                  padding: EdgeInsets.all(AppSpacing.px1 * 10),
+                  child: RoundedButton(
+                    iconPath: AppIcons.arrowExpandSharp,
+                    onPressed: () {
+                      locator<NavigationService>()
+                          .navigateToExpandVehiculeInfoView(
+                            brand: viewModel.reservation!.buyer.car.brand ?? "",
+                            model: viewModel.reservation!.buyer.car.model ?? "",
+                            image:
+                                viewModel.reservation!.buyer.car.image?.url ??
+                                "",
+                            color: viewModel.reservation!.buyer.car.color ?? "",
+                          );
+                    },
+                    shape: BoxShape.rectangle,
+                  ),
                 ),
-              ),
               Container(
                 padding: EdgeInsets.all(AppSpacing.px1 * 10),
                 decoration: BoxDecoration(
@@ -299,8 +317,7 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomText(
-                  text: viewModel.reservation!.parkingPlace.totalPaidPrice
-                      .toString(),
+                  text: viewModel.reservation!.parkingPlace.price.toString(),
                   color: AppColors.greenKre,
                   style: CustomTextStyle.title,
                 ),
