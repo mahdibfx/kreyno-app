@@ -212,10 +212,13 @@ class HomeViewModel extends ReactiveViewModel {
     setBusy(true);
     await _userService.getProfile();
     await _checkLocationService();
-    if (!_isLocationServiceEnabled) return;
+    if (!_isLocationServiceEnabled) {
+      setBusy(false);
+      return;
+    }
     // TODO: check if user has a location permission first
-
     setBusy(false);
+
     await goToCurrentLocation();
     await getNearbyPlaces();
 

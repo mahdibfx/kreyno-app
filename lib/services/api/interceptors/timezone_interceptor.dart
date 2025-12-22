@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:kreyno/app/app.logger.dart';
-import 'package:kreyno/services/picked_language_service.dart';
 
 class TimezoneInterceptor extends Interceptor {
-  final _logger = getLogger('LanguageHeaderInterceptor');
+  final _logger = getLogger('TimezoneInterceptor');
+
   @override
   void onRequest(
     RequestOptions options,
@@ -15,11 +15,16 @@ class TimezoneInterceptor extends Interceptor {
     String timeZone = "UTC";
     try {
       final timeZoneResult = await FlutterTimezone.getLocalTimezone();
-
       timeZone = timeZoneResult.identifier;
-    } catch (e) {}
+      _logger.i('Timezone is  $timeZone');
+    } catch (e) {
+      _logger.e('Error getting timezone: $e');
+    }
 
     options.headers['Timezone'] = timeZone;
-    super.onRequest(options, handler);
+    super.onRequest(
+      options,
+      handler,
+    ); // Use handler.next() instead of super.onRequest()
   }
 }

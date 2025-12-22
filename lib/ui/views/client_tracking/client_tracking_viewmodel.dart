@@ -36,7 +36,7 @@ class ClientTrackingViewModel extends ReactiveViewModel {
   bool get buyerArrived =>
       _trackingService.buyerLocationUpdated?.arrived ?? false;
   bool cancelButtonDisabled = true;
-  String remainingTime = "05:00";
+  String remainingTime = "01:00";
   int remainingSeconds = 0;
   int seconds = 0;
   int unreadMessagesCount = 0;
@@ -102,16 +102,17 @@ class ClientTrackingViewModel extends ReactiveViewModel {
 
   void _cleanupAndNavigateHome() {
     _cleanupListeners();
-    _navigationService.clearStackAndShowView(const HomeView());
+    _navigationService.back();
+    _navigationService.back();
   }
 
   void _cleanupListeners() {
     _chatService.removeListener(_onChatMessageReceived);
     _reservationsService.removeListener(_onReservationStatusChanged);
-
-    if (reservation?.id != null) {
-      _reservationsService.stopListeningToReservationUpdates(reservation!.id);
-    }
+    _reservationsService.removeReservation();
+    // if (reservation?.id != null) {
+    //   _reservationsService.stopListeningToReservationUpdates(reservation!.id);
+    // }
   }
 
   void _onReservationStatusChanged() {
@@ -125,7 +126,7 @@ class ClientTrackingViewModel extends ReactiveViewModel {
 
   void initialise(Reservation kReservation) {
     reservation = kReservation;
-    seconds = 5 * 60;
+    seconds = 1 * 60;
     remainingSeconds = seconds - 1;
 
     _trackingService.listenToBuyerLocation(

@@ -54,25 +54,48 @@ class MyBoughtSpots extends StackedView<MyBoughtSpotsModel> {
             onRefresh: () => viewModel.onRefresh(from: from, to: to),
             edgeOffset: 1.dh,
             displacement: 1.dh,
-            child: ListView.separated(
-              key: const ValueKey('bought-spots'),
-              itemCount: viewModel.boughtSpots.length,
-              padding: EdgeInsets.only(bottom: AppSpacing.px24),
-              separatorBuilder: (context, index) => VGap(10 * AppSpacing.px1),
-              itemBuilder: (context, index) {
-                final reservation = viewModel.boughtSpots[index];
-                return ParkingSpaceListItem(
-                  // TODO : add date from backend
-                  date: reservation.createdAt,
-                  address: reservation.parkingPlace.address,
-                  imageUrl:
-                      reservation.buyer.avatar?.url ??
-                      AppConstants.defaultAvatarUrl,
-                  hasElectricCharging:
-                      false, // ParkingPlace doesn't have electric charging info
-                  price: reservation.parkingPlace.totalPaidPrice,
-                );
+            child: NotificationListener<ScrollNotification>(
+              onNotification: (ScrollNotification scrollInfo) {
+                if (!viewModel.isLoadingMore &&
+                    scrollInfo.metrics.pixels ==
+                        scrollInfo.metrics.maxScrollExtent) {
+                  viewModel.loadMoreBoughtSpots(from: from, to: to);
+                  return true;
+                }
+                return false;
               },
+              child: ListView.separated(
+                key: const ValueKey('bought-spots'),
+                itemCount:
+                    viewModel.boughtSpots.length +
+                    (viewModel.isLoadingMore ? 1 : 0),
+                padding: EdgeInsets.only(bottom: AppSpacing.px24),
+                separatorBuilder: (context, index) => VGap(10 * AppSpacing.px1),
+                itemBuilder: (context, index) {
+                  if (index == viewModel.boughtSpots.length) {
+                    return Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(AppSpacing.px16),
+                        child: CustomLoadingIndicator(
+                          size: 32 * AppSpacing.px1,
+                        ),
+                      ),
+                    );
+                  }
+                  final spot = viewModel.boughtSpots[index];
+                  return ParkingSpaceListItem(
+                    // TODO : add date from backend
+                    date: spot.createdAt,
+                    address: spot.parkingPlace.address,
+                    imageUrl:
+                        spot.parkingPlace.seller.avatar?.url ??
+                        AppConstants.defaultAvatarUrl,
+                    hasElectricCharging:
+                        spot.parkingPlace.electricChargeStation,
+                    price: spot.parkingPlace.totalPaidPrice,
+                  );
+                },
+              ),
             ),
           );
   }

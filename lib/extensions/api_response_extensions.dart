@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/models/api_response.dart';
+import 'package:kreyno/models/paginated_list.dart';
+import 'package:kreyno/models/pagination_meta.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
 
 extension ApiResponseExtensions<T> on Future<ApiResponse<T>> {
@@ -107,5 +109,50 @@ extension ApiResponseExtensions<T> on Future<ApiResponse<T>> {
       default:
         return serverMessage ?? ApiErrorStrings.serverError;
     }
+  }
+
+  Future<Either<String, PaginatedList<E>>> toPaginatedEither<E>() async {
+    try {
+      final response = await this;
+
+      if (response.success) {
+        if (response.data is List) {
+          return right(
+            PaginatedList(
+              items: (response.data as List).cast<E>(),
+              meta: _parsePaginationMeta(response.meta),
+            ),
+          );
+        } else {
+          _logger.e(
+            'Expected List data for pagination but got ${response.data.runtimeType}',
+          );
+          return left(ApiErrorStrings.unexpectedError);
+        }
+      } else {
+        _logger.w('API returned error', error: response.message);
+        return left(response.message ?? ApiErrorStrings.requestFailed);
+      }
+    } on DioException catch (dioError) {
+      final errorMessage = _handleDioException(dioError);
+      return left(errorMessage);
+    } catch (error) {
+      rethrow;
+      _logger.e('Unexpected error occurred', error: error);
+      return left(ApiErrorStrings.unexpectedError);
+    }
+  }
+
+  static PaginationMeta _parsePaginationMeta(Map<String, dynamic>? meta) {
+    try {
+      if (meta != null && meta.containsKey('pagination')) {
+        return PaginationMeta.fromJson(
+          meta['pagination'] as Map<String, dynamic>,
+        );
+      }
+    } catch (e) {
+      _logger.e('Error parsing pagination meta', error: e);
+    }
+    return const PaginationMeta(current: 0, totalItems: 0, hasMore: false);
   }
 }

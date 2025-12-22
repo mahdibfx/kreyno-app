@@ -9,6 +9,7 @@ class ApiResponse<T> {
     required this.success,
     this.message,
     required this.data,
+    this.meta,
   });
 
   factory ApiResponse.fromJson(
@@ -43,4 +44,7 @@ class ApiResponse<T> {
 
   @JsonKey(name: 'data')
   final T data;
+
+  @JsonKey(name: 'meta')
+  final Map<String, dynamic>? meta;
 }

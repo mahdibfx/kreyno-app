@@ -24,7 +24,7 @@ class ErrorStateWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          AppImages.errorStateIllustration,
+          AppImages.noInternet,
           height: 180 * AppSpacing.px1,
           width: 180 * AppSpacing.px1,
         ),

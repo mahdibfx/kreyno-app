@@ -13,6 +13,7 @@ abstract class UpdateCarDto with _$UpdateCarDto {
     @JsonKey(name: "color") String? color,
     @JsonKey(name: "registration_number") String? registrationNumber,
     @JsonKey(name: "co2_emission") String? co2Emission,
+    @JsonKey(name: "image") String? imageUuid,
     @JsonKey(name: "is_selected") bool? isSelected,
   }) = _UpdateCarDto;
 

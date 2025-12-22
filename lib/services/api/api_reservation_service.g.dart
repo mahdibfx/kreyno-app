@@ -56,11 +56,13 @@ class _ApiReservationService implements ApiReservationService {
   Future<ApiResponse<List<Reservation>>> getReservations(
     DateTime? from,
     DateTime? to,
+    int page,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'from': from?.toIso8601String(),
       r'to': to?.toIso8601String(),
+      r'page': page,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};

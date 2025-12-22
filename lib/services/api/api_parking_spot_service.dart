@@ -16,6 +16,7 @@ abstract class ApiParkingSpotService {
   Future<ApiResponse<List<ParkingSpot>>> getParkingSpots(
     @Query('from') DateTime? from,
     @Query('to') DateTime? to,
+    @Query('page') int page,
   );
 
   @GET(ApiEndpoints.oneParkingPlace)

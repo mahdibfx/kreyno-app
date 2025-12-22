@@ -14,6 +14,7 @@ _UpdateCarDto _$UpdateCarDtoFromJson(Map<String, dynamic> json) =>
       color: json['color'] as String?,
       registrationNumber: json['registration_number'] as String?,
       co2Emission: json['co2_emission'] as String?,
+      imageUuid: json['image'] as String?,
       isSelected: json['is_selected'] as bool?,
     );
 
@@ -25,6 +26,7 @@ Map<String, dynamic> _$UpdateCarDtoToJson(_UpdateCarDto instance) =>
       'color': ?instance.color,
       'registration_number': ?instance.registrationNumber,
       'co2_emission': ?instance.co2Emission,
+      'image': ?instance.imageUuid,
       'is_selected': ?instance.isSelected,
     };
 

@@ -2,6 +2,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/extensions/api_response_extensions.dart';
+import 'package:kreyno/models/paginated_list.dart';
 import 'package:kreyno/models/reservation.dart';
 import 'package:kreyno/services/api/api_reservation_service.dart';
 import 'package:kreyno/services/api/dio_service.dart';
@@ -214,11 +215,14 @@ class ReservationsService with ListenableServiceMixin {
     }
   }
 
-  Future<Either<String, List<Reservation>>> getReservations({
+  Future<Either<String, PaginatedList<Reservation>>> getReservations({
     DateTime? from,
     DateTime? to,
+    int page = 0,
   }) {
-    return _apiReservationService.getReservations(from, to).toEither();
+    return _apiReservationService
+        .getReservations(from, to, page)
+        .toPaginatedEither();
   }
 
   void removeReservation() {

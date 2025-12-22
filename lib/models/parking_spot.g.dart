@@ -19,6 +19,10 @@ _ParkingSpot _$ParkingSpotFromJson(Map<String, dynamic> json) => _ParkingSpot(
   seller: json['seller'] == null
       ? null
       : Seller.fromJson(json['seller'] as Map<String, dynamic>),
+  validatedAt: json['validated_at'] == null
+      ? null
+      : DateTime.parse(json['validated_at'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
 );
 
 Map<String, dynamic> _$ParkingSpotToJson(_ParkingSpot instance) =>
@@ -33,6 +37,8 @@ Map<String, dynamic> _$ParkingSpotToJson(_ParkingSpot instance) =>
       'electric_charge_station': instance.electricChargeStation,
       'reserved': instance.reserved,
       'seller': ?instance.seller?.toJson(),
+      'validated_at': ?instance.validatedAt?.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
     };
 
 _Seller _$SellerFromJson(Map<String, dynamic> json) => _Seller(

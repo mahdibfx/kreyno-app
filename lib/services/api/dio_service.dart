@@ -23,19 +23,21 @@ class DioService {
           headers: {'content-Type': 'application/json'},
         ),
       ) {
+    // dio.options.headers['Timezone'] = FlutterTimezone.getLocalTimezone();
+    dio.interceptors.add(TimezoneInterceptor());
+
     dio.interceptors.add(
       PrettyDioLogger(
         request: true,
-        requestBody: true,
         requestHeader: true,
         responseBody: true,
+
         maxWidth: 1000,
         logPrint: (object) => _logger.f(object.toString()),
       ),
     );
     dio.interceptors.add(LanguageHeaderInterceptor());
     dio.interceptors.add(AuthHeaderInterceptor());
-    dio.interceptors.add(TimezoneInterceptor());
 
     dio.interceptors.add(SessionExpiredInterceptor());
   }

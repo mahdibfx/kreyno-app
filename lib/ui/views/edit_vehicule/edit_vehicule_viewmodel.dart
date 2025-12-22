@@ -143,6 +143,7 @@ class EditVehiculeViewModel extends FormViewModel {
           isSelected: car!.isSelected,
           co2Emission: co2EmissionValue,
           registrationNumber: licensePlate,
+          imageUuid: _vehicleImageUuid,
         ),
       );
 

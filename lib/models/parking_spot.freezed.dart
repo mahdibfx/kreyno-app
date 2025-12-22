@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ParkingSpot {
 
-@JsonKey(name: "id") int get id;@JsonKey(name: "address") String get address;@JsonKey(name: "longitude") double get longitude;@JsonKey(name: "latitude") double get latitude;@JsonKey(name: "geohash") String get geoHash;@JsonKey(name: "price") double get price;@JsonKey(name: "total_paid_price") double get totalPaidPrice;@JsonKey(name: "electric_charge_station") bool get electricChargeStation;@JsonKey(name: "reserved") bool get reserved;@JsonKey(name: "seller") Seller? get seller;
+@JsonKey(name: "id") int get id;@JsonKey(name: "address") String get address;@JsonKey(name: "longitude") double get longitude;@JsonKey(name: "latitude") double get latitude;@JsonKey(name: "geohash") String get geoHash;@JsonKey(name: "price") double get price;@JsonKey(name: "total_paid_price") double get totalPaidPrice;@JsonKey(name: "electric_charge_station") bool get electricChargeStation;@JsonKey(name: "reserved") bool get reserved;@JsonKey(name: "seller") Seller? get seller;@JsonKey(name: "validated_at") DateTime? get validatedAt;@JsonKey(name: "created_at") DateTime get createdAt;
 /// Create a copy of ParkingSpot
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ParkingSpotCopyWith<ParkingSpot> get copyWith => _$ParkingSpotCopyWithImpl<Park
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ParkingSpot&&(identical(other.id, id) || other.id == id)&&(identical(other.address, address) || other.address == address)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.geoHash, geoHash) || other.geoHash == geoHash)&&(identical(other.price, price) || other.price == price)&&(identical(other.totalPaidPrice, totalPaidPrice) || other.totalPaidPrice == totalPaidPrice)&&(identical(other.electricChargeStation, electricChargeStation) || other.electricChargeStation == electricChargeStation)&&(identical(other.reserved, reserved) || other.reserved == reserved)&&(identical(other.seller, seller) || other.seller == seller));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ParkingSpot&&(identical(other.id, id) || other.id == id)&&(identical(other.address, address) || other.address == address)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.geoHash, geoHash) || other.geoHash == geoHash)&&(identical(other.price, price) || other.price == price)&&(identical(other.totalPaidPrice, totalPaidPrice) || other.totalPaidPrice == totalPaidPrice)&&(identical(other.electricChargeStation, electricChargeStation) || other.electricChargeStation == electricChargeStation)&&(identical(other.reserved, reserved) || other.reserved == reserved)&&(identical(other.seller, seller) || other.seller == seller)&&(identical(other.validatedAt, validatedAt) || other.validatedAt == validatedAt)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,address,longitude,latitude,geoHash,price,totalPaidPrice,electricChargeStation,reserved,seller);
+int get hashCode => Object.hash(runtimeType,id,address,longitude,latitude,geoHash,price,totalPaidPrice,electricChargeStation,reserved,seller,validatedAt,createdAt);
 
 @override
 String toString() {
-  return 'ParkingSpot(id: $id, address: $address, longitude: $longitude, latitude: $latitude, geoHash: $geoHash, price: $price, totalPaidPrice: $totalPaidPrice, electricChargeStation: $electricChargeStation, reserved: $reserved, seller: $seller)';
+  return 'ParkingSpot(id: $id, address: $address, longitude: $longitude, latitude: $latitude, geoHash: $geoHash, price: $price, totalPaidPrice: $totalPaidPrice, electricChargeStation: $electricChargeStation, reserved: $reserved, seller: $seller, validatedAt: $validatedAt, createdAt: $createdAt)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $ParkingSpotCopyWith<$Res>  {
   factory $ParkingSpotCopyWith(ParkingSpot value, $Res Function(ParkingSpot) _then) = _$ParkingSpotCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "id") int id,@JsonKey(name: "address") String address,@JsonKey(name: "longitude") double longitude,@JsonKey(name: "latitude") double latitude,@JsonKey(name: "geohash") String geoHash,@JsonKey(name: "price") double price,@JsonKey(name: "total_paid_price") double totalPaidPrice,@JsonKey(name: "electric_charge_station") bool electricChargeStation,@JsonKey(name: "reserved") bool reserved,@JsonKey(name: "seller") Seller? seller
+@JsonKey(name: "id") int id,@JsonKey(name: "address") String address,@JsonKey(name: "longitude") double longitude,@JsonKey(name: "latitude") double latitude,@JsonKey(name: "geohash") String geoHash,@JsonKey(name: "price") double price,@JsonKey(name: "total_paid_price") double totalPaidPrice,@JsonKey(name: "electric_charge_station") bool electricChargeStation,@JsonKey(name: "reserved") bool reserved,@JsonKey(name: "seller") Seller? seller,@JsonKey(name: "validated_at") DateTime? validatedAt,@JsonKey(name: "created_at") DateTime createdAt
 });
 
 
@@ -65,7 +65,7 @@ class _$ParkingSpotCopyWithImpl<$Res>
 
 /// Create a copy of ParkingSpot
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? address = null,Object? longitude = null,Object? latitude = null,Object? geoHash = null,Object? price = null,Object? totalPaidPrice = null,Object? electricChargeStation = null,Object? reserved = null,Object? seller = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? address = null,Object? longitude = null,Object? latitude = null,Object? geoHash = null,Object? price = null,Object? totalPaidPrice = null,Object? electricChargeStation = null,Object? reserved = null,Object? seller = freezed,Object? validatedAt = freezed,Object? createdAt = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
@@ -77,7 +77,9 @@ as double,totalPaidPrice: null == totalPaidPrice ? _self.totalPaidPrice : totalP
 as double,electricChargeStation: null == electricChargeStation ? _self.electricChargeStation : electricChargeStation // ignore: cast_nullable_to_non_nullable
 as bool,reserved: null == reserved ? _self.reserved : reserved // ignore: cast_nullable_to_non_nullable
 as bool,seller: freezed == seller ? _self.seller : seller // ignore: cast_nullable_to_non_nullable
-as Seller?,
+as Seller?,validatedAt: freezed == validatedAt ? _self.validatedAt : validatedAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime,
   ));
 }
 /// Create a copy of ParkingSpot
@@ -174,10 +176,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  int id, @JsonKey(name: "address")  String address, @JsonKey(name: "longitude")  double longitude, @JsonKey(name: "latitude")  double latitude, @JsonKey(name: "geohash")  String geoHash, @JsonKey(name: "price")  double price, @JsonKey(name: "total_paid_price")  double totalPaidPrice, @JsonKey(name: "electric_charge_station")  bool electricChargeStation, @JsonKey(name: "reserved")  bool reserved, @JsonKey(name: "seller")  Seller? seller)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  int id, @JsonKey(name: "address")  String address, @JsonKey(name: "longitude")  double longitude, @JsonKey(name: "latitude")  double latitude, @JsonKey(name: "geohash")  String geoHash, @JsonKey(name: "price")  double price, @JsonKey(name: "total_paid_price")  double totalPaidPrice, @JsonKey(name: "electric_charge_station")  bool electricChargeStation, @JsonKey(name: "reserved")  bool reserved, @JsonKey(name: "seller")  Seller? seller, @JsonKey(name: "validated_at")  DateTime? validatedAt, @JsonKey(name: "created_at")  DateTime createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ParkingSpot() when $default != null:
-return $default(_that.id,_that.address,_that.longitude,_that.latitude,_that.geoHash,_that.price,_that.totalPaidPrice,_that.electricChargeStation,_that.reserved,_that.seller);case _:
+return $default(_that.id,_that.address,_that.longitude,_that.latitude,_that.geoHash,_that.price,_that.totalPaidPrice,_that.electricChargeStation,_that.reserved,_that.seller,_that.validatedAt,_that.createdAt);case _:
   return orElse();
 
 }
@@ -195,10 +197,10 @@ return $default(_that.id,_that.address,_that.longitude,_that.latitude,_that.geoH
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  int id, @JsonKey(name: "address")  String address, @JsonKey(name: "longitude")  double longitude, @JsonKey(name: "latitude")  double latitude, @JsonKey(name: "geohash")  String geoHash, @JsonKey(name: "price")  double price, @JsonKey(name: "total_paid_price")  double totalPaidPrice, @JsonKey(name: "electric_charge_station")  bool electricChargeStation, @JsonKey(name: "reserved")  bool reserved, @JsonKey(name: "seller")  Seller? seller)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "id")  int id, @JsonKey(name: "address")  String address, @JsonKey(name: "longitude")  double longitude, @JsonKey(name: "latitude")  double latitude, @JsonKey(name: "geohash")  String geoHash, @JsonKey(name: "price")  double price, @JsonKey(name: "total_paid_price")  double totalPaidPrice, @JsonKey(name: "electric_charge_station")  bool electricChargeStation, @JsonKey(name: "reserved")  bool reserved, @JsonKey(name: "seller")  Seller? seller, @JsonKey(name: "validated_at")  DateTime? validatedAt, @JsonKey(name: "created_at")  DateTime createdAt)  $default,) {final _that = this;
 switch (_that) {
 case _ParkingSpot():
-return $default(_that.id,_that.address,_that.longitude,_that.latitude,_that.geoHash,_that.price,_that.totalPaidPrice,_that.electricChargeStation,_that.reserved,_that.seller);case _:
+return $default(_that.id,_that.address,_that.longitude,_that.latitude,_that.geoHash,_that.price,_that.totalPaidPrice,_that.electricChargeStation,_that.reserved,_that.seller,_that.validatedAt,_that.createdAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -215,10 +217,10 @@ return $default(_that.id,_that.address,_that.longitude,_that.latitude,_that.geoH
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id")  int id, @JsonKey(name: "address")  String address, @JsonKey(name: "longitude")  double longitude, @JsonKey(name: "latitude")  double latitude, @JsonKey(name: "geohash")  String geoHash, @JsonKey(name: "price")  double price, @JsonKey(name: "total_paid_price")  double totalPaidPrice, @JsonKey(name: "electric_charge_station")  bool electricChargeStation, @JsonKey(name: "reserved")  bool reserved, @JsonKey(name: "seller")  Seller? seller)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "id")  int id, @JsonKey(name: "address")  String address, @JsonKey(name: "longitude")  double longitude, @JsonKey(name: "latitude")  double latitude, @JsonKey(name: "geohash")  String geoHash, @JsonKey(name: "price")  double price, @JsonKey(name: "total_paid_price")  double totalPaidPrice, @JsonKey(name: "electric_charge_station")  bool electricChargeStation, @JsonKey(name: "reserved")  bool reserved, @JsonKey(name: "seller")  Seller? seller, @JsonKey(name: "validated_at")  DateTime? validatedAt, @JsonKey(name: "created_at")  DateTime createdAt)?  $default,) {final _that = this;
 switch (_that) {
 case _ParkingSpot() when $default != null:
-return $default(_that.id,_that.address,_that.longitude,_that.latitude,_that.geoHash,_that.price,_that.totalPaidPrice,_that.electricChargeStation,_that.reserved,_that.seller);case _:
+return $default(_that.id,_that.address,_that.longitude,_that.latitude,_that.geoHash,_that.price,_that.totalPaidPrice,_that.electricChargeStation,_that.reserved,_that.seller,_that.validatedAt,_that.createdAt);case _:
   return null;
 
 }
@@ -230,7 +232,7 @@ return $default(_that.id,_that.address,_that.longitude,_that.latitude,_that.geoH
 @JsonSerializable()
 
 class _ParkingSpot implements ParkingSpot {
-  const _ParkingSpot({@JsonKey(name: "id") required this.id, @JsonKey(name: "address") required this.address, @JsonKey(name: "longitude") required this.longitude, @JsonKey(name: "latitude") required this.latitude, @JsonKey(name: "geohash") required this.geoHash, @JsonKey(name: "price") required this.price, @JsonKey(name: "total_paid_price") required this.totalPaidPrice, @JsonKey(name: "electric_charge_station") required this.electricChargeStation, @JsonKey(name: "reserved") required this.reserved, @JsonKey(name: "seller") this.seller});
+  const _ParkingSpot({@JsonKey(name: "id") required this.id, @JsonKey(name: "address") required this.address, @JsonKey(name: "longitude") required this.longitude, @JsonKey(name: "latitude") required this.latitude, @JsonKey(name: "geohash") required this.geoHash, @JsonKey(name: "price") required this.price, @JsonKey(name: "total_paid_price") required this.totalPaidPrice, @JsonKey(name: "electric_charge_station") required this.electricChargeStation, @JsonKey(name: "reserved") required this.reserved, @JsonKey(name: "seller") this.seller, @JsonKey(name: "validated_at") this.validatedAt, @JsonKey(name: "created_at") required this.createdAt});
   factory _ParkingSpot.fromJson(Map<String, dynamic> json) => _$ParkingSpotFromJson(json);
 
 @override@JsonKey(name: "id") final  int id;
@@ -243,6 +245,8 @@ class _ParkingSpot implements ParkingSpot {
 @override@JsonKey(name: "electric_charge_station") final  bool electricChargeStation;
 @override@JsonKey(name: "reserved") final  bool reserved;
 @override@JsonKey(name: "seller") final  Seller? seller;
+@override@JsonKey(name: "validated_at") final  DateTime? validatedAt;
+@override@JsonKey(name: "created_at") final  DateTime createdAt;
 
 /// Create a copy of ParkingSpot
 /// with the given fields replaced by the non-null parameter values.
@@ -257,16 +261,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ParkingSpot&&(identical(other.id, id) || other.id == id)&&(identical(other.address, address) || other.address == address)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.geoHash, geoHash) || other.geoHash == geoHash)&&(identical(other.price, price) || other.price == price)&&(identical(other.totalPaidPrice, totalPaidPrice) || other.totalPaidPrice == totalPaidPrice)&&(identical(other.electricChargeStation, electricChargeStation) || other.electricChargeStation == electricChargeStation)&&(identical(other.reserved, reserved) || other.reserved == reserved)&&(identical(other.seller, seller) || other.seller == seller));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ParkingSpot&&(identical(other.id, id) || other.id == id)&&(identical(other.address, address) || other.address == address)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.geoHash, geoHash) || other.geoHash == geoHash)&&(identical(other.price, price) || other.price == price)&&(identical(other.totalPaidPrice, totalPaidPrice) || other.totalPaidPrice == totalPaidPrice)&&(identical(other.electricChargeStation, electricChargeStation) || other.electricChargeStation == electricChargeStation)&&(identical(other.reserved, reserved) || other.reserved == reserved)&&(identical(other.seller, seller) || other.seller == seller)&&(identical(other.validatedAt, validatedAt) || other.validatedAt == validatedAt)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,address,longitude,latitude,geoHash,price,totalPaidPrice,electricChargeStation,reserved,seller);
+int get hashCode => Object.hash(runtimeType,id,address,longitude,latitude,geoHash,price,totalPaidPrice,electricChargeStation,reserved,seller,validatedAt,createdAt);
 
 @override
 String toString() {
-  return 'ParkingSpot(id: $id, address: $address, longitude: $longitude, latitude: $latitude, geoHash: $geoHash, price: $price, totalPaidPrice: $totalPaidPrice, electricChargeStation: $electricChargeStation, reserved: $reserved, seller: $seller)';
+  return 'ParkingSpot(id: $id, address: $address, longitude: $longitude, latitude: $latitude, geoHash: $geoHash, price: $price, totalPaidPrice: $totalPaidPrice, electricChargeStation: $electricChargeStation, reserved: $reserved, seller: $seller, validatedAt: $validatedAt, createdAt: $createdAt)';
 }
 
 
@@ -277,7 +281,7 @@ abstract mixin class _$ParkingSpotCopyWith<$Res> implements $ParkingSpotCopyWith
   factory _$ParkingSpotCopyWith(_ParkingSpot value, $Res Function(_ParkingSpot) _then) = __$ParkingSpotCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "id") int id,@JsonKey(name: "address") String address,@JsonKey(name: "longitude") double longitude,@JsonKey(name: "latitude") double latitude,@JsonKey(name: "geohash") String geoHash,@JsonKey(name: "price") double price,@JsonKey(name: "total_paid_price") double totalPaidPrice,@JsonKey(name: "electric_charge_station") bool electricChargeStation,@JsonKey(name: "reserved") bool reserved,@JsonKey(name: "seller") Seller? seller
+@JsonKey(name: "id") int id,@JsonKey(name: "address") String address,@JsonKey(name: "longitude") double longitude,@JsonKey(name: "latitude") double latitude,@JsonKey(name: "geohash") String geoHash,@JsonKey(name: "price") double price,@JsonKey(name: "total_paid_price") double totalPaidPrice,@JsonKey(name: "electric_charge_station") bool electricChargeStation,@JsonKey(name: "reserved") bool reserved,@JsonKey(name: "seller") Seller? seller,@JsonKey(name: "validated_at") DateTime? validatedAt,@JsonKey(name: "created_at") DateTime createdAt
 });
 
 
@@ -294,7 +298,7 @@ class __$ParkingSpotCopyWithImpl<$Res>
 
 /// Create a copy of ParkingSpot
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? address = null,Object? longitude = null,Object? latitude = null,Object? geoHash = null,Object? price = null,Object? totalPaidPrice = null,Object? electricChargeStation = null,Object? reserved = null,Object? seller = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? address = null,Object? longitude = null,Object? latitude = null,Object? geoHash = null,Object? price = null,Object? totalPaidPrice = null,Object? electricChargeStation = null,Object? reserved = null,Object? seller = freezed,Object? validatedAt = freezed,Object? createdAt = null,}) {
   return _then(_ParkingSpot(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
@@ -306,7 +310,9 @@ as double,totalPaidPrice: null == totalPaidPrice ? _self.totalPaidPrice : totalP
 as double,electricChargeStation: null == electricChargeStation ? _self.electricChargeStation : electricChargeStation // ignore: cast_nullable_to_non_nullable
 as bool,reserved: null == reserved ? _self.reserved : reserved // ignore: cast_nullable_to_non_nullable
 as bool,seller: freezed == seller ? _self.seller : seller // ignore: cast_nullable_to_non_nullable
-as Seller?,
+as Seller?,validatedAt: freezed == validatedAt ? _self.validatedAt : validatedAt // ignore: cast_nullable_to_non_nullable
+as DateTime?,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime,
   ));
 }
 

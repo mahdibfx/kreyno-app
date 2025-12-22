@@ -14,21 +14,34 @@ class MySoldSpotsModel extends BaseViewModel {
   List<ParkingSpot> _soldSpots = [];
   List<ParkingSpot> get soldSpots => _soldSpots;
 
+  int _currentPage = 0;
+  bool _hasMore = true;
+  bool _isLoadingMore = false;
+  bool get isLoadingMore => _isLoadingMore;
+
   Future<void> getSoldSpots({DateTime? from, DateTime? to}) async {
+    _currentPage = 0;
+    _hasMore = true;
+    _soldSpots.clear();
     setError(null);
     setBusy(true);
     try {
       final response = await _parkingSpotsService.getParkingSpots(
         from: from,
         to: to,
+        page: _currentPage,
       );
       await response.match(
         (error) async {
           _logger.e('Error fetching sold spots', error: error);
           setError(error);
         },
-        (allSpots) async {
-          _soldSpots = allSpots;
+        (paginatedList) async {
+          _soldSpots = paginatedList.items;
+          _hasMore = paginatedList.meta.hasMore;
+          if (_hasMore) {
+            _currentPage++;
+          }
           rebuildUi();
         },
       );
@@ -37,22 +50,42 @@ class MySoldSpotsModel extends BaseViewModel {
     }
   }
 
-  Future<void> onRefresh() async {
-    setError(null);
-    final response = await _parkingSpotsService.getParkingSpots();
+  Future<void> loadMoreSoldSpots({DateTime? from, DateTime? to}) async {
+    if (_isLoadingMore || !_hasMore) return;
+
+    _isLoadingMore = true;
+    rebuildUi();
+
+    final response = await _parkingSpotsService.getParkingSpots(
+      from: from,
+      to: to,
+      page: _currentPage,
+    );
+
     await response.match(
       (error) async {
-        _logger.e('Error refreshing sold spots', error: error);
+        _logger.e('Error loading more sold spots', error: error);
         _toastService.showError(
-          title: CommonStrings.unableToRefresh,
+          title: CommonStrings.error,
           description: error,
           showIcon: true,
         );
       },
-      (allSpots) async {
-        _soldSpots = allSpots;
+      (paginatedList) async {
+        _soldSpots.addAll(paginatedList.items);
+        _hasMore = paginatedList.meta.hasMore;
+        if (_hasMore) {
+          _currentPage++;
+        }
         rebuildUi();
       },
     );
+
+    _isLoadingMore = false;
+    rebuildUi();
+  }
+
+  Future<void> onRefresh({DateTime? from, DateTime? to}) async {
+    await getSoldSpots(from: from, to: to);
   }
 }

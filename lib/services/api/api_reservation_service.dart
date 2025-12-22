@@ -19,6 +19,7 @@ abstract class ApiReservationService {
   Future<ApiResponse<List<Reservation>>> getReservations(
     @Query('from') DateTime? from,
     @Query('to') DateTime? to,
+    @Query("page") int page,
   );
 
   @POST('${ApiEndpoints.reservations}/{id}/cancel')

@@ -5,14 +5,12 @@ import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/enums/reservation_status.dart';
+import 'package:kreyno/services/url_launcher_service.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
-import 'package:kreyno/ui/views/home/home_viewmodel.dart';
 import 'package:kreyno/ui/views/home/widgets/buyer/buyer_confirm_arrive.dart';
-import 'package:kreyno/ui/views/home/widgets/home_fabs.dart';
-import 'package:kreyno/ui/views/my_let_place/widgets/smart/received_order_widget.dart';
-import 'package:kreyno/ui/views/client_tracking/widgets/tracking_course_widget.dart';
+import 'package:kreyno/ui/views/home/widgets/buyer/seller_confirmed_for_buyer.dart';
 import 'package:kreyno/ui/views/seller_tracking/seller_tracking_viewmodel.dart';
 import 'package:kreyno/ui/widgets/dumb/bottom_sheet_layout.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
@@ -20,6 +18,7 @@ import 'package:kreyno/ui/widgets/dumb/custom_divider.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_icon.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_text.dart';
 import 'package:kreyno/ui/widgets/dumb/gap.dart';
+import 'package:map_launcher/map_launcher.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -33,179 +32,220 @@ class BuyerWaitingConfirmation
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         // const SafeArea(child: CounterBar()),
-        const BuyerConfirmArrive(),
-
+        viewModel.reservation.status == ReservationStatus.confirmed &&
+                !viewModel.nearParkingSpotLocation
+            ? const SellerConfirmedForBuyer()
+            : const BuyerConfirmArrive(),
         const SizedBox(),
         BottomSheetLayout(
-          body: Column(
-            children: [
-              VGap(AppSpacing.px8),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: CustomText(
-                      text: viewModel.parkingSpot.address,
-                      maxLines: 2,
+          body:
+              viewModel.reservation.status == ReservationStatus.pending ||
+                  viewModel.nearParkingSpotLocation
+              ? const PendingReservation()
+              : Column(
+                  children: [
+                    CustomButton.filled(
+                      icon: AppIcons.waze,
+                      backgroundColor: AppColors.wazeBlue,
+                      foregroundColor: AppColors.white,
+                      onPressed: () async {
+                        final availableMaps = await MapLauncher.installedMaps;
+                        if (availableMaps.contains(MapType.waze)) {
+                          MapLauncher.showDirections(
+                            mapType: MapType.waze,
+                            destination: Coords(
+                              viewModel.parkingSpot.latitude,
+                              viewModel.parkingSpot.longitude,
+                            ),
+                          );
+                        } else {
+                          UrlLauncherService().launchUrl(
+                            "https://waze.com/ul?ll=${viewModel.parkingSpot.latitude},${viewModel.parkingSpot.longitude}&navigate=yes",
+                          );
+                        }
+                      },
+                      text: "open_waze".tr(),
                     ),
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CustomText(
-                        text: viewModel.parkingSpot.price.toString(),
-                        color: AppColors.greenKre,
-                        style: CustomTextStyle.title,
-                      ),
-                      const CustomIcon(
-                        iconPath: AppIcons.euro,
-                        size: 20,
-                        color: AppColors.greenKre,
-                      ),
-                    ],
-                  ),
-                ],
+                    const SizedBox(height: 24),
+                  ],
+                ),
+          showDragHandler: false,
+        ),
+      ],
+    );
+  }
+}
+
+class PendingReservation extends ViewModelWidget<SellerTrackingViewModel> {
+  const PendingReservation({super.key});
+
+  @override
+  Widget build(BuildContext context, viewModel) {
+    return Column(
+      children: [
+        VGap(AppSpacing.px8),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CustomText(
+                text: viewModel.parkingSpot.address,
+                maxLines: 2,
               ),
-              VGap(AppSpacing.px8),
-              Row(
-                children: [
-                  CustomIcon(
-                    iconPath: AppIcons.evCharging,
-                    color: viewModel.parkingSpot.electricChargeStation
-                        ? AppColors.greenKre
-                        : AppColors.textKre,
-                  ),
-                  HGap(AppSpacing.px4),
-                  CustomText(
-                    text: viewModel.parkingSpot.electricChargeStation
-                        ? "myParkingSpots.chargingAvailable".tr()
-                        : "myParkingSpots.chargingNotAvailable".tr(),
-                    style: CustomTextStyle.smallParagraphMedium,
-                    color: viewModel.parkingSpot.electricChargeStation
-                        ? AppColors.greenKre
-                        : AppColors.textKre,
-                  ),
-                  HGap(AppSpacing.px8),
-                  Row(
-                    children: [
-                      const CustomIcon(
-                        iconPath: AppIcons.route,
-                        color: AppColors.textKre,
-                      ),
-                      HGap(AppSpacing.px1 * 5),
-                      CustomText(
-                        text: viewModel.distanceToSpot,
-                        style: CustomTextStyle.smallParagraphMedium,
-                        color: AppColors.textKre,
-                      ),
-                    ],
-                  ),
-                ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CustomText(
+                  text: viewModel.parkingSpot.totalPaidPrice.toString(),
+                  color: AppColors.greenKre,
+                  style: CustomTextStyle.title,
+                ),
+                const CustomIcon(
+                  iconPath: AppIcons.euro,
+                  size: 20,
+                  color: AppColors.greenKre,
+                ),
+              ],
+            ),
+          ],
+        ),
+        VGap(AppSpacing.px8),
+        Row(
+          children: [
+            CustomIcon(
+              iconPath: AppIcons.evCharging,
+              color: viewModel.parkingSpot.electricChargeStation
+                  ? AppColors.greenKre
+                  : AppColors.textKre,
+            ),
+            HGap(AppSpacing.px4),
+            CustomText(
+              text: viewModel.parkingSpot.electricChargeStation
+                  ? "myParkingSpots.chargingAvailable".tr()
+                  : "myParkingSpots.chargingNotAvailable".tr(),
+              style: CustomTextStyle.smallParagraphMedium,
+              color: viewModel.parkingSpot.electricChargeStation
+                  ? AppColors.greenKre
+                  : AppColors.textKre,
+            ),
+            HGap(AppSpacing.px8),
+            Row(
+              children: [
+                const CustomIcon(
+                  iconPath: AppIcons.route,
+                  color: AppColors.textKre,
+                ),
+                HGap(AppSpacing.px1 * 5),
+                CustomText(
+                  text: viewModel.distanceToSpot,
+                  style: CustomTextStyle.smallParagraphMedium,
+                  color: AppColors.textKre,
+                ),
+              ],
+            ),
+          ],
+        ),
+        VGap(AppSpacing.px16),
+        const CustomDivider(),
+        VGap(AppSpacing.px16),
+        Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.network(
+                viewModel.parkingSpot.seller.avatar?.url ??
+                    AppConstants.defaultAvatarUrl,
+                fit: BoxFit.cover,
+                width: AppSpacing.px1 * 32,
+                height: AppSpacing.px1 * 32,
               ),
-              VGap(AppSpacing.px16),
-              const CustomDivider(),
-              VGap(AppSpacing.px16),
+            ),
+            HGap(AppSpacing.px8),
+            CustomText.paragraph(viewModel.parkingSpot.seller.username),
+          ],
+        ),
+        VGap(AppSpacing.px12),
+        Container(
+          padding: EdgeInsets.all(AppSpacing.px8),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: const Border.fromBorderSide(
+              BorderSide(color: AppColors.strokeKre),
+            ),
+          ),
+          child: Column(
+            children: [
               Row(
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Image.network(
-                      viewModel.parkingSpot.seller.avatar?.url ??
+                      viewModel.parkingSpot.seller.car!.image?.url ??
                           AppConstants.defaultAvatarUrl,
                       fit: BoxFit.cover,
-                      width: AppSpacing.px1 * 32,
-                      height: AppSpacing.px1 * 32,
+                      width: AppSpacing.px1 * 48,
+                      height: AppSpacing.px1 * 48,
                     ),
                   ),
                   HGap(AppSpacing.px8),
-                  CustomText.paragraph(viewModel.parkingSpot.seller.username),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomText.smallParagraphBold(
+                        "${viewModel.parkingSpot.seller.car!.brand} ${viewModel.parkingSpot.seller.car!.model}",
+                      ),
+                      CustomText.smallParagraphMedium(
+                        "${viewModel.parkingSpot.seller.car!.registrationNumber} · ${viewModel.parkingSpot.seller.car!.color}",
+                      ),
+                    ],
+                  ),
                 ],
               ),
-              VGap(AppSpacing.px12),
-              Container(
-                padding: EdgeInsets.all(AppSpacing.px8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  border: const Border.fromBorderSide(
-                    BorderSide(color: AppColors.strokeKre),
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.network(
-                            viewModel.parkingSpot.seller.car!.image?.url ??
-                                AppConstants.defaultAvatarUrl,
-                            fit: BoxFit.cover,
-                            width: AppSpacing.px1 * 48,
-                            height: AppSpacing.px1 * 48,
-                          ),
-                        ),
-                        HGap(AppSpacing.px8),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomText.smallParagraphBold(
-                              "${viewModel.parkingSpot.seller.car!.brand} ${viewModel.parkingSpot.seller.car!.model}",
-                            ),
-                            CustomText.smallParagraphMedium(
-                              "${viewModel.parkingSpot.seller.car!.registrationNumber} · ${viewModel.parkingSpot.seller.car!.color}",
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              VGap(AppSpacing.px16),
-              if (viewModel.reservation.status == ReservationStatus.pending)
-                Row(
-                  children: [
-                    Expanded(
-                      child: CustomButton.filled(
-                        text: "Annuler",
-                        backgroundColor: AppColors.redKre,
-                        foregroundColor: AppColors.white,
-                        onPressed: () {
-                          locator<BottomSheetService>().showCustomSheet(
-                            variant: BottomSheetType.cancelationReasons,
-                            data: viewModel.reservation,
-                            isScrollControlled: true,
-                          );
-                        },
-                      ),
-                    ),
-                    SizedBox(width: AppSpacing.px8),
-                    Expanded(
-                      child: CustomButton.filled(
-                        text: "Message",
-                        showBadge: viewModel.unreadMessagesCount > 0,
-                        onPressed: () async {
-                          viewModel.unreadMessagesCount = 0;
-                          viewModel.rebuildUi();
-                          locator<NavigationService>().navigateToChatView(
-                            id: 0,
-                            name: viewModel.parkingSpot.seller.username,
-                            image:
-                                viewModel.parkingSpot.seller.avatar?.url ??
-                                AppConstants.defaultAvatarUrl,
-                            phone: viewModel.parkingSpot.seller.phone,
-                            reservationId: viewModel.reservation.id,
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              const SizedBox(height: 24),
             ],
           ),
-          showDragHandler: true,
         ),
+        VGap(AppSpacing.px16),
+        if (viewModel.reservation.status == ReservationStatus.pending)
+          Row(
+            children: [
+              Expanded(
+                child: CustomButton.filled(
+                  text: "Annuler",
+                  backgroundColor: AppColors.redKre,
+                  foregroundColor: AppColors.white,
+                  onPressed: () {
+                    locator<BottomSheetService>().showCustomSheet(
+                      variant: BottomSheetType.cancelationReasons,
+                      data: viewModel.reservation,
+                      isScrollControlled: true,
+                    );
+                  },
+                ),
+              ),
+              SizedBox(width: AppSpacing.px8),
+              Expanded(
+                child: CustomButton.filled(
+                  text: "Message",
+                  showBadge: viewModel.unreadMessagesCount > 0,
+                  onPressed: () async {
+                    viewModel.unreadMessagesCount = 0;
+                    viewModel.rebuildUi();
+                    locator<NavigationService>().navigateToChatView(
+                      id: 0,
+                      name: viewModel.parkingSpot.seller.username,
+                      image:
+                          viewModel.parkingSpot.seller.avatar?.url ??
+                          AppConstants.defaultAvatarUrl,
+                      phone: viewModel.parkingSpot.seller.phone,
+                      reservationId: viewModel.reservation.id,
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        const SizedBox(height: 24),
       ],
     );
   }

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
@@ -49,7 +50,9 @@ class ImagePreviewer extends ViewModelWidget<VehiculeImageUploaderModel> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText.smallParagraphMedium(
-                      viewModel.pickedImage!.path,
+                      viewModel.pickedImage!.path
+                          .split(Platform.pathSeparator)
+                          .last,
                       color: AppColors.mainKre,
                     ),
                     if (onRetryTapped != null)

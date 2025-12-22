@@ -2,6 +2,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/dtos/create_parking_spot_dto.dart';
 import 'package:kreyno/extensions/api_response_extensions.dart';
+import 'package:kreyno/models/paginated_list.dart';
 import 'package:kreyno/models/parking_spot.dart';
 import 'package:kreyno/services/api/api_parking_spot_service.dart';
 import 'package:kreyno/services/api/dio_service.dart';
@@ -12,11 +13,14 @@ class ParkingSpotsService with ListenableServiceMixin {
     locator<DioService>().dio,
   );
 
-  Future<Either<String, List<ParkingSpot>>> getParkingSpots({
+  Future<Either<String, PaginatedList<ParkingSpot>>> getParkingSpots({
     DateTime? from,
     DateTime? to,
+    int page = 0,
   }) {
-    return _apiParkingSpotService.getParkingSpots(from, to).toEither();
+    return _apiParkingSpotService
+        .getParkingSpots(from, to, page)
+        .toPaginatedEither();
   }
 
   Future<Either<String, ParkingSpot>> getParkingSpot(int id) {

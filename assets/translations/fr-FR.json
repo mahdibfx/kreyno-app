@@ -9,6 +9,7 @@
         "deletedSuccessfully": "Supprimé avec succès",
         "error": "Un problème est survenu",
         "retry": "Réessayer",
+        "reservationCanceled": "Reservation Annulé",
         "continue": "Continuer",
         "confirmedSuccessfully": "Confirmé avec succès",
         "unableToRefresh": "Impossible de rafraîchir",

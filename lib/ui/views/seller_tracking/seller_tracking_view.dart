@@ -1,12 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:kreyno/models/parking_spot.dart';
 import 'package:kreyno/models/reservation.dart';
-import 'package:kreyno/ui/common/app_colors.dart';
-import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/views/home/widgets/buyer/buyer_waiting_confirmation.dart';
-import 'package:kreyno/ui/views/home/widgets/home_fabs.dart';
 import 'package:kreyno/ui/widgets/dumb/lifecycle_manager.dart';
 import 'package:stacked/stacked.dart';
 

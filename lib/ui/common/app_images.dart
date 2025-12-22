@@ -56,7 +56,7 @@ class AppImages {
   static const String loaderGif = '${_basePath}loader.gif';
 
   static const String placeholderCarImage = '${_basePath}placeholder_image.jpg';
-
+  static const String noInternet = '${_basePath}no_internet.png';
   static const String errorStateIllustration =
       '${_basePath}error_state_illustrations.png';
 

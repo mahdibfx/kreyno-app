@@ -19,6 +19,8 @@ abstract class ParkingSpot with _$ParkingSpot {
     required bool electricChargeStation,
     @JsonKey(name: "reserved") required bool reserved,
     @JsonKey(name: "seller") Seller? seller,
+    @JsonKey(name: "validated_at") DateTime? validatedAt,
+    @JsonKey(name: "created_at") required DateTime createdAt,
   }) = _ParkingSpot;
 
   factory ParkingSpot.fromJson(Map<String, dynamic> json) =>
