@@ -36,7 +36,12 @@ class MyLetPlaceView extends StackedView<MyLetPlaceViewModel> {
                     Marker(
                       markerId: MarkerId("${viewModel.parkingSpot!.id}"),
 
-                      icon: AssetMapBitmap("assets/images/Map_pin.png"),
+                      icon: AssetMapBitmap(
+                        viewModel.parkingSpot!.electricChargeStation
+                            ? "assets/images/ev_charger_selected_marker.png"
+                            : "assets/images/Map_pin.png",
+                        width: 50,
+                      ),
                       position: LatLng(
                         viewModel.parkingSpot!.latitude,
                         viewModel.parkingSpot!.longitude,

@@ -50,6 +50,8 @@ class HomeViewModel extends ReactiveViewModel {
   final List<Marker> _spotsMarkers = [];
   final List<ParkingSpot> _parkingSpots = [];
 
+  LatLng? _selectedLocation;
+  LatLng? get selectedLocation => _selectedLocation;
   List<Marker> get spotsMarkers => _spotsMarkers;
   List<ParkingSpot> get parkingSpots => _parkingSpots;
 
@@ -120,6 +122,12 @@ class HomeViewModel extends ReactiveViewModel {
   void setIsLocationServiceEnabled(bool value) {
     _isLocationServiceEnabled = value;
     rebuildUi();
+  }
+
+  void updateSelectedLocation(LatLng location) {
+    _selectedLocation = location;
+    googleMapController.animateCamera(CameraUpdate.newLatLng(location));
+    getNearbyPlaces();
   }
 
   Future<void> getNearbyPlaces() async {
@@ -258,13 +266,18 @@ class HomeViewModel extends ReactiveViewModel {
         _animateToCameraPosition(
           CameraPosition(
             target: LatLng(location.latitude, location.longitude),
-            zoom: 10,
+            zoom: 12,
           ),
         );
       },
     );
     loadingCurrentLocation = false;
     notifyListeners();
+    if (_selectedLocation != null) {
+      _selectedLocation = null;
+
+      getNearbyPlaces();
+    }
   }
 
   void onLocationServiceDisabledTapped() async {

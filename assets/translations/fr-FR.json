@@ -4,6 +4,7 @@
         "description": "Description",
         "cancel": "Annuler",
         "important": "Important",
+        "put_arrival_address": "Taper l'adresse d'arrivée",
         "search": "Rechercher",
         "validTill": "Valide jusqu'au",
         "deletedSuccessfully": "Supprimé avec succès",

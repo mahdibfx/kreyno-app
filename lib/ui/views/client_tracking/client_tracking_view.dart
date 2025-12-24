@@ -50,7 +50,12 @@ class ClientTrackingView extends StackedView<ClientTrackingViewModel> {
                     ),
                   ),
                   Marker(
-                    icon: AssetMapBitmap("assets/images/Map_pin.png"),
+                    icon: AssetMapBitmap(
+                      parkingSpot.electricChargeStation
+                          ? "assets/images/ev_charger_selected_marker.png"
+                          : "assets/images/Map_pin.png",
+                      width: 50,
+                    ),
 
                     position: LatLng(
                       parkingSpot.latitude,
@@ -61,7 +66,7 @@ class ClientTrackingView extends StackedView<ClientTrackingViewModel> {
                 },
                 initialCameraPosition: CameraPosition(
                   target: LatLng(parkingSpot.latitude, parkingSpot.longitude),
-                  zoom: 10,
+                  zoom: 12,
                 ),
               ),
               const TrackingCourseWidget(),

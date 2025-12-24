@@ -1,6 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_places_flutter/google_places_flutter.dart';
+import 'package:google_places_flutter/model/place_type.dart';
 import 'package:kreyno/models/user.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
@@ -18,10 +22,13 @@ import 'car_selector_model.dart';
 class CarSelector extends StackedView<CarSelectorModel> {
   final SelectedCar selectedCar;
   final Function(SelectedCar) onSelectedCarChanged;
+  final Function(LatLng) onSelectedLocationChanged;
+
   const CarSelector({
     super.key,
     required this.selectedCar,
     required this.onSelectedCarChanged,
+    required this.onSelectedLocationChanged,
   });
 
   Column _buildLoadingStateWidget() {
@@ -185,12 +192,12 @@ class CarSelector extends StackedView<CarSelectorModel> {
               right: 0,
               child: RepaintBoundary(
                 child: AnimatedScale(
-                  scale: viewModel.isListVisible ? 1.0 : .95,
+                  scale: viewModel.isListVisible ? 1.0 : .8,
                   duration: const Duration(milliseconds: 200),
                   curve: Curves.fastLinearToSlowEaseIn,
                   child: AnimatedOpacity(
                     opacity: viewModel.isListVisible ? 1.0 : .0,
-                    duration: const Duration(milliseconds: 200),
+                    duration: const Duration(milliseconds: 500),
                     curve: Curves.fastLinearToSlowEaseIn,
                     child: Container(
                       width: double.infinity,
@@ -259,33 +266,82 @@ class CarSelector extends StackedView<CarSelectorModel> {
           SafeArea(
             child: GestureDetector(
               onTap: viewModel.showCarListOverlay,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(AppSpacing.px12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xFF0C0C0D).withValues(alpha: .05),
-                      blurRadius: AppSpacing.px4,
-                      spreadRadius: -AppSpacing.px4,
-                      offset: Offset(0, -AppSpacing.px4),
-                    ),
-                    BoxShadow(
-                      color: const Color(0xFF0C0C0D).withValues(alpha: .1),
-                      blurRadius: AppSpacing.px16,
-                      spreadRadius: -AppSpacing.px8,
-                      offset: Offset(0, AppSpacing.px16),
-                    ),
-                  ],
-                ),
-                margin: EdgeInsets.only(
-                  top: 10 * AppSpacing.px1,
-                  left: AppSpacing.px16,
-                  right: AppSpacing.px16,
-                ),
-                padding: EdgeInsets.all(5 * AppSpacing.px1),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color(
+                                0xFF0C0C0D,
+                              ).withValues(alpha: .3),
+                              blurRadius: AppSpacing.px16,
+                              spreadRadius: -AppSpacing.px8,
+                              offset: const Offset(0, 0),
+                            ),
+                          ],
+                        ),
+                        height: AppSpacing.px1 * 40,
+
+                        child: GooglePlaceAutoCompleteTextField(
+                          containerVerticalPadding: 0,
+                          textStyle: const TextStyle(fontSize: 14),
+                          placeType: PlaceType.address,
+                          showError: false,
+                          countries: const ["fr", "dz"],
+                          itemClick: (positionPrediction) async {
+                            // viewModel.onItemClicked(positionPrediction.description!);
+
+                            final position = await GeocodingPlatform.instance!
+                                .locationFromAddress(
+                                  positionPrediction.description!,
+                                );
+                            onSelectedLocationChanged(
+                              LatLng(
+                                position.first.latitude,
+                                position.first.longitude,
+                              ),
+                            );
+                          },
+
+                          boxDecoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          inputDecoration: InputDecoration(
+                            prefixIcon: const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 10),
+                              child: CustomIcon(
+                                iconPath: AppIcons.search,
+                                color: AppColors.textKre,
+                              ),
+                            ),
+                            filled: true,
+
+                            hintText: "common.put_arrival_address".tr(),
+                            fillColor: AppColors.white,
+                            hintStyle: const TextStyle(
+                              color: AppColors.textKre,
+                              fontSize: 14,
+                            ),
+                            isDense: true,
+
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                          ),
+                          textEditingController: TextEditingController(),
+                          googleAPIKey:
+                              "AIzaSyAhoFVZiHJ05kCvSW6tqV3rwQX4YrgGsxA",
+                        ),
+                      ),
+                    ),
+                    HGap(AppSpacing.px8),
                     Container(
                       width: 38 * AppSpacing.px1,
                       height: 38 * AppSpacing.px1,
@@ -305,22 +361,6 @@ class CarSelector extends StackedView<CarSelectorModel> {
                         borderRadius: BorderRadius.circular(AppSpacing.px8),
                       ),
                     ),
-                    HGap(AppSpacing.px8),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomText.labelRegular(
-                            "carSelector.vehicleChosen".tr(),
-                            color: AppColors.textKre,
-                          ),
-                          CustomText.smallParagraphMedium(
-                            "${selectedCar.brand} ${selectedCar.model}",
-                          ),
-                        ],
-                      ),
-                    ),
-                    const CustomIcon(iconPath: AppIcons.refresh),
                   ],
                 ),
               ),

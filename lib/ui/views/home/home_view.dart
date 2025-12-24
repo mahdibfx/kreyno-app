@@ -30,6 +30,7 @@ class HomeView extends StackedView<HomeViewModel> {
                     initialCameraPosition: viewModel.initialCameraPosition,
                     onMapCreated: viewModel.onMapCreated,
                     zoomControlsEnabled: false,
+                    myLocationEnabled: true,
                     markers: viewModel.spotsMarkers.toSet(),
                   ),
                   Column(
@@ -39,6 +40,9 @@ class HomeView extends StackedView<HomeViewModel> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           CarSelector(
+                            onSelectedLocationChanged: (location) {
+                              viewModel.updateSelectedLocation(location);
+                            },
                             selectedCar: viewModel.selectedCar,
                             onSelectedCarChanged: (car) =>
                                 viewModel.updateSelectedCar(car),

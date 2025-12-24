@@ -30,7 +30,7 @@ class ChooseSellingPlaceLocationView
                 viewModel.center.latitude,
                 viewModel.center.longitude,
               ),
-              zoom: 14,
+              zoom: 12,
             ),
             onMapCreated: viewModel.onMapCreated,
             zoomControlsEnabled: false,

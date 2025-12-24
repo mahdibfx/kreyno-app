@@ -113,7 +113,7 @@ class ParkingSpaceListItem extends StatelessWidget {
                     color: AppColors.textKre,
                   ),
                   CustomText.smallParagraphBold(
-                    "${price.toStringAsFixed(1)}€",
+                    "${price.toStringAsFixed(2)}€",
                     color: AppColors.mainKre,
                   ),
                 ],

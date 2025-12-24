@@ -317,7 +317,8 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomText(
-                  text: viewModel.reservation!.parkingPlace.price.toString(),
+                  text: viewModel.reservation!.parkingPlace.price
+                      .toStringAsFixed(2),
                   color: AppColors.greenKre,
                   style: CustomTextStyle.title,
                 ),

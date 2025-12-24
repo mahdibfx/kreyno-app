@@ -188,7 +188,9 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
                     "payForSpot.parking".tr(),
                     color: AppColors.textKre,
                   ),
-                  CustomText.smallParagraphBold("${parkingSpot.price}€"),
+                  CustomText.smallParagraphBold(
+                    "${parkingSpot.price.toStringAsFixed(2)}€",
+                  ),
                 ],
               ),
               const SizedBox(height: 4),
@@ -220,7 +222,7 @@ class PaymentSubmit extends ViewModelWidget<PayForSpotSheetModel> {
                   children: [
                     CustomText.smallParagraphBold("payForSpot.totalToPay".tr()),
                     CustomText.smallParagraphBold(
-                      "${parkingSpot.totalPaidPrice}€",
+                      "${parkingSpot.totalPaidPrice.toStringAsFixed(2)}€",
                     ),
                   ],
                 ),
@@ -283,7 +285,7 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomText(
-                  text: parkingSpot.price.toString(),
+                  text: parkingSpot.price.toStringAsFixed(2),
                   color: AppColors.greenKre,
                   style: CustomTextStyle.title,
                 ),

@@ -95,13 +95,13 @@ class ChatView extends StackedView<ChatViewModel> {
               },
               child: const Icon(Icons.arrow_back),
             ),
-            actions: [
-              IconButton(
-                onPressed: () {
-                  viewModel.callUser(phone);
-                },
-                icon: const CustomIcon(iconPath: AppIcons.call),
-              ),
+            actions: const [
+              // IconButton(
+              //   onPressed: () {
+              //     viewModel.callUser(phone);
+              //   },
+              //   icon: const CustomIcon(iconPath: AppIcons.call),
+              // ),
             ],
             title: Row(
               children: [

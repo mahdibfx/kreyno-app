@@ -74,7 +74,8 @@ class BuyerSelectedMark extends ViewModelWidget<HomeViewModel> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               CustomText(
-                                text: viewModel.selectedSpot!.price.toString(),
+                                text: viewModel.selectedSpot!.price
+                                    .toStringAsFixed(2),
                                 color: AppColors.greenKre,
                                 style: CustomTextStyle.title,
                               ),
@@ -97,9 +98,11 @@ class BuyerSelectedMark extends ViewModelWidget<HomeViewModel> {
                     VGap(AppSpacing.px8),
                     Row(
                       children: [
-                        const CustomIcon(
+                        CustomIcon(
                           iconPath: AppIcons.evCharging,
-                          color: AppColors.greenKre,
+                          color: viewModel.selectedSpot!.electricChargeStation
+                              ? AppColors.greenKre
+                              : AppColors.textKre,
                         ),
                         HGap(AppSpacing.px4),
                         CustomText(

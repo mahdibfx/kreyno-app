@@ -105,6 +105,7 @@ class PayForSpotSheetModel extends BaseViewModel {
     await saveCardResponse.match(
       (error) async => _toastService.showError(title: error),
       (card) async {
+        selectPaymentMethod(card);
         setCards([...cards, card]);
         _logger.i('Card added successfully: ${card.id}');
       },
@@ -118,6 +119,9 @@ class PayForSpotSheetModel extends BaseViewModel {
 
   void setCards(List<Card> cards) {
     _cards = cards;
+    if (_cards.length == 1) {
+      selectPaymentMethod(_cards.first);
+    }
     rebuildUi();
   }
 

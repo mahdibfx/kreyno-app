@@ -1,6 +1,8 @@
 {
     "common": {
         "title": "Title",
+        "put_arrival_address": "Put arrival address",
+
         "description": "Description",
         "cancel": "Cancel",
         "important": "Important",

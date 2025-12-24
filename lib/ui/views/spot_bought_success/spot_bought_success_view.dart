@@ -83,7 +83,8 @@ class SpotBoughtSuccessView extends StackedView<SpotBoughtSuccessViewModel> {
                         VGap(AppSpacing.px8),
                         InfoListTile(
                           title: "spotBoughtSuccess.price".tr(),
-                          value: "${reservation.parkingPlace.totalPaidPrice}€",
+                          value:
+                              "${reservation.parkingPlace.totalPaidPrice.toStringAsFixed(2)}€",
                         ),
                         VGap(AppSpacing.px8),
                         InfoListTile(

@@ -94,15 +94,14 @@ class ClientTrackingViewModel extends ReactiveViewModel {
 
   void _setupReservationListener() {
     _reservationsService.removeListener(_onReservationStatusChanged);
-    _reservationsService.listenToReservationStatusChanged(
-      locator<UserService>().currentUser!.id,
-    );
+    // _reservationsService.listenToReservationStatusChanged(
+    //   locator<UserService>().currentUser!.id,
+    // );
     _reservationsService.addListener(_onReservationStatusChanged);
   }
 
   void _cleanupAndNavigateHome() {
     _cleanupListeners();
-    _navigationService.back();
     _navigationService.back();
   }
 
@@ -110,9 +109,9 @@ class ClientTrackingViewModel extends ReactiveViewModel {
     _chatService.removeListener(_onChatMessageReceived);
     _reservationsService.removeListener(_onReservationStatusChanged);
     _reservationsService.removeReservation();
-    // if (reservation?.id != null) {
-    //   _reservationsService.stopListeningToReservationUpdates(reservation!.id);
-    // }
+    if (reservation?.id != null) {
+      _reservationsService.stopListeningToReservationUpdates(reservation!.id);
+    }
   }
 
   void _onReservationStatusChanged() {

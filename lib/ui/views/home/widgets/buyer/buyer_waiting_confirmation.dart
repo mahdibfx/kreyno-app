@@ -97,7 +97,7 @@ class PendingReservation extends ViewModelWidget<SellerTrackingViewModel> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomText(
-                  text: viewModel.parkingSpot.totalPaidPrice.toString(),
+                  text: viewModel.parkingSpot.totalPaidPrice.toStringAsFixed(2),
                   color: AppColors.greenKre,
                   style: CustomTextStyle.title,
                 ),

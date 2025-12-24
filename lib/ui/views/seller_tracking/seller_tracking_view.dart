@@ -42,7 +42,11 @@ class SellerTrackingView extends StackedView<SellerTrackingViewModel> {
                       polylines: viewModel.polylines,
                       markers: {
                         Marker(
-                          icon: AssetMapBitmap("assets/images/Map_pin.png"),
+                          icon: AssetMapBitmap(
+                            reservation.parkingPlace.electricChargeStation
+                                ? "assets/images/ev_charger_selected_marker.png"
+                                : "assets/images/Map_pin.png",
+                          ),
 
                           position: LatLng(
                             reservation.parkingPlace.latitude,
@@ -68,7 +72,7 @@ class SellerTrackingView extends StackedView<SellerTrackingViewModel> {
                           viewModel.currentLocationStream!.longitude,
                         ),
 
-                        zoom: 10,
+                        zoom: 12,
                       ),
                     ),
               const BuyerWaitingConfirmation(),

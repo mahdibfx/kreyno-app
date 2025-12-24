@@ -66,7 +66,7 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                   CustomText.smallParagraphMedium(
                     "spotSoldSuccess.earningsMessage".tr().replaceAll(
                       "2€",
-                      "${reservation.parkingPlace.totalPaidPrice}€",
+                      "${reservation.parkingPlace.totalPaidPrice.toStringAsFixed(2)}€",
                     ),
                     color: AppColors.textKre,
                   ),
@@ -84,7 +84,8 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                         VGap(AppSpacing.px8),
                         InfoListTile(
                           title: "spotSoldSuccess.price".tr(),
-                          value: "${reservation.parkingPlace.totalPaidPrice}€",
+                          value:
+                              "${reservation.parkingPlace.totalPaidPrice.toStringAsFixed(2)}€",
                         ),
                         VGap(AppSpacing.px8),
                         InfoListTile(
@@ -244,7 +245,7 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               CustomText.smallParagraphBold(
-                                "+${reservation.parkingPlace.totalPaidPrice} €",
+                                "+${reservation.parkingPlace.totalPaidPrice.toStringAsFixed(2)} €",
                                 color: AppColors.greenKre,
                               ),
                             ],
