@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/app/app.locator.dart';
@@ -114,12 +115,12 @@ class CreateSpotSheetModel extends ReactiveViewModel {
       (error) {
         _logger.e('Failed to create parking spot: $error');
         _toastService.showError(
-          title: 'Failed to create parking spot',
+          title: "createSpot.failedToCreate".tr(),
           description: error,
         );
       },
       (success) {
-        _toastService.showSuccess(title: 'Parking spot created successfully');
+        _toastService.showSuccess(title: "createSpot.success".tr());
         _navigationService.navigateToView(
           const MyLetPlaceView(),
           arguments: success,

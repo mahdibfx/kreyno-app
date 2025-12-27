@@ -35,7 +35,9 @@ class BuyerWaitingConfirmation
         viewModel.reservation.status == ReservationStatus.confirmed &&
                 !viewModel.nearParkingSpotLocation
             ? const SellerConfirmedForBuyer()
-            : const BuyerConfirmArrive(),
+            : viewModel.reservation.status == ReservationStatus.confirmed
+            ? const BuyerConfirmArrive()
+            : const SizedBox(),
         const SizedBox(),
         BottomSheetLayout(
           body:

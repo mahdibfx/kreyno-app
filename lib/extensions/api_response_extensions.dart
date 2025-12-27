@@ -25,7 +25,6 @@ extension ApiResponseExtensions<T> on Future<ApiResponse<T>> {
       final errorMessage = _handleDioException(dioError);
       return left(errorMessage);
     } catch (error) {
-      rethrow;
       _logger.e('Unexpected error occurred', error: error);
       return left(ApiErrorStrings.unexpectedError);
     }
@@ -137,7 +136,6 @@ extension ApiResponseExtensions<T> on Future<ApiResponse<T>> {
       final errorMessage = _handleDioException(dioError);
       return left(errorMessage);
     } catch (error) {
-      rethrow;
       _logger.e('Unexpected error occurred', error: error);
       return left(ApiErrorStrings.unexpectedError);
     }

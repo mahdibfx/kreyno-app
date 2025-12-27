@@ -124,10 +124,32 @@ class HomeViewModel extends ReactiveViewModel {
     rebuildUi();
   }
 
-  void updateSelectedLocation(LatLng location) {
+  Future<void> updateSelectedLocation(LatLng location) async {
     _selectedLocation = location;
     googleMapController.animateCamera(CameraUpdate.newLatLng(location));
-    getNearbyPlaces();
+    await getNearbyPlaces();
+
+    _spotsMarkers.removeWhere(
+      (marker) => marker.markerId.value == "selected_location",
+    );
+    _spotsMarkers.add(
+      Marker(
+        markerId: const MarkerId("selected_location"),
+        position: location,
+        onTap: () {
+          return;
+        },
+        icon: AssetMapBitmap("assets/images/searched_address.png", height: 55),
+
+        //  AssetMapBitmap(
+        //   "assets/images/searched_address.png",
+        //   width: 42,
+        //   height: 55,
+        // ),
+      ),
+    );
+    notifyListeners();
+    // return;
   }
 
   Future<void> getNearbyPlaces() async {
@@ -178,6 +200,7 @@ class HomeViewModel extends ReactiveViewModel {
           );
         }).toList();
         _spotsMarkers.addAll(spotsMarkers);
+
         rebuildUi();
       },
     );
@@ -255,6 +278,7 @@ class HomeViewModel extends ReactiveViewModel {
 
   Future<void> goToCurrentLocation() async {
     loadingCurrentLocation = true;
+    _selectedLocation = null;
     notifyListeners();
     final result = await _locationService.getCurrentLocation();
     await result.match(

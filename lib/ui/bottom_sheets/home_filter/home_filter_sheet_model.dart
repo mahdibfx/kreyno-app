@@ -18,6 +18,7 @@ class HomeFilterSheetModel extends BaseViewModel {
   }
 
   void updateTime(double newTime) {
+    print(newTime);
     time = newTime;
     radius = speed * (time / 60); // km
     notifyListeners();

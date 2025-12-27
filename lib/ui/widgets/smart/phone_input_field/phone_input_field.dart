@@ -56,6 +56,7 @@ class PhoneInputField extends StackedView<PhoneInputFieldModel> {
       controller: controller,
       focusNode: focusNode,
       labelText: labelText,
+      maxLines: 1,
       hintText: hintText,
       keyboardType: TextInputType.phone,
       disabled: disabled,

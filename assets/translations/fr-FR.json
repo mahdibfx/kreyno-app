@@ -1,5 +1,7 @@
 {
+    "accountDeleted": "Compte supprimé",
     "common": {
+        "somethingWentWrong": "Une erreur est survenue",
         "title": "Titre",
         "description": "Description",
         "cancel": "Annuler",
@@ -442,6 +444,8 @@
         "slideToPay": "Glisser pour payer"
     },
     "createSpot": {
+        "failedToCreate": "Échec de la création de la place",
+        "success": "Place créée avec succès",
         "spotNameHint": "Au Gustave",
         "spotDescriptionHint": "Activer localisation",
         "spotPriceHint": "Prix de la place",

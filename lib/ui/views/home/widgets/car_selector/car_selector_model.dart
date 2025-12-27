@@ -11,7 +11,7 @@ class CarSelectorModel extends BaseViewModel {
   final _logger = getLogger('CarSelectorModel');
   final _carsService = locator<CarsService>();
   final _toastService = locator<ToastService>();
-
+  final googleSearchController = TextEditingController();
   final Function(SelectedCar) onSelectedCarChanged;
   CarSelectorModel({required this.onSelectedCarChanged});
 

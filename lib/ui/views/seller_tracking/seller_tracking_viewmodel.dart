@@ -17,6 +17,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:toastification/toastification.dart';
 
 class SellerTrackingViewModel extends ReactiveViewModel {
   final _locationService = locator<LocationService>();
@@ -170,6 +171,7 @@ class SellerTrackingViewModel extends ReactiveViewModel {
       _locationService.listenToMyLocationReactive(
         LatLng(parkingSpot.latitude, parkingSpot.longitude),
       );
+      Toastification().dismissAll();
       _toastService.showInfo(
         title: "sellerTracking.reservationConfirmed".tr(),
         description: "sellerConfirmedForBuyer.cancellationPolicy".tr(),
@@ -179,6 +181,7 @@ class SellerTrackingViewModel extends ReactiveViewModel {
       notifyListeners();
     } else if (_reservationService.reservation?.status ==
         ReservationStatus.finished) {
+      _cleanupListeners();
       _navigationService.clearStackAndShowView(
         SpotBoughtSuccessView(reservation: reservation),
       );

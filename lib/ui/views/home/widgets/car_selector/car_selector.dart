@@ -290,7 +290,7 @@ class CarSelector extends StackedView<CarSelectorModel> {
                         child: GooglePlaceAutoCompleteTextField(
                           containerVerticalPadding: 0,
                           textStyle: const TextStyle(fontSize: 14),
-                          placeType: PlaceType.address,
+                          placeType: PlaceType.geocode,
                           showError: false,
                           countries: const ["fr", "dz"],
                           itemClick: (positionPrediction) async {
@@ -335,7 +335,8 @@ class CarSelector extends StackedView<CarSelectorModel> {
                               borderRadius: BorderRadius.circular(14),
                             ),
                           ),
-                          textEditingController: TextEditingController(),
+                          textEditingController:
+                              viewModel.googleSearchController,
                           googleAPIKey:
                               "AIzaSyAhoFVZiHJ05kCvSW6tqV3rwQX4YrgGsxA",
                         ),

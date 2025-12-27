@@ -76,6 +76,7 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
                         controller: phoneNumberController,
                         focusNode: phoneNumberFocusNode,
                         labelText: SignupStrings.phoneNumber,
+
                         hintText: SignupStrings.phoneNumberPlaceholder,
                         disabled: viewModel.hasPhoneNumber,
                         errorText: viewModel.hasPhoneNumber

@@ -105,19 +105,7 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
             ],
           ),
           VGap(AppSpacing.px12),
-          SizedBox(
-            width: double.infinity,
-            child: Slider(
-              min: 3,
-              max: 20,
-              label: "${viewModel.time.toInt()} min",
-              onChanged: (value) => viewModel.updateTime(value),
-              value: viewModel.time,
-
-              activeColor: AppColors.greenKre,
-              thumbColor: AppColors.white,
-            ),
-          ),
+          const RayonFilter(),
           VGap(AppSpacing.px20),
 
           SafeArea(
@@ -129,6 +117,7 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
                   text: "homeFilter.reset".tr(),
                   onPressed: () {
                     viewModel.possibleElectric = null;
+                    viewModel.updateTime(5);
                     viewModel.rebuildUi();
                   },
                   foregroundColor: AppColors.redKre,
@@ -168,5 +157,84 @@ class HomeFilterSheet extends StackedView<HomeFilterSheetModel> {
       viewModel.init(request.data[0], request.data[1]);
     }
     super.onViewModelReady(viewModel);
+  }
+}
+
+class RayonFilter extends ViewModelWidget<HomeFilterSheetModel> {
+  const RayonFilter({super.key});
+
+  @override
+  Widget build(BuildContext context, HomeFilterSheetModel viewModel) {
+    return Row(
+      spacing: 10,
+      children: [
+        Expanded(
+          child: InkWell(
+            onTap: () {
+              viewModel.updateTime(5);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.fromBorderSide(
+                  BorderSide(
+                    color: viewModel.time == 5
+                        ? AppColors.greenKre
+                        : AppColors.strokeKre,
+                  ),
+                ),
+              ),
+              alignment: Alignment.center,
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: const CustomText.smallParagraphBold("5 min"),
+            ),
+          ),
+        ),
+        Expanded(
+          child: InkWell(
+            onTap: () {
+              viewModel.updateTime(10);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.fromBorderSide(
+                  BorderSide(
+                    color: viewModel.time == 10
+                        ? AppColors.greenKre
+                        : AppColors.strokeKre,
+                  ),
+                ),
+              ),
+              alignment: Alignment.center,
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: const CustomText.smallParagraphBold("10 min"),
+            ),
+          ),
+        ),
+        Expanded(
+          child: InkWell(
+            onTap: () {
+              viewModel.updateTime(20);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.fromBorderSide(
+                  BorderSide(
+                    color: viewModel.time == 20
+                        ? AppColors.greenKre
+                        : AppColors.strokeKre,
+                  ),
+                ),
+              ),
+              alignment: Alignment.center,
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: const CustomText.smallParagraphBold("20 min"),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
