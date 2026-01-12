@@ -1,4 +1,4 @@
-package com.example.kreyno
+package com.kreyno.fr
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 
