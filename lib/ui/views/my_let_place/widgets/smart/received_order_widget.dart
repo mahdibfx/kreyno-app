@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kreyno/app/app.locator.dart';
@@ -178,9 +179,8 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
             image: DecorationImage(
               fit: BoxFit.cover,
               image: viewModel.reservation!.buyer.car.image?.url != null
-                  ? NetworkImage(
-                      viewModel.reservation!.buyer.car.image?.url ??
-                          "assets/images/car.png",
+                  ? CachedNetworkImageProvider(
+                      viewModel.reservation!.buyer.car.image!.url,
                     )
                   : const AssetImage("assets/images/car_default.png"),
             ),
