@@ -9,7 +9,7 @@ class GoogleMapService {
 
   static const CameraPosition initialCameraPosition = CameraPosition(
     target: LatLng(48.8584, 2.2945),
-    zoom: 8,
+    zoom: 10,
   );
 
   Future<GoogleMapController> get futureController => _controller.future;

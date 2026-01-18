@@ -20,7 +20,6 @@ class StartupViewModel extends BaseViewModel {
   final _userService = locator<UserService>();
 
   Future runStartupLogic() async {
-    await _showSplashScreen();
     if (!await InternetConnectionChecker.instance.hasConnection) {
       await _navigationService.replaceWithErrorView();
       return;
@@ -38,10 +37,6 @@ class StartupViewModel extends BaseViewModel {
     }
 
     await _navigateBasedOnState(isAuthenticated, currentStepResult);
-  }
-
-  Future<void> _showSplashScreen() async {
-    await Future.delayed(const Duration(seconds: 3));
   }
 
   Future<(bool, Either<String, OnboardingStep?>)> _getAppState() async {
