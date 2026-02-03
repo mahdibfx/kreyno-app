@@ -39,7 +39,7 @@ class MyNewMarkLabel
                 Expanded(
                   child: GooglePlaceAutoCompleteTextField(
                     placeType: PlaceType.address,
-
+                    focusNode: viewModel.searchFocusNode,
                     countries: const ["fr"],
                     itemClick: (positionPrediction) {
                       viewModel.onItemClicked(positionPrediction.description!);

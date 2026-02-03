@@ -36,8 +36,12 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+
 	<key>NSCameraUsageDescription</key>
-	<string>camera</string>
+<string>The camera is used to take a profile or vehicle photo (you can also choose an image from the gallery).</string>
+	<key>NSUserTrackingUsageDescription</key>
+<string>We may collect some data to give you more personalized experience.</string>
+
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We use your location to help you find nearby parking spots.</string>
 

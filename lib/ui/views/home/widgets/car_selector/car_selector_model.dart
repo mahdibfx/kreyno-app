@@ -12,6 +12,7 @@ class CarSelectorModel extends BaseViewModel {
   final _carsService = locator<CarsService>();
   final _toastService = locator<ToastService>();
   final googleSearchController = TextEditingController();
+  final searchFocusNode = FocusNode();
   final Function(SelectedCar) onSelectedCarChanged;
   CarSelectorModel({required this.onSelectedCarChanged});
 

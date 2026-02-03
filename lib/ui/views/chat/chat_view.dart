@@ -55,7 +55,7 @@ class ChatView extends StackedView<ChatViewModel> {
                     Expanded(
                       child: InputField(
                         controller: viewModel.messageTextController,
-                        focusNode: FocusNode(),
+                        focusNode: viewModel.messageFocusNode,
                         hintText: "chat.newMessage".tr(),
                         keyboardType: TextInputType.text,
                       ),

@@ -57,7 +57,7 @@ class SigninView extends StackedView<SigninViewModel> with $SigninView {
                         errorText: viewModel.hasPhoneNumber
                             ? viewModel.phoneNumberValidationMessage
                             : null,
-                        maxLength: 9,
+                        maxLength: 10,
                       ),
                     ],
                   ),

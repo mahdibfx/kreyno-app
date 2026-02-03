@@ -24,7 +24,7 @@ class CreateSpotSheetModel extends ReactiveViewModel {
   final placeController = TextEditingController();
   final priceController = TextEditingController();
   final _parkingSpotsService = locator<ParkingSpotsService>();
-
+  final priceFocusNode = FocusNode();
   bool bornDisponible = true;
   LatLng? spotLatLng;
   String? address;

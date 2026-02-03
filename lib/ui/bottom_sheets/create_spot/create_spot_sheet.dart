@@ -123,8 +123,10 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
           const CustomDivider(),
           VGap(AppSpacing.px16),
           InputField(
+            textInputAction: TextInputAction.done,
             controller: viewModel.priceController,
-            focusNode: FocusNode(),
+            focusNode: viewModel.priceFocusNode,
+
             labelText: "createSpot.choosePrice".tr(),
             showOptionalLabel: false,
             onChanged: (f) {
@@ -141,7 +143,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
                 color: AppColors.textKre,
               ),
             ),
-            keyboardType: TextInputType.text,
+            keyboardType: TextInputType.number,
           ),
           VGap(AppSpacing.px16),
           Row(
@@ -189,6 +191,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
               isDisabled: !viewModel.validateCreateSpotButton(),
               text: "createSpot.validate".tr(),
               onPressed: () {
+                viewModel.priceFocusNode.unfocus();
                 viewModel.letMyPlaceButtonClicked();
               },
             ),

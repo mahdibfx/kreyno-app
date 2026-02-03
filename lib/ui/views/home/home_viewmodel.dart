@@ -127,7 +127,7 @@ class HomeViewModel extends ReactiveViewModel {
   Future<void> updateSelectedLocation(LatLng location) async {
     _selectedLocation = location;
     googleMapController.animateCamera(CameraUpdate.newLatLng(location));
-    await getNearbyPlaces();
+    await getNearbyPlaces(lat: location.latitude, lng: location.longitude);
 
     _spotsMarkers.removeWhere(
       (marker) => marker.markerId.value == "selected_location",
@@ -152,9 +152,9 @@ class HomeViewModel extends ReactiveViewModel {
     // return;
   }
 
-  Future<void> getNearbyPlaces() async {
+  Future<void> getNearbyPlaces({double? lat, double? lng}) async {
     Logger().i(
-      "Getting nearby places ..  ${_locationService.currentLocation?.latitude ?? 0}, ${_locationService.currentLocation?.longitude ?? 0}",
+      "Getting nearby places ..  ${lat ?? _locationService.currentLocation?.latitude ?? 0}, ${lng ?? _locationService.currentLocation?.longitude ?? 0}",
     );
     _loadingPlaces = true;
     rebuildUi();
@@ -162,8 +162,8 @@ class HomeViewModel extends ReactiveViewModel {
     _parkingSpots.clear();
     rebuildUi();
     final result = await _parkingSpotService.getNearbyParkingSpots(
-      _locationService.currentLocation?.latitude ?? 0,
-      _locationService.currentLocation?.longitude ?? 0,
+      lat ?? _locationService.currentLocation?.latitude ?? 0,
+      lng ?? _locationService.currentLocation?.longitude ?? 0,
       radius,
       _possibleElectric == true
           ? 1
@@ -251,7 +251,6 @@ class HomeViewModel extends ReactiveViewModel {
     setBusy(false);
 
     await goToCurrentLocation();
-    await getNearbyPlaces();
 
     _locationService.listenToMyLocationReactive(null);
 
@@ -293,6 +292,7 @@ class HomeViewModel extends ReactiveViewModel {
             zoom: 12,
           ),
         );
+        await getNearbyPlaces();
       },
     );
     loadingCurrentLocation = false;

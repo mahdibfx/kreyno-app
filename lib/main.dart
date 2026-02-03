@@ -52,6 +52,7 @@ class MainApp extends StatelessWidget {
     return ResponsiveSizerWidget(
       child: ToastificationWrapper(
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           initialRoute: Routes.startupView,
           onGenerateRoute: StackedRouter().onGenerateRoute,
           navigatorKey: StackedService.navigatorKey,

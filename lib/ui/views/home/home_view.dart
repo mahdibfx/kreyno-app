@@ -41,6 +41,7 @@ class HomeView extends StackedView<HomeViewModel> {
                         children: [
                           CarSelector(
                             onSelectedLocationChanged: (location) {
+                              FocusScope.of(context).unfocus();
                               viewModel.updateSelectedLocation(location);
                             },
                             selectedCar: viewModel.selectedCar,

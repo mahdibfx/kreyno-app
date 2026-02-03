@@ -12,6 +12,7 @@ class ChatViewModel extends ReactiveViewModel {
   final _urlLauncher = locator<UrlLauncherService>();
   final messageTextController = TextEditingController();
   final messages = <ChatMessage>[];
+  final messageFocusNode = FocusNode();
   callUser(String phone) async {
     final result = await _urlLauncher.launchPhoneNumber(phone);
   }
@@ -36,6 +37,7 @@ class ChatViewModel extends ReactiveViewModel {
 
   sendMessage() async {
     setBusy(true);
+    messageFocusNode.unfocus();
     final result = _chatService.sendMessage(
       reservationId,
       messageTextController.text,

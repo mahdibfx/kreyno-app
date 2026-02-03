@@ -1,3 +1,4 @@
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:kreyno/services/user_service.dart';
@@ -20,6 +21,8 @@ class StartupViewModel extends BaseViewModel {
   final _userService = locator<UserService>();
 
   Future runStartupLogic() async {
+    await AppTrackingTransparency.requestTrackingAuthorization();
+
     if (!await InternetConnectionChecker.instance.hasConnection) {
       await _navigationService.replaceWithErrorView();
       return;

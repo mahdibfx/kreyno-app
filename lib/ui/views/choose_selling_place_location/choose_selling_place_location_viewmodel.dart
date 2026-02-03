@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/app/app.locator.dart';
@@ -16,6 +17,7 @@ class ChooseSellingPlaceLocationViewModel extends BaseViewModel {
   final _parkingSpotsService = locator<ParkingSpotsService>();
 
   Timer? debouncer;
+  final searchFocusNode = FocusNode();
   String address = "Paris";
   LatLng center = const LatLng(48.8566, 2.3522); // Default to Paris
   void onMapCreated(GoogleMapController controller) {
@@ -45,6 +47,7 @@ class ChooseSellingPlaceLocationViewModel extends BaseViewModel {
   }
 
   Future<void> onItemClicked(String address) async {
+    searchFocusNode.unfocus();
     final position = await GeocodingPlatform.instance!.locationFromAddress(
       address,
     );

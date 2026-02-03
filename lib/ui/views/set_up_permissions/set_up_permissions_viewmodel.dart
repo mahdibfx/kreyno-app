@@ -71,15 +71,19 @@ class SetUpPermissionsViewModel extends BaseViewModel {
   }
 
   void onSkipTapped() async {
-    _navigateToHomeView();
+    _navigateToStartupView();
   }
 
   void onContinueTapped() async {
-    _navigateToHomeView();
+    _navigateToStartupView();
   }
 
-  void _navigateToHomeView() async {
-    await _navigationService.clearStackAndShow(Routes.homeView);
+  // void _navigateToHomeView() async {
+  //   await _navigationService.clearStackAndShow(Routes.homeView);
+  // }
+
+  void _navigateToStartupView() async {
+    await _navigationService.clearStackAndShow(Routes.startupView);
   }
 
   void _requestLocationPermission() async {

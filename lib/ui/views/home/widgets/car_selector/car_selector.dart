@@ -288,14 +288,15 @@ class CarSelector extends StackedView<CarSelectorModel> {
                         height: AppSpacing.px1 * 40,
 
                         child: GooglePlaceAutoCompleteTextField(
+                          focusNode: viewModel.searchFocusNode,
                           containerVerticalPadding: 0,
                           textStyle: const TextStyle(fontSize: 14),
                           placeType: PlaceType.geocode,
                           showError: false,
-                          countries: const ["fr", "dz"],
+                          countries: const ["fr"],
                           itemClick: (positionPrediction) async {
                             // viewModel.onItemClicked(positionPrediction.description!);
-
+                            viewModel.searchFocusNode.unfocus();
                             final position = await GeocodingPlatform.instance!
                                 .locationFromAddress(
                                   positionPrediction.description!,

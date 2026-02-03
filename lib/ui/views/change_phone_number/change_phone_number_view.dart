@@ -61,7 +61,8 @@ class ChangePhoneNumberView extends StackedView<ChangePhoneNumberViewModel>
                         errorText: viewModel.hasPhoneNumber
                             ? viewModel.phoneNumberValidationMessage
                             : null,
-                        maxLength: 9,
+                        maxLength: 10,
+
                         trailingIcon: viewModel.checkingPhoneNumberTaken
                             ? Transform.scale(
                                 scale: .8,
