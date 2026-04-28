@@ -78,6 +78,7 @@ import 'package:kreyno/services/chat_service.dart';
 import 'package:kreyno/ui/views/error/error_view.dart';
 import 'package:kreyno/ui/views/edit_vehicule/edit_vehicule_view.dart';
 import 'package:kreyno/ui/views/expand_vehicule_info/expand_vehicule_info_view.dart';
+import 'package:kreyno/services/tasks_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -145,6 +146,7 @@ import 'package:kreyno/ui/views/expand_vehicule_info/expand_vehicule_info_view.d
     Factory(classType: GoogleMapService),
     LazySingleton(classType: TrackingService),
     LazySingleton(classType: ChatService),
+    LazySingleton(classType: TasksService),
     // @stacked-service
   ],
   bottomsheets: [

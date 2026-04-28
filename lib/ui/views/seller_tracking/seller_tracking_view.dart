@@ -46,6 +46,7 @@ class SellerTrackingView extends StackedView<SellerTrackingViewModel> {
                             reservation.parkingPlace.electricChargeStation
                                 ? "assets/images/ev_charger_selected_marker.png"
                                 : "assets/images/Map_pin.png",
+                            width: 50,
                           ),
 
                           position: LatLng(
