@@ -60,7 +60,7 @@ class SetUpVehiculeViewModel extends FormViewModel {
       brandValue = carData.brand;
       modelValue = carData.model;
       colorValue = carData.color;
-      co2EmissionValue = carData.co2Emission;
+      co2EmissionValue = carData.co2Emission.toString();
     } else {
       clearForm();
     }

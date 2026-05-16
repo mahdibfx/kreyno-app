@@ -7,6 +7,8 @@ import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/app/app_constants.dart';
+import 'package:kreyno/enums/gender.dart';
+import 'package:kreyno/models/car.dart';
 import 'package:kreyno/models/parking_spot.dart';
 import 'package:kreyno/models/user.dart';
 import 'package:kreyno/services/google_map_service.dart';
@@ -20,9 +22,10 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends ReactiveViewModel {
+  final _userService = locator<UserService>();
+
   final _logger = getLogger('HomeViewModel');
   final _bottomSheetService = locator<BottomSheetService>();
-  final _userService = locator<UserService>();
   final _locationService = locator<LocationService>();
   final _trackingService = locator<TrackingService>();
   final _toastService = locator<ToastService>();
@@ -30,13 +33,14 @@ class HomeViewModel extends ReactiveViewModel {
 
   final _parkingSpotService = locator<ParkingSpotsService>();
 
-  double radius = 2.5;
+  double radius = 0.5;
   bool? _possibleElectric;
   bool loadingCurrentLocation = false;
   ParkingSpot? _selectedSpot;
   late GoogleMapController googleMapController;
 
   ParkingSpot? get selectedSpot => _selectedSpot;
+
   User get currentUser => _userService.currentUser!;
   String get currentUserAvatarUrl =>
       currentUser.avatar?.url ?? AppConstants.defaultAvatarUrl;

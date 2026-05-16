@@ -155,7 +155,7 @@ class DropDownField<T> extends StatelessWidget {
               ),
             ),
             maximumSize: WidgetStateProperty.all(
-              Size(menuWidth ?? 100.dw - AppSpacing.px32, 200 * AppSpacing.px1),
+              Size(menuWidth ?? 100.dw - AppSpacing.px32, 180 * AppSpacing.px1),
             ),
           ),
           alignmentOffset: Offset(0, AppSpacing.px4),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
@@ -102,10 +104,14 @@ class MyVehiculesView extends StackedView<MyVehiculesViewModel> {
                     horizontal: AppSpacing.px16,
                     vertical: AppSpacing.px20,
                   ),
-                  child: CustomButton.filled(
-                    text: MyVehiculesStrings.addNewVehicle,
-                    isDisabled: viewModel.isBusy,
-                    onPressed: viewModel.onAddNewVehicleTapped,
+                  child: SafeArea(
+                    top: false,
+                    bottom: Platform.isAndroid,
+                    child: CustomButton.filled(
+                      text: MyVehiculesStrings.addNewVehicle,
+                      isDisabled: viewModel.isBusy,
+                      onPressed: viewModel.onAddNewVehicleTapped,
+                    ),
                   ),
                 ),
               ),

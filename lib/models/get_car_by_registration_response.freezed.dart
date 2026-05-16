@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$GetCarByRegistrationResponse {
 
-@JsonKey(name: "brand") String get brand;@JsonKey(name: "model") String get model;@JsonKey(name: "color") String get color;@JsonKey(name: "registration_number") String get registrationNumber;@JsonKey(name: "co2_emission") String get co2Emission;
+@JsonKey(name: "brand") String get brand;@JsonKey(name: "model") String get model;@JsonKey(name: "color") String get color;@JsonKey(name: "registration_number") String get registrationNumber;@JsonKey(name: "co2_emission") int get co2Emission;
 /// Create a copy of GetCarByRegistrationResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $GetCarByRegistrationResponseCopyWith<$Res>  {
   factory $GetCarByRegistrationResponseCopyWith(GetCarByRegistrationResponse value, $Res Function(GetCarByRegistrationResponse) _then) = _$GetCarByRegistrationResponseCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "brand") String brand,@JsonKey(name: "model") String model,@JsonKey(name: "color") String color,@JsonKey(name: "registration_number") String registrationNumber,@JsonKey(name: "co2_emission") String co2Emission
+@JsonKey(name: "brand") String brand,@JsonKey(name: "model") String model,@JsonKey(name: "color") String color,@JsonKey(name: "registration_number") String registrationNumber,@JsonKey(name: "co2_emission") int co2Emission
 });
 
 
@@ -72,7 +72,7 @@ as String,model: null == model ? _self.model : model // ignore: cast_nullable_to
 as String,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
 as String,registrationNumber: null == registrationNumber ? _self.registrationNumber : registrationNumber // ignore: cast_nullable_to_non_nullable
 as String,co2Emission: null == co2Emission ? _self.co2Emission : co2Emission // ignore: cast_nullable_to_non_nullable
-as String,
+as int,
   ));
 }
 
@@ -157,7 +157,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "brand")  String brand, @JsonKey(name: "model")  String model, @JsonKey(name: "color")  String color, @JsonKey(name: "registration_number")  String registrationNumber, @JsonKey(name: "co2_emission")  String co2Emission)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: "brand")  String brand, @JsonKey(name: "model")  String model, @JsonKey(name: "color")  String color, @JsonKey(name: "registration_number")  String registrationNumber, @JsonKey(name: "co2_emission")  int co2Emission)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GetCarByRegistrationResponse() when $default != null:
 return $default(_that.brand,_that.model,_that.color,_that.registrationNumber,_that.co2Emission);case _:
@@ -178,7 +178,7 @@ return $default(_that.brand,_that.model,_that.color,_that.registrationNumber,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "brand")  String brand, @JsonKey(name: "model")  String model, @JsonKey(name: "color")  String color, @JsonKey(name: "registration_number")  String registrationNumber, @JsonKey(name: "co2_emission")  String co2Emission)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: "brand")  String brand, @JsonKey(name: "model")  String model, @JsonKey(name: "color")  String color, @JsonKey(name: "registration_number")  String registrationNumber, @JsonKey(name: "co2_emission")  int co2Emission)  $default,) {final _that = this;
 switch (_that) {
 case _GetCarByRegistrationResponse():
 return $default(_that.brand,_that.model,_that.color,_that.registrationNumber,_that.co2Emission);case _:
@@ -198,7 +198,7 @@ return $default(_that.brand,_that.model,_that.color,_that.registrationNumber,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "brand")  String brand, @JsonKey(name: "model")  String model, @JsonKey(name: "color")  String color, @JsonKey(name: "registration_number")  String registrationNumber, @JsonKey(name: "co2_emission")  String co2Emission)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: "brand")  String brand, @JsonKey(name: "model")  String model, @JsonKey(name: "color")  String color, @JsonKey(name: "registration_number")  String registrationNumber, @JsonKey(name: "co2_emission")  int co2Emission)?  $default,) {final _that = this;
 switch (_that) {
 case _GetCarByRegistrationResponse() when $default != null:
 return $default(_that.brand,_that.model,_that.color,_that.registrationNumber,_that.co2Emission);case _:
@@ -220,7 +220,7 @@ class _GetCarByRegistrationResponse implements GetCarByRegistrationResponse {
 @override@JsonKey(name: "model") final  String model;
 @override@JsonKey(name: "color") final  String color;
 @override@JsonKey(name: "registration_number") final  String registrationNumber;
-@override@JsonKey(name: "co2_emission") final  String co2Emission;
+@override@JsonKey(name: "co2_emission") final  int co2Emission;
 
 /// Create a copy of GetCarByRegistrationResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -255,7 +255,7 @@ abstract mixin class _$GetCarByRegistrationResponseCopyWith<$Res> implements $Ge
   factory _$GetCarByRegistrationResponseCopyWith(_GetCarByRegistrationResponse value, $Res Function(_GetCarByRegistrationResponse) _then) = __$GetCarByRegistrationResponseCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "brand") String brand,@JsonKey(name: "model") String model,@JsonKey(name: "color") String color,@JsonKey(name: "registration_number") String registrationNumber,@JsonKey(name: "co2_emission") String co2Emission
+@JsonKey(name: "brand") String brand,@JsonKey(name: "model") String model,@JsonKey(name: "color") String color,@JsonKey(name: "registration_number") String registrationNumber,@JsonKey(name: "co2_emission") int co2Emission
 });
 
 
@@ -279,7 +279,7 @@ as String,model: null == model ? _self.model : model // ignore: cast_nullable_to
 as String,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
 as String,registrationNumber: null == registrationNumber ? _self.registrationNumber : registrationNumber // ignore: cast_nullable_to_non_nullable
 as String,co2Emission: null == co2Emission ? _self.co2Emission : co2Emission // ignore: cast_nullable_to_non_nullable
-as String,
+as int,
   ));
 }
 

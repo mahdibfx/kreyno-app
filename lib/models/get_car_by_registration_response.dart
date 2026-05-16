@@ -11,7 +11,7 @@ abstract class GetCarByRegistrationResponse
     @JsonKey(name: "model") required String model,
     @JsonKey(name: "color") required String color,
     @JsonKey(name: "registration_number") required String registrationNumber,
-    @JsonKey(name: "co2_emission") required String co2Emission,
+    @JsonKey(name: "co2_emission") required int co2Emission,
   }) = _GetCarByRegistrationResponse;
 
   factory GetCarByRegistrationResponse.fromJson(Map<String, dynamic> json) =>

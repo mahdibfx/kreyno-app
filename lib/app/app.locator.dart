@@ -27,6 +27,7 @@ import '../services/picked_language_service.dart';
 import '../services/reservations_service.dart';
 import '../services/shared_prefs_service.dart';
 import '../services/stripe_service.dart';
+import '../services/tasks_service.dart';
 import '../services/toast_service.dart';
 import '../services/tracking_service.dart';
 import '../services/url_launcher_service.dart';
@@ -69,4 +70,5 @@ Future<void> setupLocator({
   locator.registerFactory(() => GoogleMapService());
   locator.registerLazySingleton(() => TrackingService());
   locator.registerLazySingleton(() => ChatService());
+  locator.registerLazySingleton(() => TasksService());
 }

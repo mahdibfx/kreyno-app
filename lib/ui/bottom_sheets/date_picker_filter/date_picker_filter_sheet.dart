@@ -161,15 +161,18 @@ class DatePickerFilterSheet extends StackedView<DatePickerFilterSheetModel> {
                 onPressed: viewModel.resetFilter,
               ),
               Expanded(
-                child: CustomButton.filled(
-                  text: DatePickerFilterSheetStrings.apply,
-                  onPressed: () => completer?.call(
-                    SheetResponse(
-                      confirmed: true,
-                      data: [
-                        viewModel.selectedStartDate,
-                        viewModel.selectedEndDate,
-                      ],
+                child: SafeArea(
+                  top: false,
+                  child: CustomButton.filled(
+                    text: DatePickerFilterSheetStrings.apply,
+                    onPressed: () => completer?.call(
+                      SheetResponse(
+                        confirmed: true,
+                        data: [
+                          viewModel.selectedStartDate,
+                          viewModel.selectedEndDate,
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -123,6 +123,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
           const CustomDivider(),
           VGap(AppSpacing.px16),
           InputField(
+            disabled: true,
             textInputAction: TextInputAction.done,
             controller: viewModel.priceController,
             focusNode: viewModel.priceFocusNode,
@@ -132,9 +133,7 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
             onChanged: (f) {
               viewModel.rebuildUi();
             },
-            hintText:
-                "${"createSpot.recommended".tr()}: "
-                "2.4€ ∼ 7€",
+            hintText: "2.5€",
             trailingIcon: Container(
               padding: const EdgeInsets.all(10),
               child: const CustomIcon(
@@ -145,44 +144,44 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
             ),
             keyboardType: TextInputType.number,
           ),
-          VGap(AppSpacing.px16),
-          Row(
-            children: [
-              const CustomIcon(
-                iconPath: AppIcons.energy,
-                color: AppColors.greenKre,
-              ),
-              HGap(AppSpacing.px4),
-              CustomText(
-                text: "createSpot.electricCharging".tr(),
-                style: CustomTextStyle.smallParagraphMedium,
-                color: AppColors.textKre,
-              ),
-            ],
-          ),
-          VGap(AppSpacing.px8),
-          Row(
-            children: [
-              Expanded(
-                child: LabeledCheckbox(
-                  label: "createSpot.possible".tr(),
-                  value: viewModel.bornDisponible,
-                  onChanged: (d) {
-                    viewModel.changedBorneValue(true);
-                  },
-                ),
-              ),
-              Expanded(
-                child: LabeledCheckbox(
-                  label: "createSpot.notPossible".tr(),
-                  value: !viewModel.bornDisponible,
-                  onChanged: (d) {
-                    viewModel.changedBorneValue(false);
-                  },
-                ),
-              ),
-            ],
-          ),
+          // VGap(AppSpacing.px16),
+          // Row(
+          //   children: [
+          //     const CustomIcon(
+          //       iconPath: AppIcons.energy,
+          //       color: AppColors.greenKre,
+          //     ),
+          //     HGap(AppSpacing.px4),
+          //     CustomText(
+          //       text: "createSpot.electricCharging".tr(),
+          //       style: CustomTextStyle.smallParagraphMedium,
+          //       color: AppColors.textKre,
+          //     ),
+          //   ],
+          // ),
+          // VGap(AppSpacing.px8),
+          // Row(
+          //   children: [
+          //     Expanded(
+          //       child: LabeledCheckbox(
+          //         label: "createSpot.possible".tr(),
+          //         value: viewModel.bornDisponible,
+          //         onChanged: (d) {
+          //           viewModel.changedBorneValue(true);
+          //         },
+          //       ),
+          //     ),
+          //     Expanded(
+          //       child: LabeledCheckbox(
+          //         label: "createSpot.notPossible".tr(),
+          //         value: !viewModel.bornDisponible,
+          //         onChanged: (d) {
+          //           viewModel.changedBorneValue(false);
+          //         },
+          //       ),
+          //     ),
+          //   ],
+          // ),
           VGap(AppSpacing.px24),
           SafeArea(
             top: false,

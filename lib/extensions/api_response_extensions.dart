@@ -26,6 +26,7 @@ extension ApiResponseExtensions<T> on Future<ApiResponse<T>> {
       return left(errorMessage);
     } catch (error) {
       _logger.e('Unexpected error occurred', error: error);
+      rethrow;
       return left(ApiErrorStrings.unexpectedError);
     }
   }

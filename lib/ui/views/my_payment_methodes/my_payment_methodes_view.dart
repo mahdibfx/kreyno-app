@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
@@ -111,10 +113,14 @@ class MyPaymentMethodesView extends StackedView<MyPaymentMethodesViewModel> {
                     horizontal: AppSpacing.px16,
                     vertical: AppSpacing.px20,
                   ),
-                  child: CustomButton.filled(
-                    text: MyPaymentMethodesStrings.addNewCard,
-                    isDisabled: viewModel.isBusy,
-                    onPressed: viewModel.onAddNewCardTapped,
+                  child: SafeArea(
+                    top: false,
+                    bottom: Platform.isAndroid,
+                    child: CustomButton.filled(
+                      text: MyPaymentMethodesStrings.addNewCard,
+                      isDisabled: viewModel.isBusy,
+                      onPressed: viewModel.onAddNewCardTapped,
+                    ),
                   ),
                 ),
               ),

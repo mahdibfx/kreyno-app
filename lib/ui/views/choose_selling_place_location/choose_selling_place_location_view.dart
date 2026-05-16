@@ -22,6 +22,7 @@ class ChooseSellingPlaceLocationView
     Widget? child,
   ) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           GoogleMap(

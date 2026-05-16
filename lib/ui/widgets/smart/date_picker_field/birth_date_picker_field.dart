@@ -36,70 +36,73 @@ class BirthDatePickerField extends StackedView<BirthDatePickerFieldModel>
     BirthDatePickerFieldModel viewModel,
     Widget? child,
   ) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: AppSpacing.px12 / 2,
-      children: [
-        CustomText.smallParagraphMedium(labelText, color: AppColors.textKre),
-        Row(
-          spacing: AppSpacing.px8,
-          children: [
-            Expanded(
-              child: DropDownField<int>(
-                value: viewModel.selectedDay,
+    return SafeArea(
+      top: false,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: AppSpacing.px12 / 2,
+        children: [
+          CustomText.smallParagraphMedium(labelText, color: AppColors.textKre),
+          Row(
+            spacing: AppSpacing.px8,
+            children: [
+              Expanded(
+                child: DropDownField<int>(
+                  value: viewModel.selectedDay,
 
-                menuWidth: 30.dw,
-                items: viewModel.days.map((int day) {
-                  return DropdownMenuEntry<int>(
-                    value: day,
-                    label: day.toString(),
-                    labelWidget: CustomText.smallParagraphMedium(
-                      day.toString(),
-                      color: AppColors.mainKre,
-                    ),
-                  );
-                }).toList(),
-                onChanged: (value) => viewModel.setSelectedDay(value!),
+                  menuWidth: 30.dw,
+                  items: viewModel.days.map((int day) {
+                    return DropdownMenuEntry<int>(
+                      value: day,
+                      label: day.toString(),
+                      labelWidget: CustomText.smallParagraphMedium(
+                        day.toString(),
+                        color: AppColors.mainKre,
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (value) => viewModel.setSelectedDay(value!),
+                ),
               ),
-            ),
-            Expanded(
-              child: DropDownField<int>(
-                value: viewModel.selectedMonth,
+              Expanded(
+                child: DropDownField<int>(
+                  value: viewModel.selectedMonth,
 
-                menuWidth: 50.dw,
-                items: viewModel.months.map((int month) {
-                  return DropdownMenuEntry<int>(
-                    value: month,
-                    label: viewModel.getMonthName(month),
-                    labelWidget: CustomText.smallParagraphMedium(
-                      viewModel.getMonthName(month),
-                      color: AppColors.mainKre,
-                    ),
-                  );
-                }).toList(),
-                onChanged: (value) => viewModel.setSelectedMonth(value!),
+                  menuWidth: 50.dw,
+                  items: viewModel.months.map((int month) {
+                    return DropdownMenuEntry<int>(
+                      value: month,
+                      label: viewModel.getMonthName(month),
+                      labelWidget: CustomText.smallParagraphMedium(
+                        viewModel.getMonthName(month),
+                        color: AppColors.mainKre,
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (value) => viewModel.setSelectedMonth(value!),
+                ),
               ),
-            ),
-            Expanded(
-              child: DropDownField<int>(
-                value: viewModel.selectedYear,
-                menuWidth: 30.dw,
-                items: viewModel.years.map((int year) {
-                  return DropdownMenuEntry<int>(
-                    value: year,
-                    label: year.toString(),
-                    labelWidget: CustomText.smallParagraphMedium(
-                      year.toString(),
-                      color: AppColors.mainKre,
-                    ),
-                  );
-                }).toList(),
-                onChanged: (value) => viewModel.setSelectedYear(value!),
+              Expanded(
+                child: DropDownField<int>(
+                  value: viewModel.selectedYear,
+                  menuWidth: 30.dw,
+                  items: viewModel.years.map((int year) {
+                    return DropdownMenuEntry<int>(
+                      value: year,
+                      label: year.toString(),
+                      labelWidget: CustomText.smallParagraphMedium(
+                        year.toString(),
+                        color: AppColors.mainKre,
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (value) => viewModel.setSelectedYear(value!),
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
     );
   }
 

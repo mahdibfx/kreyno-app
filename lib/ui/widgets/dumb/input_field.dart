@@ -24,6 +24,7 @@ class InputField extends StatelessWidget {
   final String? restorationId;
   final bool? showOptionalLabel;
   final int? maxLines;
+  final String? initialValue;
 
   const InputField({
     super.key,
@@ -36,6 +37,7 @@ class InputField extends StatelessWidget {
     this.textInputAction = TextInputAction.next,
     this.trailingIcon,
     this.prefixWidget,
+    this.initialValue,
     this.leadingIcon,
     this.onTrailingIconTapped,
     this.maxLength,
@@ -88,6 +90,7 @@ class InputField extends StatelessWidget {
             if (prefixWidget != null) prefixWidget!,
             Expanded(
               child: TextFormField(
+                initialValue: initialValue,
                 restorationId: restorationId,
                 controller: controller,
                 focusNode: focusNode,
