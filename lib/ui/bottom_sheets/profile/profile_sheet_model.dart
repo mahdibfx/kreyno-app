@@ -14,6 +14,7 @@ import 'package:kreyno/ui/views/signin/signin_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ProfileSheetModel extends ReactiveViewModel {
   final _logger = getLogger('ProfileSheetModel');
@@ -58,10 +59,17 @@ class ProfileSheetModel extends ReactiveViewModel {
 
   void onConditionsOfUseTapped() async {
     // TODO: Implement conditions of use
+    launchUrlString('https://kreyno.fr/cgu');
+  }
+
+  void onConditionsOfSaleTapped() async {
+    // TODO: Implement conditions of use
+    launchUrlString('https://kreyno.fr/cgv');
   }
 
   void onPrivacyPolicyTapped() async {
     // TODO: Implement privacy policy
+    launchUrlString('https://kreyno.fr/privacy');
   }
 
   void onChangeLanguageTapped() async {
