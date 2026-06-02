@@ -118,7 +118,6 @@ class ReservationsService with ListenableServiceMixin {
 
             _logger.i("✅ Reservation updated successfully");
           } catch (e, stackTrace) {
-            rethrow;
             _logger.e("Error parsing reservation: $e");
             _logger.e(stackTrace.toString());
           }
@@ -182,7 +181,6 @@ class ReservationsService with ListenableServiceMixin {
 
             _logger.i("✅ Reservation updated successfully");
           } catch (e, stackTrace) {
-            rethrow;
             _logger.e("Error parsing reservation: $e");
             _logger.e(stackTrace.toString());
           }

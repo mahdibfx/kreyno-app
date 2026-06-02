@@ -113,23 +113,23 @@ class SoldParkingSpotWidget extends ViewModelWidget<MyLetPlaceViewModel> {
           VGap(AppSpacing.px8),
           Row(
             children: [
-              CustomIcon(
-                iconPath: AppIcons.evCharging,
-                color: viewModel.parkingSpot!.electricChargeStation
-                    ? AppColors.greenKre
-                    : AppColors.textKre,
-              ),
-              HGap(AppSpacing.px4),
-              CustomText(
-                text: viewModel.parkingSpot!.electricChargeStation
-                    ? "myParkingSpots.chargingAvailable".tr()
-                    : "myParkingSpots.chargingNotAvailable".tr(),
-                style: CustomTextStyle.smallParagraphMedium,
-                color: viewModel.parkingSpot!.electricChargeStation
-                    ? AppColors.greenKre
-                    : AppColors.textKre,
-              ),
-              const Expanded(child: SizedBox()),
+              // CustomIcon(
+              //   iconPath: AppIcons.evCharging,
+              //   color: viewModel.parkingSpot!.electricChargeStation
+              //       ? AppColors.greenKre
+              //       : AppColors.textKre,
+              // ),
+              // HGap(AppSpacing.px4),
+              // CustomText(
+              //   text: viewModel.parkingSpot!.electricChargeStation
+              //       ? "myParkingSpots.chargingAvailable".tr()
+              //       : "myParkingSpots.chargingNotAvailable".tr(),
+              //   style: CustomTextStyle.smallParagraphMedium,
+              //   color: viewModel.parkingSpot!.electricChargeStation
+              //       ? AppColors.greenKre
+              //       : AppColors.textKre,
+              // ),
+              // const Expanded(child: SizedBox()),
               InkWell(
                 onTap: () async {
                   final d = await locator<DialogService>().showCustomDialog(

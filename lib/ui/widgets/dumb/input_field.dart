@@ -19,6 +19,8 @@ class InputField extends StatelessWidget {
   final Function()? onTrailingIconTapped;
   final int? maxLength;
   final bool disabled;
+  final bool readOnly;
+  final VoidCallback? onTap;
   final Function(String)? onChanged;
   final bool? isRequired;
   final String? restorationId;
@@ -42,6 +44,8 @@ class InputField extends StatelessWidget {
     this.onTrailingIconTapped,
     this.maxLength,
     this.disabled = false,
+    this.readOnly = false,
+    this.onTap,
     this.onChanged,
     this.isRequired = true,
     this.restorationId,
@@ -94,6 +98,8 @@ class InputField extends StatelessWidget {
                 restorationId: restorationId,
                 controller: controller,
                 focusNode: focusNode,
+                readOnly: readOnly,
+                onTap: onTap,
                 textInputAction: textInputAction,
                 maxLines: maxLines,
                 keyboardType: keyboardType,

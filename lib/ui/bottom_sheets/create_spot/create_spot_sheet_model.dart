@@ -8,6 +8,7 @@ import 'package:kreyno/dtos/create_parking_spot_dto.dart';
 import 'package:kreyno/services/location_service.dart';
 import 'package:kreyno/services/parking_spots_service.dart';
 import 'package:kreyno/services/toast_service.dart';
+import 'package:kreyno/ui/views/choose_selling_place_location/choose_selling_place_location_view.dart';
 import 'package:kreyno/ui/views/my_let_place/my_let_place_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -22,16 +23,24 @@ class CreateSpotSheetModel extends ReactiveViewModel {
   final _toastService = locator<ToastService>();
 
   final placeController = TextEditingController();
-  final priceController = TextEditingController();
+  final priceController = TextEditingController(text: "2.5");
   final _parkingSpotsService = locator<ParkingSpotsService>();
   final priceFocusNode = FocusNode();
-  bool bornDisponible = true;
+  final placeFocusNode = FocusNode();
+  bool bornDisponible = false;
   LatLng? spotLatLng;
   String? address;
 
   choosePlaceInputClicked() async {
-    final (String, LatLng)? result = await _navigationService
-        .navigateToChooseSellingPlaceLocationView();
+    placeFocusNode.unfocus();
+
+    final (String, LatLng)? result = await Navigator.push(
+      placeFocusNode.context!,
+      MaterialPageRoute(
+        builder: (context) => const ChooseSellingPlaceLocationView(),
+        fullscreenDialog: true,
+      ),
+    );
 
     if (result != null) {
       placeController.text = result.$1;
@@ -93,7 +102,6 @@ class CreateSpotSheetModel extends ReactiveViewModel {
 
   bool validateCreateSpotButton() {
     return placeController.text.isNotEmpty &&
-        priceController.text.isNotEmpty &&
         spotLatLng != null &&
         address != null;
   }

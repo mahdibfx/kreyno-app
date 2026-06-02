@@ -8,6 +8,7 @@ import 'package:kreyno/app/app.dialogs.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/enums/onboarding_step.dart';
+import 'package:kreyno/services/app_bottom_sheet_service.dart';
 import 'package:kreyno/services/onboarding_service.dart';
 import 'package:kreyno/ui/common/responsive_sizer.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -22,6 +23,16 @@ Future<void> _initApp() async {
   Stripe.publishableKey = dotenv.env['STRIPE_PUBLISHABLE_KEY'] ?? '';
 
   await setupLocator();
+  // Replace stacked's GetX-based BottomSheetService with a native one so that
+  // sheets stay responsive after navigating to a screen and coming back.
+  // Must run before setupBottomSheetUi() so the sheet builders are registered
+  // on the replacement instance.
+  if (locator.isRegistered<BottomSheetService>()) {
+    locator.unregister<BottomSheetService>();
+  }
+  locator.registerLazySingleton<BottomSheetService>(
+    () => AppBottomSheetService(),
+  );
   setupDialogUi();
   setupBottomSheetUi();
   await SystemChrome.setPreferredOrientations([

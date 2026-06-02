@@ -117,7 +117,6 @@ class ClientTrackingViewModel extends ReactiveViewModel {
   void _onReservationStatusChanged() {
     if (_reservationsService.reservation?.status ==
         ReservationStatus.canceled) {
-      print("fumed here");
       _toastService.showError(title: "clientCanceledOrder.title".tr());
       _cleanupAndNavigateHome();
     }

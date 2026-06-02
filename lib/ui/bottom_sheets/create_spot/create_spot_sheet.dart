@@ -8,6 +8,7 @@ import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/ui/common/app_colors.dart';
 import 'package:kreyno/ui/common/app_icons.dart';
 import 'package:kreyno/ui/common/app_spacing.dart';
+import 'package:kreyno/ui/views/choose_selling_place_location/choose_selling_place_location_view.dart';
 import 'package:kreyno/ui/widgets/dumb/bottom_sheet_layout.dart';
 import 'package:kreyno/ui/widgets/dumb/rounded_button.dart';
 import 'package:kreyno/ui/widgets/dumb/custom_button.dart';
@@ -60,22 +61,16 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
             ],
           ),
           VGap(AppSpacing.px20),
-          InkWell(
-            onTap: () async {
-              viewModel.choosePlaceInputClicked();
-            },
-            child: IgnorePointer(
-              ignoring: true,
-              child: InputField(
-                disabled: false,
-                controller: viewModel.placeController,
-                showOptionalLabel: false,
-                focusNode: FocusNode(),
-                labelText: "createSpot.placeLabel".tr(),
-                hintText: "createSpot.spotNameHint".tr(),
-                keyboardType: TextInputType.text,
-              ),
-            ),
+          InputField(
+            disabled: false,
+            readOnly: true,
+            onTap: viewModel.choosePlaceInputClicked,
+            controller: viewModel.placeController,
+            showOptionalLabel: false,
+            focusNode: viewModel.placeFocusNode,
+            labelText: "createSpot.placeLabel".tr(),
+            hintText: "createSpot.spotNameHint".tr(),
+            keyboardType: TextInputType.text,
           ),
           VGap(AppSpacing.px8),
           Row(

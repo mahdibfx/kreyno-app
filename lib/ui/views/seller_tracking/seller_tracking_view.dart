@@ -89,6 +89,7 @@ class SellerTrackingView extends StackedView<SellerTrackingViewModel> {
   void onViewModelReady(SellerTrackingViewModel viewModel) {
     // TODO: implement onViewModelReady
     viewModel.onInit(reservation);
+
     super.onViewModelReady(viewModel);
   }
 

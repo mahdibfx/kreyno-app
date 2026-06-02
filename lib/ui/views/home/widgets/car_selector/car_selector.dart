@@ -293,7 +293,7 @@ class CarSelector extends StackedView<CarSelectorModel> {
                           textStyle: const TextStyle(fontSize: 14),
                           placeType: PlaceType.geocode,
                           showError: false,
-                          countries: const ["fr"],
+                          countries: const ["fr", "dz"],
                           itemClick: (positionPrediction) async {
                             // viewModel.onItemClicked(positionPrediction.description!);
                             viewModel.searchFocusNode.unfocus();

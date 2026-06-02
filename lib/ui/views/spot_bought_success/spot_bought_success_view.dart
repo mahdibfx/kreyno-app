@@ -216,30 +216,30 @@ class SpotBoughtSuccessView extends StackedView<SpotBoughtSuccessViewModel> {
                           "spotBoughtSuccess.other".tr(),
                           color: AppColors.textKre,
                         ),
-                        VGap(AppSpacing.px1 * 6),
-                        Row(
-                          children: [
-                            CustomIcon(
-                              iconPath: AppIcons.evCharging,
-                              color:
-                                  reservation.parkingPlace.electricChargeStation
-                                  ? AppColors.greenKre
-                                  : AppColors.textKre,
-                            ),
-                            HGap(AppSpacing.px4),
-                            CustomText(
-                              text:
-                                  reservation.parkingPlace.electricChargeStation
-                                  ? "myParkingSpots.chargingAvailable".tr()
-                                  : "myParkingSpots.chargingNotAvailable".tr(),
-                              style: CustomTextStyle.smallParagraphMedium,
-                              color:
-                                  reservation.parkingPlace.electricChargeStation
-                                  ? AppColors.greenKre
-                                  : AppColors.textKre,
-                            ),
-                          ],
-                        ),
+                        // VGap(AppSpacing.px1 * 6),
+                        // Row(
+                        //   children: [
+                        //     CustomIcon(
+                        //       iconPath: AppIcons.evCharging,
+                        //       color:
+                        //           reservation.parkingPlace.electricChargeStation
+                        //           ? AppColors.greenKre
+                        //           : AppColors.textKre,
+                        //     ),
+                        //     HGap(AppSpacing.px4),
+                        //     CustomText(
+                        //       text:
+                        //           reservation.parkingPlace.electricChargeStation
+                        //           ? "myParkingSpots.chargingAvailable".tr()
+                        //           : "myParkingSpots.chargingNotAvailable".tr(),
+                        //       style: CustomTextStyle.smallParagraphMedium,
+                        //       color:
+                        //           reservation.parkingPlace.electricChargeStation
+                        //           ? AppColors.greenKre
+                        //           : AppColors.textKre,
+                        //     ),
+                        //   ],
+                        // ),
                         VGap(AppSpacing.px16),
                         // const PaymentMethodListTile(card: null,),
                         VGap(AppSpacing.px1 * 34),

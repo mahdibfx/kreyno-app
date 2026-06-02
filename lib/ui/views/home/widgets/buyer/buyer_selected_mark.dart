@@ -98,23 +98,23 @@ class BuyerSelectedMark extends ViewModelWidget<HomeViewModel> {
                     VGap(AppSpacing.px8),
                     Row(
                       children: [
-                        CustomIcon(
-                          iconPath: AppIcons.evCharging,
-                          color: viewModel.selectedSpot!.electricChargeStation
-                              ? AppColors.greenKre
-                              : AppColors.textKre,
-                        ),
-                        HGap(AppSpacing.px4),
-                        CustomText(
-                          text: viewModel.selectedSpot!.electricChargeStation
-                              ? "myParkingSpots.chargingAvailable".tr()
-                              : "myParkingSpots.chargingNotAvailable".tr(),
-                          style: CustomTextStyle.smallParagraphMedium,
-                          color: viewModel.selectedSpot!.electricChargeStation
-                              ? AppColors.greenKre
-                              : AppColors.textKre,
-                        ),
-                        HGap(AppSpacing.px8),
+                        // CustomIcon(
+                        //   iconPath: AppIcons.evCharging,
+                        //   color: viewModel.selectedSpot!.electricChargeStation
+                        //       ? AppColors.greenKre
+                        //       : AppColors.textKre,
+                        // ),
+                        // HGap(AppSpacing.px4),
+                        // CustomText(
+                        //   text: viewModel.selectedSpot!.electricChargeStation
+                        //       ? "myParkingSpots.chargingAvailable".tr()
+                        //       : "myParkingSpots.chargingNotAvailable".tr(),
+                        //   style: CustomTextStyle.smallParagraphMedium,
+                        //   color: viewModel.selectedSpot!.electricChargeStation
+                        //       ? AppColors.greenKre
+                        //       : AppColors.textKre,
+                        // ),
+                        // HGap(AppSpacing.px8),
                         Row(
                           children: [
                             const CustomIcon(

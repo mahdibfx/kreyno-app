@@ -115,23 +115,23 @@ class PendingReservation extends ViewModelWidget<SellerTrackingViewModel> {
         VGap(AppSpacing.px8),
         Row(
           children: [
-            CustomIcon(
-              iconPath: AppIcons.evCharging,
-              color: viewModel.parkingSpot.electricChargeStation
-                  ? AppColors.greenKre
-                  : AppColors.textKre,
-            ),
-            HGap(AppSpacing.px4),
-            CustomText(
-              text: viewModel.parkingSpot.electricChargeStation
-                  ? "myParkingSpots.chargingAvailable".tr()
-                  : "myParkingSpots.chargingNotAvailable".tr(),
-              style: CustomTextStyle.smallParagraphMedium,
-              color: viewModel.parkingSpot.electricChargeStation
-                  ? AppColors.greenKre
-                  : AppColors.textKre,
-            ),
-            HGap(AppSpacing.px8),
+            // CustomIcon(
+            //   iconPath: AppIcons.evCharging,
+            //   color: viewModel.parkingSpot.electricChargeStation
+            //       ? AppColors.greenKre
+            //       : AppColors.textKre,
+            // ),
+            // HGap(AppSpacing.px4),
+            // CustomText(
+            //   text: viewModel.parkingSpot.electricChargeStation
+            //       ? "myParkingSpots.chargingAvailable".tr()
+            //       : "myParkingSpots.chargingNotAvailable".tr(),
+            //   style: CustomTextStyle.smallParagraphMedium,
+            //   color: viewModel.parkingSpot.electricChargeStation
+            //       ? AppColors.greenKre
+            //       : AppColors.textKre,
+            // ),
+            // HGap(AppSpacing.px8),
             Row(
               children: [
                 const CustomIcon(

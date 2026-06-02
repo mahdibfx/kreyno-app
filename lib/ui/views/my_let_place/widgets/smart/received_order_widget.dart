@@ -75,13 +75,8 @@ class RefuseReasonForm extends ViewModelWidget<MyLetPlaceViewModel> {
         VGap(AppSpacing.px20),
         InkWell(
           onTap: () {
-            // viewModel.cancelRefuseOrder();
-            print("hello world ${viewModel.isRefused}");
             viewModel.isRefused = false;
-            print("hello world ${viewModel.isRefused}");
-
             viewModel.rebuildUi();
-            print("hello world ${viewModel.isRefused}");
           },
           child: const CustomIcon(iconPath: AppIcons.arrowLeft),
         ),
@@ -109,6 +104,7 @@ class RefuseReasonForm extends ViewModelWidget<MyLetPlaceViewModel> {
                     viewModel.observation == viewModel.observations[index],
                 onChanged: (d) {
                   viewModel.observation = viewModel.observations[index];
+                  viewModel.isOtherSelected = false;
                   viewModel.rebuildUi();
                 },
               ),
@@ -135,6 +131,9 @@ class RefuseReasonForm extends ViewModelWidget<MyLetPlaceViewModel> {
             hintText: "receivedOrder.enterReason".tr(),
             keyboardType: TextInputType.text,
             maxLines: 4,
+            onChanged: (value) {
+              viewModel.observation = value;
+            },
           ),
         VGap(AppSpacing.px24),
         CustomButton.filled(
@@ -331,25 +330,25 @@ class DemandOrderBody extends ViewModelWidget<MyLetPlaceViewModel> {
             ),
           ],
         ),
-        VGap(AppSpacing.px8),
-        Row(
-          children: [
-            const CustomIcon(
-              iconPath: AppIcons.evCharging,
-              color: AppColors.greenKre,
-            ),
-            HGap(AppSpacing.px4),
-            CustomText(
-              text: viewModel.reservation!.parkingPlace.electricChargeStation
-                  ? "myParkingSpots.chargingAvailable".tr()
-                  : "myParkingSpots.chargingNotAvailable".tr(),
-              style: CustomTextStyle.smallParagraphMedium,
-              color: viewModel.reservation!.parkingPlace.electricChargeStation
-                  ? AppColors.greenKre
-                  : AppColors.textKre,
-            ),
-          ],
-        ),
+        // VGap(AppSpacing.px8),
+        // Row(
+        //   children: [
+        //     const CustomIcon(
+        //       iconPath: AppIcons.evCharging,
+        //       color: AppColors.greenKre,
+        //     ),
+        //     HGap(AppSpacing.px4),
+        //     CustomText(
+        //       text: viewModel.reservation!.parkingPlace.electricChargeStation
+        //           ? "myParkingSpots.chargingAvailable".tr()
+        //           : "myParkingSpots.chargingNotAvailable".tr(),
+        //       style: CustomTextStyle.smallParagraphMedium,
+        //       color: viewModel.reservation!.parkingPlace.electricChargeStation
+        //           ? AppColors.greenKre
+        //           : AppColors.textKre,
+        //     ),
+        //   ],
+        // ),
         VGap(AppSpacing.px24),
         SafeArea(
           top: false,

@@ -95,7 +95,7 @@ class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                GestureDetector(
+                InkWell(
                   onTap: onBackPressed,
                   child: Container(
                     color: Colors.transparent,

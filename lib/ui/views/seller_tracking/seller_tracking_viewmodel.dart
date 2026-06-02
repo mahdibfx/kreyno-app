@@ -213,6 +213,8 @@ class SellerTrackingViewModel extends ReactiveViewModel {
       CameraUpdate.newLatLngZoom(currentLocationStream!, 15),
     );
     rebuildUi();
+    rebuildUi();
+    rebuildUi();
   }
 
   listenToReservationUpdates() {

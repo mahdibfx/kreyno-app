@@ -301,20 +301,20 @@ class InitialPaymentState extends ViewModelWidget<PayForSpotSheetModel> {
         VGap(AppSpacing.px8),
         Row(
           children: [
-            const CustomIcon(
-              iconPath: AppIcons.evCharging,
-              color: AppColors.greenKre,
-            ),
-            HGap(AppSpacing.px4),
-            CustomText(
-              text: parkingSpot.electricChargeStation
-                  ? "myParkingSpots.chargingAvailable".tr()
-                  : "myParkingSpots.chargingNotAvailable".tr(),
-              style: CustomTextStyle.smallParagraphMedium,
-              color: parkingSpot.electricChargeStation
-                  ? AppColors.greenKre
-                  : AppColors.textKre,
-            ),
+            // const CustomIcon(
+            //   iconPath: AppIcons.evCharging,
+            //   color: AppColors.greenKre,
+            // ),
+            // HGap(AppSpacing.px4),
+            // CustomText(
+            //   text: parkingSpot.electricChargeStation
+            //       ? "myParkingSpots.chargingAvailable".tr()
+            //       : "myParkingSpots.chargingNotAvailable".tr(),
+            //   style: CustomTextStyle.smallParagraphMedium,
+            //   color: parkingSpot.electricChargeStation
+            //       ? AppColors.greenKre
+            //       : AppColors.textKre,
+            // ),
             HGap(AppSpacing.px8),
             Row(
               children: [

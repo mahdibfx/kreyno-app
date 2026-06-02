@@ -132,35 +132,35 @@ class BottomActionBar extends ViewModelWidget<ClientTrackingViewModel> {
                 VGap(AppSpacing.px8),
                 Row(
                   children: [
-                    CustomIcon(
-                      iconPath: AppIcons.evCharging,
-                      color:
-                          viewModel
-                              .reservation!
-                              .parkingPlace
-                              .electricChargeStation
-                          ? AppColors.greenKre
-                          : AppColors.textKre,
-                    ),
-                    HGap(AppSpacing.px4),
-                    CustomText(
-                      text:
-                          viewModel
-                              .reservation!
-                              .parkingPlace
-                              .electricChargeStation
-                          ? "myParkingSpots.chargingAvailable".tr()
-                          : "myParkingSpots.chargingNotAvailable".tr(),
-                      style: CustomTextStyle.smallParagraphMedium,
-                      color:
-                          viewModel
-                              .reservation!
-                              .parkingPlace
-                              .electricChargeStation
-                          ? AppColors.greenKre
-                          : AppColors.textKre,
-                    ),
-                    HGap(AppSpacing.px8),
+                    // CustomIcon(
+                    //   iconPath: AppIcons.evCharging,
+                    //   color:
+                    //       viewModel
+                    //           .reservation!
+                    //           .parkingPlace
+                    //           .electricChargeStation
+                    //       ? AppColors.greenKre
+                    //       : AppColors.textKre,
+                    // ),
+                    // HGap(AppSpacing.px4),
+                    // CustomText(
+                    //   text:
+                    //       viewModel
+                    //           .reservation!
+                    //           .parkingPlace
+                    //           .electricChargeStation
+                    //       ? "myParkingSpots.chargingAvailable".tr()
+                    //       : "myParkingSpots.chargingNotAvailable".tr(),
+                    //   style: CustomTextStyle.smallParagraphMedium,
+                    //   color:
+                    //       viewModel
+                    //           .reservation!
+                    //           .parkingPlace
+                    //           .electricChargeStation
+                    //       ? AppColors.greenKre
+                    //       : AppColors.textKre,
+                    // ),
+                    // HGap(AppSpacing.px8),
                     Row(
                       children: [
                         const CustomIcon(

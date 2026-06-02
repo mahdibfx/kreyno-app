@@ -30,6 +30,7 @@ class HomeView extends StackedView<HomeViewModel> {
                   GoogleMap(
                     initialCameraPosition: viewModel.initialCameraPosition,
                     onMapCreated: viewModel.onMapCreated,
+
                     zoomControlsEnabled: false,
                     myLocationEnabled: true,
                     markers: viewModel.spotsMarkers.toSet(),

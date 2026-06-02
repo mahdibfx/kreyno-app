@@ -213,27 +213,27 @@ class SpotSoldSuccessView extends StackedView<SpotSoldSuccessViewModel> {
                           "spotSoldSuccess.other".tr(),
                           color: AppColors.textKre,
                         ),
-                        VGap(AppSpacing.px1 * 6),
-                        Row(
-                          children: [
-                            const CustomIcon(
-                              iconPath: AppIcons.evCharging,
-                              color: AppColors.greenKre,
-                            ),
-                            HGap(AppSpacing.px4),
-                            CustomText(
-                              text:
-                                  reservation.parkingPlace.electricChargeStation
-                                  ? "myParkingSpots.chargingAvailable".tr()
-                                  : "myParkingSpots.chargingNotAvailable".tr(),
-                              style: CustomTextStyle.smallParagraphMedium,
-                              color:
-                                  reservation.parkingPlace.electricChargeStation
-                                  ? AppColors.greenKre
-                                  : AppColors.textKre,
-                            ),
-                          ],
-                        ),
+                        // VGap(AppSpacing.px1 * 6),
+                        // Row(
+                        //   children: [
+                        //     const CustomIcon(
+                        //       iconPath: AppIcons.evCharging,
+                        //       color: AppColors.greenKre,
+                        //     ),
+                        //     HGap(AppSpacing.px4),
+                        //     CustomText(
+                        //       text:
+                        //           reservation.parkingPlace.electricChargeStation
+                        //           ? "myParkingSpots.chargingAvailable".tr()
+                        //           : "myParkingSpots.chargingNotAvailable".tr(),
+                        //       style: CustomTextStyle.smallParagraphMedium,
+                        //       color:
+                        //           reservation.parkingPlace.electricChargeStation
+                        //           ? AppColors.greenKre
+                        //           : AppColors.textKre,
+                        //     ),
+                        //   ],
+                        // ),
                         VGap(AppSpacing.px16),
                         InputField(
                           disabled: true,

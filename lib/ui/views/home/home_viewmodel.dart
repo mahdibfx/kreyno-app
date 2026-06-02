@@ -132,7 +132,10 @@ class HomeViewModel extends ReactiveViewModel {
     _selectedLocation = location;
     googleMapController.animateCamera(CameraUpdate.newLatLng(location));
     await getNearbyPlaces(lat: location.latitude, lng: location.longitude);
+    notifyListeners();
+  }
 
+  void _addSelectedLocationMarker(LatLng location) {
     _spotsMarkers.removeWhere(
       (marker) => marker.markerId.value == "selected_location",
     );
@@ -144,30 +147,30 @@ class HomeViewModel extends ReactiveViewModel {
           return;
         },
         icon: AssetMapBitmap("assets/images/searched_address.png", height: 55),
-
-        //  AssetMapBitmap(
-        //   "assets/images/searched_address.png",
-        //   width: 42,
-        //   height: 55,
-        // ),
       ),
     );
-    notifyListeners();
-    // return;
   }
 
   Future<void> getNearbyPlaces({double? lat, double? lng}) async {
-    Logger().i(
-      "Getting nearby places ..  ${lat ?? _locationService.currentLocation?.latitude ?? 0}, ${lng ?? _locationService.currentLocation?.longitude ?? 0}",
-    );
+    final queryLat =
+        lat ??
+        _selectedLocation?.latitude ??
+        _locationService.currentLocation?.latitude ??
+        0;
+    final queryLng =
+        lng ??
+        _selectedLocation?.longitude ??
+        _locationService.currentLocation?.longitude ??
+        0;
+    Logger().i("Getting nearby places ..  $queryLat, $queryLng");
     _loadingPlaces = true;
     rebuildUi();
     _spotsMarkers.clear();
     _parkingSpots.clear();
     rebuildUi();
     final result = await _parkingSpotService.getNearbyParkingSpots(
-      lat ?? _locationService.currentLocation?.latitude ?? 0,
-      lng ?? _locationService.currentLocation?.longitude ?? 0,
+      queryLat,
+      queryLng,
       radius,
       _possibleElectric == true
           ? 1
@@ -208,6 +211,10 @@ class HomeViewModel extends ReactiveViewModel {
         rebuildUi();
       },
     );
+    if (_selectedLocation != null) {
+      _addSelectedLocationMarker(_selectedLocation!);
+      rebuildUi();
+    }
     final hash = GeoHash.fromDecimalDegrees(
       _locationService.currentLocation?.longitude ?? 0,
       _locationService.currentLocation?.latitude ?? 0,

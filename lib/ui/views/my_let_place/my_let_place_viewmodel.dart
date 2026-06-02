@@ -71,7 +71,12 @@ class MyLetPlaceViewModel extends ReactiveViewModel {
   }
 
   onStatusChanged() async {
-    if (_reservationService.reservation!.status == ReservationStatus.canceled) {
+    // This fires from the shared ReservationsService. It can be notified right
+    // after the reservation was cleared (e.g. ClientTrackingViewModel.dispose
+    // calls removeReservation), so reservation may be null here. Guard against
+    // that and against running on an already-disposed view model.
+    if (disposed) return;
+    if (_reservationService.reservation?.status == ReservationStatus.canceled) {
       _reservationService.removeReservation();
       notifyListeners();
       _toastService.showInfo(title: "common.reservationCanceled".tr());
