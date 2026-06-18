@@ -79,7 +79,7 @@ class DeleteAccountConfirmationSheet
           CustomButton.filled(
             size: CustomButtonSize.small,
             text: DeleteAccountConfirmationStrings.buttonLabel,
-            onPressed: () {
+            onPressed: () async {
               final dioService = locator<DioService>();
               dioService.dio
                   .delete("/auth/delete-account")

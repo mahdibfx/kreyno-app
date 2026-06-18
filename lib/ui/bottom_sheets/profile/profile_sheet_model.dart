@@ -3,7 +3,6 @@ import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/app/app.router.dart';
-import 'package:kreyno/enums/onboarding_step.dart';
 import 'package:kreyno/models/user.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/onboarding_service.dart';
@@ -59,7 +58,7 @@ class ProfileSheetModel extends ReactiveViewModel {
 
   void onConditionsOfUseTapped() async {
     // TODO: Implement conditions of use
-    launchUrlString('https://kreyno.fr/cgu');
+    launchUrlString('https://kreyno-landing.netlify.app/terms-conditions');
   }
 
   void onConditionsOfSaleTapped() async {
@@ -69,7 +68,7 @@ class ProfileSheetModel extends ReactiveViewModel {
 
   void onPrivacyPolicyTapped() async {
     // TODO: Implement privacy policy
-    launchUrlString('https://kreyno.fr/privacy');
+    launchUrlString('https://kreyno-landing.netlify.app/privacy');
   }
 
   void onChangeLanguageTapped() async {
@@ -92,7 +91,8 @@ class ProfileSheetModel extends ReactiveViewModel {
       _authService.clearAccessToken().then((reponse) {
         reponse.match((r) => null, (r) async {
           await _sharedPreferences.deleteAllData();
-          _onBoardingService.setCurrentStep(OnboardingStep.authentication);
+          // Reset the onboarding step to null so startup routes to onboarding.
+          await _onBoardingService.completeOnboarding();
           _navigationService.clearStackAndShowView(const OnboardingView());
           // _navigationService.clearStackAndShowView(const SigninView());
         });

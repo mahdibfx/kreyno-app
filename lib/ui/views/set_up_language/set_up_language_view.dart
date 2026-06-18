@@ -28,7 +28,9 @@ class SetUpLanguageView extends StackedView<SetUpLanguageViewModel> {
         padding: EdgeInsets.only(
           left: AppSpacing.px16,
           right: AppSpacing.px16,
-          bottom: AppSpacing.px20,
+          // Add the bottom system inset so the continue button clears the
+          // Android nav bar / home indicator.
+          bottom: AppSpacing.px20 + MediaQuery.of(context).viewPadding.bottom,
           top: 144 * AppSpacing.px1,
         ),
         child: Column(

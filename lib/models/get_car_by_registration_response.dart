@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:string_validator/string_validator.dart';
 
 part 'get_car_by_registration_response.freezed.dart';
 part 'get_car_by_registration_response.g.dart';

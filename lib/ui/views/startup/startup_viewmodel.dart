@@ -21,25 +21,42 @@ class StartupViewModel extends BaseViewModel {
   final _userService = locator<UserService>();
 
   Future runStartupLogic() async {
-    await AppTrackingTransparency.requestTrackingAuthorization();
+    try {
+      await AppTrackingTransparency.requestTrackingAuthorization();
 
-    // if (!await InternetConnectionChecker.instance.hasConnection) {
-    //   await _navigationService.replaceWithErrorView();
-    //   return;
-    // }
+      // if (!await InternetConnectionChecker.instance.hasConnection) {
+      //   await _navigationService.replaceWithErrorView();
+      //   return;
+      // }
 
-    if (!await _checkLanguageSelection()) {
-      await _navigationService.replaceWithSetUpLanguageView();
-      return;
+      if (!await _checkLanguageSelection()) {
+        await _navigationService.replaceWithSetUpLanguageView();
+        return;
+      }
+
+      var (isAuthenticated, currentStepResult) = await _getAppState();
+
+      if (isAuthenticated) {
+        final profileLoaded = await _prefetchUserProfile();
+        if (!profileLoaded) {
+          // We had a token but couldn't load the profile (e.g. a stale token
+          // restored from a backup after re-installing the app, or a session
+          // that expired server-side). Proceeding to the home screen would
+          // crash because no user is in memory, so drop the token and treat
+          // the user as logged out.
+          _logger.w('Stored token is no longer valid, clearing session');
+          await _authService.clearAccessToken();
+          isAuthenticated = false;
+        }
+      }
+
+      await _navigateBasedOnState(isAuthenticated, currentStepResult);
+    } catch (error, stackTrace) {
+      // Never let the app get stuck on the splash screen. Any unexpected
+      // failure during startup falls back to the onboarding entry point.
+      _logger.e('Startup failed', error: error, stackTrace: stackTrace);
+      await _navigationService.replaceWithOnboardingView();
     }
-
-    final (isAuthenticated, currentStepResult) = await _getAppState();
-
-    if (isAuthenticated) {
-      await _prefetchUserProfile();
-    }
-
-    await _navigateBasedOnState(isAuthenticated, currentStepResult);
   }
 
   Future<(bool, Either<String, OnboardingStep?>)> _getAppState() async {
@@ -109,11 +126,18 @@ class StartupViewModel extends BaseViewModel {
     }
   }
 
-  Future<void> _prefetchUserProfile() async {
+  /// Returns true if the profile was successfully loaded into memory.
+  Future<bool> _prefetchUserProfile() async {
     final profileResult = await _userService.getProfile();
-    profileResult.match(
-      (error) => _logger.e('Error prefetching profile: $error'),
-      (_) => _logger.i('Profile prefetched successfully'),
+    return profileResult.match(
+      (error) {
+        _logger.e('Error prefetching profile: $error');
+        return false;
+      },
+      (_) {
+        _logger.i('Profile prefetched successfully');
+        return true;
+      },
     );
   }
 
@@ -131,7 +155,12 @@ class StartupViewModel extends BaseViewModel {
         await _handleVehicleStep(isAuthenticated);
         break;
       case OnboardingStep.completed:
-        await _navigationService.replaceWithHomeView();
+        if (isAuthenticated) {
+          await _navigationService.replaceWithHomeView();
+        } else {
+          _logger.i('Onboarding completed but not authenticated, sign in');
+          await _navigationService.replaceWithSigninView();
+        }
         break;
     }
   }

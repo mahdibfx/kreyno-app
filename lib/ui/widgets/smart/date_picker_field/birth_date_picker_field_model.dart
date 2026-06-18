@@ -9,7 +9,7 @@ class BirthDatePickerFieldModel extends FormViewModel {
 
   static const int minimumDrivingAge = 18;
 
-  int get selectedYear => int.tryParse(selectedYearValue ?? '') ?? 1990;
+  int get selectedYear => int.tryParse(selectedYearValue ?? '') ?? defaultYear;
   int get selectedMonth => int.tryParse(selectedMonthValue ?? '') ?? 1;
   int get selectedDay => int.tryParse(selectedDayValue ?? '') ?? 1;
 
@@ -89,11 +89,12 @@ class BirthDatePickerFieldModel extends FormViewModel {
     onDateChanged = callback;
   }
 
+  static const int defaultYear = 2000;
+
   initDefaultValues({DateTime? initialDate}) {
-    // Use initialDate if provided, otherwise fall back to default (18 years ago)
+    // Use initialDate if provided, otherwise fall back to default year 2000.
     DateTime defaultBirthDate =
-        initialDate ??
-        DateTime(today.year - minimumDrivingAge, today.month, today.day);
+        initialDate ?? DateTime(defaultYear, today.month, today.day);
     selectedYearValue = defaultBirthDate.year.toString();
     selectedMonthValue = defaultBirthDate.month.toString();
     selectedDayValue = defaultBirthDate.day.toString();

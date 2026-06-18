@@ -41,6 +41,13 @@ class HomeViewModel extends ReactiveViewModel {
 
   ParkingSpot? get selectedSpot => _selectedSpot;
 
+  /// Closes the selected-spot card (e.g. when tapping the map outside it).
+  void clearSelectedSpot() {
+    if (_selectedSpot == null) return;
+    _selectedSpot = null;
+    rebuildUi();
+  }
+
   User get currentUser => _userService.currentUser!;
   String get currentUserAvatarUrl =>
       currentUser.avatar?.url ?? AppConstants.defaultAvatarUrl;
@@ -92,7 +99,8 @@ class HomeViewModel extends ReactiveViewModel {
   @override
   void dispose() {
     _locationService.removeListener(_onLocationServiceUpdate);
-    _trackingService.removeListener(_onTrackingServiceUpdate);
+    _trackingService.onPlacesChanged = null;
+    // _trackingService.stopPlacesChangeTest();
     super.dispose();
   }
 
@@ -268,8 +276,17 @@ class HomeViewModel extends ReactiveViewModel {
     // _locationService.removeListener(_onLocationServiceUpdate);
     _locationService.addListener(_onLocationServiceUpdate);
 
-    // _trackingService.removeListener(_onTrackingServiceUpdate);
-    // _trackingService.addListener(_onTrackingServiceUpdate);
+    // Refresh nearby places whenever a grid-update event fires for the zone,
+    // mirroring the manual refresh button.
+    _trackingService.onPlacesChanged = _onPlacesChanged;
+
+    // TEMPORARY: drive the same refresh every 10s to test place-change behavior
+    // in the frontend. Uncomment to re-enable testing.
+    // _trackingService.startPlacesChangeTest();
+  }
+
+  void _onPlacesChanged() {
+    getNearbyPlaces();
   }
 
   void _onLocationServiceUpdate() {
@@ -278,18 +295,34 @@ class HomeViewModel extends ReactiveViewModel {
     }
   }
 
-  int _fireIdStored = 0;
-  void _onTrackingServiceUpdate() {
-    if (_fireIdStored != _trackingService.fireId) {
-      getNearbyPlaces();
-      _fireIdStored = _trackingService.fireId;
+
+  /// Shows the prominent location disclosure (Google Play requirement) before
+  /// the runtime permission prompt. Returns true if the app may proceed to
+  /// request location. If the permission is already granted, no disclosure is
+  /// shown. Returns false when the user declines.
+  Future<bool> _ensureLocationDisclosureAccepted() async {
+    if (await _locationService.isPermissionGranted()) {
+      return true;
     }
+    final response = await _bottomSheetService.showCustomSheet(
+      variant: BottomSheetType.locationDisclosure,
+      isScrollControlled: true,
+      barrierDismissible: false,
+    );
+    return response?.confirmed == true;
   }
 
   Future<void> goToCurrentLocation() async {
+    // Prominent disclosure must be shown and accepted before we request the
+    // location permission below (Google Play policy).
+    final disclosureAccepted = await _ensureLocationDisclosureAccepted();
+    if (!disclosureAccepted) {
+      return;
+    }
     loadingCurrentLocation = true;
     _selectedLocation = null;
     notifyListeners();
+    //TODO:AI CLAUDE THIS LINE UNDER THIS TODO IS RESPONSIPLE FOR REQUESTING LOCATION PERMISSIONS
     final result = await _locationService.getCurrentLocation();
     await result.match(
       (error) async {

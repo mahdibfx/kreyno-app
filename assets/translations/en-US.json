@@ -1,556 +1,562 @@
 {
-    "accountDeleted": "Account deleted",
-    "common": {
-        "somethingWentWrong": "An error happend",
-        "title": "Title",
-        "put_arrival_address": "Put arrival address",
-        "description": "Description",
-        "cancel": "Cancel",
-        "important": "Important",
-        "validTill": "Valid until",
-        "deletedSuccessfully": "Deleted succesfuly",
-        "search": "Search",
-        "error": "A problem occurred",
-        "retry": "Retry",
-        "continue": "Continue",
-        "confirmedSuccessfully": "Confirmed succesfuly",
-        "unableToRefresh": "Unable to refresh",
-        "save": "Save",
-        "takePicture": "Take a picture",
-        "pickFromGallery": "Pick from gallery",
-        "skip": "Skip",
-        "optional": "Optional",
-        "delete": "Delete",
-        "complete": "Complete",
-        "months": {
-            "january": "January",
-            "february": "February",
-            "march": "March",
-            "april": "April",
-            "may": "May",
-            "june": "June",
-            "july": "July",
-            "august": "August",
-            "september": "September",
-            "october": "October",
-            "november": "November",
-            "december": "December"
-        },
-        "validation": {
-            "emptyField": "This field is required",
-            "email": "Invalid email address",
-            "phone": "Invalid phone number",
-            "firstName": "First name must contain at least 2 characters",
-            "lastName": "Last name must contain at least 2 characters",
-            "brand": "Brand must contain at least 3 characters",
-            "model": "Model must contain at least 1 character",
-            "color": "Color must contain at least 3 characters",
-            "co2Emission": "CO₂ emission rate must be a number",
-            "firstNameInvalidCharacters": "First name can only contain letters",
-            "firstNameTooShort": "First name must contain at least 2 characters",
-            "lastNameInvalidCharacters": "Last name can only contain letters",
-            "lastNameTooShort": "Last name must contain at least 2 characters",
-            "iban": "Invalid IBAN"
-        },
-        "otpSuccess": {
-            "codeSentTitle": "Code sent",
-            "codeSentDescription": "A 6-digit code has been sent to you."
-        }
+  "accountDeleted": "Account deleted",
+  "common": {
+    "somethingWentWrong": "An error happend",
+    "title": "Title",
+    "put_arrival_address": "Put arrival address",
+    "description": "Description",
+    "cancel": "Cancel",
+    "important": "Important",
+    "validTill": "Valid until",
+    "deletedSuccessfully": "Deleted succesfuly",
+    "search": "Search",
+    "error": "A problem occurred",
+    "retry": "Retry",
+    "continue": "Continue",
+    "confirmedSuccessfully": "Confirmed succesfuly",
+    "unableToRefresh": "Unable to refresh",
+    "save": "Save",
+    "takePicture": "Take a picture",
+    "pickFromGallery": "Pick from gallery",
+    "skip": "Skip",
+    "optional": "Optional",
+    "delete": "Delete",
+    "complete": "Complete",
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
     },
-    "setUpLanguage": {
-        "title": "Choose your language"
+    "validation": {
+      "emptyField": "This field is required",
+      "email": "Invalid email address",
+      "phone": "Invalid phone number",
+      "firstName": "First name must contain at least 2 characters",
+      "lastName": "Last name must contain at least 2 characters",
+      "brand": "Brand must contain at least 3 characters",
+      "model": "Model must contain at least 1 character",
+      "color": "Color must contain at least 3 characters",
+      "co2Emission": "CO₂ emission rate must be a number",
+      "firstNameInvalidCharacters": "First name can only contain letters",
+      "firstNameTooShort": "First name must contain at least 2 characters",
+      "lastNameInvalidCharacters": "Last name can only contain letters",
+      "lastNameTooShort": "Last name must contain at least 2 characters",
+      "iban": "Invalid IBAN"
     },
-    "onboarding": {
-        "tagLine": "The future of parking",
-        "buttonLabel": "Continue with number"
-    },
-    "signin": {
-        "title": "Sign In",
-        "description": "Sign in to your account to get started.",
-        "phoneNumber": "Phone number",
-        "phoneNumberPlaceholder": "Enter your phone number",
-        "buttonLabel": "Sign In"
-    },
-    "countryCodePicker": {
-        "title": "Choose your country",
-        "search": "Search by country name or code",
-        "noCountriesFound": "No countries found",
-        "trySearchingWithDifferentTerm": "Try searching with a different term"
-    },
-    "otp": {
-        "title": "OTP Verification",
-        "description": "A 6-digit code has been sent to you.",
-        "codeNotReceived": "Didn't receive the code?",
-        "resendCodeIn": "Resend in",
-        "resendCode": "Resend"
-    },
-    "signup": {
-        "title": "Sign Up",
-        "phoneNumber": "Phone number",
-        "phoneNumberPlaceholder": "Enter your phone number",
-        "firstName": "First name",
-        "firstNamePlaceholder": "First name",
-        "lastName": "Last name",
-        "lastNamePlaceholder": "Last name",
-        "userName": "Username",
-        "userNamePlaceholder": "Ex: johndoe22",
-        "email": "Email",
-        "emailPlaceholder": "Ex: johndoe@gmail.com",
-        "address": "Postal address",
-        "addressPlaceholder": "Your address",
-        "birthday": "Date of birth",
-        "day": "Day",
-        "month": "Month",
-        "year": "Year",
-        "gender": "Gender",
-        "male": "Male",
-        "female": "Female",
-        "userNameTaken": "This username is already taken",
-        "emailTaken": "This email is already taken"
-    },
-    "setUpVehicule": {
-        "title": "Add your vehicle",
-        "description": "Fill in the information below.",
-        "autoFill": "The information will be added automatically if available, otherwise you will have to enter it.",
-        "frenchLicensePlate": "French license plate",
-        "licensePlate": "License plate number",
-        "licensePlatePlaceholder": "AA - 000 - AA",
-        "vehicleBrand": "Vehicle brand",
-        "vehicleBrandPlaceholder": "Brand",
-        "vehicleModel": "Vehicle model",
-        "vehicleModelPlaceholder": "Model",
-        "color": "Vehicle color",
-        "colorPlaceholder": "Color",
-        "co2Emission": "CO₂ emissions (g/km)",
-        "co2EmissionPlaceholder": "CO₂ emission rate",
-        "vehiculeImage": "Your vehicle image",
-        "vehiculeType": "Vehicle type",
-        "vehiculeTypePlaceholder": "Select a type",
-        "gasVehicle": "Gas vehicle",
-        "electricVehicle": "Electric vehicle",
-        "scooter": "Motorcycle / scooter",
-        "uploading": "Uploading...",
-        "deleting": "Deleting...",
-        "errorRetry": "Failed, try again",
-        "saveVehicleToMoveToNextStep": "You need to save the vehicle to move to the next step.",
-        "deleteImageDialogTitle": "Delete this image?",
-        "deleteImageDialogDescription": "It will be removed and you can add a new one.",
-        "deleteImageDialogSecondaryButtonTitle": "Cancel",
-        "deleteImageDialogMainButtonTitle": "Delete",
-        "vehiculeSavedSuccessfully": "Vehicle saved successfully",
-        "acceptedFormats": "Accepted formats: PNG, JPG, JPEG and HEIC (Max. 5 MB)"
-    },
-    "pickVehiculeImage": {
-        "title": "Vehicle image",
-        "description": "Choose a method below",
-        "recommendedImage": "Recommended photo style",
-        "hintTitle": "Hint: ",
-        "hintDescription": "Take a photo of your vehicle from the side, in landscape mode, for better visibility in the app.",
-        "fileDoesNotExist": "File does not exist",
-        "fileSizeExceedsMaximumAllowedSize": "File size exceeds maximum allowed size (Max. 5 MB)",
-        "fileFormatNotSupported": "File format is not supported. Accepted formats: PNG, JPG, JPEG and HEIC"
-    },
-    "setUpPaymentMethods": {
-        "title": "Payment methods",
-        "description": "Add your credit card information.",
-        "buttonLabel": "Add a card",
-        "paymentMethodsDescription": "Your payment information is completely secure and protected.",
-        "savePaymentMethodsToMoveToNextStep": "You need to save a payment method to move to the next step or press Skip to continue.",
-        "cardAddedSuccessfully": "Card added successfully",
-        "saveCard": "Save this card"
-    },
-    "setUpPermissions": {
-        "title": "Allow Kreyno to function fully",
-        "description": "These accesses are necessary to make the app work and improve your experience.",
-        "locationPermissionTitle": "Location",
-        "locationPermissionDescription": "To find and give up spots around you.",
-        "notificationPermissionTitle": "Notifications",
-        "notificationPermissionDescription": "To receive notifications from Kreyno.",
-        "authorize": "Authorize"
-    },
-    "apiErrors": {
-        "requestFailed": "Request failed",
-        "unexpectedError": "An unexpected error occurred. Please try again.",
-        "connectionTimeout": "Connection timeout. Please check your internet connection and try again.",
-        "requestTimeout": "Request timeout. Please try again.",
-        "serverResponseTimeout": "Server response timeout. Please try again.",
-        "requestCancelled": "Request was cancelled.",
-        "connectionError": "Unable to connect to the server. Please check your internet connection.",
-        "certificateError": "Security certificate error. Please try again later.",
-        "badRequest": "Invalid request. Please check your input and try again.",
-        "authenticationFailed": "Authentication failed. Please sign in again.",
-        "accessDenied": "Access denied. You don't have permission to perform this action.",
-        "resourceNotFound": "The requested resource was not found.",
-        "conflictError": "Conflict occurred. The resource already exists.",
-        "invalidData": "Invalid data provided. Please check your input.",
-        "tooManyRequests": "Too many requests. Please wait a moment and try again.",
-        "internalServerError": "Internal server error. Please try again later.",
-        "badGateway": "Bad gateway. The server is temporarily unavailable.",
-        "serviceUnavailable": "Service unavailable. Please try again later.",
-        "gatewayTimeout": "Gateway timeout. The server took too long to respond.",
-        "serverError": "Server error occurred. Please try again later."
-    },
-    "wallet": {
-        "walletKreyno": "Kreyno wallet",
-        "transactionHistory": "Transaction history",
-        "sale": "Sale",
-        "noTransactionsFound": "No transactions found",
-        "transactionsWillAppearHere": "Your transactions will appear here",
-        "earnings": "Earnings",
-        "withdrawal": "Withdrawal",
-        "yourBalance": "Your balance",
-        "withdrawMyMoney": "Withdraw my money",
-        "updateMyAccountDetails": "Update my bank account",
-        "addBankAccount": "Add a bank account",
-        "unableToLoad": "Unable to load",
-        "noEarningsYet": "No earnings yet",
-        "earningsWillAppearHere": "Income from your parking will appear here from your first transaction."
-    },
-    "logoutConfirmation": {
-        "title": "Log out of Kreyno?",
-        "description": "Are you sure you want to log out? You can always log back in at any time.",
-        "buttonLabel": "Yes, log out"
-    },
-    "accountSettings": {
-        "title": "Account settings",
-        "personalInformation": "Personal information",
-        "changePhoneNumber": "Change my number",
-        "deleteAccount": "Delete my account",
-        "youJoinedKreynoOn": "You joined Kreyno on"
-    },
-    "deleteAccountConfirmation": {
-        "title": "Are you sure?",
-        "description": "By deleting your account, all your information, including your parking spots, payments and added vehicles, will be permanently erased from Kreyno.\n\nThis action is irreversible.",
-        "buttonLabel": "Yes, delete account"
-    },
-    "myVehicules": {
-        "title": "My vehicles",
-        "addNewVehicle": "Add a new vehicle",
-        "color": "Color",
-        "co2Emission": "CO₂ emissions (g/km)",
-        "principalVehicle": "Principal",
-        "setAsPrincipal": "Set as principal",
-        "edit": "Edit",
-        "delete": "Delete",
-        "deleteCarDialogTitle": "Delete this vehicle?",
-        "deleteCarDialogDescription": "This action will permanently delete the vehicle from your account.",
-        "deleteCarDialogMainButton": "Delete",
-        "deleteCarDialogSecondaryButton": "Cancel",
-        "carDeletedSuccessfully": "Vehicle deleted successfully"
-    },
-    "addVehicule": {
-        "title": "New vehicle",
-        "description": "Fill in the information below.",
-        "saveButton": "Save vehicle",
-        "vehicleSavedSuccessfully": "Vehicle saved successfully"
-    },
-    "editVehicule": {
-        "title": "Edit vehicle",
-        "description": "Fill in the information below.",
-        "saveButton": "Save changes",
-        "vehicleUpdatedSuccessfully": "Vehicle updated successfully"
-    },
-    "myPaymentMethodes": {
-        "title": "Payment methods",
-        "addNewCard": "Add a new card",
-        "defaultCard": "Default",
-        "setAsDefault": "Set as default",
-        "edit": "Edit",
-        "delete": "Delete",
-        "deleteCardDialogTitle": "Delete this card?",
-        "deleteCardDialogDescription": "This action will permanently delete the card from your account.",
-        "deleteCardDialogMainButton": "Delete",
-        "deleteCardDialogSecondaryButton": "Cancel",
-        "cardDeletedSuccessfully": "Card deleted successfully",
-        "cardSetAsDefaultSuccessfully": "Card set as default successfully",
-        "emptyStateTitle": "No cards added",
-        "emptyStateDescription": "Add a card to start using Kreyno."
-    },
-    "changePhoneNumber": {
-        "title": "Change phone number",
-        "description": "To change your phone number, a verification OTP code will be sent to you.",
-        "phoneNumber": "Phone number",
-        "phoneNumberPlaceholder": "Your phone number",
-        "buttonLabel": "Verify and change",
-        "phoneNumberTaken": "This phone number is already in use",
-        "phoneNumberUpdatedSuccessfully": "Phone number updated successfully"
-    },
-    "editProfile": {
-        "title": "Personal information",
-        "saveChanges": "Save changes",
-        "profileImageLabel": "Profile picture",
-        "addImage": "Add",
-        "changeImage": "Change",
-        "deleteImage": "Delete",
-        "profileUpdatedSuccessfully": "Profile updated successfully",
-        "profileImageUpdatedSuccessfully": "Profile picture updated successfully",
-        "profileImageDeletedSuccessfully": "Profile picture deleted successfully"
-    },
-    "profileSheet": {
-        "accountSettings": "Account settings",
-        "myVehicles": "My vehicles",
-        "myParkingSpots": "My parking spots",
-        "walletKreyno": "Kreyno wallet",
-        "paymentMethods": "Payment methods",
-        "conditionsOfUse": "General terms",
-        "privacyPolicy": "Privacy policy",
-        "changeLanguage": "Change language",
-        "logout": "Logout"
-    },
-    "deleteBankAccountConfirmation": {
-        "title": "Are you sure?",
-        "description": "Are you sure you want to delete this bank account from your Kreyno wallet?",
-        "warning": "Transfers already in progress will be sent to your old bank account.",
-        "cancel": "Cancel",
-        "delete": "Delete"
-    },
-    "addBankAccount": {
-        "title": "Add a bank account",
-        "description": "Add your account to withdraw your earnings.",
-        "errorOccurred": "An error occurred",
-        "accountDetails": "Account details",
-        "lastName": "Last name",
-        "lastNamePlaceholder": "Last name",
-        "firstName": "First name",
-        "firstNamePlaceholder": "First name",
-        "accountHolderNameHint": "Enter the full name of the account holder or company exactly as it appears on your bank statement.",
-        "nameMatchesBankAccountCheckbox": "Check if the name matches that of your bank account.",
-        "iban": "Account number (IBAN)",
-        "ibanPlaceholder": "Account number (IBAN)",
-        "ibanHint": "Enter a valid IBAN, without spaces or errors.",
-        "confirmIban": "Confirm account number (IBAN)",
-        "confirmIbanPlaceholder": "Re-enter your IBAN",
-        "ibanMismatch": "IBANs do not match",
-        "email": "Associated email address",
-        "emailPlaceholder": "Ex: john.doe@email.com",
-        "accountHolderAddress": "Account holder address",
-        "city": "City",
-        "cityPlaceholder": "Ex: Paris",
-        "region": "Region / Department",
-        "regionPlaceholder": "Ex: Île-de-France",
-        "country": "Country",
-        "countryPlaceholder": "Ex: France",
-        "address": "Address",
-        "addressPlaceholder": "Ex: 12 Rue Victor Hugo",
-        "postalCode": "Postal code",
-        "postalCodePlaceholder": "Ex: 75008",
-        "validateButton": "Validate my information"
-    },
-    "datePickerFilter": {
-        "title": "Filter by date",
-        "startDate": "Start date",
-        "endDate": "End date",
-        "reset": "Reset",
-        "apply": "Apply"
-    },
-    "myParkingSpots": {
-        "title": "My parking spots",
-        "boughtSpotsTab": "Bought spots",
-        "soldSpotsTab": "Sold spots",
-        "chargingAvailable": "Charging station available",
-        "chargingNotAvailable": "Charging station unavailable",
-        "price": "Price",
-        "boughtEmptyTitle": "No parking purchased",
-        "boughtEmptyDescription": "You haven't purchased any parking yet. Start now to easily find your purchases.",
-        "soldEmptyTitle": "No parking sold",
-        "soldEmptyDescription": "You haven't sold any parking yet. Start now to easily find your sales."
-    },
-    "payout": {
-        "title": "Withdraw my money",
-        "balanceAfterWithdraw": "Balance after withdrawal:",
-        "availableBalance": "Available balance:",
-        "confirm": "Confirm",
-        "successTitle": "Withdrawal confirmed",
-        "successDescription": "Your request has been registered. You will receive your transfer shortly.",
-        "goToHome": "Return to home",
-        "failedTitle": "Withdrawal failed",
-        "weekendOnlyTransfers": "Weekend transfers only",
-        "weekendProcessingInfo": "Withdrawals will be processed on the next weekend.",
-        "accountOf": "Account of",
-        "enterAmountHint": "Enter the amount to transfer to this account.",
-        "amountExceedsBalance": "This amount exceeds your available balance"
-    },
-    "spotSoldSuccess": {
-        "title": "Transfer confirmed!",
-        "successMessage": "Place successfully transferred!",
-        "earningsMessage": "You just earned 2€ by transferring your spot",
-        "reservationNumber": "Reservation number",
-        "price": "Price",
-        "dateTime": "Date and time",
-        "placeLocation": "Spot location",
-        "other": "Other",
-        "yourWallet": "Your Kreyno wallet"
-    },
-    "spotBoughtSuccess": {
-        "title": "Trip completed",
-        "arrivedMessage": "Arrived at destination",
-        "hostMessage": "Your spot host has transferred their spot to you.",
-        "reservationNumber": "Reservation number",
-        "price": "Price",
-        "dateTime": "Date and time",
-        "placeLocation": "Spot location",
-        "other": "Other"
-    },
-    "tracking": {
-        "cancelInfo": "You can cancel the reservation after 5 minutes.",
-        "cancel": "Cancel",
-        "message": "Message",
-        "clientArrived": "Your client has arrived",
-        "finalizeMessage": "Transfer your spot to them now to finalize the reservation.",
-        "placeCeded": "I have transferred my spot"
-    },
-    "chat": {
-        "newMessage": "New message",
-        "online": "Online",
-        "offline": "Offline"
-    },
-    "checkoutMoney": {
-        "withdraw": "Withdraw",
-        "title": "Withdraw my money",
-        "yourBalance": "Your balance",
-        "withdrawalAmount": "Withdrawal amount"
-    },
-    "kreynoWallet": {
-        "title": "Kreyno wallet",
-        "yourBalance": "Your balance",
-        "withdrawMyMoney": "Withdraw my money",
-        "earningsHistory": "Earnings history"
-    },
-    "cancelationReasons": {
-        "title": "Are you sure you want to cancel this reservation?",
-        "selectReason": "Select a reason below.",
-        "changedPlans": "I changed my plans",
-        "madeMistake": "I made a mistake",
-        "clientTooFar": "The client is too far",
-        "other": "Other (specify)",
-        "enterReason": "Enter your cancellation reason",
-        "validate": "Validate"
-    },
-    "payForSpot": {
-        "payment": "Payment",
-        "payWith": "Pay with",
-        "noPaymentMethod": "No payment method registered",
-        "mustAddCard": "You must add a card to pay.",
-        "addNewCard": "Add a new card",
-        "parking": "Parking",
-        "kreynoFees": "Kreyno fees (20%)",
-        "reservationCreated": "Reservation created successfully",
-        "totalToPay": "Total to pay",
-        "securePayment": "Your payment information is completely secure and protected.",
-        "payAndReserve": "Pay & reserve this spot"
-    },
-    "slideableButton": {
-        "slideToPay": "Slide to pay"
-    },
-    "createSpot": {
-        "spotNameHint": "Ex: At Gustave's",
-        "spotDescriptionHint": "Spot description",
-        "spotPriceHint": "Spot price",
-        "title": "Let my place",
-        "placeLabel": "Place",
-        "useMyPosition": "Use my position",
-        "choosePrice": "Choose price",
-        "recommended": "Recommended",
-        "electricCharging": "Electric charging station",
-        "possible": "Possible",
-        "notPossible": "Not possible",
-        "validate": "Let my place"
-    },
-    "homeFilter": {
-        "title": "Filters",
-        "placeType": "Spot type",
-        "allPlaces": "All spots",
-        "onlyWithCharging": "Only with charging station",
-        "withoutCharging": "Without charging station",
-        "searchRadius": "Search radius",
-        "reset": "Reset",
-        "apply": "Apply"
-    },
-    "checkoutMoneyFeedback": {
-        "successTitle": "Withdrawal confirmed",
-        "failedTitle": "Withdrawal failed",
-        "successDescription": "Your request has been registered. You will receive your transfer shortly.",
-        "errorDescription": "An error occurred. Please try again later.",
-        "finish": "Finish",
-        "retry": "Retry"
-    },
-    "addPaymentCard": {
-        "title": "Add a card",
-        "cardName": "Name on card",
-        "enterName": "Enter name",
-        "cardNumber": "Card number",
-        "expiration": "Expiration",
-        "setAsDefault": "Set as default card",
-        "termsAndConditions": "I have read and approved the terms and conditions of use.",
-        "saveCard": "Save this card"
-    },
-    "receivedOrder": {
-        "refuseReason": "Why do you want to refuse this request?",
-        "selectReason": "Select a reason below.",
-        "other": "Other (specify)",
-        "enterReason": "Enter your cancellation reason",
-        "validate": "Validate",
-        "newDemand": "New request received",
-        "demandDescription": "Someone wants to reserve your spot. Accept or refuse their request.",
-        "distanceAndTime": "Approximate distance & time for their arrival",
-        "place": "Spot",
-        "refuse": "Refuse",
-        "accept": "Accept",
-        "responseTimeRemaining": "Response time remaining"
-    },
-    "buyerSelectedMark": {
-        "proposesSpotAt": "proposes a spot at"
-    },
-    "chooseLocation": {
-        "title": "Choose a location",
-        "choose": "Choose"
-    },
-    "buyerConfirmArrive": {
-        "arrivedAtDestination": "Arrived at destination",
-        "itineraryReady": "Your itinerary is ready!",
-        "arrivalConfirmed": "Arrival confirmed",
-        "hostInformed": "Your host is informed of your arrival and will soon free up the spot.",
-        "confirmArrival": "Confirm your arrival",
-        "confirmArrivalDescription": "Please confirm your arrival so the host can yield the spot to you.",
-        "confirmMyArrival": "Confirm my arrival"
-    },
-    "sellerConfirmedForBuyer": {
-        "itineraryReady": "Your itinerary is ready!",
-        "cancellationPolicy": "After 5 min, the host can cancel and you will be refunded.",
-        "openWaze": "Open Waze"
-    },
-    "clientCanceledOrder": {
-        "title": "Reservation canceled",
-        "description": "spot is available again."
-    },
-    "locationDisabled": {
-        "title": "Oops, location disabled!"
-    },
-    "carTopBar": {
-        "vehicleChosen": "Chosen vehicle",
-        "exampleCar": "Peugeot 308"
-    },
-    "carSelector": {
-        "vehicleChosen": "Chosen vehicle"
-    },
-    "myMarkerDetails": {
-        "you": "You",
-        "proposeSpotAt": "propose a spot at",
-        "deleteSpotTitle": "Delete this spot",
-        "deleteSpotDescription": "This spot will be removed and will no longer be offered to users."
-    },
-    "sellerTracking": {
-        "reservationConfirmed": "Reservation confirmed"
-    },
-    "portfolio": {
-        "sale": "SALE",
-        "withdrawal": "WITHDRAWAL"
-    },
-    "home": {
-        "let_my_place": "Let my place"
-    },
-    "connectivity": {
-        "noInternetConnection": "No internet connection",
-        "noInternetToast": "No internet connection. Please check your connection and try again."
+    "otpSuccess": {
+      "codeSentTitle": "Code sent",
+      "codeSentDescription": "A 6-digit code has been sent to you."
     }
+  },
+  "setUpLanguage": {
+    "title": "Choose your language"
+  },
+  "onboarding": {
+    "tagLine": "The future of parking",
+    "buttonLabel": "Continue with number"
+  },
+  "signin": {
+    "title": "Sign In",
+    "description": "Sign in to your account to get started.",
+    "phoneNumber": "Phone number",
+    "phoneNumberPlaceholder": "Enter your phone number",
+    "buttonLabel": "Sign In"
+  },
+  "countryCodePicker": {
+    "title": "Choose your country",
+    "search": "Search by country name or code",
+    "noCountriesFound": "No countries found",
+    "trySearchingWithDifferentTerm": "Try searching with a different term"
+  },
+  "otp": {
+    "title": "OTP Verification",
+    "description": "A 6-digit code has been sent to you.",
+    "codeNotReceived": "Didn't receive the code?",
+    "resendCodeIn": "Resend in",
+    "resendCode": "Resend"
+  },
+  "signup": {
+    "title": "Sign Up",
+    "phoneNumber": "Phone number",
+    "phoneNumberPlaceholder": "Enter your phone number",
+    "firstName": "First name",
+    "firstNamePlaceholder": "First name",
+    "lastName": "Last name",
+    "lastNamePlaceholder": "Last name",
+    "userName": "Username",
+    "userNamePlaceholder": "Ex: johndoe22",
+    "email": "Email",
+    "emailPlaceholder": "Ex: johndoe@gmail.com",
+    "address": "Postal address",
+    "addressPlaceholder": "Your address",
+    "birthday": "Date of birth",
+    "day": "Day",
+    "month": "Month",
+    "year": "Year",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "userNameTaken": "This username is already taken",
+    "emailTaken": "This email is already taken"
+  },
+  "setUpVehicule": {
+    "title": "Add your vehicle",
+    "description": "Fill in the information below.",
+    "autoFill": "The information will be added automatically if available, otherwise you will have to enter it.",
+    "frenchLicensePlate": "French license plate",
+    "licensePlate": "License plate number",
+    "licensePlatePlaceholder": "AA - 000 - AA",
+    "vehicleBrand": "Vehicle brand",
+    "vehicleBrandPlaceholder": "Brand",
+    "vehicleModel": "Vehicle model",
+    "vehicleModelPlaceholder": "Model",
+    "color": "Vehicle color",
+    "colorPlaceholder": "Color",
+    "co2Emission": "CO₂ emissions (g/km)",
+    "co2EmissionPlaceholder": "CO₂ emission rate",
+    "vehiculeImage": "Your vehicle image",
+    "vehiculeType": "Vehicle type",
+    "vehiculeTypePlaceholder": "Select a type",
+    "gasVehicle": "Gas vehicle",
+    "electricVehicle": "Electric vehicle",
+    "scooter": "Motorcycle / scooter",
+    "uploading": "Uploading...",
+    "deleting": "Deleting...",
+    "errorRetry": "Failed, try again",
+    "saveVehicleToMoveToNextStep": "You need to save the vehicle to move to the next step.",
+    "deleteImageDialogTitle": "Delete this image?",
+    "deleteImageDialogDescription": "It will be removed and you can add a new one.",
+    "deleteImageDialogSecondaryButtonTitle": "Cancel",
+    "deleteImageDialogMainButtonTitle": "Delete",
+    "vehiculeSavedSuccessfully": "Vehicle saved successfully",
+    "acceptedFormats": "Accepted formats: PNG, JPG, JPEG and HEIC (Max. 5 MB)"
+  },
+  "pickVehiculeImage": {
+    "title": "Vehicle image",
+    "description": "Choose a method below",
+    "recommendedImage": "Recommended photo style",
+    "hintTitle": "Hint: ",
+    "hintDescription": "Take a photo of your vehicle from the side, in landscape mode, for better visibility in the app.",
+    "fileDoesNotExist": "File does not exist",
+    "fileSizeExceedsMaximumAllowedSize": "File size exceeds maximum allowed size (Max. 5 MB)",
+    "fileFormatNotSupported": "File format is not supported. Accepted formats: PNG, JPG, JPEG and HEIC"
+  },
+  "setUpPaymentMethods": {
+    "title": "Payment methods",
+    "description": "Add your credit card information.",
+    "buttonLabel": "Add a card",
+    "paymentMethodsDescription": "Your payment information is completely secure and protected.",
+    "savePaymentMethodsToMoveToNextStep": "You need to save a payment method to move to the next step or press Skip to continue.",
+    "cardAddedSuccessfully": "Card added successfully",
+    "saveCard": "Save this card"
+  },
+  "setUpPermissions": {
+    "title": "Allow Kreyno to function fully",
+    "description": "These accesses are necessary to make the app work and improve your experience.",
+    "locationPermissionTitle": "Location",
+    "locationPermissionDescription": "To find and give up spots around you.",
+    "notificationPermissionTitle": "Notifications",
+    "notificationPermissionDescription": "To receive notifications from Kreyno.",
+    "authorize": "Authorize"
+  },
+  "apiErrors": {
+    "requestFailed": "Request failed",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "connectionTimeout": "Connection timeout. Please check your internet connection and try again.",
+    "requestTimeout": "Request timeout. Please try again.",
+    "serverResponseTimeout": "Server response timeout. Please try again.",
+    "requestCancelled": "Request was cancelled.",
+    "connectionError": "Unable to connect to the server. Please check your internet connection.",
+    "certificateError": "Security certificate error. Please try again later.",
+    "badRequest": "Invalid request. Please check your input and try again.",
+    "authenticationFailed": "Authentication failed. Please sign in again.",
+    "accessDenied": "Access denied. You don't have permission to perform this action.",
+    "resourceNotFound": "The requested resource was not found.",
+    "conflictError": "Conflict occurred. The resource already exists.",
+    "invalidData": "Invalid data provided. Please check your input.",
+    "tooManyRequests": "Too many requests. Please wait a moment and try again.",
+    "internalServerError": "Internal server error. Please try again later.",
+    "badGateway": "Bad gateway. The server is temporarily unavailable.",
+    "serviceUnavailable": "Service unavailable. Please try again later.",
+    "gatewayTimeout": "Gateway timeout. The server took too long to respond.",
+    "serverError": "Server error occurred. Please try again later."
+  },
+  "wallet": {
+    "walletKreyno": "Kreyno wallet",
+    "transactionHistory": "Transaction history",
+    "sale": "Sale",
+    "noTransactionsFound": "No transactions found",
+    "transactionsWillAppearHere": "Your transactions will appear here",
+    "earnings": "Earnings",
+    "withdrawal": "Withdrawal",
+    "yourBalance": "Your balance",
+    "withdrawMyMoney": "Withdraw my money",
+    "updateMyAccountDetails": "Update my bank account",
+    "addBankAccount": "Add a bank account",
+    "unableToLoad": "Unable to load",
+    "noEarningsYet": "No earnings yet",
+    "earningsWillAppearHere": "Income from your parking will appear here from your first transaction."
+  },
+  "logoutConfirmation": {
+    "title": "Log out of Kreyno?",
+    "description": "Are you sure you want to log out? You can always log back in at any time.",
+    "buttonLabel": "Yes, log out"
+  },
+  "accountSettings": {
+    "title": "Account settings",
+    "personalInformation": "Personal information",
+    "changePhoneNumber": "Change my number",
+    "deleteAccount": "Delete my account",
+    "youJoinedKreynoOn": "You joined Kreyno on"
+  },
+  "deleteAccountConfirmation": {
+    "title": "Are you sure?",
+    "description": "By deleting your account, all your information, including your parking spots, payments and added vehicles, will be permanently erased from Kreyno.\n\nThis action is irreversible.",
+    "buttonLabel": "Yes, delete account"
+  },
+  "myVehicules": {
+    "title": "My vehicles",
+    "addNewVehicle": "Add a new vehicle",
+    "color": "Color",
+    "co2Emission": "CO₂ emissions (g/km)",
+    "principalVehicle": "Principal",
+    "setAsPrincipal": "Set as principal",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteCarDialogTitle": "Delete this vehicle?",
+    "deleteCarDialogDescription": "This action will permanently delete the vehicle from your account.",
+    "deleteCarDialogMainButton": "Delete",
+    "deleteCarDialogSecondaryButton": "Cancel",
+    "carDeletedSuccessfully": "Vehicle deleted successfully"
+  },
+  "addVehicule": {
+    "title": "New vehicle",
+    "description": "Fill in the information below.",
+    "saveButton": "Save vehicle",
+    "vehicleSavedSuccessfully": "Vehicle saved successfully"
+  },
+  "editVehicule": {
+    "title": "Edit vehicle",
+    "description": "Fill in the information below.",
+    "saveButton": "Save changes",
+    "vehicleUpdatedSuccessfully": "Vehicle updated successfully"
+  },
+  "myPaymentMethodes": {
+    "title": "Payment methods",
+    "addNewCard": "Add a new card",
+    "defaultCard": "Default",
+    "setAsDefault": "Set as default",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteCardDialogTitle": "Delete this card?",
+    "deleteCardDialogDescription": "This action will permanently delete the card from your account.",
+    "deleteCardDialogMainButton": "Delete",
+    "deleteCardDialogSecondaryButton": "Cancel",
+    "cardDeletedSuccessfully": "Card deleted successfully",
+    "cardSetAsDefaultSuccessfully": "Card set as default successfully",
+    "emptyStateTitle": "No cards added",
+    "emptyStateDescription": "Add a card to start using Kreyno."
+  },
+  "changePhoneNumber": {
+    "title": "Change phone number",
+    "description": "To change your phone number, a verification OTP code will be sent to you.",
+    "phoneNumber": "Phone number",
+    "phoneNumberPlaceholder": "Your phone number",
+    "buttonLabel": "Verify and change",
+    "phoneNumberTaken": "This phone number is already in use",
+    "phoneNumberUpdatedSuccessfully": "Phone number updated successfully"
+  },
+  "editProfile": {
+    "title": "Personal information",
+    "saveChanges": "Save changes",
+    "profileImageLabel": "Profile picture",
+    "addImage": "Add",
+    "changeImage": "Change",
+    "deleteImage": "Delete",
+    "profileUpdatedSuccessfully": "Profile updated successfully",
+    "profileImageUpdatedSuccessfully": "Profile picture updated successfully",
+    "profileImageDeletedSuccessfully": "Profile picture deleted successfully"
+  },
+  "profileSheet": {
+    "accountSettings": "Account settings",
+    "myVehicles": "My vehicles",
+    "myParkingSpots": "My parking spots",
+    "walletKreyno": "Kreyno wallet",
+    "paymentMethods": "Payment methods",
+    "conditionsOfUse": "General terms",
+    "privacyPolicy": "Privacy policy",
+    "changeLanguage": "Change language",
+    "logout": "Logout"
+  },
+  "deleteBankAccountConfirmation": {
+    "title": "Are you sure?",
+    "description": "Are you sure you want to delete this bank account from your Kreyno wallet?",
+    "warning": "Transfers already in progress will be sent to your old bank account.",
+    "cancel": "Cancel",
+    "delete": "Delete"
+  },
+  "addBankAccount": {
+    "title": "Add a bank account",
+    "description": "Add your account to withdraw your earnings.",
+    "errorOccurred": "An error occurred",
+    "accountDetails": "Account details",
+    "lastName": "Last name",
+    "lastNamePlaceholder": "Last name",
+    "firstName": "First name",
+    "firstNamePlaceholder": "First name",
+    "accountHolderNameHint": "Enter the full name of the account holder or company exactly as it appears on your bank statement.",
+    "nameMatchesBankAccountCheckbox": "Check if the name matches that of your bank account.",
+    "iban": "Account number (IBAN)",
+    "ibanPlaceholder": "Account number (IBAN)",
+    "ibanHint": "Enter a valid IBAN, without spaces or errors.",
+    "confirmIban": "Confirm account number (IBAN)",
+    "confirmIbanPlaceholder": "Re-enter your IBAN",
+    "ibanMismatch": "IBANs do not match",
+    "email": "Associated email address",
+    "emailPlaceholder": "Ex: john.doe@email.com",
+    "accountHolderAddress": "Account holder address",
+    "city": "City",
+    "cityPlaceholder": "Ex: Paris",
+    "region": "Region / Department",
+    "regionPlaceholder": "Ex: Île-de-France",
+    "country": "Country",
+    "countryPlaceholder": "Ex: France",
+    "address": "Address",
+    "addressPlaceholder": "Ex: 12 Rue Victor Hugo",
+    "postalCode": "Postal code",
+    "postalCodePlaceholder": "Ex: 75008",
+    "validateButton": "Validate my information"
+  },
+  "datePickerFilter": {
+    "title": "Filter by date",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "reset": "Reset",
+    "apply": "Apply"
+  },
+  "myParkingSpots": {
+    "title": "My parking spots",
+    "boughtSpotsTab": "Bought spots",
+    "soldSpotsTab": "Sold spots",
+    "chargingAvailable": "Charging station available",
+    "chargingNotAvailable": "Charging station unavailable",
+    "price": "Price",
+    "boughtEmptyTitle": "No parking purchased",
+    "boughtEmptyDescription": "You haven't purchased any parking yet. Start now to easily find your purchases.",
+    "soldEmptyTitle": "No parking sold",
+    "soldEmptyDescription": "You haven't sold any parking yet. Start now to easily find your sales."
+  },
+  "payout": {
+    "title": "Withdraw my money",
+    "balanceAfterWithdraw": "Balance after withdrawal:",
+    "availableBalance": "Available balance:",
+    "confirm": "Confirm",
+    "successTitle": "Withdrawal confirmed",
+    "successDescription": "Your request has been registered. You will receive your transfer shortly.",
+    "goToHome": "Return to home",
+    "failedTitle": "Withdrawal failed",
+    "weekendOnlyTransfers": "Weekend transfers only",
+    "weekendProcessingInfo": "Withdrawals will be processed on the next weekend.",
+    "accountOf": "Account of",
+    "enterAmountHint": "Enter the amount to transfer to this account.",
+    "amountExceedsBalance": "This amount exceeds your available balance"
+  },
+  "spotSoldSuccess": {
+    "title": "Transfer confirmed!",
+    "successMessage": "Place successfully transferred!",
+    "earningsMessage": "You just earned 2€ by transferring your spot",
+    "reservationNumber": "Reservation number",
+    "price": "Price",
+    "dateTime": "Date and time",
+    "placeLocation": "Spot location",
+    "other": "Other",
+    "yourWallet": "Your Kreyno wallet"
+  },
+  "spotBoughtSuccess": {
+    "title": "Trip completed",
+    "arrivedMessage": "Arrived at destination",
+    "hostMessage": "Your spot host has transferred their spot to you.",
+    "reservationNumber": "Reservation number",
+    "price": "Price",
+    "dateTime": "Date and time",
+    "placeLocation": "Spot location",
+    "other": "Other"
+  },
+  "tracking": {
+    "cancelInfo": "You can cancel the reservation after 5 minutes.",
+    "cancel": "Cancel",
+    "message": "Message",
+    "clientArrived": "Your client has arrived",
+    "finalizeMessage": "Transfer your spot to them now to finalize the reservation.",
+    "placeCeded": "I have transferred my spot"
+  },
+  "chat": {
+    "newMessage": "New message",
+    "online": "Online",
+    "offline": "Offline"
+  },
+  "checkoutMoney": {
+    "withdraw": "Withdraw",
+    "title": "Withdraw my money",
+    "yourBalance": "Your balance",
+    "withdrawalAmount": "Withdrawal amount"
+  },
+  "kreynoWallet": {
+    "title": "Kreyno wallet",
+    "yourBalance": "Your balance",
+    "withdrawMyMoney": "Withdraw my money",
+    "earningsHistory": "Earnings history"
+  },
+  "cancelationReasons": {
+    "title": "Are you sure you want to cancel this reservation?",
+    "selectReason": "Select a reason below.",
+    "changedPlans": "I changed my plans",
+    "madeMistake": "I made a mistake",
+    "clientTooFar": "The client is too far",
+    "other": "Other (specify)",
+    "enterReason": "Enter your cancellation reason",
+    "validate": "Validate"
+  },
+  "payForSpot": {
+    "payment": "Payment",
+    "payWith": "Pay with",
+    "noPaymentMethod": "No payment method registered",
+    "mustAddCard": "You must add a card to pay.",
+    "addNewCard": "Add a new card",
+    "parking": "Parking",
+    "kreynoFees": "Kreyno fees (20%)",
+    "reservationCreated": "Reservation created successfully",
+    "totalToPay": "Total to pay",
+    "securePayment": "Your payment information is completely secure and protected.",
+    "payAndReserve": "Pay & reserve this spot"
+  },
+  "slideableButton": {
+    "slideToPay": "Slide to pay"
+  },
+  "createSpot": {
+    "spotNameHint": "Ex: At Gustave's",
+    "spotDescriptionHint": "Spot description",
+    "spotPriceHint": "Spot price",
+    "title": "Let my place",
+    "placeLabel": "Place",
+    "useMyPosition": "Use my position",
+    "choosePrice": "Choose price",
+    "recommended": "Recommended",
+    "electricCharging": "Electric charging station",
+    "possible": "Possible",
+    "notPossible": "Not possible",
+    "validate": "Let my place"
+  },
+  "homeFilter": {
+    "title": "Filters",
+    "placeType": "Spot type",
+    "allPlaces": "All spots",
+    "onlyWithCharging": "Only with charging station",
+    "withoutCharging": "Without charging station",
+    "searchRadius": "Search radius",
+    "reset": "Reset",
+    "apply": "Apply"
+  },
+  "checkoutMoneyFeedback": {
+    "successTitle": "Withdrawal confirmed",
+    "failedTitle": "Withdrawal failed",
+    "successDescription": "Your request has been registered. You will receive your transfer shortly.",
+    "errorDescription": "An error occurred. Please try again later.",
+    "finish": "Finish",
+    "retry": "Retry"
+  },
+  "addPaymentCard": {
+    "title": "Add a card",
+    "cardName": "Name on card",
+    "enterName": "Enter name",
+    "cardNumber": "Card number",
+    "expiration": "Expiration",
+    "setAsDefault": "Set as default card",
+    "termsAndConditions": "I have read and approved the terms and conditions of use.",
+    "saveCard": "Save this card"
+  },
+  "receivedOrder": {
+    "refuseReason": "Why do you want to refuse this request?",
+    "selectReason": "Select a reason below.",
+    "other": "Other (specify)",
+    "enterReason": "Enter your cancellation reason",
+    "validate": "Validate",
+    "newDemand": "New request received",
+    "demandDescription": "Someone wants to reserve your spot. Accept or refuse their request.",
+    "distanceAndTime": "Approximate distance & time for their arrival",
+    "place": "Spot",
+    "refuse": "Refuse",
+    "accept": "Accept",
+    "responseTimeRemaining": "Response time remaining"
+  },
+  "buyerSelectedMark": {
+    "proposesSpotAt": "proposes a spot at"
+  },
+  "chooseLocation": {
+    "title": "Choose a location",
+    "choose": "Choose"
+  },
+  "buyerConfirmArrive": {
+    "arrivedAtDestination": "Arrived at destination",
+    "itineraryReady": "Your itinerary is ready!",
+    "arrivalConfirmed": "Arrival confirmed",
+    "hostInformed": "Your host is informed of your arrival and will soon free up the spot.",
+    "confirmArrival": "Confirm your arrival",
+    "confirmArrivalDescription": "Please confirm your arrival so the host can yield the spot to you.",
+    "confirmMyArrival": "Confirm my arrival"
+  },
+  "sellerConfirmedForBuyer": {
+    "itineraryReady": "Your itinerary is ready!",
+    "cancellationPolicy": "After 5 min, the host can cancel and you will be refunded.",
+    "openWaze": "Open Waze"
+  },
+  "clientCanceledOrder": {
+    "title": "Reservation canceled",
+    "description": "spot is available again."
+  },
+  "locationDisabled": {
+    "title": "Oops, location disabled!"
+  },
+  "carTopBar": {
+    "vehicleChosen": "Chosen vehicle",
+    "exampleCar": "Peugeot 308"
+  },
+  "carSelector": {
+    "vehicleChosen": "Chosen vehicle"
+  },
+  "myMarkerDetails": {
+    "you": "You",
+    "proposeSpotAt": "propose a spot at",
+    "deleteSpotTitle": "Delete this spot",
+    "deleteSpotDescription": "This spot will be removed and will no longer be offered to users."
+  },
+  "sellerTracking": {
+    "reservationConfirmed": "Reservation confirmed"
+  },
+  "portfolio": {
+    "sale": "SALE",
+    "withdrawal": "WITHDRAWAL"
+  },
+  "home": {
+    "let_my_place": "Let my place"
+  },
+  "connectivity": {
+    "noInternetConnection": "No internet connection",
+    "noInternetToast": "No internet connection. Please check your connection and try again."
+  },
+  "locationDisclosure": {
+    "title": "Kreyno uses your location",
+    "description": "Kreyno collects location data to show you nearby parking spots, guide you to them, and enable real-time tracking during a transaction — even when the app is closed or not in use. Your location data is never shared for advertising purposes.",
+    "agree": "I agree",
+    "notNow": "Not now"
+  }
 }

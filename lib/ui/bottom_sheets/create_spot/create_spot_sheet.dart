@@ -139,7 +139,12 @@ class CreateSpotSheet extends StackedView<CreateSpotSheetModel> {
             ),
             keyboardType: TextInputType.number,
           ),
-          // VGap(AppSpacing.px16),
+
+          VGap(AppSpacing.px8),
+          const CustomText.smallParagraphMedium(
+            "Tarif unique de 2€ jusqu'au 31 août 2026",
+            color: AppColors.textKre,
+          ),
           // Row(
           //   children: [
           //     const CustomIcon(

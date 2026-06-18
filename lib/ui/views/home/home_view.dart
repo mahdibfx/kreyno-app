@@ -30,7 +30,9 @@ class HomeView extends StackedView<HomeViewModel> {
                   GoogleMap(
                     initialCameraPosition: viewModel.initialCameraPosition,
                     onMapCreated: viewModel.onMapCreated,
-
+                    // Tapping the map (outside any marker) closes the
+                    // selected-spot card.
+                    onTap: (_) => viewModel.clearSelectedSpot(),
                     zoomControlsEnabled: false,
                     myLocationEnabled: true,
                     markers: viewModel.spotsMarkers.toSet(),
@@ -41,6 +43,8 @@ class HomeView extends StackedView<HomeViewModel> {
                       Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          VGap(AppSpacing.px8 * 2),
+
                           CarSelector(
                             onSelectedLocationChanged: (location) {
                               FocusScope.of(context).unfocus();

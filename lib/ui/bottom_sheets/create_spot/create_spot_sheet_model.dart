@@ -23,7 +23,7 @@ class CreateSpotSheetModel extends ReactiveViewModel {
   final _toastService = locator<ToastService>();
 
   final placeController = TextEditingController();
-  final priceController = TextEditingController(text: "2.5");
+  final priceController = TextEditingController(text: "2");
   final _parkingSpotsService = locator<ParkingSpotsService>();
   final priceFocusNode = FocusNode();
   final placeFocusNode = FocusNode();

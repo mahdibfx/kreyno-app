@@ -30,113 +30,116 @@ class BuyerSelectedMark extends ViewModelWidget<HomeViewModel> {
               data: parkingSpot,
             );
           },
-          child: Column(
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
-                padding: EdgeInsets.all(AppSpacing.px8 * 2),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Image.network(
-                            parkingSpot.seller!.avatar?.url ??
-                                AppConstants.defaultAvatarUrl,
+          child: SafeArea(
+            top: false,
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: AppSpacing.px24),
+                  padding: EdgeInsets.all(AppSpacing.px8 * 2),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.network(
+                              parkingSpot.seller!.avatar?.url ??
+                                  AppConstants.defaultAvatarUrl,
 
-                            width: AppSpacing.px1 * 40,
-                            height: AppSpacing.px1 * 40,
-                            fit: BoxFit.cover,
+                              width: AppSpacing.px1 * 40,
+                              height: AppSpacing.px1 * 40,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        HGap(AppSpacing.px8),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomText.smallParagraphMedium(
-                              parkingSpot.seller!.username,
-                            ),
-                            CustomText.labelMedium(
-                              "buyerSelectedMark.proposesSpotAt".tr(),
-                              color: AppColors.textKre,
-                            ),
-                          ],
-                        ),
-                        Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                          HGap(AppSpacing.px8),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              CustomText(
-                                text: viewModel.selectedSpot!.price
-                                    .toStringAsFixed(2),
-                                color: AppColors.greenKre,
-                                style: CustomTextStyle.title,
+                              CustomText.smallParagraphMedium(
+                                parkingSpot.seller!.username,
                               ),
-                              const CustomIcon(
-                                iconPath: AppIcons.euro,
-                                size: 20,
-                                color: AppColors.greenKre,
+                              CustomText.labelMedium(
+                                "buyerSelectedMark.proposesSpotAt".tr(),
+                                color: AppColors.textKre,
                               ),
                             ],
                           ),
-                        ),
-                      ],
-                    ),
-                    VGap(AppSpacing.px8),
-                    CustomText.paragraph(
-                      parkingSpot.address,
-                      maxLines: 2,
-                      textAlign: TextAlign.start,
-                    ),
-                    VGap(AppSpacing.px8),
-                    Row(
-                      children: [
-                        // CustomIcon(
-                        //   iconPath: AppIcons.evCharging,
-                        //   color: viewModel.selectedSpot!.electricChargeStation
-                        //       ? AppColors.greenKre
-                        //       : AppColors.textKre,
-                        // ),
-                        // HGap(AppSpacing.px4),
-                        // CustomText(
-                        //   text: viewModel.selectedSpot!.electricChargeStation
-                        //       ? "myParkingSpots.chargingAvailable".tr()
-                        //       : "myParkingSpots.chargingNotAvailable".tr(),
-                        //   style: CustomTextStyle.smallParagraphMedium,
-                        //   color: viewModel.selectedSpot!.electricChargeStation
-                        //       ? AppColors.greenKre
-                        //       : AppColors.textKre,
-                        // ),
-                        // HGap(AppSpacing.px8),
-                        Row(
-                          children: [
-                            const CustomIcon(
-                              iconPath: AppIcons.route,
-                              color: AppColors.textKre,
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                CustomText(
+                                  text: viewModel.selectedSpot!.price
+                                      .toStringAsFixed(2),
+                                  color: AppColors.greenKre,
+                                  style: CustomTextStyle.title,
+                                ),
+                                const CustomIcon(
+                                  iconPath: AppIcons.euro,
+                                  size: 20,
+                                  color: AppColors.greenKre,
+                                ),
+                              ],
                             ),
-                            HGap(AppSpacing.px1 * 5),
-                            CustomText(
-                              text: viewModel.distanceToSelectedSpot,
-                              style: CustomTextStyle.smallParagraphMedium,
-                              color: AppColors.textKre,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+                          ),
+                        ],
+                      ),
+                      VGap(AppSpacing.px8),
+                      CustomText.paragraph(
+                        parkingSpot.address,
+                        maxLines: 2,
+                        textAlign: TextAlign.start,
+                      ),
+                      VGap(AppSpacing.px8),
+                      Row(
+                        children: [
+                          // CustomIcon(
+                          //   iconPath: AppIcons.evCharging,
+                          //   color: viewModel.selectedSpot!.electricChargeStation
+                          //       ? AppColors.greenKre
+                          //       : AppColors.textKre,
+                          // ),
+                          // HGap(AppSpacing.px4),
+                          // CustomText(
+                          //   text: viewModel.selectedSpot!.electricChargeStation
+                          //       ? "myParkingSpots.chargingAvailable".tr()
+                          //       : "myParkingSpots.chargingNotAvailable".tr(),
+                          //   style: CustomTextStyle.smallParagraphMedium,
+                          //   color: viewModel.selectedSpot!.electricChargeStation
+                          //       ? AppColors.greenKre
+                          //       : AppColors.textKre,
+                          // ),
+                          // HGap(AppSpacing.px8),
+                          Row(
+                            children: [
+                              const CustomIcon(
+                                iconPath: AppIcons.route,
+                                color: AppColors.textKre,
+                              ),
+                              HGap(AppSpacing.px1 * 5),
+                              CustomText(
+                                text: viewModel.distanceToSelectedSpot,
+                                style: CustomTextStyle.smallParagraphMedium,
+                                color: AppColors.textKre,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              VGap(AppSpacing.px8 * 2),
-              // const HomeBottomBar(),
-            ],
+                VGap(AppSpacing.px8 * 2),
+                // const HomeBottomBar(),
+              ],
+            ),
           ),
         ),
       ],

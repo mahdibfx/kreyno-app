@@ -36,6 +36,15 @@ class LocationService with ListenableServiceMixin {
     }
   }
 
+  /// Whether the location permission has already been granted (while-in-use
+  /// or always). Used to decide if the prominent disclosure still needs to be
+  /// shown before requesting the permission.
+  Future<bool> isPermissionGranted() async {
+    final permission = await Geolocator.checkPermission();
+    return permission == LocationPermission.always ||
+        permission == LocationPermission.whileInUse;
+  }
+
   Future<Either<String, Position>> getCurrentLocation() async {
     try {
       if (await Geolocator.checkPermission() == LocationPermission.denied) {

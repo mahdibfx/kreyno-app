@@ -64,6 +64,7 @@ import 'package:kreyno/ui/views/account_settings/account_settings_view.dart';
 import 'package:kreyno/ui/views/change_language/change_language_view.dart';
 import 'package:kreyno/ui/views/change_phone_number/change_phone_number_view.dart';
 import 'package:kreyno/ui/bottom_sheets/upload_profile_image/upload_profile_image_sheet.dart';
+import 'package:kreyno/ui/bottom_sheets/location_disclosure/location_disclosure_sheet.dart';
 import 'package:kreyno/ui/views/my_parking_spots/my_parking_spots_view.dart';
 import 'package:kreyno/ui/views/add_bank_account/add_bank_account_view.dart';
 import 'package:kreyno/ui/bottom_sheets/delete_bank_account_confirmation/delete_bank_account_confirmation_sheet.dart';
@@ -171,6 +172,7 @@ import 'package:kreyno/services/tasks_service.dart';
     StackedBottomsheet(classType: CountryCodePickerSheet),
     StackedBottomsheet(classType: UploadProfileImageSheet),
     StackedBottomsheet(classType: DeleteBankAccountConfirmationSheet),
+    StackedBottomsheet(classType: LocationDisclosureSheet),
     // @stacked-bottom-sheet
   ],
   dialogs: [

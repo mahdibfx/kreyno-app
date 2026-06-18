@@ -36,9 +36,11 @@ class MyParkingSpotsView extends StackedView<MyParkingSpotsViewModel> {
           CustomSliverAppBar.shrunk(
             title: MyParkingSpotsStrings.title,
             trailingWidget: GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTap: viewModel.showFilterSheet,
               child: Container(
                 color: Colors.transparent,
+                padding: EdgeInsets.all(AppSpacing.px12),
                 child: Stack(
                   children: [
                     CustomIcon(iconPath: AppIcons.sort, size: AppSpacing.px24),

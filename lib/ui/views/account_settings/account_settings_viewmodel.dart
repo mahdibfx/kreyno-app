@@ -3,7 +3,6 @@ import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/app/app.router.dart';
-import 'package:kreyno/enums/onboarding_step.dart';
 import 'package:kreyno/models/user.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/onboarding_service.dart';
@@ -39,7 +38,8 @@ class AccountSettingsViewModel extends ReactiveViewModel {
       _authService.clearAccessToken().then((reponse) {
         reponse.match((r) => null, (r) async {
           await _sharedPreferences.deleteAllData();
-          _onBoardingService.setCurrentStep(OnboardingStep.authentication);
+          // Reset the onboarding step to null so startup routes to onboarding.
+          await _onBoardingService.completeOnboarding();
           _navigationService.clearStackAndShowView(const OnboardingView());
           // _navigationService.clearStackAndShowView(const SigninView());
         });

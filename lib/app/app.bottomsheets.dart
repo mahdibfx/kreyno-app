@@ -21,6 +21,7 @@ import '../ui/bottom_sheets/date_picker_filter/date_picker_filter_sheet.dart';
 import '../ui/bottom_sheets/delete_account_confirmation/delete_account_confirmation_sheet.dart';
 import '../ui/bottom_sheets/delete_bank_account_confirmation/delete_bank_account_confirmation_sheet.dart';
 import '../ui/bottom_sheets/home_filter/home_filter_sheet.dart';
+import '../ui/bottom_sheets/location_disclosure/location_disclosure_sheet.dart';
 import '../ui/bottom_sheets/logout_confirmation/logout_confirmation_sheet.dart';
 import '../ui/bottom_sheets/notice/notice_sheet.dart';
 import '../ui/bottom_sheets/otp/otp_sheet.dart';
@@ -52,6 +53,7 @@ enum BottomSheetType {
   countryCodePicker,
   uploadProfileImage,
   deleteBankAccountConfirmation,
+  locationDisclosure,
 }
 
 void setupBottomSheetUi() {
@@ -103,6 +105,8 @@ void setupBottomSheetUi() {
           request: request,
           completer: completer,
         ),
+    BottomSheetType.locationDisclosure: (context, request, completer) =>
+        LocationDisclosureSheet(request: request, completer: completer),
   };
 
   bottomsheetService.setCustomSheetBuilders(builders);

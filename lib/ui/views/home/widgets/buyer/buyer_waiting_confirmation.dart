@@ -44,32 +44,30 @@ class BuyerWaitingConfirmation
               viewModel.reservation.status == ReservationStatus.pending ||
                   viewModel.nearParkingSpotLocation
               ? const PendingReservation()
-              : Column(
-                  children: [
-                    CustomButton.filled(
-                      icon: AppIcons.waze,
-                      backgroundColor: AppColors.wazeBlue,
-                      foregroundColor: AppColors.white,
-                      onPressed: () async {
-                        final availableMaps = await MapLauncher.installedMaps;
-                        if (availableMaps.contains(MapType.waze)) {
-                          MapLauncher.showDirections(
-                            mapType: MapType.waze,
-                            destination: Coords(
-                              viewModel.parkingSpot.latitude,
-                              viewModel.parkingSpot.longitude,
-                            ),
-                          );
-                        } else {
-                          UrlLauncherService().launchUrl(
-                            "https://waze.com/ul?ll=${viewModel.parkingSpot.latitude},${viewModel.parkingSpot.longitude}&navigate=yes",
-                          );
-                        }
-                      },
-                      text: "open_waze".tr(),
-                    ),
-                    const SizedBox(height: 24),
-                  ],
+              : SafeArea(
+                  top: false,
+                  child: CustomButton.filled(
+                    icon: AppIcons.waze,
+                    backgroundColor: AppColors.wazeBlue,
+                    foregroundColor: AppColors.white,
+                    onPressed: () async {
+                      final availableMaps = await MapLauncher.installedMaps;
+                      if (availableMaps.contains(MapType.waze)) {
+                        MapLauncher.showDirections(
+                          mapType: MapType.waze,
+                          destination: Coords(
+                            viewModel.parkingSpot.latitude,
+                            viewModel.parkingSpot.longitude,
+                          ),
+                        );
+                      } else {
+                        UrlLauncherService().launchUrl(
+                          "https://waze.com/ul?ll=${viewModel.parkingSpot.latitude},${viewModel.parkingSpot.longitude}&navigate=yes",
+                        );
+                      }
+                    },
+                    text: "open_waze".tr(),
+                  ),
                 ),
           showDragHandler: false,
         ),
@@ -209,45 +207,49 @@ class PendingReservation extends ViewModelWidget<SellerTrackingViewModel> {
         ),
         VGap(AppSpacing.px16),
         if (viewModel.reservation.status == ReservationStatus.pending)
-          Row(
-            children: [
-              Expanded(
-                child: CustomButton.filled(
-                  text: "Annuler",
-                  backgroundColor: AppColors.redKre,
-                  foregroundColor: AppColors.white,
-                  onPressed: () {
-                    locator<BottomSheetService>().showCustomSheet(
-                      variant: BottomSheetType.cancelationReasons,
-                      data: viewModel.reservation,
-                      isScrollControlled: true,
-                    );
-                  },
+          SafeArea(
+            top: false,
+            child: Row(
+              children: [
+                Expanded(
+                  child: CustomButton.filled(
+                    text: "Annuler",
+                    backgroundColor: AppColors.redKre,
+                    foregroundColor: AppColors.white,
+                    onPressed: () {
+                      locator<BottomSheetService>().showCustomSheet(
+                        variant: BottomSheetType.cancelationReasons,
+                        data: viewModel.reservation,
+                        isScrollControlled: true,
+                      );
+                    },
+                  ),
                 ),
-              ),
-              SizedBox(width: AppSpacing.px8),
-              Expanded(
-                child: CustomButton.filled(
-                  text: "Message",
-                  showBadge: viewModel.unreadMessagesCount > 0,
-                  onPressed: () async {
-                    viewModel.unreadMessagesCount = 0;
-                    viewModel.rebuildUi();
-                    locator<NavigationService>().navigateToChatView(
-                      id: 0,
-                      name: viewModel.parkingSpot.seller.username,
-                      image:
-                          viewModel.parkingSpot.seller.avatar?.url ??
-                          AppConstants.defaultAvatarUrl,
-                      phone: viewModel.parkingSpot.seller.phone,
-                      reservationId: viewModel.reservation.id,
-                    );
-                  },
+                SizedBox(width: AppSpacing.px8),
+                Expanded(
+                  child: CustomButton.filled(
+                    text: "Message",
+                    showBadge: viewModel.unreadMessagesCount > 0,
+                    onPressed: () async {
+                      viewModel.unreadMessagesCount = 0;
+                      viewModel.rebuildUi();
+                      locator<NavigationService>().navigateToChatView(
+                        id: 0,
+                        name: viewModel.parkingSpot.seller.username,
+                        image:
+                            viewModel.parkingSpot.seller.avatar?.url ??
+                            AppConstants.defaultAvatarUrl,
+                        phone: viewModel.parkingSpot.seller.phone,
+                        reservationId: viewModel.reservation.id,
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
-          ),
-        const SizedBox(height: 24),
+              ],
+            ),
+          )
+        else
+          const SafeArea(top: false, child: SizedBox(height: 24)),
       ],
     );
   }

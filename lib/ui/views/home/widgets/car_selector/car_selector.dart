@@ -38,7 +38,7 @@ class CarSelector extends StackedView<CarSelectorModel> {
       children: [
         for (int i = 0; i < 2; i++) ...[
           Row(
-            spacing: AppSpacing.px8,
+            spacing: AppSpacing.px16,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(

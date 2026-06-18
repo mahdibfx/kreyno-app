@@ -13,7 +13,7 @@ _GetCarByRegistrationResponse _$GetCarByRegistrationResponseFromJson(
   model: json['model'] as String,
   color: json['color'] as String,
   registrationNumber: json['registration_number'] as String,
-  co2Emission: (json['co2_emission'] as num).toInt(),
+  co2Emission: int.tryParse(json['co2_emission'].toString()) ?? 0,
 );
 
 Map<String, dynamic> _$GetCarByRegistrationResponseToJson(

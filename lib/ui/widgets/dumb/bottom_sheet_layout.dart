@@ -43,23 +43,31 @@ class BottomSheetLayout extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        spacing: spacing ?? AppSpacing.px20,
-        children: [
-          if (showDragHandler == null || showDragHandler == true)
-            Container(
-              width: 2.5 * AppSpacing.px24,
-              height: AppSpacing.px8,
-              decoration: BoxDecoration(
-                color: const Color(0xFFF5F5F5),
-                borderRadius: BorderRadius.circular(AppSpacing.px12),
+      // Reserve the bottom system inset (Android nav bar / iOS home indicator)
+      // so sheet content/buttons clear it. Placed inside the Container so the
+      // white background still extends full-bleed to the screen edge. top:false
+      // keeps the top tight; consuming the inset here prevents any nested
+      // SafeArea in a sheet from double-padding.
+      child: SafeArea(
+        top: false,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          spacing: spacing ?? AppSpacing.px20,
+          children: [
+            if (showDragHandler == null || showDragHandler == true)
+              Container(
+                width: 2.5 * AppSpacing.px24,
+                height: AppSpacing.px8,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF5F5F5),
+                  borderRadius: BorderRadius.circular(AppSpacing.px12),
+                ),
               ),
-            ),
-          Flexible(child: body),
-        ],
+            Flexible(child: body),
+          ],
+        ),
       ),
     );
   }

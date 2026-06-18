@@ -1,3 +1,5 @@
+// import 'dart:async'; // needed by the commented-out places-change test helper
+
 import 'package:fpdart/fpdart.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/app/app.locator.dart';
@@ -19,10 +21,38 @@ class TrackingService with ListenableServiceMixin {
   final List<Polyline> _buyerPlaceChangedPolylines = [];
   List<Polyline> get buyerPlaceChangedPolylines => _buyerPlaceChangedPolylines;
 
-  int fireId = DateTime.now().millisecondsSinceEpoch;
+  /// Invoked every time a `parking-place.grid-updated` event is received on the
+  /// subscribed zone channel. Listeners (e.g. the home view model) use this to
+  /// refresh the nearby places. The event payload is intentionally ignored.
+  void Function()? onPlacesChanged;
+
   TrackingService() {
-    listenToReactiveValues([_buyerLocationUpdated, fireId]);
+    listenToReactiveValues([_buyerLocationUpdated]);
   }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // TEMPORARY TEST HELPER — emits every 10 seconds and triggers the same
+  // refresh as a real `parking-place.grid-updated` event. Uncomment (along with
+  // the calls in HomeViewModel) to re-test the frontend place-change behavior.
+  // StreamSubscription<int>? _placesChangeTestSubscription;
+
+  // void startPlacesChangeTest() {
+  //   _placesChangeTestSubscription?.cancel();
+  //   _placesChangeTestSubscription =
+  //       Stream<int>.periodic(
+  //         const Duration(seconds: 10),
+  //         (count) => count,
+  //       ).listen((tick) {
+  //         Logger().i("[PlacesTest] tick #$tick -> refreshing places");
+  //         onPlacesChanged?.call();
+  //       });
+  // }
+
+  // void stopPlacesChangeTest() {
+  //   _placesChangeTestSubscription?.cancel();
+  //   _placesChangeTestSubscription = null;
+  // }
+  // ─────────────────────────────────────────────────────────────────────────
 
   Future<void> listenToPlacesChange(String geoHash) async {
     try {
@@ -51,9 +81,9 @@ class TrackingService with ListenableServiceMixin {
         event: 'parking-place.grid-updated',
         onEvent: (event) {
           try {
-            // Parse the reservation
-            fireId = DateTime.now().millisecondsSinceEpoch;
-            notifyListeners();
+            // A grid update happened in this zone: just refresh the places.
+            // The payload is intentionally not used.
+            onPlacesChanged?.call();
           } catch (e, stackTrace) {
             Logger().e("[Location] Error: $e");
           }
