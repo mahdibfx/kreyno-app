@@ -127,7 +127,7 @@ class MyLetPlaceViewModel extends ReactiveViewModel {
       final stillExists = spots.any((s) => s.id == parkingSpot!.id);
       if (stillExists) return;
       _navigationService.back();
-      _toastService.showError(title: "myLetPlace.placeExpired".tr());
+      // _toastService.showError(title: "myLetPlace.placeExpired".tr());
     });
   }
 
