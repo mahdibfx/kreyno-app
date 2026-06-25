@@ -1,5 +1,7 @@
 {
   "accountDeleted": "Account deleted",
+  "open_waze": "Open Waze",
+
   "common": {
     "somethingWentWrong": "An error happend",
     "title": "Title",
@@ -548,6 +550,9 @@
   },
   "home": {
     "let_my_place": "Let my place"
+  },
+  "myLetPlace": {
+    "placeExpired": "Your place expired because no one reserved it within 10 minutes. Please create a new one."
   },
   "connectivity": {
     "noInternetConnection": "No internet connection",

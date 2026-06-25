@@ -26,7 +26,7 @@ class SellerTrackingViewModel extends ReactiveViewModel {
   final _reservationService = locator<ReservationsService>();
   final _navigationService = locator<NavigationService>();
 
-  late GoogleMapController googleController;
+  GoogleMapController? googleController;
 
   ParkingPlace get parkingSpot => _parkingSpot!;
   Reservation get reservation => _reservation!;
@@ -45,7 +45,19 @@ class SellerTrackingViewModel extends ReactiveViewModel {
 
   setMapController(GoogleMapController controller) {
     googleController = controller;
+    // Center on the seller as soon as the map is ready (the location may have
+    // resolved before the controller existed).
+    _moveToCurrentLocation();
     rebuildUi();
+  }
+
+  /// Moves the camera to the seller's current location. Called up front (in the
+  /// initial setup and when the map controller becomes available) so the camera
+  /// is positioned before any route polylines are drawn.
+  void _moveToCurrentLocation() {
+    final location = currentLocationStream;
+    if (googleController == null || location == null) return;
+    googleController!.animateCamera(CameraUpdate.newLatLngZoom(location, 15));
   }
 
   String get distanceToSpot {
@@ -127,6 +139,9 @@ class SellerTrackingViewModel extends ReactiveViewModel {
         },
         (r) {
           currentLocation = LatLng(r.latitude, r.longitude);
+          // Move the camera to the seller's location before the location
+          // listener (and route polylines) kick in.
+          _moveToCurrentLocation();
           listenToReservationUpdates();
           rebuildUi();
         },
@@ -207,9 +222,9 @@ class SellerTrackingViewModel extends ReactiveViewModel {
           parkingSpotLocation.latitude,
           parkingSpotLocation.longitude,
         ) <=
-        400;
+        90;
 
-    googleController.animateCamera(
+    googleController?.animateCamera(
       CameraUpdate.newLatLngZoom(currentLocationStream!, 15),
     );
     rebuildUi();

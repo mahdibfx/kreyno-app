@@ -99,7 +99,7 @@ class HomeViewModel extends ReactiveViewModel {
   @override
   void dispose() {
     _locationService.removeListener(_onLocationServiceUpdate);
-    _trackingService.onPlacesChanged = null;
+    _trackingService.removePlacesChangedListener(_onPlacesChanged);
     // _trackingService.stopPlacesChangeTest();
     super.dispose();
   }
@@ -160,6 +160,7 @@ class HomeViewModel extends ReactiveViewModel {
   }
 
   Future<void> getNearbyPlaces({double? lat, double? lng}) async {
+    _selectedSpot = null;
     final queryLat =
         lat ??
         _selectedLocation?.latitude ??
@@ -204,8 +205,8 @@ class HomeViewModel extends ReactiveViewModel {
               spot.electricChargeStation
                   ? "assets/images/electric_place_pin.png"
                   : "assets/images/normal_parking_pin.png",
-              width: 42,
-              height: 55,
+              width: 28,
+              height: 38,
             ),
 
             onTap: () {
@@ -223,15 +224,7 @@ class HomeViewModel extends ReactiveViewModel {
       _addSelectedLocationMarker(_selectedLocation!);
       rebuildUi();
     }
-    final hash = GeoHash.fromDecimalDegrees(
-      _locationService.currentLocation?.longitude ?? 0,
-      _locationService.currentLocation?.latitude ?? 0,
-      precision: 10,
-    );
 
-    _trackingService.listenToPlacesChange(
-      parkingSpots.isEmpty ? hash.geohash : parkingSpots.first.geoHash,
-    );
     _loadingPlaces = false;
     rebuildUi();
   }
@@ -275,10 +268,19 @@ class HomeViewModel extends ReactiveViewModel {
 
     // _locationService.removeListener(_onLocationServiceUpdate);
     _locationService.addListener(_onLocationServiceUpdate);
+    final hash = GeoHash.fromDecimalDegrees(
+      _locationService.currentLocation?.longitude ?? 0,
+      _locationService.currentLocation?.latitude ?? 0,
+      precision: 10,
+    );
+
+    _trackingService.listenToPlacesChange(
+      parkingSpots.isEmpty ? hash.geohash : parkingSpots.first.geoHash,
+    );
 
     // Refresh nearby places whenever a grid-update event fires for the zone,
     // mirroring the manual refresh button.
-    _trackingService.onPlacesChanged = _onPlacesChanged;
+    _trackingService.addPlacesChangedListener(_onPlacesChanged);
 
     // TEMPORARY: drive the same refresh every 10s to test place-change behavior
     // in the frontend. Uncomment to re-enable testing.
@@ -294,7 +296,6 @@ class HomeViewModel extends ReactiveViewModel {
       onLocationUpdate(_locationService.currentLocation!);
     }
   }
-
 
   /// Shows the prominent location disclosure (Google Play requirement) before
   /// the runtime permission prompt. Returns true if the app may proceed to
@@ -333,7 +334,7 @@ class HomeViewModel extends ReactiveViewModel {
         _animateToCameraPosition(
           CameraPosition(
             target: LatLng(location.latitude, location.longitude),
-            zoom: 12,
+            zoom: 15,
           ),
         );
         await getNearbyPlaces();

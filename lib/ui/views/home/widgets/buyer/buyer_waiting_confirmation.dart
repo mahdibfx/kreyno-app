@@ -52,8 +52,11 @@ class BuyerWaitingConfirmation
                     foregroundColor: AppColors.white,
                     onPressed: () async {
                       final availableMaps = await MapLauncher.installedMaps;
-                      if (availableMaps.contains(MapType.waze)) {
-                        MapLauncher.showDirections(
+                      final hasWaze = availableMaps.any(
+                        (map) => map.mapType == MapType.waze,
+                      );
+                      if (hasWaze) {
+                        await MapLauncher.showDirections(
                           mapType: MapType.waze,
                           destination: Coords(
                             viewModel.parkingSpot.latitude,

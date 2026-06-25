@@ -49,6 +49,9 @@
         <intent>
             <action android:name="android.support.customtabs.action.CustomTabsService" />
         </intent>
+        <!-- Map apps (Waze / Google Maps) launched via map_launcher -->
+        <package android:name="com.waze" />
+        <package android:name="com.google.android.apps.maps" />
     </queries>
 
 

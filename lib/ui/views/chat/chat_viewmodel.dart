@@ -30,26 +30,34 @@ class ChatViewModel extends ReactiveViewModel {
   }
 
   void _onMessageReceived() {
-    if (messages.contains(_chatService.message)) return;
-    messages.add(_chatService.message!);
+    final message = _chatService.message;
+    if (message == null) return;
+    // The server echoes the sender's own message with the same canonical
+    // fields we already appended from the send response, so value-equality
+    // dedup keeps it from being added twice.
+    if (messages.contains(message)) return;
+    messages.add(message);
     notifyListeners();
   }
 
   sendMessage() async {
+    final text = messageTextController.text.trim();
+    if (text.isEmpty) return;
     setBusy(true);
     messageFocusNode.unfocus();
-    final result = _chatService.sendMessage(
-      reservationId,
-      messageTextController.text,
-    );
-    messageTextController.clear();
 
-    // result.then((result) {
-    //   result.match((l) => _toastService.showError(title: l), (r) {
-    //     messages.add(r);
-    //     notifyListeners();
-    //   });
-    // });
+    final result = await _chatService.sendMessage(reservationId, text);
+    result.match(
+      // Keep the typed text so the user can retry on failure.
+      (error) => _toastService.showError(title: error),
+      (message) {
+        messageTextController.clear();
+        if (!messages.contains(message)) {
+          messages.add(message);
+          notifyListeners();
+        }
+      },
+    );
     setBusy(false);
   }
 

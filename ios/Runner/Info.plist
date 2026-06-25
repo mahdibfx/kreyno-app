@@ -33,6 +33,8 @@
 	<array>
 		<string>https</string>
 		<string>tel</string>
+		<string>waze</string>
+		<string>comgooglemaps</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

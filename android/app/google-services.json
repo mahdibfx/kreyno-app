@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "994628135527",
+    "project_id": "kreyno-9bd6d",
+    "storage_bucket": "kreyno-9bd6d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994628135527:android:f4e384d32dbb7388e542c2",
+        "android_client_info": {
+          "package_name": "com.kreyno.fr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDu4dM8y_9YjwcP_giOEbv0lYbt8YSooNE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

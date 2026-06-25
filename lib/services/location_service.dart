@@ -65,7 +65,7 @@ class LocationService with ListenableServiceMixin {
           locationSettings ??
           const LocationSettings(
             accuracy: LocationAccuracy.high,
-            distanceFilter: 10,
+            distanceFilter: 2,
           ),
     );
   }

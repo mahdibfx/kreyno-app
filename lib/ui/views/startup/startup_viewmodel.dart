@@ -24,10 +24,10 @@ class StartupViewModel extends BaseViewModel {
     try {
       await AppTrackingTransparency.requestTrackingAuthorization();
 
-      // if (!await InternetConnectionChecker.instance.hasConnection) {
-      //   await _navigationService.replaceWithErrorView();
-      //   return;
-      // }
+      if (!await InternetConnectionChecker.instance.hasConnection) {
+        await _navigationService.replaceWithErrorView();
+        return;
+      }
 
       if (!await _checkLanguageSelection()) {
         await _navigationService.replaceWithSetUpLanguageView();

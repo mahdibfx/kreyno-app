@@ -35,6 +35,7 @@ class HomeView extends StackedView<HomeViewModel> {
                     onTap: (_) => viewModel.clearSelectedSpot(),
                     zoomControlsEnabled: false,
                     myLocationEnabled: true,
+
                     markers: viewModel.spotsMarkers.toSet(),
                   ),
                   Column(

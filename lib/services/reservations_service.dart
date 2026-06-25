@@ -6,14 +6,12 @@ import 'package:kreyno/models/paginated_list.dart';
 import 'package:kreyno/models/reservation.dart';
 import 'package:kreyno/services/api/api_reservation_service.dart';
 import 'package:kreyno/services/api/dio_service.dart';
-import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/socket_service.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 
 class ReservationsService with ListenableServiceMixin {
   final _wsService = SocketService();
-  final _authService = locator<AuthService>();
   final _apiReservationService = ApiReservationService(
     locator<DioService>().dio,
   );
@@ -67,141 +65,51 @@ class ReservationsService with ListenableServiceMixin {
   }
 
   Future<void> listenToReservationStatusChanged(int userId) async {
-    try {
-      // Check if socket is initialized
-      if (!_wsService.isConnected) {
-        final token = await _authService.getAccessToken();
-
-        if (token == null) {
-          _logger.w("No access token available");
-          return;
-        }
-
-        _wsService.initialize(authToken: token, userId: userId.toString());
-
-        // Wait for connection to establish
-        await Future.delayed(const Duration(seconds: 2));
-      }
-
-      // Verify echo is available after initialization
-      if (!_wsService.isConnected) {
-        _logger.e("Pusher still null after initialization");
-        return;
-      }
-
-      // Subscribe to the private channel
-      _wsService.listenToPrivateChannel(
-        channel: 'user.$userId',
-        event: 'reservation.status.changed',
-        onEvent: (event) {
-          try {
-            _logger.i("📨 Reservation event received");
-
-            // The data structure is: { "reservation": { ... } }
-            // Extract the reservation object
-            final reservationData = event['reservation'];
-
-            if (reservationData == null) {
-              _logger.e("No reservation data in event");
-              return;
-            }
-
-            // Parse the reservation
-            final reservationReceived = Reservation.fromJson(reservationData);
-
-            // Update the reservation
-            _reservation = null;
-
-            _reservation = reservationReceived;
-
-            notifyListeners();
-
-            _logger.i("✅ Reservation updated successfully");
-          } catch (e, stackTrace) {
-            _logger.e("Error parsing reservation: $e");
-            _logger.e(stackTrace.toString());
-          }
-        },
-        onError: (error) {
-          _logger.e("Reservation channel error: $error");
-        },
-      );
-    } catch (e, stackTrace) {
-      _logger.e("Error setting up reservation listener: $e");
-      _logger.e(stackTrace.toString());
-    }
+    await _wsService.subscribePrivate(
+      channel: 'user.$userId',
+      event: 'reservation.status.changed',
+      onEvent: (data) => _handleReservationEvent(data),
+    );
   }
 
   Future<void> listenToReservationUpdates(int userId) async {
+    await _wsService.subscribePrivate(
+      channel: 'user.$userId',
+      event: 'reservation.new',
+      onEvent: (data) => _handleReservationEvent(data),
+    );
+  }
+
+  /// Parses a `{ "reservation": { ... } }` payload and publishes it.
+  void _handleReservationEvent(dynamic data) {
     try {
-      // Check if socket is initialized
-      if (!_wsService.isConnected) {
-        final token = await _authService.getAccessToken();
-
-        if (token == null) {
-          _logger.w("No access token available");
-          return;
-        }
-
-        _wsService.initialize(authToken: token, userId: userId.toString());
-
-        // Wait for connection to establish
-        await Future.delayed(const Duration(seconds: 2));
-      }
-
-      // Verify echo is available after initialization
-      if (!_wsService.isConnected) {
-        _logger.e("Pusher still null after initialization");
+      _logger.i("📨 Reservation event received");
+      final event = Map<String, dynamic>.from(data as Map);
+      final reservationData = event['reservation'];
+      if (reservationData == null) {
+        _logger.e("No reservation data in event");
         return;
       }
-
-      // Subscribe to the private channel
-      _wsService.listenToPrivateChannel(
-        channel: 'user.$userId',
-        event: 'reservation.new',
-        onEvent: (event) {
-          try {
-            _logger.i("📨 Reservation event received");
-
-            // The data structure is: { "reservation": { ... } }
-            // Extract the reservation object
-            final reservationData = event['reservation'];
-
-            if (reservationData == null) {
-              _logger.e("No reservation data in event");
-              return;
-            }
-
-            // Parse the reservation
-            final reservationReceived = Reservation.fromJson(reservationData);
-
-            // Update the reservation
-            _reservation = reservationReceived;
-            notifyListeners();
-
-            _logger.i("✅ Reservation updated successfully");
-          } catch (e, stackTrace) {
-            _logger.e("Error parsing reservation: $e");
-            _logger.e(stackTrace.toString());
-          }
-        },
-        onError: (error) {
-          _logger.e("Reservation channel error: $error");
-        },
+      _reservation = Reservation.fromJson(
+        Map<String, dynamic>.from(reservationData as Map),
       );
+      notifyListeners();
+      _logger.i("✅ Reservation updated successfully");
     } catch (e, stackTrace) {
-      _logger.e("Error setting up reservation listener: $e");
+      _logger.e("Error parsing reservation: $e");
       _logger.e(stackTrace.toString());
     }
   }
 
   void stopListeningToReservationUpdates(int userId) {
-    try {
-      _wsService.leaveChannel('user.$userId', isPrivate: true);
-      _logger.i("Stopped listening to reservation updates");
-    } catch (e) {
-      _logger.e("Error leaving channel: $e");
-    }
+    // Unbind only the reservation events, leaving any other listeners on the
+    // shared `user.$userId` channel (e.g. buyer-location) intact.
+    _wsService.unsubscribe(channel: 'user.$userId', event: 'reservation.new');
+    _wsService.unsubscribe(
+      channel: 'user.$userId',
+      event: 'reservation.status.changed',
+    );
+    _logger.i("Stopped listening to reservation updates");
   }
 
   void disconnectSocket() {

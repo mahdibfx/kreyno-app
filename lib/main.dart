@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -7,9 +8,8 @@ import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.dialogs.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.router.dart';
-import 'package:kreyno/enums/onboarding_step.dart';
+import 'package:kreyno/firebase_options.dart';
 import 'package:kreyno/services/app_bottom_sheet_service.dart';
-import 'package:kreyno/services/onboarding_service.dart';
 import 'package:kreyno/ui/common/responsive_sizer.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:toastification/toastification.dart';
@@ -18,6 +18,7 @@ Future<void> _initApp() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await dotenv.load(fileName: ".env");
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // Initialize Stripe
   Stripe.publishableKey = dotenv.env['STRIPE_PUBLISHABLE_KEY'] ?? '';

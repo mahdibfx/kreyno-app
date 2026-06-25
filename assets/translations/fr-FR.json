@@ -1,5 +1,6 @@
 {
   "accountDeleted": "Compte supprimé",
+  "open_waze": "Ouvrir Waze",
   "common": {
     "somethingWentWrong": "Une erreur est survenue",
     "title": "Titre",
@@ -551,6 +552,9 @@
   },
   "home": {
     "let_my_place": "Céder ma place"
+  },
+  "myLetPlace": {
+    "placeExpired": "Votre place a expiré car personne ne l'a réservée dans les 10 minutes. Veuillez en créer une nouvelle."
   },
   "connectivity": {
     "noInternetConnection": "Pas de connexion Internet",
