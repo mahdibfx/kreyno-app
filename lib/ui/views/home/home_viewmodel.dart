@@ -271,7 +271,7 @@ class HomeViewModel extends ReactiveViewModel {
     final hash = GeoHash.fromDecimalDegrees(
       _locationService.currentLocation?.longitude ?? 0,
       _locationService.currentLocation?.latitude ?? 0,
-      precision: 10,
+      precision: 6,
     );
 
     _trackingService.listenToPlacesChange(

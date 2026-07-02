@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -98,37 +96,23 @@ class MyLetPlaceViewModel extends ReactiveViewModel {
     _reservationService.addListener(onReservationReceived);
     parkingSpot = _navigationService.currentArguments as ParkingSpot;
 
-    // Subscribe to grid updates for this spot's zone so we can detect when the
-    // place is removed by the backend (e.g. it expired after 10 minutes with no
-    // reservation) and leave this screen.
-    _trackingService.listenToPlacesChange(parkingSpot!.geoHash);
-    _trackingService.addPlacesChangedListener(_onPlacesChanged);
+    // Subscribe to the seller's channel so we know when the backend deletes
+    // this place (e.g. its time ran out) and can leave this screen.
+    _trackingService.listenToPlaceDeleted(currentUser.id);
+    _trackingService.addPlaceDeletedListener(_onPlaceDeleted);
 
     notifyListeners();
   }
 
-  /// Fired when a `parking-place.grid-updated` event arrives for the zone. If
-  /// our spot is no longer among the nearby places, it has been removed, so we
-  /// leave the screen and tell the user to create a new one. We ignore this
-  /// while a reservation is in progress, since a reserved spot is expected to
-  /// drop off the available-places list without having expired.
-  void _onPlacesChanged() async {
+  /// Fired when a `parking-place.deleted` event arrives for this seller. If the
+  /// deleted place is the one we're showing, leave the screen. Ignored while a
+  /// reservation is in progress, since a reserved spot is not an expiry case.
+  void _onPlaceDeleted(int parkingPlaceId) {
     if (disposed || parkingSpot == null) return;
     if (reservation != null) return;
-
-    final result = await _parkingSpotsService.getNearbyParkingSpots(
-      parkingSpot!.latitude,
-      parkingSpot!.longitude,
-      0.5,
-      null,
-    );
-    if (disposed) return;
-    result.match((_) {}, (spots) {
-      final stillExists = spots.any((s) => s.id == parkingSpot!.id);
-      if (stillExists) return;
-      _navigationService.back();
-      // _toastService.showError(title: "myLetPlace.placeExpired".tr());
-    });
+    if (parkingPlaceId != parkingSpot!.id) return;
+    _navigationService.back();
+    // _toastService.showError(title: "myLetPlace.placeExpired".tr());
   }
 
   acceptOrder() async {
@@ -187,7 +171,7 @@ class MyLetPlaceViewModel extends ReactiveViewModel {
   void dispose() {
     _reservationService.removeListener(onReservationReceived);
     _reservationService.removeListener(onStatusChanged);
-    _trackingService.removePlacesChangedListener(_onPlacesChanged);
+    _trackingService.removePlaceDeletedListener(_onPlaceDeleted);
     super.dispose();
   }
 

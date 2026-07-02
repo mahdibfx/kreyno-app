@@ -38,6 +38,26 @@ class TrackingService with ListenableServiceMixin {
     }
   }
 
+  /// Invoked when a `parking-place.deleted` event is received on the seller's
+  /// `user.{id}` channel (e.g. the place expired after its time ran out). The
+  /// deleted `parking_place_id` is forwarded so listeners can react only when
+  /// the affected place is one they care about.
+  final Set<void Function(int parkingPlaceId)> _placeDeletedListeners = {};
+
+  void addPlaceDeletedListener(void Function(int parkingPlaceId) listener) {
+    _placeDeletedListeners.add(listener);
+  }
+
+  void removePlaceDeletedListener(void Function(int parkingPlaceId) listener) {
+    _placeDeletedListeners.remove(listener);
+  }
+
+  void _notifyPlaceDeleted(int parkingPlaceId) {
+    for (final listener in _placeDeletedListeners.toList()) {
+      listener(parkingPlaceId);
+    }
+  }
+
   TrackingService() {
     listenToReactiveValues([_buyerLocationUpdated]);
   }
@@ -58,7 +78,33 @@ class TrackingService with ListenableServiceMixin {
       // A grid update happened in this zone: notify subscribers. Payload unused.
       onEvent: (_) => _notifyPlacesChanged(),
     );
+    await _wsService.subscribePrivate(
+      channel: 'parking.zone.$geoHash',
+      event: 'parking-place.removed-from-grid',
+      // A place was removed from this zone's grid: reload the same way.
+      // Payload ({parking_place_id, geohash}) unused; we refresh the whole grid.
+      onEvent: (_) => _notifyPlacesChanged(),
+    );
     _placesChangeGeoHash = geoHash;
+  }
+
+  /// Listens for `parking-place.deleted` events on the seller's [userId]
+  /// channel. Subscribing is idempotent, so this is safe to call repeatedly.
+  Future<void> listenToPlaceDeleted(int userId) async {
+    await _wsService.subscribePrivate(
+      channel: 'user.$userId',
+      event: 'parking-place.deleted',
+      onEvent: (data) {
+        try {
+          final map = Map<String, dynamic>.from(data as Map);
+          final id = map['parking_place_id'];
+          if (id is int) _notifyPlaceDeleted(id);
+        } catch (e, stackTrace) {
+          _logger.e("[Tracking] parking-place.deleted parse error: $e");
+          _logger.e(stackTrace.toString());
+        }
+      },
+    );
   }
 
   Future<void> listenToBuyerLocation(int userId, LatLng spotPosition) async {
