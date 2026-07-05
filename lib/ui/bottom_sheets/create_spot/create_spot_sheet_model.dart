@@ -127,12 +127,12 @@ class CreateSpotSheetModel extends ReactiveViewModel {
           description: error,
         );
       },
-      (success) {
-        _toastService.showSuccess(title: "createSpot.success".tr());
-        _navigationService.navigateToView(
+      (success) async {
+        await _navigationService.navigateToView(
           const MyLetPlaceView(),
           arguments: success,
         );
+
         // _navigationService.back();
       },
     );

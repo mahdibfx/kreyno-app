@@ -64,6 +64,8 @@ class MainApp extends StatelessWidget {
     return ResponsiveSizerWidget(
       child: ToastificationWrapper(
         child: MaterialApp(
+          restorationScopeId: "app-restoration-kreyno",
+
           debugShowCheckedModeBanner: false,
           initialRoute: Routes.startupView,
           onGenerateRoute: StackedRouter().onGenerateRoute,
