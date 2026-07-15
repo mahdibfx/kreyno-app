@@ -128,6 +128,7 @@ class CreateSpotSheetModel extends ReactiveViewModel {
         );
       },
       (success) async {
+        _navigationService.back();
         await _navigationService.navigateToView(
           const MyLetPlaceView(),
           arguments: success,

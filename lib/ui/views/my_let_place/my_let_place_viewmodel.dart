@@ -90,11 +90,32 @@ class MyLetPlaceViewModel extends ReactiveViewModel {
   }
 
   initialise() {
-    _reservationService.removeReservation();
+    parkingSpot = _navigationService.currentArguments as ParkingSpot;
+
+    // The resume flow (active place fetched on app start) seeds the service
+    // with the in-progress reservation before navigating here. Keep it when it
+    // belongs to this spot; otherwise clear whatever stale reservation the
+    // service may still hold.
+    final seeded = _reservationService.reservation;
+    final hasSeededReservation =
+        seeded != null &&
+        seeded.parkingPlace.id == parkingSpot!.id &&
+        (seeded.status == ReservationStatus.pending ||
+            seeded.status == ReservationStatus.confirmed);
+    if (!hasSeededReservation) {
+      _reservationService.removeReservation();
+    }
+
     _reservationService.listenToReservationUpdates(currentUser.id);
 
     _reservationService.addListener(onReservationReceived);
-    parkingSpot = _navigationService.currentArguments as ParkingSpot;
+
+    // A seeded reservation never fires the listener above (it arrived via the
+    // API, not the socket), so wire the status-change subscription manually —
+    // exactly what onReservationReceived would do for a live one.
+    if (hasSeededReservation) {
+      onReservationReceived();
+    }
 
     // Subscribe to the seller's channel so we know when the backend deletes
     // this place (e.g. its time ran out) and can leave this screen.

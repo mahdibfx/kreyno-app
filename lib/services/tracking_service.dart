@@ -62,30 +62,45 @@ class TrackingService with ListenableServiceMixin {
     listenToReactiveValues([_buyerLocationUpdated]);
   }
 
-  /// The zone we are currently subscribed to for grid updates.
-  String? _placesChangeGeoHash;
+  /// The set of zones we are currently subscribed to for grid updates.
+  ///
+  /// A geohash cell is a rectangle, so a user near a cell edge would miss places
+  /// just across the border if we only watched their own cell. We therefore
+  /// subscribe to a 3×3 grid (the user's cell plus its 8 neighbors), which is
+  /// why this is a set rather than a single value.
+  Set<String> _subscribedZones = {};
 
-  /// Listens for grid updates in the [geoHash] zone. Subscribing is idempotent
+  /// Subscribes to grid updates for every zone in [geoHashes] (typically a cell
+  /// and its 8 neighbors) and leaves any zone no longer in the set. Only the
+  /// difference is acted on, so calling this repeatedly with an overlapping set
+  /// (e.g. as the user drifts one cell over) is cheap. Subscribing is idempotent
   /// (the socket layer replaces, never stacks, the handler), so this is safe to
-  /// call on every refresh. When the zone changes we leave the previous one.
-  Future<void> listenToPlacesChange(String geoHash) async {
-    if (_placesChangeGeoHash != null && _placesChangeGeoHash != geoHash) {
-      _wsService.leaveChannel("parking.zone.$_placesChangeGeoHash");
+  /// call on every refresh.
+  Future<void> listenToPlacesChange(Set<String> geoHashes) async {
+    final toLeave = _subscribedZones.difference(geoHashes);
+    final toJoin = geoHashes.difference(_subscribedZones);
+
+    for (final geoHash in toLeave) {
+      _wsService.leaveChannel("parking.zone.$geoHash");
     }
-    await _wsService.subscribePrivate(
-      channel: 'parking.zone.$geoHash',
-      event: 'parking-place.grid-updated',
-      // A grid update happened in this zone: notify subscribers. Payload unused.
-      onEvent: (_) => _notifyPlacesChanged(),
-    );
-    await _wsService.subscribePrivate(
-      channel: 'parking.zone.$geoHash',
-      event: 'parking-place.removed-from-grid',
-      // A place was removed from this zone's grid: reload the same way.
-      // Payload ({parking_place_id, geohash}) unused; we refresh the whole grid.
-      onEvent: (_) => _notifyPlacesChanged(),
-    );
-    _placesChangeGeoHash = geoHash;
+
+    for (final geoHash in toJoin) {
+      await _wsService.subscribePrivate(
+        channel: 'parking.zone.$geoHash',
+        event: 'parking-place.grid-updated',
+        // A grid update happened in this zone: notify subscribers. Payload unused.
+        onEvent: (_) => _notifyPlacesChanged(),
+      );
+      await _wsService.subscribePrivate(
+        channel: 'parking.zone.$geoHash',
+        event: 'parking-place.removed-from-grid',
+        // A place was removed from this zone's grid: reload the same way.
+        // Payload ({parking_place_id, geohash}) unused; we refresh the whole grid.
+        onEvent: (_) => _notifyPlacesChanged(),
+      );
+    }
+
+    _subscribedZones = geoHashes.toSet();
   }
 
   /// Listens for `parking-place.deleted` events on the seller's [userId]

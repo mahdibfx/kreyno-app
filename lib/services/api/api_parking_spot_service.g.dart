@@ -95,6 +95,39 @@ class _ApiParkingSpotService implements ApiParkingSpotService {
   }
 
   @override
+  Future<ApiResponse<CurrentActiveParkingPlace?>>
+  getCurrentActiveParkingSpot() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<ApiResponse<CurrentActiveParkingPlace?>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'parking-places/current-active',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiResponse<CurrentActiveParkingPlace?> _value;
+    try {
+      _value = ApiResponse<CurrentActiveParkingPlace?>.fromJson(
+        _result.data!,
+        (json) => json == null
+            ? null
+            : CurrentActiveParkingPlace.fromJson(json as Map<String, dynamic>),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<ApiResponse<DeleteParkingSpotApiResponse>> deleteParkingSpot(
     int id,
   ) async {

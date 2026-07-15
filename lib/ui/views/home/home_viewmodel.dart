@@ -6,17 +6,21 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kreyno/app/app.bottomsheets.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
+import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/app/app_constants.dart';
 import 'package:kreyno/enums/gender.dart';
+import 'package:kreyno/enums/reservation_status.dart';
 import 'package:kreyno/models/car.dart';
 import 'package:kreyno/models/parking_spot.dart';
 import 'package:kreyno/models/user.dart';
 import 'package:kreyno/services/google_map_service.dart';
 import 'package:kreyno/services/location_service.dart';
 import 'package:kreyno/services/parking_spots_service.dart';
+import 'package:kreyno/services/reservations_service.dart';
 import 'package:kreyno/services/toast_service.dart';
 import 'package:kreyno/services/tracking_service.dart';
 import 'package:kreyno/services/user_service.dart';
+import 'package:kreyno/ui/views/my_let_place/my_let_place_view.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -30,8 +34,17 @@ class HomeViewModel extends ReactiveViewModel {
   final _trackingService = locator<TrackingService>();
   final _toastService = locator<ToastService>();
   final _googleMapService = locator<GoogleMapService>();
+  final _navigationService = locator<NavigationService>();
 
   final _parkingSpotService = locator<ParkingSpotsService>();
+
+  /// Geohash precision used to bucket parking places into realtime zone
+  /// channels. Must match the precision the backend uses for `parking.zone.*`.
+  static const int _zonePrecision = 6;
+
+  /// The center cell of the zone grid we are currently subscribed to. Tracked so
+  /// we only re-subscribe when the user actually crosses into a different cell.
+  String? _currentZoneCenter;
 
   double radius = 0.5;
   bool? _possibleElectric;
@@ -136,9 +149,26 @@ class HomeViewModel extends ReactiveViewModel {
     rebuildUi();
   }
 
+  /// Subscribes to the realtime zone grid centered on ([lat], [lng]): the cell
+  /// that contains the point plus its 8 neighbors (a 3×3 grid). Because a cell
+  /// is a rectangle, watching only the center cell would miss places just across
+  /// an edge, so we always watch the neighbors too. No-ops when we are already
+  /// centered on the same cell.
+  Future<void> _updateZoneSubscriptions(double lat, double lng) async {
+    // GeoHash.fromDecimalDegrees takes (longitude, latitude).
+    final center = GeoHash.fromDecimalDegrees(lng, lat, precision: _zonePrecision);
+    if (center.geohash == _currentZoneCenter) return;
+    _currentZoneCenter = center.geohash;
+    // `neighbors` already includes the center cell (CENTRAL), giving all 9 cells.
+    await _trackingService.listenToPlacesChange(center.neighbors.values.toSet());
+  }
+
   Future<void> updateSelectedLocation(LatLng location) async {
     _selectedLocation = location;
     googleMapController.animateCamera(CameraUpdate.newLatLng(location));
+    // A searched destination drives the view now: watch its zone grid so places
+    // there appear/disappear in realtime.
+    await _updateZoneSubscriptions(location.latitude, location.longitude);
     await getNearbyPlaces(lat: location.latitude, lng: location.longitude);
     notifyListeners();
   }
@@ -229,31 +259,39 @@ class HomeViewModel extends ReactiveViewModel {
     rebuildUi();
   }
 
-  final double _targetDistance = 1000;
-
   void onLocationUpdate(LatLng newPosition) {
-    if (_lastPosition != null) {
-      double distance = Geolocator.distanceBetween(
-        _lastPosition!.latitude,
-        _lastPosition!.longitude,
-        newPosition.latitude,
+    // A searched destination takes precedence: while one is selected we keep the
+    // view (and its zone subscriptions) locked to the destination, ignoring the
+    // user's own movement.
+    if (_selectedLocation == null) {
+      final newCenter = GeoHash.fromDecimalDegrees(
         newPosition.longitude,
-      );
-
-      // Add to total
-      if (distance > _targetDistance) {
-        getNearbyPlaces();
-        distance = 0;
+        newPosition.latitude,
+        precision: _zonePrecision,
+      ).geohash;
+      // Only react when the user crosses into a different cell. Within the same
+      // cell there is nothing new to fetch or re-subscribe.
+      if (newCenter != _currentZoneCenter) {
+        _updateZoneSubscriptions(newPosition.latitude, newPosition.longitude);
+        getNearbyPlaces(
+          lat: newPosition.latitude,
+          lng: newPosition.longitude,
+        );
       }
-
-      // Update last position
-      _lastPosition = newPosition;
     }
+
+    _lastPosition = newPosition;
   }
 
   void initHome() async {
     setBusy(true);
     await _userService.getProfile();
+
+    // If the seller reopened the app while still having an active place, take
+    // them straight back to it (on top of the map, so back returns here). Done
+    // before the location guard so it happens even when location is disabled.
+    await _resumeActiveParkingPlace();
+
     await _checkLocationService();
     if (!_isLocationServiceEnabled) {
       setBusy(false);
@@ -262,21 +300,14 @@ class HomeViewModel extends ReactiveViewModel {
     // TODO: check if user has a location permission first
     setBusy(false);
 
+    // Subscribes to the zone grid for the user's current location (handled
+    // inside goToCurrentLocation once the position is known).
     await goToCurrentLocation();
 
     _locationService.listenToMyLocationReactive(null);
 
     // _locationService.removeListener(_onLocationServiceUpdate);
     _locationService.addListener(_onLocationServiceUpdate);
-    final hash = GeoHash.fromDecimalDegrees(
-      _locationService.currentLocation?.longitude ?? 0,
-      _locationService.currentLocation?.latitude ?? 0,
-      precision: 6,
-    );
-
-    _trackingService.listenToPlacesChange(
-      parkingSpots.isEmpty ? hash.geohash : parkingSpots.first.geoHash,
-    );
 
     // Refresh nearby places whenever a grid-update event fires for the zone,
     // mirroring the manual refresh button.
@@ -285,6 +316,46 @@ class HomeViewModel extends ReactiveViewModel {
     // TEMPORARY: drive the same refresh every 10s to test place-change behavior
     // in the frontend. Uncomment to re-enable testing.
     // _trackingService.startPlacesChangeTest();
+  }
+
+  /// Checks the backend for the seller's latest active parking place and, if
+  /// one exists, restores the screen matching its state on top of Home:
+  ///  - no reservation → [MyLetPlaceView] waiting for a buyer;
+  ///  - pending reservation → [MyLetPlaceView] with the accept/refuse card
+  ///    (the reservation is seeded into [ReservationsService] since no
+  ///    `reservation.new` socket event will be replayed);
+  ///  - confirmed reservation → [MyLetPlaceView] with `ClientTrackingView`
+  ///    pushed on top, mirroring the back-stack of the live accept flow.
+  /// Silent when there is none or on error — Home stays the visible screen.
+  Future<void> _resumeActiveParkingPlace() async {
+    final result = await _parkingSpotService.getCurrentActiveParkingSpot();
+    result.match(
+      (error) => _logger.w('Could not resume active parking place: $error'),
+      (active) {
+        if (active == null) return;
+        final reservation = active.reservation;
+        final inProgress =
+            reservation != null &&
+            (reservation.status == ReservationStatus.pending ||
+                reservation.status == ReservationStatus.confirmed);
+
+        if (inProgress) {
+          // Must be seeded before MyLetPlaceViewModel.initialise runs, which
+          // keeps a seeded reservation for this spot instead of clearing it.
+          locator<ReservationsService>().setReservation(reservation);
+        }
+        _navigationService.navigateToView(
+          const MyLetPlaceView(),
+          arguments: active.parkingPlace,
+        );
+        if (inProgress && reservation.status == ReservationStatus.confirmed) {
+          _navigationService.navigateToClientTrackingView(
+            parkingSpot: active.parkingPlace,
+            reservation: reservation,
+          );
+        }
+      },
+    );
   }
 
   void _onPlacesChanged() {
@@ -337,6 +408,9 @@ class HomeViewModel extends ReactiveViewModel {
             zoom: 15,
           ),
         );
+        // Recenter dismisses any searched destination, so realtime updates
+        // should follow the user's current location again.
+        await _updateZoneSubscriptions(location.latitude, location.longitude);
         await getNearbyPlaces();
       },
     );

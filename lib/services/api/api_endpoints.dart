@@ -47,6 +47,8 @@ class ApiEndpoints {
   static const String parkingPlaces = _parkingPlaceBaseUrl;
   static const String oneParkingPlace = '$_parkingPlaceBaseUrl/{id}';
   static const String nearbyParkingPlaces = '$_parkingPlaceBaseUrl/nearby';
+  static const String currentActiveParkingPlace =
+      '$_parkingPlaceBaseUrl/current-active';
 
   // RESERVATIONS
   static const String reservations = _reservationBaseUrl;

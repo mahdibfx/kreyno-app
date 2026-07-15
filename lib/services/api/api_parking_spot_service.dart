@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:kreyno/dtos/create_parking_spot_dto.dart';
 import 'package:kreyno/models/api_response.dart';
+import 'package:kreyno/models/current_active_parking_place.dart';
 import 'package:kreyno/models/delete_parking_spot_api_response.dart';
 import 'package:kreyno/models/parking_spot.dart';
 import 'package:kreyno/services/api/api_endpoints.dart';
@@ -21,6 +22,14 @@ abstract class ApiParkingSpotService {
 
   @GET(ApiEndpoints.oneParkingPlace)
   Future<ApiResponse<ParkingSpot>> getParkingSpot(@Path('id') int id);
+
+  /// Returns the authenticated seller's latest active parking place, i.e. one
+  /// that has no reservation yet, or whose reservation is not canceled/finished
+  /// (an in-progress reservation is included in the payload when present).
+  /// `data` is null when the seller has no active place.
+  @GET(ApiEndpoints.currentActiveParkingPlace)
+  Future<ApiResponse<CurrentActiveParkingPlace?>>
+  getCurrentActiveParkingSpot();
 
   @DELETE(ApiEndpoints.oneParkingPlace)
   Future<ApiResponse<DeleteParkingSpotApiResponse>> deleteParkingSpot(

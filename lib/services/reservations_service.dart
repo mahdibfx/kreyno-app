@@ -131,6 +131,14 @@ class ReservationsService with ListenableServiceMixin {
         .toPaginatedEither();
   }
 
+  /// Seeds the current reservation from an API payload (e.g. the resume flow
+  /// restoring an in-progress reservation on app start) instead of a socket
+  /// event, and publishes it exactly the same way.
+  void setReservation(Reservation reservation) {
+    _reservation = reservation;
+    notifyListeners();
+  }
+
   void removeReservation() {
     _reservation = null;
     notifyListeners();
