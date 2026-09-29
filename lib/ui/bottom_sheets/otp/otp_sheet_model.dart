@@ -4,6 +4,7 @@ import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/enums/gender.dart';
 import 'package:kreyno/enums/onboarding_step.dart';
+import 'package:kreyno/services/analytics_service.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/onboarding_service.dart';
 import 'package:kreyno/services/user_service.dart';
@@ -18,6 +19,7 @@ class OtpSheetModel extends BaseViewModel {
   final _authService = locator<AuthService>();
   final _onboardingService = locator<OnboardingService>();
   final _userService = locator<UserService>();
+  final _analyticsService = locator<AnalyticsService>();
 
   final OtpSheetType type;
   final String phoneNumber;
@@ -194,6 +196,10 @@ class OtpSheetModel extends BaseViewModel {
             _logger.e('Error setting authenticated user', error: error);
           },
           (_) async {
+            // Funnel steps 2 and 3. The backend validates the OTP inside
+            // register(), so reaching here means both.
+            await _analyticsService.otpVerifiedAndProfileCompleted();
+
             final onboardingResult = await _onboardingService.setCurrentStep(
               OnboardingStep.vehicle,
             );

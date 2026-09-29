@@ -2,6 +2,7 @@ import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/app/app.router.dart';
 import 'package:kreyno/models/card.dart';
+import 'package:kreyno/services/analytics_service.dart';
 import 'package:kreyno/services/stripe_service.dart';
 import 'package:kreyno/services/toast_service.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
@@ -13,6 +14,7 @@ class SetUpPaymentMethodsViewModel extends BaseViewModel {
   final _toastService = locator<ToastService>();
   final _stripeService = locator<StripeService>();
   final _navigationService = locator<NavigationService>();
+  final _analyticsService = locator<AnalyticsService>();
 
   Card? _savedCard;
   Card? get savedCard => _savedCard;
@@ -26,10 +28,15 @@ class SetUpPaymentMethodsViewModel extends BaseViewModel {
   }
 
   void onSkipTapped() async {
+    // Funnel step 5, skipped branch.
+    await _analyticsService.paymentStep(skipped: true);
     _navigateToPermissionsView();
   }
 
   void onContinueTapped() async {
+    // Funnel step 5. `hasSavedCard` is what actually distinguishes a card
+    // having been added from the user tapping past an empty screen.
+    await _analyticsService.paymentStep(skipped: !hasSavedCard);
     _navigateToPermissionsView();
   }
 

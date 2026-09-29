@@ -1,4 +1,5 @@
 import 'package:kreyno/services/api/dio_service.dart';
+import 'package:kreyno/services/analytics_service.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/cars_service.dart';
 import 'package:kreyno/services/device_service.dart';
@@ -148,6 +149,7 @@ import 'package:kreyno/services/tasks_service.dart';
     LazySingleton(classType: TrackingService),
     LazySingleton(classType: ChatService),
     LazySingleton(classType: TasksService),
+    LazySingleton(classType: AnalyticsService),
     // @stacked-service
   ],
   bottomsheets: [

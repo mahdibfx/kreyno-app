@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fpdart/fpdart.dart';
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
@@ -19,8 +21,11 @@ class DeviceService {
       deviceId,
     ) async {
       if (deviceId == null || deviceId.isEmpty) {
-        // Generate new UUID v4 (random)
-        final newDeviceId = const Uuid().v4();
+        // Generate new UUID v4 (random), prefixed with the platform so the
+        // admin dashboard can split iOS/Android. The backend only ever uses
+        // this value as the Sanctum token name and never looks a token up by
+        // it, so the prefix is inert everywhere else.
+        final newDeviceId = '${Platform.isIOS ? 'ios' : 'android'}:${const Uuid().v4()}';
         final writeResult = await _sharedPrefsService.writeData(
           AppConstants.deviceIdKey,
           newDeviceId,

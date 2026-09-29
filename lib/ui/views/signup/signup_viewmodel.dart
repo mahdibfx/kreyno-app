@@ -7,6 +7,7 @@ import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/enums/gender.dart';
 import 'package:kreyno/enums/otp_sheet_type.dart';
 import 'package:kreyno/enums/unique_existence_id.dart';
+import 'package:kreyno/services/analytics_service.dart';
 import 'package:kreyno/services/auth_service.dart';
 import 'package:kreyno/services/toast_service.dart';
 import 'package:kreyno/ui/common/app_strings.dart';
@@ -20,6 +21,13 @@ class SignupViewModel extends FormViewModel {
   final _bottomSheetService = locator<BottomSheetService>();
   final _authService = locator<AuthService>();
   final _toastService = locator<ToastService>();
+  final _analyticsService = locator<AnalyticsService>();
+
+  /// Funnel step 1. Called from SignupView.onViewModelReady, so it
+  /// counts people who reached the form -- not people who submitted it.
+  void onViewReady() {
+    _analyticsService.registrationStarted();
+  }
 
   bool get isFormValid =>
       (hasPhoneNumber && hasFirstName && hasLastName && hasEmail && hasUserName

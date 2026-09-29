@@ -5,6 +5,7 @@ import 'package:kreyno/dtos/create_car_dto.dart';
 import 'package:kreyno/enums/onboarding_step.dart';
 import 'package:kreyno/enums/vehicle_type.dart';
 import 'package:kreyno/models/get_car_by_registration_response.dart';
+import 'package:kreyno/services/analytics_service.dart';
 import 'package:kreyno/services/cars_service.dart';
 import 'package:kreyno/services/onboarding_service.dart';
 import 'package:kreyno/services/toast_service.dart';
@@ -17,6 +18,7 @@ class SetUpVehiculeViewModel extends FormViewModel {
   final _logger = getLogger('SetUpVehiculeViewModel');
   final _navigationService = locator<NavigationService>();
   final _carsService = locator<CarsService>();
+  final _analyticsService = locator<AnalyticsService>();
   final _toastService = locator<ToastService>();
   final _onboardingService = locator<OnboardingService>();
 
@@ -141,6 +143,8 @@ class SetUpVehiculeViewModel extends FormViewModel {
         },
         (car) async {
           _logger.i('Vehicle created: ${car.registrationNumber}');
+          // Funnel step 4. This step has no skip: a vehicle is required.
+          await _analyticsService.vehicleStepCompleted();
           _toastService.showSuccess(
             title: SetUpVehiculeStrings.vehiculeSavedSuccessfully,
           );

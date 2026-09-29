@@ -1,7 +1,7 @@
 name: kreyno
 description: A new Flutter project.
 publish_to: "none"
-version: 1.97.0+1
+version: 2.0.0+1
 
 environment:
   sdk: "^3.8.0"
@@ -16,6 +16,7 @@ dependencies:
   dio: ^5.9.0
   dotted_border: ^2.1.0
   easy_localization: ^3.0.8
+  firebase_analytics: ^12.6.0
   firebase_core: ^4.11.0
   flutter:
     sdk: flutter

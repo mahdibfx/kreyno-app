@@ -260,6 +260,7 @@ class SignupView extends StackedView<SignupViewModel> with $SignupView {
       }
     });
     syncFormWithViewModel(viewModel);
+    viewModel.onViewReady();
     super.onViewModelReady(viewModel);
   }
 

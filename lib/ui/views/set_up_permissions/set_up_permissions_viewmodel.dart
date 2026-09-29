@@ -1,6 +1,7 @@
 import 'package:kreyno/app/app.locator.dart';
 import 'package:kreyno/app/app.logger.dart';
 import 'package:kreyno/app/app.router.dart';
+import 'package:kreyno/services/analytics_service.dart';
 import 'package:kreyno/services/permissions_service.dart';
 import 'package:kreyno/services/toast_service.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -10,6 +11,7 @@ import 'package:stacked_services/stacked_services.dart';
 class SetUpPermissionsViewModel extends BaseViewModel {
   final _logger = getLogger('SetUpPermissionsViewModel');
   final _navigationService = locator<NavigationService>();
+  final _analyticsService = locator<AnalyticsService>();
   final _permissionsService = locator<PermissionsService>();
   final _toastService = locator<ToastService>();
 
@@ -71,10 +73,17 @@ class SetUpPermissionsViewModel extends BaseViewModel {
   }
 
   void onSkipTapped() async {
+    // Funnel steps 6 (skipped branch) and 7: this screen is the last one
+    // before the app itself, so leaving it either way completes onboarding.
+    await _analyticsService.permissionsStep(skipped: true);
+    await _analyticsService.onboardingCompleted();
     _navigateToStartupView();
   }
 
   void onContinueTapped() async {
+    // Funnel steps 6 and 7.
+    await _analyticsService.permissionsStep(skipped: !allPermissionsGranted);
+    await _analyticsService.onboardingCompleted();
     _navigateToStartupView();
   }
 
